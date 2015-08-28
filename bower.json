@@ -4,7 +4,7 @@
   "dependencies": {
     "webcomponentsjs": "^0.7.12",
     "polymer": "Polymer/polymer#^1.0.0",
-    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.5"
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.3"
   },
   "devDependencies": {}
 }
