@@ -1,0 +1,57 @@
+<dom-module id="uq-minimal-footer">
+
+  <link rel="stylesheet" href="../styles/reusable-styles.css">
+
+  <style is="custom-style">
+
+    :host {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      @apply(--layout-vertical);
+    }
+
+    .header-container,
+    .header-container div{
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+  </style>
+
+  <template>
+
+    <div class="footer-container">
+      <div>Authorised by: University Librarian</div>
+      <div>© The University of Queensland</div>
+      <div>
+        Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
+        &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
+      </div>
+      <div>
+        <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
+        <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
+        Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+        is: 'uq-minimal-footer',
+
+        properties: {
+          applicationTitle: {
+            type: String,
+            notify: true
+          }
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

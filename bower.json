@@ -1,0 +1,10 @@
+{
+  "name": "reusable components",
+  "private": true,
+  "dependencies": {
+    "webcomponentsjs": "^0.7.2",
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.5"
+  },
+  "devDependencies": {}
+}

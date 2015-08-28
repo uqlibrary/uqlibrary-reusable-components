@@ -1,0 +1,58 @@
+<dom-module id="uq-minimal-header">
+
+  <link rel="stylesheet" href="../styles/reusable-styles.css">
+
+  <style is="custom-style">
+
+    :host {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      @apply(--layout-vertical);
+    }
+
+    .header-container,
+    .header-container div{
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+  </style>
+
+  <template>
+
+    <div class="header-container">
+      <div class="uq-title">
+        <a href="http://www.uq.edu.au/">
+          <div class="uq-title-text">UQ</div>
+        </a>
+      </div>
+      <div class="library-title">
+        <a href="https://www.library.uq.edu.au/">Library</a>
+      </div>
+      <div class="application-title">{{applicationTitle}}</div>
+    </div>
+
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+        is: 'uq-minimal-header',
+
+        properties: {
+          applicationTitle: {
+            type: String,
+            notify: true
+          }
+        }
+      });
+    })();
+  </script>
+
+</dom-module>
