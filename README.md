@@ -37,10 +37,10 @@ npm install -g gulp bower && npm install && bower install
 
 include this code in Custom JS/CSS Code in LibGuides configuration
 
-    <link rel="import" href="[URL]/applications/elements.vulcanized.html">
-    <link rel="stylesheet" type="text/css" href="[URL]/applications/libguides/custom-styles.css">
-    <script src="[URL]/applications/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <script src="[URL]/applications/libguides/load.js"></script>
+        <script src="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/elements.vulcanized.html">
+        <script src="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/libguides/load.js"></script>
+        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/libguides/custom-styles.css" />
 
 - LibAnswers
 
