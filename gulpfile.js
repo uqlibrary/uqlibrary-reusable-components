@@ -42,7 +42,8 @@ var AUTOPREFIXER_BROWSERS = [
 var config = {
   applications : 'applications',
   elements: 'elements',
-  dependencies: 'bower_components'
+  dependencies: 'bower_components',
+  resources: 'resources'
 };
 
 // Lint JavaScript
@@ -106,7 +107,10 @@ gulp.task('copy:aws', function () {
   var dependencies = gulp.src([config.dependencies + '/webcomponentsjs/**/*'])
     .pipe(gulp.dest(config.applications + '/webcomponentsjs'));
 
-  return merge(vulcanized, dependencies)
+  var resources = gulp.src([config.resources + '/**/*'])
+    .pipe(gulp.dest(config.applications + '/resources'));
+
+  return merge(vulcanized, dependencies, resources)
     .pipe($.size({title: 'copy'}));
 });
 
