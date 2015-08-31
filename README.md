@@ -38,22 +38,22 @@ npm install -g gulp bower && npm install && bower install
 include this code in Custom JS/CSS Code in LibGuides configuration
 
         <link type="image/x-icon" rel="shortcut icon" href="https://www.library.uq.edu.au/_/sites/all/themes/uq/images/favicon.ico">
+        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/custom-styles.css" />
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/load.js"></script>
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/custom-styles.css" />
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/PgwBrowser/pgwbrowser.min.js"></script>
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
 
 - LibAnswers
 
 include this code in Custom JS/CSS Code in LinAnswers configuration
 
         <link type="image/x-icon" rel="shortcut icon" href="https://www.library.uq.edu.au/_/sites/all/themes/uq/images/favicon.ico">
+        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libanswers/custom-styles.css" />
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libanswers/load.js"></script>
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libanswers/custom-styles.css" />
 
 - Add more ...
 
