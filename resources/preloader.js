@@ -2,8 +2,12 @@
 // Comment out before committing!
 //document.cookie="UQLMockData=enabled";
 var ignoreSession = true;
+var hasWebComponentsSupport = (!('registerElement' in document
+  && 'createShadowRoot' in HTMLElement.prototype
+  && 'import' in document.createElement('link')
+  && 'content' in document.createElement('template')));
 
-function isIE() {
+  function isIE() {
   var myNav = navigator.userAgent.toLowerCase();
   return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
 }
@@ -12,18 +16,10 @@ function hasSession() {
   return (typeof ignoreSession !== 'undefined' && ignoreSession) || document.cookie.indexOf("UQLID") >= 0 || document.cookie.indexOf("UQLMockData") >= 0;
 }
 
-if (!('registerElement' in document
-    && 'createShadowRoot' in HTMLElement.prototype
-    && 'import' in document.createElement('link')
-    && 'content' in document.createElement('template'))) {
-
-  // IE 8 and 9 throw errors if you try to include webcomponents.js, which prevents other user messages working
-  //if (!isIE() || isIE() > 9) {
-  //  document.write('<script src="../uqlibrary-elements/0.5.4/webcomponentsjs/webcomponents.min.js"><\/script>');
-  //}
-
-  document.write('<script type="text/javascript" src="PgwBrowser/pgwbrowser.min.js"><\/script>');
+if (!hasWebComponentsSupport ){
+  document.write('<script type="text/javascript" src="resources/PgwBrowser/pgwbrowser.min.js"><\/script>');
 }
+
 if (!hasSession()){
   if (!isIE() || isIE() > 9) {
     document.location.href = "https://www.library.uq.edu.au/uqlais/login?return=" + window.btoa(window.location.href);
@@ -58,7 +54,7 @@ function $buo_f() {
 }
 
 function setUnsupported() {
-  if (window.jQuery) {
+  if (!hasWebComponentsSupport && window.jQuery) {
     $(document).ready(function () {
       var o = document.createElement("p");
       // this needs to be the old style getter as it needs to run in IE8/9
@@ -88,7 +84,7 @@ try {
   }());
 }
 catch (e) {
-  if (window.jQuery) {
+  if (!hasWebComponentsSupport && window.jQuery) {
     $(document).ready(function () {
       var pgwBrowser = $.pgwBrowser();
       var messageCard = document.querySelector('#unsupportedBrowserSupportMessage');
@@ -200,7 +196,9 @@ catch (e) {
       messageCard.appendChild(e);
     });
   }
+
   if (window.attachEvent) {
     window.attachEvent("onload", $buo_f);
   }
+
 }
