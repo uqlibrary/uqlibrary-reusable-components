@@ -52,22 +52,22 @@ function $buo_f() {
 }
 
 function setUnsupported() {
-  if (!hasWebComponentsSupport && window.jQuery) {
-    $(document).ready(function () {
-      var o = document.createElement("p");
-      // this needs to be the old style getter as it needs to run in IE8/9
-      var messageCard = document.getElementById('unsupportedBrowserSupportMessage');
-      o.id = "browserDetailsOld";
-        if (typeof unsupportedRedirect !== 'undefined') {
-            o.innerHTML = "<br \/><br \/>Return to <a href='" + unsupportedRedirect.url + "'>" + unsupportedRedirect.title + " <\/a>.";
-        } else {
-            o.innerHTML = "<br \/><br \/>You can still use <a href=\'https:\/\/www.library.uq.edu.au\/mylibrary\'>the old version of MyLibrary<\/a>.";
-        }
-      messageCard.appendChild(o);
-      document.getElementById('loader').style.display = 'none';
-      document.getElementById('loadingTitle').innerHTML = 'Unsupported Browser';
-    });
-  }
+  //if (!hasWebComponentsSupport && window.jQuery) {
+  //  $(document).ready(function () {
+  //    var o = document.createElement("p");
+  //    // this needs to be the old style getter as it needs to run in IE8/9
+  //    var messageCard = document.getElementById('unsupportedBrowserSupportMessage');
+  //    o.id = "browserDetailsOld";
+  //      if (typeof unsupportedRedirect !== 'undefined') {
+  //          o.innerHTML = "<br \/><br \/>Return to <a href='" + unsupportedRedirect.url + "'>" + unsupportedRedirect.title + " <\/a>.";
+  //      } else {
+  //          o.innerHTML = "<br \/><br \/>You can still use <a href=\'https:\/\/www.library.uq.edu.au\/mylibrary\'>the old version of MyLibrary<\/a>.";
+  //      }
+  //    messageCard.appendChild(o);
+  //    document.getElementById('loader').style.display = 'none';
+  //    document.getElementById('loadingTitle').innerHTML = 'Unsupported Browser';
+  //  });
+  //}
 }
 
 try {
@@ -151,6 +151,7 @@ catch (e) {
           switch (pgwBrowser.browser.group) {
             case 'Explorer':
               if (pgwBrowser.browser.majorVersion < 10) {
+                $buoop.text = 'You are currently using an unsupported version of Internet Explorer. We can only support IE 10 and above.';
                 e.innerHTML = '<br \/><br \/>You are currently using an unsupported version of Internet Explorer. We can only support IE 10 and above.';
                 setUnsupported();
               }
