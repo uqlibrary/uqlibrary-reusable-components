@@ -25,6 +25,7 @@ var awspublish = require('gulp-awspublish');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
 var taskList = require('gulp-task-listing');
+var cssmin = require('gulp-cssmin');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -88,6 +89,14 @@ gulp.task('copy:vulcanize', function () {
   return merge(vulcanized)
     .pipe($.size({title: 'copy'}));
 });
+
+// optimize files
+gulp.task('optimize', function () {
+  gulp.src(config.applications + '/**/*.css')
+    .pipe(cssmin())
+    .pipe(gulp.dest(config.applications));
+});
+
 
 // copy and rename elements.html to elements.vulcanized.html
 gulp.task('copy:aws', function () {

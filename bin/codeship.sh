@@ -47,15 +47,13 @@ sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
 
 #set -x
 
-#TODO
-# if branch == prod or staging do extra minifications, etc
-# don't do min for master for better testing/debugging
-#run file revision, css min tasks - find gulp alternative for min/rev
-#if [ $branch = "staging" ] || [ $branch = "production" ]; then
-#  gulp predeploy
-#fi
+#run css min tasks for staging/production, don't run for master - for better debugging
+if [ $branch = "staging" ] || [ $branch = "production" ]; then
+  echo "Run gulp task to optimize css..."
+  gulp optimize
+fi
 
-echo "Run gulp task..."
+echo "Run gulp task to upload to AWS..."
 gulp publish
 
 echo "Clean up AWS configuration..."

@@ -62,11 +62,15 @@
 }
 
 @media all and (max-width: 700px) {
-
   .header-container {
+    height: 66px;
+
     .uq-title {
       width: 50px;
       background: none;
+
+      height: 30px;
+      border-right: 2px solid $header-primary-text-color;
 
       .uq-title-text {
         display: block !important;

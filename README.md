@@ -38,19 +38,20 @@ npm install -g gulp bower && npm install && bower install
 include this code in Custom JS/CSS Code in LibGuides configuration
 
         <link type="image/x-icon" rel="shortcut icon" href="https://www.library.uq.edu.au/_/sites/all/themes/uq/images/favicon.ico">
-        <script src="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/webcomponentsjs/webcomponents.js"></script>
-        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/elements.vulcanized.html">
-        <script src="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/libguides/load.js"></script>
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/libguides/custom-styles.css" />
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/load.js"></script>
+        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/custom-styles.css" />
 
 - LibAnswers
+
 include this code in Custom JS/CSS Code in LinAnswers configuration
 
         <link type="image/x-icon" rel="shortcut icon" href="https://www.library.uq.edu.au/_/sites/all/themes/uq/images/favicon.ico">
-        <script src="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/webcomponentsjs/webcomponents.js"></script>
-        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/elements.vulcanized.html">
-        <script src="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/libanswers/load.js"></script>
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/master/reusable-components/libanswers/custom-styles.css" />
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libanswers/load.js"></script>
+        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libanswers/custom-styles.css" />
 
 - Add more ...
 
@@ -60,16 +61,13 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
 2. Update any custom elements
 3. Compile all styles 
 4. Run vulcanize task
-
 ```sh
 gulp vulcanize
 ```
 
-3. Commit all changes
-4. Codeship will deploy changes automatically
-
-Deployment task /bin/codeship.sh:
-
+5. Commit all changes
+6. Codeship will deploy changes automatically by running
+deployment task /bin/codeship.sh:
 - installs all dependencies
 - sets AWS configuration
 - runs gulp publish task which uploads files to S3 bucket
@@ -81,7 +79,7 @@ Distribution package on S3 looks like this:
     - /libanswers/*
     - /other-uql-apps/*
     - /webcomponents/*
-    - elements.vulcanized.html
+    - elements.vulcanized.html   
     
-Subdirectory [branch_name] only exists for non-production branches, eg uat 
+Subdirectory [branch_name] only exists for non-production branches, eg master/uat 
 

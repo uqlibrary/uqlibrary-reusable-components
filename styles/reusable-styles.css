@@ -42,11 +42,15 @@
     color: #d2c1d7; }
 
 @media all and (max-width: 700px) {
-  .header-container .uq-title {
-    width: 50px;
-    background: none; }
-    .header-container .uq-title .uq-title-text {
-      display: block !important; } }
+  .header-container {
+    height: 66px; }
+    .header-container .uq-title {
+      width: 50px;
+      background: none;
+      height: 30px;
+      border-right: 2px solid #FFF; }
+      .header-container .uq-title .uq-title-text {
+        display: block !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
