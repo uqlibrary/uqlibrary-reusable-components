@@ -2,10 +2,10 @@
 // Comment out before committing!
 //document.cookie="UQLMockData=enabled";
 var ignoreSession = true;
-var hasWebComponentsSupport = (!('registerElement' in document
+var hasWebComponentsSupport = ('registerElement' in document
   && 'createShadowRoot' in HTMLElement.prototype
   && 'import' in document.createElement('link')
-  && 'content' in document.createElement('template')));
+  && 'content' in document.createElement('template'));
 
   function isIE() {
   var myNav = navigator.userAgent.toLowerCase();
@@ -42,8 +42,6 @@ var $buoop = {
                                   // overrides the default detection
   test: false,                    // true = always show the bar (for testing)
   text: "Please upgrade to the latest version of <a href='http://www.google.com/chrome'>Google Chrome</a> to get the best experience on this site",                       // custom notification html text
-  text_xx: "",                    // custom notification text for language "xx"
-                                  // e.g. text_de for german and text_it for italian
   newwindow: true                 // open link in new window/tab
 };
 
@@ -93,6 +91,8 @@ catch (e) {
       switch (pgwBrowser.os.group) {
         case 'iOS':
           if (pgwBrowser.os.majorVersion < 6) {
+            $buoop.text = 'You are currently using an unsupported version of Safari bundled with Apple iOS version ' + pgwBrowser.os.fullVersion + '. We can only support Safari in Apple iOS version 6 and above.';
+
             e.innerHTML = '<br \/><br \/>You are currently using an unsupported version of Safari bundled with Apple iOS version ' + pgwBrowser.os.fullVersion + '. We can only support Safari in Apple iOS version 6 and above.';
             setUnsupported();
           }
