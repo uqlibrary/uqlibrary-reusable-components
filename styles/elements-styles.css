@@ -48,15 +48,7 @@
   .header-container {
     height: 66px; }
     .header-container .uq-title {
-      width: 50px;
-      height: 30px;
-      background: none;
-      border-right: 2px solid #FFF; }
-      .header-container .uq-title a {
-        height: auto;
-        width: auto; }
-      .header-container .uq-title .uq-title-text {
-        display: block !important; } }
+      display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -74,4 +66,4 @@
 /* desktop-large */
 /* desktop-xlarge */
 
-/*# sourceMappingURL=reusable-styles.css.map */
+/*# sourceMappingURL=elements-styles.css.map */
