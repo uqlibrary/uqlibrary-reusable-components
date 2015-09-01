@@ -22,6 +22,9 @@
     background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
     background-size: 178px 50px;
     border-right: 1px solid #FFF; }
+    .header-container .uq-title a {
+      width: 190px;
+      height: 50px; }
     .header-container .uq-title .uq-title-text {
       display: none !important; }
 
@@ -46,9 +49,12 @@
     height: 66px; }
     .header-container .uq-title {
       width: 50px;
-      background: none;
       height: 30px;
+      background: none;
       border-right: 2px solid #FFF; }
+      .header-container .uq-title a {
+        height: auto;
+        width: auto; }
       .header-container .uq-title .uq-title-text {
         display: block !important; } }
 /* mobile-small */
