@@ -35,6 +35,7 @@ npm install -g gulp bower && npm install && bower install
 
 - LibGuides
 
+test group (uses master branch): http://guides.library.uq.edu.au/test
 include this code in Custom JS/CSS Code in LibGuides configuration
 
         <link type="image/x-icon" rel="shortcut icon" href="https://www.library.uq.edu.au/_/sites/all/themes/uq/images/favicon.ico">
@@ -45,6 +46,8 @@ include this code in Custom JS/CSS Code in LibGuides configuration
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/load.js"></script>
 
 - LibAnswers
+
+test group (uses master branch): http://answers.library.uq.edu.au/test
 
 include this code in Custom JS/CSS Code in LinAnswers configuration
 
@@ -76,7 +79,7 @@ deployment task /bin/codeship.sh:
 
 Distribution package on S3 looks like this:
 
-- [branch_name]/applications/
+- [branch_name]/reusable-components/
     - /libguies/*
     - /libanswers/*
     - /other-uql-apps/*
@@ -84,4 +87,5 @@ Distribution package on S3 looks like this:
     - elements.vulcanized.html   
     
 Subdirectory [branch_name] only exists for non-production branches, eg master/uat 
+
 

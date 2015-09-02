@@ -436,4 +436,7 @@ ul, ol {
 .s-lib-box-container .s-lib-box-content h4 {
   font-size: 13px; }
 
+h3, h4 {
+  font-weight: bold !important; }
+
 /*# sourceMappingURL=custom-styles.css.map */
