@@ -41,7 +41,7 @@ include this code in Custom JS/CSS Code in LibGuides configuration
         <link type="image/x-icon" rel="shortcut icon" href="https://www.library.uq.edu.au/_/sites/all/themes/uq/images/favicon.ico">
         <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/custom-styles.css" />
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
         <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/load.js"></script>
 
