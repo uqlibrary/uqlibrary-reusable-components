@@ -101,7 +101,7 @@ body {
 .uq-header-logo:hover,
 .uq-header-logo:focus,
 .uq-header-logo:active {
-  -webkit-filter: drop-shadow(0 0 1px #aaa); }
+  -webkit-filter: drop-shadow(0 0 1px #aaaaaa); }
 
 .uq-library-header-logo {
   float: left;
@@ -116,10 +116,10 @@ body {
 .uq-library-header-logo:focus {
   color: #fff;
   text-decoration: none;
-  -webkit-filter: drop-shadow(0 0 1px #aaa);
-  -moz-filter: drop-shadow(0 0 1px #aaa);
-  -ms-filter: drop-shadow(0 0 1px #aaa);
-  filter: drop-shadow(0 0 1px #aaa); }
+  -webkit-filter: drop-shadow(0 0 1px #aaaaaa);
+  -moz-filter: drop-shadow(0 0 1px #aaaaaa);
+  -ms-filter: drop-shadow(0 0 1px #aaaaaa);
+  filter: drop-shadow(0 0 1px #aaaaaa); }
 
 /* styles for enclosing side nav */
 .s-lg-tabs-side > .nav {
@@ -319,6 +319,9 @@ body {
 a {
   color: #007e9e; }
 
+.ui-widget-content a {
+  color: #007e9e !important; }
+
 .nav > li > a:hover,
 .nav > li > a:focus {
   color: #007e9e;
@@ -438,5 +441,3 @@ ul, ol {
 
 h3, h4 {
   font-weight: bold !important; }
-
-/*# sourceMappingURL=custom-styles.css.map */
