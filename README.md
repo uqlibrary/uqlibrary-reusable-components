@@ -43,7 +43,7 @@ include this code in Custom JS/CSS Code in LibGuides configuration
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
         <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/load.js"></script>
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/load-minimal.js"></script>
 
 - LibAnswers
 
@@ -56,7 +56,7 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libanswers/load.js"></script>
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/load-minimal.js"></script>
 
 - Add more ...
 
