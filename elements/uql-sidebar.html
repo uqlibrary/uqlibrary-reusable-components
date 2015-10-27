@@ -30,10 +30,10 @@
   <template is="dom-bind">
     <iron-ajax auto url="{{menuJson}}" handle-as="json" on-response="_handleResponse" verbose="{{debug}}"></iron-ajax>
     <paper-material elevation="1" id="main" hidden="{{hideMenu}}" class="layout vertical">
+      <paper-toolbar class="toggle">
+        <div class="title">{{menu.heading}}</div>
+      </paper-toolbar>
       <paper-menu id="main-menu" attr-for-selected="data-route" selected="[[route]]" class="flex">
-        <paper-toolbar class="toggle">
-          <div class="title">{{menu.heading}}</div>
-        </paper-toolbar>
         <template is="dom-repeat" items="{{menu.items}}">
           <!-- load up single menu items without submenus -->
           <template is="dom-if" if="{{!item.items}}">
@@ -59,7 +59,7 @@
                   <iron-icon icon="{{item.icon}}"></iron-icon>
                 </template>
                 <template is="dom-if" if="{{item.href}}">
-                  <a href="{{item.href}}" on-click="onDataRouteClick">
+                  <a href="{{item.href}}">
                 </template>
                 <span>{{item.label}}</span>
                 <iron-icon icon="arrow-drop-down"></iron-icon>
@@ -74,7 +74,7 @@
                       <iron-icon icon="{{subitem.icon}}"></iron-icon>
                     </template>
                     <template is="dom-if" if="{{subitem.href}}">
-                      <a href="{{subitem.href}}" on-click="onDataRouteClick">
+                      <a href="{{subitem.href}}">
                     </template>
                     <span>{{subitem.label}}</span>
                     <template is="dom-if" if="{{subitem.href}}">
