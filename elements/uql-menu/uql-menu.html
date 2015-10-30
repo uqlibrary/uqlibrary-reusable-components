@@ -1,0 +1,17 @@
+<dom-module id="uql-menu">
+  <link rel="import" href="../elements.html">
+
+  <link rel="import" href="../theme/theme.html">
+
+  <link rel="import" type="css" href="../theme/theme.css">
+  <link rel="import" type="css" href="uql-menu.css">
+
+  <template>
+    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
+    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
+    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
+  </template>
+
+  <script src="uql-menu.js"></script>
+
+</dom-module>

@@ -1,0 +1,29 @@
+:host {
+    display: block;
+}
+
+paper-toolbar {
+    background-color: #49075e;
+}
+
+paper-toolbar paper-button:nth-of-type(1) {
+    text-align: left;
+}
+
+#main {
+    width: 269px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #eee;
+    z-index: 1;
+}
+
+paper-menu.sublist paper-item a {
+    padding-left: 1em;
+}
+
+#main-menu {
+    overflow: auto;
+}

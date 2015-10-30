@@ -1,34 +1,17 @@
 <dom-module id="uql-sidebar" class="layout vertical">
-  <link rel="import" href="../bower_components/polymer/polymer.html">
-  <link rel="import" href="../bower_components/neon-animation/animations/slide-from-left-animation.html">
-  <link rel="import" href="../bower_components/neon-animation/animations/slide-left-animation.html">
-  <link rel="import" href="../bower_components/neon-animation/neon-animation-runner-behavior.html">
-  <link rel="import" href="theme/theme.html">
-  <link rel="stylesheet" type="text/css" href="../styles/elements-styles.css">
-  <link rel="stylesheet" type="text/css" href="theme/theme.css">
+  <link rel="import" href="../elements.html">
 
-  <style is="custom-style">
-    :host {
-      display: block;
-    }
+  <link rel="import" href="../theme/theme.html">
 
-    #main {
-      width: 269px;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: #eee;
-      z-index: 1;
-    }
-
-    paper-menu.sublist paper-item a {
-      padding-left: 1em;
-    }
-  </style>
+  <link rel="import" type="css" href="../theme/theme.css">
+  <link rel="import" type="css" href="uql-sidebar.css">
 
   <template>
     <iron-ajax auto url="{{menuJson}}" handle-as="json" on-response="_handleResponse" verbose="{{debug}}"></iron-ajax>
+    <paper-toolbar id="topBar" role="toolbar">
+      <paper-button class="toggle flex"><iron-icon icon="menu" alt="Menu"></iron-icon> Menu</paper-button>
+      <paper-icon-button href="/" icon="home" alt="home" on-tap="_goLink"></paper-icon-button>
+    </paper-toolbar>
     <paper-material elevation="1" id="main" hidden="{{hideMenu}}" class="layout vertical">
       <paper-toolbar class="toggle">
         <div class="title">{{menu.heading}}</div>
@@ -87,61 +70,12 @@
           </template>
         </template>
       </paper-menu>
-      <paper-button class="toggle colorful" raised>
+      <paper-button class="toggle">
         <iron-icon icon="backspace"></iron-icon>
         Close
       </paper-button>
     </paper-material>
   </template>
-
-  <script>
-    (function () {
-      Polymer({
-        is: 'uql-sidebar',
-        debug: 'true',
-        menu: {},
-        hideMenu: 0,
-        behaviors: [Polymer.NeonAnimationRunnerBehavior],
-        properties: {
-          visible: {
-            type: String,
-            observer: '_computeVisibility'
-          },
-          menuJson: {
-            type: String
-          },
-          animationConfig: {
-            value: function () {
-              return {
-                'entry': {
-                  name: 'slide-from-left-animation',
-                  node: this.$.main
-                },
-                'exit': {
-                  name: 'slide-left-animation',
-                  node: this.$.main
-                }
-              };
-            }
-          }
-        },
-        listeners: {
-          'neon-animation-finish': '_onNeonAnimationFinish'
-        },
-        _handleResponse: function () {
-          this.menu = event.detail.response;
-        },
-        _onNeonAnimationFinish: function () {
-          this.hideMenu = this.visible === 'true' ? 0 : 1;
-        },
-        _computeVisibility: function () {
-          if (this.visible === 'true') {
-            this.hideMenu = 0;
-          }
-          this.playAnimation(this.visible === 'true' ? 'entry' : 'exit');
-        }
-      });
-    })();
-  </script>
+  <script src="uql-sidebar.js"></script>
 
 </dom-module>
