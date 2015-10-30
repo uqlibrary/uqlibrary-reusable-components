@@ -99,8 +99,9 @@ deployment task /bin/codeship.sh:
 Distribution package on S3 looks like this:
 
 - [branch_name]/reusable-components/
-    - /libguies/*
+    - /libguides/*
     - /libanswers/*
+    - /libwww/*
     - /other-uql-apps/*
     - /webcomponents/*
     - elements.vulcanized.html   
