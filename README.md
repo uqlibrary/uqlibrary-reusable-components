@@ -28,6 +28,9 @@ npm install -g gulp bower && npm install && bower install
 
 - uq-minimal-header
 - uq-minimal-footer
+- uq-mega-menu
+- uq-menu
+- uq-sidebar (menu)
 - elements.html - contains imports of all polymer and custom components, it's used to vulcanize all required components into one distribution
 
 
@@ -59,6 +62,20 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
         <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/load-minimal.js"></script>
+        
+- UQL Drupal
+
+include this code in Omega's html.tpl.php 
+
+        <link type="image/x-icon" rel="shortcut icon" href="//d1t3p68j9z74e7.cloudfront.net/reusable-components/resources/favicon.ico">
+        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/common-minimal-styles.css" />
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
+        <script>
+            var menuJson = '//path/to/menu.json';
+        </script>
+        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libwww/load.js"></script>
 
 - Add more ...
 
