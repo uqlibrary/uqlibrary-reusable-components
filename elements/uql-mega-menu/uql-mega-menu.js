@@ -18,8 +18,8 @@
     },
     _toggleMenu: function (event) {
       if (this.init) {
-        this._initMenuPositions();
         this._addBodyListener();
+        this._initMenuPositions();
         this.init = false;
       }
       var span = event.currentTarget.querySelector('span');
@@ -60,7 +60,7 @@
           var coords = btn.getBoundingClientRect();
           var menuId = this._getName('menu', item.label);
           var menu = document.getElementById(menuId);
-          menu.style.top = tbCoords.bottom + 'px';
+          menu.style.top = (tbCoords.bottom - tbCoords.top) + 'px';
           // need the width of the material element from the css for this
           if (coords.right + 440 > screenWidth) {
             menu.style.right = '0px';

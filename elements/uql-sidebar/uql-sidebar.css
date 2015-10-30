@@ -3,7 +3,8 @@
 }
 
 paper-toolbar {
-    background-color: #49075e;
+    /*background-color: #49075e;*/
+    background-color: #000;
 }
 
 paper-toolbar paper-button:nth-of-type(1) {
@@ -12,10 +13,10 @@ paper-toolbar paper-button:nth-of-type(1) {
 
 #main {
     width: 269px;
-    height: 100%;
-    position: absolute;
-    top: 0;
     left: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
     background-color: #eee;
     z-index: 1;
 }

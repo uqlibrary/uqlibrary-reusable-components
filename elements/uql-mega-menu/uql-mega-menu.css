@@ -3,7 +3,8 @@
 }
 
 paper-toolbar {
-    background-color: #49075e;
+    background-color: #000;
+    /*background-color: #49075e;*/
 }
 
 paper-toolbar > div {

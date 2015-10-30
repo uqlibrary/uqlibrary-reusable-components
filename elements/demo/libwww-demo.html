@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-  <title>sidebar sidebar demo</title>
+  <title>UQL Menu demo</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
   <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="../elements.html">
+
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      margin-top: 164px !important;
+    }
+  </style>
 </head>
-<body class="fullbleed layout vertical">
-
-<uql-sidebar visible="true" menu-json="menu.json"></uql-sidebar>
+<body unresolved>
 <div class="main">
-  <paper-button class="toggle colorful" raised active><iron-icon icon="menu"></iron-icon> Menu</paper-button>
-
   <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
     quam,
     feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
@@ -29,17 +32,8 @@
     ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 </div>
 <script>
-  var sidebar = document.getElementsByTagName('uql-sidebar')[0];
-  function toggleFunction() {
-    var visible = sidebar.getAttribute('visible');
-    sidebar.setAttribute('visible', visible === 'true' ? 'false' : 'true');
-  }
-  var toggles = document.querySelectorAll('.toggle');
-  for (var t in toggles) {
-    if (toggles.hasOwnProperty(t)) {
-      toggles[t].addEventListener('click', toggleFunction);
-    }
-  }
+  var menuJson = "../uql-menu/demo/menu.json";
 </script>
+<script src="../../applications/libwww/load.js"></script>
 </body>
 </html>

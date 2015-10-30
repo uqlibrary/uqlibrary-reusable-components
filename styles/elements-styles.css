@@ -1,7 +1,14 @@
+uql-menu,
+.header-container,
+.footer-container {
+  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+
+uql-menu {
+  font-weight: lighter; }
+
 .header-container {
   height: 100px;
   background-color: #49075E;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
   text-decoration: none;
   font-size: 20px;
   line-height: 1;
@@ -30,7 +37,6 @@
 
 .footer-container {
   background-color: #49075E;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
   text-decoration: none;
   line-height: 20px;
   white-space: nowrap;
