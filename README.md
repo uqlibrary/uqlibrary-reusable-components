@@ -41,13 +41,13 @@ npm install -g gulp bower && npm install && bower install
 test group (uses master branch): http://guides.library.uq.edu.au/test
 include this code in Custom JS/CSS Code in LibGuides configuration
 
-        <link type="image/x-icon" rel="shortcut icon" href="//d1t3p68j9z74e7.cloudfront.net/reusable-components/resources/favicon.ico">
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libguides/custom-styles.css" />
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/common-minimal-styles.css" />
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
-        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/load-minimal.js"></script>
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico" />
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/libguides/custom-styles.css" />
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/shared/common-minimal-styles.css" />
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
+        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/shared/load-minimal.js"></script>
 
 - LibAnswers
 
@@ -55,27 +55,27 @@ test group (uses master branch): http://answers.library.uq.edu.au/test
 
 include this code in Custom JS/CSS Code in LinAnswers configuration
 
-        <link type="image/x-icon" rel="shortcut icon" href="//d1t3p68j9z74e7.cloudfront.net/reusable-components/resources/favicon.ico">
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libanswers/custom-styles.css" />
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/common-minimal-styles.css" />
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
-        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/load-minimal.js"></script>
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico" />
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/libanswers/custom-styles.css" />
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/shared/common-minimal-styles.css" />
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/shared/load-minimal.js"></script>
         
 - UQL Drupal
 
 include this code in Omega's html.tpl.php 
 
-        <link type="image/x-icon" rel="shortcut icon" href="//d1t3p68j9z74e7.cloudfront.net/reusable-components/resources/favicon.ico">
-        <link rel="stylesheet" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/shared/common-minimal-styles.css" />
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
-        <link rel="import" href="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/elements.vulcanized.html">
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico" />
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/shared/common-minimal-styles.css" />
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
         <script>
             var menuJson = '//path/to/menu.json';
         </script>
-        <script src="//d1t3p68j9z74e7.cloudfront.net/[master]/reusable-components/libwww/load.js"></script>
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/libwww/load.js"></script>
 
 - Add more ...
 
