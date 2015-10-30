@@ -110,6 +110,7 @@
         {
           "label": "Referencing",
           "href": "/item1",
+          "subtext": "Referencing subtext",
           "right": "right"
         }
       ]
