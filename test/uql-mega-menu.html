@@ -20,19 +20,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
 
   <!-- Import the element to test -->
-  <link rel="import" href="../elements/uql-sidebar/uql-sidebar.html">
+  <link rel="import" href="../elements/uql-mega-menu/uql-mega-menu.html">
 
 </head>
 <body>
 
 <test-fixture id="basic">
   <template>
-    <uql-sidebar></uql-sidebar>
+    <uql-mega-menu></uql-mega-menu>
   </template>
 </test-fixture>
 
 <script>
-  suite('<uql-sidebar> tests', function () {
+  suite('<uql-mega-menu> tests', function () {
     var testObj;
 
     setup(function () {
@@ -67,8 +67,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
+        var menuHeadings = testObj.querySelectorAll('paper-button');
+        assert.equal(menu.items.length, menuHeadings.length, 'Should be an item for each top level menu');
         var menuItems = testObj.querySelectorAll('paper-item');
-        assert.equal(menu.items[0].items.length + 1, menuItems.length, 'Should be an item for top level menu, and one for each of submenus');
+        assert.equal(menu.items[0].items.length, menuItems.length, 'Should be an item for each of the submenus');
         done();
       });
     })
