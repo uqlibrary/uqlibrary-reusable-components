@@ -3,7 +3,7 @@
 }
 
 :host paper-material {
-    z-index: 101 !important;
+    z-index: 9999;
 }
 
 :host paper-toolbar {

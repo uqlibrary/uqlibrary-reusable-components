@@ -2,27 +2,22 @@
     display: block;
 }
 
-:host paper-toolbar {
-    /*background-color: #49075e;*/
-    background-color: #000;
-}
-
 :host paper-material {
-    z-index: 101 !important;
-}
-
-:host paper-toolbar paper-button:nth-of-type(1) {
-    text-align: left;
-}
-
-:host #main {
+    z-index: 9999;
     width: 269px;
     left: 0;
     height: 100%;
     position: fixed;
     top: 0;
-    background-color: #eee;
-    z-index: 1;
+}
+
+:host paper-toolbar {
+    /*background-color: #49075e;*/
+    background-color: #000;
+}
+
+:host paper-toolbar paper-button:nth-of-type(1) {
+    text-align: left;
 }
 
 :host paper-menu.sublist paper-item a {
