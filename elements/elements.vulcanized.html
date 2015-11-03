@@ -16103,6 +16103,7 @@ uql-menu {
       left: 0;
       width: 100%;
       overflow: hidden;
+      z-index: 9999;
 
       @apply(--layout-vertical);
     }
@@ -16324,6 +16325,16 @@ uq-minimal-header {
   <style>
 :host {
     display: block;
+    font-family: Helvetica, 'Trebuchet MS', sans-serif;
+}
+
+:host paper-material {
+    z-index: 9999;
+    width: 269px;
+    left: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
 }
 
 :host paper-toolbar {
@@ -16331,22 +16342,8 @@ uq-minimal-header {
     background-color: #000;
 }
 
-:host paper-material {
-    z-index: 101 !important;
-}
-
 :host paper-toolbar paper-button:nth-of-type(1) {
     text-align: left;
-}
-
-:host #main {
-    width: 269px;
-    left: 0;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    background-color: #eee;
-    z-index: 1;
 }
 
 :host paper-menu.sublist paper-item a {
@@ -16597,10 +16594,11 @@ uql-menu {
   <style>
 :host {
     display: block;
+    font-family: Helvetica, 'Trebuchet MS', sans-serif;
 }
 
 :host paper-material {
-    z-index: 101 !important;
+    z-index: 9999;
 }
 
 :host paper-toolbar {
@@ -16616,6 +16614,7 @@ uql-menu {
     text-transform: inherit;
     margin: 0;
     padding: 10px;
+    font-size: 15px;
 }
 
 :host paper-toolbar paper-button:hover {
