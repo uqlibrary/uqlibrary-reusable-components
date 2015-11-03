@@ -7,7 +7,7 @@
   <template>
     <iron-ajax auto url="{{menuJson}}" handle-as="json" on-response="_handleResponse" on-error="_handleError"
                verbose="{{verbose}}"></iron-ajax>
-    <paper-toolbar id="uql-toolbar" role="toolbar">
+    <paper-toolbar id="uql-toolbar" role="toolbar" justify="center">
       <paper-icon-button href="/" icon="home" alt="home" on-tap="_goLink"></paper-icon-button>
       <template is="dom-repeat" items="{{menu.items}}">
         <!-- load up single menu items without submenus -->
