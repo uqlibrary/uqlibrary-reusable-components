@@ -79,6 +79,12 @@ include this code in Omega's html.tpl.php
 
 - Add more ...
 
+### Forcing IMS logins
+
+Embed the following if you want to force an IMS login for on campus workstations, as they will be unable to access the assets.library.uq.edu.au domain:
+
+        <script src="https://www.library.uq.edu.au/js/ims.js"></script>
+
 ### Development/Deployment process
 
 1. Update styles
