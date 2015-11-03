@@ -1,5 +1,6 @@
 :host {
     display: block;
+    font-family: Helvetica, 'Trebuchet MS', sans-serif;
 }
 
 :host paper-material {
@@ -19,6 +20,7 @@
     text-transform: inherit;
     margin: 0;
     padding: 10px;
+    font-size: 15px;
 }
 
 :host paper-toolbar paper-button:hover {
