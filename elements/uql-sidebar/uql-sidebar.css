@@ -2,16 +2,20 @@
     display: block;
 }
 
-paper-toolbar {
+:host paper-toolbar {
     /*background-color: #49075e;*/
     background-color: #000;
 }
 
-paper-toolbar paper-button:nth-of-type(1) {
+:host paper-material {
+    z-index: 101 !important;
+}
+
+:host paper-toolbar paper-button:nth-of-type(1) {
     text-align: left;
 }
 
-#main {
+:host #main {
     width: 269px;
     left: 0;
     height: 100%;
@@ -21,10 +25,10 @@ paper-toolbar paper-button:nth-of-type(1) {
     z-index: 1;
 }
 
-paper-menu.sublist paper-item a {
+:host paper-menu.sublist paper-item a {
     padding-left: 1em;
 }
 
-#main-menu {
+:host #main-menu {
     overflow: auto;
 }

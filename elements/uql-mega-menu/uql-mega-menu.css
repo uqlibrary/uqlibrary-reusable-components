@@ -2,64 +2,64 @@
     display: block;
 }
 
-paper-material {
+:host paper-material {
     z-index: 101 !important;
 }
 
-paper-toolbar {
+:host paper-toolbar {
     background-color: #000;
     /*background-color: #49075e;*/
 }
 
-paper-toolbar > div {
+:host paper-toolbar > div {
     padding: 0;
 }
 
-paper-toolbar paper-button {
+:host paper-toolbar paper-button {
     text-transform: inherit;
     margin: 0;
     padding: 10px;
 }
 
-paper-toolbar paper-button:hover {
+:host paper-toolbar paper-button:hover {
     background-color: #16042c;
 }
 
-.uql-submenu {
+:host .uql-submenu {
     width: 440px;
     position: absolute;
 }
 
-.uql-submenu paper-item {
+:host .uql-submenu paper-item {
     display: inherit;
     padding-top: 3px;
     padding-bottom: 3px;
     min-height: 32px;
 }
 
-.uql-submenu paper-item:hover {
+:host .uql-submenu paper-item:hover {
     background-color: #ddd;
 }
 
-.uql-submenu paper-item div {
+:host .uql-submenu paper-item div {
     display: block;
 }
 
-.uql-submenu paper-item a {
+:host .uql-submenu paper-item a {
     color: #000;
 }
 
-.uql-submenu paper-item a iron-image {
+:host .uql-submenu paper-item a iron-image {
     max-width:100%;
     background-color: lightgray;
 }
 
-.uql-submenu paper-item div.subtext {
+:host .uql-submenu paper-item div.subtext {
     color: #666;
     font-size: 80%;
 }
 
-.uql-submenu-right paper-item {
+:host .uql-submenu-right paper-item {
     border-left-width: thin;
     border-left-style: solid;
     border-color: #999;
