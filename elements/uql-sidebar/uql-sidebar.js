@@ -30,7 +30,10 @@
     listeners: {
       'neon-animation-finish': '_onNeonAnimationFinish'
     },
-    _handleResponse: function () {
+    _handleError: function (event) {
+      console.log(event);
+    },
+    _handleResponse: function (event) {
       this.menu = event.detail.response;
       this._init();
     },

@@ -1,6 +1,9 @@
 :host {
     display: block;
-    font-family: Roboto, Noto, sans-serif;
+}
+
+paper-material {
+    z-index: 101 !important;
 }
 
 paper-toolbar {
