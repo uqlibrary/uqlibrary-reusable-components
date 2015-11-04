@@ -7207,7 +7207,7 @@ iron-request can be used to perform XMLHttpRequests.
      *     async By default, all requests are sent asynchronously. To send synchronous requests,
      *         set to true.
      *     body The content for the request body for POST method.
-     *     headers HTTP request headers. All keys must be lower case.
+     *     headers HTTP request headers.
      *     handleAs The response type. Default is 'text'.
      *     withCredentials Whether or not to send credentials on the request. Default is false.
      *   timeout: (Number|undefined)
@@ -7245,6 +7245,7 @@ iron-request can be used to perform XMLHttpRequests.
         this.rejectCompletes(new Error('Request aborted.'));
       }.bind(this));
 
+
       // Called after all of the above.
       xhr.addEventListener('loadend', function () {
         this._updateStatus();
@@ -7272,7 +7273,13 @@ iron-request can be used to perform XMLHttpRequests.
         'xml': 'application/xml',
         'arraybuffer': 'application/octet-stream'
       }[options.handleAs];
-      var headers = options.headers || {};
+      var headers = options.headers || Object.create(null);
+      var newHeaders = Object.create(null);
+      for (var key in headers) {
+        newHeaders[key.toLowerCase()] = headers[key];
+      }
+      headers = newHeaders;
+
       if (acceptType && !headers['accept']) {
         headers['accept'] = acceptType;
       }
@@ -7654,7 +7661,7 @@ element.
        *
        * The type of the response is determined by the value of `handleAs` at
        * the time that the request was generated.
-       * 
+       *
        * @type {Object}
        */
       lastResponse: {
@@ -7665,7 +7672,7 @@ element.
 
       /**
        * lastRequest's error, if any.
-       * 
+       *
        * @type {Object}
        */
       lastError: {
@@ -7775,9 +7782,7 @@ element.
 
       if (this.headers instanceof Object) {
         for (header in this.headers) {
-          // Normalize headers in lower case to make it easier for iron-request
-          // to reason about them.
-          headers[header.toLowerCase()] = this.headers[header].toString();
+          headers[header] = this.headers[header].toString();
         }
       }
 
@@ -13067,94 +13072,7 @@ be used as the label of the toolbar via `aria-labelledby`.
 
 <!-- common components  -->
 <!-- common components  -->
-<style is="custom-style">
-/*
- * PolymerThemes v1.0.3
- * Homepage: https://polymerthemes.com
- * Copyright 2015 Polymer Themes
- * Licensed under BSD
- * Based on Polymer: http://www.polymer-project.org/
- * Compatible with Polymer 1.0
- */
-
-@import url("https://fonts.googleapis.com/css?family=Oxygen:700|Tinos");
-html { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-size: 16px; }
-
-html, body { margin: 0px; padding: 0px; min-height: 100%; color: #191919; background-color: #ffffff; font-family: 'Tinos', serif; font-weight: 400; }
-
-section { padding: 40px 0px; }
-section[hero] { background-color: #f1f1f1; }
-
-h1, h2, h3, h4, h5, h6 { font-weight: 400; margin: 0px; padding: 0px; line-height: 1em; }
-
-h1, h3, h5 { font-family: 'Oxygen', sans-serif; }
-
-h1 { font-size: 50px; margin: 30px 0px; }
-
-h2 { color: #191919; font-size: 35px; margin: 20px 0px; }
-
-h3 { font-size: 25px; margin: 15px 0px; }
-
-h4 { font-size: 20px; }
-
-a, a:active, a:visited, a:focus { color: #191919; text-decoration: none; }
-
-a:hover { color: #191919; text-decoration: underline; }
-
-:root { --default-primary-color: #191919; --dark-primary-color: #191919; --light-primary-color: #c5cae9; --text-primary-color: #ffffff; --accent-color: #ff4081; --primary-background-color: #ffffff; --primary-text-color: #191919; --secondary-text-color: #191919; --disabled-text-color: #313238; --divider-color: #e0e0e0; --paper-checkbox-checked-color: #191919; --paper-checkbox-checked-ink-color: #191919; --paper-checkbox-unchecked-color: #191919; --paper-checkbox-unchecked-ink-color: #191919; --paper-checkbox-label-color: #191919; --paper-fab-background: #191919; --paper-fab-disabled-background: #afb1b9; --paper-fab-disabled-text: #313238; --paper-icon-button-disabled-text: #afb1b9; --paper-input-container-color: #7f7f7f; --paper-input-container-focus-color: #191919; --paper-input-container-invalid-color: #ef5350; --paper-input-container-input-color: #7f7f7f; --paper-menu-background-color: #f1f1f1; --paper-menu-color: #191919; --paper-menu-disabled-color: #afb1b9; --paper-progress-active-color: #191919; --paper-progress-secondary-color: #1e88e5; --paper-radio-button-checked-color: #191919; --paper-radio-button-checked-ink-color: #b2b2b2; --paper-radio-button-unchecked-color: #191919; --paper-radio-button-unchecked-ink-color: #191919; --paper-radio-button-label-color: #191919; --paper-slider-knob-color: #191919; --paper-slider-active-color: #191919; --paper-slider-pin-color: #191919; --paper-spinner-layer-1-color: #191919; --paper-spinner-layer-2-color: #191919; --paper-spinner-layer-3-color: #191919; --paper-spinner-layer-4-color: #191919; --paper-tabs-selection-bar-color: #80cbc4; --paper-tab-ink: #80cbc4; --paper-toggle-button-checked-bar-color: #191919; --paper-toggle-button-checked-button-color: #191919; --paper-toggle-button-checked-ink-color: #191919; --paper-toggle-button-unchecked-bar-color: #191919; --paper-toggle-button-unchecked-button-color: white; --paper-toggle-button-unchecked-ink-color: white; --paper-toolbar-background: #191919; --paper-toolbar-color: #ffffff; }
-
-paper-toolbar a, paper-toolbar a:hover, paper-toolbar a:active, paper-toolbar a:visited, paper-toolbar a:focus { color: #ffffff; }
-
-paper-button.primary, paper-button.btn-primary, paper-button[primary] { color: #191919; }
-paper-button.primary[raised], paper-button.btn-primary[raised], paper-button[primary][raised] { background-color: #191919; color: #fff; }
-paper-button.secondary, paper-button.btn-secondary, paper-button[secondary] { color: #1e88e5; }
-paper-button.secondary[raised], paper-button.btn-secondary[raised], paper-button[secondary][raised] { background-color: #1e88e5; color: #fff; }
-paper-button.success, paper-button.btn-success, paper-button[success] { color: #8bc34a; }
-paper-button.success[raised], paper-button.btn-success[raised], paper-button[success][raised] { background-color: #8bc34a; color: #fff; }
-paper-button.info, paper-button.btn-info, paper-button[info] { color: #fadd60; }
-paper-button.info[raised], paper-button.btn-info[raised], paper-button[info][raised] { background-color: #fadd60; color: #4b421d; }
-paper-button.warning, paper-button.btn-warning, paper-button[warning] { color: #ffb74d; }
-paper-button.warning[raised], paper-button.btn-warning[raised], paper-button[warning][raised] { background-color: #ffb74d; color: #4d3717; }
-paper-button.error, paper-button.btn-error, paper-button[error] { color: #ef5350; }
-paper-button.error[raised], paper-button.btn-error[raised], paper-button[error][raised] { background-color: #ef5350; color: #481918; }
-paper-button.link, paper-button.btn-link, paper-button[link] { text-decoration: underline; }
-paper-button[raised] { color: #191919; }
-paper-button[disabled] { color: #313238 !important; background: #afb1b9 !important; }
-
-paper-icon-button.primary, paper-icon-button.btn-primary, paper-icon-button[primary] { color: #191919; }
-paper-icon-button.primary:hover, paper-icon-button.btn-primary:hover, paper-icon-button[primary]:hover { background-color: #e8e8e8; background-color: rgba(25, 25, 25, 0.2); border-radius: 50%; }
-paper-icon-button.secondary, paper-icon-button.btn-secondary, paper-icon-button[secondary] { color: #1e88e5; }
-paper-icon-button.secondary:hover, paper-icon-button.btn-secondary:hover, paper-icon-button[secondary]:hover { background-color: #e9f3fc; background-color: rgba(30, 136, 229, 0.2); border-radius: 50%; }
-paper-icon-button.success, paper-icon-button.btn-success, paper-icon-button[success] { color: #8bc34a; }
-paper-icon-button.success:hover, paper-icon-button.btn-success:hover, paper-icon-button[success]:hover { background-color: #f3f9ed; background-color: rgba(139, 195, 74, 0.2); border-radius: 50%; }
-paper-icon-button.info, paper-icon-button.btn-info, paper-icon-button[info] { color: #fadd60; }
-paper-icon-button.info:hover, paper-icon-button.btn-info:hover, paper-icon-button[info]:hover { background-color: #fffcef; background-color: rgba(250, 221, 96, 0.2); border-radius: 50%; }
-paper-icon-button.warning, paper-icon-button.btn-warning, paper-icon-button[warning] { color: #ffb74d; }
-paper-icon-button.warning:hover, paper-icon-button.btn-warning:hover, paper-icon-button[warning]:hover { background-color: #fff8ed; background-color: rgba(255, 183, 77, 0.2); border-radius: 50%; }
-paper-icon-button.error, paper-icon-button.btn-error, paper-icon-button[error] { color: #ef5350; }
-paper-icon-button.error:hover, paper-icon-button.btn-error:hover, paper-icon-button[error]:hover { background-color: #fdeeee; background-color: rgba(239, 83, 80, 0.2); border-radius: 50%; }
-
-paper-checkbox #checkmark.paper-checkbox, paper-checkbox /deep/, paper-checkbox::shadow #checkmark.paper-checkbox { border-color: #fff !important; }
-
-paper-dialog { color: #191919; background-color: #ffffff; font-family: 'Tinos', serif; font-weight: 400; }
-paper-dialog h1, paper-dialog h2, paper-dialog h3, paper-dialog h4, paper-dialog h5, paper-dialog h6 { overflow: visible; padding: 0 1em; text-align: center; }
-
-paper-fab { --text-primary-color: white; }
-
-paper-fab { background-color: #191919; color: #fff; --paper-fab-keyboard-focus-background: #595959; }
-paper-fab.primary, paper-fab.btn-primary, paper-fab[primary] { background-color: #191919; color: #fff; --paper-fab-keyboard-focus-background: #595959; }
-paper-fab.secondary, paper-fab.btn-secondary, paper-fab[secondary] { background-color: #1e88e5; color: #fff; --paper-fab-keyboard-focus-background: #0e4576; }
-paper-fab.success, paper-fab.btn-success, paper-fab[success] { background-color: #8bc34a; color: #fff; --paper-fab-keyboard-focus-background: #496a23; }
-paper-fab.info, paper-fab.btn-info, paper-fab[info] { background-color: #fadd60; color: #4b421d; --paper-fab-keyboard-focus-background: #d4ad07; }
-paper-fab.warning, paper-fab.btn-warning, paper-fab[warning] { background-color: #ffb74d; color: #4d3717; --paper-fab-keyboard-focus-background: #cd7a00; }
-paper-fab.error, paper-fab.btn-error, paper-fab[error] { background-color: #ef5350; color: #481918; --paper-fab-keyboard-focus-background: #af1310; }
-paper-fab[disabled] { color: #313238 !important; background: #afb1b9 !important; }
-
-section.hero paper-menu, section[hero] paper-menu { --paper-menu-background-color: #f1f1f1; }
-
-paper-tabs { background-color: #191919; color: #ffffff; }
-
-</style></head><body><div hidden="" by-vulcanize=""><dom-module id="iron-collapse" assetpath="../bower_components/iron-collapse/">
+</head><body><div hidden="" by-vulcanize=""><dom-module id="iron-collapse" assetpath="../bower_components/iron-collapse/">
 
   <style>
 
@@ -16185,6 +16103,7 @@ uql-menu {
       left: 0;
       width: 100%;
       overflow: hidden;
+      z-index: 9999;
 
       @apply(--layout-vertical);
     }
@@ -16374,94 +16293,6 @@ uql-menu {
 </dom-module>
 <dom-module id="uql-menu" assetpath="uql-menu/">
   <style>
-/*
- * PolymerThemes v1.0.3
- * Homepage: https://polymerthemes.com
- * Copyright 2015 Polymer Themes
- * Licensed under BSD
- * Based on Polymer: http://www.polymer-project.org/
- * Compatible with Polymer 1.0
- */
-
-@import url("https://fonts.googleapis.com/css?family=Oxygen:700|Tinos");
-html { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-size: 16px; }
-
-html, body { margin: 0px; padding: 0px; min-height: 100%; color: #191919; background-color: #ffffff; font-family: 'Tinos', serif; font-weight: 400; }
-
-section { padding: 40px 0px; }
-section[hero] { background-color: #f1f1f1; }
-
-h1, h2, h3, h4, h5, h6 { font-weight: 400; margin: 0px; padding: 0px; line-height: 1em; }
-
-h1, h3, h5 { font-family: 'Oxygen', sans-serif; }
-
-h1 { font-size: 50px; margin: 30px 0px; }
-
-h2 { color: #191919; font-size: 35px; margin: 20px 0px; }
-
-h3 { font-size: 25px; margin: 15px 0px; }
-
-h4 { font-size: 20px; }
-
-a, a:active, a:visited, a:focus { color: #191919; text-decoration: none; }
-
-a:hover { color: #191919; text-decoration: underline; }
-
-:root { --default-primary-color: #191919; --dark-primary-color: #191919; --light-primary-color: #c5cae9; --text-primary-color: #ffffff; --accent-color: #ff4081; --primary-background-color: #ffffff; --primary-text-color: #191919; --secondary-text-color: #191919; --disabled-text-color: #313238; --divider-color: #e0e0e0; --paper-checkbox-checked-color: #191919; --paper-checkbox-checked-ink-color: #191919; --paper-checkbox-unchecked-color: #191919; --paper-checkbox-unchecked-ink-color: #191919; --paper-checkbox-label-color: #191919; --paper-fab-background: #191919; --paper-fab-disabled-background: #afb1b9; --paper-fab-disabled-text: #313238; --paper-icon-button-disabled-text: #afb1b9; --paper-input-container-color: #7f7f7f; --paper-input-container-focus-color: #191919; --paper-input-container-invalid-color: #ef5350; --paper-input-container-input-color: #7f7f7f; --paper-menu-background-color: #f1f1f1; --paper-menu-color: #191919; --paper-menu-disabled-color: #afb1b9; --paper-progress-active-color: #191919; --paper-progress-secondary-color: #1e88e5; --paper-radio-button-checked-color: #191919; --paper-radio-button-checked-ink-color: #b2b2b2; --paper-radio-button-unchecked-color: #191919; --paper-radio-button-unchecked-ink-color: #191919; --paper-radio-button-label-color: #191919; --paper-slider-knob-color: #191919; --paper-slider-active-color: #191919; --paper-slider-pin-color: #191919; --paper-spinner-layer-1-color: #191919; --paper-spinner-layer-2-color: #191919; --paper-spinner-layer-3-color: #191919; --paper-spinner-layer-4-color: #191919; --paper-tabs-selection-bar-color: #80cbc4; --paper-tab-ink: #80cbc4; --paper-toggle-button-checked-bar-color: #191919; --paper-toggle-button-checked-button-color: #191919; --paper-toggle-button-checked-ink-color: #191919; --paper-toggle-button-unchecked-bar-color: #191919; --paper-toggle-button-unchecked-button-color: white; --paper-toggle-button-unchecked-ink-color: white; --paper-toolbar-background: #191919; --paper-toolbar-color: #ffffff; }
-
-paper-toolbar a, paper-toolbar a:hover, paper-toolbar a:active, paper-toolbar a:visited, paper-toolbar a:focus { color: #ffffff; }
-
-paper-button.primary, paper-button.btn-primary, paper-button[primary] { color: #191919; }
-paper-button.primary[raised], paper-button.btn-primary[raised], paper-button[primary][raised] { background-color: #191919; color: #fff; }
-paper-button.secondary, paper-button.btn-secondary, paper-button[secondary] { color: #1e88e5; }
-paper-button.secondary[raised], paper-button.btn-secondary[raised], paper-button[secondary][raised] { background-color: #1e88e5; color: #fff; }
-paper-button.success, paper-button.btn-success, paper-button[success] { color: #8bc34a; }
-paper-button.success[raised], paper-button.btn-success[raised], paper-button[success][raised] { background-color: #8bc34a; color: #fff; }
-paper-button.info, paper-button.btn-info, paper-button[info] { color: #fadd60; }
-paper-button.info[raised], paper-button.btn-info[raised], paper-button[info][raised] { background-color: #fadd60; color: #4b421d; }
-paper-button.warning, paper-button.btn-warning, paper-button[warning] { color: #ffb74d; }
-paper-button.warning[raised], paper-button.btn-warning[raised], paper-button[warning][raised] { background-color: #ffb74d; color: #4d3717; }
-paper-button.error, paper-button.btn-error, paper-button[error] { color: #ef5350; }
-paper-button.error[raised], paper-button.btn-error[raised], paper-button[error][raised] { background-color: #ef5350; color: #481918; }
-paper-button.link, paper-button.btn-link, paper-button[link] { text-decoration: underline; }
-paper-button[raised] { color: #191919; }
-paper-button[disabled] { color: #313238 !important; background: #afb1b9 !important; }
-
-paper-icon-button.primary, paper-icon-button.btn-primary, paper-icon-button[primary] { color: #191919; }
-paper-icon-button.primary:hover, paper-icon-button.btn-primary:hover, paper-icon-button[primary]:hover { background-color: #e8e8e8; background-color: rgba(25, 25, 25, 0.2); border-radius: 50%; }
-paper-icon-button.secondary, paper-icon-button.btn-secondary, paper-icon-button[secondary] { color: #1e88e5; }
-paper-icon-button.secondary:hover, paper-icon-button.btn-secondary:hover, paper-icon-button[secondary]:hover { background-color: #e9f3fc; background-color: rgba(30, 136, 229, 0.2); border-radius: 50%; }
-paper-icon-button.success, paper-icon-button.btn-success, paper-icon-button[success] { color: #8bc34a; }
-paper-icon-button.success:hover, paper-icon-button.btn-success:hover, paper-icon-button[success]:hover { background-color: #f3f9ed; background-color: rgba(139, 195, 74, 0.2); border-radius: 50%; }
-paper-icon-button.info, paper-icon-button.btn-info, paper-icon-button[info] { color: #fadd60; }
-paper-icon-button.info:hover, paper-icon-button.btn-info:hover, paper-icon-button[info]:hover { background-color: #fffcef; background-color: rgba(250, 221, 96, 0.2); border-radius: 50%; }
-paper-icon-button.warning, paper-icon-button.btn-warning, paper-icon-button[warning] { color: #ffb74d; }
-paper-icon-button.warning:hover, paper-icon-button.btn-warning:hover, paper-icon-button[warning]:hover { background-color: #fff8ed; background-color: rgba(255, 183, 77, 0.2); border-radius: 50%; }
-paper-icon-button.error, paper-icon-button.btn-error, paper-icon-button[error] { color: #ef5350; }
-paper-icon-button.error:hover, paper-icon-button.btn-error:hover, paper-icon-button[error]:hover { background-color: #fdeeee; background-color: rgba(239, 83, 80, 0.2); border-radius: 50%; }
-
-paper-checkbox #checkmark.paper-checkbox, paper-checkbox /deep/, paper-checkbox::shadow #checkmark.paper-checkbox { border-color: #fff !important; }
-
-paper-dialog { color: #191919; background-color: #ffffff; font-family: 'Tinos', serif; font-weight: 400; }
-paper-dialog h1, paper-dialog h2, paper-dialog h3, paper-dialog h4, paper-dialog h5, paper-dialog h6 { overflow: visible; padding: 0 1em; text-align: center; }
-
-paper-fab { --text-primary-color: white; }
-
-paper-fab { background-color: #191919; color: #fff; --paper-fab-keyboard-focus-background: #595959; }
-paper-fab.primary, paper-fab.btn-primary, paper-fab[primary] { background-color: #191919; color: #fff; --paper-fab-keyboard-focus-background: #595959; }
-paper-fab.secondary, paper-fab.btn-secondary, paper-fab[secondary] { background-color: #1e88e5; color: #fff; --paper-fab-keyboard-focus-background: #0e4576; }
-paper-fab.success, paper-fab.btn-success, paper-fab[success] { background-color: #8bc34a; color: #fff; --paper-fab-keyboard-focus-background: #496a23; }
-paper-fab.info, paper-fab.btn-info, paper-fab[info] { background-color: #fadd60; color: #4b421d; --paper-fab-keyboard-focus-background: #d4ad07; }
-paper-fab.warning, paper-fab.btn-warning, paper-fab[warning] { background-color: #ffb74d; color: #4d3717; --paper-fab-keyboard-focus-background: #cd7a00; }
-paper-fab.error, paper-fab.btn-error, paper-fab[error] { background-color: #ef5350; color: #481918; --paper-fab-keyboard-focus-background: #af1310; }
-paper-fab[disabled] { color: #313238 !important; background: #afb1b9 !important; }
-
-section.hero paper-menu, section[hero] paper-menu { --paper-menu-background-color: #f1f1f1; }
-
-paper-tabs { background-color: #191919; color: #ffffff; }
-
-</style>
-  <style>
 uq-minimal-header {
     overflow: visible !important;
 }
@@ -16492,122 +16323,34 @@ uq-minimal-header {
 </dom-module>
 <dom-module id="uql-sidebar" class="layout vertical" assetpath="uql-sidebar/">
   <style>
-/*
- * PolymerThemes v1.0.3
- * Homepage: https://polymerthemes.com
- * Copyright 2015 Polymer Themes
- * Licensed under BSD
- * Based on Polymer: http://www.polymer-project.org/
- * Compatible with Polymer 1.0
- */
-
-@import url("https://fonts.googleapis.com/css?family=Oxygen:700|Tinos");
-html { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-size: 16px; }
-
-html, body { margin: 0px; padding: 0px; min-height: 100%; color: #191919; background-color: #ffffff; font-family: 'Tinos', serif; font-weight: 400; }
-
-section { padding: 40px 0px; }
-section[hero] { background-color: #f1f1f1; }
-
-h1, h2, h3, h4, h5, h6 { font-weight: 400; margin: 0px; padding: 0px; line-height: 1em; }
-
-h1, h3, h5 { font-family: 'Oxygen', sans-serif; }
-
-h1 { font-size: 50px; margin: 30px 0px; }
-
-h2 { color: #191919; font-size: 35px; margin: 20px 0px; }
-
-h3 { font-size: 25px; margin: 15px 0px; }
-
-h4 { font-size: 20px; }
-
-a, a:active, a:visited, a:focus { color: #191919; text-decoration: none; }
-
-a:hover { color: #191919; text-decoration: underline; }
-
-:root { --default-primary-color: #191919; --dark-primary-color: #191919; --light-primary-color: #c5cae9; --text-primary-color: #ffffff; --accent-color: #ff4081; --primary-background-color: #ffffff; --primary-text-color: #191919; --secondary-text-color: #191919; --disabled-text-color: #313238; --divider-color: #e0e0e0; --paper-checkbox-checked-color: #191919; --paper-checkbox-checked-ink-color: #191919; --paper-checkbox-unchecked-color: #191919; --paper-checkbox-unchecked-ink-color: #191919; --paper-checkbox-label-color: #191919; --paper-fab-background: #191919; --paper-fab-disabled-background: #afb1b9; --paper-fab-disabled-text: #313238; --paper-icon-button-disabled-text: #afb1b9; --paper-input-container-color: #7f7f7f; --paper-input-container-focus-color: #191919; --paper-input-container-invalid-color: #ef5350; --paper-input-container-input-color: #7f7f7f; --paper-menu-background-color: #f1f1f1; --paper-menu-color: #191919; --paper-menu-disabled-color: #afb1b9; --paper-progress-active-color: #191919; --paper-progress-secondary-color: #1e88e5; --paper-radio-button-checked-color: #191919; --paper-radio-button-checked-ink-color: #b2b2b2; --paper-radio-button-unchecked-color: #191919; --paper-radio-button-unchecked-ink-color: #191919; --paper-radio-button-label-color: #191919; --paper-slider-knob-color: #191919; --paper-slider-active-color: #191919; --paper-slider-pin-color: #191919; --paper-spinner-layer-1-color: #191919; --paper-spinner-layer-2-color: #191919; --paper-spinner-layer-3-color: #191919; --paper-spinner-layer-4-color: #191919; --paper-tabs-selection-bar-color: #80cbc4; --paper-tab-ink: #80cbc4; --paper-toggle-button-checked-bar-color: #191919; --paper-toggle-button-checked-button-color: #191919; --paper-toggle-button-checked-ink-color: #191919; --paper-toggle-button-unchecked-bar-color: #191919; --paper-toggle-button-unchecked-button-color: white; --paper-toggle-button-unchecked-ink-color: white; --paper-toolbar-background: #191919; --paper-toolbar-color: #ffffff; }
-
-paper-toolbar a, paper-toolbar a:hover, paper-toolbar a:active, paper-toolbar a:visited, paper-toolbar a:focus { color: #ffffff; }
-
-paper-button.primary, paper-button.btn-primary, paper-button[primary] { color: #191919; }
-paper-button.primary[raised], paper-button.btn-primary[raised], paper-button[primary][raised] { background-color: #191919; color: #fff; }
-paper-button.secondary, paper-button.btn-secondary, paper-button[secondary] { color: #1e88e5; }
-paper-button.secondary[raised], paper-button.btn-secondary[raised], paper-button[secondary][raised] { background-color: #1e88e5; color: #fff; }
-paper-button.success, paper-button.btn-success, paper-button[success] { color: #8bc34a; }
-paper-button.success[raised], paper-button.btn-success[raised], paper-button[success][raised] { background-color: #8bc34a; color: #fff; }
-paper-button.info, paper-button.btn-info, paper-button[info] { color: #fadd60; }
-paper-button.info[raised], paper-button.btn-info[raised], paper-button[info][raised] { background-color: #fadd60; color: #4b421d; }
-paper-button.warning, paper-button.btn-warning, paper-button[warning] { color: #ffb74d; }
-paper-button.warning[raised], paper-button.btn-warning[raised], paper-button[warning][raised] { background-color: #ffb74d; color: #4d3717; }
-paper-button.error, paper-button.btn-error, paper-button[error] { color: #ef5350; }
-paper-button.error[raised], paper-button.btn-error[raised], paper-button[error][raised] { background-color: #ef5350; color: #481918; }
-paper-button.link, paper-button.btn-link, paper-button[link] { text-decoration: underline; }
-paper-button[raised] { color: #191919; }
-paper-button[disabled] { color: #313238 !important; background: #afb1b9 !important; }
-
-paper-icon-button.primary, paper-icon-button.btn-primary, paper-icon-button[primary] { color: #191919; }
-paper-icon-button.primary:hover, paper-icon-button.btn-primary:hover, paper-icon-button[primary]:hover { background-color: #e8e8e8; background-color: rgba(25, 25, 25, 0.2); border-radius: 50%; }
-paper-icon-button.secondary, paper-icon-button.btn-secondary, paper-icon-button[secondary] { color: #1e88e5; }
-paper-icon-button.secondary:hover, paper-icon-button.btn-secondary:hover, paper-icon-button[secondary]:hover { background-color: #e9f3fc; background-color: rgba(30, 136, 229, 0.2); border-radius: 50%; }
-paper-icon-button.success, paper-icon-button.btn-success, paper-icon-button[success] { color: #8bc34a; }
-paper-icon-button.success:hover, paper-icon-button.btn-success:hover, paper-icon-button[success]:hover { background-color: #f3f9ed; background-color: rgba(139, 195, 74, 0.2); border-radius: 50%; }
-paper-icon-button.info, paper-icon-button.btn-info, paper-icon-button[info] { color: #fadd60; }
-paper-icon-button.info:hover, paper-icon-button.btn-info:hover, paper-icon-button[info]:hover { background-color: #fffcef; background-color: rgba(250, 221, 96, 0.2); border-radius: 50%; }
-paper-icon-button.warning, paper-icon-button.btn-warning, paper-icon-button[warning] { color: #ffb74d; }
-paper-icon-button.warning:hover, paper-icon-button.btn-warning:hover, paper-icon-button[warning]:hover { background-color: #fff8ed; background-color: rgba(255, 183, 77, 0.2); border-radius: 50%; }
-paper-icon-button.error, paper-icon-button.btn-error, paper-icon-button[error] { color: #ef5350; }
-paper-icon-button.error:hover, paper-icon-button.btn-error:hover, paper-icon-button[error]:hover { background-color: #fdeeee; background-color: rgba(239, 83, 80, 0.2); border-radius: 50%; }
-
-paper-checkbox #checkmark.paper-checkbox, paper-checkbox /deep/, paper-checkbox::shadow #checkmark.paper-checkbox { border-color: #fff !important; }
-
-paper-dialog { color: #191919; background-color: #ffffff; font-family: 'Tinos', serif; font-weight: 400; }
-paper-dialog h1, paper-dialog h2, paper-dialog h3, paper-dialog h4, paper-dialog h5, paper-dialog h6 { overflow: visible; padding: 0 1em; text-align: center; }
-
-paper-fab { --text-primary-color: white; }
-
-paper-fab { background-color: #191919; color: #fff; --paper-fab-keyboard-focus-background: #595959; }
-paper-fab.primary, paper-fab.btn-primary, paper-fab[primary] { background-color: #191919; color: #fff; --paper-fab-keyboard-focus-background: #595959; }
-paper-fab.secondary, paper-fab.btn-secondary, paper-fab[secondary] { background-color: #1e88e5; color: #fff; --paper-fab-keyboard-focus-background: #0e4576; }
-paper-fab.success, paper-fab.btn-success, paper-fab[success] { background-color: #8bc34a; color: #fff; --paper-fab-keyboard-focus-background: #496a23; }
-paper-fab.info, paper-fab.btn-info, paper-fab[info] { background-color: #fadd60; color: #4b421d; --paper-fab-keyboard-focus-background: #d4ad07; }
-paper-fab.warning, paper-fab.btn-warning, paper-fab[warning] { background-color: #ffb74d; color: #4d3717; --paper-fab-keyboard-focus-background: #cd7a00; }
-paper-fab.error, paper-fab.btn-error, paper-fab[error] { background-color: #ef5350; color: #481918; --paper-fab-keyboard-focus-background: #af1310; }
-paper-fab[disabled] { color: #313238 !important; background: #afb1b9 !important; }
-
-section.hero paper-menu, section[hero] paper-menu { --paper-menu-background-color: #f1f1f1; }
-
-paper-tabs { background-color: #191919; color: #ffffff; }
-
-</style>
-  <style>
 :host {
     display: block;
+    font-family: Helvetica, 'Trebuchet MS', sans-serif;
 }
 
-paper-toolbar {
-    /*background-color: #49075e;*/
-    background-color: #000;
-}
-
-paper-toolbar paper-button:nth-of-type(1) {
-    text-align: left;
-}
-
-#main {
+:host paper-material {
+    z-index: 9999;
     width: 269px;
     left: 0;
     height: 100%;
     position: fixed;
     top: 0;
-    background-color: #eee;
-    z-index: 1;
 }
 
-paper-menu.sublist paper-item a {
+:host paper-toolbar {
+    /*background-color: #49075e;*/
+    background-color: #000;
+}
+
+:host paper-toolbar paper-button:nth-of-type(1) {
+    text-align: left;
+}
+
+:host paper-menu.sublist paper-item a {
     padding-left: 1em;
 }
 
-#main-menu {
+:host #main-menu {
     overflow: auto;
 }
 
@@ -16715,7 +16458,10 @@ paper-menu.sublist paper-item a {
     listeners: {
       'neon-animation-finish': '_onNeonAnimationFinish'
     },
-    _handleResponse: function () {
+    _handleError: function (event) {
+      console.log(event);
+    },
+    _handleResponse: function (event) {
       this.menu = event.detail.response;
       this._init();
     },
@@ -16728,19 +16474,21 @@ paper-menu.sublist paper-item a {
         if (that.showMenu) {
           that._toggleVisibility();
         }
-      })
+      });
       document.querySelector('uql-sidebar').addEventListener('click', function (event) {
         event.stopPropagation();
-      })
+      });
 
       var toggles = document.querySelectorAll('.toggle');
 
+      function _innerToggleVisibility(event) {
+        that._toggleVisibility();
+        event.stopPropagation();
+      }
+
       for (var t in toggles) {
         if (toggles.hasOwnProperty(t)) {
-          toggles[t].addEventListener('click', function (event) {
-            that._toggleVisibility();
-            event.stopPropagation();
-          });
+          toggles[t].addEventListener('click', _innerToggleVisibility);
         }
       }
       this._computeVisibility();
@@ -16767,94 +16515,6 @@ paper-menu.sublist paper-item a {
 
 </dom-module>
 <dom-module id="uql-mega-menu" assetpath="uql-mega-menu/">
-  <style>
-/*
- * PolymerThemes v1.0.3
- * Homepage: https://polymerthemes.com
- * Copyright 2015 Polymer Themes
- * Licensed under BSD
- * Based on Polymer: http://www.polymer-project.org/
- * Compatible with Polymer 1.0
- */
-
-@import url("https://fonts.googleapis.com/css?family=Oxygen:700|Tinos");
-html { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-size: 16px; }
-
-html, body { margin: 0px; padding: 0px; min-height: 100%; color: #191919; background-color: #ffffff; font-family: 'Tinos', serif; font-weight: 400; }
-
-section { padding: 40px 0px; }
-section[hero] { background-color: #f1f1f1; }
-
-h1, h2, h3, h4, h5, h6 { font-weight: 400; margin: 0px; padding: 0px; line-height: 1em; }
-
-h1, h3, h5 { font-family: 'Oxygen', sans-serif; }
-
-h1 { font-size: 50px; margin: 30px 0px; }
-
-h2 { color: #191919; font-size: 35px; margin: 20px 0px; }
-
-h3 { font-size: 25px; margin: 15px 0px; }
-
-h4 { font-size: 20px; }
-
-a, a:active, a:visited, a:focus { color: #191919; text-decoration: none; }
-
-a:hover { color: #191919; text-decoration: underline; }
-
-:root { --default-primary-color: #191919; --dark-primary-color: #191919; --light-primary-color: #c5cae9; --text-primary-color: #ffffff; --accent-color: #ff4081; --primary-background-color: #ffffff; --primary-text-color: #191919; --secondary-text-color: #191919; --disabled-text-color: #313238; --divider-color: #e0e0e0; --paper-checkbox-checked-color: #191919; --paper-checkbox-checked-ink-color: #191919; --paper-checkbox-unchecked-color: #191919; --paper-checkbox-unchecked-ink-color: #191919; --paper-checkbox-label-color: #191919; --paper-fab-background: #191919; --paper-fab-disabled-background: #afb1b9; --paper-fab-disabled-text: #313238; --paper-icon-button-disabled-text: #afb1b9; --paper-input-container-color: #7f7f7f; --paper-input-container-focus-color: #191919; --paper-input-container-invalid-color: #ef5350; --paper-input-container-input-color: #7f7f7f; --paper-menu-background-color: #f1f1f1; --paper-menu-color: #191919; --paper-menu-disabled-color: #afb1b9; --paper-progress-active-color: #191919; --paper-progress-secondary-color: #1e88e5; --paper-radio-button-checked-color: #191919; --paper-radio-button-checked-ink-color: #b2b2b2; --paper-radio-button-unchecked-color: #191919; --paper-radio-button-unchecked-ink-color: #191919; --paper-radio-button-label-color: #191919; --paper-slider-knob-color: #191919; --paper-slider-active-color: #191919; --paper-slider-pin-color: #191919; --paper-spinner-layer-1-color: #191919; --paper-spinner-layer-2-color: #191919; --paper-spinner-layer-3-color: #191919; --paper-spinner-layer-4-color: #191919; --paper-tabs-selection-bar-color: #80cbc4; --paper-tab-ink: #80cbc4; --paper-toggle-button-checked-bar-color: #191919; --paper-toggle-button-checked-button-color: #191919; --paper-toggle-button-checked-ink-color: #191919; --paper-toggle-button-unchecked-bar-color: #191919; --paper-toggle-button-unchecked-button-color: white; --paper-toggle-button-unchecked-ink-color: white; --paper-toolbar-background: #191919; --paper-toolbar-color: #ffffff; }
-
-paper-toolbar a, paper-toolbar a:hover, paper-toolbar a:active, paper-toolbar a:visited, paper-toolbar a:focus { color: #ffffff; }
-
-paper-button.primary, paper-button.btn-primary, paper-button[primary] { color: #191919; }
-paper-button.primary[raised], paper-button.btn-primary[raised], paper-button[primary][raised] { background-color: #191919; color: #fff; }
-paper-button.secondary, paper-button.btn-secondary, paper-button[secondary] { color: #1e88e5; }
-paper-button.secondary[raised], paper-button.btn-secondary[raised], paper-button[secondary][raised] { background-color: #1e88e5; color: #fff; }
-paper-button.success, paper-button.btn-success, paper-button[success] { color: #8bc34a; }
-paper-button.success[raised], paper-button.btn-success[raised], paper-button[success][raised] { background-color: #8bc34a; color: #fff; }
-paper-button.info, paper-button.btn-info, paper-button[info] { color: #fadd60; }
-paper-button.info[raised], paper-button.btn-info[raised], paper-button[info][raised] { background-color: #fadd60; color: #4b421d; }
-paper-button.warning, paper-button.btn-warning, paper-button[warning] { color: #ffb74d; }
-paper-button.warning[raised], paper-button.btn-warning[raised], paper-button[warning][raised] { background-color: #ffb74d; color: #4d3717; }
-paper-button.error, paper-button.btn-error, paper-button[error] { color: #ef5350; }
-paper-button.error[raised], paper-button.btn-error[raised], paper-button[error][raised] { background-color: #ef5350; color: #481918; }
-paper-button.link, paper-button.btn-link, paper-button[link] { text-decoration: underline; }
-paper-button[raised] { color: #191919; }
-paper-button[disabled] { color: #313238 !important; background: #afb1b9 !important; }
-
-paper-icon-button.primary, paper-icon-button.btn-primary, paper-icon-button[primary] { color: #191919; }
-paper-icon-button.primary:hover, paper-icon-button.btn-primary:hover, paper-icon-button[primary]:hover { background-color: #e8e8e8; background-color: rgba(25, 25, 25, 0.2); border-radius: 50%; }
-paper-icon-button.secondary, paper-icon-button.btn-secondary, paper-icon-button[secondary] { color: #1e88e5; }
-paper-icon-button.secondary:hover, paper-icon-button.btn-secondary:hover, paper-icon-button[secondary]:hover { background-color: #e9f3fc; background-color: rgba(30, 136, 229, 0.2); border-radius: 50%; }
-paper-icon-button.success, paper-icon-button.btn-success, paper-icon-button[success] { color: #8bc34a; }
-paper-icon-button.success:hover, paper-icon-button.btn-success:hover, paper-icon-button[success]:hover { background-color: #f3f9ed; background-color: rgba(139, 195, 74, 0.2); border-radius: 50%; }
-paper-icon-button.info, paper-icon-button.btn-info, paper-icon-button[info] { color: #fadd60; }
-paper-icon-button.info:hover, paper-icon-button.btn-info:hover, paper-icon-button[info]:hover { background-color: #fffcef; background-color: rgba(250, 221, 96, 0.2); border-radius: 50%; }
-paper-icon-button.warning, paper-icon-button.btn-warning, paper-icon-button[warning] { color: #ffb74d; }
-paper-icon-button.warning:hover, paper-icon-button.btn-warning:hover, paper-icon-button[warning]:hover { background-color: #fff8ed; background-color: rgba(255, 183, 77, 0.2); border-radius: 50%; }
-paper-icon-button.error, paper-icon-button.btn-error, paper-icon-button[error] { color: #ef5350; }
-paper-icon-button.error:hover, paper-icon-button.btn-error:hover, paper-icon-button[error]:hover { background-color: #fdeeee; background-color: rgba(239, 83, 80, 0.2); border-radius: 50%; }
-
-paper-checkbox #checkmark.paper-checkbox, paper-checkbox /deep/, paper-checkbox::shadow #checkmark.paper-checkbox { border-color: #fff !important; }
-
-paper-dialog { color: #191919; background-color: #ffffff; font-family: 'Tinos', serif; font-weight: 400; }
-paper-dialog h1, paper-dialog h2, paper-dialog h3, paper-dialog h4, paper-dialog h5, paper-dialog h6 { overflow: visible; padding: 0 1em; text-align: center; }
-
-paper-fab { --text-primary-color: white; }
-
-paper-fab { background-color: #191919; color: #fff; --paper-fab-keyboard-focus-background: #595959; }
-paper-fab.primary, paper-fab.btn-primary, paper-fab[primary] { background-color: #191919; color: #fff; --paper-fab-keyboard-focus-background: #595959; }
-paper-fab.secondary, paper-fab.btn-secondary, paper-fab[secondary] { background-color: #1e88e5; color: #fff; --paper-fab-keyboard-focus-background: #0e4576; }
-paper-fab.success, paper-fab.btn-success, paper-fab[success] { background-color: #8bc34a; color: #fff; --paper-fab-keyboard-focus-background: #496a23; }
-paper-fab.info, paper-fab.btn-info, paper-fab[info] { background-color: #fadd60; color: #4b421d; --paper-fab-keyboard-focus-background: #d4ad07; }
-paper-fab.warning, paper-fab.btn-warning, paper-fab[warning] { background-color: #ffb74d; color: #4d3717; --paper-fab-keyboard-focus-background: #cd7a00; }
-paper-fab.error, paper-fab.btn-error, paper-fab[error] { background-color: #ef5350; color: #481918; --paper-fab-keyboard-focus-background: #af1310; }
-paper-fab[disabled] { color: #313238 !important; background: #afb1b9 !important; }
-
-section.hero paper-menu, section[hero] paper-menu { --paper-menu-background-color: #f1f1f1; }
-
-paper-tabs { background-color: #191919; color: #ffffff; }
-
-</style>
   <style>
 uql-menu,
 .header-container,
@@ -16936,62 +16596,68 @@ uql-menu {
   <style>
 :host {
     display: block;
+    font-family: Helvetica, 'Trebuchet MS', sans-serif;
 }
 
-paper-toolbar {
+:host paper-material {
+    z-index: 9999;
+}
+
+:host paper-toolbar {
     background-color: #000;
     /*background-color: #49075e;*/
 }
 
-paper-toolbar > div {
+:host paper-toolbar > div {
     padding: 0;
 }
 
-paper-toolbar paper-button {
+:host paper-toolbar paper-button {
     text-transform: inherit;
     margin: 0;
     padding: 10px;
+    font-size: 15px;
 }
 
-paper-toolbar paper-button:hover {
+:host paper-toolbar paper-button:hover {
     background-color: #16042c;
 }
 
-.uql-submenu {
+:host .uql-submenu {
     width: 440px;
     position: absolute;
 }
 
-.uql-submenu paper-item {
+:host .uql-submenu paper-item {
     display: inherit;
     padding-top: 3px;
     padding-bottom: 3px;
     min-height: 32px;
 }
 
-.uql-submenu paper-item:hover {
+:host .uql-submenu paper-item:hover {
     background-color: #ddd;
 }
 
-.uql-submenu paper-item div {
+:host .uql-submenu paper-item div {
     display: block;
 }
 
-.uql-submenu paper-item a {
+:host .uql-submenu paper-item a {
     color: #000;
 }
 
-.uql-submenu paper-item a iron-image {
+:host .uql-submenu paper-item a iron-image {
     max-width:100%;
     background-color: lightgray;
 }
 
-.uql-submenu paper-item div.subtext {
+:host .uql-submenu paper-item div.subtext {
     color: #666;
     font-size: 80%;
 }
 
-.uql-submenu-right paper-item {
+:host .uql-submenu-right paper-item {
     border-left-width: thin;
     border-left-style: solid;
     border-color: #999;
@@ -17001,7 +16667,7 @@ paper-toolbar paper-button:hover {
 
   <template>
     <iron-ajax auto="" url="{{menuJson}}" handle-as="json" on-response="_handleResponse" on-error="_handleError" verbose="{{verbose}}"></iron-ajax>
-    <paper-toolbar id="uql-toolbar" role="toolbar">
+    <paper-toolbar id="uql-toolbar" role="toolbar" justify="center">
       <paper-icon-button href="/" icon="home" alt="home" on-tap="_goLink"></paper-icon-button>
       <template is="dom-repeat" items="{{menu.items}}">
         <!-- load up single menu items without submenus -->
@@ -17108,10 +16774,10 @@ paper-toolbar paper-button:hover {
       var that = this;
       document.querySelector('html').addEventListener('click', function () {
         that.selectedMenu = null;
-      })
+      });
       document.querySelector('uql-mega-menu').addEventListener('click', function (event) {
         event.stopPropagation();
-      })
+      });
     },
     _goLink: function (event) {
       window.location.href = event.currentTarget.getAttribute('href');
@@ -17132,7 +16798,7 @@ paper-toolbar paper-button:hover {
       var screenWidth = window.innerWidth || d.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
       for (var i = 0, l = this.menu.items.length; i < l; i++) {
         var item = this.menu.items[i];
-        if (item.items) {
+        if (Array.isArray(item.items) && (item.items.length > 0)) {
           var elId = this._getName('button', item.label);
           var btn = document.getElementById(elId);
           var coords = btn.getBoundingClientRect();

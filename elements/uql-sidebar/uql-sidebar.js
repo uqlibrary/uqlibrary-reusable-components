@@ -46,19 +46,21 @@
         if (that.showMenu) {
           that._toggleVisibility();
         }
-      })
+      });
       document.querySelector('uql-sidebar').addEventListener('click', function (event) {
         event.stopPropagation();
-      })
+      });
 
       var toggles = document.querySelectorAll('.toggle');
 
+      function _innerToggleVisibility(event) {
+        that._toggleVisibility();
+        event.stopPropagation();
+      }
+
       for (var t in toggles) {
         if (toggles.hasOwnProperty(t)) {
-          toggles[t].addEventListener('click', function (event) {
-            that._toggleVisibility();
-            event.stopPropagation();
-          });
+          toggles[t].addEventListener('click', _innerToggleVisibility);
         }
       }
       this._computeVisibility();
