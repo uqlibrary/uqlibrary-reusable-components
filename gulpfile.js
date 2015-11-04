@@ -27,6 +27,7 @@ var rename = require('gulp-rename');
 var taskList = require('gulp-task-listing');
 var cssmin = require('gulp-cssmin');
 var jsonlint = require('gulp-jsonlint');
+var cloudfront = require('gulp-invalidate-cloudfront');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -126,6 +127,34 @@ gulp.task('copy:aws', function () {
     .pipe($.size({title: 'copy'}));
 });
 
+gulp.task('invalidate', function () {
+  var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
+
+  var invalidationBatch = {
+    CallerReference: new Date().toString(),
+    Paths: {
+      Quantity: 1,
+      Items: ['/master/reusable-components/*']
+    }
+  };
+
+  var awsSettings = {
+    credentials: {
+      accessKeyId: awsConfig.accessKeyId,
+      secretAccessKey: awsConfig.secretAccessKey
+    },
+    distributionId: awsConfig.params.distribution,
+    region: awsConfig.params.region
+  };
+
+  return gulp.src([
+    config.applications  + '/*',
+    config.elements + '/*',
+    config.dependencies + '/*',
+    config.resources + '/*'
+  ]).pipe(cloudfront(invalidationBatch, awsSettings));
+});
+
 // upload package to S3
 gulp.task('publish', ['copy:aws'], function() {
 
@@ -163,6 +192,7 @@ gulp.task('syntax', [
 
 gulp.task('build', [
   'syntax',
+  'optimize',
   'vulcanize'
 ]);
 
