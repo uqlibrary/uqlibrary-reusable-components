@@ -36,7 +36,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var testObj, server;
     var responseHeaders = {'Content-Type': 'application/json'};
 
-    var testJson = '{ "heading": "Menu demo", "items": [ { "label": "Library Services", "items": [ { "label": "Your subject Librarian", "subtext": "Item subtext", "href": "/item1" }, { "label": "IT", "href": "/item2" }, { "label": "Copyright advice", "href": "/item3" }, { "label": "Digitisation", "subtext": "Specific categories below", "href": "/item1", "right": "right" }, { "label": "for Students", "href": "/item2", "right": "right" }, { "label": "for Researchers", "href": "/item2", "right": "right" }, { "label": "for Teaching Staff", "href": "/item2", "right": "right" }, { "label": "for Professional Staff", "href": "/item2", "right": "right" }, { "label": "for Hospital Staff", "href": "/item2", "right": "right" }, { "label": "for Alumni", "href": "/item2", "right": "right" }, { "label": "for Community", "href": "/item2", "right": "right" }, { "label": "for Secondary Schools", "href": "/item2", "right": "right" }, { "label": "for Clients with disabilities", "href": "/item2", "right": "right" }, { "label": "for Other Libraries Staff", "href": "/item2", "right": "right" } ] }, { "label": "Research tools & techniques", "items" : [] }, { "label": "Our Collections", "items": [] }, { "label": "Borrowing & Requesting", "items": [] }, { "label": "Locations & Hours", "items": [] }, { "label": "About us", "items": [] }, { "label": "Ask us", "items": [ { "label": "FAQs", "href": "/item1" } ] } ] }';
+    var testJson = {
+      heading: 'Menu demo',
+      items: [
+        {
+          label: 'Library Services',
+          items: [
+            {label: 'Your subject Librarian', 'subtext': 'Item subtext', href: '/item1'},
+            {label: 'IT', href: '/item2'}, {label: 'Copyright advice', href: '/item3'},
+            {label: 'Digitisation', 'subtext': 'Specific categories below', href: '/item1', right: 'right'},
+            {label: 'for Students', href: '/item2', right: 'right'},
+            {label: 'for Researchers', href: '/item2', right: 'right'},
+            {label: 'for Teaching Staff', href: '/item2', right: 'right'},
+            {label: 'for Professional Staff', href: '/item2', right: 'right'},
+            {label: 'for Hospital Staff', href: '/item2', right: 'right'},
+            {label: 'for Alumni', href: '/item2', right: 'right'},
+            {label: 'for Community', href: '/item2', right: 'right'},
+            {label: 'for Secondary Schools', href: '/item2', right: 'right'},
+            {label: 'for Clients with disabilities', href: '/item2', right: 'right'},
+            {label: 'for Other Libraries Staff', href: '/item2', right: 'right'}
+          ]
+        },
+        {
+          label: 'Research tools & techniques', items: []
+        },
+        {
+          label: 'Our Collections', items: []
+        },
+        {
+          label: 'Borrowing & Requesting', items: []
+        },
+        {
+          label: 'Locations & Hours', items: []
+        },
+        {
+          label: 'About us', items: []
+        },
+        {
+          label: 'Ask us',
+          items: [
+            {label: 'FAQs', href: '/item1'}
+          ]
+        }
+      ]
+    };
 
     setup(function () {
       testObj = fixture('basic');
@@ -48,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           [
             200,
             responseHeaders,
-            testJson
+            JSON.stringify(testJson)
           ]
       );
     });
@@ -66,7 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.an('object');
 
         var menuHeadings = testObj.querySelectorAll('uql-mega-menu paper-button');
-        assert.equal(menuHeadings.length, 7, 'Should be an item for each top level menu');
+        assert.equal(menuHeadings.length, testJson.items.length, 'Should be an item for each top level menu');
 
         done();
       });
@@ -103,7 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.an('object');
 
         var menuItems = testObj.querySelectorAll('uql-mega-menu paper-material:nth-of-type(1) paper-item');
-        assert.equal(menuItems.length, 14, 'Should be an item for each of the submenus');
+        assert.equal(menuItems.length, testJson.items[0].items.length, 'Should be an item for each of the submenus');
 
         done();
       });
