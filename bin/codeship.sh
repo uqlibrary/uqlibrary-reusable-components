@@ -53,6 +53,9 @@ if [ $branch = "staging" ] || [ $branch = "production" ]; then
   gulp optimize
 fi
 
+echo "Check file syntax"
+gulp syntax
+
 echo "Run gulp task to upload to AWS..."
 gulp publish
 
