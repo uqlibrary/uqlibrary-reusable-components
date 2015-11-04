@@ -34,10 +34,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
   suite('<uql-menu> tests', function () {
     var testObj, server;
-    var responseHeaders = {
-      json: {'Content-Type': 'application/json'},
-      plain: {'Content-Type': 'text/plain'}
-    };
+    var responseHeaders = {'Content-Type': 'application/json'};
+
     var testJson = '{ "heading": "Menu demo", "items": [ { "label": "Library Services", "items": [ { "label": "Your subject Librarian", "subtext": "Item subtext", "href": "/item1" }, { "label": "IT", "href": "/item2" }, { "label": "Copyright advice", "href": "/item3" }, { "label": "Digitisation", "subtext": "Specific categories below", "href": "/item1", "right": "right" }, { "label": "for Students", "href": "/item2", "right": "right" }, { "label": "for Researchers", "href": "/item2", "right": "right" }, { "label": "for Teaching Staff", "href": "/item2", "right": "right" }, { "label": "for Professional Staff", "href": "/item2", "right": "right" }, { "label": "for Hospital Staff", "href": "/item2", "right": "right" }, { "label": "for Alumni", "href": "/item2", "right": "right" }, { "label": "for Community", "href": "/item2", "right": "right" }, { "label": "for Secondary Schools", "href": "/item2", "right": "right" }, { "label": "for Clients with disabilities", "href": "/item2", "right": "right" }, { "label": "for Other Libraries Staff", "href": "/item2", "right": "right" } ] }, { "label": "Research tools & techniques", "items" : [] }, { "label": "Our Collections", "items": [] }, { "label": "Borrowing & Requesting", "items": [] }, { "label": "Locations & Hours", "items": [] }, { "label": "About us", "items": [] }, { "label": "Ask us", "items": [ { "label": "FAQs", "href": "/item1" } ] } ] }';
 
     setup(function () {
@@ -49,37 +47,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           /.*/,
           [
             200,
-            responseHeaders.json,
+            responseHeaders,
             testJson
           ]
       );
     });
 
-    function timePasses(ms) {
-      return new Promise(function (resolve) {
-        window.setTimeout(function () {
-          resolve();
-        }, ms);
-      });
-    }
-
-    /*
     test('Item lengths should be equalled', function (done) {
       testObj.menuJson = '/menu.json';
+      var ajax = testObj.querySelector('iron-ajax');
+      var request = ajax.generateRequest();
+      server.respond();
 
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
-        timePasses(100).then(function () {
-          var menuHeadings = testObj.querySelectorAll('uql-mega-menu paper-button');
-          assert.equal(7, menuHeadings.length, 'Should be an item for each top level menu');
-          var menuItems = testObj.querySelectorAll('uql-mega-menu paper-item');
-          assert.equal(14, menuItems.length, 'Should be an item for each of the submenus');
-          done();
-        })
+        expect(request.response).to.be.ok;
+        expect(request.response).to.be.an('object');
+
+        var menuHeadings = testObj.querySelectorAll('uql-mega-menu paper-button');
+        assert.equal(menuHeadings.length, 7, 'Should be an item for each top level menu');
+        var menuItems = testObj.querySelectorAll('uql-mega-menu paper-material:nth-of-type(1) paper-item');
+        assert.equal(menuItems.length, 14, 'Should be an item for each of the submenus');
+
+        done();
       });
     })
-    */
   });
 </script>
 
