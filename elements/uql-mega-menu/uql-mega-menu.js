@@ -54,7 +54,7 @@
       var screenWidth = window.innerWidth || d.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
       for (var i = 0, l = this.menu.items.length; i < l; i++) {
         var item = this.menu.items[i];
-        if (item.items) {
+        if (Array.isArray(item.items) && (item.items.length > 0)) {
           var elId = this._getName('button', item.label);
           var btn = document.getElementById(elId);
           var coords = btn.getBoundingClientRect();

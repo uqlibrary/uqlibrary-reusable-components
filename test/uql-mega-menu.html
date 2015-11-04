@@ -127,7 +127,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var material = testObj.querySelector('paper-material');
         expect(material).to.not.be.visible;
         testObj.querySelector('uql-mega-menu paper-button').click();
-        expect(material).to.not.visible;
+        expect(material).to.be.visible;
         done();
       });
     });

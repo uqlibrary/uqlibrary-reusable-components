@@ -35,40 +35,70 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   suite('<uql-sidebar> tests', function () {
     var testObj;
 
+    var testJson = {
+      "heading": "Menu demo",
+      "items": [
+        {
+          "label": "Library Services",
+          "items": [
+            {
+              "label": "Your subject Librarian",
+              "subtext": "Item subtext",
+              "href": "/item1"
+            },
+            {
+              "label": "Digitisation",
+              "subtext": "Specific categories below",
+              "href": "/item1",
+              "right": "right"
+            }
+          ]
+        },
+        {
+          "label": "Research stuff",
+          "items": []
+        }
+      ]
+    };
+
     setup(function () {
       testObj = fixture('basic');
+      testObj.menu = testJson;
     });
 
     test('Item lengths should be equalled', function (done) {
-      var menu = {
-        "heading": "Menu demo",
-        "items": [
-          {
-            "label": "Library Services",
-            "items": [
-              {
-                "label": "Your subject Librarian",
-                "subtext": "Item subtext",
-                "href": "/item1"
-              },
-              {
-                "label": "Digitisation",
-                "subtext": "Specific categories below",
-                "href": "/item1",
-                "right": "right"
-              }
-            ]
-          }
-        ]
-      };
+      var numItems = 0;
 
-      testObj.menu = menu;
+      for (var i = 0, l = testJson.items.length; i < l; i++) {
+        numItems++;
+        for (var j = 0, jl = testJson.items[i].items.length; j < jl; j++) {
+          numItems++;
+        }
+      }
 
-      // Data bindings will stamp out new DOM asynchronously
-      // so wait to check for updates
       flush(function () {
         var menuItems = testObj.querySelectorAll('paper-item');
-        assert.equal(menu.items[0].items.length + 1, menuItems.length, 'Should be an item for top level menu, and one for each of submenus');
+        assert.equal(numItems, menuItems.length, 'Should be an item for top level menu, and one for each of submenus');
+        done();
+      });
+    });
+
+    test('Menu should disappear when bottom button clicked', function (done) {
+      flush(function () {
+        var material = testObj.querySelector('paper-material');
+        expect(material).to.be.visible;
+        testObj.querySelector('uql-sidebar paper-material paper-button').click();
+        expect(material).to.not.be.visible;
+        done();
+      });
+    });
+
+    test('Menu should disappear when topbar clicked', function (done) {
+      flush(function () {
+        var material = testObj.querySelector('paper-material');
+        expect(material).to.be.visible;
+        testObj.querySelector('uql-sidebar paper-toolbar paper-button').click();
+        expect(material).to.not.be.visible;
         done();
       });
     })

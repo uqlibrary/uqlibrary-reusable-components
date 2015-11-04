@@ -83,6 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     setup(function () {
       testObj = fixture('basic');
+      testObj.menuJson = '/menu.json';
 
       server = sinon.fakeServer.create();
       server.respondWith(
@@ -96,8 +97,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       );
     });
 
+    teardown(function () {
+      server.restore();
+    });
+
     test('Should create paper buttons for each menu', function (done) {
-      testObj.menuJson = '/menu.json';
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
       server.respond();
@@ -116,7 +120,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('Paper button should have menu as text', function (done) {
-      testObj.menuJson = '/menu.json';
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
       server.respond();
@@ -134,7 +137,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('Should create paper items for menu', function (done) {
-      testObj.menuJson = '/menu.json';
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
       server.respond();
@@ -153,7 +155,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     })
 
     test('Paper item should have menu item as text', function (done) {
-      testObj.menuJson = '/menu.json';
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
       server.respond();
@@ -171,7 +172,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('Menu should appear on button click', function (done) {
-      testObj.menuJson = '/menu.json';
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
       server.respond();
@@ -181,13 +181,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       flush(function () {
         expect(request.response).to.be.ok;
         expect(request.response).to.be.an('object');
+
         var material = testObj.querySelector('paper-material');
-
         expect(material).to.not.be.visible;
-
         testObj.querySelector('uql-mega-menu paper-button').click();
-
-        expect(material).to.not.visible;
+        expect(material).to.be.visible;
         done();
       });
     });
