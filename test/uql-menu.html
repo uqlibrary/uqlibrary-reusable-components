@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       );
     });
 
-    test('Item lengths should be equalled', function (done) {
+    test('Should create paper buttons for each menu', function (done) {
       testObj.menuJson = '/menu.json';
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
@@ -67,12 +67,88 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var menuHeadings = testObj.querySelectorAll('uql-mega-menu paper-button');
         assert.equal(menuHeadings.length, 7, 'Should be an item for each top level menu');
+
+        done();
+      });
+    });
+
+    test('Paper button should have menu as text', function (done) {
+      testObj.menuJson = '/menu.json';
+      var ajax = testObj.querySelector('iron-ajax');
+      var request = ajax.generateRequest();
+      server.respond();
+
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
+      flush(function () {
+        expect(request.response).to.be.ok;
+        expect(request.response).to.be.an('object');
+
+        var menuHeadings = testObj.querySelector('uql-mega-menu paper-button');
+        assert.include(menuHeadings.textContent, 'Library Services', 'Button text matches');
+        done();
+      });
+    });
+
+    test('Should create paper items for menu', function (done) {
+      testObj.menuJson = '/menu.json';
+      var ajax = testObj.querySelector('iron-ajax');
+      var request = ajax.generateRequest();
+      server.respond();
+
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
+      flush(function () {
+        expect(request.response).to.be.ok;
+        expect(request.response).to.be.an('object');
+
         var menuItems = testObj.querySelectorAll('uql-mega-menu paper-material:nth-of-type(1) paper-item');
         assert.equal(menuItems.length, 14, 'Should be an item for each of the submenus');
 
         done();
       });
     })
+
+    test('Paper item should have menu item as text', function (done) {
+      testObj.menuJson = '/menu.json';
+      var ajax = testObj.querySelector('iron-ajax');
+      var request = ajax.generateRequest();
+      server.respond();
+
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
+      flush(function () {
+        expect(request.response).to.be.ok;
+        expect(request.response).to.be.an('object');
+
+        var menuHeadings = testObj.querySelector('uql-mega-menu paper-item');
+        assert.include(menuHeadings.textContent, 'Your subject Librarian', 'Paper item matches');
+        done();
+      });
+    });
+
+    test('Menu should appear on button click', function (done) {
+      testObj.menuJson = '/menu.json';
+      var ajax = testObj.querySelector('iron-ajax');
+      var request = ajax.generateRequest();
+      server.respond();
+
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
+      flush(function () {
+        expect(request.response).to.be.ok;
+        expect(request.response).to.be.an('object');
+        var material = testObj.querySelector('paper-material');
+
+        expect(material).to.not.be.visible;
+
+        testObj.querySelector('uql-mega-menu paper-button').click();
+
+        expect(material).to.not.visible;
+        done();
+      });
+    });
+
   });
 </script>
 
