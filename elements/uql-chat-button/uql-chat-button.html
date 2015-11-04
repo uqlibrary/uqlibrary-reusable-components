@@ -1,0 +1,27 @@
+<dom-module id="uql-chat-button">
+
+  <link rel="import" href="../elements.html">
+  <link rel="stylesheet" href="../../styles/elements-styles.css">
+
+  <template>
+
+    <iron-ajax
+            auto
+            url="{{chatStatusUrl}}"
+            handle-as="json"
+            last-response="{{chatStatus}}"
+            debounce-duration="300"></iron-ajax>
+
+    <template is="dom-if" if="{{!chatStatus.online}}">
+      <paper-button class="button-inverse" on-tap="openOfflineHelp"><iron-icon icon="communication:chat-bubble-outline" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
+    </template>
+
+    <template is="dom-if" if="{{chatStatus.online}}">
+      <paper-button class="button-inverse" on-tap="openChat"><iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon></paper-button>
+    </template>
+
+  </template>
+
+  <script src="uql-chat-button.js"></script>
+
+</dom-module>

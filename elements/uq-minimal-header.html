@@ -1,6 +1,7 @@
 <dom-module id="uq-minimal-header">
 
   <link rel="stylesheet" href="../styles/elements-styles.css">
+  <link rel="import" href="elements.html">
 
   <style is="custom-style">
 
@@ -41,6 +42,11 @@
           <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
         </div>
         <div class="application-title">{{applicationTitle}}</div>
+
+        <template is="dom-if" if="{{showChatStatus}}">
+          <uql-chat-button></uql-chat-button>
+        </template>
+
       </div>
     </div>
   </template>
@@ -54,6 +60,10 @@
           applicationTitle: {
             type: String,
             notify: true
+          },
+          showChatStatus: {
+            type: Boolean,
+            value: true
           }
         }
       });
