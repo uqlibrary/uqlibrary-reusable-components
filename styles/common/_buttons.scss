@@ -1,0 +1,7 @@
+.button-inverse {
+  color: $text-color-inverse;
+}
+
+.button-inverse:focus {
+  outline: $focus-outline-color auto 5px;
+}

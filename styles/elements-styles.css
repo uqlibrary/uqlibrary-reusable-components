@@ -1,3 +1,9 @@
+.button-inverse {
+  color: #FFF; }
+
+.button-inverse:focus {
+  outline: #3b99fc auto 5px; }
+
 uql-menu,
 .header-container,
 .footer-container {

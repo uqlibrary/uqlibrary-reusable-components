@@ -1,12 +1,26 @@
+//text colours
+$text-color: #000;
+$text-color-inverse: #FFF;
+$focus-outline-color: rgb(59, 153, 252);
+//UQ theme colours
+$uq-purple: #49075E;
+$uq-purple-dark: #370546;
+$uq-purple-light: #d2c1d7;
+
+$uq-blue: #2377CB;
+$uq-blue-dark: #005EA5;
 
 //header colours
-$header-background-color: #49075E;
+$header-background-color: $uq-purple;
 $header-primary-text-color: #FFF;
-$header-secondary-text-color: #d2c1d7;
+$header-secondary-text-color: $uq-purple-light;
 
 $logo-url: "https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg";
 
 //footer colours
-$footer-background-color: #49075E;
+$footer-background-color: $uq-purple;
 $footer-primary-text-color: #FFF;
-$footer-secondary-text-color: #d2c1d7;
+$footer-secondary-text-color: $uq-purple-light;
+
+
+
