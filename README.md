@@ -68,7 +68,6 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
 include this code in Omega's html.tpl.php 
 
         <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico" />
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/shared/common-minimal-styles.css" />
         <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
         <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
@@ -88,15 +87,15 @@ Embed the following if you want to force an IMS login for on campus workstations
 ### Development/Deployment process
 
 1. Update styles
-2. Update any custom elements
-3. Compile all styles 
-4. Run vulcanize task
+1. Update any custom elements
+1. Compile all styles 
+1. Run build task
 ```sh
-gulp vulcanize
+gulp build
 ```
 
-5. Commit all changes
-6. Codeship will deploy changes automatically by running
+1. Commit all changes
+1. Codeship will deploy changes automatically by running
 deployment task /bin/codeship.sh:
 - installs all dependencies
 - sets AWS configuration

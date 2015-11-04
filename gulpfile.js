@@ -26,6 +26,7 @@ var gutil = require('gulp-util');
 var rename = require('gulp-rename');
 var taskList = require('gulp-task-listing');
 var cssmin = require('gulp-cssmin');
+var jsonlint = require('gulp-jsonlint');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -50,14 +51,25 @@ var config = {
 gulp.task('jshint', function () {
   return gulp.src([
     config.applications + '/**/*.js',
-    config.elements + '/**/*.js',
-    config.elements + '/**/*.html'
+    config.elements + '/**/*.js'
   ])
     //.pipe(reload({stream: true, once: true}))
     .pipe($.jshint.extract()) // Extract JS from .html files
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'));
     //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+});
+
+// Lint JSON
+gulp.task('jsonlint', function () {
+  return gulp.src([
+      config.resources + '/**/*.json',
+      config.applications + '/**/*.json',
+      config.elements + '/**/*.json'
+    ])
+    .pipe(jsonlint())
+    .pipe(jsonlint.failAfterError())
+    .pipe(jsonlint.reporter());
 });
 
 // Vulcanize imports
@@ -143,6 +155,16 @@ gulp.task('publish', ['copy:aws'], function() {
     // print upload updates to console
     .pipe(awspublish.reporter());
 });
+
+gulp.task('syntax', [
+  'jshint',
+  'jsonlint'
+]);
+
+gulp.task('build', [
+  'syntax',
+  'vulcanize'
+]);
 
 // display a list of available tasks
 gulp.task('help', taskList);

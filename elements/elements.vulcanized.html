@@ -16474,19 +16474,21 @@ uq-minimal-header {
         if (that.showMenu) {
           that._toggleVisibility();
         }
-      })
+      });
       document.querySelector('uql-sidebar').addEventListener('click', function (event) {
         event.stopPropagation();
-      })
+      });
 
       var toggles = document.querySelectorAll('.toggle');
 
+      function _innerToggleVisibility(event) {
+        that._toggleVisibility();
+        event.stopPropagation();
+      }
+
       for (var t in toggles) {
         if (toggles.hasOwnProperty(t)) {
-          toggles[t].addEventListener('click', function (event) {
-            that._toggleVisibility();
-            event.stopPropagation();
-          });
+          toggles[t].addEventListener('click', _innerToggleVisibility);
         }
       }
       this._computeVisibility();
@@ -16772,10 +16774,10 @@ uql-menu {
       var that = this;
       document.querySelector('html').addEventListener('click', function () {
         that.selectedMenu = null;
-      })
+      });
       document.querySelector('uql-mega-menu').addEventListener('click', function (event) {
         event.stopPropagation();
-      })
+      });
     },
     _goLink: function (event) {
       window.location.href = event.currentTarget.getAttribute('href');
@@ -16796,7 +16798,7 @@ uql-menu {
       var screenWidth = window.innerWidth || d.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
       for (var i = 0, l = this.menu.items.length; i < l; i++) {
         var item = this.menu.items[i];
-        if (item.items) {
+        if (Array.isArray(item.items) && (item.items.length > 0)) {
           var elId = this._getName('button', item.label);
           var btn = document.getElementById(elId);
           var coords = btn.getBoundingClientRect();

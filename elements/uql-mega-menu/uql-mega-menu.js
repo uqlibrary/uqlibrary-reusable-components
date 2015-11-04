@@ -30,10 +30,10 @@
       var that = this;
       document.querySelector('html').addEventListener('click', function () {
         that.selectedMenu = null;
-      })
+      });
       document.querySelector('uql-mega-menu').addEventListener('click', function (event) {
         event.stopPropagation();
-      })
+      });
     },
     _goLink: function (event) {
       window.location.href = event.currentTarget.getAttribute('href');
