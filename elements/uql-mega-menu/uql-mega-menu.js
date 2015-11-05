@@ -72,7 +72,7 @@
     },
     _getName: function (type, label) {
       if (label) {
-        return 'uql-' + type + '-' + label.replace(/\W/, '');
+        return 'uql-' + type + '-' + label.replace(/\W/g, '');
       }
     }
   });
