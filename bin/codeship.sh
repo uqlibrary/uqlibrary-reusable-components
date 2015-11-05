@@ -61,3 +61,7 @@ gulp publish
 
 echo "Clean up AWS configuration..."
 rm -f ${awsconfig}
+
+echo "Run Cloudfront Invalidation"
+gulp invalidate
+
