@@ -8524,6 +8524,20 @@ and instead put a div inside and style that.
   }
 
 </style>
+<!--
+The `<iron-flex-layout>` component provides simple ways to use [CSS flexible box layout](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes), also known as flexbox. This component provides two different ways to use flexbox:
+
+1. [Layout classes](https://github.com/PolymerElements/iron-flex-layout/tree/master/classes). The layout class stylesheet provides a simple set of class-based flexbox rules. Layout classes let you specify layout properties directly in markup.
+
+2. [Custom CSS mixins](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html). The mixin stylesheet includes custom CSS mixins that can be applied inside a CSS rule using the `@apply` function.
+
+A complete [guide](https://elements.polymer-project.org/guides/flex-layout) to `<iron-flex-layout>` is available.
+
+@group Iron Elements
+@pseudoElement iron-flex-layout
+@demo demo/index.html
+-->
+
 <style>
   /* IE 10 support for HTML5 hidden attr */
   [hidden] {
@@ -13077,7 +13091,493 @@ be used as the label of the toolbar via `aria-labelledby`.
 @demo demo/index.html
 -->
 
-<!-- common components  -->
+<!-- third party components -->
+<script>﻿window.Byutv = window.Byutv || {};
+Byutv.behaviors = Byutv.behaviors || {};
+
+/**
+ * `Byutv.behaviors.Jsonp` is a Polymer v1.0+ *behavior* that facilitate making JSONP requests.
+ * This *behavior* can be used to extend `<byutv-jsonp>`.
+ *
+ * @polymerBehavior
+ */
+Byutv.behaviors.Jsonp = {
+	/**
+	 * Fired when a response or an error is received.
+	 *
+	 * @event complete
+	 * @param {Request} event.detail An object that represents the request that was made.
+	 */
+
+	/**
+	 * Fired when an error is received.
+	 *
+	 * @event error
+	 * @param {Event} event.detail The `error event` returned when the request resulted in an error.
+	 */
+
+	/**
+	 * Fired when a request is loaded.
+	 *
+	 * @event load
+	 * @param {Event} event.detail The `load event` generated when a request was loaded.
+	 */
+
+	/**
+	 * Fired when a response is received.
+	 *
+	 * @event response
+	 * @param {JSON} event.detail The data returned from making the request.
+	 */
+
+	/**
+	 * Fired when a request is sent.
+	 *
+	 * @event sent
+	 * @param {Request} event.detail An object that represents the request that is being made.
+	 */
+
+	/**
+	 * Information used to make a request.
+	 *
+	 * @typedef {Object} Request
+	 *
+	 * @property {HTMLElement} script The script used to make the request.
+	 * @property {object} options The options used to make the request.  See `_requestOptions`.
+	 * @property {boolean} loading Whether the request is loading or not.
+	 */
+
+	properties: {
+		/**
+		 * An Array of all in-flight requests originating from this `<byutv-jsonp>`.
+		 *
+		 * @type {Array<Request>}
+		 * @default []
+		 */
+		activeRequests: {
+				type: Array,
+				notify: true,
+				readOnly: true,
+				value: function () {
+					this._setActiveRequests([]);
+				}
+		},
+
+		/**
+		 * If `true`, automatically performs requests when any non-readOnly properties change.
+		 */
+		auto: {
+				type: Boolean,
+				value: false
+		},
+
+		/**
+		 * If `true`, force requests to be cached by the browser.
+		 *
+		 * Note:
+		 * - This will only work if `callback-value` is set to a static value and
+		 * non-readOnly attributes do not change between requests.
+		 * - This works by removing the `_={guid}` query string parameter from the request.
+		 */
+		cache: {
+				type: Boolean,
+				value: false
+		},
+
+		/**
+		 * Overrides the callback parameter key name in requests or removes the parameter completely.
+		 * This is the `callback-key` in the "{callback-key}={callback-value}" pair.
+		 *
+		 * Note:
+		 * - Setting `callback-key` to an empty string will remove the "callback={callback-value}"
+		 * query string parameter from requests. Setting it to any valid string will force
+		 * it to be used instead of "callback", e.g., "{callback-key}={callback-value}".
+		 */
+		callbackKey: {
+				type: String,
+				value: "callback"
+		},
+
+		/**
+		 * Specifies the JSONP wrapper function name and is the `callback-value` in the "{callback-key}={callback-value}" pair.
+		 *
+		 * Note: 
+		 * - The server will use this value to properly wrap JSONP request responses.
+		 * Change this to a static value when browser caching is desired (see `cache`).
+		 *
+		 * @default byutv_jsonp_callback_{guid}
+		 */
+		callbackValue: {
+				type: String,
+				value: function () {
+					return "byutv_jsonp_callback_" + this._newGuid(true);
+				}
+		},
+
+		/**
+		 * The length of time in milliseconds to debounce multiple requests.
+		 */
+		debounceDuration: {
+				type: Number,
+				value: 0
+		},
+
+		/**
+		 * Will be set to `true` if an attempt was made to abort the most recent request.
+		 */
+		lastAborted: {
+				type: Boolean,
+				notify: true,
+				readOnly: true,
+				reflectToAttribute: true,
+				value: false
+		},
+
+		/**
+		 * Will be set to the most recent error that resulted from a request
+		 * that originated from this `<byutv-jsonp>`.  This value will be
+		 * `undefined` if no request have completed with an error.
+		 *
+		 * @type {Event}
+		 * @default undefined
+		 */
+		lastError: {
+				type: Object,
+				notify: true,
+				readOnly: true
+		},
+
+		/**
+		 * Will be set to the most recent load event that resulted from a request
+		 * that originated from this `<byutv-jsonp>`.  This value will be
+		 * `undefined` if no requests have been sent.
+		 *
+		 * @type {Event}
+		 * @default undefined
+		 */
+		lastLoad: {
+				type: Object,
+				notify: true,
+				readOnly: true
+		},
+
+		/**
+		 * Will be set to the most recent request made by this `<byutv-jsonp>`.
+		 * This value will be `undefined` if no requests have been sent.
+		 *
+		 * @type {Request}
+		 * @default undefined
+		 */
+		lastRequest: {
+				type: Object,
+				notify: true,
+				readOnly: true
+		},
+
+		/**
+		 * Will be set to the most recent response that resulted from a request
+		 * that originated from this `<byutv-jsonp>`.  This value will be
+		 * `undefined` if no requests have completed with a success.
+		 *
+		 * @type {JSON}
+		 * @default undefined
+		 */
+		lastResponse: {
+				type: Object,
+				notify: true,
+				readOnly: true
+		},
+
+		/**
+		 * Will be set to true if there is at least one in-flight request
+		 * associated with this `<byutv-jsonp>`.
+		 */
+		loading: {
+				type: Boolean,
+				notify: true,
+				readOnly: true,
+				reflectToAttribute: true,
+				value: false
+		},
+
+		/**
+		 * An object that contains query parameters to be appended to the specified `url`
+		 * when generating a request.  Specify `params` as a double quoted JSON string.
+		 *
+		 * @type {JSON}
+		 */
+		params: {
+				type: Object,
+				value: function () {
+					return {};
+				}
+		},
+
+		/**
+		 * Toggle whether requests are synchronous or asynchronous.
+		 */
+		sync: {
+				type: Boolean,
+				value: false
+		},
+
+		/**
+		 * The URL target of the request.
+		 */
+		url: {
+				type: String,
+				value: ""
+		},
+
+		/**
+		 * If `true`, error messages will automatically be logged to the console.
+		 */
+		verbose: {
+				type: Boolean,
+				value: false
+		}
+	},
+
+	/**
+	 * This is a factory/constructor method.  To use this method call `new Byutv.Jsonp(options)`.
+	 * Any properties passed in the options object will be added to the element as attributes.
+	 *
+	 * @param {Object} options Attributes to be added to the element upon construction.
+	 */
+	factoryImpl: function (options) {
+		if (options && typeof options === "object") {
+			var element = this;
+
+			Object.keys(options).forEach(function (key) {
+				element.setAttribute(key, options[key]);
+			});
+		}
+	},
+
+	// All non-readOnly properties
+	observers: [
+		"_requestOptionsChanged(auto, cache, callbackKey, callbackValue, debounceDuration, params, sync, url, verbose)"
+	],
+
+	/**
+	 * @return {String} _queryString The query string added to the URL in a request.
+	 */
+	get _queryString() {
+		var params = this.params || {};
+
+		if (this.callbackKey === undefined || this.callbackKey) {
+			params[this.callbackKey] = this.callbackValue;
+		}
+
+		if (!this.cache) {
+			params._ = this._newGuid(true);
+		}
+
+		return Object.keys(params).reduce(function (arr, key) {
+			return arr.push(key + "=" + encodeURIComponent(params[key])) && arr;
+		}, []).join("&");
+	},
+
+	/**
+	 * @return {String} _requestUrl The url and query string used in a request.
+	 */
+	get _requestUrl() {
+		var queryString = this._queryString;
+
+		return queryString ? this.url + "?" + queryString : this.url;
+	},
+
+	/**
+	 * @return {Object} _requestOptions The request options used to make the request.
+	 */
+	get _requestOptions() {
+		return {
+			cache: this.cache,
+			callbackKey: this.callbackKey,
+			callbackValue: this.callbackValue,
+			sync: this.sync,
+			url: this._requestUrl
+		};
+	},
+
+	/**
+	 * Handles debouncing multiple requests.
+	 */
+	_requestOptionsChanged: function () {
+		this.debounce("generate-request", function () {
+			if (this.auto) {
+				try {
+					this.generateRequest();
+				} catch (error) { }
+			}
+		}, this.debounceDuration);
+	},
+
+	/**
+	 * Performs a request to the specified URL.
+	 *
+	 * @return {Request} request Information about the request.
+	 */
+	generateRequest: function () {
+		if (this.cache && (/^byutv_jsonp_callback_[0-9a-f]{32}$/.test(this.callbackValue) || !this.callbackValue)) {
+			throw new Error("`callback-value` must be declared or `callbackValue` set when `cache` is true.");
+		}
+
+		if (!this.url) {
+			throw new Error("`url` must be declared or set in order to perform a request.");
+		}
+
+		var request = {};
+		request.loading = true;
+
+		this._setLoading(true);
+		this._setLastAborted(false);
+		this._setLastRequest(request);
+		this.activeRequests.push(request);
+
+		request.options = this._requestOptions;
+
+		request.script = document.createElement("script");
+		request.script.src = this._requestUrl;
+		request.script.async = this.sync ? false : true;
+		request.script.onload = this._handleLoad.bind(this, request);
+		request.script.onerror = this._handleError.bind(this, request);
+		window[this.callbackValue] = this._handleResponse.bind(this, request);
+
+		document.querySelector("head").appendChild(request.script);
+
+		this.fire("sent", request);
+
+		return request;
+	},
+
+	/**
+	 * Aborts an in-flight request.  If no request is passed the most recent request (last-request) will be aborted.
+	 *
+	 * Note:
+	 * - No complete event will be fired if a request is aborted.
+	 *
+	 * @param {Request} request The request to abort.
+	 */
+	abortRequest: function (request) {
+		if (!request && this.activeRequests.length) {
+			request = this.activeRequests[this.activeRequests.length - 1];
+		}
+
+		if (request && this.activeRequests.indexOf(request) === this.activeRequests.length - 1) {
+			this._setLastAborted(true);
+		}
+
+		this._cleanupRequest(request);
+	},
+
+	/**
+	 * Discards a request and cleans up internal state appropriately.
+	 *
+	 * @param {Request} request The request to discard.
+	 */
+	_discardRequest: function (request) {
+		this._cleanupRequest(request);
+		this.fire("complete", request);
+	},
+
+	/**
+	 * A method to cleanup a request.
+	 * 
+	 * @param {Request} request The request to cleanup.
+	 */
+	_cleanupRequest: function(request) {
+		var requestIndex = this.activeRequests.indexOf(request);
+
+		if (requestIndex >= 0) {
+			this.activeRequests[requestIndex].loading = false;
+
+			var loadingRequests = this.activeRequests.filter(function (activeRequest) {
+				return activeRequest.loading;
+			});
+
+			if (!loadingRequests.length) {
+				this._setLoading(false);
+			}
+
+			this.activeRequests.splice(requestIndex, 1);
+			delete window[this.callbackValue];
+			request.script.parentNode.removeChild(request.script);
+			request = null;
+		}
+	},
+
+	/**
+	 * Handles the response from a request.
+	 *
+	 * @param {Script} request The request that this response came from.
+	 * @param {JSON} data The data returned from the request.
+	 */
+	_handleResponse: function (request, data) {
+		this._setLastResponse(data);
+		this._setLastError(undefined);
+
+		this.fire("response", data);
+
+		this._discardRequest(request);
+	},
+
+	/**
+	 * Handles errors from a request.
+	 *
+	 * @param {Script} request The request that this error came from.
+	 * @param {Event} event The error event that was thrown.
+	 */
+	_handleError: function (request, event) {
+		if (this.verbose) {
+			console.error(event);
+		}
+
+		this._setLastResponse(undefined);
+		this._setLastError(event);
+
+		this.fire("error", event);
+
+		this._discardRequest(request);
+	},
+
+	/**
+	 * Handles the load of a request.
+	 *
+	 * @param {Script} request The request that this load event came from.
+	 * @param {Event} event The load event created by making this request.
+	 */
+	_handleLoad: function (request, event) {
+		this._setLastLoad(event);
+
+		this.fire("load", event);
+	},
+
+	/**
+	 * Generates a new guid.
+	 *
+	 * @param {boolean} noDashes Whether to include dashes or not.
+	 * @return {Guid} guid A new guid.
+	 */
+	_newGuid: function (noDashes) {
+		var guid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (char) {
+			var randomNum = Math.random() * 16 | 0;
+			var value = char === "x" ? randomNum : (randomNum & 0x3 | 0x8);
+
+			return value.toString(16);
+		});
+
+		return noDashes ? guid.replace(/-/g, "") : guid;
+	}
+};</script>
+<script>﻿window.Byutv = window.Byutv || {};
+Byutv.elements = Byutv.elements || {};
+
+Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
+	is: "byutv-jsonp",
+	behaviors: [Byutv.behaviors.Jsonp]
+});</script><!-- common components  -->
+<!-- third party components -->
 <!-- common components  -->
 </head><body><div hidden="" by-vulcanize=""><dom-module id="iron-collapse" assetpath="../bower_components/iron-collapse/">
 
@@ -16839,14 +17339,14 @@ uql-menu {
 
   <template>
 
-    <iron-ajax auto="" url="{{chatStatusUrl}}" handle-as="json" last-response="{{chatStatus}}" debounce-duration="300"></iron-ajax>
+    <byutv-jsonp auto="" url="{{chatStatusUrl}}" on-response="handleChatStatusResponse" on-error="handleChatStatusError" debounce-duration="300"></byutv-jsonp>
 
-    <template is="dom-if" if="{{!chatStatus.online}}">
-      <paper-button class="button-inverse" on-tap="openOfflineHelp"><iron-icon icon="communication:chat-bubble-outline" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
+    <template is="dom-if" if="{{!isChatOnline}}">
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOfflineButton"><iron-icon icon="communication:chat-bubble-outline" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
     </template>
 
-    <template is="dom-if" if="{{chatStatus.online}}">
-      <paper-button class="button-inverse" on-tap="openChat"><iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon></paper-button>
+    <template is="dom-if" if="{{isChatOnline}}">
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOnlineButton"><iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon></paper-button>
     </template>
 
   </template>
@@ -16859,167 +17359,48 @@ uql-menu {
         type: String,
         value: "https://api2.libanswers.com/1.0/chat/widgets/status/1193"
       },
-      chatStatus: {
-        type: Object,
-        value: {
-          online: false
-        }
+      isChatOnline: {
+        type: Boolean,
+        value: false
       },
-      chatOptions: {
+      chatOptions : {
         type: Object,
-        value: {
-          "domain": "answers.library.uq.edu.au",
-          "id": "1114",
-          "iid": "1193",
-          "hash": "fdbdf3c1190c1b6147b92d38c20194a8",
-          "name": "Summon & Drupal widget",
-          "ts": "2014-12-24T02:16:00.087Z",
-          "uid": 6666,
-          "ref": "",
-          "key": "77d0569d531d167",
-          "chat_title": "Ask us - online now",
-          "byeMsg": "Thanks for chatting!",
-          "dept_label": "Select Department:",
-          "name_label": "Name (leave blank for anonymous chat)",
-          "name_default": "",
-          "guest_label": "Guest",
-          "width": "350px",
-          "height": "350px",
-          "is_personal": false,
-          "chat_button": "Start chat",
-          "done_button": "Chat again",
-          "press_enter": "Press ENTER to send",
-          "submit_button": "Send",
-          "email_trans": "Email chat transcript",
-          "offline_text": "Ask us - offline",
-          "slidebutton_url": "",
-          "slidebutton_text": "Ask us - online now",
-          "slidebutton_position": "b",
-          "slidebutton_bcolor": "#007E9E",
-          "slidebutton_color": "#FFFFFF",
-          "slidebutton_width": "",
-          "slidebutton_height": "",
-          "la_hide": false,
-          "la_hide_msg": "<p>Chat is currently offline.<\/p><p> <a href=\"http:\/\/answers.library.uq.edu.au\">Try browsing our FAQs<\/a>, or <a href=\"http:\/\/answers.library.uq.edu.au\/ask\">submit a question<\/a> and get an answer within 48 hours.<\/p>",
-          "la_hide_msg2": "",
-          "la_search_opt": {
-            "group_id": "0",
-            "label": "Search our FAQs",
-            "button": "Search",
-            "placeholder": "Search our FAQs"
-          },
-          "la_search_box": "<div id=\"s-la-content-search-1114\" class=\"s-la-content-search s-la-content\"><form method=\"get\" name=\"s-la-searchform\" id=\"s-la-searchform-1114\" action=\"\" onsubmit=\"return false;\" target=\"_parent\" role=\"search\" aria-labelledby=\"s-la-content-search-query-1114\"><div class=\"form-group\"><label for=\"s-la-content-search-query-1114\" class=\"s-la-searchform-label sr-only control-label\">Search our FAQs<\/label><input type=text id=s-la-content-search-query-0 class=\"s-la-content-search-query form-control\" name=\"q\" placeholder=\"Search our FAQs\" value=\"\" autocomplete=off \/><\/div><div class=\"form-group\"><button class=\"btn btn-sm btn-default s-la-searchform-button\" type=\"submit\" style=\"background-color: #007E9E; border-color: #007E9E; color: #FFFFFF;\">Search<\/button><\/div><\/form><\/div>",
-          "sound_on": "Sound is On (click to toggle)",
-          "sound_off": "Sound is Off (click to toggle)",
-          "star_text": "Please rate this chat:",
-          "rate_1": "Bad",
-          "rate_2": "Okay",
-          "rate_3": "Good",
-          "rate_4": "Great",
-          "trans": "Enter an email address to send this chat transcript to:",
-          "error_sess": "Error starting session.",
-          "error_send": "Error sending this message.",
-          "error_tran": "Error sending transcript.",
-          "left": " has left the chat",
-          "typing": " is typing...",
-          "joined": " has joined the chat",
-          "initial_question": true,
-          "initial_question_label": "How can we help?",
-          "comments_label": "Any comments?",
-          "comments_button_text": "Submit feedback",
-          "enable_anon": true,
-          "enable_comments": true,
-          "enable_sound": false,
-          "star_ratings": true,
-          "file_uploads": true,
-          "file_title": "Upload a file",
-          "file_intro": "Note: Maximum file size is 5MB. File is removed after one month, it is not kept permanently.",
-          "file_label": "Attach a file",
-          "file_action": "Upload",
-          "cancel_button": "Cancel",
-          "css": "",
-          "custom_css": "div, button {\nfont-family: \"Roboto\", sans serif, Helvetica, Arial !important;\n}\na {\ncolor: #007e9e !important;\n}\na:hover {\ncolor: #006880 !important;\n}\na i {\n  text-decoration: none;\n  color: #333 !important;\n}\nh2 {\ncolor: #333 !important;\n}\n.s-la-widget .btn-sm {\n  transition: background-color 280ms cubic-bezier(0.4, 0, 0.2, 1);\n  border-radius: 2px !important;\n  background-color: #007e9e !important;\n  border-color: transparent !important;\n  color: #fff !important;\n}\n.s-la-widget .btn-sm:hover {\n  transition: background-color 280ms cubic-bezier(0.4, 0, 0.2, 1);\n  background-color: #006880 !important;\n}\n.s-la-widget .btn-sm:active, .btn-sm:focus, {\n  transition: background-color 280ms cubic-bezier(0.4, 0, 0.2, 1);\n  background-color: #00576b !important;\n}\n.lcs_chat_button span {\n  margin: 4px;\n  border-width: 0px 0px 0px;\n}",
-          "color_backg": "#FFFFFF",
-          "color_head": "#007E9E",
-          "color_btn": "#FFFFFF",
-          "color_border": "",
-          "user1": {
-            "tag": 1,
-            "name": "Are you from UQ or a visitor?",
-            "id": 0,
-            "show": 1,
-            "required": 0,
-            "type": "l",
-            "val": "UQ student, UQ staff, Hospital staff, Alumni, Visitor"
-          },
-          "user2": {"tag": 2, "name": "click to edit", "id": 0, "show": 0, "required": 0, "type": "t", "val": ""},
-          "user3": {"tag": 3, "name": "click to edit", "id": 0, "show": 0, "required": 0, "type": "t", "val": ""},
-          "error_off": "Sorry it doesn't appear any librarians are online... Please try again later.",
-          "wait": "Hi! We'll be with you in a moment...",
-          "depart_id": [{"u": 0, "d": [809]}],
-          "depart_dedicated": true,
-          "depart_default_id": "0",
-          "widget_type": 1,
-          "autoload_time": 60,
-          "autoload_head": "Do you need help?",
-          "autoload_text": "A librarian is online ready to help.",
-          "autoload_yes": "Chat Now",
-          "autoload_no": "No Thanks",
-          "missedchat_time": "60",
-          "missedchat_message": "We apologise for the delay. Don't want to wait?",
-          "missedchat_link": "Submit your question and get an answer by email",
-          "missedchat_queue": "643",
-          "fbwidget": false,
-          "user4": {"tag": 4, "name": "click to edit", "id": 0, "show": 0, "required": 0, "type": "t", "val": ""},
-          "user5": {"tag": 5, "name": "click to edit", "id": 0, "show": 0, "required": 0, "type": "t", "val": ""},
-          "isBuilding": true,
-          "autopop": false,
-          "peel": "",
-          "offline_url": "",
-          "slidebutton_url_off": "",
-          "slidebutton_text_off": "Offline - search FAQs",
-          "base_domain": "v2.libanswers.com",
-          "onlinerules": [{"u": 0, "d": [809]}]
+        value : {
+          height: '350px',
+          width: '350px',
+          offline_url: '',
+          base_domain: "v2.libanswers.com",
+          iid: "1193",
+          hash: "fdbdf3c1190c1b6147b92d38c20194a8"
         }
       }
     },
 
-    openChat: function() {
-      var url = this.buildChatUrl(this.chatStatus.online);
-
-      window.open(url,
-        'libchat',
-        'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + this.chatOptions.width + ', ' +
-        'height=' + this.chatOptions.height);
-
-
+    handleChatStatusResponse: function(response) {
+      this.isChatOnline = response.detail.data.online;
     },
 
-    openOfflineHelp: function() {
-      if (!this.chatStatus.online && this.chatOptions.offline_url !== '') {
+    handleChatStatusError: function(response) {
+      this.isChatOnline = false;
+    },
+
+    openChat: function() {
+      if (!this.isChatOnline && this.chatOptions.offline_url !== '') {
         window.location.href = this.chatOptions.offline_url;
       } else {
-        var url = this.buildChatUrl(this.chatStatus.online);
+        var url = this.buildChatUrl(this.isChatOnline);
 
         window.open(url,
           'libchat',
           'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + this.chatOptions.width + ', ' +
           'height=' + this.chatOptions.height);
       }
+
     },
 
     buildChatUrl: function(isOnline) {
       var qs = window.location.protocol + '//' + this.chatOptions.base_domain + '/chati.php?';
       qs += "iid=" + this.chatOptions.iid + "&hash=" + this.chatOptions.hash;
-
-      if (typeof this.chatOptions.template !== 'undefined') {
-        qs += "&template=" + encodeURIComponent(this.chatOptions.template);
-      }
-
-      if (typeof this.chatOptions.template_css !== 'undefined') {
-        qs += "&template_css=" + encodeURIComponent(this.chatOptions.template_css);
-      }
-
       qs += "&online=" + isOnline;
 
       try {

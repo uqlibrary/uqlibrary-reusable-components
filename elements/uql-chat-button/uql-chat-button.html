@@ -5,19 +5,19 @@
 
   <template>
 
-    <iron-ajax
+    <byutv-jsonp
             auto
             url="{{chatStatusUrl}}"
-            handle-as="json"
-            last-response="{{chatStatus}}"
-            debounce-duration="300"></iron-ajax>
+            on-response="handleChatStatusResponse"
+            on-error="handleChatStatusError"
+            debounce-duration="300"></byutv-jsonp>
 
-    <template is="dom-if" if="{{!chatStatus.online}}">
-      <paper-button class="button-inverse" on-tap="openOfflineHelp"><iron-icon icon="communication:chat-bubble-outline" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
+    <template is="dom-if" if="{{!isChatOnline}}">
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOfflineButton"><iron-icon icon="communication:chat-bubble-outline" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
     </template>
 
-    <template is="dom-if" if="{{chatStatus.online}}">
-      <paper-button class="button-inverse" on-tap="openChat"><iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon></paper-button>
+    <template is="dom-if" if="{{isChatOnline}}">
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOnlineButton"><iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon></paper-button>
     </template>
 
   </template>
