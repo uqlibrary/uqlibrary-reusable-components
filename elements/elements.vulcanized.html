@@ -8524,20 +8524,6 @@ and instead put a div inside and style that.
   }
 
 </style>
-<!--
-The `<iron-flex-layout>` component provides simple ways to use [CSS flexible box layout](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes), also known as flexbox. This component provides two different ways to use flexbox:
-
-1. [Layout classes](https://github.com/PolymerElements/iron-flex-layout/tree/master/classes). The layout class stylesheet provides a simple set of class-based flexbox rules. Layout classes let you specify layout properties directly in markup.
-
-2. [Custom CSS mixins](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html). The mixin stylesheet includes custom CSS mixins that can be applied inside a CSS rule using the `@apply` function.
-
-A complete [guide](https://elements.polymer-project.org/guides/flex-layout) to `<iron-flex-layout>` is available.
-
-@group Iron Elements
-@pseudoElement iron-flex-layout
-@demo demo/index.html
--->
-
 <style>
   /* IE 10 support for HTML5 hidden attr */
   [hidden] {
@@ -8890,6 +8876,7 @@ Or, in a Polymer element, you can include a meta in your template:
     // monostate data
     var metaDatas = {};
     var metaArrays = {};
+    var singleton = null;
 
     Polymer.IronMeta = Polymer({
 
@@ -8940,6 +8927,10 @@ Or, in a Polymer element, you can include a meta in your template:
           notify: true
         }
 
+      },
+
+      hostAttributes: {
+        hidden: true
       },
 
       /**
@@ -9035,6 +9026,13 @@ Or, in a Polymer element, you can include a meta in your template:
       }
 
     });
+
+    Polymer.IronMeta.getIronMeta = function getIronMeta() {
+       if (singleton === null) {
+         singleton = new Polymer.IronMeta();
+       }
+       return singleton;
+     };
 
     /**
     `iron-meta-query` can be used to access infomation stored in `iron-meta`.
@@ -9270,6 +9268,10 @@ Custom property | Description | Default
       }
 
     },
+    
+    attached: function() {
+      this.style.display = 'none';
+    },
 
     /**
      * Construct an array of all icon names in this iconset.
@@ -9482,6 +9484,15 @@ Example:
         type: String,
         observer: 'queryChanged'
       },
+
+      /**
+       * If true, the query attribute is assumed to be a complete media query
+       * string rather than a single media feature.
+       */
+      full: {
+        type: Boolean,
+        value: false
+      },
       
       /**
        * @type {function(MediaQueryList)}
@@ -9527,7 +9538,7 @@ Example:
       if (!query) {
         return;
       }
-      if (query[0] !== '(') {
+      if (!this.full && query[0] !== '(') {
         query = '(' + query + ')';
       }
       this._mq = window.matchMedia(query);
@@ -10488,10 +10499,14 @@ Example:
       _triggerKeyHandler: function(keyCombo, handlerName, keyboardEvent) {
         var detail = Object.create(keyCombo);
         detail.keyboardEvent = keyboardEvent;
-
-        this[handlerName].call(this, new CustomEvent(keyCombo.event, {
-          detail: detail
-        }));
+        var event = new CustomEvent(keyCombo.event, {
+          detail: detail,
+          cancelable: true
+        });
+        this[handlerName].call(this, event);
+        if (event.defaultPrevented) {
+          keyboardEvent.preventDefault();
+        }
       }
     };
   })();
@@ -11142,7 +11157,7 @@ Custom property | Description | Default
   /**
    * `Polymer.PaperInkyFocusBehavior` implements a ripple when the element has keyboard focus.
    *
-   * @polymerBehavior Polymer.PaperInkyFocusBehaviorImpl
+   * @polymerBehavior Polymer.PaperInkyFocusBehavior
    */
   Polymer.PaperInkyFocusBehaviorImpl = {
 
@@ -11995,6 +12010,8 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
       /**
        * Returns the currently selected item.
+       *
+       * @type {?Object}
        */
       selectedItem: {
         type: Object,
@@ -12036,10 +12053,20 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       },
 
       /**
+       * The list of items from which a selection can be made.
+       */
+      items: {
+        type: Array,
+        readOnly: true,
+        value: function() {
+          return [];
+        }
+      },
+
+      /**
        * The set of excluded elements where the key is the `localName`
        * of the element that will be ignored from the item list.
        *
-       * @type {object}
        * @default {template: 1}
        */
       _excludedLocalNames: {
@@ -12059,15 +12086,12 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
     created: function() {
       this._bindFilterItem = this._filterItem.bind(this);
       this._selection = new Polymer.IronSelection(this._applySelection.bind(this));
-      // TODO(cdata): When polymer/polymer#2535 lands, we do not need to do this
-      // book keeping anymore:
-      this.__listeningForActivate = false;
     },
 
     attached: function() {
       this._observer = this._observeItems(this);
-      this._contentObserver = this._observeContent(this);
-      if (!this.selectedItem && this.selected) {
+      this._updateItems();
+      if (!this._shouldUpdateSelection) {
         this._updateSelected(this.attrForSelected,this.selected)
       }
       this._addListener(this.activateEvent);
@@ -12075,23 +12099,9 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
     detached: function() {
       if (this._observer) {
-        this._observer.disconnect();
-      }
-      if (this._contentObserver) {
-        this._contentObserver.disconnect();
+        Polymer.dom(this).unobserveNodes(this._observer);
       }
       this._removeListener(this.activateEvent);
-    },
-
-    /**
-     * Returns an array of selectable items.
-     *
-     * @property items
-     * @type Array
-     */
-    get items() {
-      var nodes = Polymer.dom(this).queryDistributedElements(this.selectable || '*');
-      return Array.prototype.filter.call(nodes, this._bindFilterItem);
     },
 
     /**
@@ -12136,23 +12146,27 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       this.selected = this._indexToValue(index);
     },
 
-    _addListener: function(eventName) {
-      if (!this.isAttached || this.__listeningForActivate) {
-        return;
-      }
+    get _shouldUpdateSelection() {
+      return this.selected != null;
+    },
 
-      this.__listeningForActivate = true;
+    _addListener: function(eventName) {
       this.listen(this, eventName, '_activateHandler');
     },
 
     _removeListener: function(eventName) {
       this.unlisten(this, eventName, '_activateHandler');
-      this.__listeningForActivate = false;
     },
 
     _activateEventChanged: function(eventName, old) {
       this._removeListener(old);
       this._addListener(eventName);
+    },
+
+    _updateItems: function() {
+      var nodes = Polymer.dom(this).queryDistributedElements(this.selectable || '*');
+      nodes = Array.prototype.filter.call(nodes, this._bindFilterItem);
+      this._setItems(nodes);
     },
 
     _updateSelected: function() {
@@ -12213,18 +12227,9 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       this._setSelectedItem(this._selection.get());
     },
 
-    // observe content changes under the given node.
-    _observeContent: function(node) {
-      var content = node.querySelector('content');
-      if (content && content.parentElement === node) {
-        return this._observeItems(node.domHost);
-      }
-    },
-
     // observe items change under the given node.
     _observeItems: function(node) {
-      // TODO(cdata): Update this when we get distributed children changed.
-      var observer = new MutationObserver(function(mutations) {
+      return Polymer.dom(node).observeNodes(function(mutations) {
         // Let other interested parties know about the change so that
         // we don't have to recreate mutation observers everywher.
         this.fire('iron-items-changed', mutations, {
@@ -12232,15 +12237,12 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
           cancelable: false
         });
 
-        if (this.selected != null) {
+        this._updateItems();
+
+        if (this._shouldUpdateSelection) {
           this._updateSelected();
         }
-      }.bind(this));
-      observer.observe(node, {
-        childList: true,
-        subtree: true
       });
-      return observer;
     },
 
     _activateHandler: function(e) {
@@ -12326,6 +12328,11 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
     multiChanged: function(multi) {
       this._selection.multi = multi;
+    },
+
+    get _shouldUpdateSelection() {
+      return this.selected != null ||
+        (this.selectedValues != null && this.selectedValues.length);
     },
 
     _updateSelected: function() {
@@ -13605,6 +13612,54 @@ be used as the label of the toolbar via `aria-labelledby`.
 <g id="youtube-searched-for"><path d="M17.01 14h-.8l-.27-.27c.98-1.14 1.57-2.61 1.57-4.23 0-3.59-2.91-6.5-6.5-6.5s-6.5 3-6.5 6.5H2l3.84 4 4.16-4H6.51C6.51 7 8.53 5 11.01 5s4.5 2.01 4.5 4.5c0 2.48-2.02 4.5-4.5 4.5-.65 0-1.26-.14-1.82-.38L7.71 15.1c.97.57 2.09.9 3.3.9 1.61 0 3.08-.59 4.22-1.57l.27.27v.79l5.01 4.99L22 19l-4.99-5z"></path></g>
 <g id="zoom-in"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"></path></g>
 <g id="zoom-out"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7z"></path></g>
+</defs></svg>
+</iron-iconset-svg>
+<iron-iconset-svg name="communication" size="24">
+<svg><defs>
+<g id="business"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"></path></g>
+<g id="call"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></g>
+<g id="call-end"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"></path></g>
+<g id="call-made"><path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5z"></path></g>
+<g id="call-merge"><path d="M17 20.41L18.41 19 15 15.59 13.59 17 17 20.41zM7.5 8H11v5.59L5.59 19 7 20.41l6-6V8h3.5L12 3.5 7.5 8z"></path></g>
+<g id="call-missed"><path d="M19.59 7L12 14.59 6.41 9H11V7H3v8h2v-4.59l7 7 9-9z"></path></g>
+<g id="call-received"><path d="M20 5.41L18.59 4 7 15.59V9H5v10h10v-2H8.41z"></path></g>
+<g id="call-split"><path d="M14 4l2.29 2.29-2.88 2.88 1.42 1.42 2.88-2.88L20 10V4zm-4 0H4v6l2.29-2.29 4.71 4.7V20h2v-8.41l-5.29-5.3z"></path></g>
+<g id="chat"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"></path></g>
+<g id="chat-bubble"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path></g>
+<g id="chat-bubble-outline"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"></path></g>
+<g id="clear-all"><path d="M5 13h14v-2H5v2zm-2 4h14v-2H3v2zM7 7v2h14V7H7z"></path></g>
+<g id="comment"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path></g>
+<g id="contact-phone"><path d="M22 3H2C.9 3 0 3.9 0 5v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2L24 5c0-1.1-.9-2-2-2zM8 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H2v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm3.85-4h1.64L21 16l-1.99 1.99c-1.31-.98-2.28-2.38-2.73-3.99-.18-.64-.28-1.31-.28-2s.1-1.36.28-2c.45-1.62 1.42-3.01 2.73-3.99L21 8l-1.51 2h-1.64c-.22.63-.35 1.3-.35 2s.13 1.37.35 2z"></path></g>
+<g id="contacts"><path d="M20 0H4v2h16V0zM4 24h16v-2H4v2zM20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2.75c1.24 0 2.25 1.01 2.25 2.25s-1.01 2.25-2.25 2.25S9.75 10.24 9.75 9 10.76 6.75 12 6.75zM17 17H7v-1.5c0-1.67 3.33-2.5 5-2.5s5 .83 5 2.5V17z"></path></g>
+<g id="dialer-sip"><path d="M17 3h-1v5h1V3zm-2 2h-2V4h2V3h-3v3h2v1h-2v1h3V5zm3-2v5h1V6h2V3h-3zm2 2h-1V4h1v1zm0 10.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.27-.26.35-.65.24-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"></path></g>
+<g id="dialpad"><path d="M12 19c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 1c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12-8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-6 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></g>
+<g id="email"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></g>
+<g id="forum"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path></g>
+<g id="import-export"><path d="M9 3L5 6.99h3V14h2V6.99h3L9 3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99h-3z"></path></g>
+<g id="invert-colors-off"><path d="M20.65 20.87l-2.35-2.35-6.3-6.29-3.56-3.57-1.42-1.41L4.27 4.5 3 5.77l2.78 2.78c-2.55 3.14-2.36 7.76.56 10.69C7.9 20.8 9.95 21.58 12 21.58c1.79 0 3.57-.59 5.03-1.78l2.7 2.7L21 21.23l-.35-.36zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59c0-1.32.43-2.57 1.21-3.6L12 14.77v4.82zM12 5.1v4.58l7.25 7.26c1.37-2.96.84-6.57-1.6-9.01L12 2.27l-3.7 3.7 1.41 1.41L12 5.1z"></path></g>
+<g id="live-help"><path d="M19 2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-6 16h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 11.9 13 12.5 13 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"></path></g>
+<g id="location-off"><path d="M12 6.5c1.38 0 2.5 1.12 2.5 2.5 0 .74-.33 1.39-.83 1.85l3.63 3.63c.98-1.86 1.7-3.8 1.7-5.48 0-3.87-3.13-7-7-7-1.98 0-3.76.83-5.04 2.15l3.19 3.19c.46-.52 1.11-.84 1.85-.84zm4.37 9.6l-4.63-4.63-.11-.11L3.27 3 2 4.27l3.18 3.18C5.07 7.95 5 8.47 5 9c0 5.25 7 13 7 13s1.67-1.85 3.38-4.35L18.73 21 20 19.73l-3.63-3.63z"></path></g>
+<g id="location-on"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></g>
+<g id="mail"><path d="M21 8V7l-3 2-3-2v1l3 2 3-2zm1-5H2C.9 3 0 3.9 0 5v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2L24 5c0-1.1-.9-2-2-2zM8 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H2v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm8-6h-8V6h8v6z"></path></g>
+<g id="message"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path></g>
+<g id="no-sim"><path d="M18.99 5c0-1.1-.89-2-1.99-2h-7L7.66 5.34 19 16.68 18.99 5zM3.65 3.88L2.38 5.15 5 7.77V19c0 1.1.9 2 2 2h10.01c.35 0 .67-.1.96-.26l1.88 1.88 1.27-1.27L3.65 3.88z"></path></g>
+<g id="phone"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></g>
+<g id="phonelink-erase"><path d="M13 8.2l-1-1-4 4-4-4-1 1 4 4-4 4 1 1 4-4 4 4 1-1-4-4 4-4zM19 1H9c-1.1 0-2 .9-2 2v3h2V4h10v16H9v-2H7v3c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2z"></path></g>
+<g id="phonelink-lock"><path d="M19 1H9c-1.1 0-2 .9-2 2v3h2V4h10v16H9v-2H7v3c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-8.2 10V9.5C10.8 8.1 9.4 7 8 7S5.2 8.1 5.2 9.5V11c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3zm-1.3 0h-3V9.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3V11z"></path></g>
+<g id="phonelink-ring"><path d="M20.1 7.7l-1 1c1.8 1.8 1.8 4.6 0 6.5l1 1c2.5-2.3 2.5-6.1 0-8.5zM18 9.8l-1 1c.5.7.5 1.6 0 2.3l1 1c1.2-1.2 1.2-3 0-4.3zM14 1H4c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 19H4V4h10v16z"></path></g>
+<g id="phonelink-setup"><path d="M11.8 12.5v-1l1.1-.8c.1-.1.1-.2.1-.3l-1-1.7c-.1-.1-.2-.2-.3-.1l-1.3.4c-.3-.2-.6-.4-.9-.5l-.2-1.3c0-.1-.1-.2-.3-.2H7c-.1 0-.2.1-.3.2l-.2 1.3c-.3.1-.6.3-.9.5l-1.3-.5c-.1 0-.2 0-.3.1l-1 1.7c-.1.1 0 .2.1.3l1.1.8v1l-1.1.8c-.1.2-.1.3-.1.4l1 1.7c.1.1.2.2.3.1l1.4-.4c.3.2.6.4.9.5l.2 1.3c-.1.1.1.2.2.2h2c.1 0 .2-.1.3-.2l.2-1.3c.3-.1.6-.3.9-.5l1.3.5c.1 0 .2 0 .3-.1l1-1.7c.1-.1 0-.2-.1-.3l-1.1-.9zM8 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM19 1H9c-1.1 0-2 .9-2 2v3h2V4h10v16H9v-2H7v3c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2z"></path></g>
+<g id="portable-wifi-off"><path d="M17.56 14.24c.28-.69.44-1.45.44-2.24 0-3.31-2.69-6-6-6-.79 0-1.55.16-2.24.44l1.62 1.62c.2-.03.41-.06.62-.06 2.21 0 4 1.79 4 4 0 .21-.02.42-.05.63l1.61 1.61zM12 4c4.42 0 8 3.58 8 8 0 1.35-.35 2.62-.95 3.74l1.47 1.47C21.46 15.69 22 13.91 22 12c0-5.52-4.48-10-10-10-1.91 0-3.69.55-5.21 1.47l1.46 1.46C9.37 4.34 10.65 4 12 4zM3.27 2.5L2 3.77l2.1 2.1C2.79 7.57 2 9.69 2 12c0 3.7 2.01 6.92 4.99 8.65l1-1.73C5.61 17.53 4 14.96 4 12c0-1.76.57-3.38 1.53-4.69l1.43 1.44C6.36 9.68 6 10.8 6 12c0 2.22 1.21 4.15 3 5.19l1-1.74c-1.19-.7-2-1.97-2-3.45 0-.65.17-1.25.44-1.79l1.58 1.58L10 12c0 1.1.9 2 2 2l.21-.02.01.01 7.51 7.51L21 20.23 4.27 3.5l-1-1z"></path></g>
+<g id="present-to-all"><path d="M21 3H3c-1.11 0-2 .89-2 2v14c0 1.11.89 2 2 2h18c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 16.02H3V4.98h18v14.04zM10 12H8l4-4 4 4h-2v4h-4v-4z"></path></g>
+<g id="ring-volume"><path d="M23.71 16.67C20.66 13.78 16.54 12 12 12 7.46 12 3.34 13.78.29 16.67c-.18.18-.29.43-.29.71 0 .28.11.53.29.71l2.48 2.48c.18.18.43.29.71.29.27 0 .52-.11.7-.28.79-.74 1.69-1.36 2.66-1.85.33-.16.56-.5.56-.9v-3.1c1.45-.48 3-.73 4.6-.73s3.15.25 4.6.72v3.1c0 .39.23.74.56.9.98.49 1.87 1.12 2.66 1.85.18.18.43.28.7.28.28 0 .53-.11.71-.29l2.48-2.48c.18-.18.29-.43.29-.71 0-.27-.11-.52-.29-.7zM21.16 6.26l-1.41-1.41-3.56 3.55 1.41 1.41s3.45-3.52 3.56-3.55zM13 2h-2v5h2V2zM6.4 9.81L7.81 8.4 4.26 4.84 2.84 6.26c.11.03 3.56 3.55 3.56 3.55z"></path></g>
+<g id="speaker-phone"><path d="M7 7.07L8.43 8.5c.91-.91 2.18-1.48 3.57-1.48s2.66.57 3.57 1.48L17 7.07C15.72 5.79 13.95 5 12 5s-3.72.79-5 2.07zM12 1C8.98 1 6.24 2.23 4.25 4.21l1.41 1.41C7.28 4 9.53 3 12 3s4.72 1 6.34 2.62l1.41-1.41C17.76 2.23 15.02 1 12 1zm2.86 9.01L9.14 10C8.51 10 8 10.51 8 11.14v9.71c0 .63.51 1.14 1.14 1.14h5.71c.63 0 1.14-.51 1.14-1.14v-9.71c.01-.63-.5-1.13-1.13-1.13zM15 20H9v-8h6v8z"></path></g>
+<g id="stay-current-landscape"><path d="M1.01 7L1 17c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H3c-1.1 0-1.99.9-1.99 2zM19 7v10H5V7h14z"></path></g>
+<g id="stay-current-portrait"><path d="M17 1.01L7 1c-1.1 0-1.99.9-1.99 2v18c0 1.1.89 2 1.99 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"></path></g>
+<g id="stay-primary-landscape"><path d="M1.01 7L1 17c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H3c-1.1 0-1.99.9-1.99 2zM19 7v10H5V7h14z"></path></g>
+<g id="stay-primary-portrait"><path d="M17 1.01L7 1c-1.1 0-1.99.9-1.99 2v18c0 1.1.89 2 1.99 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"></path></g>
+<g id="swap-calls"><path d="M18 4l-4 4h3v7c0 1.1-.9 2-2 2s-2-.9-2-2V8c0-2.21-1.79-4-4-4S5 5.79 5 8v7H2l4 4 4-4H7V8c0-1.1.9-2 2-2s2 .9 2 2v7c0 2.21 1.79 4 4 4s4-1.79 4-4V8h3l-4-4z"></path></g>
+<g id="textsms"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"></path></g>
+<g id="voicemail"><path d="M18.5 6C15.46 6 13 8.46 13 11.5c0 1.33.47 2.55 1.26 3.5H9.74c.79-.95 1.26-2.17 1.26-3.5C11 8.46 8.54 6 5.5 6S0 8.46 0 11.5 2.46 17 5.5 17h13c3.04 0 5.5-2.46 5.5-5.5S21.54 6 18.5 6zm-13 9C3.57 15 2 13.43 2 11.5S3.57 8 5.5 8 9 9.57 9 11.5 7.43 15 5.5 15zm13 0c-1.93 0-3.5-1.57-3.5-3.5S16.57 8 18.5 8 22 9.57 22 11.5 20.43 15 18.5 15z"></path></g>
+<g id="vpn-key"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"></path></g>
 </defs></svg>
 </iron-iconset-svg>
 <dom-module id="iron-image" assetpath="../bower_components/iron-image/">
@@ -14899,7 +14954,7 @@ be used as the label of the toolbar via `aria-labelledby`.
       is: 'paper-item',
 
       hostAttributes: {
-        role: 'listitem',
+        role: 'option',
         tabindex: '0'
       },
 
@@ -16013,150 +16068,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }());
 
 </script>
-<dom-module id="uq-minimal-header" assetpath="/">
-
-  <style>
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
-
-uql-menu {
-  font-weight: lighter; }
-
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  white-space: nowrap;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px;
-  margin-top: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 700px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
-
-/*# sourceMappingURL=elements-styles.css.map */
-
-</style>
-
-  <style is="custom-style">
-
-    :host {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      z-index: 9999;
-
-      @apply(--layout-vertical);
-    }
-
-    .header-content {
-      margin: 0 auto;
-      max-width: 1140px;
-      width: 100%;
-    }
-
-    .header-container,
-    .header-container div{
-      @apply(--layout-horizontal);
-      @apply(--layout-center);
-    }
-
-  </style>
-
-  <template>
-    <div class="header-container">
-      <div class="header-content">
-        <div class="uq-title">
-          <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
-            <div class="uq-title-text">UQ</div>
-          </a>
-        </div>
-        <div class="library-title">
-          <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
-        </div>
-        <div class="application-title">{{applicationTitle}}</div>
-      </div>
-    </div>
-  </template>
-
-  <script>
-    (function() {
-      Polymer({
-        is: 'uq-minimal-header',
-
-        properties: {
-          applicationTitle: {
-            type: String,
-            notify: true
-          }
-        }
-      });
-    })();
-  </script>
-
-</dom-module>
 <dom-module id="uq-minimal-footer" assetpath="/">
 
   <style>
+.button-inverse {
+  color: #FFF; }
+
+.button-inverse:focus {
+  outline: #3b99fc auto 5px; }
+
 uql-menu,
 .header-container,
 .footer-container {
@@ -16291,231 +16211,14 @@ uql-menu {
   </script>
 
 </dom-module>
-<dom-module id="uql-menu" assetpath="uql-menu/">
-  <style>
-uq-minimal-header {
-    overflow: visible !important;
-}
-</style>
-
-  <template>
-    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
-    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
-    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
-  </template>
-
-  <script>(function () {
-  Polymer({
-    is: 'uql-menu',
-    properties: {
-      menuJson: {
-        type: String
-      },
-      verbose: {
-        type: Boolean,
-        value: true
-      }
-    }
-  });
-})();
-</script>
-
-</dom-module>
-<dom-module id="uql-sidebar" class="layout vertical" assetpath="uql-sidebar/">
-  <style>
-:host {
-    display: block;
-    font-family: Helvetica, 'Trebuchet MS', sans-serif;
-}
-
-:host paper-material {
-    z-index: 9999;
-    width: 269px;
-    left: 0;
-    height: 100%;
-    position: fixed;
-    top: 0;
-}
-
-:host paper-toolbar {
-    /*background-color: #49075e;*/
-    background-color: #000;
-}
-
-:host paper-toolbar paper-button:nth-of-type(1) {
-    text-align: left;
-}
-
-:host paper-menu.sublist paper-item a {
-    padding-left: 1em;
-}
-
-:host #main-menu {
-    overflow: auto;
-}
-
-</style>
-
-  <template>
-    <iron-ajax auto="" url="{{menuJson}}" handle-as="json" on-response="_handleResponse" verbose="{{debug}}"></iron-ajax>
-    <paper-toolbar id="topBar" role="toolbar">
-      <paper-button class="toggle flex"><iron-icon icon="menu" alt="Menu"></iron-icon> Menu</paper-button>
-      <paper-icon-button href="/" icon="home" alt="home" on-tap="_goLink"></paper-icon-button>
-    </paper-toolbar>
-    <paper-material elevation="1" id="main" hidden="{{hideMenu}}" class="layout vertical">
-      <paper-toolbar class="toggle">
-        <div class="title">{{menu.heading}}</div>
-      </paper-toolbar>
-      <paper-menu id="main-menu" attr-for-selected="data-route" selected="[[route]]" class="flex">
-        <template is="dom-repeat" items="{{menu.items}}">
-          <!-- load up single menu items without submenus -->
-          <template is="dom-if" if="{{!item.items}}">
-            <paper-item>
-              <template is="dom-if" if="{{item.icon}}">
-                <iron-icon icon="{{item.icon}}"></iron-icon>
-              </template>
-              <template is="dom-if" if="{{item.href}}">
-                <a href="{{item.href}}" on-click="onDataRouteClick">
-              </a></template>
-              <span>{{item.label}}</span>
-              <template is="dom-if" if="{{item.href}}">
-                
-              </template>
-            </paper-item>
-          </template>
-
-          <!-- load up menu items with submenus -->
-          <template is="dom-if" if="{{item.items}}">
-            <paper-submenu>
-              <paper-item class="menu-trigger">
-                <template is="dom-if" if="{{item.icon}}">
-                  <iron-icon icon="{{item.icon}}"></iron-icon>
-                </template>
-                <template is="dom-if" if="{{item.href}}">
-                  <a href="{{item.href}}">
-                </a></template>
-                <span>{{item.label}}</span>
-                <iron-icon icon="arrow-drop-down"></iron-icon>
-                <template is="dom-if" if="{{item.href}}">
-                  
-                </template>
-              </paper-item>
-              <paper-menu class="menu-content sublist">
-                <template is="dom-repeat" items="{{item.items}}" as="subitem">
-                  <paper-item>
-                    <template is="dom-if" if="{{subitem.icon}}">
-                      <iron-icon icon="{{subitem.icon}}"></iron-icon>
-                    </template>
-                    <template is="dom-if" if="{{subitem.href}}">
-                      <a href="{{subitem.href}}">
-                    </a></template>
-                    <span>{{subitem.label}}</span>
-                    <template is="dom-if" if="{{subitem.href}}">
-                      
-                    </template>
-                  </paper-item>
-                </template>
-              </paper-menu>
-            </paper-submenu>
-          </template>
-        </template>
-      </paper-menu>
-      <paper-button class="toggle">
-        <iron-icon icon="backspace"></iron-icon>
-        Close
-      </paper-button>
-    </paper-material>
-  </template>
-  <script>(function () {
-  Polymer({
-    is: 'uql-sidebar',
-    debug: 'true',
-    menu: {},
-    hideMenu: 0,
-    behaviors: [Polymer.NeonAnimationRunnerBehavior],
-    properties: {
-      visible: {
-        type: String
-      },
-      menuJson: {
-        type: String
-      },
-      animationConfig: {
-        value: function () {
-          return {
-            'entry': {
-              name: 'slide-from-left-animation',
-              node: this.$.main
-            },
-            'exit': {
-              name: 'slide-left-animation',
-              node: this.$.main
-            }
-          };
-        }
-      }
-    },
-    listeners: {
-      'neon-animation-finish': '_onNeonAnimationFinish'
-    },
-    _handleError: function (event) {
-      console.log(event);
-    },
-    _handleResponse: function (event) {
-      this.menu = event.detail.response;
-      this._init();
-    },
-    _init: function () {
-      var that = this;
-
-      this.showMenu = this.visible === 'true' ? true : false;
-
-      document.querySelector('html').addEventListener('click', function () {
-        if (that.showMenu) {
-          that._toggleVisibility();
-        }
-      });
-      document.querySelector('uql-sidebar').addEventListener('click', function (event) {
-        event.stopPropagation();
-      });
-
-      var toggles = document.querySelectorAll('.toggle');
-
-      function _innerToggleVisibility(event) {
-        that._toggleVisibility();
-        event.stopPropagation();
-      }
-
-      for (var t in toggles) {
-        if (toggles.hasOwnProperty(t)) {
-          toggles[t].addEventListener('click', _innerToggleVisibility);
-        }
-      }
-      this._computeVisibility();
-    },
-    _goLink: function (event) {
-      window.location.href = event.currentTarget.getAttribute('href');
-    },
-    _toggleVisibility: function () {
-      this.showMenu = this.showMenu ? false : true;
-      this._computeVisibility();
-    },
-    _onNeonAnimationFinish: function () {
-      this.hideMenu = this.showMenu ? 0 : 1;
-    },
-    _computeVisibility: function () {
-      if (this.showMenu) {
-        this.hideMenu = 0;
-      }
-      this.playAnimation(this.showMenu ? 'entry' : 'exit');
-    }
-  });
-})();
-</script>
-
-</dom-module>
 <dom-module id="uql-mega-menu" assetpath="uql-mega-menu/">
   <style>
+.button-inverse {
+  color: #FFF; }
+
+.button-inverse:focus {
+  outline: #3b99fc auto 5px; }
+
 uql-menu,
 .header-container,
 .footer-container {
@@ -16822,6 +16525,680 @@ uql-menu {
   });
 })();
 </script>
+
+</dom-module>
+<dom-module id="uql-menu" assetpath="uql-menu/">
+  <style>
+uq-minimal-header {
+    overflow: visible !important;
+}
+</style>
+
+  <template>
+    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
+    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
+    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
+  </template>
+
+  <script>(function () {
+  Polymer({
+    is: 'uql-menu',
+    properties: {
+      menuJson: {
+        type: String
+      },
+      verbose: {
+        type: Boolean,
+        value: true
+      }
+    }
+  });
+})();
+</script>
+
+</dom-module>
+<dom-module id="uql-sidebar" class="layout vertical" assetpath="uql-sidebar/">
+  <style>
+:host {
+    display: block;
+    font-family: Helvetica, 'Trebuchet MS', sans-serif;
+}
+
+:host paper-material {
+    z-index: 9999;
+    width: 269px;
+    left: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
+}
+
+:host paper-toolbar {
+    /*background-color: #49075e;*/
+    background-color: #000;
+}
+
+:host paper-toolbar paper-button:nth-of-type(1) {
+    text-align: left;
+}
+
+:host paper-menu.sublist paper-item a {
+    padding-left: 1em;
+}
+
+:host #main-menu {
+    overflow: auto;
+}
+
+</style>
+
+  <template>
+    <iron-ajax auto="" url="{{menuJson}}" handle-as="json" on-response="_handleResponse" verbose="{{debug}}"></iron-ajax>
+    <paper-toolbar id="topBar" role="toolbar">
+      <paper-button class="toggle flex"><iron-icon icon="menu" alt="Menu"></iron-icon> Menu</paper-button>
+      <paper-icon-button href="/" icon="home" alt="home" on-tap="_goLink"></paper-icon-button>
+    </paper-toolbar>
+    <paper-material elevation="1" id="main" hidden="{{hideMenu}}" class="layout vertical">
+      <paper-toolbar class="toggle">
+        <div class="title">{{menu.heading}}</div>
+      </paper-toolbar>
+      <paper-menu id="main-menu" attr-for-selected="data-route" selected="[[route]]" class="flex">
+        <template is="dom-repeat" items="{{menu.items}}">
+          <!-- load up single menu items without submenus -->
+          <template is="dom-if" if="{{!item.items}}">
+            <paper-item>
+              <template is="dom-if" if="{{item.icon}}">
+                <iron-icon icon="{{item.icon}}"></iron-icon>
+              </template>
+              <template is="dom-if" if="{{item.href}}">
+                <a href="{{item.href}}" on-click="onDataRouteClick">
+              </a></template>
+              <span>{{item.label}}</span>
+              <template is="dom-if" if="{{item.href}}">
+                
+              </template>
+            </paper-item>
+          </template>
+
+          <!-- load up menu items with submenus -->
+          <template is="dom-if" if="{{item.items}}">
+            <paper-submenu>
+              <paper-item class="menu-trigger">
+                <template is="dom-if" if="{{item.icon}}">
+                  <iron-icon icon="{{item.icon}}"></iron-icon>
+                </template>
+                <template is="dom-if" if="{{item.href}}">
+                  <a href="{{item.href}}">
+                </a></template>
+                <span>{{item.label}}</span>
+                <iron-icon icon="arrow-drop-down"></iron-icon>
+                <template is="dom-if" if="{{item.href}}">
+                  
+                </template>
+              </paper-item>
+              <paper-menu class="menu-content sublist">
+                <template is="dom-repeat" items="{{item.items}}" as="subitem">
+                  <paper-item>
+                    <template is="dom-if" if="{{subitem.icon}}">
+                      <iron-icon icon="{{subitem.icon}}"></iron-icon>
+                    </template>
+                    <template is="dom-if" if="{{subitem.href}}">
+                      <a href="{{subitem.href}}">
+                    </a></template>
+                    <span>{{subitem.label}}</span>
+                    <template is="dom-if" if="{{subitem.href}}">
+                      
+                    </template>
+                  </paper-item>
+                </template>
+              </paper-menu>
+            </paper-submenu>
+          </template>
+        </template>
+      </paper-menu>
+      <paper-button class="toggle">
+        <iron-icon icon="backspace"></iron-icon>
+        Close
+      </paper-button>
+    </paper-material>
+  </template>
+  <script>(function () {
+  Polymer({
+    is: 'uql-sidebar',
+    debug: 'true',
+    menu: {},
+    hideMenu: 0,
+    behaviors: [Polymer.NeonAnimationRunnerBehavior],
+    properties: {
+      visible: {
+        type: String
+      },
+      menuJson: {
+        type: String
+      },
+      animationConfig: {
+        value: function () {
+          return {
+            'entry': {
+              name: 'slide-from-left-animation',
+              node: this.$.main
+            },
+            'exit': {
+              name: 'slide-left-animation',
+              node: this.$.main
+            }
+          };
+        }
+      }
+    },
+    listeners: {
+      'neon-animation-finish': '_onNeonAnimationFinish'
+    },
+    _handleError: function (event) {
+      console.log(event);
+    },
+    _handleResponse: function (event) {
+      this.menu = event.detail.response;
+      this._init();
+    },
+    _init: function () {
+      var that = this;
+
+      this.showMenu = this.visible === 'true' ? true : false;
+
+      document.querySelector('html').addEventListener('click', function () {
+        if (that.showMenu) {
+          that._toggleVisibility();
+        }
+      });
+      document.querySelector('uql-sidebar').addEventListener('click', function (event) {
+        event.stopPropagation();
+      });
+
+      var toggles = document.querySelectorAll('.toggle');
+
+      function _innerToggleVisibility(event) {
+        that._toggleVisibility();
+        event.stopPropagation();
+      }
+
+      for (var t in toggles) {
+        if (toggles.hasOwnProperty(t)) {
+          toggles[t].addEventListener('click', _innerToggleVisibility);
+        }
+      }
+      this._computeVisibility();
+    },
+    _goLink: function (event) {
+      window.location.href = event.currentTarget.getAttribute('href');
+    },
+    _toggleVisibility: function () {
+      this.showMenu = this.showMenu ? false : true;
+      this._computeVisibility();
+    },
+    _onNeonAnimationFinish: function () {
+      this.hideMenu = this.showMenu ? 0 : 1;
+    },
+    _computeVisibility: function () {
+      if (this.showMenu) {
+        this.hideMenu = 0;
+      }
+      this.playAnimation(this.showMenu ? 'entry' : 'exit');
+    }
+  });
+})();
+</script>
+
+</dom-module>
+<dom-module id="uql-chat-button" assetpath="uql-chat-button/">
+
+  <style>
+.button-inverse {
+  color: #FFF; }
+
+.button-inverse:focus {
+  outline: #3b99fc auto 5px; }
+
+uql-menu,
+.header-container,
+.footer-container {
+  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+
+uql-menu {
+  font-weight: lighter; }
+
+.header-container {
+  height: 100px;
+  background-color: #49075E;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  white-space: nowrap; }
+  .header-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .header-container .application-title,
+  .header-container .library-title,
+  .header-container .uq-title {
+    color: #FFF;
+    margin: 10px; }
+  .header-container .uq-title {
+    width: 190px;
+    height: 50px;
+    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+    background-size: 178px 50px;
+    border-right: 1px solid #FFF; }
+    .header-container .uq-title a {
+      width: 190px;
+      height: 50px; }
+    .header-container .uq-title .uq-title-text {
+      display: none !important; }
+
+.footer-container {
+  background-color: #49075E;
+  text-decoration: none;
+  line-height: 20px;
+  white-space: nowrap;
+  color: #FFF !important;
+  font-size: 14px;
+  padding: 20px;
+  margin-top: 20px; }
+  .footer-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .footer-container div {
+    color: #d2c1d7; }
+
+@media all and (max-width: 700px) {
+  .header-container {
+    height: 66px; }
+    .header-container .uq-title {
+      display: none !important; } }
+/* mobile-small */
+/* mobile-large */
+/* mobile-small-landscape */
+/* mobile-large-landscape */
+/* tablet-small-landscape */
+/* tablet-large-landscape */
+/* tablet-small */
+/* tablet-large */
+/* desktop-x-small-landscape */
+/* desktop-x-small */
+/* desktop-small-landscape */
+/* desktop-small */
+/* desktop-medium-landscape */
+/* desktop-medium */
+/* desktop-large */
+/* desktop-xlarge */
+
+/*# sourceMappingURL=elements-styles.css.map */
+
+</style>
+
+  <template>
+
+    <iron-ajax auto="" url="{{chatStatusUrl}}" handle-as="json" last-response="{{chatStatus}}" debounce-duration="300"></iron-ajax>
+
+    <template is="dom-if" if="{{!chatStatus.online}}">
+      <paper-button class="button-inverse" on-tap="openOfflineHelp"><iron-icon icon="communication:chat-bubble-outline" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
+    </template>
+
+    <template is="dom-if" if="{{chatStatus.online}}">
+      <paper-button class="button-inverse" on-tap="openChat"><iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon></paper-button>
+    </template>
+
+  </template>
+
+  <script>(function () {
+  Polymer({
+    is: 'uql-chat-button',
+    properties: {
+      chatStatusUrl: {
+        type: String,
+        value: "https://api2.libanswers.com/1.0/chat/widgets/status/1193"
+      },
+      chatStatus: {
+        type: Object,
+        value: {
+          online: false
+        }
+      },
+      chatOptions: {
+        type: Object,
+        value: {
+          "domain": "answers.library.uq.edu.au",
+          "id": "1114",
+          "iid": "1193",
+          "hash": "fdbdf3c1190c1b6147b92d38c20194a8",
+          "name": "Summon & Drupal widget",
+          "ts": "2014-12-24T02:16:00.087Z",
+          "uid": 6666,
+          "ref": "",
+          "key": "77d0569d531d167",
+          "chat_title": "Ask us - online now",
+          "byeMsg": "Thanks for chatting!",
+          "dept_label": "Select Department:",
+          "name_label": "Name (leave blank for anonymous chat)",
+          "name_default": "",
+          "guest_label": "Guest",
+          "width": "350px",
+          "height": "350px",
+          "is_personal": false,
+          "chat_button": "Start chat",
+          "done_button": "Chat again",
+          "press_enter": "Press ENTER to send",
+          "submit_button": "Send",
+          "email_trans": "Email chat transcript",
+          "offline_text": "Ask us - offline",
+          "slidebutton_url": "",
+          "slidebutton_text": "Ask us - online now",
+          "slidebutton_position": "b",
+          "slidebutton_bcolor": "#007E9E",
+          "slidebutton_color": "#FFFFFF",
+          "slidebutton_width": "",
+          "slidebutton_height": "",
+          "la_hide": false,
+          "la_hide_msg": "<p>Chat is currently offline.<\/p><p> <a href=\"http:\/\/answers.library.uq.edu.au\">Try browsing our FAQs<\/a>, or <a href=\"http:\/\/answers.library.uq.edu.au\/ask\">submit a question<\/a> and get an answer within 48 hours.<\/p>",
+          "la_hide_msg2": "",
+          "la_search_opt": {
+            "group_id": "0",
+            "label": "Search our FAQs",
+            "button": "Search",
+            "placeholder": "Search our FAQs"
+          },
+          "la_search_box": "<div id=\"s-la-content-search-1114\" class=\"s-la-content-search s-la-content\"><form method=\"get\" name=\"s-la-searchform\" id=\"s-la-searchform-1114\" action=\"\" onsubmit=\"return false;\" target=\"_parent\" role=\"search\" aria-labelledby=\"s-la-content-search-query-1114\"><div class=\"form-group\"><label for=\"s-la-content-search-query-1114\" class=\"s-la-searchform-label sr-only control-label\">Search our FAQs<\/label><input type=text id=s-la-content-search-query-0 class=\"s-la-content-search-query form-control\" name=\"q\" placeholder=\"Search our FAQs\" value=\"\" autocomplete=off \/><\/div><div class=\"form-group\"><button class=\"btn btn-sm btn-default s-la-searchform-button\" type=\"submit\" style=\"background-color: #007E9E; border-color: #007E9E; color: #FFFFFF;\">Search<\/button><\/div><\/form><\/div>",
+          "sound_on": "Sound is On (click to toggle)",
+          "sound_off": "Sound is Off (click to toggle)",
+          "star_text": "Please rate this chat:",
+          "rate_1": "Bad",
+          "rate_2": "Okay",
+          "rate_3": "Good",
+          "rate_4": "Great",
+          "trans": "Enter an email address to send this chat transcript to:",
+          "error_sess": "Error starting session.",
+          "error_send": "Error sending this message.",
+          "error_tran": "Error sending transcript.",
+          "left": " has left the chat",
+          "typing": " is typing...",
+          "joined": " has joined the chat",
+          "initial_question": true,
+          "initial_question_label": "How can we help?",
+          "comments_label": "Any comments?",
+          "comments_button_text": "Submit feedback",
+          "enable_anon": true,
+          "enable_comments": true,
+          "enable_sound": false,
+          "star_ratings": true,
+          "file_uploads": true,
+          "file_title": "Upload a file",
+          "file_intro": "Note: Maximum file size is 5MB. File is removed after one month, it is not kept permanently.",
+          "file_label": "Attach a file",
+          "file_action": "Upload",
+          "cancel_button": "Cancel",
+          "css": "",
+          "custom_css": "div, button {\nfont-family: \"Roboto\", sans serif, Helvetica, Arial !important;\n}\na {\ncolor: #007e9e !important;\n}\na:hover {\ncolor: #006880 !important;\n}\na i {\n  text-decoration: none;\n  color: #333 !important;\n}\nh2 {\ncolor: #333 !important;\n}\n.s-la-widget .btn-sm {\n  transition: background-color 280ms cubic-bezier(0.4, 0, 0.2, 1);\n  border-radius: 2px !important;\n  background-color: #007e9e !important;\n  border-color: transparent !important;\n  color: #fff !important;\n}\n.s-la-widget .btn-sm:hover {\n  transition: background-color 280ms cubic-bezier(0.4, 0, 0.2, 1);\n  background-color: #006880 !important;\n}\n.s-la-widget .btn-sm:active, .btn-sm:focus, {\n  transition: background-color 280ms cubic-bezier(0.4, 0, 0.2, 1);\n  background-color: #00576b !important;\n}\n.lcs_chat_button span {\n  margin: 4px;\n  border-width: 0px 0px 0px;\n}",
+          "color_backg": "#FFFFFF",
+          "color_head": "#007E9E",
+          "color_btn": "#FFFFFF",
+          "color_border": "",
+          "user1": {
+            "tag": 1,
+            "name": "Are you from UQ or a visitor?",
+            "id": 0,
+            "show": 1,
+            "required": 0,
+            "type": "l",
+            "val": "UQ student, UQ staff, Hospital staff, Alumni, Visitor"
+          },
+          "user2": {"tag": 2, "name": "click to edit", "id": 0, "show": 0, "required": 0, "type": "t", "val": ""},
+          "user3": {"tag": 3, "name": "click to edit", "id": 0, "show": 0, "required": 0, "type": "t", "val": ""},
+          "error_off": "Sorry it doesn't appear any librarians are online... Please try again later.",
+          "wait": "Hi! We'll be with you in a moment...",
+          "depart_id": [{"u": 0, "d": [809]}],
+          "depart_dedicated": true,
+          "depart_default_id": "0",
+          "widget_type": 1,
+          "autoload_time": 60,
+          "autoload_head": "Do you need help?",
+          "autoload_text": "A librarian is online ready to help.",
+          "autoload_yes": "Chat Now",
+          "autoload_no": "No Thanks",
+          "missedchat_time": "60",
+          "missedchat_message": "We apologise for the delay. Don't want to wait?",
+          "missedchat_link": "Submit your question and get an answer by email",
+          "missedchat_queue": "643",
+          "fbwidget": false,
+          "user4": {"tag": 4, "name": "click to edit", "id": 0, "show": 0, "required": 0, "type": "t", "val": ""},
+          "user5": {"tag": 5, "name": "click to edit", "id": 0, "show": 0, "required": 0, "type": "t", "val": ""},
+          "isBuilding": true,
+          "autopop": false,
+          "peel": "",
+          "offline_url": "",
+          "slidebutton_url_off": "",
+          "slidebutton_text_off": "Offline - search FAQs",
+          "base_domain": "v2.libanswers.com",
+          "onlinerules": [{"u": 0, "d": [809]}]
+        }
+      }
+    },
+
+    openChat: function() {
+      var url = this.buildChatUrl(this.chatStatus.online);
+
+      window.open(url,
+        'libchat',
+        'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + this.chatOptions.width + ', ' +
+        'height=' + this.chatOptions.height);
+
+
+    },
+
+    openOfflineHelp: function() {
+      if (!this.chatStatus.online && this.chatOptions.offline_url !== '') {
+        window.location.href = this.chatOptions.offline_url;
+      } else {
+        var url = this.buildChatUrl(this.chatStatus.online);
+
+        window.open(url,
+          'libchat',
+          'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + this.chatOptions.width + ', ' +
+          'height=' + this.chatOptions.height);
+      }
+    },
+
+    buildChatUrl: function(isOnline) {
+      var qs = window.location.protocol + '//' + this.chatOptions.base_domain + '/chati.php?';
+      qs += "iid=" + this.chatOptions.iid + "&hash=" + this.chatOptions.hash;
+
+      if (typeof this.chatOptions.template !== 'undefined') {
+        qs += "&template=" + encodeURIComponent(this.chatOptions.template);
+      }
+
+      if (typeof this.chatOptions.template_css !== 'undefined') {
+        qs += "&template_css=" + encodeURIComponent(this.chatOptions.template_css);
+      }
+
+      qs += "&online=" + isOnline;
+
+      try {
+        if (typeof this.chatOptions.width === 'string' && this.chatOptions.width.indexOf("%") == -1)
+          this.chatOptions.width = parseInt(this.chatOptions.width, 10);
+      } catch (e) {
+      }
+
+      try {
+        if (typeof this.chatOptions.height === 'string' && this.chatOptions.height.indexOf("%") == -1)
+          this.chatOptions.height = parseInt(this.chatOptions.height, 10);
+      } catch (e) {
+      }
+
+      if (isOnline)
+        qs += '&referer=' + encodeURIComponent(window.location.href); //referer for IE
+
+      return qs;
+    }
+
+  });
+})();
+
+</script>
+
+</dom-module>
+<dom-module id="uq-minimal-header" assetpath="/">
+
+  <style>
+.button-inverse {
+  color: #FFF; }
+
+.button-inverse:focus {
+  outline: #3b99fc auto 5px; }
+
+uql-menu,
+.header-container,
+.footer-container {
+  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+
+uql-menu {
+  font-weight: lighter; }
+
+.header-container {
+  height: 100px;
+  background-color: #49075E;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  white-space: nowrap; }
+  .header-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .header-container .application-title,
+  .header-container .library-title,
+  .header-container .uq-title {
+    color: #FFF;
+    margin: 10px; }
+  .header-container .uq-title {
+    width: 190px;
+    height: 50px;
+    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+    background-size: 178px 50px;
+    border-right: 1px solid #FFF; }
+    .header-container .uq-title a {
+      width: 190px;
+      height: 50px; }
+    .header-container .uq-title .uq-title-text {
+      display: none !important; }
+
+.footer-container {
+  background-color: #49075E;
+  text-decoration: none;
+  line-height: 20px;
+  white-space: nowrap;
+  color: #FFF !important;
+  font-size: 14px;
+  padding: 20px;
+  margin-top: 20px; }
+  .footer-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .footer-container div {
+    color: #d2c1d7; }
+
+@media all and (max-width: 700px) {
+  .header-container {
+    height: 66px; }
+    .header-container .uq-title {
+      display: none !important; } }
+/* mobile-small */
+/* mobile-large */
+/* mobile-small-landscape */
+/* mobile-large-landscape */
+/* tablet-small-landscape */
+/* tablet-large-landscape */
+/* tablet-small */
+/* tablet-large */
+/* desktop-x-small-landscape */
+/* desktop-x-small */
+/* desktop-small-landscape */
+/* desktop-small */
+/* desktop-medium-landscape */
+/* desktop-medium */
+/* desktop-large */
+/* desktop-xlarge */
+
+/*# sourceMappingURL=elements-styles.css.map */
+
+</style>
+  <style is="custom-style">
+
+    :host {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      z-index: 9999;
+
+      @apply(--layout-vertical);
+    }
+
+    .header-content {
+      margin: 0 auto;
+      max-width: 1140px;
+      width: 100%;
+    }
+
+    .header-container,
+    .header-container div{
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+  </style>
+
+  <template>
+    <div class="header-container">
+      <div class="header-content">
+        <div class="uq-title">
+          <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
+            <div class="uq-title-text">UQ</div>
+          </a>
+        </div>
+        <div class="library-title">
+          <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+        </div>
+        <div class="application-title">{{applicationTitle}}</div>
+
+        <template is="dom-if" if="{{showChatStatus}}">
+          <uql-chat-button></uql-chat-button>
+        </template>
+
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+        is: 'uq-minimal-header',
+
+        properties: {
+          applicationTitle: {
+            type: String,
+            notify: true
+          },
+          showChatStatus: {
+            type: Boolean,
+            value: true
+          }
+        }
+      });
+    })();
+  </script>
 
 </dom-module>
 </div></body></html>

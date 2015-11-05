@@ -159,12 +159,12 @@
       var qs = window.location.protocol + '//' + this.chatOptions.base_domain + '/chati.php?';
       qs += "iid=" + this.chatOptions.iid + "&hash=" + this.chatOptions.hash;
 
-      if (typeof this.chatOptions['template'] !== 'undefined') {
-        qs += "&template=" + encodeURIComponent(this.chatOptions['template']);
+      if (typeof this.chatOptions.template !== 'undefined') {
+        qs += "&template=" + encodeURIComponent(this.chatOptions.template);
       }
 
-      if (typeof this.chatOptions['template_css'] !== 'undefined') {
-        qs += "&template_css=" + encodeURIComponent(this.chatOptions['template_css']);
+      if (typeof this.chatOptions.template_css !== 'undefined') {
+        qs += "&template_css=" + encodeURIComponent(this.chatOptions.template_css);
       }
 
       qs += "&online=" + isOnline;
