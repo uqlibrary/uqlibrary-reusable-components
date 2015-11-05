@@ -8890,7 +8890,6 @@ Or, in a Polymer element, you can include a meta in your template:
     // monostate data
     var metaDatas = {};
     var metaArrays = {};
-    var singleton = null;
 
     Polymer.IronMeta = Polymer({
 
@@ -8941,10 +8940,6 @@ Or, in a Polymer element, you can include a meta in your template:
           notify: true
         }
 
-      },
-
-      hostAttributes: {
-        hidden: true
       },
 
       /**
@@ -9040,13 +9035,6 @@ Or, in a Polymer element, you can include a meta in your template:
       }
 
     });
-
-    Polymer.IronMeta.getIronMeta = function getIronMeta() {
-       if (singleton === null) {
-         singleton = new Polymer.IronMeta();
-       }
-       return singleton;
-     };
 
     /**
     `iron-meta-query` can be used to access infomation stored in `iron-meta`.
@@ -9282,10 +9270,6 @@ Custom property | Description | Default
       }
 
     },
-    
-    attached: function() {
-      this.style.display = 'none';
-    },
 
     /**
      * Construct an array of all icon names in this iconset.
@@ -9498,15 +9482,6 @@ Example:
         type: String,
         observer: 'queryChanged'
       },
-
-      /**
-       * If true, the query attribute is assumed to be a complete media query
-       * string rather than a single media feature.
-       */
-      full: {
-        type: Boolean,
-        value: false
-      },
       
       /**
        * @type {function(MediaQueryList)}
@@ -9552,7 +9527,7 @@ Example:
       if (!query) {
         return;
       }
-      if (!this.full && query[0] !== '(') {
+      if (query[0] !== '(') {
         query = '(' + query + ')';
       }
       this._mq = window.matchMedia(query);
@@ -10513,14 +10488,10 @@ Example:
       _triggerKeyHandler: function(keyCombo, handlerName, keyboardEvent) {
         var detail = Object.create(keyCombo);
         detail.keyboardEvent = keyboardEvent;
-        var event = new CustomEvent(keyCombo.event, {
-          detail: detail,
-          cancelable: true
-        });
-        this[handlerName].call(this, event);
-        if (event.defaultPrevented) {
-          keyboardEvent.preventDefault();
-        }
+
+        this[handlerName].call(this, new CustomEvent(keyCombo.event, {
+          detail: detail
+        }));
       }
     };
   })();
@@ -11171,7 +11142,7 @@ Custom property | Description | Default
   /**
    * `Polymer.PaperInkyFocusBehavior` implements a ripple when the element has keyboard focus.
    *
-   * @polymerBehavior Polymer.PaperInkyFocusBehavior
+   * @polymerBehavior Polymer.PaperInkyFocusBehaviorImpl
    */
   Polymer.PaperInkyFocusBehaviorImpl = {
 
@@ -12024,8 +11995,6 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
       /**
        * Returns the currently selected item.
-       *
-       * @type {?Object}
        */
       selectedItem: {
         type: Object,
@@ -12067,20 +12036,10 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       },
 
       /**
-       * The list of items from which a selection can be made.
-       */
-      items: {
-        type: Array,
-        readOnly: true,
-        value: function() {
-          return [];
-        }
-      },
-
-      /**
        * The set of excluded elements where the key is the `localName`
        * of the element that will be ignored from the item list.
        *
+       * @type {object}
        * @default {template: 1}
        */
       _excludedLocalNames: {
@@ -12100,12 +12059,15 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
     created: function() {
       this._bindFilterItem = this._filterItem.bind(this);
       this._selection = new Polymer.IronSelection(this._applySelection.bind(this));
+      // TODO(cdata): When polymer/polymer#2535 lands, we do not need to do this
+      // book keeping anymore:
+      this.__listeningForActivate = false;
     },
 
     attached: function() {
       this._observer = this._observeItems(this);
-      this._updateItems();
-      if (!this._shouldUpdateSelection) {
+      this._contentObserver = this._observeContent(this);
+      if (!this.selectedItem && this.selected) {
         this._updateSelected(this.attrForSelected,this.selected)
       }
       this._addListener(this.activateEvent);
@@ -12113,9 +12075,23 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
     detached: function() {
       if (this._observer) {
-        Polymer.dom(this).unobserveNodes(this._observer);
+        this._observer.disconnect();
+      }
+      if (this._contentObserver) {
+        this._contentObserver.disconnect();
       }
       this._removeListener(this.activateEvent);
+    },
+
+    /**
+     * Returns an array of selectable items.
+     *
+     * @property items
+     * @type Array
+     */
+    get items() {
+      var nodes = Polymer.dom(this).queryDistributedElements(this.selectable || '*');
+      return Array.prototype.filter.call(nodes, this._bindFilterItem);
     },
 
     /**
@@ -12160,27 +12136,23 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       this.selected = this._indexToValue(index);
     },
 
-    get _shouldUpdateSelection() {
-      return this.selected != null;
-    },
-
     _addListener: function(eventName) {
+      if (!this.isAttached || this.__listeningForActivate) {
+        return;
+      }
+
+      this.__listeningForActivate = true;
       this.listen(this, eventName, '_activateHandler');
     },
 
     _removeListener: function(eventName) {
       this.unlisten(this, eventName, '_activateHandler');
+      this.__listeningForActivate = false;
     },
 
     _activateEventChanged: function(eventName, old) {
       this._removeListener(old);
       this._addListener(eventName);
-    },
-
-    _updateItems: function() {
-      var nodes = Polymer.dom(this).queryDistributedElements(this.selectable || '*');
-      nodes = Array.prototype.filter.call(nodes, this._bindFilterItem);
-      this._setItems(nodes);
     },
 
     _updateSelected: function() {
@@ -12241,9 +12213,18 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       this._setSelectedItem(this._selection.get());
     },
 
+    // observe content changes under the given node.
+    _observeContent: function(node) {
+      var content = node.querySelector('content');
+      if (content && content.parentElement === node) {
+        return this._observeItems(node.domHost);
+      }
+    },
+
     // observe items change under the given node.
     _observeItems: function(node) {
-      return Polymer.dom(node).observeNodes(function(mutations) {
+      // TODO(cdata): Update this when we get distributed children changed.
+      var observer = new MutationObserver(function(mutations) {
         // Let other interested parties know about the change so that
         // we don't have to recreate mutation observers everywher.
         this.fire('iron-items-changed', mutations, {
@@ -12251,12 +12232,15 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
           cancelable: false
         });
 
-        this._updateItems();
-
-        if (this._shouldUpdateSelection) {
+        if (this.selected != null) {
           this._updateSelected();
         }
+      }.bind(this));
+      observer.observe(node, {
+        childList: true,
+        subtree: true
       });
+      return observer;
     },
 
     _activateHandler: function(e) {
@@ -12342,11 +12326,6 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
     multiChanged: function(multi) {
       this._selection.multi = multi;
-    },
-
-    get _shouldUpdateSelection() {
-      return this.selected != null ||
-        (this.selectedValues != null && this.selectedValues.length);
     },
 
     _updateSelected: function() {
@@ -15454,7 +15433,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       is: 'paper-item',
 
       hostAttributes: {
-        role: 'option',
+        role: 'listitem',
         tabindex: '0'
       },
 
@@ -17019,37 +16998,7 @@ uql-menu {
     },
     _getName: function (type, label) {
       if (label) {
-        return 'uql-' + type + '-' + label.replace(/\W/, '');
-      }
-    }
-  });
-})();
-</script>
-
-</dom-module>
-<dom-module id="uql-menu" assetpath="uql-menu/">
-  <style>
-uq-minimal-header {
-    overflow: visible !important;
-}
-</style>
-
-  <template>
-    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
-    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
-    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
-  </template>
-
-  <script>(function () {
-  Polymer({
-    is: 'uql-menu',
-    properties: {
-      menuJson: {
-        type: String
-      },
-      verbose: {
-        type: Boolean,
-        value: true
+        return 'uql-' + type + '-' + label.replace(/\W/g, '');
       }
     }
   });
@@ -17244,6 +17193,32 @@ uq-minimal-header {
         this.hideMenu = 0;
       }
       this.playAnimation(this.showMenu ? 'entry' : 'exit');
+    }
+  });
+})();
+</script>
+
+</dom-module>
+<dom-module id="uql-menu" assetpath="uql-menu/">
+  <link rel="import" type="css" href="uql-menu/uql-menu.css">
+
+  <template>
+    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
+    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
+    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
+  </template>
+
+  <script>(function () {
+  Polymer({
+    is: 'uql-menu',
+    properties: {
+      menuJson: {
+        type: String
+      },
+      verbose: {
+        type: Boolean,
+        value: true
+      }
     }
   });
 })();
