@@ -71,6 +71,7 @@ include this code in Omega's html.tpl.php
         <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
         <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/libwww/custom-styles.css" />
         <script>
             var menuJson = '//path/to/menu.json';
         </script>

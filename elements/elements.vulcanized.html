@@ -16520,36 +16520,6 @@ uql-menu {
 </script>
 
 </dom-module>
-<dom-module id="uql-menu" assetpath="uql-menu/">
-  <style>
-uq-minimal-header {
-    overflow: visible !important;
-}
-</style>
-
-  <template>
-    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
-    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
-    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
-  </template>
-
-  <script>(function () {
-  Polymer({
-    is: 'uql-menu',
-    properties: {
-      menuJson: {
-        type: String
-      },
-      verbose: {
-        type: Boolean,
-        value: true
-      }
-    }
-  });
-})();
-</script>
-
-</dom-module>
 <dom-module id="uql-sidebar" class="layout vertical" assetpath="uql-sidebar/">
   <style>
 :host {
@@ -16737,6 +16707,32 @@ uq-minimal-header {
         this.hideMenu = 0;
       }
       this.playAnimation(this.showMenu ? 'entry' : 'exit');
+    }
+  });
+})();
+</script>
+
+</dom-module>
+<dom-module id="uql-menu" assetpath="uql-menu/">
+  <link rel="import" type="css" href="uql-menu/uql-menu.css">
+
+  <template>
+    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
+    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
+    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
+  </template>
+
+  <script>(function () {
+  Polymer({
+    is: 'uql-menu',
+    properties: {
+      menuJson: {
+        type: String
+      },
+      verbose: {
+        type: Boolean,
+        value: true
+      }
     }
   });
 })();
