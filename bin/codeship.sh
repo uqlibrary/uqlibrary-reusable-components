@@ -1,6 +1,6 @@
 
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
-set -xe
+set -e
 
 echo "Install prerequisites gulp/bower/packages"
 
@@ -29,8 +29,6 @@ fi
 
 echo "Deploying to S3 bucket sub-dir: ${S3BucketSubDir}"
 echo "Prepare AWS configuration..."
-# stop debugging
-#set +x
 
 # Use env vars to set AWS config
 awsconfigtemp="template.aws.json"
@@ -44,8 +42,6 @@ sed -i -e "s#<S3Bucket>#${S3Bucket}#g" ${awsconfig}
 sed -i -e "s#<S3BucketSubDir>#${S3BucketSubDir}#g" ${awsconfig}
 sed -i -e "s#<CFDistribution>#${CFDistribution}#g" ${awsconfig}
 sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
-
-#set -x
 
 #run css min tasks for staging/production, don't run for master - for better debugging
 if [ $branch = "staging" ] || [ $branch = "production" ]; then
