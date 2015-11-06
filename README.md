@@ -28,7 +28,7 @@ npm install -g gulp bower && npm install && bower install
 
 Make sure your branch is set to master.  Make your changes to this file, either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).  
 
-[https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json]
+https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json
 
 Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here:
 
