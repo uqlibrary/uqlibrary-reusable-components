@@ -28,6 +28,9 @@
       if (this.hasSession() && document.cookie.indexOf("UQLMockData") === -1) {
         var now = new Date().getTime();
         this.$.getAccountApi.url = this.accountUrl + now;
+        this.$.getAccountApi.headers = {
+          "X-Uql-Token": this.getCookie("UQLID")
+        };
         this.$.getAccountApi.generateRequest();
       }
     },
@@ -60,8 +63,22 @@
 
     hasSession: function()  {
       return document.cookie.indexOf("UQLID") >= 0;
-    }
+    },
 
+    /**
+     * Gets a cookie by name
+     * @param name the name of the cookie to return
+     * @returns {String}
+     */
+    getCookie: function (name) {
+      var parts = document.cookie.split(";");
+      for (var i = 0, l = parts.length; i < l; i++) {
+        var cookieParts = parts[i].trim().split('=');
+        if (cookieParts[0] === name) {
+          return cookieParts[1];
+        }
+      }
+    }
   });
 })();
 
