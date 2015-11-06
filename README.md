@@ -24,6 +24,19 @@ With Node.js installed, run the following one liner from the root of the repo:
 npm install -g gulp bower && npm install && bower install
 ```
 
+### Updating IA
+
+Make sure your branch is set to master.  Make your changes to this file, either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).  
+
+[https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json]
+
+Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here:
+
+[Codeship for re-usable components](https://codeship.com/projects/99389)
+    
+This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
+
+
 ### Elements
 
 - uq-minimal-header
