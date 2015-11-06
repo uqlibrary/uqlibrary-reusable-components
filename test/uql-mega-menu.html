@@ -132,6 +132,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
     });
 
+    test('Build should fail if test fails', function (done) {
+      expect(true).to.be.false;
+    });
   });
 </script>
 

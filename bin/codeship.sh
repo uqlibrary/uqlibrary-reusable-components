@@ -1,6 +1,6 @@
 
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
-#set -xe
+set -xe
 
 echo "Install prerequisites gulp/bower/packages"
 
@@ -55,6 +55,9 @@ fi
 
 echo "Check file syntax"
 gulp syntax
+
+echo "Run tests"
+gulp test
 
 echo "Run gulp task to upload to AWS..."
 gulp publish
