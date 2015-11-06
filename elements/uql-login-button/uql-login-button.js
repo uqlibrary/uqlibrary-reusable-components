@@ -16,6 +16,10 @@
       }
     },
 
+    ready: function() {
+      this.isLoggedIn = this.hasSession();
+    },
+
     performLogin: function() {
       if (document.cookie.indexOf("UQLMockData") >= 0) {
         this.isLoggedIn = true;
@@ -35,7 +39,7 @@
     },
 
     hasSession: function()  {
-      this.isLoggedIn = document.cookie.indexOf("UQLID") >= 0;
+      return document.cookie.indexOf("UQLID") >= 0;
     }
 
   });
