@@ -17595,6 +17595,8 @@ uql-menu {
 
   <template>
 
+    <iron-ajax id="getAccountApi" handle-as="json" on-response="accountResponse" on-error="accountResponseError" debounce-duration="300" verbose="{{debug}}"></iron-ajax>
+
     <template is="dom-if" if="{{!isLoggedIn}}">
       <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton"><iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>Log in</paper-button>
     </template>
@@ -17613,6 +17615,10 @@ uql-menu {
         type: String,
         value: "https://www.library.uq.edu.au/uqlais/login?return="
       },
+      accountUrl: {
+        type: String,
+        value: 'https://app.library.uq.edu.au/api/account?'
+      },
       logoutUrl: {
         type: String,
         value: "https://www.library.uq.edu.au/logout"
@@ -17620,11 +17626,27 @@ uql-menu {
       isLoggedIn: {
         type: Boolean,
         value: false
+      },
+      verbose: {
+        type: Boolean,
+        value: false
       }
     },
 
     ready: function() {
-      this.isLoggedIn = this.hasSession();
+      if (this.hasSession() && document.cookie.indexOf("UQLMockData") === -1) {
+        var now = new Date().getTime();
+        this.$.getAccountApi.url = this.accountUrl + now;
+        this.$.getAccountApi.generateRequest();
+      }
+    },
+
+    accountResponse: function(response) {
+      console.log(response.detail);
+    },
+
+    accountResponseError: function(response) {
+      console.log(response.detail);
     },
 
     performLogin: function() {

@@ -5,6 +5,13 @@
 
   <template>
 
+    <iron-ajax id="getAccountApi"
+               handle-as="json"
+               on-response="accountResponse"
+               on-error="accountResponseError"
+               debounce-duration="300"
+               verbose="{{debug}}"></iron-ajax>
+
     <template is="dom-if" if="{{!isLoggedIn}}">
       <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton"><iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>Log in</paper-button>
     </template>
