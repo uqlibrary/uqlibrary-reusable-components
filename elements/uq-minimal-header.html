@@ -48,6 +48,10 @@
           <uql-chat-button></uql-chat-button>
         </template>
 
+        <template is="dom-if" if="{{showLoginStatus}}">
+          <uql-login-button></uql-login-button>
+        </template>
+
       </div>
     </div>
   </template>
@@ -63,6 +67,10 @@
             notify: true
           },
           showChatStatus: {
+            type: Boolean,
+            value: true
+          },
+          showLoginStatus: {
             type: Boolean,
             value: true
           }

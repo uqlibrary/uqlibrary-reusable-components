@@ -1,0 +1,20 @@
+<dom-module id="uql-login-button">
+
+  <link rel="import" href="../elements.html">
+  <link rel="stylesheet" href="../../styles/elements-styles.css">
+
+  <template>
+
+    <template is="dom-if" if="{{!isLoggedIn}}">
+      <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton"><iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>Log in</paper-button>
+    </template>
+
+    <template is="dom-if" if="{{isLoggedIn}}">
+      <paper-button class="button-action button-inverse" on-tap="performLogout" id="logoutButton"><iron-icon icon="social:person" aria-label="Logout"></iron-icon>Log out</paper-button>
+    </template>
+
+  </template>
+
+  <script src="uql-login-button.js"></script>
+
+</dom-module>

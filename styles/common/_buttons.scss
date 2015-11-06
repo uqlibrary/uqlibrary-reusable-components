@@ -1,5 +1,13 @@
+paper-button {
+  font-size: 14px;
+}
+
 .button-inverse {
   color: $text-color-inverse;
+}
+
+.button-action {
+  background-color: $uq-blue;
 }
 
 .button-inverse:focus {
