@@ -17595,9 +17595,7 @@ uql-menu {
 
   <template>
 
-    <iron-ajax id="getAccountApi" handle-as="json" on-response="accountResponse" on-error="accountResponseError" debounce-duration="300" verbose="{{debug}}"></iron-ajax>
-
-    <byutv-jsonp id="getAccountApiJsonp" on-response="accountResponse" on-error="accountResponseError" debounce-duration="300"></byutv-jsonp>
+    <iron-ajax id="getAccountApi" content-type="application/json" method="GET" handle-as="json" on-response="accountResponse" on-error="accountResponseError" debounce-duration="300" verbose="{{debug}}"></iron-ajax>
 
     <template is="dom-if" if="{{!isLoggedIn}}">
       <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton"><iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>Log in</paper-button>
@@ -17638,17 +17636,12 @@ uql-menu {
     ready: function() {
       if (this.hasSession() && document.cookie.indexOf("UQLMockData") === -1) {
         var now = new Date().getTime();
-        this.$.getAccountApi.url = this.accountUrl + '?' + now;
 
+        this.$.getAccountApi.url = this.accountUrl + '?' + now;
         this.$.getAccountApi.headers = {
           "X-Uql-Token": this.getCookie("UQLID")
         };
-
-        this.$.getAccountApiJsonp.url = this.accountUrl;
-        this.$.getAccountApiJsonp.headers = this.$.getAccountApi.headers;
-
         this.$.getAccountApi.generateRequest();
-        this.$.getAccountApiJsonp.generateRequest();
       }
     },
 

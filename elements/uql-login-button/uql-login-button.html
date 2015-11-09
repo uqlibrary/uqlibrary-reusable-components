@@ -6,16 +6,13 @@
   <template>
 
     <iron-ajax id="getAccountApi"
+               content-type="application/json"
+               method="GET"
                handle-as="json"
                on-response="accountResponse"
                on-error="accountResponseError"
                debounce-duration="300"
                verbose="{{debug}}"></iron-ajax>
-
-    <byutv-jsonp id="getAccountApiJsonp"
-            on-response="accountResponse"
-            on-error="accountResponseError"
-            debounce-duration="300"></byutv-jsonp>
 
     <template is="dom-if" if="{{!isLoggedIn}}">
       <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton"><iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>Log in</paper-button>
