@@ -37,13 +37,11 @@
     },
 
     accountResponse: function(response) {
-      console.log('response: ');
-      console.log(response);
+      this.isLoggedIn = true;
     },
 
     accountResponseError: function(response) {
-      console.log('error: ');
-      console.log(response);
+      this.isLoggedIn = false;
     },
 
     performLogin: function() {
