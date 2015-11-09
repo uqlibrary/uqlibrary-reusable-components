@@ -8,7 +8,7 @@
       },
       accountUrl: {
         type: String,
-        value: 'https://app.library.uq.edu.au/api/account?'
+        value: 'https://app.library.uq.edu.au/api/account'
       },
       logoutUrl: {
         type: String,
@@ -27,13 +27,13 @@
     ready: function() {
       if (this.hasSession() && document.cookie.indexOf("UQLMockData") === -1) {
         var now = new Date().getTime();
-        this.$.getAccountApi.url = this.accountUrl + now;
+        this.$.getAccountApi.url = this.accountUrl + '?' + now;
 
         this.$.getAccountApi.headers = {
           "X-Uql-Token": this.getCookie("UQLID")
         };
 
-        this.$.getAccountApiJsonp.url = this.$.getAccountApi.url;
+        this.$.getAccountApiJsonp.url = this.accountUrl;
         this.$.getAccountApiJsonp.headers = this.$.getAccountApi.headers;
 
         this.$.getAccountApi.generateRequest();
