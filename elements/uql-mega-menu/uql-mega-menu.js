@@ -8,18 +8,15 @@
       selectedMenu: {
         type: String,
         value: null
-      }
-      ,
+      },
       menuJson: {
         type: String
-      }
-      ,
+      },
       verbose: {
         type: Boolean,
         value: true
       }
-    }
-    ,
+    },
     _toggleMenu: function (event) {
       if (this.init) {
         this._addBodyListener();
@@ -29,8 +26,7 @@
       var span = event.currentTarget.querySelector('span');
       var sm = this._getName('menu', span.textContent);
       this.selectedMenu = sm === this.selectedMenu ? null : sm;
-    }
-    ,
+    },
     _addBodyListener: function () {
       var that = this;
       document.querySelector('html').addEventListener('click', function () {
@@ -46,12 +42,12 @@
      */
     _clientRectDifferent: function (ocr, ncr) {
       if (
-        ocr === null
-        || ncr === null
-        || (ocr.top !== ncr.top)
-        || (ocr.bottom !== ncr.bottom)
-        || (ocr.left !== ncr.left)
-        || (ocr.right !== ncr.right)
+        ocr === null ||
+        ncr === null ||
+        (ocr.top !== ncr.top) ||
+        (ocr.bottom !== ncr.bottom) ||
+        (ocr.left !== ncr.left) ||
+        (ocr.right !== ncr.right)
       ) {
         return true;
       }
