@@ -13,7 +13,7 @@
             debounce-duration="300"></byutv-jsonp>
 
     <template is="dom-if" if="{{!isChatOnline}}">
-      <paper-button class="button-inverse" on-tap="openChat" id="chatOfflineButton"><iron-icon icon="communication:chat-bubble-outline" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOfflineButton"><iron-icon icon="notification:sms-failed" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
     </template>
 
     <template is="dom-if" if="{{isChatOnline}}">
