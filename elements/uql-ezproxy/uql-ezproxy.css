@@ -1,19 +1,21 @@
 :host {
-    margin:150px auto 0px;
-    width:800px;
-    max-width:90%;
-    display: block;
+  margin: 150px auto 0px;
+  width: 800px;
+  max-width: 90%;
+  display: block;
 }
+
 paper-card {
-    width:100%;
-    padding:20px;
-    background-color: rgba(245, 245, 245, 0.6);
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(245, 245, 245, 0.6);
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
+
 paper-button {
-    background-color: #2377CB;
-    color: #fff;
-    width: 50px;
-    height: 35px;
-    margin-top:20px;
+  background-color: #2377CB;
+  color: #fff;
+  width: 50px;
+  height: 35px;
+  margin-top: 20px;
 }
