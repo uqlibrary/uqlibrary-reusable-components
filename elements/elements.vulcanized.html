@@ -7080,7 +7080,7 @@ iron-request can be used to perform XMLHttpRequests.
         notify: true,
         readOnly: true,
         value: function() {
-         return null;
+          return null;
         }
       },
 
@@ -7201,6 +7201,7 @@ iron-request can be used to perform XMLHttpRequests.
      *   body: (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object),
      *   headers: (Object|undefined),
      *   handleAs: (string|undefined),
+     *   jsonPrefix: (string|undefined),
      *   withCredentials: (boolean|undefined)}} options -
      *     url The url to which the request is sent.
      *     method The HTTP method to use, default is GET.
@@ -7227,6 +7228,29 @@ iron-request can be used to perform XMLHttpRequests.
           total: progress.total
         });
       }.bind(this))
+
+      xhr.addEventListener('readystatechange', function () {
+        if (xhr.readyState === 2 && options.async !== false) {
+          // Headers have been received.
+          var jsonPrefix = xhr.getResponseHeader('X-JSON-Prefix') ||
+              options.jsonPrefix;
+          var handleAs = options.handleAs;
+
+          // If a JSON prefix is present, the responseType must be 'text' or the
+          // browser won’t be able to parse the response.
+          if (!!jsonPrefix || !handleAs) {
+            handleAs = 'text';
+          }
+          // In IE, `xhr.responseType` is an empty string when the response
+          // returns. Hence, caching it as `xhr._responseType`.
+          xhr.responseType = xhr._responseType = handleAs;
+
+          // Cache the JSON prefix, if it exists.
+          if (!!jsonPrefix) {
+            xhr._jsonPrefix = jsonPrefix;
+          }
+        }
+      }.bind(this));
 
       xhr.addEventListener('error', function (error) {
         this._setErrored(true);
@@ -7293,17 +7317,10 @@ iron-request can be used to perform XMLHttpRequests.
         );
       }, this);
 
-      var body = this._encodeBodyObject(options.body, headers['content-type']);
-
-      // In IE, `xhr.responseType` is an empty string when the response
-      // returns. Hence, caching it as `xhr._responseType`.
-      if (options.async !== false) {
-        xhr.responseType = xhr._responseType = (options.handleAs || 'text');
-      }
       xhr.withCredentials = !!options.withCredentials;
       xhr.timeout = options.timeout;
 
-
+      var body = this._encodeBodyObject(options.body, headers['content-type']);
 
       xhr.send(
         /** @type {ArrayBuffer|ArrayBufferView|Blob|Document|FormData|
@@ -7325,6 +7342,15 @@ iron-request can be used to perform XMLHttpRequests.
       var xhr = this.xhr;
       var responseType = xhr.responseType || xhr._responseType;
       var preferResponseText = !this.xhr.responseType;
+      var prefixHeader = xhr.getResponseHeader('X-JSON-Prefix');
+      if (prefixHeader) {
+        // If a JSON prefix header is set, the response must be interpretted as
+        // text so that the prefix can be stripped. Otherwise the browser will
+        // try and fail to.
+        responseType = 'text';
+      }
+      var prefixLen = (prefixHeader && prefixHeader.length) ||
+          (xhr._jsonPrefix && xhr._jsonPrefix.length) || 0;
 
       try {
         switch (responseType) {
@@ -7339,7 +7365,7 @@ iron-request can be used to perform XMLHttpRequests.
               // That is to say, we try to parse as JSON, but if anything goes
               // wrong return null.
               try {
-                return JSON.parse(xhr.responseText);;
+                return JSON.parse(xhr.responseText);
               } catch (_) {
                 return null;
               }
@@ -7353,8 +7379,20 @@ iron-request can be used to perform XMLHttpRequests.
           case 'arraybuffer':
             return xhr.response;
           case 'text':
-          default:
+          default: {
+            // If `prefixLen` is set, it implies the response should be parsed
+            // as JSON once the prefix of length `prefixLen` is stripped from
+            // it. Emulate the behavior above where null is returned on failure
+            // to parse.
+            if (prefixLen) {
+              try {
+                return JSON.parse(xhr.responseText.substring(prefixLen));
+              } catch (_) {
+                return null;
+              }
+            }
             return xhr.responseText;
+          }
         }
       } catch (e) {
         this.rejectCompletes(new Error('Could not parse response. ' + e.message));
@@ -7695,12 +7733,29 @@ element.
       },
 
       /**
-       * Length of time in milliseconds to debounce multiple requests.
+       * Length of time in milliseconds to debounce multiple automatically generated requests.
        */
       debounceDuration: {
         type: Number,
         value: 0,
         notify: true
+      },
+
+      /**
+       * Prefix to be stripped from a JSON response before parsing it.
+       *
+       * In order to prevent an attack using CSRF with Array responses
+       * (http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/)
+       * many backends will mitigate this by prefixing all JSON response bodies
+       * with a string that would be nonsensical to a JavaScript parser.
+       *
+       * In the case where the server returns a prefix via the `X-JSON-Prefix`
+       * header, this attribute can be omitted as the value of the header will
+       * supercede the value passed here.
+       */
+      jsonPrefix: {
+        type: String,
+        value: ''
       },
 
       _boundHandleResponse: {
@@ -7712,8 +7767,8 @@ element.
     },
 
     observers: [
-      '_requestOptionsChanged(url, method, params.*, headers,' +
-        'contentType, body, sync, handleAs, withCredentials, timeout, auto)'
+      '_requestOptionsChanged(url, method, params.*, headers, contentType, ' +
+          'body, sync, handleAs, jsonPrefix, withCredentials, timeout, auto)'
     ],
 
     /**
@@ -7800,6 +7855,7 @@ element.
      *   body: (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object),
      *   headers: (Object|undefined),
      *   handleAs: (string|undefined),
+     *   jsonPrefix: (string|undefined),
      *   withCredentials: (boolean|undefined)}}
      */
     toRequestOptions: function() {
@@ -7810,6 +7866,7 @@ element.
         body: this.body,
         async: !this.sync,
         handleAs: this.handleAs,
+        jsonPrefix: this.jsonPrefix,
         withCredentials: this.withCredentials,
         timeout: this.timeout
       };
@@ -8865,7 +8922,7 @@ attributes or use child nodes to define additional metadata.
 Now I can access that element (and it's metadata) from any iron-meta instance
 via the byKey method, e.g.
 
-    meta.byKey('info').getAttribute('value').
+    meta.byKey('info').getAttribute('value');
 
 Pure imperative form would be like:
 
@@ -8890,6 +8947,7 @@ Or, in a Polymer element, you can include a meta in your template:
     // monostate data
     var metaDatas = {};
     var metaArrays = {};
+    var singleton = null;
 
     Polymer.IronMeta = Polymer({
 
@@ -8942,9 +9000,15 @@ Or, in a Polymer element, you can include a meta in your template:
 
       },
 
+      hostAttributes: {
+        hidden: true
+      },
+
       /**
        * Only runs if someone invokes the factory/constructor directly
        * e.g. `new Polymer.IronMeta()`
+       *
+       * @param {{type: (string|undefined), key: (string|undefined), value}=} config
        */
       factoryImpl: function(config) {
         if (config) {
@@ -9036,6 +9100,13 @@ Or, in a Polymer element, you can include a meta in your template:
 
     });
 
+    Polymer.IronMeta.getIronMeta = function getIronMeta() {
+       if (singleton === null) {
+         singleton = new Polymer.IronMeta();
+       }
+       return singleton;
+     };
+
     /**
     `iron-meta-query` can be used to access infomation stored in `iron-meta`.
 
@@ -9102,6 +9173,8 @@ Or, in a Polymer element, you can include a meta in your template:
       /**
        * Actually a factory method, not a true constructor. Only runs if
        * someone invokes it directly (via `new Polymer.IronMeta()`);
+       *
+       * @param {{type: (string|undefined), key: (string|undefined)}=} config
        */
       factoryImpl: function(config) {
         if (config) {
@@ -9229,8 +9302,8 @@ Custom property | Description | Default
    *       <svg>
    *         <defs>
    *           <g id="shape">
-   *             <rect x="50" y="50" width="50" height="50" />
-   *             <circle cx="50" cy="50" r="50" />
+   *             <rect x="12" y="0" width="12" height="24" />
+   *             <circle cx="12" cy="12" r="12" />
    *           </g>
    *         </defs>
    *       </svg>
@@ -9269,6 +9342,10 @@ Custom property | Description | Default
         value: 24
       }
 
+    },
+
+    attached: function() {
+      this.style.display = 'none';
     },
 
     /**
@@ -9436,6 +9513,11 @@ Examples:
     <iron-image style="width:400px; height:400px; background-color: lightgray;"
       sizing="cover" preload fade src="http://lorempixel.com/600/400"></iron-image>
 
+Custom property | Description | Default
+----------------|-------------|----------
+`--iron-image-placeholder` | Mixin applied to #placeholder | `{}`
+`--iron-image-width` | Sets the width of the wrapped image | `auto`
+`--iron-image-height` | Sets the height of the wrapped image | `auto`
 
 @group Iron Elements
 @element iron-image
@@ -9482,6 +9564,15 @@ Example:
         type: String,
         observer: 'queryChanged'
       },
+
+      /**
+       * If true, the query attribute is assumed to be a complete media query
+       * string rather than a single media feature.
+       */
+      full: {
+        type: Boolean,
+        value: false
+      },
       
       /**
        * @type {function(MediaQueryList)}
@@ -9527,7 +9618,7 @@ Example:
       if (!query) {
         return;
       }
-      if (query[0] !== '(') {
+      if (!this.full && query[0] !== '(') {
         query = '(' + query + ')';
       }
       this._mq = window.matchMedia(query);
@@ -10488,10 +10579,14 @@ Example:
       _triggerKeyHandler: function(keyCombo, handlerName, keyboardEvent) {
         var detail = Object.create(keyCombo);
         detail.keyboardEvent = keyboardEvent;
-
-        this[handlerName].call(this, new CustomEvent(keyCombo.event, {
-          detail: detail
-        }));
+        var event = new CustomEvent(keyCombo.event, {
+          detail: detail,
+          cancelable: true
+        });
+        this[handlerName].call(this, event);
+        if (event.defaultPrevented) {
+          keyboardEvent.preventDefault();
+        }
       }
     };
   })();
@@ -10621,9 +10716,8 @@ Apply `circle` class to make the rippling effect within a circle.
       // handled). In either case, we can disregard `event.path`.
 
       if (event.target === this) {
-        var focused = event.type === 'focus';
-        this._setFocused(focused);
-      } else if (!this.shadowRoot) {
+        this._setFocused(event.type === 'focus');
+      } else if (!this.shadowRoot && !this.isLightDescendant(event.target)) {
         this.fire(event.type, {sourceEvent: event}, {
           node: this,
           bubbles: event.bubbles,
@@ -10778,14 +10872,43 @@ Apply `circle` class to make the rippling effect within a circle.
       this._setPressed(false);
     },
 
+    __isFocusedLightDescendant: function(target) {
+      var root = Polymer.dom(this).getOwnerRoot() || document;
+      var focusedElement = root.activeElement;
+
+      // TODO(noms): remove the `this !== target` check once polymer#2610 is fixed.
+      return this !== target && this.isLightDescendant(target) && target == focusedElement;
+    },
+
+    /**
+     * @param {!KeyboardEvent} event .
+     */
     _spaceKeyDownHandler: function(event) {
       var keyboardEvent = event.detail.keyboardEvent;
+      var target = Polymer.dom(keyboardEvent).localTarget;
+
+      // Ignore the event if this is coming from a focused light child, since that
+      // element will deal with it.
+      if (this.__isFocusedLightDescendant(target))
+        return;
+
       keyboardEvent.preventDefault();
       keyboardEvent.stopImmediatePropagation();
       this._setPressed(true);
     },
 
-    _spaceKeyUpHandler: function() {
+    /**
+     * @param {!KeyboardEvent} event .
+     */
+    _spaceKeyUpHandler: function(event) {
+      var keyboardEvent = event.detail.keyboardEvent;
+      var target = Polymer.dom(keyboardEvent).localTarget;
+
+      // Ignore the event if this is coming from a focused light child, since that
+      // element will deal with it.
+      if (this.__isFocusedLightDescendant(target))
+        return;
+
       if (this.pressed) {
         this._asyncClick();
       }
@@ -11142,7 +11265,7 @@ Custom property | Description | Default
   /**
    * `Polymer.PaperInkyFocusBehavior` implements a ripple when the element has keyboard focus.
    *
-   * @polymerBehavior Polymer.PaperInkyFocusBehaviorImpl
+   * @polymerBehavior Polymer.PaperInkyFocusBehavior
    */
   Polymer.PaperInkyFocusBehaviorImpl = {
 
@@ -11995,6 +12118,8 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
       /**
        * Returns the currently selected item.
+       *
+       * @type {?Object}
        */
       selectedItem: {
         type: Object,
@@ -12036,10 +12161,20 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       },
 
       /**
+       * The list of items from which a selection can be made.
+       */
+      items: {
+        type: Array,
+        readOnly: true,
+        value: function() {
+          return [];
+        }
+      },
+
+      /**
        * The set of excluded elements where the key is the `localName`
        * of the element that will be ignored from the item list.
        *
-       * @type {object}
        * @default {template: 1}
        */
       _excludedLocalNames: {
@@ -12059,15 +12194,12 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
     created: function() {
       this._bindFilterItem = this._filterItem.bind(this);
       this._selection = new Polymer.IronSelection(this._applySelection.bind(this));
-      // TODO(cdata): When polymer/polymer#2535 lands, we do not need to do this
-      // book keeping anymore:
-      this.__listeningForActivate = false;
     },
 
     attached: function() {
       this._observer = this._observeItems(this);
-      this._contentObserver = this._observeContent(this);
-      if (!this.selectedItem && this.selected) {
+      this._updateItems();
+      if (!this._shouldUpdateSelection) {
         this._updateSelected(this.attrForSelected,this.selected)
       }
       this._addListener(this.activateEvent);
@@ -12075,23 +12207,9 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
     detached: function() {
       if (this._observer) {
-        this._observer.disconnect();
-      }
-      if (this._contentObserver) {
-        this._contentObserver.disconnect();
+        Polymer.dom(this).unobserveNodes(this._observer);
       }
       this._removeListener(this.activateEvent);
-    },
-
-    /**
-     * Returns an array of selectable items.
-     *
-     * @property items
-     * @type Array
-     */
-    get items() {
-      var nodes = Polymer.dom(this).queryDistributedElements(this.selectable || '*');
-      return Array.prototype.filter.call(nodes, this._bindFilterItem);
     },
 
     /**
@@ -12136,23 +12254,27 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       this.selected = this._indexToValue(index);
     },
 
-    _addListener: function(eventName) {
-      if (!this.isAttached || this.__listeningForActivate) {
-        return;
-      }
+    get _shouldUpdateSelection() {
+      return this.selected != null;
+    },
 
-      this.__listeningForActivate = true;
+    _addListener: function(eventName) {
       this.listen(this, eventName, '_activateHandler');
     },
 
     _removeListener: function(eventName) {
       this.unlisten(this, eventName, '_activateHandler');
-      this.__listeningForActivate = false;
     },
 
     _activateEventChanged: function(eventName, old) {
       this._removeListener(old);
       this._addListener(eventName);
+    },
+
+    _updateItems: function() {
+      var nodes = Polymer.dom(this).queryDistributedElements(this.selectable || '*');
+      nodes = Array.prototype.filter.call(nodes, this._bindFilterItem);
+      this._setItems(nodes);
     },
 
     _updateSelected: function() {
@@ -12213,18 +12335,9 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       this._setSelectedItem(this._selection.get());
     },
 
-    // observe content changes under the given node.
-    _observeContent: function(node) {
-      var content = node.querySelector('content');
-      if (content && content.parentElement === node) {
-        return this._observeItems(node.domHost);
-      }
-    },
-
     // observe items change under the given node.
     _observeItems: function(node) {
-      // TODO(cdata): Update this when we get distributed children changed.
-      var observer = new MutationObserver(function(mutations) {
+      return Polymer.dom(node).observeNodes(function(mutations) {
         // Let other interested parties know about the change so that
         // we don't have to recreate mutation observers everywher.
         this.fire('iron-items-changed', mutations, {
@@ -12232,15 +12345,12 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
           cancelable: false
         });
 
-        if (this.selected != null) {
+        this._updateItems();
+
+        if (this._shouldUpdateSelection) {
           this._updateSelected();
         }
-      }.bind(this));
-      observer.observe(node, {
-        childList: true,
-        subtree: true
       });
-      return observer;
     },
 
     _activateHandler: function(e) {
@@ -12326,6 +12436,11 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
     multiChanged: function(multi) {
       this._selection.multi = multi;
+    },
+
+    get _shouldUpdateSelection() {
+      return this.selected != null ||
+        (this.selectedValues != null && this.selectedValues.length);
     },
 
     _updateSelected: function() {
@@ -12943,6 +13058,8 @@ item has bolded text. Please see the `<paper-menu>` docs for which attributes
 </script>
 
 <!--
+Material design: [Scrolling techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html)
+
 `paper-scroll-header-panel` contains a header section and a content section.  The
 header is initially on the top part of the view but it scrolls away with the
 rest of the scrollable content.  Upon scrolling slightly up at any point, the
@@ -12953,53 +13070,61 @@ __Important:__ The `paper-scroll-header-panel` will not display if its parent do
 
 Using [layout classes](https://www.polymer-project.org/1.0/docs/migration.html#layout-attributes) or custom properties, you can easily make the `paper-scroll-header-panel` fill the screen
 
-    <body class="fullbleed layout vertical">
-      <paper-scroll-header-panel class="flex">
-        <paper-toolbar>
-          <div>Hello World!</div>
-        </paper-toolbar>
-      </paper-scroll-header-panel>
-    </body>
+```html
+<body class="fullbleed layout vertical">
+  <paper-scroll-header-panel class="flex">
+    <paper-toolbar>
+      <div>Hello World!</div>
+    </paper-toolbar>
+  </paper-scroll-header-panel>
+</body>
+```
 
 or, if you would prefer to do it in CSS, just give `html`, `body`, and `paper-scroll-header-panel` a height of 100%:
 
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-    paper-scroll-header-panel {
-      height: 100%;
-    }
+```css
+html, body {
+  height: 100%;
+  margin: 0;
+}
+paper-scroll-header-panel {
+  height: 100%;
+}
+```
 
 `paper-scroll-header-panel` works well with `paper-toolbar` but can use any element
 that represents a header by adding a `paper-header` class to it.
 
-    <paper-scroll-header-panel>
-      <paper-toolbar>Header</paper-toolbar>
-      <div>Content goes here...</div>
-    </paper-scroll-header-panel>
+```html
+<paper-scroll-header-panel>
+  <paper-toolbar>Header</paper-toolbar>
+  <div>Content goes here...</div>
+</paper-scroll-header-panel>
+```
 
-Styling scroll-header-panel:
+### Styling
+=======
 
-To change background for toolbar when it is at its full size:
+The following custom properties and mixins are available for styling:
 
-    paper-scroll-header-panel {
-      --paper-scroll-header-panel-full-header: {
-        background-color: red;
-      };
-    }
-
-To change the background for toolbar when it is condensed:
-
-    paper-scroll-header-panel {
-      --paper-scroll-header-panel-condensed-header: {
-        background-color: #f4b400;
-      };
-    }
+Custom property | Description | Default
+----------------|-------------|----------
+--paper-scroll-header-panel-full-header | To change background for toolbar when it is at its full size | {}
+--paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {}
+--paper-scroll-header-container | To override or add container styles | {}
 
 @group Paper Element
 @element paper-scroll-header-panel
-@demo demo/index.html
+@demo demo/transform-header-1.html Transform header 1
+@demo demo/transform-header-2.html Transform header 2
+@demo demo/transform-header-3.html Transform header 3
+@demo demo/transform-header-4.html Tranform header 4
+@demo demo/transform-header-5.html Tranform header 5
+@demo demo/transform-header-6.html Transform header 6
+@demo demo/keep-header.html Keep header
+@demo demo/hide-header.html Hide header
+@demo demo/toggle-fixed-header.html Toggle fixed header
+@demo demo/drawer-panel.html Combine with paper-drawer-panel
 @hero hero.svg
 -->
 
@@ -13068,6 +13193,103 @@ Custom property | Description | Default
 be used as the label of the toolbar via `aria-labelledby`.
 
 @demo demo/index.html
+-->
+
+<!-- uqlibrary components -->
+<!-- third party components -->
+<!--<link rel="import" href="../bower_components/byutv-jsonp/byutv-jsonp.html" />-->
+
+<!-- uqlibrary components -->
+<!--
+Element providing access to a user account.
+
+##### Example
+
+    <uqlibrary-api-account></uqlibrary-api-account>
+
+    <script>
+    (function () {
+
+      window.addEventListener('polymer-ready', function() {
+
+        var account = document.querySelector('uqlibrary-api-account');
+
+        account.addEventListener('uqlibrary-api-account-loaded', function(e) {
+          if (e.detail.hasSession) {
+            alert('Logged in as ' + e.detail.id);
+          } else {
+            alert('Not logged in');
+          }
+        });
+
+        account.get();
+
+      });
+
+    }());
+  </script>
+
+@element uqlibrary-api-account
+@blurb Element providing access to a user account.
+@status alpha
+@homepage https://github.com/uqlibrary/uqlibrary-api
+-->
+<!--
+Element that gets term dates
+
+##### Example
+
+    <uqlibrary-api-term-dates></uqlibrary-api-term-dates>
+
+@element uqlibrary-api-term-dates
+@blurb Element providing library guides.
+@status alpha
+@homepage https://github.com/uqlibrary/uqlibrary-api
+-->
+<!--
+Element providing access to a list of applications based on user PType.
+
+##### Example
+
+    <uqlibrary-api-applications ptype="18"></uqlibrary-api-applications>
+
+@element uqlibrary-api-applications
+@blurb Element providing access to a list of applications based on user PType.
+@status alpha
+@homepage https://github.com/uqlibrary/uqlibrary-api
+
+@param - user - user details as returned by account api - optional
+@param - app - application name to check if user has permissions - optional
+@param - checkDate - current date (or specific date) required to check current semestre enrollment for research students, optional, defaults to current date
+data is stored in /data/applications.json in following format (order is important for displaying menu)
+
+[
+  {
+    "isDivider": true,    //optional: indicates new group to follow
+    "app": "uqlibrary-*", //optional: name of web component, eg uqlibrary-borrowing
+    "title": "",          //optional: title to display
+    "description": "",    //optional: description for aria-label
+    "icon": "",           //optional: icon associated with app
+    "link": "",           //optional: url associated with app
+    "ptypes": [1, 11],    //optional: ptypes that have access to the app,
+                                      absence of ptypes indicates - all ptypes have access,
+                                      empty array indicates no one has access
+    "subApplications": [] //optional: special access rules for sub apps, eg Borrowing has Loans and Fines
+  }
+]
+-->
+
+<!--
+Element providing access to UQ Library's API.
+
+##### Example
+
+    <uqlibrary-api></uqlibrary-api>
+
+@element uqlibrary-api
+@blurb Element providing access to UQ Library's API.
+@status alpha
+@homepage https://github.com/uqlibrary/uqlibrary-api
 -->
 
 <!-- third party components -->
@@ -13556,6 +13778,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
 	is: "byutv-jsonp",
 	behaviors: [Byutv.behaviors.Jsonp]
 });</script><!-- common components  -->
+<!-- uqlibrary components -->
 <!-- third party components -->
 <!-- common components  -->
 </head><body><div hidden="" by-vulcanize=""><dom-module id="iron-collapse" assetpath="../bower_components/iron-collapse/">
@@ -14231,6 +14454,12 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       position: relative;
     }
 
+    #img {
+      display: block;
+      width: var(--iron-image-width, auto);
+      height: var(--iron-image-height, auto);
+    }
+
     :host([sizing]) #img {
       display: none;
     }
@@ -14238,6 +14467,8 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
     #placeholder {
       background-color: inherit;
       opacity: 1;
+      @apply(--layout-fit);
+      @apply(--iron-image-placeholder);
     }
 
     #placeholder.faded-out {
@@ -14295,7 +14526,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       },
 
       /**
-       * When a sizing option is uzed (`cover` or `contain`), this determines
+       * When a sizing option is used (`cover` or `contain`), this determines
        * how the image is aligned within the element bounds.
        */
       position: {
@@ -14305,7 +14536,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
 
       /**
        * When `true`, any change to the `src` property will cause the `placeholder`
-       * image to be shown until the
+       * image to be shown until the new image has loaded.
        */
       preload: {
         type: Boolean,
@@ -14416,11 +14647,11 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
         return '';
       }
 
-      var className = 'fit';
       if (this.loaded && this.fade) {
-        className += ' faded-out';
+        return 'faded-out';
       }
-      return className;
+
+      return '';
     },
 
     _computePlaceholderBackgroundUrl: function() {
@@ -15486,6 +15717,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
         content: '';
         background: currentColor;
         opacity: var(--dark-divider-opacity);
+        pointer-events: none;
 
         @apply(--paper-item-focused-before);
       }
@@ -15513,7 +15745,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       is: 'paper-item',
 
       hostAttributes: {
-        role: 'listitem',
+        role: 'option',
         tabindex: '0'
       },
 
@@ -15816,11 +16048,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-
       -webkit-overflow-scrolling: touch;
 
       overflow-x: hidden;
       overflow-y: auto;
+
+      @apply(--paper-scroll-header-container);
     }
 
     #headerContainer {
@@ -15881,7 +16114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   'use strict';
 
-  Polymer({
+  Polymer.PaperScrollHeaderPanel = Polymer({
 
     /**
      * Fired when the content has been scrolled.
@@ -15978,10 +16211,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       /**
-       * The state of the header. The initial value is `HEADER_STATE_EXPANDED`.
-       * Depending on the configuration and the `scrollTop` value,
+       * The state of the header. Depending on the configuration and the `scrollTop` value,
        * the header state could change to
-       * `HEADER_STATE_HIDDEN`, `HEADER_STATE_CONDENSED` and `HEADER_STATE_INTERPOLATED`
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_HIDDEN
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_INTERPOLATED
        */
       headerState: {
         type: Number,
@@ -16022,39 +16257,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
     },
-
-    /**
-     * The header's initial state
-     *
-     * @property HEADER_STATE_EXPANDED
-     * @type number
-     */
-    HEADER_STATE_EXPANDED: 0,
-
-    /**
-     * The header's state when it's hidden.
-     *
-     * @property HEADER_STATE_HIDDEN
-     * @type number
-     */
-    HEADER_STATE_HIDDEN: 1,
-
-    /**
-     * The header's state when it's condensed.
-     *
-     * @property HEADER_STATE_CONDENSED
-     * @type number
-     */
-    HEADER_STATE_CONDENSED: 2,
-
-    /**
-     * The header's state when its progress is somewhere between
-     * the `hidden` and `condensed` state.
-     *
-     * @property HEADER_STATE_INTERPOLATED
-     * @type number
-     */
-    HEADER_STATE_INTERPOLATED: 3,
 
     /**
      * Returns the header element.
@@ -16119,7 +16321,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {boolean} smooth true if the scroll position should be smoothly adjusted.
      */
     scroll: function(top, smooth) {
-      // the scroll event will trigger _updateScrollState directly, 
+      // the scroll event will trigger _updateScrollState directly,
       // However, _updateScrollState relies on the previous `scrollTop` to update the states.
       // Calling _updateScrollState will ensure that the states are synced correctly.
 
@@ -16165,13 +16367,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {boolean} smooth true if the scroll position should be smoothly adjusted.
      */
     condense: function(smooth) {
+      var ctx = Polymer.PaperScrollHeaderPanel;
       if (this.condenses && !this.fixed && !this.noReveal) {
         switch (this.headerState) {
-          case this.HEADER_STATE_HIDDEN:
+          case ctx.HEADER_STATE_HIDDEN:
             this.scroll(this.scroller.scrollTop - (this._headerMaxDelta - this._headerMargin), smooth);
           break;
-          case this.HEADER_STATE_EXPANDED:
-          case this.HEADER_STATE_INTERPOLATED:
+          case ctx.HEADER_STATE_EXPANDED:
+          case ctx.HEADER_STATE_INTERPOLATED:
             this.scroll(this._headerMargin, smooth);
           break;
         }
@@ -16290,22 +16493,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _updateScrollState: function(scrollTop) {
+      var ctx = Polymer.PaperScrollHeaderPanel;
       var deltaScrollTop = scrollTop - this._prevScrollTop;
       var y = Math.max(0, (this.noReveal) ? scrollTop : this._y + deltaScrollTop);
 
       if (y > this._headerMaxDelta) {
         y = this._headerMaxDelta;
-        this._setHeaderState(this.HEADER_STATE_HIDDEN);
+        this._setHeaderState(ctx.HEADER_STATE_HIDDEN);
 
       } else if (this.condenses && this._prevScrollTop >= scrollTop && scrollTop >= this._headerMargin) {
         y = Math.max(y, this._headerMargin);
-        this._setHeaderState(this.HEADER_STATE_CONDENSED);
+        this._setHeaderState(ctx.HEADER_STATE_CONDENSED);
 
       } else if (y === 0) {
-        this._setHeaderState(this.HEADER_STATE_EXPANDED);
+        this._setHeaderState(ctx.HEADER_STATE_EXPANDED);
 
       } else {
-        this._setHeaderState(this.HEADER_STATE_INTERPOLATED);
+        this._setHeaderState(ctx.HEADER_STATE_INTERPOLATED);
       }
 
       if (!this.fixed && y !== this._y) {
@@ -16316,6 +16520,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._y = y;
     }
   });
+
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED = 0;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_HIDDEN = 1;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED = 2;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_INTERPOLATED = 3;
 
 })();
 
@@ -16627,6 +16836,496 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }());
 
 </script>
+<dom-module id="uqlibrary-api-account" assetpath="../bower_components/uqlibrary-api/">
+
+  <template>
+    <uqlibrary-api id="account" uri="{{uri}}" auto="{{auto}}"></uqlibrary-api>
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+
+        is: 'uqlibrary-api-account',
+        uri: '/account',
+        auto: false,
+
+        ready: function () {
+          var that = this;
+
+          this.$.account.addEventListener('uqlibrary-api', function(e) {
+            that.fire('uqlibrary-api-account-loaded', e.detail);
+          });
+
+          if (this.auto)
+            this.get();
+        },
+
+        /**
+         * Gets the user account.
+         *
+         * @method get
+         */
+        get: function () {
+          var now = new Date().getTime();
+          this.uri = '/account?' + now;
+
+          this.$.account.get();
+        },
+
+        /**
+         * Redirect to login with a URL to return to.
+         *
+         * @param url
+         */
+        login: function (url) {
+          document.location.href = "https://www.library.uq.edu.au/uqlais/login?return=" + window.btoa(url);
+        },
+
+        /**
+         * Redirect to login with a URL to return to.
+         *
+         * @param url
+         */
+        logout: function () {
+          document.location.href = "https://www.library.uq.edu.au/logout";
+        }
+      });
+    })();
+  </script>
+
+</dom-module>
+<dom-module id="uqlibrary-api-term-dates" assetpath="../bower_components/uqlibrary-api/">
+
+  <template>
+    <uqlibrary-api id="list"></uqlibrary-api>
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+
+        is: 'uqlibrary-api-term-dates',
+
+        properties: {
+          date: {
+            type: Date,
+            value: null
+          }
+        },
+
+        inherits: 'uqlibrary-api',
+
+        baseUri : '/term_dates',
+        startBuffer : 1000 * 60 * 60 * 24 * 7 * 3,  // 3 weeks
+        endBuffer : 1000 * 60 * 60 * 24 * 7,    // 1 week
+
+        /**
+         * Fired when the object has loaded.
+         *
+         * @event uqlibrary-api-term-dates
+         */
+        created: function () {
+        },
+
+        ready: function () {
+          var that = this;
+
+          this.$.list.addEventListener('uqlibrary-api', function(e) {
+            var results = e.detail;
+            var resultsForDate = {};
+
+            for (var property in results) {
+              var semesterData = that.getYearSemesterByCode(results[property].code);
+              results[property].semester = semesterData.semester;
+              results[property].year = semesterData.year;
+
+              //find a list of terms for specified date only
+              if (that.date && that.isTermDate(results[property], that.date)) {
+                resultsForDate[results[property].code] = results[property];
+              }
+            }
+
+            that.list = that.date ? resultsForDate : results;
+            that.fire('uqlibrary-api-term-dates', that.list);
+          });
+
+        },
+
+        /**
+         *  Initiates request to get term dates
+         *
+         *  @param args.codes - array of term codes,
+         *  @param args.date - terms will be returned for this date only  Date()
+         */
+        get: function (args) {
+          this.date = null;
+
+          if (args && args.date) {
+            this.date = args.date;
+          }
+
+          if (args && args.codes){
+            var codes = args.codes.join('&codes[]=');
+            this.$.list.uri = this.baseUri + '?codes[]=' + codes;
+          }
+          else {
+            this.$.list.uri = this.baseUri;
+          }
+          this.$.list.get();
+        },
+
+        /**
+         *  Checks if date belongs to a term with start/end buffer
+         *
+         *  @param term - object for term to test,
+         *  @param date - test Date()
+         * @returns {{year: *, semester: number}}
+         */
+        isTermDate: function (term, date) {
+          var dateValue = date.valueOf();
+          var startDate = new Date(term.begin).valueOf() - this.startBuffer;
+          var endDate = new Date(term.end).valueOf() + this.endBuffer;
+
+          return dateValue >= startDate && dateValue <= endDate;
+        },
+
+        /**
+         * Returns semestre year/number based on semestre code
+         *
+         * @param code
+         * @returns {{year: *, semester: number}}
+         */
+        getYearSemesterByCode: function(code) {
+          var term = code;
+
+          // 6520 - semestre 1, 2015
+          // Year: 2000 + 6520 - 5000 = 2015
+          // Semestre: 65"20" - semestre 1
+          // 6480 - semester 3 year 2014,
+          var year = 2000 + parseInt(((parseInt(term) - 5000 + '').substring(0,2)));
+
+          var semester = 1;
+          var semesterCode = parseInt(term.substr(-2));
+          if(semesterCode >= 50 && semesterCode <= 79) {
+            semester = 2;
+          } else if(semesterCode >= 80) {
+            semester = 3;
+          }
+
+          return { year: year, semester: semester };
+        }
+
+      });
+    })();
+  </script>
+
+</dom-module>
+<dom-module id="uqlibrary-api-applications" assetpath="../bower_components/uqlibrary-api/">
+
+  <template>
+    <uqlibrary-api-term-dates id="termDates"></uqlibrary-api-term-dates>
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+
+        is: 'uqlibrary-api-applications',
+
+        properties: {
+          user: {
+            type: Object,
+            value: {}
+          },
+          url: {
+            type: String,
+            value: 'data/applications.json'
+          },
+
+          app: {
+            type: String,
+            value: ''
+          },
+          checkDate: {
+            type: Date,
+            value: null
+          }
+        },
+
+        method: 'GET',
+        auto: false,
+        checkDate: null,
+
+        ready: function() {
+          var that = this;
+
+          this.$.termDates.addEventListener("uqlibrary-api-term-dates", function (e) {
+            that.executeRequest(e.detail);
+          });
+        },
+
+        /**
+         * Gets the apps list based on user ptype and/or
+         *
+         * @method get
+         */
+        get: function() {
+
+          var that = this;
+          if (this.user)
+            this.ptype = this.user.type;
+
+          //for research students extra processing - get current term dates (to filter classes later)
+          if (this.ptype == 2 || this.ptype == 22) {
+
+            var termCodes = this.user.classes.map(function (item) {
+              return item.STRM;
+            });
+
+            if (!this.checkDate)
+              this.checkDate = new Date();
+
+            this.$.termDates.get({codes: termCodes, date: this.checkDate });
+
+          } else {
+            this.executeRequest();
+          }
+        },
+
+        executeRequest: function(currentTerms) {
+          var that = this;
+
+          var xobj = new XMLHttpRequest();
+
+//          xobj.open('GET', this.resolveUrl(this.url), true);
+          xobj.open('GET', this.url, true);
+
+          xobj.onreadystatechange = function () {
+
+            if (xobj.readyState == 4 && xobj.status == "200") {
+              var response = xobj.responseText;
+              var apps = JSON.parse(response);
+
+
+              //filter out by application
+              if (that.app) {
+                apps = apps.filter(function(element){
+                  return element.app && element.app == that.app;
+                });
+              }
+
+              //filter by ptype
+              if (that.ptype) {
+                apps = apps.filter(function(element){
+                  var include = element.isDivider || !element.ptypes || element.ptypes.indexOf(Number(that.ptype)) >= 0;
+
+                  //filter by specific user fields
+                  switch(element.app) {
+                    case "uqlibrary-masquerade":
+                      include = include && that.user && that.user.canMasquerade;
+                      break;
+                    case "uqlibrary-courses":
+                      //for research students only, check if they have current subjects other than RSCH
+                      if (currentTerms) {
+                        //filter out research classes
+                        var currentClasses = that.user.classes.filter(function(item) {
+                          return item.SUBJECT != "RSCH" && currentTerms[item.STRM];
+                        });
+                        include = include && currentClasses.length > 0;
+                      }
+                      break;
+                  }
+                  return include;
+
+                });
+              } else {
+                apps = apps.filter(function(element){
+                  return element.isDivider || !element.ptypes;
+                });
+              }
+              that.fire('uqlibrary-api-applications-loaded', apps);
+            }
+          };
+          xobj.send(null);
+        }
+
+      });
+    })();
+  </script>
+
+</dom-module>
+<dom-module id="uqlibrary-api" assetpath="../bower_components/uqlibrary-api/">
+
+  <template>
+    <iron-ajax id="ajax" url="{{url}}" headers="{{headers}}" auto="{{auto}}" method="{{method}}" handleas="json" on-response="handleResponse" on-error="handleError"></iron-ajax>
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+
+        is: 'uqlibrary-api',
+
+        properties: {
+          uri: {
+            type: String,
+            value: ''
+          },
+
+          method: {
+            type: String,
+            value: 'GET'
+          },
+
+          auto: {
+            type: Boolean,
+            value: false
+          },
+
+          baseApiUrl: {
+            type: String,
+            value: 'https://app.library.uq.edu.au/api'
+          }
+
+        },
+        useMockData: false,
+        headers: {},
+
+        ready: function() {
+          console.log('hi from uql-api');
+          var cookie = this.getCookie('UQLMockData');
+          if (typeof cookie !== "undefined") {
+            this.useMockData = (cookie === 'enabled');
+          }
+        },
+
+        handleResponse: function (e) {
+          this.fire('uqlibrary-api', this.$.ajax.response);
+        },
+
+        handleError: function (event, object, sender) {
+          this.fire('uqlibrary-api', object.xhr);
+        },
+
+        loadMockData: function() {
+          var that = this;
+
+          var xobj = new XMLHttpRequest();
+          var substringTo = this.uri.indexOf('?') > 0 ? this.uri.indexOf('?') : this.uri.length;
+
+          var fileName = this.resolveUrl('mock/' + this.uri.substring(1, substringTo).replace(/([^a-z0-9]\/)/gi, '_') + '_' + this.method.toLowerCase() +'.json');
+
+          if (this.uri.indexOf('/authors/search/') >= 0) {
+            fileName = this.resolveUrl('mock/authors/search/' + this.method.toLowerCase() +'.json');
+          }
+
+          xobj.open('GET', fileName, true);
+          xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+              var response = xobj.responseText;
+
+
+              if (fileName.match(/facilities_availability/)) {
+                var now = new Date();
+
+                var startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+                var availableFrom = startOfDay / 1000 + 7 * 60 * 60;
+                var availableTo = startOfDay / 1000 + 20 * 60 * 60;
+
+                var bookingFrom = startOfDay / 1000 + 10 * 60 * 60;
+                var bookingTo = startOfDay / 1000 + 11 * 60 * 60;
+
+
+                response = response.replace(/"{AVAILABLE_FROM}"/g, availableFrom);
+                response = response.replace(/"{AVAILABLE_TO}"/g, availableTo);
+
+                response = response.replace(/"{BOOKING_START_TIME}"/g, bookingFrom);
+                response = response.replace(/"{BOOKING_END_TIME}"/g, bookingTo);
+              }
+              else if (fileName.match(/account_get/)) {
+                //get user role from a cookie
+                var ptype = that.getCookie('UQLMockData-PType');
+
+                //set default user role to undegraduate
+                if (!ptype){
+                  ptype = 1;
+                }
+
+                response = response.replace(/{PTYPE}/g, ptype);
+              }
+
+              that.fire('uqlibrary-api', JSON.parse(response));
+            }
+          };
+          xobj.send(null);
+        },
+
+        /**
+         * Submits request
+         * args - optional parameters
+         * args = {
+         *  addTimestamp : true //to avoid browser cache
+         *  body: {} //data to be passed in the body as json (not form data)
+         * }
+         * @method get
+         */
+        get: function (args) {
+          if (this.useMockData) {
+            this.loadMockData();
+          } else {
+            this.setHeaders();
+            url = this.baseApiUrl + this.uri;
+
+            if (args && args.addTimestamp) {
+              url += (url.indexOf('?') >= 0 ? '&' : '?');
+              url += "timestamp=" + (new Date()).getTime();
+            }
+
+            if (args && args.body) {
+              this.$.ajax.contentType = "application/json";
+              this.$.ajax.body = JSON.stringify(args.body);
+            }
+
+            this.url = url;
+            this.$.ajax.generateRequest();
+          }
+        },
+
+        /**
+         * Sets the headers for the API request.
+         */
+        setHeaders: function () {
+          var cookie = this.getCookie('UQLID');
+          if (cookie !== "undefined") {
+            this.headers = {
+              "X-Uql-Token": cookie
+            };
+          } else {
+            return '';
+          }
+        },
+
+        /**
+         * Gets a cookie by name
+         * @param name the name of the cookie to return
+         * @returns {String}
+         */
+        getCookie: function (name) {
+          var parts = document.cookie.split(";");
+          for (var i = 0, l = parts.length; i < l; i++) {
+            var cookieParts = parts[i].trim().split('=');
+            if (cookieParts[0] === name) {
+              return cookieParts[1];
+            }
+          }
+        }
+      });
+    })();
+  </script>
+
+</dom-module>
 <dom-module id="uq-minimal-footer" assetpath="/">
 
   <style>
@@ -17621,8 +18320,7 @@ uql-menu {
 </style>
 
   <template>
-
-    <iron-ajax id="getAccountApi" content-type="application/json" method="GET" handle-as="json" on-response="accountResponse" on-error="accountResponseError" debounce-duration="300" verbose="{{debug}}"></iron-ajax>
+    <uqlibrary-api-account id="accountApi" auto="true"></uqlibrary-api-account>
 
     <template is="dom-if" if="{{!isLoggedIn}}">
       <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton"><iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>Log in</paper-button>
@@ -17638,84 +18336,48 @@ uql-menu {
   Polymer({
     is: 'uql-login-button',
     properties: {
-      loginUrl: {
-        type: String,
-        value: "https://www.library.uq.edu.au/uqlais/login?return="
+      user: {
+        type: Object,
+        value: { }
       },
-      accountUrl: {
-        type: String,
-        value: 'https://app.library.uq.edu.au/api/account'
-      },
-      logoutUrl: {
-        type: String,
-        value: "https://www.library.uq.edu.au/logout"
-      },
-      isLoggedIn: {
+      verbose: {
         type: Boolean,
         value: false
       },
-      verbose: {
+      isLoggedIn: {
         type: Boolean,
         value: false
       }
     },
 
     ready: function() {
-      if (this.hasSession() && document.cookie.indexOf("UQLMockData") === -1) {
-        var now = new Date().getTime();
+      var that = this;
 
-        this.$.getAccountApi.url = this.accountUrl + '?' + now;
-        this.$.getAccountApi.headers = {
-          "X-Uql-Token": this.getCookie("UQLID")
-        };
-        this.$.getAccountApi.generateRequest();
-      }
-    },
+      this.$.accountApi.addEventListener('uqlibrary-api-account-loaded', function(response) {
+        if (response.detail.hasSession !== null) {
+          that.isLoggedIn = response.detail.hasSession;
 
-    accountResponse: function(response) {
-      this.isLoggedIn = true;
-    },
-
-    accountResponseError: function(response) {
-      this.isLoggedIn = false;
+          if (response.detail.hasSession) {
+            that.user = response.detail;
+          }
+        } else {
+          that.user = {};
+          that.isLoggedIn = false;
+        }
+      });
     },
 
     performLogin: function() {
-      if (document.cookie.indexOf("UQLMockData") >= 0) {
-        this.isLoggedIn = true;
-      } else {
-        var url = window.location.href;
-        document.location.href = this.loginUrl + window.btoa(url);
-      }
+      this.$.accountApi.login(window.location.href);
     },
 
     performLogout: function() {
+      this.user = {};
       this.isLoggedIn = false;
 
-      if (document.cookie.indexOf("UQLMockData") === -1) {
-        document.location.href = this.logoutUrl;
-      }
-
-    },
-
-    hasSession: function()  {
-      return document.cookie.indexOf("UQLID") >= 0;
-    },
-
-    /**
-     * Gets a cookie by name
-     * @param name the name of the cookie to return
-     * @returns {String}
-     */
-    getCookie: function (name) {
-      var parts = document.cookie.split(";");
-      for (var i = 0, l = parts.length; i < l; i++) {
-        var cookieParts = parts[i].trim().split('=');
-        if (cookieParts[0] === name) {
-          return cookieParts[1];
-        }
-      }
+      this.$.accountApi.logout();
     }
+
   });
 })();
 
@@ -17879,13 +18541,18 @@ uql-menu {
           },
           showChatStatus: {
             type: Boolean,
-            value: false
+            value: true
           },
           showLoginStatus: {
             type: Boolean,
-            value: false
+            value: true
           }
+        },
+
+        ready: function() {
+          console.log(this.$.api);
         }
+
       });
     })();
   </script>
