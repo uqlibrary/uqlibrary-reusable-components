@@ -68,13 +68,18 @@
           },
           showChatStatus: {
             type: Boolean,
-            value: false
+            value: true
           },
           showLoginStatus: {
             type: Boolean,
-            value: false
+            value: true
           }
+        },
+
+        ready: function() {
+          console.log(this.$.api);
         }
+
       });
     })();
   </script>
