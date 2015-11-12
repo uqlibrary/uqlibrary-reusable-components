@@ -256,12 +256,12 @@
         },
         {
           "label": "Events",
-          "href": "/item2",
-          "subtext": "Item subtext"
+          "href": "/about-us/events",
+          "subtext": "Active"
         },
         {
           "label": "Friends of the Library",
-          "href": "/item3"
+          "href": "/about-us/friends-library"
         },
         {
           "label": "Membership",
@@ -269,11 +269,11 @@
         },
         {
           "label": "History of the Library",
-          "href": "/item3"
+          "href": "/about-us/history-library"
         },
         {
           "label": "Giving to the Library",
-          "href": "/item3"
+          "href": "/about-us/giving-to-library"
         },
         {
           "label": "Library tours",
@@ -281,7 +281,7 @@
         },
         {
           "label": "Organisational structure",
-          "href": "/item3",
+          "href": "/about-us/organisational-structure",
           "right": "right"
         },
         {
@@ -293,25 +293,25 @@
         {
           "label": "Reports & publications",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/reports-and-publications",
           "right": "right"
         },
         {
           "label": "Employment",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/employment",
           "right": "right"
         },
         {
           "label": "Awards & competitions",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/awards-and-competitions",
           "right": "right"
         },
         {
           "label": "Contacting us & feedback",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/contact-us-and-feedback",
           "right": "right"
         }
       ]
