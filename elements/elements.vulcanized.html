@@ -17102,6 +17102,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template>
     <iron-ajax id="ajax" url="{{url}}" headers="{{headers}}" auto="{{auto}}" method="{{method}}" handleas="json" on-response="handleResponse" on-error="handleError"></iron-ajax>
+
   </template>
 
   <script>
@@ -17111,6 +17112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'uqlibrary-api',
 
         properties: {
+
           uri: {
             type: String,
             value: ''
@@ -17240,12 +17242,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          */
         setHeaders: function () {
           var cookie = this.getCookie('UQLID');
-          if (cookie !== "undefined") {
+          if (cookie) {
             this.headers = {
               "X-Uql-Token": cookie
             };
-          } else {
-            return '';
           }
         },
 
