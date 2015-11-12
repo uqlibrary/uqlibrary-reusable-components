@@ -17142,8 +17142,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         },
 
-        handleResponse: function (e) {
-          this.fire('uqlibrary-api', this.$.ajax.response);
+        handleResponse: function (event) {
+          this.fire('uqlibrary-api', event.detail.response);
         },
 
         handleError: function (event, object, sender) {
