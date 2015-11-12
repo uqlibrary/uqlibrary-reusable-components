@@ -16791,15 +16791,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         is: 'uqlibrary-api-account',
 
-        uri: {
-          type: String,
-          value: '/account'
+        properties: {
+          auto: {
+            type: Boolean,
+            value: false
+          }
         },
 
-        auto: {
-          type: Boolean,
-          value: false
-        },
+        uri: '/account',
 
         ready: function () {
           var that = this;
