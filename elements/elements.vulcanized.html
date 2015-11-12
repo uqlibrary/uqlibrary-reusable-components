@@ -16790,8 +16790,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       Polymer({
 
         is: 'uqlibrary-api-account',
-        uri: '/account',
-        auto: false,
+
+        uri: {
+          type: String,
+          value: '/account'
+        },
+
+        auto: {
+          type: Boolean,
+          value: false
+        },
 
         ready: function () {
           var that = this;
@@ -16800,8 +16808,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             that.fire('uqlibrary-api-account-loaded', e.detail);
           });
 
-          if (this.auto)
-            this.get();
+//          if (this.auto)
+//            this.get();
         },
 
         /**
