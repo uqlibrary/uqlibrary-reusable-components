@@ -3,6 +3,30 @@
   <link rel="import" href="../elements.html">
   <link rel="stylesheet" href="../../styles/elements-styles.css">
 
+  <style is="custom-style">
+
+    paper-tooltip {
+      margin-top: -5px;
+      margin-left: 5px;
+    }
+
+    paper-tooltip /deep/ #tooltip.paper-tooltip {
+      background-color: #fff;
+      color: #000;
+      font-size: 14px;
+      padding: 20px;
+    }
+
+    paper-tooltip /deep/.paper-tooltip:before {
+      border-bottom: 8px solid #fff;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      content: '';
+      position: absolute;
+      top: -8px;
+    }
+
+  </style>
   <template>
 
     <byutv-jsonp
@@ -13,12 +37,28 @@
             debounce-duration="300"></byutv-jsonp>
 
     <template is="dom-if" if="{{!isChatOnline}}">
-      <paper-button class="button-inverse" on-tap="openChat" id="chatOfflineButton"><iron-icon icon="notification:sms-failed" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOfflineButton">
+        <iron-icon icon="notification:sms-failed" aria-label="UQ Library chat is offline"></iron-icon>
+        <template is="dom-if" if="{{buttonTitle}}">
+          <div class="button-title">{{buttonTitle}}</div>
+        </template>
+      </paper-button>
     </template>
 
     <template is="dom-if" if="{{isChatOnline}}">
-      <paper-button class="button-inverse" on-tap="openChat" id="chatOnlineButton"><iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon></paper-button>
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOnlineButton">
+        <iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon>
+        <div class="button-title">{{buttonTitle}}</div></paper-button>
     </template>
+
+    <paper-tooltip id="chatStatusTooltip" position="bottom left" offset="25">
+      <template is="dom-if" if="{{isChatOnline}}">
+        {{chatOnlineText}}
+      </template>
+      <template is="dom-if" if="{{!isChatOnline}}">
+        {{chatOfflineText}}
+      </template>
+    </paper-tooltip>
 
   </template>
 

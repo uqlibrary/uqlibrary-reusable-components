@@ -13138,6 +13138,120 @@ be used as the label of the toolbar via `aria-labelledby`.
 @demo demo/index.html
 -->
 
+<!--
+`<fade-in-animation>` animates the opacity of an element from 0 to 1.
+
+Configuration:
+```
+{
+  name: 'fade-in-animation',
+  node: <node>
+  timing: <animation-timing>
+}
+```
+-->
+
+<script>
+
+  Polymer({
+
+    is: 'fade-in-animation',
+
+    behaviors: [
+      Polymer.NeonAnimationBehavior
+    ],
+
+    configure: function(config) {
+      var node = config.node;
+      this._effect = new KeyframeEffect(node, [
+        {'opacity': '0'},
+        {'opacity': '1'}
+      ], this.timingFromConfig(config));
+      return this._effect;
+    }
+
+  });
+
+</script>
+<!--
+`<fade-out-animation>` animates the opacity of an element from 1 to 0.
+
+Configuration:
+```
+{
+  name: 'fade-out-animation',
+  node: <node>
+  timing: <animation-timing>
+}
+```
+-->
+
+<script>
+
+  Polymer({
+
+    is: 'fade-out-animation',
+
+    behaviors: [
+      Polymer.NeonAnimationBehavior
+    ],
+
+    configure: function(config) {
+      var node = config.node;
+      this._effect = new KeyframeEffect(node, [
+        {'opacity': '1'},
+        {'opacity': '0'}
+      ], this.timingFromConfig(config));
+      return this._effect;
+    }
+
+  });
+
+</script>
+<!--
+Material design: [Tooltips](https://www.google.com/design/spec/components/tooltips.html)
+
+`<paper-tooltip>` is a label that appears on hover and focus when the user
+hovers over an element with the cursor or with the keyboard. It will be centered
+to an anchor element specified in the `for` attribute, or, if that doesn't exist,
+centered to the parent node containing it.
+
+Example:
+
+    <div style="display:inline-block">
+      <button>Click me!</button>
+      <paper-tooltip>Tooltip text</paper-tooltip>
+    </div>
+
+    <div>
+      <button id="btn">Click me!</button>
+      <paper-tooltip for="btn">Tooltip text</paper-tooltip>
+    </div>
+
+The tooltip can be positioned on the top|bottom|left|right of the anchor using
+the `position` attribute. The default position is bottom.
+
+    <paper-tooltip for="btn" position="left">Tooltip text</paper-tooltip>
+    <paper-tooltip for="btn" position="top">Tooltip text</paper-tooltip>
+
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-tooltip-background` | The background color of the tooltip | `#616161`
+`--paper-tooltip-opacity` | The opacity of the tooltip | `0.9`
+`--paper-tooltip-text-color` | The text color of the tooltip | `white`
+`--paper-tooltip` | Mixin applied to the tooltip | `{}`
+
+@group Paper Elements
+@element paper-tooltip
+@demo demo/index.html
+-->
+
+<!--<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">-->
+
 <!-- uqlibrary components -->
 <!-- third party components -->
 <!--<link rel="import" href="../bower_components/byutv-jsonp/byutv-jsonp.html" />-->
@@ -13721,6 +13835,8 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
 	is: "byutv-jsonp",
 	behaviors: [Byutv.behaviors.Jsonp]
 });</script><!-- common components  -->
+<!--<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">-->
+
 <!-- uqlibrary components -->
 <!-- third party components -->
 <!-- common components  -->
@@ -16779,6 +16895,309 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }());
 
 </script>
+<dom-module id="paper-tooltip" assetpath="../bower_components/paper-tooltip/">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: absolute;
+        outline: none;
+        z-index: 1002;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: default;
+      }
+
+      #tooltip {
+        display: block;
+        outline: none;
+        @apply(--paper-font-common-base);
+        font-size: 10px;
+        line-height: 1;
+
+        background-color: var(--paper-tooltip-background, #616161);
+        opacity: var(--paper-tooltip-opacity, 0.9);
+        color: var(--paper-tooltip-text-color, white);
+
+        padding: 8px;
+        border-radius: 2px;
+
+        @apply(--paper-tooltip);
+      }
+
+      /* Thanks IE 10. */
+      .hidden {
+        display: none !important;
+      }
+    </style>
+
+    <div id="tooltip" class="hidden">
+      <content></content>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'paper-tooltip',
+
+      hostAttributes: {
+        role: 'tooltip',
+        tabindex: -1
+      },
+
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior
+      ],
+
+      properties: {
+        /**
+         * The id of the element that the tooltip is anchored to. This element
+         * must be a sibling of the tooltip.
+         */
+        for: {
+          type: String,
+          observer: '_forChanged'
+        },
+
+        /**
+         * Positions the tooltip to the top, right, bottom, left of its content.
+         */
+        position: {
+          type: String,
+          value: 'bottom'
+        },
+
+        /**
+         * If true, no parts of the tooltip will ever be shown offscreen.
+         */
+        fitToVisibleBounds: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * The spacing between the top of the tooltip and the element it is
+         * anchored to.
+         */
+        offset: {
+          type: Number,
+          value: 14
+        },
+
+        /**
+         * This property is deprecated, but left over so that it doesn't
+         * break exiting code. Please use `offset` instead. If both `offset` and
+         * `marginTop` are provided, `marginTop` will be ignored.
+         * @deprecated since version 1.0.3
+         */
+        marginTop: {
+          type: Number,
+          value: 14
+        },
+
+        /**
+         * The delay that will be applied before the `entry` animation is
+         * played when showing the tooltip.
+         */
+        animationDelay: {
+          type: Number,
+          value: 500
+        },
+
+        /**
+         * The entry and exit animations that will be played when showing and
+         * hiding the tooltip. If you want to override this, you must ensure
+         * that your animationConfig has the exact format below.
+         */
+        animationConfig: {
+          type: Object,
+          value: function() {
+            return {
+              'entry': [{
+                name: 'fade-in-animation',
+                node: this,
+                timing: {delay: 0}
+              }],
+              'exit': [{
+                name: 'fade-out-animation',
+                node: this
+              }]
+            }
+          }
+        },
+
+        _showing: {
+          type: Boolean,
+          value: false
+        }
+      },
+
+      listeners: {
+        'neon-animation-finish': '_onAnimationFinish',
+        'mouseenter': 'hide'
+      },
+
+      /**
+       * Returns the target element that this tooltip is anchored to. It is
+       * either the element given by the `for` attribute, or the immediate parent
+       * of the tooltip.
+       */
+      get target () {
+        var parentNode = Polymer.dom(this).parentNode;
+        // If the parentNode is a document fragment, then we need to use the host.
+        var ownerRoot = Polymer.dom(this).getOwnerRoot();
+
+        var target;
+        if (this.for) {
+          target = Polymer.dom(ownerRoot).querySelector('#' + this.for);
+        } else {
+          target = parentNode.nodeType == Node.DOCUMENT_FRAGMENT_NODE ?
+              ownerRoot.host : parentNode;
+        }
+
+        return target;
+      },
+
+      attached: function() {
+        this._target = this.target;
+
+        this.listen(this._target, 'mouseenter', 'show');
+        this.listen(this._target, 'focus', 'show');
+        this.listen(this._target, 'mouseleave', 'hide');
+        this.listen(this._target, 'blur', 'hide');
+        this.listen(this._target, 'tap', 'hide');
+      },
+
+      detached: function() {
+        if (this._target) {
+          this.unlisten(this._target, 'mouseenter', 'show');
+          this.unlisten(this._target, 'focus', 'show');
+          this.unlisten(this._target, 'mouseleave', 'hide');
+          this.unlisten(this._target, 'blur', 'hide');
+          this.unlisten(this._target, 'tap', 'hide');
+        }
+      },
+
+      show: function() {
+        // If the tooltip is already showing, there's nothing to do.
+        if (this._showing)
+          return;
+
+        if (Polymer.dom(this).textContent.trim() === '')
+          return;
+
+
+        this.cancelAnimation();
+        this._showing = true;
+        this.toggleClass('hidden', false, this.$.tooltip);
+        this.updatePosition();
+
+        this.animationConfig.entry[0].timing.delay = this.animationDelay;
+        this._animationPlaying = true;
+        this.playAnimation('entry');
+      },
+
+      hide: function() {
+        // If the tooltip is already hidden, there's nothing to do.
+        if (!this._showing) {
+          return;
+        }
+
+        // If the entry animation is still playing, don't try to play the exit
+        // animation since this will reset the opacity to 1. Just end the animation.
+        if (this._animationPlaying) {
+          this.cancelAnimation();
+          this._showing = false;
+          this._onAnimationFinish();
+          return;
+        }
+
+        this._showing = false;
+        this._animationPlaying = true;
+        this.playAnimation('exit');
+      },
+
+      _forChanged: function() {
+        this._target = this.target;
+      },
+
+      updatePosition: function() {
+        if (!this._target)
+          return;
+
+        var offset = this.offset;
+        // If a marginTop has been provided by the user (pre 1.0.3), use it.
+        if (this.marginTop != 14 && this.offset == 14)
+          offset = this.marginTop;
+
+        var parentRect = this.offsetParent.getBoundingClientRect();
+        var targetRect = this._target.getBoundingClientRect();
+        var thisRect = this.getBoundingClientRect();
+
+        var horizontalCenterOffset = (targetRect.width - thisRect.width) / 2;
+        var verticalCenterOffset = (targetRect.height - thisRect.height) / 2;
+
+        var targetLeft = targetRect.left - parentRect.left;
+        var targetTop = targetRect.top - parentRect.top;
+
+        var tooltipLeft, tooltipTop;
+
+        switch (this.position) {
+          case 'top':
+            tooltipLeft = targetLeft + horizontalCenterOffset;
+            tooltipTop = targetTop - thisRect.height - offset;
+            break;
+          case 'bottom':
+            tooltipLeft = targetLeft + horizontalCenterOffset;
+            tooltipTop = targetTop + targetRect.height + offset;
+            break;
+          case 'left':
+            tooltipLeft = targetLeft - thisRect.width - offset;
+            tooltipTop = targetTop + verticalCenterOffset;
+            break;
+          case 'right':
+            tooltipLeft = targetLeft + targetRect.width + offset;
+            tooltipTop = targetTop + verticalCenterOffset;
+            break;
+        }
+
+        // TODO(noms): This should use IronFitBehavior if possible.
+        if (this.fitToVisibleBounds) {
+          // Clip the left/right side.
+          if (tooltipLeft + thisRect.width > window.innerWidth) {
+            this.style.right = '0px';
+            this.style.left = 'auto';
+          } else {
+            this.style.left = Math.max(0, tooltipLeft) + 'px';
+            this.style.right = 'auto';
+          }
+
+          // Clip the top/bottom side.
+          if (tooltipTop + thisRect.height > window.innerHeight) {
+            this.style.bottom = '0px';
+            this.style.top = 'auto';
+          } else {
+            this.style.top = Math.max(0, tooltipTop) + 'px';
+            this.style.bottom = 'auto';
+          }
+        } else {
+          this.style.left = tooltipLeft + 'px';
+          this.style.top = tooltipTop + 'px';
+        }
+
+      },
+
+      _onAnimationFinish: function() {
+        this._animationPlaying = false;
+        if (!this._showing) {
+          this.toggleClass('hidden', true, this.$.tooltip);
+        }
+      },
+    });
+  </script>
+</dom-module>
 <dom-module id="uqlibrary-api-account" assetpath="../bower_components/uqlibrary-api/">
 
   <template>
@@ -17274,17 +17693,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <style>
 paper-button {
-  font-size: 14px; }
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
 
-.button-inverse {
-  color: #FFF; }
-
-.button-action {
-  background-color: #2377CB; }
-
-.button-inverse:focus {
-  outline: #3b99fc auto 5px; }
-
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
 uql-menu,
 .header-container,
 .footer-container {
@@ -17422,17 +17848,24 @@ uql-menu {
 <dom-module id="uql-mega-menu" assetpath="uql-mega-menu/">
   <style>
 paper-button {
-  font-size: 14px; }
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
 
-.button-inverse {
-  color: #FFF; }
-
-.button-action {
-  background-color: #2377CB; }
-
-.button-inverse:focus {
-  outline: #3b99fc auto 5px; }
-
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
 uql-menu,
 .header-container,
 .footer-container {
@@ -17991,17 +18424,24 @@ uql-menu {
 
   <style>
 paper-button {
-  font-size: 14px; }
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
 
-.button-inverse {
-  color: #FFF; }
-
-.button-action {
-  background-color: #2377CB; }
-
-.button-inverse:focus {
-  outline: #3b99fc auto 5px; }
-
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
 uql-menu,
 .header-container,
 .footer-container {
@@ -18080,17 +18520,57 @@ uql-menu {
 
 </style>
 
+  <style is="custom-style">
+
+    paper-tooltip {
+      margin-top: -5px;
+      margin-left: 5px;
+    }
+
+    paper-tooltip /deep/ #tooltip.paper-tooltip {
+      background-color: #fff;
+      color: #000;
+      font-size: 14px;
+      padding: 20px;
+    }
+
+    paper-tooltip /deep/.paper-tooltip:before {
+      border-bottom: 8px solid #fff;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      content: '';
+      position: absolute;
+      top: -8px;
+    }
+
+  </style>
   <template>
 
     <byutv-jsonp auto="" url="{{chatStatusUrl}}" on-response="handleChatStatusResponse" on-error="handleChatStatusError" debounce-duration="300"></byutv-jsonp>
 
     <template is="dom-if" if="{{!isChatOnline}}">
-      <paper-button class="button-inverse" on-tap="openChat" id="chatOfflineButton"><iron-icon icon="notification:sms-failed" aria-label="UQ Library chat is offline"></iron-icon></paper-button>
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOfflineButton">
+        <iron-icon icon="notification:sms-failed" aria-label="UQ Library chat is offline"></iron-icon>
+        <template is="dom-if" if="{{buttonTitle}}">
+          <div class="button-title">{{buttonTitle}}</div>
+        </template>
+      </paper-button>
     </template>
 
     <template is="dom-if" if="{{isChatOnline}}">
-      <paper-button class="button-inverse" on-tap="openChat" id="chatOnlineButton"><iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon></paper-button>
+      <paper-button class="button-inverse" on-tap="openChat" id="chatOnlineButton">
+        <iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon>
+        <div class="button-title">{{buttonTitle}}</div></paper-button>
     </template>
+
+    <paper-tooltip id="chatStatusTooltip" position="bottom left" offset="25">
+      <template is="dom-if" if="{{isChatOnline}}">
+        {{chatOnlineText}}
+      </template>
+      <template is="dom-if" if="{{!isChatOnline}}">
+        {{chatOfflineText}}
+      </template>
+    </paper-tooltip>
 
   </template>
 
@@ -18106,13 +18586,29 @@ uql-menu {
         type: Boolean,
         value: false
       },
+
+      buttonTitle: {
+        type: String,
+        value: "Ask Us"
+      },
+
+      chatOnlineText: {
+        type: String,
+        value: "Chat with us now!"
+      },
+
+      chatOfflineText: {
+        type: String,
+        value: "Chat is offline."
+      },
+
       chatOptions : {
         type: Object,
         value : {
           height: '350px',
           width: '350px',
-          offline_url: '',
-          base_domain: "v2.libanswers.com",
+          offlineUrl: '',
+          baseDomain: "v2.libanswers.com",
           iid: "1193",
           hash: "fdbdf3c1190c1b6147b92d38c20194a8"
         }
@@ -18120,16 +18616,30 @@ uql-menu {
     },
 
     handleChatStatusResponse: function(response) {
+      var that = this;
       this.isChatOnline = response.detail.data.online;
+
+      if (this.isChatOnline) {
+        this.$.chatStatusTooltip.for='chatOnlineButton';
+        this.$.chatStatusTooltip.text = this.chatOnlineText;
+
+        setTimeout(this.openChatTooltip, 1000);
+      }
     },
 
     handleChatStatusError: function(response) {
       this.isChatOnline = false;
     },
 
+    openChatTooltip: function() {
+      var tooltip = document.getElementById('chatStatusTooltip');
+      tooltip.updatePosition();
+      tooltip.show();
+    },
+
     openChat: function() {
-      if (!this.isChatOnline && this.chatOptions.offline_url !== '') {
-        window.location.href = this.chatOptions.offline_url;
+      if (!this.isChatOnline && this.chatOptions.offlineUrl !== '') {
+        window.location.href = this.chatOptions.offlineUrl;
       } else {
         var url = this.buildChatUrl(this.isChatOnline);
 
@@ -18142,7 +18652,7 @@ uql-menu {
     },
 
     buildChatUrl: function(isOnline) {
-      var qs = window.location.protocol + '//' + this.chatOptions.base_domain + '/chati.php?';
+      var qs = window.location.protocol + '//' + this.chatOptions.baseDomain + '/chati.php?';
       qs += "iid=" + this.chatOptions.iid + "&hash=" + this.chatOptions.hash;
       qs += "&online=" + isOnline;
 
@@ -18174,17 +18684,24 @@ uql-menu {
 
   <style>
 paper-button {
-  font-size: 14px; }
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
 
-.button-inverse {
-  color: #FFF; }
-
-.button-action {
-  background-color: #2377CB; }
-
-.button-inverse:focus {
-  outline: #3b99fc auto 5px; }
-
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
 uql-menu,
 .header-container,
 .footer-container {
@@ -18267,11 +18784,17 @@ uql-menu {
     <uqlibrary-api-account id="accountApi" auto="true"></uqlibrary-api-account>
 
     <template is="dom-if" if="{{!isLoggedIn}}">
-      <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton"><iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>Log in</paper-button>
+      <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton">
+        <iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>
+        <div class="button-title">Log in</div>
+      </paper-button>
     </template>
 
     <template is="dom-if" if="{{isLoggedIn}}">
-      <paper-button class="button-action button-inverse" on-tap="performLogout" id="logoutButton"><iron-icon icon="social:person" aria-label="Logout"></iron-icon>Log out</paper-button>
+      <paper-button class="button-action button-inverse" on-tap="performLogout" id="logoutButton">
+        <iron-icon icon="social:person" aria-label="Logout"></iron-icon>
+        <div class="button-title">Log out</div>
+      </paper-button>
     </template>
 
   </template>
@@ -18332,17 +18855,24 @@ uql-menu {
 
   <style>
 paper-button {
-  font-size: 14px; }
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
 
-.button-inverse {
-  color: #FFF; }
-
-.button-action {
-  background-color: #2377CB; }
-
-.button-inverse:focus {
-  outline: #3b99fc auto 5px; }
-
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
 uql-menu,
 .header-container,
 .footer-container {
@@ -18441,9 +18971,21 @@ uql-menu {
     }
 
     .header-container,
-    .header-container div{
+    .header-content{
       @apply(--layout-horizontal);
       @apply(--layout-center);
+    }
+
+    .header-title {
+      @apply(--layout-flex);
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+    .header-actions {
+      @apply(--layout-flex-2);
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
     }
 
   </style>
@@ -18451,24 +18993,28 @@ uql-menu {
   <template>
     <div class="header-container">
       <div class="header-content">
-        <div class="uq-title">
-          <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
-            <div class="uq-title-text">UQ</div>
-          </a>
+        <div class="header-title">
+          <div class="uq-title">
+            <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
+              <div class="uq-title-text">UQ</div>
+            </a>
+          </div>
+          <div class="library-title">
+            <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+          </div>
+          <div class="application-title">{{applicationTitle}}</div>
         </div>
-        <div class="library-title">
-          <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+        <div class="header-actions">
+
+          <template is="dom-if" if="{{showChatStatus}}">
+            <uql-chat-button></uql-chat-button>
+          </template>
+
+          <template is="dom-if" if="{{showLoginStatus}}">
+            <uql-login-button></uql-login-button>
+          </template>
+
         </div>
-        <div class="application-title">{{applicationTitle}}</div>
-
-        <template is="dom-if" if="{{showChatStatus}}">
-          <uql-chat-button></uql-chat-button>
-        </template>
-
-        <template is="dom-if" if="{{showLoginStatus}}">
-          <uql-login-button></uql-login-button>
-        </template>
-
       </div>
     </div>
   </template>

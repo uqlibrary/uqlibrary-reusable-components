@@ -24,9 +24,21 @@
     }
 
     .header-container,
-    .header-container div{
+    .header-content{
       @apply(--layout-horizontal);
       @apply(--layout-center);
+    }
+
+    .header-title {
+      @apply(--layout-flex);
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+    .header-actions {
+      @apply(--layout-flex-2);
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
     }
 
   </style>
@@ -34,24 +46,28 @@
   <template>
     <div class="header-container">
       <div class="header-content">
-        <div class="uq-title">
-          <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
-            <div class="uq-title-text">UQ</div>
-          </a>
+        <div class="header-title">
+          <div class="uq-title">
+            <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
+              <div class="uq-title-text">UQ</div>
+            </a>
+          </div>
+          <div class="library-title">
+            <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+          </div>
+          <div class="application-title">{{applicationTitle}}</div>
         </div>
-        <div class="library-title">
-          <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+        <div class="header-actions">
+
+          <template is="dom-if" if="{{showChatStatus}}">
+            <uql-chat-button></uql-chat-button>
+          </template>
+
+          <template is="dom-if" if="{{showLoginStatus}}">
+            <uql-login-button></uql-login-button>
+          </template>
+
         </div>
-        <div class="application-title">{{applicationTitle}}</div>
-
-        <template is="dom-if" if="{{showChatStatus}}">
-          <uql-chat-button></uql-chat-button>
-        </template>
-
-        <template is="dom-if" if="{{showLoginStatus}}">
-          <uql-login-button></uql-login-button>
-        </template>
-
       </div>
     </div>
   </template>

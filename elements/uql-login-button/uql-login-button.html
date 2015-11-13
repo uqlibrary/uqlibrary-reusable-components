@@ -7,11 +7,17 @@
     <uqlibrary-api-account id="accountApi" auto="true"></uqlibrary-api-account>
 
     <template is="dom-if" if="{{!isLoggedIn}}">
-      <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton"><iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>Log in</paper-button>
+      <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton">
+        <iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>
+        <div class="button-title">Log in</div>
+      </paper-button>
     </template>
 
     <template is="dom-if" if="{{isLoggedIn}}">
-      <paper-button class="button-action button-inverse" on-tap="performLogout" id="logoutButton"><iron-icon icon="social:person" aria-label="Logout"></iron-icon>Log out</paper-button>
+      <paper-button class="button-action button-inverse" on-tap="performLogout" id="logoutButton">
+        <iron-icon icon="social:person" aria-label="Logout"></iron-icon>
+        <div class="button-title">Log out</div>
+      </paper-button>
     </template>
 
   </template>

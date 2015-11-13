@@ -10,13 +10,29 @@
         type: Boolean,
         value: false
       },
+
+      buttonTitle: {
+        type: String,
+        value: "Ask Us"
+      },
+
+      chatOnlineText: {
+        type: String,
+        value: "Chat with us now!"
+      },
+
+      chatOfflineText: {
+        type: String,
+        value: "Chat is offline."
+      },
+
       chatOptions : {
         type: Object,
         value : {
           height: '350px',
           width: '350px',
-          offline_url: '',
-          base_domain: "v2.libanswers.com",
+          offlineUrl: '',
+          baseDomain: "v2.libanswers.com",
           iid: "1193",
           hash: "fdbdf3c1190c1b6147b92d38c20194a8"
         }
@@ -24,16 +40,30 @@
     },
 
     handleChatStatusResponse: function(response) {
+      var that = this;
       this.isChatOnline = response.detail.data.online;
+
+      if (this.isChatOnline) {
+        this.$.chatStatusTooltip.for='chatOnlineButton';
+        this.$.chatStatusTooltip.text = this.chatOnlineText;
+
+        setTimeout(this.openChatTooltip, 1000);
+      }
     },
 
     handleChatStatusError: function(response) {
       this.isChatOnline = false;
     },
 
+    openChatTooltip: function() {
+      var tooltip = document.getElementById('chatStatusTooltip');
+      tooltip.updatePosition();
+      tooltip.show();
+    },
+
     openChat: function() {
-      if (!this.isChatOnline && this.chatOptions.offline_url !== '') {
-        window.location.href = this.chatOptions.offline_url;
+      if (!this.isChatOnline && this.chatOptions.offlineUrl !== '') {
+        window.location.href = this.chatOptions.offlineUrl;
       } else {
         var url = this.buildChatUrl(this.isChatOnline);
 
@@ -46,7 +76,7 @@
     },
 
     buildChatUrl: function(isOnline) {
-      var qs = window.location.protocol + '//' + this.chatOptions.base_domain + '/chati.php?';
+      var qs = window.location.protocol + '//' + this.chatOptions.baseDomain + '/chati.php?';
       qs += "iid=" + this.chatOptions.iid + "&hash=" + this.chatOptions.hash;
       qs += "&online=" + isOnline;
 
