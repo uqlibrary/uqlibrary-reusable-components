@@ -17,10 +17,6 @@ paper-button {
   paper-button .button-title {
     padding: 8px;
     display: none; } }
-uq-minimal-header {
-  overflow: visible !important;
-  z-index: 998; }
-
 uql-menu,
 .header-container,
 .footer-container {
