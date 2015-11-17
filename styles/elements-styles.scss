@@ -1,6 +1,10 @@
 @import "common/variables";
 @import "common/buttons";
 
+uq-minimal-header {
+  overflow: visible !important;
+  z-index: 998;
+}
 
 uql-menu,
 .header-container,
