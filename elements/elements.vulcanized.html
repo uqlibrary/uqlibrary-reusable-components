@@ -18876,6 +18876,166 @@ uql-menu {
 </script>
 
 </dom-module>
+<dom-module id="uql-ia-button" assetpath="uql-ia-button/">
+
+  <style>
+paper-button {
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
+
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
+uql-menu,
+.header-container,
+.footer-container {
+  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+
+uql-menu {
+  font-weight: lighter; }
+
+.header-container {
+  height: 100px;
+  background-color: #49075E;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  white-space: nowrap; }
+  .header-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .header-container .application-title,
+  .header-container .library-title,
+  .header-container .uq-title {
+    color: #FFF;
+    margin: 10px; }
+  .header-container .uq-title {
+    min-width: 190px;
+    height: 50px;
+    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+    background-size: 178px 50px;
+    border-right: 1px solid #FFF; }
+    .header-container .uq-title a {
+      width: 190px;
+      height: 50px; }
+    .header-container .uq-title .uq-title-text {
+      display: none !important; }
+
+.footer-container {
+  background-color: #49075E;
+  text-decoration: none;
+  line-height: 20px;
+  white-space: nowrap;
+  color: #FFF !important;
+  font-size: 14px;
+  padding: 20px;
+  margin-top: 20px; }
+  .footer-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .footer-container div {
+    color: #d2c1d7; }
+
+@media all and (max-width: 1047px) {
+  .header-container {
+    height: 66px; }
+    .header-container .uq-title {
+      display: none !important; } }
+/* mobile-small */
+/* mobile-large */
+/* mobile-small-landscape */
+/* mobile-large-landscape */
+/* tablet-small-landscape */
+/* tablet-large-landscape */
+/* tablet-small */
+/* tablet-large */
+/* desktop-x-small-landscape */
+/* desktop-x-small */
+/* desktop-small-landscape */
+/* desktop-small */
+/* desktop-medium-landscape */
+/* desktop-medium */
+/* desktop-large */
+/* desktop-xlarge */
+
+/*# sourceMappingURL=elements-styles.css.map */
+
+</style>
+
+  <template>
+    <paper-button class="button-inverse" on-tap="toggleIA" id="iaButton">
+      <template is="dom-if" if="{{isIAEnabled}}">
+        <iron-icon icon="icons:radio-button-checked" aria-label="ia switch"></iron-icon>
+      </template>
+
+      <template is="dom-if" if="{{!isIAEnabled}}">
+        <iron-icon icon="icons:radio-button-unchecked" aria-label="ia switch"></iron-icon>
+      </template>
+
+      <template is="dom-if" if="{{showTitle}}">
+        <div class="button-title">{{buttonTitle}}</div>
+      </template>
+    </paper-button>
+  </template>
+
+  <script>(function () {
+  Polymer({
+    is: 'uql-ia-button',
+    properties: {
+      showTitle: {
+        type: Boolean,
+        value: true
+      },
+      isIAEnabled: {
+        type: Boolean,
+        value: false,
+        observer: '_IAEnabledChanged'
+      },
+      buttonTitle: {
+        type: String,
+        value: "Enable IA"
+      }
+    },
+
+    ready: function() {
+      var that = this;
+      this.isIAEnabled = document.cookie.indexOf("toggleia=1") >= 0;
+    },
+
+    _IAEnabledChanged: function(newValue, oldValue) {
+      this.buttonTitle = newValue ? "Disable IA" : "Enable IA";
+    },
+
+    toggleIA: function() {
+      if (this.isIAEnabled){
+        document.cookie = "toggleia=0";
+      } else {
+        document.cookie = "toggleia=1";
+      }
+
+      window.location.reload(true);
+    }
+
+  });
+})();
+
+</script>
+
+</dom-module>
 <dom-module id="uq-minimal-header" assetpath="/">
 
   <style>
@@ -19031,6 +19191,10 @@ uql-menu {
         </div>
         <div class="header-actions">
 
+          <template is="dom-if" if="{{iaConfiguration.showStatus}}">
+            <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
+          </template>
+
           <template is="dom-if" if="{{chatConfiguration.showStatus}}">
             <uql-chat-button show-title="{{chatConfiguration.showTitle}}" button-title="{{chatConfiguration.buttonTitle}}" chat-online-text="{{chatConfiguration.chatOnlineText}}" chat-offline-text="{{chatConfiguration.chatOfflineText}}" offline-url="{{chatConfiguration.offlineUrl}}">
             </uql-chat-button>
@@ -19067,6 +19231,13 @@ uql-menu {
             }
           },
           loginConfiguration: {
+            type: Object,
+            value: {
+              showStatus: true,
+              showTitle: true
+            }
+          },
+          iaConfiguration: {
             type: Object,
             value: {
               showStatus: true,
