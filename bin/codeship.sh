@@ -51,6 +51,13 @@ if [ $branch = "staging" ] || [ $branch = "production" ]; then
   gulp optimize
 fi
 
+diff elements/elements.html elements/elements.vulcanized.html
+
+if [ $? = 0 ]; then
+    echo "Improperly vulcanized file"
+    exit 1;
+fi
+
 echo "Check file syntax"
 gulp syntax
 
