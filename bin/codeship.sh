@@ -53,9 +53,8 @@ fi
 
 # If these files are the same, it means an error in vulcanizing
 # todo: vulcanize as part of the build, remove elements.vulcanized.html from git
-result=`diff elements/elements.html elements/elements.vulcanized.html`
-
-if [ -z "${result}" ]; then
+echo "Checking vulcanization was performed correctly"
+if [ -z `diff elements/elements.html elements/elements.vulcanized.html` ]; then
     echo "Improperly vulcanized file"
     exit 1;
 fi
