@@ -150,6 +150,8 @@ gulp.task('invalidate', function () {
     invalidatePath += '/reusable-components/*';
   }
 
+  gutil.log('Invalidation path: ' + invalidatePath);
+
   var invalidationBatch = {
     CallerReference: new Date().toString(),
     Paths: {
