@@ -23,7 +23,11 @@
       width: 100%;
     }
 
-    .header-container,
+    .header-container {
+      @apply(--layout-vertical);
+      @apply(--layout-center);
+    }
+
     .header-content{
       @apply(--layout-horizontal);
       @apply(--layout-center);
@@ -37,6 +41,11 @@
 
     .header-actions {
       @apply(--layout-flex-2);
+      @apply(--layout-vertical);
+      @apply(--layout-end-justified);
+    }
+
+    .actions {
       @apply(--layout-horizontal);
       @apply(--layout-end-justified);
     }
@@ -45,6 +54,9 @@
 
   <template>
     <div class="header-container">
+
+      <uql-global-links></uql-global-links>
+
       <div class="header-content">
         <div class="header-title">
           <div class="uq-title">
@@ -58,24 +70,24 @@
           <div class="application-title">{{applicationTitle}}</div>
         </div>
         <div class="header-actions">
+          <div class="actions">
+            <template is="dom-if" if="{{iaConfiguration.showStatus}}">
+              <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
+            </template>
 
-          <template is="dom-if" if="{{iaConfiguration.showStatus}}">
-            <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
-          </template>
+            <template is="dom-if" if="{{chatConfiguration.showStatus}}">
+              <uql-chat-button show-title="{{chatConfiguration.showTitle}}"
+                               button-title="{{chatConfiguration.buttonTitle}}"
+                               chat-online-text="{{chatConfiguration.chatOnlineText}}"
+                               chat-offline-text="{{chatConfiguration.chatOfflineText}}"
+                               offline-url="{{chatConfiguration.offlineUrl}}">
+              </uql-chat-button>
+            </template>
 
-          <template is="dom-if" if="{{chatConfiguration.showStatus}}">
-            <uql-chat-button show-title="{{chatConfiguration.showTitle}}"
-                             button-title="{{chatConfiguration.buttonTitle}}"
-                             chat-online-text="{{chatConfiguration.chatOnlineText}}"
-                             chat-offline-text="{{chatConfiguration.chatOfflineText}}"
-                             offline-url="{{chatConfiguration.offlineUrl}}">
-            </uql-chat-button>
-          </template>
-
-          <template is="dom-if" if="{{loginConfiguration.showStatus}}">
-            <uql-login-button show-title="{{loginConfiguration.showTitle}}"></uql-login-button>
-          </template>
-
+            <template is="dom-if" if="{{loginConfiguration.showStatus}}">
+              <uql-login-button show-title="{{loginConfiguration.showTitle}}"></uql-login-button>
+            </template>
+          </div>
         </div>
       </div>
     </div>
