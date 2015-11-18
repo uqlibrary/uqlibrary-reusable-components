@@ -104,16 +104,23 @@
         },
         {
           "label": "Search techniques",
-          "href": "/item3"
+          "href": "/research-tools-techniques/search-techniques",
+          "right": "right"
         },
         {
-          "label": "Evaluate your results",
-          "href": "/item3"
+          "label": "Evaluate your search results",
+          "href": "/research-tools-techniques/evaluate-your-search-results",
+          "right": "right"
         },
         {
           "label": "Referencing",
-          "href": "/item1",
+          "href": "/research-tools-techniques/referencing",
           "subtext": "Referencing subtext",
+          "right": "right"
+        },
+        {
+          "label": "Easier off-campus access",
+          "href": "/research-tools-techniques/easier-campus-access",
           "right": "right"
         }
       ]
