@@ -54,10 +54,14 @@ fi
 # If these files are the same, it means an error in vulcanizing
 # todo: vulcanize as part of the build, remove elements.vulcanized.html from git
 echo "Checking vulcanization was performed correctly"
-if [ -z `diff elements/elements.html elements/elements.vulcanized.html` ]; then
+set +e
+result=`diff elements/elements.html elements/elements.vulcanized.html`
+
+if [ -z "${result}" ]; then
     echo "Improperly vulcanized file"
     exit 1;
 fi
+set -e
 
 echo "Check file syntax"
 gulp syntax
