@@ -59,6 +59,10 @@
         </div>
         <div class="header-actions">
 
+          <template is="dom-if" if="{{iaConfiguration.showStatus}}">
+            <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
+          </template>
+
           <template is="dom-if" if="{{chatConfiguration.showStatus}}">
             <uql-chat-button show-title="{{chatConfiguration.showTitle}}"
                              button-title="{{chatConfiguration.buttonTitle}}"
@@ -99,6 +103,13 @@
             }
           },
           loginConfiguration: {
+            type: Object,
+            value: {
+              showStatus: true,
+              showTitle: true
+            }
+          },
+          iaConfiguration: {
             type: Object,
             value: {
               showStatus: true,

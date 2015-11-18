@@ -37,14 +37,11 @@
 
 <body  class="fullbleed layout vertical">
 <template id="Demo" is="dom-bind">
-
   <uq-minimal-header application-title="{{appTitle}}"
                      chat-configuration="{{chatStatusConfig}}"
-                     login-configuration="{{loginStatusConfig}}"></uq-minimal-header>
-
+                     login-configuration="{{loginStatusConfig}}"
+                     ia-configuration="{{iaStatusConfig}}"></uq-minimal-header>
   <uql-menu menu-json = "{{menuJson}}"></uql-menu>
-
-
   <div class="body">
     <div> Application title <input value="{{appTitle::input}}"> </div>
     <hr>
@@ -56,10 +53,11 @@
     <hr>
     <div> Show login status <input type="checkbox" checked="{{loginStatusConfig.showStatus::change}}"> </div>
     <div> Show login text <input type="checkbox" checked="{{loginStatusConfig.showTitle::change}}"> </div>
+    <hr>
+    <div> Show IA status <input type="checkbox" checked="{{iaStatusConfig.showStatus::change}}"> </div>
+    <div> Show IA text <input type="checkbox" checked="{{iaStatusConfig.showTitle::change}}"> </div>
 
   </div>
-
-
 </template>
 <uq-minimal-footer></uq-minimal-footer>
 
@@ -79,6 +77,11 @@
   };
 
   Demo.loginStatusConfig = {
+    showStatus: true,
+    showTitle: true
+  }
+
+  Demo.iaStatusConfig = {
     showStatus: true,
     showTitle: true
   }
