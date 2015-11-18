@@ -13,6 +13,10 @@
       isLoggedIn: {
         type: Boolean,
         value: false
+      },
+      showTitle: {
+        type: Boolean,
+        value: true
       }
     },
 

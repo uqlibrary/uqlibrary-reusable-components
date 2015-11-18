@@ -9,14 +9,18 @@
     <template is="dom-if" if="{{!isLoggedIn}}">
       <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton">
         <iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>
-        <div class="button-title">Log in</div>
+        <template is="dom-if" if="{{showTitle}}">
+          <div class="button-title">Log in</div>
+        </template>
       </paper-button>
     </template>
 
     <template is="dom-if" if="{{isLoggedIn}}">
       <paper-button class="button-action button-inverse" on-tap="performLogout" id="logoutButton">
         <iron-icon icon="social:person" aria-label="Logout"></iron-icon>
-        <div class="button-title">Log out</div>
+        <template is="dom-if" if="{{showTitle}}">
+          <div class="button-title">Log out</div>
+        </template>
       </paper-button>
     </template>
 

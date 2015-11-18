@@ -59,12 +59,17 @@
         </div>
         <div class="header-actions">
 
-          <template is="dom-if" if="{{showChatStatus}}">
-            <uql-chat-button></uql-chat-button>
+          <template is="dom-if" if="{{chatConfiguration.showStatus}}">
+            <uql-chat-button show-title="{{chatConfiguration.showTitle}}"
+                             button-title="{{chatConfiguration.buttonTitle}}"
+                             chat-online-text="{{chatConfiguration.chatOnlineText}}"
+                             chat-offline-text="{{chatConfiguration.chatOfflineText}}"
+                             offline-url="{{chatConfiguration.offlineUrl}}">
+            </uql-chat-button>
           </template>
 
-          <template is="dom-if" if="{{showLoginStatus}}">
-            <uql-login-button></uql-login-button>
+          <template is="dom-if" if="{{loginConfiguration.showStatus}}">
+            <uql-login-button show-title="{{loginConfiguration.showTitle}}"></uql-login-button>
           </template>
 
         </div>
@@ -82,13 +87,23 @@
             type: String,
             notify: true
           },
-          showChatStatus: {
-            type: Boolean,
-            value: true
+          chatConfiguration: {
+            type: Object,
+            value: {
+              showStatus: true,
+              showTitle: true,
+              buttonTitle: "Ask Us",
+              chatOnlineText: "Chat with us now!",
+              chatOfflineText: "Chat is offline.",
+              offlineUrl: "https://library.uq.edu.au"
+            }
           },
-          showLoginStatus: {
-            type: Boolean,
-            value: true
+          loginConfiguration: {
+            type: Object,
+            value: {
+              showStatus: true,
+              showTitle: true
+            }
           }
         },
 

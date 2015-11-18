@@ -24,5 +24,30 @@ $footer-background-color: $uq-purple;
 $footer-primary-text-color: #FFF;
 $footer-secondary-text-color: $uq-purple-light;
 
+//tool tips
+$tooltip-background-color: #e5e5e5;
+$tooltip-border-color: #ccc;
+$tooltip-text-color: #666;
+
+@mixin toolip-style() {
+  background-color: $tooltip-background-color;
+  color: $tooltip-text-color;
+  font-size: 13px;
+  padding: 20px;
+  border: 1px solid $tooltip-border-color;
+}
+
+@mixin tooltip-pointer() {
+  border-bottom: 8px solid $tooltip-background-color;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  content: '';
+  position: absolute;
+  top: -7px;
+  right: 50%;
+}
+
+
+
 
 
