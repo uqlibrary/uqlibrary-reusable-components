@@ -10,66 +10,70 @@
           "href": "/item1"
         },
         {
-          "label": "IT",
-          "href": "/item2"
+          "label": "Training",
+          "href": "/library-services/training"
+        },
+        {
+          "label": "I.T.",
+          "href": "/library-services/it"
         },
         {
           "label": "Copyright advice",
-          "href": "/item3"
+          "href": "/library-services/copyright-advice"
         },
         {
           "label": "Digitisation",
           "subtext": "Specific categories below",
-          "href": "/item4"
+          "href": "/library-services/digitisation"
         },
         {
           "label": "for Students",
-          "href": "/item5",
+          "href": "/library-services/services-for-students",
           "right": "right"
         },
         {
           "label": "for Researchers",
-          "href": "/item6",
+          "href": "/library-services/services-for-researchers",
           "right": "right"
         },
         {
-          "label": "for Teaching Staff",
-          "href": "/item7",
+          "label": "for Teaching staff",
+          "href": "/library-services/services-for-teaching-staff",
           "right": "right"
         },
         {
-          "label": "for Professional Staff",
-          "href": "/item8",
+          "label": "for Professional staff",
+          "href": "/library-services/services-for-professional-staff",
           "right": "right"
         },
         {
-          "label": "for Hospital Staff",
-          "href": "/item9",
+          "label": "for Hospital staff",
+          "href": "/library-services/services-for-hospital-staff",
           "right": "right"
         },
         {
-          "label": "for Alumni",
-          "href": "/item10",
+          "label": "for UQ alumni",
+          "href": "/library-services/services-for-uq-alumni",
           "right": "right"
         },
         {
           "label": "for Community",
-          "href": "/item11",
+          "href": "/library-services/services-for-community",
           "right": "right"
         },
         {
-          "label": "for Secondary Schools",
-          "href": "/item12",
+          "label": "for Secondary schools",
+          "href": "/library-services/services-for-secondary-schools",
           "right": "right"
         },
         {
           "label": "for Clients with disabilities",
-          "href": "/item13",
+          "href": "/library-services/support-for-clients-disabilities",
           "right": "right"
         },
         {
-          "label": "for Other Libraries Staff",
-          "href": "/item14",
+          "label": "for Other libraries",
+          "href": "/library-services/for-other-libraries",
           "right": "right"
         }
       ]
