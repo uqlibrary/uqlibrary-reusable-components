@@ -135,7 +135,7 @@ gulp.task('copy:aws', function () {
 
 /**
  * Command line param:
- *    --bucketSubDir {CI_BRANCH}
+ *    --bucketSubDir {INVALIDATION_PATH}
  *
  * If no bucket subdir passed will invalidate production subdir
  */
