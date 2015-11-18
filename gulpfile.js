@@ -145,7 +145,7 @@ gulp.task('invalidate', function () {
   var invalidatePath = '';
 
   if (argv.bucketSubDir) {
-    invalidatePath = argv.bucketSubDir;
+    invalidatePath = argv.bucketSubDir + '/*';
   } else {
     invalidatePath += '/reusable-components/*';
   }
