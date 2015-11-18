@@ -1,0 +1,49 @@
+<dom-module id="uql-global-links">
+
+  <link rel="import" href="../elements.html">
+  <link rel="stylesheet" href="../../styles/elements-styles.css">
+
+  <style is="custom-style">
+    :host {
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
+      margin: 0 auto;
+      max-width: 1140px;
+      width: 100%;
+    }
+
+    ul, li {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: inline;
+    }
+
+    li a,
+    li a:active,
+    li a:visited {
+      text-transform: uppercase;
+      color: #d2c1d7 !important;
+      font-weight: 500;
+      font-size: 0.65rem;
+      margin-right: 0.25rem;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+  </style>
+  <template>
+    <ul class="global-links">
+      <template is="dom-repeat" items="{{links}}">
+        <li><a href="{{item.url}}" accesskey="{{item.accessKey}}">{{item.title}}</a></li>
+      </template>
+    </ul>
+  </template>
+
+  <script src="uql-global-links.js"></script>
+
+</dom-module>

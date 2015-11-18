@@ -8865,7 +8865,7 @@ attributes or use child nodes to define additional metadata.
 Now I can access that element (and it's metadata) from any iron-meta instance
 via the byKey method, e.g.
 
-    meta.byKey('info').getAttribute('value').
+    meta.byKey('info').getAttribute('value');
 
 Pure imperative form would be like:
 
@@ -8890,6 +8890,7 @@ Or, in a Polymer element, you can include a meta in your template:
     // monostate data
     var metaDatas = {};
     var metaArrays = {};
+    var singleton = null;
 
     Polymer.IronMeta = Polymer({
 
@@ -8942,9 +8943,15 @@ Or, in a Polymer element, you can include a meta in your template:
 
       },
 
+      hostAttributes: {
+        hidden: true
+      },
+
       /**
        * Only runs if someone invokes the factory/constructor directly
        * e.g. `new Polymer.IronMeta()`
+       *
+       * @param {{type: (string|undefined), key: (string|undefined), value}=} config
        */
       factoryImpl: function(config) {
         if (config) {
@@ -9036,6 +9043,13 @@ Or, in a Polymer element, you can include a meta in your template:
 
     });
 
+    Polymer.IronMeta.getIronMeta = function getIronMeta() {
+       if (singleton === null) {
+         singleton = new Polymer.IronMeta();
+       }
+       return singleton;
+     };
+
     /**
     `iron-meta-query` can be used to access infomation stored in `iron-meta`.
 
@@ -9102,6 +9116,8 @@ Or, in a Polymer element, you can include a meta in your template:
       /**
        * Actually a factory method, not a true constructor. Only runs if
        * someone invokes it directly (via `new Polymer.IronMeta()`);
+       *
+       * @param {{type: (string|undefined), key: (string|undefined)}=} config
        */
       factoryImpl: function(config) {
         if (config) {
@@ -9229,8 +9245,8 @@ Custom property | Description | Default
    *       <svg>
    *         <defs>
    *           <g id="shape">
-   *             <rect x="50" y="50" width="50" height="50" />
-   *             <circle cx="50" cy="50" r="50" />
+   *             <rect x="12" y="0" width="12" height="24" />
+   *             <circle cx="12" cy="12" r="12" />
    *           </g>
    *         </defs>
    *       </svg>
@@ -9269,6 +9285,10 @@ Custom property | Description | Default
         value: 24
       }
 
+    },
+
+    attached: function() {
+      this.style.display = 'none';
     },
 
     /**
@@ -9436,6 +9456,11 @@ Examples:
     <iron-image style="width:400px; height:400px; background-color: lightgray;"
       sizing="cover" preload fade src="http://lorempixel.com/600/400"></iron-image>
 
+Custom property | Description | Default
+----------------|-------------|----------
+`--iron-image-placeholder` | Mixin applied to #placeholder | `{}`
+`--iron-image-width` | Sets the width of the wrapped image | `auto`
+`--iron-image-height` | Sets the height of the wrapped image | `auto`
 
 @group Iron Elements
 @element iron-image
@@ -9482,6 +9507,15 @@ Example:
         type: String,
         observer: 'queryChanged'
       },
+
+      /**
+       * If true, the query attribute is assumed to be a complete media query
+       * string rather than a single media feature.
+       */
+      full: {
+        type: Boolean,
+        value: false
+      },
       
       /**
        * @type {function(MediaQueryList)}
@@ -9527,7 +9561,7 @@ Example:
       if (!query) {
         return;
       }
-      if (query[0] !== '(') {
+      if (!this.full && query[0] !== '(') {
         query = '(' + query + ')';
       }
       this._mq = window.matchMedia(query);
@@ -10488,10 +10522,14 @@ Example:
       _triggerKeyHandler: function(keyCombo, handlerName, keyboardEvent) {
         var detail = Object.create(keyCombo);
         detail.keyboardEvent = keyboardEvent;
-
-        this[handlerName].call(this, new CustomEvent(keyCombo.event, {
-          detail: detail
-        }));
+        var event = new CustomEvent(keyCombo.event, {
+          detail: detail,
+          cancelable: true
+        });
+        this[handlerName].call(this, event);
+        if (event.defaultPrevented) {
+          keyboardEvent.preventDefault();
+        }
       }
     };
   })();
@@ -10621,9 +10659,8 @@ Apply `circle` class to make the rippling effect within a circle.
       // handled). In either case, we can disregard `event.path`.
 
       if (event.target === this) {
-        var focused = event.type === 'focus';
-        this._setFocused(focused);
-      } else if (!this.shadowRoot) {
+        this._setFocused(event.type === 'focus');
+      } else if (!this.shadowRoot && !this.isLightDescendant(event.target)) {
         this.fire(event.type, {sourceEvent: event}, {
           node: this,
           bubbles: event.bubbles,
@@ -10778,14 +10815,43 @@ Apply `circle` class to make the rippling effect within a circle.
       this._setPressed(false);
     },
 
+    __isFocusedLightDescendant: function(target) {
+      var root = Polymer.dom(this).getOwnerRoot() || document;
+      var focusedElement = root.activeElement;
+
+      // TODO(noms): remove the `this !== target` check once polymer#2610 is fixed.
+      return this !== target && this.isLightDescendant(target) && target == focusedElement;
+    },
+
+    /**
+     * @param {!KeyboardEvent} event .
+     */
     _spaceKeyDownHandler: function(event) {
       var keyboardEvent = event.detail.keyboardEvent;
+      var target = Polymer.dom(keyboardEvent).localTarget;
+
+      // Ignore the event if this is coming from a focused light child, since that
+      // element will deal with it.
+      if (this.__isFocusedLightDescendant(target))
+        return;
+
       keyboardEvent.preventDefault();
       keyboardEvent.stopImmediatePropagation();
       this._setPressed(true);
     },
 
-    _spaceKeyUpHandler: function() {
+    /**
+     * @param {!KeyboardEvent} event .
+     */
+    _spaceKeyUpHandler: function(event) {
+      var keyboardEvent = event.detail.keyboardEvent;
+      var target = Polymer.dom(keyboardEvent).localTarget;
+
+      // Ignore the event if this is coming from a focused light child, since that
+      // element will deal with it.
+      if (this.__isFocusedLightDescendant(target))
+        return;
+
       if (this.pressed) {
         this._asyncClick();
       }
@@ -11142,7 +11208,7 @@ Custom property | Description | Default
   /**
    * `Polymer.PaperInkyFocusBehavior` implements a ripple when the element has keyboard focus.
    *
-   * @polymerBehavior Polymer.PaperInkyFocusBehaviorImpl
+   * @polymerBehavior Polymer.PaperInkyFocusBehavior
    */
   Polymer.PaperInkyFocusBehaviorImpl = {
 
@@ -11995,6 +12061,8 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
       /**
        * Returns the currently selected item.
+       *
+       * @type {?Object}
        */
       selectedItem: {
         type: Object,
@@ -12036,10 +12104,20 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       },
 
       /**
+       * The list of items from which a selection can be made.
+       */
+      items: {
+        type: Array,
+        readOnly: true,
+        value: function() {
+          return [];
+        }
+      },
+
+      /**
        * The set of excluded elements where the key is the `localName`
        * of the element that will be ignored from the item list.
        *
-       * @type {object}
        * @default {template: 1}
        */
       _excludedLocalNames: {
@@ -12059,15 +12137,12 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
     created: function() {
       this._bindFilterItem = this._filterItem.bind(this);
       this._selection = new Polymer.IronSelection(this._applySelection.bind(this));
-      // TODO(cdata): When polymer/polymer#2535 lands, we do not need to do this
-      // book keeping anymore:
-      this.__listeningForActivate = false;
     },
 
     attached: function() {
       this._observer = this._observeItems(this);
-      this._contentObserver = this._observeContent(this);
-      if (!this.selectedItem && this.selected) {
+      this._updateItems();
+      if (!this._shouldUpdateSelection) {
         this._updateSelected(this.attrForSelected,this.selected)
       }
       this._addListener(this.activateEvent);
@@ -12075,23 +12150,9 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
     detached: function() {
       if (this._observer) {
-        this._observer.disconnect();
-      }
-      if (this._contentObserver) {
-        this._contentObserver.disconnect();
+        Polymer.dom(this).unobserveNodes(this._observer);
       }
       this._removeListener(this.activateEvent);
-    },
-
-    /**
-     * Returns an array of selectable items.
-     *
-     * @property items
-     * @type Array
-     */
-    get items() {
-      var nodes = Polymer.dom(this).queryDistributedElements(this.selectable || '*');
-      return Array.prototype.filter.call(nodes, this._bindFilterItem);
     },
 
     /**
@@ -12136,23 +12197,27 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       this.selected = this._indexToValue(index);
     },
 
-    _addListener: function(eventName) {
-      if (!this.isAttached || this.__listeningForActivate) {
-        return;
-      }
+    get _shouldUpdateSelection() {
+      return this.selected != null;
+    },
 
-      this.__listeningForActivate = true;
+    _addListener: function(eventName) {
       this.listen(this, eventName, '_activateHandler');
     },
 
     _removeListener: function(eventName) {
       this.unlisten(this, eventName, '_activateHandler');
-      this.__listeningForActivate = false;
     },
 
     _activateEventChanged: function(eventName, old) {
       this._removeListener(old);
       this._addListener(eventName);
+    },
+
+    _updateItems: function() {
+      var nodes = Polymer.dom(this).queryDistributedElements(this.selectable || '*');
+      nodes = Array.prototype.filter.call(nodes, this._bindFilterItem);
+      this._setItems(nodes);
     },
 
     _updateSelected: function() {
@@ -12213,18 +12278,9 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
       this._setSelectedItem(this._selection.get());
     },
 
-    // observe content changes under the given node.
-    _observeContent: function(node) {
-      var content = node.querySelector('content');
-      if (content && content.parentElement === node) {
-        return this._observeItems(node.domHost);
-      }
-    },
-
     // observe items change under the given node.
     _observeItems: function(node) {
-      // TODO(cdata): Update this when we get distributed children changed.
-      var observer = new MutationObserver(function(mutations) {
+      return Polymer.dom(node).observeNodes(function(mutations) {
         // Let other interested parties know about the change so that
         // we don't have to recreate mutation observers everywher.
         this.fire('iron-items-changed', mutations, {
@@ -12232,15 +12288,12 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
           cancelable: false
         });
 
-        if (this.selected != null) {
+        this._updateItems();
+
+        if (this._shouldUpdateSelection) {
           this._updateSelected();
         }
-      }.bind(this));
-      observer.observe(node, {
-        childList: true,
-        subtree: true
       });
-      return observer;
     },
 
     _activateHandler: function(e) {
@@ -12326,6 +12379,11 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
     multiChanged: function(multi) {
       this._selection.multi = multi;
+    },
+
+    get _shouldUpdateSelection() {
+      return this.selected != null ||
+        (this.selectedValues != null && this.selectedValues.length);
     },
 
     _updateSelected: function() {
@@ -12943,6 +13001,8 @@ item has bolded text. Please see the `<paper-menu>` docs for which attributes
 </script>
 
 <!--
+Material design: [Scrolling techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html)
+
 `paper-scroll-header-panel` contains a header section and a content section.  The
 header is initially on the top part of the view but it scrolls away with the
 rest of the scrollable content.  Upon scrolling slightly up at any point, the
@@ -12953,53 +13013,61 @@ __Important:__ The `paper-scroll-header-panel` will not display if its parent do
 
 Using [layout classes](https://www.polymer-project.org/1.0/docs/migration.html#layout-attributes) or custom properties, you can easily make the `paper-scroll-header-panel` fill the screen
 
-    <body class="fullbleed layout vertical">
-      <paper-scroll-header-panel class="flex">
-        <paper-toolbar>
-          <div>Hello World!</div>
-        </paper-toolbar>
-      </paper-scroll-header-panel>
-    </body>
+```html
+<body class="fullbleed layout vertical">
+  <paper-scroll-header-panel class="flex">
+    <paper-toolbar>
+      <div>Hello World!</div>
+    </paper-toolbar>
+  </paper-scroll-header-panel>
+</body>
+```
 
 or, if you would prefer to do it in CSS, just give `html`, `body`, and `paper-scroll-header-panel` a height of 100%:
 
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-    paper-scroll-header-panel {
-      height: 100%;
-    }
+```css
+html, body {
+  height: 100%;
+  margin: 0;
+}
+paper-scroll-header-panel {
+  height: 100%;
+}
+```
 
 `paper-scroll-header-panel` works well with `paper-toolbar` but can use any element
 that represents a header by adding a `paper-header` class to it.
 
-    <paper-scroll-header-panel>
-      <paper-toolbar>Header</paper-toolbar>
-      <div>Content goes here...</div>
-    </paper-scroll-header-panel>
+```html
+<paper-scroll-header-panel>
+  <paper-toolbar>Header</paper-toolbar>
+  <div>Content goes here...</div>
+</paper-scroll-header-panel>
+```
 
-Styling scroll-header-panel:
+### Styling
+=======
 
-To change background for toolbar when it is at its full size:
+The following custom properties and mixins are available for styling:
 
-    paper-scroll-header-panel {
-      --paper-scroll-header-panel-full-header: {
-        background-color: red;
-      };
-    }
-
-To change the background for toolbar when it is condensed:
-
-    paper-scroll-header-panel {
-      --paper-scroll-header-panel-condensed-header: {
-        background-color: #f4b400;
-      };
-    }
+Custom property | Description | Default
+----------------|-------------|----------
+--paper-scroll-header-panel-full-header | To change background for toolbar when it is at its full size | {}
+--paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {}
+--paper-scroll-header-container | To override or add container styles | {}
 
 @group Paper Element
 @element paper-scroll-header-panel
-@demo demo/index.html
+@demo demo/transform-header-1.html Transform header 1
+@demo demo/transform-header-2.html Transform header 2
+@demo demo/transform-header-3.html Transform header 3
+@demo demo/transform-header-4.html Tranform header 4
+@demo demo/transform-header-5.html Tranform header 5
+@demo demo/transform-header-6.html Transform header 6
+@demo demo/keep-header.html Keep header
+@demo demo/hide-header.html Hide header
+@demo demo/toggle-fixed-header.html Toggle fixed header
+@demo demo/drawer-panel.html Combine with paper-drawer-panel
 @hero hero.svg
 -->
 
@@ -14445,6 +14513,12 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       position: relative;
     }
 
+    #img {
+      display: block;
+      width: var(--iron-image-width, auto);
+      height: var(--iron-image-height, auto);
+    }
+
     :host([sizing]) #img {
       display: none;
     }
@@ -14452,6 +14526,8 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
     #placeholder {
       background-color: inherit;
       opacity: 1;
+      @apply(--layout-fit);
+      @apply(--iron-image-placeholder);
     }
 
     #placeholder.faded-out {
@@ -14509,7 +14585,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       },
 
       /**
-       * When a sizing option is uzed (`cover` or `contain`), this determines
+       * When a sizing option is used (`cover` or `contain`), this determines
        * how the image is aligned within the element bounds.
        */
       position: {
@@ -14519,7 +14595,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
 
       /**
        * When `true`, any change to the `src` property will cause the `placeholder`
-       * image to be shown until the
+       * image to be shown until the new image has loaded.
        */
       preload: {
         type: Boolean,
@@ -14630,11 +14706,11 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
         return '';
       }
 
-      var className = 'fit';
       if (this.loaded && this.fade) {
-        className += ' faded-out';
+        return 'faded-out';
       }
-      return className;
+
+      return '';
     },
 
     _computePlaceholderBackgroundUrl: function() {
@@ -15700,6 +15776,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
         content: '';
         background: currentColor;
         opacity: var(--dark-divider-opacity);
+        pointer-events: none;
 
         @apply(--paper-item-focused-before);
       }
@@ -15727,7 +15804,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       is: 'paper-item',
 
       hostAttributes: {
-        role: 'listitem',
+        role: 'option',
         tabindex: '0'
       },
 
@@ -16030,11 +16107,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-
       -webkit-overflow-scrolling: touch;
 
       overflow-x: hidden;
       overflow-y: auto;
+
+      @apply(--paper-scroll-header-container);
     }
 
     #headerContainer {
@@ -16095,7 +16173,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   'use strict';
 
-  Polymer({
+  Polymer.PaperScrollHeaderPanel = Polymer({
 
     /**
      * Fired when the content has been scrolled.
@@ -16192,10 +16270,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       /**
-       * The state of the header. The initial value is `HEADER_STATE_EXPANDED`.
-       * Depending on the configuration and the `scrollTop` value,
+       * The state of the header. Depending on the configuration and the `scrollTop` value,
        * the header state could change to
-       * `HEADER_STATE_HIDDEN`, `HEADER_STATE_CONDENSED` and `HEADER_STATE_INTERPOLATED`
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_HIDDEN
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED
+       *      Polymer.PaperScrollHeaderPanel.HEADER_STATE_INTERPOLATED
        */
       headerState: {
         type: Number,
@@ -16236,39 +16316,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
     },
-
-    /**
-     * The header's initial state
-     *
-     * @property HEADER_STATE_EXPANDED
-     * @type number
-     */
-    HEADER_STATE_EXPANDED: 0,
-
-    /**
-     * The header's state when it's hidden.
-     *
-     * @property HEADER_STATE_HIDDEN
-     * @type number
-     */
-    HEADER_STATE_HIDDEN: 1,
-
-    /**
-     * The header's state when it's condensed.
-     *
-     * @property HEADER_STATE_CONDENSED
-     * @type number
-     */
-    HEADER_STATE_CONDENSED: 2,
-
-    /**
-     * The header's state when its progress is somewhere between
-     * the `hidden` and `condensed` state.
-     *
-     * @property HEADER_STATE_INTERPOLATED
-     * @type number
-     */
-    HEADER_STATE_INTERPOLATED: 3,
 
     /**
      * Returns the header element.
@@ -16333,7 +16380,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {boolean} smooth true if the scroll position should be smoothly adjusted.
      */
     scroll: function(top, smooth) {
-      // the scroll event will trigger _updateScrollState directly, 
+      // the scroll event will trigger _updateScrollState directly,
       // However, _updateScrollState relies on the previous `scrollTop` to update the states.
       // Calling _updateScrollState will ensure that the states are synced correctly.
 
@@ -16379,13 +16426,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {boolean} smooth true if the scroll position should be smoothly adjusted.
      */
     condense: function(smooth) {
+      var ctx = Polymer.PaperScrollHeaderPanel;
       if (this.condenses && !this.fixed && !this.noReveal) {
         switch (this.headerState) {
-          case this.HEADER_STATE_HIDDEN:
+          case ctx.HEADER_STATE_HIDDEN:
             this.scroll(this.scroller.scrollTop - (this._headerMaxDelta - this._headerMargin), smooth);
           break;
-          case this.HEADER_STATE_EXPANDED:
-          case this.HEADER_STATE_INTERPOLATED:
+          case ctx.HEADER_STATE_EXPANDED:
+          case ctx.HEADER_STATE_INTERPOLATED:
             this.scroll(this._headerMargin, smooth);
           break;
         }
@@ -16504,22 +16552,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _updateScrollState: function(scrollTop) {
+      var ctx = Polymer.PaperScrollHeaderPanel;
       var deltaScrollTop = scrollTop - this._prevScrollTop;
       var y = Math.max(0, (this.noReveal) ? scrollTop : this._y + deltaScrollTop);
 
       if (y > this._headerMaxDelta) {
         y = this._headerMaxDelta;
-        this._setHeaderState(this.HEADER_STATE_HIDDEN);
+        this._setHeaderState(ctx.HEADER_STATE_HIDDEN);
 
       } else if (this.condenses && this._prevScrollTop >= scrollTop && scrollTop >= this._headerMargin) {
         y = Math.max(y, this._headerMargin);
-        this._setHeaderState(this.HEADER_STATE_CONDENSED);
+        this._setHeaderState(ctx.HEADER_STATE_CONDENSED);
 
       } else if (y === 0) {
-        this._setHeaderState(this.HEADER_STATE_EXPANDED);
+        this._setHeaderState(ctx.HEADER_STATE_EXPANDED);
 
       } else {
-        this._setHeaderState(this.HEADER_STATE_INTERPOLATED);
+        this._setHeaderState(ctx.HEADER_STATE_INTERPOLATED);
       }
 
       if (!this.fixed && y !== this._y) {
@@ -16530,6 +16579,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._y = y;
     }
   });
+
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED = 0;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_HIDDEN = 1;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED = 2;
+  Polymer.PaperScrollHeaderPanel.HEADER_STATE_INTERPOLATED = 3;
 
 })();
 
@@ -17713,7 +17767,10 @@ uql-menu {
   .header-container {
     height: 66px; }
     .header-container .uq-title {
-      display: none !important; } }
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -17868,7 +17925,10 @@ uql-menu {
   .header-container {
     height: 66px; }
     .header-container .uq-title {
-      display: none !important; } }
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18444,7 +18504,10 @@ uql-menu {
   .header-container {
     height: 66px; }
     .header-container .uq-title {
-      display: none !important; } }
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18721,7 +18784,10 @@ uql-menu {
   .header-container {
     height: 66px; }
     .header-container .uq-title {
-      display: none !important; } }
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18900,7 +18966,10 @@ uql-menu {
   .header-container {
     height: 66px; }
     .header-container .uq-title {
-      display: none !important; } }
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18975,6 +19044,183 @@ uql-menu {
 
       window.location.reload(true);
     }
+
+  });
+})();
+
+</script>
+
+</dom-module>
+<dom-module id="uql-global-links" assetpath="uql-global-links/">
+
+  <style>
+paper-button {
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
+
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
+uql-menu,
+.header-container,
+.footer-container {
+  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+
+uql-menu {
+  font-weight: lighter; }
+
+.header-container {
+  height: 100px;
+  background-color: #49075E;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  white-space: nowrap; }
+  .header-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .header-container .application-title,
+  .header-container .library-title,
+  .header-container .uq-title {
+    color: #FFF;
+    margin: 10px; }
+  .header-container .uq-title {
+    min-width: 190px;
+    height: 50px;
+    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+    background-size: 178px 50px;
+    border-right: 1px solid #FFF; }
+    .header-container .uq-title a {
+      width: 190px;
+      height: 50px; }
+    .header-container .uq-title .uq-title-text {
+      display: none !important; }
+
+.footer-container {
+  background-color: #49075E;
+  text-decoration: none;
+  line-height: 20px;
+  white-space: nowrap;
+  color: #FFF !important;
+  font-size: 14px;
+  padding: 20px;
+  margin-top: 20px; }
+  .footer-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .footer-container div {
+    color: #d2c1d7; }
+
+@media all and (max-width: 1047px) {
+  .header-container {
+    height: 66px; }
+    .header-container .uq-title {
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
+/* mobile-small */
+/* mobile-large */
+/* mobile-small-landscape */
+/* mobile-large-landscape */
+/* tablet-small-landscape */
+/* tablet-large-landscape */
+/* tablet-small */
+/* tablet-large */
+/* desktop-x-small-landscape */
+/* desktop-x-small */
+/* desktop-small-landscape */
+/* desktop-small */
+/* desktop-medium-landscape */
+/* desktop-medium */
+/* desktop-large */
+/* desktop-xlarge */
+
+/*# sourceMappingURL=elements-styles.css.map */
+
+</style>
+
+  <style is="custom-style">
+    :host {
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
+      margin: 0 auto;
+      max-width: 1140px;
+      width: 100%;
+    }
+
+    ul, li {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: inline;
+    }
+
+    li a,
+    li a:active,
+    li a:visited {
+      text-transform: uppercase;
+      color: #d2c1d7 !important;
+      font-weight: 500;
+      font-size: 0.65rem;
+      margin-right: 0.25rem;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+  </style>
+  <template>
+    <ul class="global-links">
+      <template is="dom-repeat" items="{{links}}">
+        <li><a href="{{item.url}}" accesskey="{{item.accessKey}}">{{item.title}}</a></li>
+      </template>
+    </ul>
+  </template>
+
+  <script>(function () {
+  Polymer({
+    is: 'uql-global-links',
+    properties: {
+      links: {
+        type: Array,
+         value: function() {
+           var links = [
+             { url: "http://www.uq.edu.au/contacts/", title: "Contacts", accessKey: 2 },
+             { url: "http://www.uq.edu.au/study/", title: "Study", accessKey: 3 },
+             { url: "http://www.uq.edu.au/maps/", title: "Maps", accessKey: 4 },
+             { url: "http://www.uq.edu.au/news/", title: "News", accessKey: 5 },
+             { url: "http://www.uq.edu.au/events/", title: "Events", accessKey: 6 },
+             { url: "http://jobs.uq.edu.au/", title: "Jobs", accessKey: 7 },
+             { url: "http://library.uq.edu.au/", title: "Library", accessKey: 8 },
+             { url: "http://my.uq.edu.au/", title: "my.UQ", accessKey: 9 }
+           ];
+           return links;
+         }
+      }
+    },
+
+    ready: function() {
+
+    }
+
 
   });
 })();
@@ -19060,7 +19306,10 @@ uql-menu {
   .header-container {
     height: 66px; }
     .header-container .uq-title {
-      display: none !important; } }
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -19101,8 +19350,13 @@ uql-menu {
       width: 100%;
     }
 
-    .header-container,
+    .header-container {
+      @apply(--layout-vertical);
+      @apply(--layout-end-justified);
+    }
+
     .header-content{
+      @apply(--layout-flex);
       @apply(--layout-horizontal);
       @apply(--layout-center);
     }
@@ -19115,6 +19369,11 @@ uql-menu {
 
     .header-actions {
       @apply(--layout-flex-2);
+      @apply(--layout-vertical);
+      @apply(--layout-end-justified);
+    }
+
+    .actions {
       @apply(--layout-horizontal);
       @apply(--layout-end-justified);
     }
@@ -19123,6 +19382,9 @@ uql-menu {
 
   <template>
     <div class="header-container">
+
+      <uql-global-links></uql-global-links>
+
       <div class="header-content">
         <div class="header-title">
           <div class="uq-title">
@@ -19136,22 +19398,23 @@ uql-menu {
           <div class="application-title">{{applicationTitle}}</div>
         </div>
         <div class="header-actions">
+          <div class="actions">
+            <template is="dom-if" if="{{iaConfiguration.showStatus}}">
+              <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
+            </template>
 
-          <template is="dom-if" if="{{iaConfiguration.showStatus}}">
-            <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
-          </template>
+            <template is="dom-if" if="{{chatConfiguration.showStatus}}">
+              <uql-chat-button show-title="{{chatConfiguration.showTitle}}" button-title="{{chatConfiguration.buttonTitle}}" chat-online-text="{{chatConfiguration.chatOnlineText}}" chat-offline-text="{{chatConfiguration.chatOfflineText}}" offline-url="{{chatConfiguration.offlineUrl}}">
+              </uql-chat-button>
+            </template>
 
-          <template is="dom-if" if="{{chatConfiguration.showStatus}}">
-            <uql-chat-button show-title="{{chatConfiguration.showTitle}}" button-title="{{chatConfiguration.buttonTitle}}" chat-online-text="{{chatConfiguration.chatOnlineText}}" chat-offline-text="{{chatConfiguration.chatOfflineText}}" offline-url="{{chatConfiguration.offlineUrl}}">
-            </uql-chat-button>
-          </template>
-
-          <template is="dom-if" if="{{loginConfiguration.showStatus}}">
-            <uql-login-button show-title="{{loginConfiguration.showTitle}}"></uql-login-button>
-          </template>
-
+            <template is="dom-if" if="{{loginConfiguration.showStatus}}">
+              <uql-login-button show-title="{{loginConfiguration.showTitle}}"></uql-login-button>
+            </template>
+          </div>
         </div>
       </div>
+
     </div>
   </template>
 

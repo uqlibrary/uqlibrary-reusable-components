@@ -73,7 +73,10 @@ uql-menu {
   .header-container {
     height: 66px; }
     .header-container .uq-title {
-      display: none !important; } }
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
