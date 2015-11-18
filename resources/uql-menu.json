@@ -130,20 +130,20 @@
       "items": [
         {
           "label": "Collection strengths",
-          "href": "/item1"
+          "href": "/our-collections/collection-strengths"
         },
         {
           "label": "Online exhibitions",
-          "href": "/item2",
+          "href": "/our-collections/online-exhibitions",
           "subtext": "Item subtext"
         },
         {
           "label": "Cultural & historical collections",
-          "href": "/item3"
+          "href": "/our-collections/cultural-historical-collections"
         },
         {
           "label": "Collection development",
-          "href": "/item3"
+          "href": "/our-collections/collection-development"
         }
       ]
     },
@@ -152,30 +152,34 @@
       "items": [
         {
           "label": "How to borrow",
-          "href": "/item1"
+          "href": "/borrowing-requesting/how-to-borrow"
         },
         {
           "label": "Overdue items",
-          "href": "/item2",
+          "href": "/borrowing-requesting/overdue-items",
           "subtext": "Item subtext"
         },
         {
           "label": "View your loans",
-          "href": "/item3"
+          "href": "/borrowing-requesting/view-your-loans"
         },
         {
           "label": "Renewing",
-          "href": "/item3"
+          "href": "/borrowing-requesting/renewing-loans"
+        },
+        {
+          "label": "Requesting",
+          "href": "/borrowing-requesting/requesting"
         },
         {
           "label": "Accessing restricted materials",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/borrowing-requesting/accessing-restricted-materials",
           "right": "right"
         },
         {
           "label": "Borrow & request from other libraries",
-          "href": "/item2",
+          "href": "/borrowing-requesting/borrow-request-other-libraries",
           "right": "right"
         }
       ]
@@ -194,66 +198,66 @@
         },
         {
           "label": "24/7 spaces",
-          "href": "/item3"
+          "href": "/locations-hours/247-study-spaces"
         },
         {
           "label": "Biological Sciences",
-          "href": "/item3",
+          "href": "/locations-hours/biological-sciences-library",
           "right": "right"
         },
         {
           "label": "D.H. Engineering & Sciences",
-          "href": "/item3",
+          "href": "/locations-hours/dorothy-hill-engineering-and-sciences-library",
           "right": "right"
         },
         {
           "label": "Fryer",
-          "href": "/item3",
+          "href": "/locations-hours/fryer-library",
           "right": "right"
         },
         {
           "label": "Gatton",
-          "href": "/item3",
+          "href": "/locations-hours/uq-gatton-library",
           "right": "right"
         },
         {
           "label": "Grad. Economics & Business",
-          "href": "/item3",
+          "href": "/locations-hours/graduate-economics-and-business-library",
           "right": "right"
         },
         {
           "label": "Herston Health Sciences",
-          "href": "/item3",
+          "href": "/locations-hours/herston-health-sciences-library",
           "right": "right"
         },
         {
           "label": "Law",
-          "href": "/item3",
+          "href": "/locations-hours/walter-harrison-law-library",
           "right": "right"
         },
         {
           "label": "Mater",
-          "href": "/item3",
+          "href": "/locations-hours/uqmater-mcauley-library",
           "right": "right"
         },
         {
           "label": "PACE Health Sciences",
-          "href": "/item3",
+          "href": "/locations-hours/pace-health-sciences-library",
           "right": "right"
         },
         {
           "label": "Rural Clinical School",
-          "href": "/item3",
+          "href": "/locations-hours/rural-clinical-school-rcs-library",
           "right": "right"
         },
         {
           "label": "Social Sciences & Humanities",
-          "href": "/item3",
+          "href": "/locations-hours/social-sciences-humanities-library",
           "right": "right"
         },
         {
           "label": "Warehouse",
-          "href": "/item3",
+          "href": "/locations-hours/warehouse",
           "right": "right"
         }
       ]
