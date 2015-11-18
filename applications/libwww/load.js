@@ -2,6 +2,11 @@
 window.addEventListener('WebComponentsReady', function() {
   // insert header after body-tag
   var header = document.createElement('uq-minimal-header');
+  header.iaConfiguration = {
+    showStatus: true,
+    showTitle: true
+  };
+
   document.body.insertBefore(header, document.body.children[0]);
 
   // insert menu after header
