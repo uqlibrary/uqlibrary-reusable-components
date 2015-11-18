@@ -4,6 +4,14 @@
   <link rel="stylesheet" href="../../styles/elements-styles.css">
 
   <style is="custom-style">
+    :host {
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
+      margin: 0 auto;
+      max-width: 1140px;
+      width: 100%;
+    }
+
     ul, li {
       list-style-type: none;
       margin: 0;
@@ -11,22 +19,18 @@
       display: inline;
     }
 
-    :host {
-      @apply(--layout-flex);
-      @apply(--layout-horizontal);
-      @apply(--layout-end-justified);
-    }
-
-    a {
+    li a,
+    li a:active,
+    li a:visited {
       text-transform: uppercase;
-      color: #d2c1d7;
+      color: #d2c1d7 !important;
       font-weight: 500;
       font-size: 0.65rem;
       margin-right: 0.25rem;
       text-decoration: none;
     }
 
-    a:hover {
+    li a:hover {
       color: #fff;
       text-decoration: underline;
     }

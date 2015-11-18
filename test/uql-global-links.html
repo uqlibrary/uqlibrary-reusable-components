@@ -1,0 +1,70 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>uql-ia-button</title>
+
+  <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../bower_components/web-component-tester/browser.js"></script>
+  <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+  <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
+
+  <!-- Import the element to test -->
+  <link rel="import" href="../elements/uql-global-links/uql-global-links.html">
+
+</head>
+<body>
+
+<test-fixture id="basic">
+  <template>
+    <uql-global-links></uql-global-links>
+  </template>
+</test-fixture>
+
+<script>
+  suite('<uql-global-links> tests', function () {
+    var testObj;
+
+    setup(function () {
+      document.cookie="UQLMockData=enabled";
+      testObj = fixture('basic');
+    });
+
+    test('Display IA button', function (done) {
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
+      flush(function () {
+
+        var test = [
+          { url: "http://www.uq.edu.au/contacts/", title: "Contacts", accessKey: 2 },
+          { url: "http://www.uq.edu.au/study/", title: "Study", accessKey: 3 }
+        ];
+
+        var globalLinks = document.querySelector('uql-global-links');
+        globalLinks.links = test;
+
+        setTimeout(function(){
+          var links = testObj.querySelectorAll('a');
+
+          expect(testObj.links.length).to.equal(2);
+          expect(links.length).to.equal(2);
+          done();
+        }, 1000);
+
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
