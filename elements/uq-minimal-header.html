@@ -11,7 +11,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      overflow: hidden;
+      overflow: visible;
       z-index: 9999;
 
       @apply(--layout-vertical);
@@ -24,9 +24,21 @@
     }
 
     .header-container,
-    .header-container div{
+    .header-content{
       @apply(--layout-horizontal);
       @apply(--layout-center);
+    }
+
+    .header-title {
+      @apply(--layout-flex);
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+    .header-actions {
+      @apply(--layout-flex-2);
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
     }
 
   </style>
@@ -34,24 +46,37 @@
   <template>
     <div class="header-container">
       <div class="header-content">
-        <div class="uq-title">
-          <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
-            <div class="uq-title-text">UQ</div>
-          </a>
+        <div class="header-title">
+          <div class="uq-title">
+            <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
+              <div class="uq-title-text">UQ</div>
+            </a>
+          </div>
+          <div class="library-title">
+            <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+          </div>
+          <div class="application-title">{{applicationTitle}}</div>
         </div>
-        <div class="library-title">
-          <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+        <div class="header-actions">
+
+          <template is="dom-if" if="{{iaConfiguration.showStatus}}">
+            <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
+          </template>
+
+          <template is="dom-if" if="{{chatConfiguration.showStatus}}">
+            <uql-chat-button show-title="{{chatConfiguration.showTitle}}"
+                             button-title="{{chatConfiguration.buttonTitle}}"
+                             chat-online-text="{{chatConfiguration.chatOnlineText}}"
+                             chat-offline-text="{{chatConfiguration.chatOfflineText}}"
+                             offline-url="{{chatConfiguration.offlineUrl}}">
+            </uql-chat-button>
+          </template>
+
+          <template is="dom-if" if="{{loginConfiguration.showStatus}}">
+            <uql-login-button show-title="{{loginConfiguration.showTitle}}"></uql-login-button>
+          </template>
+
         </div>
-        <div class="application-title">{{applicationTitle}}</div>
-
-        <template is="dom-if" if="{{showChatStatus}}">
-          <uql-chat-button></uql-chat-button>
-        </template>
-
-        <template is="dom-if" if="{{showLoginStatus}}">
-          <uql-login-button></uql-login-button>
-        </template>
-
       </div>
     </div>
   </template>
@@ -66,15 +91,36 @@
             type: String,
             notify: true
           },
-          showChatStatus: {
-            type: Boolean,
-            value: false
+          chatConfiguration: {
+            type: Object,
+            value: {
+              showStatus: true,
+              showTitle: true,
+              buttonTitle: "Ask Us",
+              chatOnlineText: "Chat with us now!",
+              chatOfflineText: "Chat is offline.",
+              offlineUrl: "https://library.uq.edu.au"
+            }
           },
-          showLoginStatus: {
-            type: Boolean,
-            value: false
+          loginConfiguration: {
+            type: Object,
+            value: {
+              showStatus: true,
+              showTitle: true
+            }
+          },
+          iaConfiguration: {
+            type: Object,
+            value: {
+              showStatus: true,
+              showTitle: true
+            }
           }
+        },
+
+        ready: function() {
         }
+
       });
     })();
   </script>

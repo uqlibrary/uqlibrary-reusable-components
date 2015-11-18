@@ -1,0 +1,24 @@
+<dom-module id="uql-ia-button">
+
+  <link rel="import" href="../elements.html">
+  <link rel="stylesheet" href="../../styles/elements-styles.css">
+
+  <template>
+    <paper-button class="button-inverse" on-tap="toggleIA" id="iaButton">
+      <template is="dom-if" if="{{isIAEnabled}}">
+        <iron-icon icon="icons:radio-button-checked" aria-label="ia switch"></iron-icon>
+      </template>
+
+      <template is="dom-if" if="{{!isIAEnabled}}">
+        <iron-icon icon="icons:radio-button-unchecked" aria-label="ia switch"></iron-icon>
+      </template>
+
+      <template is="dom-if" if="{{showTitle}}">
+        <div class="button-title">{{buttonTitle}}</div>
+      </template>
+    </paper-button>
+  </template>
+
+  <script src="uql-ia-button.js"></script>
+
+</dom-module>
