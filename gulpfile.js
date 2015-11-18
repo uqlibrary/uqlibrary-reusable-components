@@ -1,17 +1,18 @@
 /*
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
+ Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+ This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+ The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+ Code distributed by Google as part of the polymer project is also
+ subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+ */
 
 'use strict';
 
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var argv = require('yargs').argv;
 var del = require('del');
 var runSequence = require('run-sequence');
 //var browserSync = require('browser-sync');
@@ -42,7 +43,7 @@ var AUTOPREFIXER_BROWSERS = [
 ];
 
 var config = {
-  applications : 'applications',
+  applications: 'applications',
   elements: 'elements',
   dependencies: 'bower_components',
   resources: 'resources'
@@ -51,15 +52,15 @@ var config = {
 // Lint JavaScript
 gulp.task('jshint', function () {
   return gulp.src([
-    config.applications + '/**/*.js',
-    config.elements + '/**/*.js'
-  ])
+      config.applications + '/**/*.js',
+      config.elements + '/**/*.js'
+    ])
     //.pipe(reload({stream: true, once: true}))
     .pipe($.jshint.extract()) // Extract JS from .html files
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.jshint.reporter('fail'));
-    //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+  //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 // Lint JSON
@@ -89,7 +90,7 @@ gulp.task('vulcanize', ['clean:vulcanize', 'copy:vulcanize'], function () {
 });
 
 // delete old vulcanized file
-gulp.task('clean:vulcanize', function(done) {
+gulp.task('clean:vulcanize', function (done) {
   del([
     config.elements + '/elements.vulcanized.html'
   ], done);
@@ -128,14 +129,30 @@ gulp.task('copy:aws', function () {
     .pipe($.size({title: 'copy'}));
 });
 
+/**
+ * Command line param:
+ *    --branch {CI_BRANCH}
+ *
+ * If no branch passed will invalidate production
+ */
 gulp.task('invalidate', function () {
   var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
+
+  var invalidatePath = '';
+
+  if (argv.branch) {
+    invalidatePath = '/' + argv.branch;
+  }
+
+  invalidatePath += '/reusable-components/*';
 
   var invalidationBatch = {
     CallerReference: new Date().toString(),
     Paths: {
       Quantity: 1,
-      Items: ['/master/reusable-components/*']
+      Items: [
+        invalidatePath
+      ]
     }
   };
 
@@ -149,7 +166,7 @@ gulp.task('invalidate', function () {
   };
 
   return gulp.src([
-    config.applications  + '/*',
+    config.applications + '/*',
     config.elements + '/*',
     config.dependencies + '/*',
     config.resources + '/*'
@@ -157,7 +174,7 @@ gulp.task('invalidate', function () {
 });
 
 // upload package to S3
-gulp.task('publish', ['copy:aws'], function() {
+gulp.task('publish', ['copy:aws'], function () {
 
   // create a new publisher using S3 options
   var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
@@ -204,7 +221,11 @@ gulp.task('default', ['help']);
 
 // Load tasks for web-component-tester
 // Adds tasks for `gulp test:local` and `gulp test:remote`
-try { require('web-component-tester').gulp.init(gulp); } catch (err) {}
+try {
+  require('web-component-tester').gulp.init(gulp);
+}
+catch (err) {
+}
 
 //// Load custom tasks from the `tasks` directory
 //try { require('require-dir')('tasks'); } catch (err) {}

@@ -59,7 +59,7 @@ echo "Run gulp task to upload to AWS..."
 gulp publish
 
 echo "Run Cloudfront Invalidation"
-gulp invalidate
+gulp invalidate --branch ${S3BucketSubDir}
 
 echo "Clean up AWS configuration..."
 rm -f ${awsconfig}
