@@ -135,17 +135,17 @@ gulp.task('copy:aws', function () {
 
 /**
  * Command line param:
- *    --bucketSubDir {INVALIDATION_PATH}
+ *    --path {INVALIDATION_PATH}
  *
- * If no bucket subdir passed will invalidate production subdir
+ * If no bucket path passed will invalidate production subdir
  */
 gulp.task('invalidate', function () {
   var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
 
   var invalidatePath = '';
 
-  if (argv.bucketSubDir) {
-    invalidatePath = argv.bucketSubDir + '/*';
+  if (argv.path) {
+    invalidatePath = argv.path + '/*';
   } else {
     invalidatePath += '/reusable-components/*';
   }

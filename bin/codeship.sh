@@ -23,8 +23,10 @@ pwd
 # use codeship branch environment variable to push to branch name dir unless it's 'production' branch (or master for now)
 if [ ${CI_BRANCH} != "production" ]; then
   export S3BucketSubDir=/${CI_BRANCH}/${dest}
+  export InvalidationPath=/${CI_BRANCH}/${dest}
 else
   export S3BucketSubDir=${dest}
+  export InvalidationPath=/${dest}
 fi
 
 echo "Deploying to S3 bucket sub-dir: ${S3BucketSubDir}"
@@ -59,7 +61,7 @@ echo "Run gulp task to upload to AWS..."
 gulp publish
 
 echo "Run Cloudfront Invalidation"
-gulp invalidate --bucketSubDir ${S3BucketSubDir}
+gulp invalidate --path ${InvalidationPath}
 
 echo "Clean up AWS configuration..."
 rm -f ${awsconfig}
