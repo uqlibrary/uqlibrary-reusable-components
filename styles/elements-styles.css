@@ -1,15 +1,22 @@
 paper-button {
-  font-size: 14px; }
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
 
-.button-inverse {
-  color: #FFF; }
-
-.button-action {
-  background-color: #2377CB; }
-
-.button-inverse:focus {
-  outline: #3b99fc auto 5px; }
-
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
 uql-menu,
 .header-container,
 .footer-container {
@@ -36,7 +43,7 @@ uql-menu {
     color: #FFF;
     margin: 10px; }
   .header-container .uq-title {
-    width: 190px;
+    min-width: 190px;
     height: 50px;
     background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
     background-size: 178px 50px;
@@ -62,7 +69,7 @@ uql-menu {
   .footer-container div {
     color: #d2c1d7; }
 
-@media all and (max-width: 700px) {
+@media all and (max-width: 1047px) {
   .header-container {
     height: 66px; }
     .header-container .uq-title {

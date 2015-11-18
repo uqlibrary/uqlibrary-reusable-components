@@ -5,9 +5,11 @@ $focus-outline-color: rgb(59, 153, 252);
 //UQ theme colours
 $uq-purple: #49075E;
 $uq-purple-dark: #370546;
+$uq-purple-lighter: #6B0C8A;
 $uq-purple-light: #d2c1d7;
 
 $uq-blue: #2377CB;
+$uq-blue-lighter: #288BED;
 $uq-blue-dark: #005EA5;
 
 //header colours
@@ -21,6 +23,31 @@ $logo-url: "https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg";
 $footer-background-color: $uq-purple;
 $footer-primary-text-color: #FFF;
 $footer-secondary-text-color: $uq-purple-light;
+
+//tool tips
+$tooltip-background-color: #e5e5e5;
+$tooltip-border-color: #ccc;
+$tooltip-text-color: #666;
+
+@mixin toolip-style() {
+  background-color: $tooltip-background-color;
+  color: $tooltip-text-color;
+  font-size: 13px;
+  padding: 20px;
+  border: 1px solid $tooltip-border-color;
+}
+
+@mixin tooltip-pointer() {
+  border-bottom: 8px solid $tooltip-background-color;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  content: '';
+  position: absolute;
+  top: -7px;
+  right: 50%;
+}
+
+
 
 
 

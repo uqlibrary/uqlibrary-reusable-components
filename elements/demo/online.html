@@ -3,10 +3,11 @@
 <html>
 
 <head>
-  <title>header-minimal demo</title>
+  <title>Reusable components demo</title>
 
-  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../elements.html">
+  <!-- this demo is configured with live paths -->
+  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../../elements.vulcanized.html">
 
   <style>
     @media (max-width: 1047px) {
@@ -25,7 +26,7 @@
     }
 
     .body {
-      padding: 50px 0px 0px 100px;
+      padding: 50px 20px 0px 100px;
     }
     input {
       margin: 5px;
@@ -64,7 +65,7 @@
   document.cookie="UQLMockData=enabled";
 
   Demo.appTitle = '';
-  Demo.menuJson = '../uql-menu/demo/menu.json';
+  Demo.menuJson = '../../resources/uql-menu.json';
 
   Demo.chatStatusConfig = {
     showStatus: true,
@@ -86,7 +87,6 @@
   }
 
 </script>
-
 
 </body>
 </html>

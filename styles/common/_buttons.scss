@@ -1,15 +1,40 @@
 paper-button {
-  font-size: 14px;
+  font-size: 10px;
+
+  &.button-inverse {
+    color: $text-color-inverse;
+
+    &:hover {
+      background: $uq-purple-lighter;
+    }
+
+    &:focus {
+      outline: $focus-outline-color auto 5px;
+    }
+
+  }
+
+  &.button-action {
+    background-color: $uq-blue;
+
+    &:hover {
+      background: $uq-blue-lighter;
+    }
+  }
+
+  .button-title {
+    padding: 8px;
+    //display: inline;
+    //display: none;
+  }
 }
 
-.button-inverse {
-  color: $text-color-inverse;
-}
-
-.button-action {
-  background-color: $uq-blue;
-}
-
-.button-inverse:focus {
-  outline: $focus-outline-color auto 5px;
+@media all and (max-width: 700px) {
+  paper-button {
+    .button-title {
+      padding: 8px;
+      //display: inline;
+      display: none;
+    }
+  }
 }

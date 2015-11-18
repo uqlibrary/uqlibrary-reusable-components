@@ -2,84 +2,52 @@
   Polymer({
     is: 'uql-login-button',
     properties: {
-      loginUrl: {
-        type: String,
-        value: "https://www.library.uq.edu.au/uqlais/login?return="
+      user: {
+        type: Object,
+        value: { }
       },
-      accountUrl: {
-        type: String,
-        value: 'https://app.library.uq.edu.au/api/account'
-      },
-      logoutUrl: {
-        type: String,
-        value: "https://www.library.uq.edu.au/logout"
+      verbose: {
+        type: Boolean,
+        value: false
       },
       isLoggedIn: {
         type: Boolean,
         value: false
       },
-      verbose: {
+      showTitle: {
         type: Boolean,
-        value: false
+        value: true
       }
     },
 
     ready: function() {
-      if (this.hasSession() && document.cookie.indexOf("UQLMockData") === -1) {
-        var now = new Date().getTime();
+      var that = this;
 
-        this.$.getAccountApi.url = this.accountUrl + '?' + now;
-        this.$.getAccountApi.headers = {
-          "X-Uql-Token": this.getCookie("UQLID")
-        };
-        this.$.getAccountApi.generateRequest();
-      }
-    },
+      this.$.accountApi.addEventListener('uqlibrary-api-account-loaded', function(response) {
+        if (response.detail.hasSession !== null) {
+          that.isLoggedIn = response.detail.hasSession;
 
-    accountResponse: function(response) {
-      this.isLoggedIn = true;
-    },
-
-    accountResponseError: function(response) {
-      this.isLoggedIn = false;
+          if (response.detail.hasSession) {
+            that.user = response.detail;
+          }
+        } else {
+          that.user = {};
+          that.isLoggedIn = false;
+        }
+      });
     },
 
     performLogin: function() {
-      if (document.cookie.indexOf("UQLMockData") >= 0) {
-        this.isLoggedIn = true;
-      } else {
-        var url = window.location.href;
-        document.location.href = this.loginUrl + window.btoa(url);
-      }
+      this.$.accountApi.login(window.location.href);
     },
 
     performLogout: function() {
+      this.user = {};
       this.isLoggedIn = false;
 
-      if (document.cookie.indexOf("UQLMockData") === -1) {
-        document.location.href = this.logoutUrl;
-      }
-
-    },
-
-    hasSession: function()  {
-      return document.cookie.indexOf("UQLID") >= 0;
-    },
-
-    /**
-     * Gets a cookie by name
-     * @param name the name of the cookie to return
-     * @returns {String}
-     */
-    getCookie: function (name) {
-      var parts = document.cookie.split(";");
-      for (var i = 0, l = parts.length; i < l; i++) {
-        var cookieParts = parts[i].trim().split('=');
-        if (cookieParts[0] === name) {
-          return cookieParts[1];
-        }
-      }
+      this.$.accountApi.logout();
     }
+
   });
 })();
 

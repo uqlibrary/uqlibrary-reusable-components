@@ -20,56 +20,56 @@
         {
           "label": "Digitisation",
           "subtext": "Specific categories below",
-          "href": "/item1"
+          "href": "/item4"
         },
         {
           "label": "for Students",
-          "href": "/item2",
+          "href": "/item5",
           "right": "right"
         },
         {
           "label": "for Researchers",
-          "href": "/item2",
+          "href": "/item6",
           "right": "right"
         },
         {
           "label": "for Teaching Staff",
-          "href": "/item2",
+          "href": "/item7",
           "right": "right"
         },
         {
           "label": "for Professional Staff",
-          "href": "/item2",
+          "href": "/item8",
           "right": "right"
         },
         {
           "label": "for Hospital Staff",
-          "href": "/item2",
+          "href": "/item9",
           "right": "right"
         },
         {
           "label": "for Alumni",
-          "href": "/item2",
+          "href": "/item10",
           "right": "right"
         },
         {
           "label": "for Community",
-          "href": "/item2",
+          "href": "/item11",
           "right": "right"
         },
         {
           "label": "for Secondary Schools",
-          "href": "/item2",
+          "href": "/item12",
           "right": "right"
         },
         {
           "label": "for Clients with disabilities",
-          "href": "/item2",
+          "href": "/item13",
           "right": "right"
         },
         {
           "label": "for Other Libraries Staff",
-          "href": "/item2",
+          "href": "/item14",
           "right": "right"
         }
       ]
@@ -256,12 +256,12 @@
         },
         {
           "label": "Events",
-          "href": "/item2",
-          "subtext": "Item subtext"
+          "href": "/about-us/events",
+          "subtext": "Active"
         },
         {
           "label": "Friends of the Library",
-          "href": "/item3"
+          "href": "/about-us/friends-library"
         },
         {
           "label": "Membership",
@@ -269,11 +269,11 @@
         },
         {
           "label": "History of the Library",
-          "href": "/item3"
+          "href": "/about-us/history-library"
         },
         {
           "label": "Giving to the Library",
-          "href": "/item3"
+          "href": "/about-us/giving-to-library"
         },
         {
           "label": "Library tours",
@@ -281,37 +281,37 @@
         },
         {
           "label": "Organisational structure",
-          "href": "/item3",
+          "href": "/about-us/organisational-structure",
           "right": "right"
         },
         {
           "label": "Policies & guidelines",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/policies-guidelines",
           "right": "right"
         },
         {
           "label": "Reports & publications",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/reports-and-publications",
           "right": "right"
         },
         {
           "label": "Employment",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/employment",
           "right": "right"
         },
         {
           "label": "Awards & competitions",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/awards-and-competitions",
           "right": "right"
         },
         {
           "label": "Contacting us & feedback",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/about-us/contact-us-and-feedback",
           "right": "right"
         }
       ]

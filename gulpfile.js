@@ -46,7 +46,8 @@ var config = {
   applications: 'applications',
   elements: 'elements',
   dependencies: 'bower_components',
-  resources: 'resources'
+  resources: 'resources',
+  demo: 'elements/demo'
 };
 
 // Lint JavaScript
@@ -125,7 +126,10 @@ gulp.task('copy:aws', function () {
   var resources = gulp.src([config.resources + '/**/*'])
     .pipe(gulp.dest(config.applications + '/resources'));
 
-  return merge(vulcanized, dependencies, resources)
+  var demo = gulp.src([config.demo + '/**/*'])
+    .pipe(gulp.dest(config.applications + '/elements/demo'));
+
+  return merge(vulcanized, dependencies, resources, demo)
     .pipe($.size({title: 'copy'}));
 });
 

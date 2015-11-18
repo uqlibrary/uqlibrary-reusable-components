@@ -2,21 +2,48 @@
   Polymer({
     is: 'uql-chat-button',
     properties: {
+
       chatStatusUrl: {
         type: String,
         value: "https://api2.libanswers.com/1.0/chat/widgets/status/1193"
       },
+
       isChatOnline: {
         type: Boolean,
         value: false
       },
+
+      showTitle : {
+        type: String,
+        value: true
+      },
+
+      buttonTitle: {
+        type: String,
+        value: "Ask Us"
+      },
+
+      chatOnlineText: {
+        type: String,
+        value: "Chat with us now!"
+      },
+
+      chatOfflineText: {
+        type: String,
+        value: "Chat is offline."
+      },
+
+      offlineUrl: {
+        type: String,
+        value: ""
+      },
+
       chatOptions : {
         type: Object,
         value : {
           height: '350px',
           width: '350px',
-          offline_url: '',
-          base_domain: "v2.libanswers.com",
+          baseDomain: "v2.libanswers.com",
           iid: "1193",
           hash: "fdbdf3c1190c1b6147b92d38c20194a8"
         }
@@ -25,15 +52,27 @@
 
     handleChatStatusResponse: function(response) {
       this.isChatOnline = response.detail.data.online;
+      this.setupChatTooltip();
     },
 
     handleChatStatusError: function(response) {
       this.isChatOnline = false;
+      this.setupChatTooltip();
+    },
+
+    setupChatTooltip: function() {
+      var tooltip = document.getElementById('chatStatusTooltip');
+
+      if (this.isChatOnline) {
+        setTimeout(function() {
+            tooltip.show();
+        }, 1000);
+      }
     },
 
     openChat: function() {
-      if (!this.isChatOnline && this.chatOptions.offline_url !== '') {
-        window.location.href = this.chatOptions.offline_url;
+      if (!this.isChatOnline && this.offlineUrl !== '') {
+        window.location.href = this.offlineUrl;
       } else {
         var url = this.buildChatUrl(this.isChatOnline);
 
@@ -46,7 +85,7 @@
     },
 
     buildChatUrl: function(isOnline) {
-      var qs = window.location.protocol + '//' + this.chatOptions.base_domain + '/chati.php?';
+      var qs = window.location.protocol + '//' + this.chatOptions.baseDomain + '/chati.php?';
       qs += "iid=" + this.chatOptions.iid + "&hash=" + this.chatOptions.hash;
       qs += "&online=" + isOnline;
 
