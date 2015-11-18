@@ -51,6 +51,8 @@ if [ $branch = "staging" ] || [ $branch = "production" ]; then
   gulp optimize
 fi
 
+# If these files are the same, it means an error in vulcanizing
+# todo: vulcanize as part of the build, remove elements.vulcanized.html from git
 result=`diff elements/elements.html elements/elements.vulcanized.html`
 
 if [ -z "${result}" ]; then
