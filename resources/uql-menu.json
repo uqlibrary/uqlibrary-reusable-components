@@ -7,7 +7,7 @@
         {
           "label": "Your subject Librarian",
           "subtext": "Item subtext",
-          "href": "/item1"
+          "href": "/library-services/your-subject-librarian"
         },
         {
           "label": "Training",
@@ -83,24 +83,24 @@
       "items": [
         {
           "label": "Databases",
-          "href": "/item1"
+          "href": "/research-tools-techniques/databases"
         },
         {
           "label": "Journals & newspapers",
-          "href": "/item2",
+          "href": "/research-tools-techniques/journals-newspapers",
           "subtext": "Item subtext"
         },
         {
           "label": "Catalogue",
-          "href": "/item3"
+          "href": "/research-tools-techniques/catalogue"
         },
         {
           "label": "UQ eSpace",
-          "href": "/item3"
+          "href": "/research-tools-techniques/uq-espace"
         },
         {
           "label": "Research by subject",
-          "href": "/item3"
+          "href": "/research-tools-techniques/research-subject"
         },
         {
           "label": "Search techniques",
@@ -189,11 +189,11 @@
       "items": [
         {
           "label": "Opening hours",
-          "href": "/item1"
+          "href": "/locations-hours/opening-hours"
         },
         {
-          "label": "Room & desk booking",
-          "href": "/item2",
+          "label": "Room bookings",
+          "href": "/locations-hours/room-bookings",
           "subtext": "Item subtext"
         },
         {
