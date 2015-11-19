@@ -30,12 +30,12 @@
 
       chatOfflineText: {
         type: String,
-        value: "Chat is offline."
+        value: "Click here for help."
       },
 
       offlineUrl: {
         type: String,
-        value: ""
+        value: "http://answers.library.uq.edu.au"
       },
 
       chatOptions : {
@@ -63,10 +63,20 @@
     setupChatTooltip: function() {
       var tooltip = document.getElementById('chatStatusTooltip');
 
-      if (this.isChatOnline) {
+      if (this.isChatOnline && document.cookie.indexOf("UQL-Show-Chat=1") <= -1) {
+        //set cookie for this session not to show tooltip on load
+        document.cookie = 'UQL-Show-Chat=1';
+
+        //show tooltip after 1 second after page load
         setTimeout(function() {
             tooltip.show();
         }, 1000);
+
+        //hide tooltip after 3 seconds after tooltip opens
+        setTimeout(function() {
+          tooltip.hide();
+        }, 4000);
+
       }
     },
 
@@ -81,7 +91,6 @@
           'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + this.chatOptions.width + ', ' +
           'height=' + this.chatOptions.height);
       }
-
     },
 
     buildChatUrl: function(isOnline) {
