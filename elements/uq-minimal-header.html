@@ -72,12 +72,22 @@
         </div>
         <div class="header-actions">
           <div class="actions">
-            <template is="dom-if" if="{{iaConfiguration.showStatus}}">
-              <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
+            <template is="dom-if" if="{{showSearchButton}}">
+              <uql-search-button show-title="{{showButtonsTitle}}"></uql-search-button>
+            </template>
+            
+            <template is="dom-if" if="{{showIAButton}}">
+              <uql-ia-button show-title="{{showButtonsTitle}}"></uql-ia-button>
             </template>
 
-            <template is="dom-if" if="{{chatConfiguration.showStatus}}">
-              <uql-chat-button show-title="{{chatConfiguration.showTitle}}"
+            <template is="dom-if" if="{{showAppsButton}}">
+              <template is="dom-if" if="{{userLoggedIn}}">
+                <uql-apps-button show-title="{{showButtonsTitle}}"></uql-apps-button>
+              </template>
+            </template>
+
+            <template is="dom-if" if="{{showChatButton}}">
+              <uql-chat-button show-title="{{showButtonsTitle}}"
                                button-title="{{chatConfiguration.buttonTitle}}"
                                chat-online-text="{{chatConfiguration.chatOnlineText}}"
                                chat-offline-text="{{chatConfiguration.chatOfflineText}}"
@@ -85,8 +95,8 @@
               </uql-chat-button>
             </template>
 
-            <template is="dom-if" if="{{loginConfiguration.showStatus}}">
-              <uql-login-button show-title="{{loginConfiguration.showTitle}}"></uql-login-button>
+            <template is="dom-if" if="{{showLoginButton}}">
+              <uql-login-button show-title="{{showButtonsTitle}}" is-logged-in="{{userLoggedIn}}"></uql-login-button>
             </template>
           </div>
         </div>
@@ -108,28 +118,37 @@
           chatConfiguration: {
             type: Object,
             value: {
-              showStatus: true,
-              showTitle: true,
               buttonTitle: "Ask Us",
               chatOnlineText: "Chat with us now!",
-              chatOfflineText: "Chat is offline.",
-              offlineUrl: "https://library.uq.edu.au"
+              chatOfflineText: "Click here for help.",
+              offlineUrl: "http://answers.library.uq.edu.au"
             }
           },
-          loginConfiguration: {
-            type: Object,
-            value: {
-              showStatus: true,
-              showTitle: true
-            }
+          showButtonsTitle: {
+            type: Boolean,
+            value: true
           },
-          iaConfiguration: {
-            type: Object,
-            value: {
-              showStatus: false,
-              showTitle: true
-            }
-          }
+          showSearchButton: {
+            type: Boolean,
+            value: true
+          },
+          showIAButton: {
+            type: Boolean,
+            value: false
+          },
+          showAppsButton: {
+            type: Boolean,
+            value: true
+          },
+          showLoginButton: {
+            type: Boolean,
+            value: true
+          },
+          showChatButton: {
+            type: Boolean,
+            value: true
+          },
+          userLoggedIn: Boolean //set by notification from login button
         },
 
         ready: function() {

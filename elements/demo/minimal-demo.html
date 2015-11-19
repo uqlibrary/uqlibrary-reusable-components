@@ -37,23 +37,28 @@
 <template id="Demo" is="dom-bind">
   <uq-minimal-header application-title="{{appTitle}}"
                      chat-configuration="{{chatStatusConfig}}"
-                     login-configuration="{{loginStatusConfig}}"
-                     ia-configuration="{{iaStatusConfig}}"></uq-minimal-header>
+                     show-chat-button="{{showChatStatus}}"
+                     show-i-a-button="{{showIAStatus}}"
+                     show-search-button="{{showSearchStatus}}"
+                     show-login-button="{{showLoginStatus}}"
+                     show-apps-button="{{showAppsStatus}}"
+                     show-buttons-title="{{showButtonTitle}}"
+          ></uq-minimal-header>
   <uql-menu menu-json = "{{menuJson}}"></uql-menu>
   <div class="body">
     <div> Application title <input value="{{appTitle::input}}"> </div>
+    <div> Show buttons title <input type="checkbox" checked="{{showButtonTitle::change}}"> </div>
     <hr>
-    <div> Show chat status <input type="checkbox" checked="{{chatStatusConfig.showStatus::change}}"> </div>
-    <div> Show chat text <input type="checkbox" checked="{{chatStatusConfig.showTitle::change}}"> </div>
     <div> Chat button text<input value="{{chatStatusConfig.buttonTitle::input}}"> </div>
     <div> Chat online text<input value="{{chatStatusConfig.chatOnlineText::input}}"> </div>
     <div> Chat offline text<input value="{{chatStatusConfig.chatOfflineText::input}}"> </div>
     <hr>
-    <div> Show login status <input type="checkbox" checked="{{loginStatusConfig.showStatus::change}}"> </div>
-    <div> Show login text <input type="checkbox" checked="{{loginStatusConfig.showTitle::change}}"> </div>
-    <hr>
-    <div> Show IA status <input type="checkbox" checked="{{iaStatusConfig.showStatus::change}}"> </div>
-    <div> Show IA text <input type="checkbox" checked="{{iaStatusConfig.showTitle::change}}"> </div>
+    <div> Show search status <input type="checkbox" checked="{{showSearchStatus::change}}"> </div>
+    <div> Show apps status <input type="checkbox" checked="{{showAppsStatus::change}}"> </div>
+    <div> Show chat status <input type="checkbox" checked="{{showChatStatus::change}}"> </div>
+    <div> Show login button <input type="checkbox" checked="{{showLoginStatus::change}}"> </div>
+    <div> Show IA button <input type="checkbox" checked="{{showIAStatus::change}}"> </div>
+
 
   </div>
 </template>
@@ -68,23 +73,19 @@
   Demo.menuJson = '../uql-menu/demo/menu.json';
 
   Demo.chatStatusConfig = {
-    showStatus: true,
-    showTitle: true,
     buttonTitle: "Ask Us",
     chatOnlineText: "Chat with us now!",
     chatOfflineText: "Chat is offline.",
     offlineUrl: "https://library.uq.edu.au"
   };
 
-  Demo.loginStatusConfig = {
-    showStatus: true,
-    showTitle: true
-  }
+//  Demo.showIAStatus = true;
+//  Demo.showSearchStatus = true;
+//  Demo.showAppsStatus = true;
+//  Demo.showChatStatus = true;
+//  Demo.showLoginStatus = true;
 
-  Demo.iaStatusConfig = {
-    showStatus: true,
-    showTitle: true
-  }
+  Demo.showButtonTitle = true;
 
 </script>
 

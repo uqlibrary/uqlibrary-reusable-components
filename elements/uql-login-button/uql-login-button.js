@@ -12,7 +12,8 @@
       },
       isLoggedIn: {
         type: Boolean,
-        value: false
+        value: false,
+        notify: true
       },
       showTitle: {
         type: Boolean,

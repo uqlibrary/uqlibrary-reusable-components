@@ -19051,7 +19051,8 @@ uql-menu {
       },
       isLoggedIn: {
         type: Boolean,
-        value: false
+        value: false,
+        notify: true
       },
       showTitle: {
         type: Boolean,
@@ -19249,6 +19250,282 @@ uql-menu {
       window.location.reload(true);
     }
 
+  });
+})();
+
+</script>
+
+</dom-module>
+<dom-module id="uql-search-button" assetpath="uql-search-button/">
+
+  <style>
+paper-button {
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
+
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
+uql-menu,
+.header-container,
+.footer-container {
+  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+
+uql-menu {
+  font-weight: lighter; }
+
+.header-container {
+  height: 100px;
+  background-color: #49075E;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  white-space: nowrap; }
+  .header-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .header-container .application-title,
+  .header-container .library-title,
+  .header-container .uq-title {
+    color: #FFF;
+    margin: 10px; }
+  .header-container .uq-title {
+    min-width: 190px;
+    height: 50px;
+    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+    background-size: 178px 50px;
+    border-right: 1px solid #FFF; }
+    .header-container .uq-title a {
+      width: 190px;
+      height: 50px; }
+    .header-container .uq-title .uq-title-text {
+      display: none !important; }
+
+.footer-container {
+  background-color: #49075E;
+  text-decoration: none;
+  line-height: 20px;
+  white-space: nowrap;
+  color: #FFF !important;
+  font-size: 14px;
+  padding: 20px; }
+  .footer-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .footer-container div {
+    color: #d2c1d7; }
+
+@media all and (max-width: 1047px) {
+  .header-container {
+    height: 66px; }
+    .header-container .uq-title {
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
+/* mobile-small */
+/* mobile-large */
+/* mobile-small-landscape */
+/* mobile-large-landscape */
+/* tablet-small-landscape */
+/* tablet-large-landscape */
+/* tablet-small */
+/* tablet-large */
+/* desktop-x-small-landscape */
+/* desktop-x-small */
+/* desktop-small-landscape */
+/* desktop-small */
+/* desktop-medium-landscape */
+/* desktop-medium */
+/* desktop-large */
+/* desktop-xlarge */
+
+/*# sourceMappingURL=elements-styles.css.map */
+
+</style>
+
+  <template>
+    <paper-button class="button-inverse" on-tap="searchClicked" id="searchButton">
+      <iron-icon icon="icons:search" aria-label="search UQ library site"></iron-icon>
+
+      <template is="dom-if" if="{{showTitle}}">
+        <div class="button-title">{{buttonTitle}}</div>
+      </template>
+    </paper-button>
+  </template>
+
+  <script>(function () {
+  Polymer({
+    is: 'uql-search-button',
+    properties: {
+      showTitle: {
+        type: Boolean,
+        value: true
+      },
+      buttonTitle: {
+        type: String,
+        value: "This Site"
+      },
+      redirectUrl: {
+        type: String,
+        value: "http://www.uq.edu.au/search/?q=%20&as_sitesearch=www.library.uq.edu.au"
+      }
+    },
+
+    searchClicked: function() {
+      window.location.href = this.redirectUrl;
+    }
+  });
+})();
+
+</script>
+
+</dom-module>
+<dom-module id="uql-apps-button" assetpath="uql-apps-button/">
+
+  <style>
+paper-button {
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
+
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
+uql-menu,
+.header-container,
+.footer-container {
+  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+
+uql-menu {
+  font-weight: lighter; }
+
+.header-container {
+  height: 100px;
+  background-color: #49075E;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  white-space: nowrap; }
+  .header-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .header-container .application-title,
+  .header-container .library-title,
+  .header-container .uq-title {
+    color: #FFF;
+    margin: 10px; }
+  .header-container .uq-title {
+    min-width: 190px;
+    height: 50px;
+    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+    background-size: 178px 50px;
+    border-right: 1px solid #FFF; }
+    .header-container .uq-title a {
+      width: 190px;
+      height: 50px; }
+    .header-container .uq-title .uq-title-text {
+      display: none !important; }
+
+.footer-container {
+  background-color: #49075E;
+  text-decoration: none;
+  line-height: 20px;
+  white-space: nowrap;
+  color: #FFF !important;
+  font-size: 14px;
+  padding: 20px; }
+  .footer-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .footer-container div {
+    color: #d2c1d7; }
+
+@media all and (max-width: 1047px) {
+  .header-container {
+    height: 66px; }
+    .header-container .uq-title {
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
+/* mobile-small */
+/* mobile-large */
+/* mobile-small-landscape */
+/* mobile-large-landscape */
+/* tablet-small-landscape */
+/* tablet-large-landscape */
+/* tablet-small */
+/* tablet-large */
+/* desktop-x-small-landscape */
+/* desktop-x-small */
+/* desktop-small-landscape */
+/* desktop-small */
+/* desktop-medium-landscape */
+/* desktop-medium */
+/* desktop-large */
+/* desktop-xlarge */
+
+/*# sourceMappingURL=elements-styles.css.map */
+
+</style>
+
+  <template>
+    <paper-button class="button-inverse" on-tap="myLibraryClicked" id="appsButton">
+      <iron-icon icon="icons:apps" aria-label="Go to my library"></iron-icon>
+      <template is="dom-if" if="{{showTitle}}">
+        <div class="button-title">{{buttonTitle}}</div>
+      </template>
+    </paper-button>
+  </template>
+
+  <script>(function () {
+  Polymer({
+    is: 'uql-apps-button',
+    properties: {
+      showTitle: {
+        type: Boolean,
+        value: true
+      },
+      buttonTitle: {
+        type: String,
+        value: "My Library"
+      },
+      redirectUrl: {
+        type: String,
+        value: "https://www.library.uq.edu.au/mylibrary"
+      }
+    },
+    myLibraryClicked: function() {
+      window.location.href = this.redirectUrl;
+    }
   });
 })();
 
@@ -19601,17 +19878,27 @@ uql-menu {
         </div>
         <div class="header-actions">
           <div class="actions">
-            <template is="dom-if" if="{{iaConfiguration.showStatus}}">
-              <uql-ia-button show-title="{{iaConfiguration.showTitle}}"></uql-ia-button>
+            <template is="dom-if" if="{{showSearchButton}}">
+              <uql-search-button show-title="{{showButtonsTitle}}"></uql-search-button>
+            </template>
+            
+            <template is="dom-if" if="{{showIAButton}}">
+              <uql-ia-button show-title="{{showButtonsTitle}}"></uql-ia-button>
             </template>
 
-            <template is="dom-if" if="{{chatConfiguration.showStatus}}">
-              <uql-chat-button show-title="{{chatConfiguration.showTitle}}" button-title="{{chatConfiguration.buttonTitle}}" chat-online-text="{{chatConfiguration.chatOnlineText}}" chat-offline-text="{{chatConfiguration.chatOfflineText}}" offline-url="{{chatConfiguration.offlineUrl}}">
+            <template is="dom-if" if="{{showAppsButton}}">
+              <template is="dom-if" if="{{userLoggedIn}}">
+                <uql-apps-button show-title="{{showButtonsTitle}}"></uql-apps-button>
+              </template>
+            </template>
+
+            <template is="dom-if" if="{{showChatButton}}">
+              <uql-chat-button show-title="{{showButtonsTitle}}" button-title="{{chatConfiguration.buttonTitle}}" chat-online-text="{{chatConfiguration.chatOnlineText}}" chat-offline-text="{{chatConfiguration.chatOfflineText}}" offline-url="{{chatConfiguration.offlineUrl}}">
               </uql-chat-button>
             </template>
 
-            <template is="dom-if" if="{{loginConfiguration.showStatus}}">
-              <uql-login-button show-title="{{loginConfiguration.showTitle}}"></uql-login-button>
+            <template is="dom-if" if="{{showLoginButton}}">
+              <uql-login-button show-title="{{showButtonsTitle}}" is-logged-in="{{userLoggedIn}}"></uql-login-button>
             </template>
           </div>
         </div>
@@ -19633,28 +19920,37 @@ uql-menu {
           chatConfiguration: {
             type: Object,
             value: {
-              showStatus: true,
-              showTitle: true,
               buttonTitle: "Ask Us",
               chatOnlineText: "Chat with us now!",
-              chatOfflineText: "Chat is offline.",
-              offlineUrl: "https://library.uq.edu.au"
+              chatOfflineText: "Click here for help.",
+              offlineUrl: "http://answers.library.uq.edu.au"
             }
           },
-          loginConfiguration: {
-            type: Object,
-            value: {
-              showStatus: true,
-              showTitle: true
-            }
+          showButtonsTitle: {
+            type: Boolean,
+            value: true
           },
-          iaConfiguration: {
-            type: Object,
-            value: {
-              showStatus: false,
-              showTitle: true
-            }
-          }
+          showSearchButton: {
+            type: Boolean,
+            value: true
+          },
+          showIAButton: {
+            type: Boolean,
+            value: false
+          },
+          showAppsButton: {
+            type: Boolean,
+            value: true
+          },
+          showLoginButton: {
+            type: Boolean,
+            value: true
+          },
+          showChatButton: {
+            type: Boolean,
+            value: true
+          },
+          userLoggedIn: Boolean //set by notification from login button
         },
 
         ready: function() {

@@ -1,0 +1,17 @@
+<dom-module id="uql-apps-button">
+
+  <link rel="import" href="../elements.html">
+  <link rel="stylesheet" href="../../styles/elements-styles.css">
+
+  <template>
+    <paper-button class="button-inverse" on-tap="myLibraryClicked" id="appsButton">
+      <iron-icon icon="icons:apps" aria-label="Go to my library"></iron-icon>
+      <template is="dom-if" if="{{showTitle}}">
+        <div class="button-title">{{buttonTitle}}</div>
+      </template>
+    </paper-button>
+  </template>
+
+  <script src="uql-apps-button.js"></script>
+
+</dom-module>
