@@ -5,9 +5,9 @@
       "label": "Library Services",
       "items": [
         {
-          "label": "Your subject Librarian",
+          "label": "Your librarian",
           "subtext": "Item subtext",
-          "href": "/library-services/your-subject-librarian"
+          "href": "/library-services/your-librarian"
         },
         {
           "label": "Training",
@@ -336,7 +336,7 @@
       "items": [
         {
           "label": "FAQs",
-          "href": "/item1"
+          "href": "/ask-us"
         }
       ]
     }
