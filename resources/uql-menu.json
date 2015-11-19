@@ -7,69 +7,73 @@
         {
           "label": "Your subject Librarian",
           "subtext": "Item subtext",
-          "href": "/item1"
+          "href": "/library-services/your-subject-librarian"
         },
         {
-          "label": "IT",
-          "href": "/item2"
+          "label": "Training",
+          "href": "/library-services/training"
+        },
+        {
+          "label": "I.T.",
+          "href": "/library-services/it"
         },
         {
           "label": "Copyright advice",
-          "href": "/item3"
+          "href": "/library-services/copyright-advice"
         },
         {
           "label": "Digitisation",
           "subtext": "Specific categories below",
-          "href": "/item4"
+          "href": "/library-services/digitisation"
         },
         {
           "label": "for Students",
-          "href": "/item5",
+          "href": "/library-services/services-for-students",
           "right": "right"
         },
         {
           "label": "for Researchers",
-          "href": "/item6",
+          "href": "/library-services/services-for-researchers",
           "right": "right"
         },
         {
-          "label": "for Teaching Staff",
-          "href": "/item7",
+          "label": "for Teaching staff",
+          "href": "/library-services/services-for-teaching-staff",
           "right": "right"
         },
         {
-          "label": "for Professional Staff",
-          "href": "/item8",
+          "label": "for Professional staff",
+          "href": "/library-services/services-for-professional-staff",
           "right": "right"
         },
         {
-          "label": "for Hospital Staff",
-          "href": "/item9",
+          "label": "for Hospital staff",
+          "href": "/library-services/services-for-hospital-staff",
           "right": "right"
         },
         {
-          "label": "for Alumni",
-          "href": "/item10",
+          "label": "for UQ alumni",
+          "href": "/library-services/services-for-uq-alumni",
           "right": "right"
         },
         {
           "label": "for Community",
-          "href": "/item11",
+          "href": "/library-services/services-for-community",
           "right": "right"
         },
         {
-          "label": "for Secondary Schools",
-          "href": "/item12",
+          "label": "for Secondary schools",
+          "href": "/library-services/services-for-secondary-schools",
           "right": "right"
         },
         {
           "label": "for Clients with disabilities",
-          "href": "/item13",
+          "href": "/library-services/support-for-clients-disabilities",
           "right": "right"
         },
         {
-          "label": "for Other Libraries Staff",
-          "href": "/item14",
+          "label": "for Other libraries",
+          "href": "/library-services/for-other-libraries",
           "right": "right"
         }
       ]
@@ -79,37 +83,44 @@
       "items": [
         {
           "label": "Databases",
-          "href": "/item1"
+          "href": "/research-tools-techniques/databases"
         },
         {
           "label": "Journals & newspapers",
-          "href": "/item2",
+          "href": "/research-tools-techniques/journals-newspapers",
           "subtext": "Item subtext"
         },
         {
           "label": "Catalogue",
-          "href": "/item3"
+          "href": "/research-tools-techniques/catalogue"
         },
         {
           "label": "UQ eSpace",
-          "href": "/item3"
+          "href": "/research-tools-techniques/uq-espace"
         },
         {
           "label": "Research by subject",
-          "href": "/item3"
+          "href": "/research-tools-techniques/research-subject"
         },
         {
           "label": "Search techniques",
-          "href": "/item3"
+          "href": "/research-tools-techniques/search-techniques",
+          "right": "right"
         },
         {
-          "label": "Evaluate your results",
-          "href": "/item3"
+          "label": "Evaluate your search results",
+          "href": "/research-tools-techniques/evaluate-your-search-results",
+          "right": "right"
         },
         {
           "label": "Referencing",
-          "href": "/item1",
+          "href": "/research-tools-techniques/referencing",
           "subtext": "Referencing subtext",
+          "right": "right"
+        },
+        {
+          "label": "Easier off-campus access",
+          "href": "/research-tools-techniques/easier-campus-access",
           "right": "right"
         }
       ]
@@ -119,20 +130,20 @@
       "items": [
         {
           "label": "Collection strengths",
-          "href": "/item1"
+          "href": "/our-collections/collection-strengths"
         },
         {
           "label": "Online exhibitions",
-          "href": "/item2",
+          "href": "/our-collections/online-exhibitions",
           "subtext": "Item subtext"
         },
         {
           "label": "Cultural & historical collections",
-          "href": "/item3"
+          "href": "/our-collections/cultural-historical-collections"
         },
         {
           "label": "Collection development",
-          "href": "/item3"
+          "href": "/our-collections/collection-development"
         }
       ]
     },
@@ -141,30 +152,34 @@
       "items": [
         {
           "label": "How to borrow",
-          "href": "/item1"
+          "href": "/borrowing-requesting/how-to-borrow"
         },
         {
           "label": "Overdue items",
-          "href": "/item2",
+          "href": "/borrowing-requesting/overdue-items",
           "subtext": "Item subtext"
         },
         {
           "label": "View your loans",
-          "href": "/item3"
+          "href": "/borrowing-requesting/view-your-loans"
         },
         {
           "label": "Renewing",
-          "href": "/item3"
+          "href": "/borrowing-requesting/renewing-loans"
+        },
+        {
+          "label": "Requesting",
+          "href": "/borrowing-requesting/requesting"
         },
         {
           "label": "Accessing restricted materials",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "/borrowing-requesting/accessing-restricted-materials",
           "right": "right"
         },
         {
           "label": "Borrow & request from other libraries",
-          "href": "/item2",
+          "href": "/borrowing-requesting/borrow-request-other-libraries",
           "right": "right"
         }
       ]
@@ -174,75 +189,75 @@
       "items": [
         {
           "label": "Opening hours",
-          "href": "/item1"
+          "href": "/locations-hours/opening-hours"
         },
         {
-          "label": "Room & desk booking",
-          "href": "/item2",
+          "label": "Room bookings",
+          "href": "/locations-hours/room-bookings",
           "subtext": "Item subtext"
         },
         {
           "label": "24/7 spaces",
-          "href": "/item3"
+          "href": "/locations-hours/247-study-spaces"
         },
         {
           "label": "Biological Sciences",
-          "href": "/item3",
+          "href": "/locations-hours/biological-sciences-library",
           "right": "right"
         },
         {
           "label": "D.H. Engineering & Sciences",
-          "href": "/item3",
+          "href": "/locations-hours/dorothy-hill-engineering-and-sciences-library",
           "right": "right"
         },
         {
           "label": "Fryer",
-          "href": "/item3",
+          "href": "/locations-hours/fryer-library",
           "right": "right"
         },
         {
           "label": "Gatton",
-          "href": "/item3",
+          "href": "/locations-hours/uq-gatton-library",
           "right": "right"
         },
         {
           "label": "Grad. Economics & Business",
-          "href": "/item3",
+          "href": "/locations-hours/graduate-economics-and-business-library",
           "right": "right"
         },
         {
           "label": "Herston Health Sciences",
-          "href": "/item3",
+          "href": "/locations-hours/herston-health-sciences-library",
           "right": "right"
         },
         {
           "label": "Law",
-          "href": "/item3",
+          "href": "/locations-hours/walter-harrison-law-library",
           "right": "right"
         },
         {
           "label": "Mater",
-          "href": "/item3",
+          "href": "/locations-hours/uqmater-mcauley-library",
           "right": "right"
         },
         {
           "label": "PACE Health Sciences",
-          "href": "/item3",
+          "href": "/locations-hours/pace-health-sciences-library",
           "right": "right"
         },
         {
           "label": "Rural Clinical School",
-          "href": "/item3",
+          "href": "/locations-hours/rural-clinical-school-rcs-library",
           "right": "right"
         },
         {
           "label": "Social Sciences & Humanities",
-          "href": "/item3",
+          "href": "/locations-hours/social-sciences-humanities-library",
           "right": "right"
         },
         {
           "label": "Warehouse",
-          "href": "/item3",
+          "href": "/locations-hours/warehouse",
           "right": "right"
         }
       ]
