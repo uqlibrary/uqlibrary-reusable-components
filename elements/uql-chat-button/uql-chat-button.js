@@ -64,8 +64,10 @@
       var tooltip = document.getElementById('chatStatusTooltip');
 
       if (this.isChatOnline && document.cookie.indexOf("UQL-Show-Chat=1") <= -1) {
-        //set cookie for this session not to show tooltip on load
-        document.cookie = 'UQL-Show-Chat=1';
+        //set cookie for 24 hrs not to show tooltip on load
+        var date = new Date();
+        date.setTime(date.getTime()+(24*60*60*1000));
+        document.cookie = 'UQL-Show-Chat=1;expires=' + date.toGMTString() + ';domain=.library.uq.edu.au;path=/';
 
         //show tooltip after 1 second after page load
         setTimeout(function() {
