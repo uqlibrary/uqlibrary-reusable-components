@@ -17755,8 +17755,7 @@ uql-menu {
   white-space: nowrap;
   color: #FFF !important;
   font-size: 14px;
-  padding: 20px;
-  margin-top: 20px; }
+  padding: 20px; }
   .footer-container a {
     color: #FFF !important;
     text-decoration: none; }
@@ -17848,6 +17847,206 @@ uql-menu {
   </script>
 
 </dom-module>
+<dom-module id="uq-connect-footer" assetpath="/">
+
+  <style>
+paper-button {
+  font-size: 10px; }
+  paper-button.button-inverse {
+    color: #FFF; }
+    paper-button.button-inverse:hover {
+      background: #6B0C8A; }
+    paper-button.button-inverse:focus {
+      outline: #3b99fc auto 5px; }
+  paper-button.button-action {
+    background-color: #2377CB; }
+    paper-button.button-action:hover {
+      background: #288BED; }
+  paper-button .button-title {
+    padding: 8px; }
+
+@media all and (max-width: 700px) {
+  paper-button .button-title {
+    padding: 8px;
+    display: none; } }
+uql-menu,
+.header-container,
+.footer-container {
+  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+
+uql-menu {
+  font-weight: lighter; }
+
+.header-container {
+  height: 100px;
+  background-color: #49075E;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  white-space: nowrap; }
+  .header-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .header-container .application-title,
+  .header-container .library-title,
+  .header-container .uq-title {
+    color: #FFF;
+    margin: 10px; }
+  .header-container .uq-title {
+    min-width: 190px;
+    height: 50px;
+    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+    background-size: 178px 50px;
+    border-right: 1px solid #FFF; }
+    .header-container .uq-title a {
+      width: 190px;
+      height: 50px; }
+    .header-container .uq-title .uq-title-text {
+      display: none !important; }
+
+.footer-container {
+  background-color: #49075E;
+  text-decoration: none;
+  line-height: 20px;
+  white-space: nowrap;
+  color: #FFF !important;
+  font-size: 14px;
+  padding: 20px; }
+  .footer-container a {
+    color: #FFF !important;
+    text-decoration: none; }
+  .footer-container div {
+    color: #d2c1d7; }
+
+@media all and (max-width: 1047px) {
+  .header-container {
+    height: 66px; }
+    .header-container .uq-title {
+      display: none !important; }
+
+  uql-global-links {
+    display: none !important; } }
+/* mobile-small */
+/* mobile-large */
+/* mobile-small-landscape */
+/* mobile-large-landscape */
+/* tablet-small-landscape */
+/* tablet-large-landscape */
+/* tablet-small */
+/* tablet-large */
+/* desktop-x-small-landscape */
+/* desktop-x-small */
+/* desktop-small-landscape */
+/* desktop-small */
+/* desktop-medium-landscape */
+/* desktop-medium */
+/* desktop-large */
+/* desktop-xlarge */
+
+/*# sourceMappingURL=elements-styles.css.map */
+
+</style>
+
+  <style is="custom-style">
+
+    :host {
+      font-family: "Roboto","Helvetica","Arial",sans-serif;
+
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      color: #222;
+      font-size: 16px;
+      font-weight: 300;
+      text-transform: uppercase;
+
+      @apply(--layout-vertical);
+    }
+
+    .sub-footer-container {
+      background-color: #e5e5e5;
+      padding: 15px;
+    }
+
+    .sub-footer-content {
+      margin: 0 auto;
+      max-width: 1140px;
+      width: 100%;
+      @apply(--layout-flex);
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+
+    .sub-footer-title {
+      @apply(--layout-flex);
+    }
+
+  </style>
+
+  <template>
+
+    <div class="sub-footer-container">
+      <div class="sub-footer-content">
+        <div class="sub-footer-title">Connect with us</div>
+        <div>
+          <paper-button id="iaButton">
+            <iron-icon class="big" src="../resources/social-media-icons/youtube35.svg"></iron-icon>
+            <div class="button-title">YouTube</div>
+          </paper-button>
+        </div>
+        <div>
+          <paper-button id="iaButton">
+            <iron-icon class="big" src="../resources/social-media-icons/facebook56.svg"></iron-icon>
+            <div class="button-title">Facebook</div>
+          </paper-button>
+        </div>
+        <div>
+          <paper-button id="iaButton">
+            <iron-icon class="big" src="../resources/social-media-icons/twitter47.svg"></iron-icon>
+            <div class="button-title">Twitter</div>
+          </paper-button>
+        </div>
+        <div>
+          <paper-button id="iaButton">
+            <iron-icon icon="icons:speaker-notes"></iron-icon>
+            <div class="button-title">Blog</div>
+          </paper-button>
+          </div>
+        <div>
+          <paper-button id="iaButton">
+            <iron-icon class="big" src="../resources/social-media-icons/twitter47.svg"></iron-icon>
+            <div class="button-title">Friends</div>
+          </paper-button>
+        </div>
+        <div>
+          <paper-button id="iaButton">
+            <iron-icon class="big" src="../resources/social-media-icons/twitter47.svg"></iron-icon>
+            <div class="button-title">Giving</div>
+          </paper-button>
+        </div>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+        is: 'uq-connect-footer',
+
+        properties: {
+          applicationTitle: {
+            type: String,
+            notify: true
+          }
+        }
+      });
+    })();
+  </script>
+
+</dom-module>
 <dom-module id="uql-mega-menu" assetpath="uql-mega-menu/">
   <style>
 paper-button {
@@ -17913,8 +18112,7 @@ uql-menu {
   white-space: nowrap;
   color: #FFF !important;
   font-size: 14px;
-  padding: 20px;
-  margin-top: 20px; }
+  padding: 20px; }
   .footer-container a {
     color: #FFF !important;
     text-decoration: none; }
@@ -18492,8 +18690,7 @@ uql-menu {
   white-space: nowrap;
   color: #FFF !important;
   font-size: 14px;
-  padding: 20px;
-  margin-top: 20px; }
+  padding: 20px; }
   .footer-container a {
     color: #FFF !important;
     text-decoration: none; }
@@ -18772,8 +18969,7 @@ uql-menu {
   white-space: nowrap;
   color: #FFF !important;
   font-size: 14px;
-  padding: 20px;
-  margin-top: 20px; }
+  padding: 20px; }
   .footer-container a {
     color: #FFF !important;
     text-decoration: none; }
@@ -18954,8 +19150,7 @@ uql-menu {
   white-space: nowrap;
   color: #FFF !important;
   font-size: 14px;
-  padding: 20px;
-  margin-top: 20px; }
+  padding: 20px; }
   .footer-container a {
     color: #FFF !important;
     text-decoration: none; }
@@ -19117,8 +19312,7 @@ uql-menu {
   white-space: nowrap;
   color: #FFF !important;
   font-size: 14px;
-  padding: 20px;
-  margin-top: 20px; }
+  padding: 20px; }
   .footer-container a {
     color: #FFF !important;
     text-decoration: none; }
@@ -19294,8 +19488,7 @@ uql-menu {
   white-space: nowrap;
   color: #FFF !important;
   font-size: 14px;
-  padding: 20px;
-  margin-top: 20px; }
+  padding: 20px; }
   .footer-container a {
     color: #FFF !important;
     text-decoration: none; }
