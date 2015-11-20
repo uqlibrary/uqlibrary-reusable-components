@@ -82,16 +82,21 @@ uql-menu {
     }
   }
 
+  //hide global links on tablets and mobile phones
   uq-minimal-header uql-global-links {
     display: none !important;
   }
 }
 
-@media all and (max-width: 600px) {
-  .uq-minimal-footer {
-    text-align: center;
-  }
-}
+//@media all and (max-width: 600px) {
+//  uq-minimal-header uql-global-links {
+//    display: none !important;
+//  }
+//
+//  .uq-minimal-footer {
+//    text-align: center;
+//  }
+//}
 
 
 /* mobile-small */
