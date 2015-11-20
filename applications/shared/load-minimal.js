@@ -5,7 +5,7 @@ window.addEventListener('WebComponentsReady', function(e) {
 
   // insert header after body-tag
   var header = document.createElement('uq-minimal-header');
-  //header.applicationTitle = "FAQ";
+  header.showLoginButton = false;
 
   document.body.insertBefore(header, document.body.children[0]);
 
