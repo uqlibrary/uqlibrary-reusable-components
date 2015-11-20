@@ -31,7 +31,6 @@
     .header-content{
       @apply(--layout-flex);
       @apply(--layout-horizontal);
-      @apply(--layout-center);
     }
 
     .header-title {
@@ -41,23 +40,22 @@
     }
 
     .header-actions {
-      @apply(--layout-flex-2);
+      @apply(--layout-flex);
       @apply(--layout-vertical);
       @apply(--layout-end-justified);
     }
 
     .actions {
+      @apply(--layout-flex-2);
       @apply(--layout-horizontal);
       @apply(--layout-end-justified);
+      @apply(--layout-center);
     }
 
   </style>
 
   <template>
     <div class="header-container">
-
-      <uql-global-links></uql-global-links>
-
       <div class="header-content">
         <div class="header-title">
           <div class="uq-title">
@@ -71,6 +69,7 @@
           <div class="application-title">{{applicationTitle}}</div>
         </div>
         <div class="header-actions">
+          <uql-global-links></uql-global-links>
           <div class="actions">
             <template is="dom-if" if="{{showSearchButton}}">
               <uql-search-button show-title="{{showButtonsTitle}}"></uql-search-button>
@@ -101,7 +100,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </template>
 
