@@ -10,6 +10,11 @@
       overflow: hidden;
 
       @apply(--layout-vertical);
+
+
+    --global-links-style: {
+       color: #d2c1d7 !important;
+     }
     }
 
     .footer-content {
@@ -18,7 +23,23 @@
       width: 100%;
     }
 
+    .footer-content{
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      @apply(--layout-justified);
+    }
 
+    .footer-legal-details{
+      @apply(--layout-flex);
+      text-align: right;
+    }
+
+    h6 {
+      margin: 0px;
+      padding: 0px;
+      font-size: 17px;
+      font-weight: 500;
+    }
 
   </style>
 
@@ -26,16 +47,27 @@
 
     <div class="footer-container">
       <div class="footer-content">
+        <div class="footer-uq-details">
         <div>Authorised by: University Librarian</div>
         <div>© The University of Queensland</div>
         <div>
           Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
           &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
         </div>
+
+        <uql-global-links separator="|"></uql-global-links>
+
         <div>
           <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
           <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
           Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
+        </div>
+        </div>
+        <div class="footer-legal-details">
+          <div><h6>Emergency</h6>Phone: <a href="tel:+61733653333">3365 3333</a></div>
+          <div><a href="http://www.uq.edu.au/terms-of-use/" rel="external" class="footer__link footer__terms-link">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
+            <a href="http://www.uq.edu.au/rti/" rel="external" class="footer__link footer__rti-link">Right to Information</a></div>
+          </div>
         </div>
       </div>
     </div>

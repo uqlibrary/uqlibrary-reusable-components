@@ -17769,8 +17769,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -17800,6 +17803,11 @@ uql-menu {
       overflow: hidden;
 
       @apply(--layout-vertical);
+
+
+    --global-links-style: {
+       color: #d2c1d7 !important;
+     }
     }
 
     .footer-content {
@@ -17808,7 +17816,23 @@ uql-menu {
       width: 100%;
     }
 
+    .footer-content{
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      @apply(--layout-justified);
+    }
 
+    .footer-legal-details{
+      @apply(--layout-flex);
+      text-align: right;
+    }
+
+    h6 {
+      margin: 0px;
+      padding: 0px;
+      font-size: 17px;
+      font-weight: 500;
+    }
 
   </style>
 
@@ -17816,19 +17840,30 @@ uql-menu {
 
     <div class="footer-container">
       <div class="footer-content">
+        <div class="footer-uq-details">
         <div>Authorised by: University Librarian</div>
         <div>© The University of Queensland</div>
         <div>
           Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
           &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
         </div>
+
+        <uql-global-links separator="|"></uql-global-links>
+
         <div>
           <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
           <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
           Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
         </div>
+        </div>
+        <div class="footer-legal-details">
+          <div><h6>Emergency</h6>Phone: <a href="tel:+61733653333">3365 3333</a></div>
+          <div><a href="http://www.uq.edu.au/terms-of-use/" rel="external" class="footer__link footer__terms-link">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
+            <a href="http://www.uq.edu.au/rti/" rel="external" class="footer__link footer__rti-link">Right to Information</a></div>
+          </div>
+        </div>
       </div>
-    </div>
+    
 
   </template>
 
@@ -17928,8 +17963,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18128,8 +18166,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18707,8 +18748,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18998,8 +19042,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -19181,8 +19228,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -19344,8 +19394,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -19484,8 +19537,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -19622,8 +19678,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -19647,8 +19706,6 @@ uql-menu {
 
   <style is="custom-style">
     :host {
-      @apply(--layout-horizontal);
-      @apply(--layout-end-justified);
       margin: 0 auto;
       max-width: 1140px;
       width: 100%;
@@ -19664,10 +19721,7 @@ uql-menu {
     li a,
     li a:active,
     li a:visited {
-      text-transform: uppercase;
-      color: #d2c1d7 !important;
-      font-weight: 500;
-      font-size: 10.4px;
+      @apply(--global-links-style);
       margin-right: 4px;
       text-decoration: none;
     }
@@ -19681,7 +19735,11 @@ uql-menu {
   <template>
     <ul class="global-links">
       <template is="dom-repeat" items="{{links}}">
-        <li><a href="{{item.url}}" accesskey="{{item.accessKey}}">{{item.title}}</a></li>
+        <li><a href="{{item.url}}" accesskey="{{item.accessKey}}">{{item.title}}</a>
+          <template is="dom-if" if="{{item.showSeparator}}">
+            <span>{{separator}}</span>
+          </template>
+        </li>
       </template>
     </ul>
   </template>
@@ -19690,18 +19748,22 @@ uql-menu {
   Polymer({
     is: 'uql-global-links',
     properties: {
+      separator: {
+        type: String,
+        value: ''
+      },
       links: {
         type: Array,
          value: function() {
            var links = [
-             { url: "http://www.uq.edu.au/contacts/", title: "Contacts", accessKey: 2 },
-             { url: "http://www.uq.edu.au/study/", title: "Study", accessKey: 3 },
-             { url: "http://www.uq.edu.au/maps/", title: "Maps", accessKey: 4 },
-             { url: "http://www.uq.edu.au/news/", title: "News", accessKey: 5 },
-             { url: "http://www.uq.edu.au/events/", title: "Events", accessKey: 6 },
-             { url: "http://jobs.uq.edu.au/", title: "Jobs", accessKey: 7 },
-             { url: "http://library.uq.edu.au/", title: "Library", accessKey: 8 },
-             { url: "http://my.uq.edu.au/", title: "my.UQ", accessKey: 9 }
+             { url: "http://www.uq.edu.au/contacts/", title: "Contacts", accessKey: 2, showSeparator: true },
+             { url: "http://www.uq.edu.au/study/", title: "Study", accessKey: 3, showSeparator: true },
+             { url: "http://www.uq.edu.au/maps/", title: "Maps", accessKey: 4, showSeparator: true },
+             { url: "http://www.uq.edu.au/news/", title: "News", accessKey: 5, showSeparator: true },
+             { url: "http://www.uq.edu.au/events/", title: "Events", accessKey: 6, showSeparator: true },
+             { url: "http://jobs.uq.edu.au/", title: "Jobs", accessKey: 7, showSeparator: true },
+             { url: "http://library.uq.edu.au/", title: "Library", accessKey: 8, showSeparator: true },
+             { url: "http://my.uq.edu.au/", title: "my.UQ", accessKey: 9, showSeparator: false }
            ];
            return links;
          }
@@ -19799,8 +19861,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -19833,6 +19898,13 @@ uql-menu {
       z-index: 9999;
 
       @apply(--layout-vertical);
+
+      --global-links-style: {
+         text-transform: uppercase;
+         font-size: 10.4px;
+         color: #d2c1d7 !important;
+         font-weight: 500;
+       }
     }
 
     .header-content {
@@ -19863,6 +19935,10 @@ uql-menu {
       @apply(--layout-end-justified);
     }
 
+    uql-global-links {
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
+    }
     .actions {
       @apply(--layout-flex-2);
       @apply(--layout-horizontal);

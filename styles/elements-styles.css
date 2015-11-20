@@ -75,8 +75,11 @@ uql-menu {
     .header-container .uq-title {
       display: none !important; }
 
-  uql-global-links {
+  uq-minimal-header uql-global-links {
     display: none !important; } }
+@media all and (max-width: 600px) {
+  .uq-minimal-footer {
+    text-align: center; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */

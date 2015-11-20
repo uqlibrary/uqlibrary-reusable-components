@@ -15,6 +15,13 @@
       z-index: 9999;
 
       @apply(--layout-vertical);
+
+      --global-links-style: {
+         text-transform: uppercase;
+         font-size: 10.4px;
+         color: #d2c1d7 !important;
+         font-weight: 500;
+       }
     }
 
     .header-content {
@@ -45,6 +52,10 @@
       @apply(--layout-end-justified);
     }
 
+    uql-global-links {
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
+    }
     .actions {
       @apply(--layout-flex-2);
       @apply(--layout-horizontal);
