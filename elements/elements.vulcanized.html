@@ -15,11 +15,10 @@ addEventListener('DOMContentLoaded', resolve);
 window.Polymer = {
 Settings: function () {
 var user = window.Polymer || {};
-var parts = location.search.slice(1).split('&');
-for (var i = 0, o; i < parts.length && (o = parts[i]); i++) {
+location.search.slice(1).split('&').forEach(function (o) {
 o = o.split('=');
 o[0] && (user[o[0]] = o[1] || true);
-}
+});
 var wantShadow = user.dom === 'shadow';
 var hasShadow = Boolean(Element.prototype.createShadowRoot);
 var nativeShadow = hasShadow && !window.ShadowDOMPolyfill;
@@ -106,53 +105,15 @@ this._callbacks.push(cb);
 },
 _makeReady: function () {
 this._ready = true;
-for (var i = 0; i < this._callbacks.length; i++) {
-this._callbacks[i]();
-}
+this._callbacks.forEach(function (cb) {
+cb();
+});
 this._callbacks = [];
 },
 _catchFirstRender: function () {
 requestAnimationFrame(function () {
 Polymer.RenderStatus._makeReady();
 });
-},
-_afterNextRenderQueue: [],
-_waitingNextRender: false,
-afterNextRender: function (element, fn, args) {
-this._watchNextRender();
-this._afterNextRenderQueue.push([
-element,
-fn,
-args
-]);
-},
-_watchNextRender: function () {
-if (!this._waitingNextRender) {
-this._waitingNextRender = true;
-var fn = function () {
-Polymer.RenderStatus._flushNextRender();
-};
-if (!this._ready) {
-this.whenReady(fn);
-} else {
-requestAnimationFrame(fn);
-}
-}
-},
-_flushNextRender: function () {
-var self = this;
-setTimeout(function () {
-self._flushRenderCallbacks(self._afterNextRenderQueue);
-self._afterNextRenderQueue = [];
-self._waitingNextRender = false;
-});
-},
-_flushRenderCallbacks: function (callbacks) {
-for (var i = 0, h; i < callbacks.length; i++) {
-h = callbacks[i];
-h[1].apply(h[0], h[2] || Polymer.nar);
-}
-;
 }
 };
 if (window.HTMLImports) {
@@ -182,33 +143,27 @@ this._doBehavior('created');
 this._initFeatures();
 },
 attachedCallback: function () {
-var self = this;
 Polymer.RenderStatus.whenReady(function () {
-self.isAttached = true;
-self._doBehavior('attached');
-});
+this.isAttached = true;
+this._doBehavior('attached');
+}.bind(this));
 },
 detachedCallback: function () {
 this.isAttached = false;
 this._doBehavior('detached');
 },
-attributeChangedCallback: function (name, oldValue, newValue) {
+attributeChangedCallback: function (name) {
 this._attributeChangedImpl(name);
-this._doBehavior('attributeChanged', [
-name,
-oldValue,
-newValue
-]);
+this._doBehavior('attributeChanged', arguments);
 },
 _attributeChangedImpl: function (name) {
 this._setAttributeToProperty(this, name);
 },
 extend: function (prototype, api) {
 if (prototype && api) {
-var n$ = Object.getOwnPropertyNames(api);
-for (var i = 0, n; i < n$.length && (n = n$[i]); i++) {
+Object.getOwnPropertyNames(api).forEach(function (n) {
 this.copyOwnProperty(n, api, prototype);
-}
+}, this);
 }
 return prototype || api;
 },
@@ -286,7 +241,7 @@ import: function (id, selector) {
 if (id) {
 var m = findModule(id);
 if (!m) {
-forceDomModulesUpgrade();
+forceDocumentUpgrade();
 m = findModule(id);
 }
 if (m && selector) {
@@ -298,17 +253,12 @@ return m;
 });
 var cePolyfill = window.CustomElements && !CustomElements.useNative;
 document.registerElement('dom-module', DomModule);
-function forceDomModulesUpgrade() {
+function forceDocumentUpgrade() {
 if (cePolyfill) {
 var script = document._currentScript || document.currentScript;
 var doc = script && script.ownerDocument || document;
-var modules = doc.querySelectorAll('dom-module');
-for (var i = modules.length - 1, m; i >= 0 && (m = modules[i]); i--) {
-if (m.__upgraded__) {
-return;
-} else {
-CustomElements.upgrade(m);
-}
+if (doc) {
+CustomElements.upgradeAll(doc);
 }
 }
 }
@@ -343,8 +293,7 @@ return behaviors;
 },
 _flattenBehaviorsList: function (behaviors) {
 var flat = [];
-for (var i = 0; i < behaviors.length; i++) {
-var b = behaviors[i];
+behaviors.forEach(function (b) {
 if (b instanceof Array) {
 flat = flat.concat(this._flattenBehaviorsList(b));
 } else if (b) {
@@ -352,16 +301,31 @@ flat.push(b);
 } else {
 this._warn(this._logf('_flattenBehaviorsList', 'behavior is null, check for missing or 404 import'));
 }
-}
+}, this);
 return flat;
 },
 _mixinBehavior: function (b) {
-var n$ = Object.getOwnPropertyNames(b);
-for (var i = 0, n; i < n$.length && (n = n$[i]); i++) {
-if (!Polymer.Base._behaviorProperties[n] && !this.hasOwnProperty(n)) {
+Object.getOwnPropertyNames(b).forEach(function (n) {
+switch (n) {
+case 'hostAttributes':
+case 'registered':
+case 'properties':
+case 'observers':
+case 'listeners':
+case 'created':
+case 'attached':
+case 'detached':
+case 'attributeChanged':
+case 'configure':
+case 'ready':
+break;
+default:
+if (!this.hasOwnProperty(n)) {
 this.copyOwnProperty(n, b, this);
 }
+break;
 }
+}, this);
 },
 _prepBehaviors: function () {
 this._prepFlattenedBehaviors(this.behaviors);
@@ -373,9 +337,9 @@ this._prepBehavior(behaviors[i]);
 this._prepBehavior(this);
 },
 _doBehavior: function (name, args) {
-for (var i = 0; i < this.behaviors.length; i++) {
-this._invokeBehavior(this.behaviors[i], name, args);
-}
+this.behaviors.forEach(function (b) {
+this._invokeBehavior(b, name, args);
+}, this);
 this._invokeBehavior(this, name, args);
 },
 _invokeBehavior: function (b, name, args) {
@@ -385,24 +349,12 @@ fn.apply(this, args || Polymer.nar);
 }
 },
 _marshalBehaviors: function () {
-for (var i = 0; i < this.behaviors.length; i++) {
-this._marshalBehavior(this.behaviors[i]);
-}
+this.behaviors.forEach(function (b) {
+this._marshalBehavior(b);
+}, this);
 this._marshalBehavior(this);
 }
 });
-Polymer.Base._behaviorProperties = {
-hostAttributes: true,
-registered: true,
-properties: true,
-observers: true,
-listeners: true,
-created: true,
-attached: true,
-detached: true,
-attributeChanged: true,
-ready: true
-};
 Polymer.Base._addFeature({
 _getExtendedPrototype: function (tag) {
 return this._getExtendedNativePrototype(tag);
@@ -454,13 +406,9 @@ properties: {},
 getPropertyInfo: function (property) {
 var info = this._getPropertyInfo(property, this.properties);
 if (!info) {
-for (var i = 0; i < this.behaviors.length; i++) {
-info = this._getPropertyInfo(property, this.behaviors[i].properties);
-if (info) {
-return info;
-}
-}
-;
+this.behaviors.some(function (b) {
+return info = this._getPropertyInfo(property, b.properties);
+}, this);
 }
 return info || Polymer.nob;
 },
@@ -473,40 +421,6 @@ if (p) {
 p.defined = true;
 }
 return p;
-},
-_prepPropertyInfo: function () {
-this._propertyInfo = {};
-for (var i = 0, p; i < this.behaviors.length; i++) {
-this._addPropertyInfo(this._propertyInfo, this.behaviors[i].properties);
-}
-this._addPropertyInfo(this._propertyInfo, this.properties);
-this._addPropertyInfo(this._propertyInfo, this._propertyEffects);
-},
-_addPropertyInfo: function (target, source) {
-if (source) {
-var t, s;
-for (var i in source) {
-t = target[i];
-s = source[i];
-if (i[0] === '_' && !s.readOnly) {
-continue;
-}
-if (!target[i]) {
-target[i] = {
-type: typeof s === 'function' ? s : s.type,
-readOnly: s.readOnly,
-attribute: Polymer.CaseMap.camelToDashCase(i)
-};
-} else {
-if (!t.type) {
-t.type = s.type;
-}
-if (!t.readOnly) {
-t.readOnly = s.readOnly;
-}
-}
-}
-}
 }
 });
 Polymer.CaseMap = {
@@ -534,24 +448,21 @@ return g[0] + '-' + g[1].toLowerCase();
 }
 };
 Polymer.Base._addFeature({
-_addHostAttributes: function (attributes) {
-if (!this._aggregatedAttributes) {
+_prepAttributes: function () {
 this._aggregatedAttributes = {};
-}
+},
+_addHostAttributes: function (attributes) {
 if (attributes) {
 this.mixin(this._aggregatedAttributes, attributes);
 }
 },
 _marshalHostAttributes: function () {
-if (this._aggregatedAttributes) {
 this._applyAttributes(this, this._aggregatedAttributes);
-}
 },
 _applyAttributes: function (node, attr$) {
 for (var n in attr$) {
 if (!this.hasAttribute(n) && n !== 'class') {
-var v = attr$[n];
-this.serializeValueToAttribute(v, n, this);
+this.serializeValueToAttribute(attr$[n], n, this);
 }
 }
 },
@@ -559,40 +470,29 @@ _marshalAttributes: function () {
 this._takeAttributesToModel(this);
 },
 _takeAttributesToModel: function (model) {
-if (this.hasAttributes()) {
-for (var i in this._propertyInfo) {
-var info = this._propertyInfo[i];
-if (this.hasAttribute(info.attribute)) {
-this._setAttributeToProperty(model, info.attribute, i, info);
-}
-}
+for (var i = 0, l = this.attributes.length; i < l; i++) {
+this._setAttributeToProperty(model, this.attributes[i].name);
 }
 },
-_setAttributeToProperty: function (model, attribute, property, info) {
+_setAttributeToProperty: function (model, attrName) {
 if (!this._serializing) {
-var property = property || Polymer.CaseMap.dashToCamelCase(attribute);
-info = info || this._propertyInfo && this._propertyInfo[property];
-if (info && !info.readOnly) {
-var v = this.getAttribute(attribute);
-model[property] = this.deserialize(v, info.type);
+var propName = Polymer.CaseMap.dashToCamelCase(attrName);
+var info = this.getPropertyInfo(propName);
+if (info.defined || this._propertyEffects && this._propertyEffects[propName]) {
+var val = this.getAttribute(attrName);
+model[propName] = this.deserialize(val, info.type);
 }
 }
 },
 _serializing: false,
-reflectPropertyToAttribute: function (property, attribute, value) {
+reflectPropertyToAttribute: function (name) {
 this._serializing = true;
-value = value === undefined ? this[property] : value;
-this.serializeValueToAttribute(value, attribute || Polymer.CaseMap.camelToDashCase(property));
+this.serializeValueToAttribute(this[name], Polymer.CaseMap.camelToDashCase(name));
 this._serializing = false;
 },
 serializeValueToAttribute: function (value, attribute, node) {
 var str = this.serialize(value);
-node = node || this;
-if (str === undefined) {
-node.removeAttribute(attribute);
-} else {
-node.setAttribute(attribute, str);
-}
+(node || this)[str === undefined ? 'removeAttribute' : 'setAttribute'](attribute, str);
 },
 deserialize: function (value, type) {
 switch (type) {
@@ -668,13 +568,13 @@ debouncer.stop();
 }
 }
 });
-Polymer.version = '1.2.3';
+Polymer.version = '1.2.1';
 Polymer.Base._addFeature({
 _registerFeatures: function () {
 this._prepIs();
+this._prepAttributes();
 this._prepBehaviors();
 this._prepConstructor();
-this._prepPropertyInfo();
 },
 _prepBehavior: function (b) {
 this._addHostAttributes(b.hostAttributes);
@@ -690,14 +590,13 @@ this._marshalBehaviors();
 
 <script>Polymer.Base._addFeature({
 _prepTemplate: function () {
-if (this._template === undefined) {
-this._template = Polymer.DomModule.import(this.is, 'template');
-}
+this._template = this._template || Polymer.DomModule.import(this.is, 'template');
 if (this._template && this._template.hasAttribute('is')) {
 this._warn(this._logf('_prepTemplate', 'top-level Polymer template ' + 'must not be a type-extension, found', this._template, 'Move inside simple <template>.'));
 }
-if (this._template && !this._template.content && window.HTMLTemplateElement && HTMLTemplateElement.decorate) {
+if (this._template && !this._template.content && HTMLTemplateElement.bootstrap) {
 HTMLTemplateElement.decorate(this._template);
+HTMLTemplateElement.bootstrap(this._template.content);
 }
 },
 _stampTemplate: function () {
@@ -716,19 +615,20 @@ Polymer.Base._addFeature({
 _hostStack: [],
 ready: function () {
 },
-_registerHost: function (host) {
+_pushHost: function (host) {
 this.dataHost = host = host || Polymer.Base._hostStack[Polymer.Base._hostStack.length - 1];
 if (host && host._clients) {
 host._clients.push(this);
 }
+this._beginHost();
 },
-_beginHosting: function () {
+_beginHost: function () {
 Polymer.Base._hostStack.push(this);
 if (!this._clients) {
 this._clients = [];
 }
 },
-_endHosting: function () {
+_popHost: function () {
 Polymer.Base._hostStack.pop();
 },
 _tryReady: function () {
@@ -741,24 +641,20 @@ return !this.dataHost || this.dataHost._clientsReadied;
 },
 _ready: function () {
 this._beforeClientsReady();
-if (this._template) {
 this._setupRoot();
 this._readyClients();
-}
-this._clientsReadied = true;
-this._clients = null;
 this._afterClientsReady();
 this._readySelf();
 },
 _readyClients: function () {
 this._beginDistribute();
 var c$ = this._clients;
-if (c$) {
 for (var i = 0, l = c$.length, c; i < l && (c = c$[i]); i++) {
 c._ready();
 }
-}
 this._finishDistribute();
+this._clientsReadied = true;
+this._clients = null;
 },
 _readySelf: function () {
 this._doBehavior('ready');
@@ -1061,16 +957,20 @@ var nativeRemoveChild = Element.prototype.removeChild;
 var nativeAppendChild = Element.prototype.appendChild;
 var nativeCloneNode = Element.prototype.cloneNode;
 var nativeImportNode = Document.prototype.importNode;
-var needsToWrap = Settings.hasShadow && !Settings.nativeShadow;
-var wrap = window.wrap ? window.wrap : function (node) {
-return node;
-};
 var DomApi = function (node) {
-this.node = needsToWrap ? wrap(node) : node;
+this.node = node;
 if (this.patch) {
 this.patch();
 }
 };
+if (window.wrap && Settings.useShadow && !Settings.useNativeShadow) {
+DomApi = function (node) {
+this.node = wrap(node);
+if (this.patch) {
+this.patch();
+}
+};
+}
 DomApi.prototype = {
 flush: function () {
 Polymer.dom.flush();
@@ -1305,7 +1205,7 @@ _addLogicalInfo: function (node, container, index) {
 var children = factory(container).childNodes;
 index = index === undefined ? children.length : index;
 if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-var c$ = arrayCopyChildNodes(node);
+var c$ = Array.prototype.slice.call(node.childNodes);
 for (var i = 0, n; i < c$.length && (n = c$[i]); i++) {
 children.splice(index++, 0, n);
 n._lightParent = container;
@@ -1467,7 +1367,7 @@ Object.defineProperties(DomApi.prototype, {
 childNodes: {
 get: function () {
 var c$ = getLightChildren(this.node);
-return Array.isArray(c$) ? c$ : arrayCopyChildNodes(this.node);
+return Array.isArray(c$) ? c$ : Array.prototype.slice.call(c$);
 },
 configurable: true
 },
@@ -1590,7 +1490,7 @@ if (nt !== Node.TEXT_NODE || nt !== Node.COMMENT_NODE) {
 this._clear();
 var d = document.createElement('div');
 d.innerHTML = text;
-var c$ = arrayCopyChildNodes(d);
+var c$ = Array.prototype.slice.call(d.childNodes);
 for (var i = 0; i < c$.length; i++) {
 this.appendChild(c$[i]);
 }
@@ -1603,25 +1503,20 @@ DomApi.prototype._getComposedInnerHTML = function () {
 return getInnerHTML(this.node, true);
 };
 } else {
-var forwardMethods = function (m$) {
-for (var i = 0; i < m$.length; i++) {
-forwardMethod(m$[i]);
-}
-};
-var forwardMethod = function (method) {
-DomApi.prototype[method] = function () {
-return this.node[method].apply(this.node, arguments);
-};
-};
-forwardMethods([
+var forwardMethods = [
 'cloneNode',
 'appendChild',
 'insertBefore',
 'removeChild',
 'replaceChild'
-]);
+];
+forwardMethods.forEach(function (name) {
+DomApi.prototype[name] = function () {
+return this.node[name].apply(this.node, arguments);
+};
+});
 DomApi.prototype.querySelectorAll = function (selector) {
-return arrayCopy(this.node.querySelectorAll(selector));
+return Array.prototype.slice.call(this.node.querySelectorAll(selector));
 };
 DomApi.prototype.getOwnerRoot = function () {
 var n = this.node;
@@ -1638,24 +1533,35 @@ return doc.importNode(externalNode, deep);
 };
 DomApi.prototype.getDestinationInsertionPoints = function () {
 var n$ = this.node.getDestinationInsertionPoints && this.node.getDestinationInsertionPoints();
-return n$ ? arrayCopy(n$) : [];
+return n$ ? Array.prototype.slice.call(n$) : [];
 };
 DomApi.prototype.getDistributedNodes = function () {
 var n$ = this.node.getDistributedNodes && this.node.getDistributedNodes();
-return n$ ? arrayCopy(n$) : [];
+return n$ ? Array.prototype.slice.call(n$) : [];
 };
 DomApi.prototype._distributeParent = function () {
 };
+var nativeForwards = [
+'appendChild',
+'insertBefore',
+'removeChild',
+'replaceChild'
+];
+nativeForwards.forEach(function (forward) {
+DomApi.prototype[forward] = function () {
+return this.node[forward].apply(this.node, arguments);
+};
+});
 Object.defineProperties(DomApi.prototype, {
 childNodes: {
 get: function () {
-return arrayCopyChildNodes(this.node);
+return Array.prototype.slice.call(this.node.childNodes);
 },
 configurable: true
 },
 children: {
 get: function () {
-return arrayCopyChildren(this.node);
+return Array.prototype.slice.call(this.node.children);
 },
 configurable: true
 },
@@ -1678,20 +1584,7 @@ return this.node.innerHTML = value;
 configurable: true
 }
 });
-var forwardProperties = function (f$) {
-for (var i = 0; i < f$.length; i++) {
-forwardProperty(f$[i]);
-}
-};
-var forwardProperty = function (name) {
-Object.defineProperty(DomApi.prototype, name, {
-get: function () {
-return this.node[name];
-},
-configurable: true
-});
-};
-forwardProperties([
+var forwardProperties = [
 'parentNode',
 'firstChild',
 'lastChild',
@@ -1701,7 +1594,15 @@ forwardProperties([
 'lastElementChild',
 'nextElementSibling',
 'previousElementSibling'
-]);
+];
+forwardProperties.forEach(function (name) {
+Object.defineProperty(DomApi.prototype, name, {
+get: function () {
+return this.node[name];
+},
+configurable: true
+});
+});
 }
 var CONTENT = 'content';
 function factory(node, patch) {
@@ -1715,7 +1616,6 @@ return node.__domApi;
 function hasDomApi(node) {
 return Boolean(node.__domApi);
 }
-;
 Polymer.dom = function (obj, patch) {
 if (obj instanceof Event) {
 return Polymer.EventApi.factory(obj);
@@ -1729,7 +1629,7 @@ return children ? children : node.childNodes;
 }
 function getComposedChildren(node) {
 if (!node._composedChildren) {
-node._composedChildren = arrayCopyChildNodes(node);
+node._composedChildren = Array.prototype.slice.call(node.childNodes);
 }
 return node._composedChildren;
 }
@@ -1765,34 +1665,12 @@ children.splice(i, 1);
 }
 function saveLightChildrenIfNeeded(node) {
 if (!node._lightChildren) {
-var c$ = arrayCopyChildNodes(node);
+var c$ = Array.prototype.slice.call(node.childNodes);
 for (var i = 0, l = c$.length, child; i < l && (child = c$[i]); i++) {
 child._lightParent = child._lightParent || node;
 }
 node._lightChildren = c$;
 }
-}
-function arrayCopyChildNodes(parent) {
-var copy = [], i = 0;
-for (var n = parent.firstChild; n; n = n.nextSibling) {
-copy[i++] = n;
-}
-return copy;
-}
-function arrayCopyChildren(parent) {
-var copy = [], i = 0;
-for (var n = parent.firstElementChild; n; n = n.nextElementSibling) {
-copy[i++] = n;
-}
-return copy;
-}
-function arrayCopy(a$) {
-var l = a$.length;
-var copy = new Array(l);
-for (var i = 0; i < l; i++) {
-copy[i] = a$[i];
-}
-return copy;
 }
 function hasInsertionPoint(root) {
 return Boolean(root && root._insertionPoints.length);
@@ -1809,11 +1687,7 @@ matchesSelector: matchesSelector,
 hasInsertionPoint: hasInsertionPoint,
 ctor: DomApi,
 factory: factory,
-hasDomApi: hasDomApi,
-arrayCopy: arrayCopy,
-arrayCopyChildNodes: arrayCopyChildNodes,
-arrayCopyChildren: arrayCopyChildren,
-wrap: wrap
+hasDomApi: hasDomApi
 };
 }();
 Polymer.Base.extend(Polymer.dom, {
@@ -2034,10 +1908,7 @@ n.__observeNodesMap.set(this, this._observeContent(n));
 }
 },
 _observeContent: function (content) {
-var self = this;
-var h = Polymer.dom(content).observeNodes(function () {
-self._scheduleNotify();
-});
+var h = Polymer.dom(content).observeNodes(this._scheduleNotify.bind(this));
 h._avoidChangeCalculation = true;
 return h;
 },
@@ -2114,9 +1985,7 @@ self._scheduleNotify();
 }
 };
 this._observer = new MutationObserver(this._mutationHandler);
-this._boundFlush = function () {
-self._flush();
-};
+this._boundFlush = this._flush.bind(this);
 Polymer.dom.addStaticFlush(this._boundFlush);
 this._observer.observe(this.node, { childList: true });
 }
@@ -2185,10 +2054,7 @@ if (!this._observer) {
 var root = this.domApi.getOwnerRoot();
 var host = root && root.host;
 if (host) {
-var self = this;
-this._observer = Polymer.dom(host).observeNodes(function () {
-self._scheduleNotify();
-});
+this._observer = Polymer.dom(host).observeNodes(this._scheduleNotify.bind(this));
 this._observer._isContentListener = true;
 if (this._hasAttrSelect()) {
 Polymer.dom(host).observer.enableShadowAttributeTracking();
@@ -2233,7 +2099,6 @@ upgradeLightChildren(this._lightChildren);
 _createLocalRoot: function () {
 this.shadyRoot = this.root;
 this.shadyRoot._distributionClean = false;
-this.shadyRoot._hasDistributed = false;
 this.shadyRoot._isShadyRoot = true;
 this.shadyRoot._dirtyRoots = [];
 var i$ = this.shadyRoot._insertionPoints = !this._notes || this._notes._hasContent ? this.shadyRoot.querySelectorAll('content') : [];
@@ -2560,23 +2425,20 @@ Polymer.DomModule = document.createElement('dom-module');
 Polymer.Base._addFeature({
 _registerFeatures: function () {
 this._prepIs();
+this._prepAttributes();
 this._prepBehaviors();
 this._prepConstructor();
 this._prepTemplate();
 this._prepShady();
-this._prepPropertyInfo();
 },
 _prepBehavior: function (b) {
 this._addHostAttributes(b.hostAttributes);
 },
 _initFeatures: function () {
-this._registerHost();
-if (this._template) {
 this._poolContent();
-this._beginHosting();
+this._pushHost();
 this._stampTemplate();
-this._endHosting();
-}
+this._popHost();
 this._marshalHostAttributes();
 this._setupDebouncers();
 this._marshalBehaviors();
@@ -2591,13 +2453,13 @@ Polymer.Annotations = {
 parseAnnotations: function (template) {
 var list = [];
 var content = template._content || template.content;
-this._parseNodeAnnotations(content, list, template.hasAttribute('strip-whitespace'));
+this._parseNodeAnnotations(content, list);
 return list;
 },
-_parseNodeAnnotations: function (node, list, stripWhiteSpace) {
-return node.nodeType === Node.TEXT_NODE ? this._parseTextNodeAnnotation(node, list) : this._parseElementAnnotations(node, list, stripWhiteSpace);
+_parseNodeAnnotations: function (node, list) {
+return node.nodeType === Node.TEXT_NODE ? this._parseTextNodeAnnotation(node, list) : this._parseElementAnnotations(node, list);
 },
-_bindingRegex: /([^{[]*)(\{\{|\[\[)(?!\}\}|\]\])(.+?)(?:\]\]|\}\})/g,
+_bindingRegex: /([^{[]*)({{|\[\[)([^}\]]*)(?:]]|}})/g,
 _parseBindings: function (text) {
 var re = this._bindingRegex;
 var parts = [];
@@ -2663,7 +2525,7 @@ list.push(annote);
 return annote;
 }
 },
-_parseElementAnnotations: function (element, list, stripWhiteSpace) {
+_parseElementAnnotations: function (element, list) {
 var annote = {
 bindings: [],
 events: []
@@ -2671,7 +2533,7 @@ events: []
 if (element.localName === 'content') {
 list._hasContent = true;
 }
-this._parseChildNodesAnnotations(element, annote, list, stripWhiteSpace);
+this._parseChildNodesAnnotations(element, annote, list);
 if (element.attributes) {
 this._parseNodeAttributeAnnotations(element, annote, list);
 if (this.prepElement) {
@@ -2683,37 +2545,25 @@ list.push(annote);
 }
 return annote;
 },
-_parseChildNodesAnnotations: function (root, annote, list, stripWhiteSpace) {
+_parseChildNodesAnnotations: function (root, annote, list, callback) {
 if (root.firstChild) {
-var node = root.firstChild;
-var i = 0;
-while (node) {
-var next = node.nextSibling;
+for (var i = 0, node = root.firstChild; node; node = node.nextSibling, i++) {
 if (node.localName === 'template' && !node.hasAttribute('preserve-content')) {
 this._parseTemplate(node, i, list, annote);
 }
 if (node.nodeType === Node.TEXT_NODE) {
-var n = next;
+var n = node.nextSibling;
 while (n && n.nodeType === Node.TEXT_NODE) {
 node.textContent += n.textContent;
-next = n.nextSibling;
 root.removeChild(n);
-n = next;
-}
-if (stripWhiteSpace && !node.textContent.trim()) {
-root.removeChild(node);
-i--;
+n = n.nextSibling;
 }
 }
-if (node.parentNode) {
-var childAnnotation = this._parseNodeAnnotations(node, list, stripWhiteSpace);
+var childAnnotation = this._parseNodeAnnotations(node, list, callback);
 if (childAnnotation) {
 childAnnotation.parent = annote;
 childAnnotation.index = i;
 }
-}
-node = next;
-i++;
 }
 }
 },
@@ -2849,10 +2699,7 @@ _prepAnnotations: function () {
 if (!this._template) {
 this._notes = [];
 } else {
-var self = this;
-Polymer.Annotations.prepElement = function (element) {
-self._prepElement(element);
-};
+Polymer.Annotations.prepElement = this._prepElement.bind(this);
 if (this._template._content && this._template._content._notes) {
 this._notes = this._template._content._notes;
 } else {
@@ -2899,24 +2746,24 @@ note.bindings = note.bindings.concat(bindings);
 },
 _discoverTemplateParentProps: function (notes) {
 var pp = {};
-for (var i = 0, n; i < notes.length && (n = notes[i]); i++) {
-for (var j = 0, b$ = n.bindings, b; j < b$.length && (b = b$[j]); j++) {
-for (var k = 0, p$ = b.parts, p; k < p$.length && (p = p$[k]); k++) {
+notes.forEach(function (n) {
+n.bindings.forEach(function (b) {
+b.parts.forEach(function (p) {
 if (p.signature) {
 var args = p.signature.args;
-for (var kk = 0; kk < args.length; kk++) {
-pp[args[kk].model] = true;
+for (var k = 0; k < args.length; k++) {
+pp[args[k].model] = true;
 }
 } else {
 pp[p.model] = true;
 }
-}
-}
+});
+});
 if (n.templateContent) {
 var tpp = n.templateContent._parentProps;
 Polymer.Base.mixin(pp, tpp);
 }
-}
+});
 return pp;
 },
 _prepElement: function (element) {
@@ -2970,46 +2817,44 @@ node[name] = binding.literal;
 },
 _marshalIdNodes: function () {
 this.$ = {};
-for (var i = 0, l = this._notes.length, a; i < l && (a = this._notes[i]); i++) {
+this._notes.forEach(function (a) {
 if (a.id) {
 this.$[a.id] = this._findAnnotatedNode(this.root, a);
 }
-}
+}, this);
 },
 _marshalAnnotatedNodes: function () {
-if (this._notes && this._notes.length) {
-var r = new Array(this._notes.length);
-for (var i = 0; i < this._notes.length; i++) {
-r[i] = this._findAnnotatedNode(this.root, this._notes[i]);
-}
-this._nodes = r;
+if (this._nodes) {
+this._nodes = this._nodes.map(function (a) {
+return this._findAnnotatedNode(this.root, a);
+}, this);
 }
 },
 _marshalAnnotatedListeners: function () {
-for (var i = 0, l = this._notes.length, a; i < l && (a = this._notes[i]); i++) {
+this._notes.forEach(function (a) {
 if (a.events && a.events.length) {
 var node = this._findAnnotatedNode(this.root, a);
-for (var j = 0, e$ = a.events, e; j < e$.length && (e = e$[j]); j++) {
+a.events.forEach(function (e) {
 this.listen(node, e.name, e.value);
+}, this);
 }
-}
-}
+}, this);
 }
 });
 Polymer.Base._addFeature({
 listeners: {},
 _listenListeners: function (listeners) {
-var node, name, eventName;
-for (eventName in listeners) {
-if (eventName.indexOf('.') < 0) {
+var node, name, key;
+for (key in listeners) {
+if (key.indexOf('.') < 0) {
 node = this;
-name = eventName;
+name = key;
 } else {
-name = eventName.split('.');
+name = key.split('.');
 node = this.$[name[0]];
 name = name[1];
 }
-this.listen(node, name, listeners[eventName]);
+this.listen(node, name, listeners[key]);
 }
 },
 listen: function (node, eventName, methodName) {
@@ -3080,7 +2925,6 @@ node.removeEventListener(eventName, handler);
 });
 (function () {
 'use strict';
-var wrap = Polymer.DomApi.wrap;
 var HAS_NATIVE_TA = typeof document.head.style.touchAction === 'string';
 var GESTURE_KEY = '__polymerGestures';
 var HANDLED_OBJ = '__polymerGesturesHandled';
@@ -3231,11 +3075,8 @@ return ev.target;
 handleNative: function (ev) {
 var handled;
 var type = ev.type;
-var node = wrap(ev.currentTarget);
+var node = ev.currentTarget;
 var gobj = node[GESTURE_KEY];
-if (!gobj) {
-return;
-}
 var gs = gobj[type];
 if (!gs) {
 return;
@@ -3318,7 +3159,6 @@ Gestures.prevent('track');
 }
 },
 add: function (node, evType, handler) {
-node = wrap(node);
 var recognizer = this.gestures[evType];
 var deps = recognizer.deps;
 var name = recognizer.name;
@@ -3347,7 +3187,6 @@ this.setTouchAction(node, recognizer.touchAction);
 }
 },
 remove: function (node, evType, handler) {
-node = wrap(node);
 var recognizer = this.gestures[evType];
 var deps = recognizer.deps;
 var name = recognizer.name;
@@ -3474,9 +3313,7 @@ Gestures.fire(target, type, {
 x: event.clientX,
 y: event.clientY,
 sourceEvent: event,
-prevent: function (e) {
-return Gestures.prevent(e);
-}
+prevent: Gestures.prevent.bind(Gestures)
 });
 }
 });
@@ -3775,10 +3612,7 @@ Polymer.Debounce = function () {
 var Async = Polymer.Async;
 var Debouncer = function (context) {
 this.context = context;
-var self = this;
-this.boundComplete = function () {
-self.complete();
-};
+this.boundComplete = this.complete.bind(this);
 };
 Debouncer.prototype = {
 go: function (callback, wait) {
@@ -3879,7 +3713,7 @@ var e$ = Polymer.dom(this).queryDistributedElements(slctr);
 return e$ && e$[0];
 },
 queryAllEffectiveChildren: function (slctr) {
-return Polymer.dom(this).queryDistributedElements(slctr);
+return Polymer.dom(this).queryAllDistributedElements(slctr);
 },
 getContentChildNodes: function (slctr) {
 var content = Polymer.dom(this.root).querySelector(slctr || 'content');
@@ -3893,37 +3727,19 @@ return n.nodeType === Node.ELEMENT_NODE;
 fire: function (type, detail, options) {
 options = options || Polymer.nob;
 var node = options.node || this;
-var detail = detail === null || detail === undefined ? {} : detail;
+var detail = detail === null || detail === undefined ? Polymer.nob : detail;
 var bubbles = options.bubbles === undefined ? true : options.bubbles;
 var cancelable = Boolean(options.cancelable);
-var useCache = options._useCache;
-var event = this._getEvent(type, bubbles, cancelable, useCache);
-event.detail = detail;
-if (useCache) {
-this.__eventCache[type] = null;
-}
-node.dispatchEvent(event);
-if (useCache) {
-this.__eventCache[type] = event;
-}
-return event;
-},
-__eventCache: {},
-_getEvent: function (type, bubbles, cancelable, useCache) {
-var event = useCache && this.__eventCache[type];
-if (!event || (event.bubbles != bubbles || event.cancelable != cancelable)) {
-event = new Event(type, {
+var event = new CustomEvent(type, {
 bubbles: Boolean(bubbles),
-cancelable: cancelable
+cancelable: cancelable,
+detail: detail
 });
-}
+node.dispatchEvent(event);
 return event;
 },
 async: function (callback, waitTime) {
-var self = this;
-return Polymer.Async.run(function () {
-callback.call(self);
-}, waitTime);
+return Polymer.Async.run(callback.bind(this), waitTime);
 },
 cancelAsync: function (handle) {
 Polymer.Async.cancel(handle);
@@ -3956,16 +3772,11 @@ importHref: function (href, onload, onerror) {
 var l = document.createElement('link');
 l.rel = 'import';
 l.href = href;
-var self = this;
 if (onload) {
-l.onload = function (e) {
-return onload.call(self, e);
-};
+l.onload = onload.bind(this);
 }
 if (onerror) {
-l.onerror = function (e) {
-return onerror.call(self, e);
-};
+l.onerror = onerror.bind(this);
 }
 document.head.appendChild(l);
 return l;
@@ -3987,18 +3798,17 @@ return this.root === Polymer.dom(node).getOwnerRoot();
 }
 });
 Polymer.Bind = {
-_dataEventCache: {},
 prepareModel: function (model) {
+model._propertyEffects = {};
+model._bindListeners = [];
 Polymer.Base.mixin(model, this._modelApi);
 },
 _modelApi: {
-_notifyChange: function (source, event, value) {
-value = value === undefined ? this[source] : value;
-event = event || Polymer.CaseMap.camelToDashCase(source) + '-changed';
-this.fire(event, { value: value }, {
+_notifyChange: function (property) {
+var eventName = Polymer.CaseMap.camelToDashCase(property) + '-changed';
+Polymer.Base.fire(eventName, { value: this[property] }, {
 bubbles: false,
-cancelable: false,
-_useCache: true
+node: this
 });
 },
 _propertySetter: function (property, value, effects, fromAbove) {
@@ -4027,9 +3837,12 @@ node[property] = value;
 }
 },
 _effectEffects: function (property, value, effects, old, fromAbove) {
-for (var i = 0, l = effects.length, fx; i < l && (fx = effects[i]); i++) {
-fx.fn.call(this, property, value, fx.effect, old, fromAbove);
+effects.forEach(function (fx) {
+var fn = Polymer.Bind['_' + fx.kind + 'Effect'];
+if (fn) {
+fn.call(this, property, value, fx.effect, old, fromAbove);
 }
+}, this);
 },
 _clearPath: function (path) {
 for (var prop in this.__data__) {
@@ -4040,9 +3853,6 @@ this.__data__[prop] = undefined;
 }
 },
 ensurePropertyEffects: function (model, property) {
-if (!model._propertyEffects) {
-model._propertyEffects = {};
-}
 var fx = model._propertyEffects[property];
 if (!fx) {
 fx = model._propertyEffects[property] = [];
@@ -4051,13 +3861,10 @@ return fx;
 },
 addPropertyEffect: function (model, property, kind, effect) {
 var fx = this.ensurePropertyEffects(model, property);
-var propEffect = {
+fx.push({
 kind: kind,
-effect: effect,
-fn: Polymer.Bind['_' + kind + 'Effect']
-};
-fx.push(propEffect);
-return propEffect;
+effect: effect
+});
 },
 createBindings: function (model) {
 var fx$ = model._propertyEffects;
@@ -4107,10 +3914,7 @@ upper: function (name) {
 return name[0].toUpperCase() + name.substring(1);
 },
 _addAnnotatedListener: function (model, index, property, path, event) {
-if (!model._bindListeners) {
-model._bindListeners = [];
-}
-var fn = this._notedListenerFactory(property, path, this._isStructured(path));
+var fn = this._notedListenerFactory(property, path, this._isStructured(path), this._isEventBogus);
 var eventName = event || Polymer.CaseMap.camelToDashCase(property) + '-changed';
 model._bindListeners.push({
 index: index,
@@ -4126,17 +3930,19 @@ return path.indexOf('.') > 0;
 _isEventBogus: function (e, target) {
 return e.path && e.path[0] !== target;
 },
-_notedListenerFactory: function (property, path, isStructured) {
-return function (target, value, targetPath) {
-if (targetPath) {
-this._notifyPath(this._fixPath(path, property, targetPath), value);
+_notedListenerFactory: function (property, path, isStructured, bogusTest) {
+return function (e, target) {
+if (!bogusTest(e, target)) {
+if (e.detail && e.detail.path) {
+this._notifyPath(this._fixPath(path, property, e.detail.path), e.detail.value);
 } else {
-value = target[property];
+var value = target[property];
 if (!isStructured) {
-this[path] = value;
+this[path] = target[property];
 } else {
 if (this.__data__[path] != value) {
 this.set(path, value);
+}
 }
 }
 }
@@ -4146,16 +3952,9 @@ prepareInstance: function (inst) {
 inst.__data__ = Object.create(null);
 },
 setupBindListeners: function (inst) {
-var b$ = inst._bindListeners;
-for (var i = 0, l = b$.length, info; i < l && (info = b$[i]); i++) {
+inst._bindListeners.forEach(function (info) {
 var node = inst._nodes[info.index];
-this._addNotifyListener(node, inst, info.event, info.changedFn);
-}
-;
-},
-_addNotifyListener: function (element, context, event, changedFn) {
-element.addEventListener(event, function (e) {
-return context._notifyListener(changedFn, e);
+node.addEventListener(info.event, inst._notifyListener.bind(inst, info.changedFn));
 });
 }
 };
@@ -4173,12 +3972,12 @@ if (!effect.customEvent || this._nodes[effect.index][effect.name] !== calc) {
 return this._applyEffectValue(effect, calc);
 }
 },
-_reflectEffect: function (source, value, effect) {
-this.reflectPropertyToAttribute(source, effect.attribute, value);
+_reflectEffect: function (source) {
+this.reflectPropertyToAttribute(source);
 },
 _notifyEffect: function (source, value, effect, old, fromAbove) {
 if (!fromAbove) {
-this._notifyChange(source, effect.event, value);
+this._notifyChange(source);
 }
 },
 _functionEffect: function (source, value, fn, old, fromAbove) {
@@ -4264,8 +4063,7 @@ return values;
 });
 Polymer.Base._addFeature({
 _addPropertyEffect: function (property, kind, effect) {
-var prop = Polymer.Bind.addPropertyEffect(this, property, kind, effect);
-prop.pathFn = this['_' + prop.kind + 'PathEffect'];
+Polymer.Bind.addPropertyEffect(this, property, kind, effect);
 },
 _prepEffects: function () {
 Polymer.Bind.prepareModel(this);
@@ -4286,10 +4084,10 @@ prop.readOnly = true;
 this._addComputedEffect(p, prop.computed);
 }
 if (prop.notify) {
-this._addPropertyEffect(p, 'notify', { event: Polymer.CaseMap.camelToDashCase(p) + '-changed' });
+this._addPropertyEffect(p, 'notify');
 }
 if (prop.reflectToAttribute) {
-this._addPropertyEffect(p, 'reflect', { attribute: Polymer.CaseMap.camelToDashCase(p) });
+this._addPropertyEffect(p, 'reflect');
 }
 if (prop.readOnly) {
 Polymer.Bind.ensurePropertyEffects(this, p);
@@ -4299,14 +4097,14 @@ Polymer.Bind.ensurePropertyEffects(this, p);
 },
 _addComputedEffect: function (name, expression) {
 var sig = this._parseMethod(expression);
-for (var i = 0, arg; i < sig.args.length && (arg = sig.args[i]); i++) {
+sig.args.forEach(function (arg) {
 this._addPropertyEffect(arg.model, 'compute', {
 method: sig.method,
 args: sig.args,
 trigger: arg,
 name: name
 });
-}
+}, this);
 },
 _addObserverEffect: function (property, observer) {
 this._addPropertyEffect(property, 'observer', {
@@ -4316,28 +4114,29 @@ property: property
 },
 _addComplexObserverEffects: function (observers) {
 if (observers) {
-for (var i = 0, o; i < observers.length && (o = observers[i]); i++) {
-this._addComplexObserverEffect(o);
-}
+observers.forEach(function (observer) {
+this._addComplexObserverEffect(observer);
+}, this);
 }
 },
 _addComplexObserverEffect: function (observer) {
 var sig = this._parseMethod(observer);
-for (var i = 0, arg; i < sig.args.length && (arg = sig.args[i]); i++) {
+sig.args.forEach(function (arg) {
 this._addPropertyEffect(arg.model, 'complexObserver', {
 method: sig.method,
 args: sig.args,
 trigger: arg
 });
-}
+}, this);
 },
 _addAnnotationEffects: function (notes) {
-for (var i = 0, note; i < notes.length && (note = notes[i]); i++) {
-var b$ = note.bindings;
-for (var j = 0, binding; j < b$.length && (binding = b$[j]); j++) {
-this._addAnnotationEffect(binding, i);
-}
-}
+this._nodes = [];
+notes.forEach(function (note) {
+var index = this._nodes.push(note) - 1;
+note.bindings.forEach(function (binding) {
+this._addAnnotationEffect(binding, index);
+}, this);
+}, this);
 },
 _addAnnotationEffect: function (note, index) {
 if (Polymer.Bind._shouldAddListener(note)) {
@@ -4367,11 +4166,11 @@ var sig = part.signature;
 if (sig.static) {
 this.__addAnnotatedComputationEffect('__static__', index, note, part, null);
 } else {
-for (var i = 0, arg; i < sig.args.length && (arg = sig.args[i]); i++) {
+sig.args.forEach(function (arg) {
 if (!arg.literal) {
 this.__addAnnotatedComputationEffect(arg.model, index, note, part, arg);
 }
-}
+}, this);
 }
 },
 __addAnnotatedComputationEffect: function (property, index, note, part, trigger) {
@@ -4450,9 +4249,7 @@ return a;
 },
 _marshalInstanceEffects: function () {
 Polymer.Bind.prepareInstance(this);
-if (this._bindListeners) {
 Polymer.Bind.setupBindListeners(this);
-}
 },
 _applyEffectValue: function (info, value) {
 var node = this._nodes[info.index];
@@ -4471,14 +4268,11 @@ value = this._scopeElementClass(node, value);
 if (property === 'textContent' || node.localName == 'input' && property == 'value') {
 value = value == undefined ? '' : value;
 }
-var pinfo;
-if (!node._propertyInfo || !(pinfo = node._propertyInfo[property]) || !pinfo.readOnly) {
-this.__setProperty(property, value, true, node);
-}
+return node[property] = value;
 }
 },
 _executeStaticEffects: function () {
-if (this._propertyEffects && this._propertyEffects.__static__) {
+if (this._propertyEffects.__static__) {
 this._effectEffects('__static__', null, this._propertyEffects.__static__);
 }
 }
@@ -4486,14 +4280,12 @@ this._effectEffects('__static__', null, this._propertyEffects.__static__);
 Polymer.Base._addFeature({
 _setupConfigure: function (initialConfig) {
 this._config = {};
-this._handlers = [];
-if (initialConfig) {
 for (var i in initialConfig) {
 if (initialConfig[i] !== undefined) {
 this._config[i] = initialConfig[i];
 }
 }
-}
+this._handlers = [];
 },
 _marshalAttributes: function () {
 this._takeAttributesToModel(this._config);
@@ -4503,10 +4295,7 @@ var model = this._clientsReadied ? this : this._config;
 this._setAttributeToProperty(model, name);
 },
 _configValue: function (name, value) {
-var info = this._propertyInfo[name];
-if (!info || !info.readOnly) {
 this._config[name] = value;
-}
 },
 _beforeClientsReady: function () {
 this._configure();
@@ -4515,15 +4304,13 @@ _configure: function () {
 this._configureAnnotationReferences();
 this._aboveConfig = this.mixin({}, this._config);
 var config = {};
-for (var i = 0; i < this.behaviors.length; i++) {
-this._configureProperties(this.behaviors[i].properties, config);
-}
+this.behaviors.forEach(function (b) {
+this._configureProperties(b.properties, config);
+}, this);
 this._configureProperties(this.properties, config);
-this.mixin(config, this._aboveConfig);
+this._mixinConfigure(config, this._aboveConfig);
 this._config = config;
-if (this._clients && this._clients.length) {
 this._distributeConfig(this._config);
-}
 },
 _configureProperties: function (properties, config) {
 for (var i in properties) {
@@ -4534,6 +4321,13 @@ if (typeof value == 'function') {
 value = value.call(this, this._config);
 }
 config[i] = value;
+}
+}
+},
+_mixinConfigure: function (a, b) {
+for (var prop in b) {
+if (!this.getPropertyInfo(prop).readOnly) {
+a[prop] = b[prop];
 }
 }
 },
@@ -4569,22 +4363,14 @@ this.__setProperty(n, config[n], n in aboveConfig);
 }
 },
 _notifyListener: function (fn, e) {
-if (!Polymer.Bind._isEventBogus(e, e.target)) {
-var value, path;
-if (e.detail) {
-value = e.detail.value;
-path = e.detail.path;
-}
 if (!this._clientsReadied) {
 this._queueHandler([
 fn,
-e.target,
-value,
-path
+e,
+e.target
 ]);
 } else {
-return fn.call(this, e.target, value, path);
-}
+return fn.call(this, e, e.target);
 }
 },
 _queueHandler: function (args) {
@@ -4593,7 +4379,7 @@ this._handlers.push(args);
 _flushHandlers: function () {
 var h$ = this._handlers;
 for (var i = 0, l = h$.length, h; i < l && (h = h$[i]); i++) {
-h[0].call(this, h[1], h[2], h[3]);
+h[0].call(this, h[1], h[2]);
 }
 this._handlers = [];
 }
@@ -4702,14 +4488,14 @@ return prop;
 },
 _pathEffector: function (path, value) {
 var model = this._modelForPath(path);
-var fx$ = this._propertyEffects && this._propertyEffects[model];
+var fx$ = this._propertyEffects[model];
 if (fx$) {
-for (var i = 0, fx; i < fx$.length && (fx = fx$[i]); i++) {
-var fxFn = fx.pathFn;
+fx$.forEach(function (fx) {
+var fxFn = this['_' + fx.kind + 'PathEffect'];
 if (fxFn) {
 fxFn.call(this, path, value, fx.effect);
 }
-}
+}, this);
 }
 if (this._boundPaths) {
 this._notifyBoundPaths(path, value);
@@ -4778,10 +4564,7 @@ var eventName = dashCaseName + this._EVENT_CHANGED;
 this.fire(eventName, {
 path: path,
 value: value
-}, {
-bubbles: false,
-_useCache: true
-});
+}, { bubbles: false });
 },
 _modelForPath: function (path) {
 var dot = path.indexOf('.');
@@ -4884,8 +4667,6 @@ return ret;
 prepareModelNotifyPath: function (model) {
 this.mixin(model, {
 fire: Polymer.Base.fire,
-_getEvent: Polymer.Base._getEvent,
-__eventCache: Polymer.Base.__eventCache,
 notifyPath: Polymer.Base.notifyPath,
 _get: Polymer.Base._get,
 _EVENT_CHANGED: Polymer.Base._EVENT_CHANGED,
@@ -4959,8 +4740,6 @@ node.parsedCssText = node.cssText = t.trim();
 if (node.parent) {
 var ss = node.previous ? node.previous.end : node.parent.start;
 t = text.substring(ss, node.start - 1);
-t = this._expandUnicodeEscapes(t);
-t = t.replace(this._rx.multipleSpaces, ' ');
 t = t.substring(t.lastIndexOf(';') + 1);
 var s = node.parsedSelector = node.selector = t.trim();
 node.atRule = s.indexOf(this.AT_START) === 0;
@@ -4985,15 +4764,6 @@ this._parseCss(r, text);
 }
 }
 return node;
-},
-_expandUnicodeEscapes: function (s) {
-return s.replace(/\\([0-9a-f]{1,6})\s/gi, function () {
-var code = arguments[1], repeat = 6 - code.length;
-while (repeat--) {
-code = '0' + code;
-}
-return '\\' + code;
-});
 },
 stringify: function (node, preserveProperties, text) {
 text = text || '';
@@ -5024,7 +4794,7 @@ text += this.CLOSE_BRACE + '\n\n';
 return text;
 },
 _hasMixinRules: function (rules) {
-return rules[0].selector.indexOf(this.VAR_START) === 0;
+return rules[0].selector.indexOf(this.VAR_START) >= 0;
 },
 removeCustomProps: function (cssText) {
 cssText = this.removeCustomPropAssignment(cssText);
@@ -5050,9 +4820,8 @@ port: /@import[^;]*;/gim,
 customProp: /(?:^|[\s;])--[^;{]*?:[^{};]*?(?:[;\n]|$)/gim,
 mixinProp: /(?:^|[\s;])?--[^;{]*?:[^{;]*?{[^}]*?}(?:[;\n]|$)?/gim,
 mixinApply: /@apply[\s]*\([^)]*?\)[\s]*(?:[;\n]|$)?/gim,
-varApply: /[^;:]*?:[^;]*?var\([^;]*\)(?:[;\n]|$)?/gim,
-keyframesRule: /^@[^\s]*keyframes/,
-multipleSpaces: /\s+/g
+varApply: /[^;:]*?:[^;]*var[^;]*(?:[;\n]|$)?/gim,
+keyframesRule: /^@[^\s]*keyframes/
 },
 VAR_START: '--',
 MEDIA_START: '@media',
@@ -5132,21 +4901,21 @@ return cssText;
 cssFromModule: function (moduleId, warnIfNotFound) {
 var m = Polymer.DomModule.import(moduleId);
 if (m && !m._cssText) {
-m._cssText = this.cssFromElement(m);
+m._cssText = this._cssFromElement(m);
 }
 if (!m && warnIfNotFound) {
 console.warn('Could not find style data in module named', moduleId);
 }
 return m && m._cssText || '';
 },
-cssFromElement: function (element) {
+_cssFromElement: function (element) {
 var cssText = '';
 var content = element.content || element;
-var e$ = Polymer.DomApi.arrayCopy(content.querySelectorAll(this.MODULE_STYLES_SELECTOR));
+var e$ = Array.prototype.slice.call(content.querySelectorAll(this.MODULE_STYLES_SELECTOR));
 for (var i = 0, e; i < e$.length; i++) {
 e = e$[i];
 if (e.localName === 'template') {
-cssText += this.cssFromElement(e);
+cssText += this._cssFromElement(e);
 } else {
 if (e.localName === 'style') {
 var include = e.getAttribute(this.INCLUDE_ATTR);
@@ -5395,7 +5164,7 @@ _extendRule: function (target, source) {
 if (target.parent !== source.parent) {
 this._cloneAndAddRuleToParent(source, target.parent);
 }
-target.extends = target.extends || [];
+target.extends = target.extends || (target.extends = []);
 target.extends.push(source);
 source.selector = source.selector.replace(this.rx.STRIP, '');
 source.selector = (source.selector && source.selector + ',\n') + target.selector;
@@ -5436,17 +5205,13 @@ _prepStyles: function () {
 if (this._encapsulateStyle === undefined) {
 this._encapsulateStyle = !nativeShadow && Boolean(this._template);
 }
-if (this._template) {
 this._styles = this._collectStyles();
 var cssText = styleTransformer.elementStyles(this);
-if (cssText) {
+if (cssText && this._template) {
 var style = styleUtil.applyCss(cssText, this.is, nativeShadow ? this._template.content : null);
 if (!nativeShadow) {
 this._scopeStyle = style;
 }
-}
-} else {
-this._styles = [];
 }
 },
 _collectStyles: function () {
@@ -5458,10 +5223,6 @@ cssText += styleUtil.cssFromModule(m);
 }
 }
 cssText += styleUtil.cssFromModule(this.is);
-var p = this._template && this._template.parentNode;
-if (this._template && (!p || p.id.toLowerCase() !== this.is)) {
-cssText += styleUtil.cssFromElement(this._template);
-}
 if (cssText) {
 var style = document.createElement('style');
 style.textContent = cssText;
@@ -5495,21 +5256,21 @@ var scopify = function (node) {
 if (node.nodeType === Node.ELEMENT_NODE) {
 node.className = self._scopeElementClass(node, node.className);
 var n$ = node.querySelectorAll('*');
-for (var i = 0, n; i < n$.length && (n = n$[i]); i++) {
+Array.prototype.forEach.call(n$, function (n) {
 n.className = self._scopeElementClass(n, n.className);
-}
+});
 }
 };
 scopify(container);
 if (shouldObserve) {
 var mo = new MutationObserver(function (mxns) {
-for (var i = 0, m; i < mxns.length && (m = mxns[i]); i++) {
+mxns.forEach(function (m) {
 if (m.addedNodes) {
-for (var j = 0; j < m.addedNodes.length; j++) {
-scopify(m.addedNodes[j]);
+for (var i = 0; i < m.addedNodes.length; i++) {
+scopify(m.addedNodes[i]);
 }
 }
-}
+});
 });
 mo.observe(container, {
 childList: true,
@@ -5634,9 +5395,7 @@ p = pp.join(':');
 parts[i] = p && p.lastIndexOf(';') === p.length - 1 ? p.slice(0, -1) : p || '';
 }
 }
-return parts.filter(function (v) {
-return v;
-}).join(';');
+return parts.join(';');
 },
 applyProperties: function (rule, props) {
 var output = '';
@@ -5881,12 +5640,9 @@ var styleDefaults = Polymer.StyleDefaults;
 var nativeShadow = Polymer.Settings.useNativeShadow;
 Polymer.Base._addFeature({
 _prepStyleProperties: function () {
-this._ownStylePropertyNames = this._styles ? propertyUtils.decorateStyles(this._styles) : null;
+this._ownStylePropertyNames = this._styles ? propertyUtils.decorateStyles(this._styles) : [];
 },
-customStyle: null,
-getComputedStyleValue: function (property) {
-return this._styleProperties && this._styleProperties[property] || getComputedStyle(this).getPropertyValue(property);
-},
+customStyle: {},
 _setupStyleProperties: function () {
 this.customStyle = {};
 },
@@ -5983,7 +5739,7 @@ if (host) {
 value = host._scopeElementClass(node, value);
 }
 }
-node = this.shadyRoot && this.shadyRoot._hasDistributed ? Polymer.dom(node) : node;
+node = Polymer.dom(node);
 serializeValueToAttribute.call(this, value, attribute, node);
 },
 _scopeElementClass: function (element, selector) {
@@ -6032,6 +5788,7 @@ var XSCOPE_NAME = propertyUtils.XSCOPE_NAME;
 Polymer.Base._addFeature({
 _registerFeatures: function () {
 this._prepIs();
+this._prepAttributes();
 this._prepConstructor();
 this._prepTemplate();
 this._prepStyles();
@@ -6039,7 +5796,6 @@ this._prepStyleProperties();
 this._prepAnnotations();
 this._prepEffects();
 this._prepBehaviors();
-this._prepPropertyInfo();
 this._prepBindings();
 this._prepShady();
 },
@@ -6049,27 +5805,22 @@ this._addComplexObserverEffects(b.observers);
 this._addHostAttributes(b.hostAttributes);
 },
 _initFeatures: function () {
+this._poolContent();
 this._setupConfigure();
 this._setupStyleProperties();
-this._setupDebouncers();
-this._registerHost();
-if (this._template) {
-this._poolContent();
-this._beginHosting();
+this._pushHost();
 this._stampTemplate();
-this._endHosting();
+this._popHost();
 this._marshalAnnotationReferences();
-}
+this._setupDebouncers();
 this._marshalInstanceEffects();
-this._marshalBehaviors();
 this._marshalHostAttributes();
+this._marshalBehaviors();
 this._marshalAttributes();
 this._tryReady();
 },
 _marshalBehavior: function (b) {
-if (b.listeners) {
 this._listenListeners(b.listeners);
-}
 }
 });
 (function () {
@@ -6082,7 +5833,6 @@ var styleTransformer = Polymer.StyleTransformer;
 Polymer({
 is: 'custom-style',
 extends: 'style',
-_template: null,
 properties: { include: String },
 ready: function () {
 this._tryApply();
@@ -6097,19 +5847,18 @@ this._appliesToDocument = true;
 var e = this.__appliedElement || this;
 styleDefaults.addStyle(e);
 if (e.textContent || this.include) {
-this._apply(true);
+this._apply();
 } else {
-var self = this;
 var observer = new MutationObserver(function () {
 observer.disconnect();
-self._apply(true);
-});
+this._apply();
+}.bind(this));
 observer.observe(e, { childList: true });
 }
 }
 }
 },
-_apply: function (deferProperties) {
+_apply: function () {
 var e = this.__appliedElement || this;
 if (this.include) {
 e.textContent = styleUtil.cssFromModules(this.include, true) + e.textContent;
@@ -6118,19 +5867,7 @@ if (e.textContent) {
 styleUtil.forEachStyleRule(styleUtil.rulesForStyle(e), function (rule) {
 styleTransformer.documentRule(rule);
 });
-var self = this;
-function fn() {
-self._applyCustomProperties(e);
-}
-if (this._pendingApplyProperties) {
-cancelAnimationFrame(this._pendingApplyProperties);
-this._pendingApplyProperties = null;
-}
-if (deferProperties) {
-this._pendingApplyProperties = requestAnimationFrame(fn);
-} else {
-fn();
-}
+this._applyCustomProperties(e);
 }
 },
 _applyCustomProperties: function (element) {
@@ -6167,7 +5904,6 @@ this._prepParentProperties(archetype, template);
 archetype._prepEffects();
 this._customPrepEffects(archetype);
 archetype._prepBehaviors();
-archetype._prepPropertyInfo();
 archetype._prepBindings();
 archetype._notifyPathUp = this._notifyPathUpImpl;
 archetype._scopeElementClass = this._scopeElementClassImpl;
@@ -6230,9 +5966,7 @@ var c = template._content;
 if (!c._notes) {
 var rootDataHost = archetype._rootDataHost;
 if (rootDataHost) {
-Polymer.Annotations.prepElement = function () {
-rootDataHost._prepElement();
-};
+Polymer.Annotations.prepElement = rootDataHost._prepElement.bind(rootDataHost);
 }
 c._notes = Polymer.Annotations.parseAnnotations(template);
 Polymer.Annotations.prepElement = null;
@@ -6260,29 +5994,19 @@ var parentProp = this._parentPropPrefix + prop;
 var effects = [
 {
 kind: 'function',
-effect: this._createForwardPropEffector(prop),
-fn: Polymer.Bind._functionEffect
+effect: this._createForwardPropEffector(prop)
 },
-{
-kind: 'notify',
-fn: Polymer.Bind._notifyEffect,
-effect: { event: Polymer.CaseMap.camelToDashCase(parentProp) + '-changed' }
-}
+{ kind: 'notify' }
 ];
 Polymer.Bind._createAccessors(proto, parentProp, effects);
 }
 }
-var self = this;
 if (template != this) {
 Polymer.Bind.prepareInstance(template);
-template._forwardParentProp = function (source, value) {
-self._forwardParentProp(source, value);
-};
+template._forwardParentProp = this._forwardParentProp.bind(this);
 }
 this._extendTemplate(template, proto);
-template._pathEffector = function (path, value, fromAbove) {
-return self._pathEffectorImpl(path, value, fromAbove);
-};
+template._pathEffector = this._pathEffectorImpl.bind(this);
 }
 },
 _createForwardPropEffector: function (prop) {
@@ -6304,15 +6028,14 @@ this.dataHost._forwardInstanceProp(this, prop, value);
 };
 },
 _extendTemplate: function (template, proto) {
-var n$ = Object.getOwnPropertyNames(proto);
-for (var i = 0, n; i < n$.length && (n = n$[i]); i++) {
+Object.getOwnPropertyNames(proto).forEach(function (n) {
 var val = template[n];
 var pd = Object.getOwnPropertyDescriptor(proto, n);
 Object.defineProperty(template, n, pd);
 if (val !== undefined) {
 template._propertySetter(n, val);
 }
-}
+});
 },
 _showHideChildren: function (hidden) {
 },
@@ -6344,12 +6067,11 @@ Polymer.Base._pathEffector.call(this._templatized, path, value, fromAbove);
 _constructorImpl: function (model, host) {
 this._rootDataHost = host._getRootDataHost();
 this._setupConfigure(model);
-this._registerHost(host);
-this._beginHosting();
+this._pushHost(host);
 this.root = this.instanceTemplate(this._template);
 this.root.__noContent = !this._notes._hasContent;
 this.root.__styleScoped = true;
-this._endHosting();
+this._popHost();
 this._marshalAnnotatedNodes();
 this._marshalInstanceEffects();
 this._marshalAnnotatedListeners();
@@ -6408,7 +6130,6 @@ el = el.parentNode;
 Polymer({
 is: 'dom-template',
 extends: 'template',
-_template: null,
 behaviors: [Polymer.Templatizer],
 ready: function () {
 this.templatize(this);
@@ -6509,21 +6230,21 @@ items.push(store[key]);
 return items;
 },
 _applySplices: function (splices) {
-var keyMap = {}, key;
-for (var i = 0, s; i < splices.length && (s = splices[i]); i++) {
+var keyMap = {}, key, i;
+splices.forEach(function (s) {
 s.addedKeys = [];
-for (var j = 0; j < s.removed.length; j++) {
-key = this.getKey(s.removed[j]);
+for (i = 0; i < s.removed.length; i++) {
+key = this.getKey(s.removed[i]);
 keyMap[key] = keyMap[key] ? null : -1;
 }
-for (var j = 0; j < s.addedCount; j++) {
-var item = this.userArray[s.index + j];
+for (i = 0; i < s.addedCount; i++) {
+var item = this.userArray[s.index + i];
 key = this.getKey(item);
 key = key === undefined ? this.add(item) : key;
 keyMap[key] = keyMap[key] ? null : 1;
 s.addedKeys.push(key);
 }
-}
+}, this);
 var removed = [];
 var added = [];
 for (var key in keyMap) {
@@ -6551,7 +6272,6 @@ return coll ? coll._applySplices(splices) : null;
 Polymer({
 is: 'dom-repeat',
 extends: 'template',
-_template: null,
 properties: {
 items: { type: Array },
 as: {
@@ -6574,37 +6294,22 @@ observe: {
 type: String,
 observer: '_observeChanged'
 },
-delay: Number,
-initialCount: {
-type: Number,
-observer: '_initializeChunking'
-},
-targetFramerate: {
-type: Number,
-value: 20
-},
-_targetFrameTime: { computed: '_computeFrameTime(targetFramerate)' }
+delay: Number
 },
 behaviors: [Polymer.Templatizer],
 observers: ['_itemsChanged(items.*)'],
 created: function () {
 this._instances = [];
-this._pool = [];
-this._limit = Infinity;
-var self = this;
-this._boundRenderChunk = function () {
-self._renderChunk();
-};
 },
 detached: function () {
 for (var i = 0; i < this._instances.length; i++) {
-this._detachInstance(i);
+this._detachRow(i);
 }
 },
 attached: function () {
-var parent = Polymer.dom(Polymer.dom(this).parentNode);
+var parentNode = Polymer.dom(this).parentNode;
 for (var i = 0; i < this._instances.length; i++) {
-this._attachInstance(i, parent);
+Polymer.dom(parentNode).insertBefore(this._instances[i].root, this);
 }
 },
 ready: function () {
@@ -6615,8 +6320,9 @@ if (!this.ctor) {
 this.templatize(this);
 }
 },
-_sortChanged: function (sort) {
+_sortChanged: function () {
 var dataHost = this._getRootDataHost();
+var sort = this.sort;
 this._sortFn = sort && (typeof sort == 'function' ? sort : function () {
 return dataHost[sort].apply(dataHost, arguments);
 });
@@ -6625,8 +6331,9 @@ if (this.items) {
 this._debounceTemplate(this._render);
 }
 },
-_filterChanged: function (filter) {
+_filterChanged: function () {
 var dataHost = this._getRootDataHost();
+var filter = this.filter;
 this._filterFn = filter && (typeof filter == 'function' ? filter : function () {
 return dataHost[filter].apply(dataHost, arguments);
 });
@@ -6634,32 +6341,6 @@ this._needFullRefresh = true;
 if (this.items) {
 this._debounceTemplate(this._render);
 }
-},
-_computeFrameTime: function (rate) {
-return Math.ceil(1000 / rate);
-},
-_initializeChunking: function () {
-if (this.initialCount) {
-this._limit = this.initialCount;
-this._chunkCount = this.initialCount;
-this._lastChunkTime = performance.now();
-}
-},
-_tryRenderChunk: function () {
-if (this.items && this._limit < this.items.length) {
-this.debounce('renderChunk', this._requestRenderChunk);
-}
-},
-_requestRenderChunk: function () {
-requestAnimationFrame(this._boundRenderChunk);
-},
-_renderChunk: function () {
-var currChunkTime = performance.now();
-var ratio = this._targetFrameTime / (currChunkTime - this._lastChunkTime);
-this._chunkCount = Math.round(this._chunkCount * ratio) || 1;
-this._limit += this._chunkCount;
-this._lastChunkTime = currChunkTime;
-this._debounceTemplate(this._render);
 },
 _observeChanged: function () {
 this._observePaths = this.observe && this.observe.replace('.*', '.').split(' ');
@@ -6676,7 +6357,6 @@ this._error(this._logf('dom-repeat', 'expected array for `items`,' + ' found', t
 this._keySplices = [];
 this._indexSplices = [];
 this._needFullRefresh = true;
-this._initializeChunking();
 this._debounceTemplate(this._render);
 } else if (change.path == 'items.splices') {
 this._keySplices = this._keySplices.concat(change.value.keySplices);
@@ -6715,7 +6395,7 @@ var c = this.collection;
 if (this._needFullRefresh) {
 this._applyFullRefresh();
 this._needFullRefresh = false;
-} else if (this._keySplices.length) {
+} else {
 if (this._sortFn) {
 this._applySplicesUserSort(this._keySplices);
 } else {
@@ -6725,26 +6405,16 @@ this._applyFullRefresh();
 this._applySplicesArrayOrder(this._indexSplices);
 }
 }
-} else {
 }
 this._keySplices = [];
 this._indexSplices = [];
 var keyToIdx = this._keyToInstIdx = {};
-for (var i = this._instances.length - 1; i >= 0; i--) {
+for (var i = 0; i < this._instances.length; i++) {
 var inst = this._instances[i];
-if (inst.isPlaceholder && i < this._limit) {
-inst = this._insertInstance(i, inst.__key__);
-} else if (!inst.isPlaceholder && i >= this._limit) {
-inst = this._downgradeInstance(i, inst.__key__);
-}
 keyToIdx[inst.__key__] = i;
-if (!inst.isPlaceholder) {
 inst.__setProperty(this.indexAs, i, true);
 }
-}
-this._pool.length = 0;
 this.fire('dom-change');
-this._tryRenderChunk();
 },
 _applyFullRefresh: function () {
 var c = this.collection;
@@ -6760,34 +6430,33 @@ keys.push(c.getKey(items[i]));
 }
 }
 }
-var self = this;
 if (this._filterFn) {
 keys = keys.filter(function (a) {
-return self._filterFn(c.getItem(a));
-});
+return this._filterFn(c.getItem(a));
+}, this);
 }
 if (this._sortFn) {
 keys.sort(function (a, b) {
-return self._sortFn(c.getItem(a), c.getItem(b));
-});
+return this._sortFn(c.getItem(a), c.getItem(b));
+}.bind(this));
 }
 for (var i = 0; i < keys.length; i++) {
 var key = keys[i];
 var inst = this._instances[i];
 if (inst) {
-inst.__key__ = key;
-if (!inst.isPlaceholder && i < this._limit) {
+inst.__setProperty('__key__', key, true);
 inst.__setProperty(this.as, c.getItem(key), true);
-}
-} else if (i < this._limit) {
-this._insertInstance(i, key);
 } else {
-this._insertPlaceholder(i, key);
+this._instances.push(this._insertRow(i, key));
 }
 }
-for (var j = this._instances.length - 1; j >= i; j--) {
-this._detachAndRemoveInstance(j);
+for (; i < this._instances.length; i++) {
+this._detachRow(i);
 }
+this._instances.splice(keys.length, this._instances.length - keys.length);
+},
+_keySort: function (a, b) {
+return this.collection.getKey(a) - this.collection.getKey(b);
 },
 _numericSort: function (a, b) {
 return a - b;
@@ -6796,16 +6465,18 @@ _applySplicesUserSort: function (splices) {
 var c = this.collection;
 var instances = this._instances;
 var keyMap = {};
-for (var i = 0, s; i < splices.length && (s = splices[i]); i++) {
-for (var j = 0; j < s.removed.length; j++) {
-var key = s.removed[j];
+var pool = [];
+var sortFn = this._sortFn || this._keySort.bind(this);
+splices.forEach(function (s) {
+for (var i = 0; i < s.removed.length; i++) {
+var key = s.removed[i];
 keyMap[key] = keyMap[key] ? null : -1;
 }
-for (var j = 0; j < s.added.length; j++) {
-var key = s.added[j];
+for (var i = 0; i < s.added.length; i++) {
+var key = s.added[i];
 keyMap[key] = keyMap[key] ? null : 1;
 }
-}
+}, this);
 var removedIdxs = [];
 var addedKeys = [];
 for (var key in keyMap) {
@@ -6821,35 +6492,36 @@ removedIdxs.sort(this._numericSort);
 for (var i = removedIdxs.length - 1; i >= 0; i--) {
 var idx = removedIdxs[i];
 if (idx !== undefined) {
-this._detachAndRemoveInstance(idx);
+pool.push(this._detachRow(idx));
+instances.splice(idx, 1);
 }
 }
 }
-var self = this;
 if (addedKeys.length) {
 if (this._filterFn) {
 addedKeys = addedKeys.filter(function (a) {
-return self._filterFn(c.getItem(a));
-});
+return this._filterFn(c.getItem(a));
+}, this);
 }
 addedKeys.sort(function (a, b) {
-return self._sortFn(c.getItem(a), c.getItem(b));
-});
+return this._sortFn(c.getItem(a), c.getItem(b));
+}.bind(this));
 var start = 0;
 for (var i = 0; i < addedKeys.length; i++) {
-start = this._insertRowUserSort(start, addedKeys[i]);
+start = this._insertRowUserSort(start, addedKeys[i], pool);
 }
 }
 },
-_insertRowUserSort: function (start, key) {
+_insertRowUserSort: function (start, key, pool) {
 var c = this.collection;
 var item = c.getItem(key);
 var end = this._instances.length - 1;
 var idx = -1;
+var sortFn = this._sortFn || this._keySort.bind(this);
 while (start <= end) {
 var mid = start + end >> 1;
 var midKey = this._instances[mid].__key__;
-var cmp = this._sortFn(c.getItem(midKey), item);
+var cmp = sortFn(c.getItem(midKey), item);
 if (cmp < 0) {
 start = mid + 1;
 } else if (cmp > 0) {
@@ -6862,80 +6534,65 @@ break;
 if (idx < 0) {
 idx = end + 1;
 }
-this._insertPlaceholder(idx, key);
+this._instances.splice(idx, 0, this._insertRow(idx, key, pool));
 return idx;
 },
 _applySplicesArrayOrder: function (splices) {
+var pool = [];
 var c = this.collection;
-for (var i = 0, s; i < splices.length && (s = splices[i]); i++) {
-for (var j = 0; j < s.removed.length; j++) {
-this._detachAndRemoveInstance(s.index);
+splices.forEach(function (s) {
+for (var i = 0; i < s.removed.length; i++) {
+var inst = this._detachRow(s.index + i);
+if (!inst.isPlaceholder) {
+pool.push(inst);
 }
-for (var j = 0; j < s.addedKeys.length; j++) {
-this._insertPlaceholder(s.index + j, s.addedKeys[j]);
+}
+this._instances.splice(s.index, s.removed.length);
+for (var i = 0; i < s.addedKeys.length; i++) {
+var inst = {
+isPlaceholder: true,
+key: s.addedKeys[i]
+};
+this._instances.splice(s.index + i, 0, inst);
+}
+}, this);
+for (var i = this._instances.length - 1; i >= 0; i--) {
+var inst = this._instances[i];
+if (inst.isPlaceholder) {
+this._instances[i] = this._insertRow(i, inst.key, pool, true);
 }
 }
 },
-_detachInstance: function (idx) {
+_detachRow: function (idx) {
 var inst = this._instances[idx];
 if (!inst.isPlaceholder) {
+var parentNode = Polymer.dom(this).parentNode;
 for (var i = 0; i < inst._children.length; i++) {
 var el = inst._children[i];
 Polymer.dom(inst.root).appendChild(el);
 }
+}
 return inst;
-}
 },
-_attachInstance: function (idx, parent) {
-var inst = this._instances[idx];
-if (!inst.isPlaceholder) {
-parent.insertBefore(inst.root, this);
-}
-},
-_detachAndRemoveInstance: function (idx) {
-var inst = this._detachInstance(idx);
-if (inst) {
-this._pool.push(inst);
-}
-this._instances.splice(idx, 1);
-},
-_insertPlaceholder: function (idx, key) {
-this._instances.splice(idx, 0, {
-isPlaceholder: true,
-__key__: key
-});
-},
-_stampInstance: function (idx, key) {
-var model = { __key__: key };
-model[this.as] = this.collection.getItem(key);
-model[this.indexAs] = idx;
-return this.stamp(model);
-},
-_insertInstance: function (idx, key) {
-var inst = this._pool.pop();
-if (inst) {
+_insertRow: function (idx, key, pool, replace) {
+var inst;
+if (inst = pool && pool.pop()) {
 inst.__setProperty(this.as, this.collection.getItem(key), true);
 inst.__setProperty('__key__', key, true);
 } else {
-inst = this._stampInstance(idx, key);
+inst = this._generateRow(idx, key);
 }
-var beforeRow = this._instances[idx + 1];
-var beforeNode = beforeRow && !beforeRow.isPlaceholder ? beforeRow._children[0] : this;
+var beforeRow = this._instances[replace ? idx + 1 : idx];
+var beforeNode = beforeRow ? beforeRow._children[0] : this;
 var parentNode = Polymer.dom(this).parentNode;
 Polymer.dom(parentNode).insertBefore(inst.root, beforeNode);
-this._instances[idx] = inst;
 return inst;
 },
-_downgradeInstance: function (idx, key) {
-var inst = this._detachInstance(idx);
-if (inst) {
-this._pool.push(inst);
-}
-inst = {
-isPlaceholder: true,
-__key__: key
-};
-this._instances[idx] = inst;
+_generateRow: function (idx, key) {
+var model = { __key__: key };
+model[this.as] = this.collection.getItem(key);
+model[this.indexAs] = idx;
+var inst = this.stamp(model);
 return inst;
 },
 _showHideChildren: function (hidden) {
@@ -6960,20 +6617,14 @@ this._notifyPath('items.' + inst.__key__ + '.' + path.slice(this.as.length + 1),
 }
 },
 _forwardParentProp: function (prop, value) {
-var i$ = this._instances;
-for (var i = 0, inst; i < i$.length && (inst = i$[i]); i++) {
-if (!inst.isPlaceholder) {
+this._instances.forEach(function (inst) {
 inst.__setProperty(prop, value, true);
-}
-}
+}, this);
 },
 _forwardParentPath: function (path, value) {
-var i$ = this._instances;
-for (var i = 0, inst; i < i$.length && (inst = i$[i]); i++) {
-if (!inst.isPlaceholder) {
+this._instances.forEach(function (inst) {
 inst._notifyPath(path, value, true);
-}
-}
+}, this);
 },
 _forwardItemPath: function (path, value) {
 if (this._keyToInstIdx) {
@@ -6981,7 +6632,7 @@ var dot = path.indexOf('.');
 var key = path.substring(0, dot < 0 ? path.length : dot);
 var idx = this._keyToInstIdx[key];
 var inst = this._instances[idx];
-if (inst && !inst.isPlaceholder) {
+if (inst) {
 if (dot >= 0) {
 path = this.as + '.' + path.substring(dot + 1);
 inst._notifyPath(path, value, true);
@@ -7006,7 +6657,6 @@ return instance && instance[this.indexAs];
 });
 Polymer({
 is: 'array-selector',
-_template: null,
 properties: {
 items: {
 type: Array,
@@ -7099,7 +6749,6 @@ this.linkPaths('selectedItem', 'items.' + key);
 Polymer({
 is: 'dom-if',
 extends: 'template',
-_template: null,
 properties: {
 'if': {
 type: Boolean,
@@ -7147,23 +6796,20 @@ this._lastIf = this.if;
 },
 _ensureInstance: function () {
 if (!this._instance) {
-var parentNode = Polymer.dom(this).parentNode;
-if (parentNode) {
-var parent = Polymer.dom(parentNode);
 this._instance = this.stamp();
 var root = this._instance.root;
+var parent = Polymer.dom(Polymer.dom(this).parentNode);
 parent.insertBefore(root, this);
-}
 }
 },
 _teardownInstance: function () {
 if (this._instance) {
-var c$ = this._instance._children;
-if (c$) {
-var parent = Polymer.dom(Polymer.dom(c$[0]).parentNode);
-for (var i = 0, n; i < c$.length && (n = c$[i]); i++) {
+var c = this._instance._children;
+if (c) {
+var parent = Polymer.dom(Polymer.dom(c[0]).parentNode);
+c.forEach(function (n) {
 parent.removeChild(n);
-}
+});
 }
 this._instance = null;
 }
@@ -7188,12 +6834,8 @@ this._instance._notifyPath(path, value, true);
 Polymer({
 is: 'dom-bind',
 extends: 'template',
-_template: null,
 created: function () {
-var self = this;
-Polymer.RenderStatus.whenReady(function () {
-self._markImportsReady();
-});
+Polymer.RenderStatus.whenReady(this._markImportsReady.bind(this));
 },
 _ensureReady: function () {
 if (!this._readied) {
@@ -7232,10 +6874,7 @@ var config = {};
 for (var prop in this._propertyEffects) {
 config[prop] = this[prop];
 }
-var setupConfigure = this._setupConfigure;
-this._setupConfigure = function () {
-setupConfigure.call(this, config);
-};
+this._setupConfigure = this._setupConfigure.bind(this, config);
 },
 attached: function () {
 if (this._importsReady) {
@@ -7254,9 +6893,8 @@ this._prepEffects();
 this._prepBehaviors();
 this._prepConfigure();
 this._prepBindings();
-this._prepPropertyInfo();
 Polymer.Base._initFeatures.call(this);
-this._children = Polymer.DomApi.arrayCopyChildNodes(this.root);
+this._children = Array.prototype.slice.call(this.root.childNodes);
 }
 this._insertChildren();
 this.fire('dom-change');
@@ -8575,7 +8213,7 @@ and instead put a div inside and style that.
   html /deep/ .fixed-right {
     top: 0;
     right: 0;
-    bottom: 0;
+    botttom: 0;
   }
 
   html /deep/ .fixed-bottom {
@@ -8586,7 +8224,7 @@ and instead put a div inside and style that.
 
   html /deep/ .fixed-left {
     top: 0;
-    bottom: 0;
+    botttom: 0;
     left: 0;
   }
 
@@ -9170,11 +8808,6 @@ A complete [guide](https://elements.polymer-project.org/guides/flex-layout) to `
       -webkit-overflow-scrolling: touch;
       overflow: auto;
     };
-
-    --layout-fullbleed: {
-      margin: 0;
-      height: 100vh;
-    }
 
     /* fixed position */
 
@@ -11182,6 +10815,14 @@ Apply `circle` class to make the rippling effect within a circle.
       this._setPressed(false);
     },
 
+    __isFocusedLightDescendant: function(target) {
+      var root = Polymer.dom(this).getOwnerRoot() || document;
+      var focusedElement = root.activeElement;
+
+      // TODO(noms): remove the `this !== target` check once polymer#2610 is fixed.
+      return this !== target && this.isLightDescendant(target) && target == focusedElement;
+    },
+
     /**
      * @param {!KeyboardEvent} event .
      */
@@ -11191,7 +10832,7 @@ Apply `circle` class to make the rippling effect within a circle.
 
       // Ignore the event if this is coming from a focused light child, since that
       // element will deal with it.
-      if (this.isLightDescendant(target))
+      if (this.__isFocusedLightDescendant(target))
         return;
 
       keyboardEvent.preventDefault();
@@ -11208,7 +10849,7 @@ Apply `circle` class to make the rippling effect within a circle.
 
       // Ignore the event if this is coming from a focused light child, since that
       // element will deal with it.
-      if (this.isLightDescendant(target))
+      if (this.__isFocusedLightDescendant(target))
         return;
 
       if (this.pressed) {
@@ -11327,10 +10968,10 @@ Apply `circle` class to make the rippling effect within a circle.
     /**
      * Ensures this element contains a ripple effect. For startup efficiency
      * the ripple effect is dynamically on demand when needed.
-     * @param {!Event=} optTriggeringEvent (optional) event that triggered the
+     * @param {!Event=} opt_triggeringEvent (optional) event that triggered the
      * ripple.
      */
-    ensureRipple: function(optTriggeringEvent) {
+    ensureRipple: function(opt_triggeringEvent) {
       if (!this.hasRipple()) {
         this._ripple = this._createRipple();
         this._ripple.noink = this.noink;
@@ -11338,14 +10979,12 @@ Apply `circle` class to make the rippling effect within a circle.
         if (rippleContainer) {
           Polymer.dom(rippleContainer).appendChild(this._ripple);
         }
-        if (optTriggeringEvent) {
-          // Check if the event happened inside of the ripple container
-          // Fall back to host instead of the root because distributed text
-          // nodes are not valid event targets
-          var domContainer = Polymer.dom(this._rippleContainer || this);
-          var target = Polymer.dom(optTriggeringEvent).rootTarget;
-          if (domContainer.deepContains( /** @type {Node} */(target))) {
-            this._ripple.uiDownAction(optTriggeringEvent);
+        var domContainer = rippleContainer === this.shadyRoot ? this :
+          rippleContainer;
+        if (opt_triggeringEvent) {
+          var target = opt_triggeringEvent.target;
+          if (domContainer.contains(/** @type {Node} */(target))) {
+            this._ripple.uiDownAction(opt_triggeringEvent);
           }
         }
       }
@@ -11652,32 +11291,572 @@ Custom property | Description | Default
 -->
 
 <!--
-`PaperItemBehavior` is a convenience behavior shared by <paper-item> and
-<paper-icon-item> that manages the shared control states and attributes of
-the items.
+The `<paper-styles>` component provides simple ways to use Material Design CSS styles
+in your application. The following imports are available:
+
+1. [color.html](https://github.com/PolymerElements/paper-styles/blob/master/color.html):
+a complete list of the colors defined in the Material Design [palette](https://www.google.com/design/spec/style/color.html)
+
+2. [default-theme.html](https://github.com/PolymerElements/paper-styles/blob/master/default-theme.html): text,
+background and accent colors that match the default Material Design theme
+
+3. [shadow.html](https://github.com/PolymerElements/paper-styles/blob/master/shadow.html): Material Design
+[elevation](https://www.google.com/design/spec/what-is-material/elevation-shadows.html) and shadow styles
+
+4. [typography.html](https://github.com/PolymerElements/paper-styles/blob/master/typography.html):
+Material Design [font](http://www.google.com/design/spec/style/typography.html#typography-styles) styles and sizes
+
+5. [demo-pages.html](https://github.com/PolymerElements/paper-styles/blob/master/demo-pages.html): generic styles
+used in the PolymerElements demo pages
+
+@group Iron Elements
+@pseudoElement paper-styles
+@demo demo/index.html
 -->
 
-<script>
-  /** @polymerBehavior Polymer.PaperItemBehavior */
-  Polymer.PaperItemBehaviorImpl = {
-    hostAttributes: {
-      role: 'option',
-      tabindex: '0'
-    }
-  };
+<style is="custom-style">
 
-  /** @polymerBehavior */
-  Polymer.PaperItemBehavior = [
-    Polymer.IronControlState,
-    Polymer.IronButtonState,
-    Polymer.PaperItemBehaviorImpl
-  ];
+  :root {
 
-</script>
+    /* Material Design color palette for Google products */
+
+    --google-red-100: #f4c7c3;
+    --google-red-300: #e67c73;
+    --google-red-500: #db4437;
+    --google-red-700: #c53929;
+
+    --google-blue-100: #c6dafc;
+    --google-blue-300: #7baaf7;
+    --google-blue-500: #4285f4;
+    --google-blue-700: #3367d6;
+
+    --google-green-100: #b7e1cd;
+    --google-green-300: #57bb8a;
+    --google-green-500: #0f9d58;
+    --google-green-700: #0b8043;
+
+    --google-yellow-100: #fce8b2;
+    --google-yellow-300: #f7cb4d;
+    --google-yellow-500: #f4b400;
+    --google-yellow-700: #f09300;
+
+    --google-grey-100: #f5f5f5;
+    --google-grey-300: #e0e0e0;
+    --google-grey-500: #9e9e9e;
+    --google-grey-700: #616161;
+    
+    /* Material Design color palette from online spec document */
+
+    --paper-red-50: #ffebee;
+    --paper-red-100: #ffcdd2;
+    --paper-red-200: #ef9a9a;
+    --paper-red-300: #e57373;
+    --paper-red-400: #ef5350;
+    --paper-red-500: #f44336;
+    --paper-red-600: #e53935;
+    --paper-red-700: #d32f2f;
+    --paper-red-800: #c62828;
+    --paper-red-900: #b71c1c;
+    --paper-red-a100: #ff8a80;
+    --paper-red-a200: #ff5252;
+    --paper-red-a400: #ff1744;
+    --paper-red-a700: #d50000;
+ 
+    --paper-pink-50: #fce4ec;
+    --paper-pink-100: #f8bbd0;
+    --paper-pink-200: #f48fb1;
+    --paper-pink-300: #f06292;
+    --paper-pink-400: #ec407a;
+    --paper-pink-500: #e91e63;
+    --paper-pink-600: #d81b60;
+    --paper-pink-700: #c2185b;
+    --paper-pink-800: #ad1457;
+    --paper-pink-900: #880e4f;
+    --paper-pink-a100: #ff80ab;
+    --paper-pink-a200: #ff4081;
+    --paper-pink-a400: #f50057;
+    --paper-pink-a700: #c51162;
+ 
+    --paper-purple-50: #f3e5f5;
+    --paper-purple-100: #e1bee7;
+    --paper-purple-200: #ce93d8;
+    --paper-purple-300: #ba68c8;
+    --paper-purple-400: #ab47bc;
+    --paper-purple-500: #9c27b0;
+    --paper-purple-600: #8e24aa;
+    --paper-purple-700: #7b1fa2;
+    --paper-purple-800: #6a1b9a;
+    --paper-purple-900: #4a148c;
+    --paper-purple-a100: #ea80fc;
+    --paper-purple-a200: #e040fb;
+    --paper-purple-a400: #d500f9;
+    --paper-purple-a700: #aa00ff;
+ 
+    --paper-deep-purple-50: #ede7f6;
+    --paper-deep-purple-100: #d1c4e9;
+    --paper-deep-purple-200: #b39ddb;
+    --paper-deep-purple-300: #9575cd;
+    --paper-deep-purple-400: #7e57c2;
+    --paper-deep-purple-500: #673ab7;
+    --paper-deep-purple-600: #5e35b1;
+    --paper-deep-purple-700: #512da8;
+    --paper-deep-purple-800: #4527a0;
+    --paper-deep-purple-900: #311b92;
+    --paper-deep-purple-a100: #b388ff;
+    --paper-deep-purple-a200: #7c4dff;
+    --paper-deep-purple-a400: #651fff;
+    --paper-deep-purple-a700: #6200ea;
+ 
+    --paper-indigo-50: #e8eaf6;
+    --paper-indigo-100: #c5cae9;
+    --paper-indigo-200: #9fa8da;
+    --paper-indigo-300: #7986cb;
+    --paper-indigo-400: #5c6bc0;
+    --paper-indigo-500: #3f51b5;
+    --paper-indigo-600: #3949ab;
+    --paper-indigo-700: #303f9f;
+    --paper-indigo-800: #283593;
+    --paper-indigo-900: #1a237e;
+    --paper-indigo-a100: #8c9eff;
+    --paper-indigo-a200: #536dfe;
+    --paper-indigo-a400: #3d5afe;
+    --paper-indigo-a700: #304ffe;
+ 
+    --paper-blue-50: #e3f2fd;
+    --paper-blue-100: #bbdefb;
+    --paper-blue-200: #90caf9;
+    --paper-blue-300: #64b5f6;
+    --paper-blue-400: #42a5f5;
+    --paper-blue-500: #2196f3;
+    --paper-blue-600: #1e88e5;
+    --paper-blue-700: #1976d2;
+    --paper-blue-800: #1565c0;
+    --paper-blue-900: #0d47a1;
+    --paper-blue-a100: #82b1ff;
+    --paper-blue-a200: #448aff;
+    --paper-blue-a400: #2979ff;
+    --paper-blue-a700: #2962ff;
+ 
+    --paper-light-blue-50: #e1f5fe;
+    --paper-light-blue-100: #b3e5fc;
+    --paper-light-blue-200: #81d4fa;
+    --paper-light-blue-300: #4fc3f7;
+    --paper-light-blue-400: #29b6f6;
+    --paper-light-blue-500: #03a9f4;
+    --paper-light-blue-600: #039be5;
+    --paper-light-blue-700: #0288d1;
+    --paper-light-blue-800: #0277bd;
+    --paper-light-blue-900: #01579b;
+    --paper-light-blue-a100: #80d8ff;
+    --paper-light-blue-a200: #40c4ff;
+    --paper-light-blue-a400: #00b0ff;
+    --paper-light-blue-a700: #0091ea;
+ 
+    --paper-cyan-50: #e0f7fa;
+    --paper-cyan-100: #b2ebf2;
+    --paper-cyan-200: #80deea;
+    --paper-cyan-300: #4dd0e1;
+    --paper-cyan-400: #26c6da;
+    --paper-cyan-500: #00bcd4;
+    --paper-cyan-600: #00acc1;
+    --paper-cyan-700: #0097a7;
+    --paper-cyan-800: #00838f;
+    --paper-cyan-900: #006064;
+    --paper-cyan-a100: #84ffff;
+    --paper-cyan-a200: #18ffff;
+    --paper-cyan-a400: #00e5ff;
+    --paper-cyan-a700: #00b8d4;
+ 
+    --paper-teal-50: #e0f2f1;
+    --paper-teal-100: #b2dfdb;
+    --paper-teal-200: #80cbc4;
+    --paper-teal-300: #4db6ac;
+    --paper-teal-400: #26a69a;
+    --paper-teal-500: #009688;
+    --paper-teal-600: #00897b;
+    --paper-teal-700: #00796b;
+    --paper-teal-800: #00695c;
+    --paper-teal-900: #004d40;
+    --paper-teal-a100: #a7ffeb;
+    --paper-teal-a200: #64ffda;
+    --paper-teal-a400: #1de9b6;
+    --paper-teal-a700: #00bfa5;
+ 
+    --paper-green-50: #e8f5e9;
+    --paper-green-100: #c8e6c9;
+    --paper-green-200: #a5d6a7;
+    --paper-green-300: #81c784;
+    --paper-green-400: #66bb6a;
+    --paper-green-500: #4caf50;
+    --paper-green-600: #43a047;
+    --paper-green-700: #388e3c;
+    --paper-green-800: #2e7d32;
+    --paper-green-900: #1b5e20;
+    --paper-green-a100: #b9f6ca;
+    --paper-green-a200: #69f0ae;
+    --paper-green-a400: #00e676;
+    --paper-green-a700: #00c853;
+ 
+    --paper-light-green-50: #f1f8e9;
+    --paper-light-green-100: #dcedc8;
+    --paper-light-green-200: #c5e1a5;
+    --paper-light-green-300: #aed581;
+    --paper-light-green-400: #9ccc65;
+    --paper-light-green-500: #8bc34a;
+    --paper-light-green-600: #7cb342;
+    --paper-light-green-700: #689f38;
+    --paper-light-green-800: #558b2f;
+    --paper-light-green-900: #33691e;
+    --paper-light-green-a100: #ccff90;
+    --paper-light-green-a200: #b2ff59;
+    --paper-light-green-a400: #76ff03;
+    --paper-light-green-a700: #64dd17;
+ 
+    --paper-lime-50: #f9fbe7;
+    --paper-lime-100: #f0f4c3;
+    --paper-lime-200: #e6ee9c;
+    --paper-lime-300: #dce775;
+    --paper-lime-400: #d4e157;
+    --paper-lime-500: #cddc39;
+    --paper-lime-600: #c0ca33;
+    --paper-lime-700: #afb42b;
+    --paper-lime-800: #9e9d24;
+    --paper-lime-900: #827717;
+    --paper-lime-a100: #f4ff81;
+    --paper-lime-a200: #eeff41;
+    --paper-lime-a400: #c6ff00;
+    --paper-lime-a700: #aeea00;
+ 
+    --paper-yellow-50: #fffde7;
+    --paper-yellow-100: #fff9c4;
+    --paper-yellow-200: #fff59d;
+    --paper-yellow-300: #fff176;
+    --paper-yellow-400: #ffee58;
+    --paper-yellow-500: #ffeb3b;
+    --paper-yellow-600: #fdd835;
+    --paper-yellow-700: #fbc02d;
+    --paper-yellow-800: #f9a825;
+    --paper-yellow-900: #f57f17;
+    --paper-yellow-a100: #ffff8d;
+    --paper-yellow-a200: #ffff00;
+    --paper-yellow-a400: #ffea00;
+    --paper-yellow-a700: #ffd600;
+ 
+    --paper-amber-50: #fff8e1;
+    --paper-amber-100: #ffecb3;
+    --paper-amber-200: #ffe082;
+    --paper-amber-300: #ffd54f;
+    --paper-amber-400: #ffca28;
+    --paper-amber-500: #ffc107;
+    --paper-amber-600: #ffb300;
+    --paper-amber-700: #ffa000;
+    --paper-amber-800: #ff8f00;
+    --paper-amber-900: #ff6f00;
+    --paper-amber-a100: #ffe57f;
+    --paper-amber-a200: #ffd740;
+    --paper-amber-a400: #ffc400;
+    --paper-amber-a700: #ffab00;
+ 
+    --paper-orange-50: #fff3e0;
+    --paper-orange-100: #ffe0b2;
+    --paper-orange-200: #ffcc80;
+    --paper-orange-300: #ffb74d;
+    --paper-orange-400: #ffa726;
+    --paper-orange-500: #ff9800;
+    --paper-orange-600: #fb8c00;
+    --paper-orange-700: #f57c00;
+    --paper-orange-800: #ef6c00;
+    --paper-orange-900: #e65100;
+    --paper-orange-a100: #ffd180;
+    --paper-orange-a200: #ffab40;
+    --paper-orange-a400: #ff9100;
+    --paper-orange-a700: #ff6500;
+ 
+    --paper-deep-orange-50: #fbe9e7;
+    --paper-deep-orange-100: #ffccbc;
+    --paper-deep-orange-200: #ffab91;
+    --paper-deep-orange-300: #ff8a65;
+    --paper-deep-orange-400: #ff7043;
+    --paper-deep-orange-500: #ff5722;
+    --paper-deep-orange-600: #f4511e;
+    --paper-deep-orange-700: #e64a19;
+    --paper-deep-orange-800: #d84315;
+    --paper-deep-orange-900: #bf360c;
+    --paper-deep-orange-a100: #ff9e80;
+    --paper-deep-orange-a200: #ff6e40;
+    --paper-deep-orange-a400: #ff3d00;
+    --paper-deep-orange-a700: #dd2c00;
+ 
+    --paper-brown-50: #efebe9;
+    --paper-brown-100: #d7ccc8;
+    --paper-brown-200: #bcaaa4;
+    --paper-brown-300: #a1887f;
+    --paper-brown-400: #8d6e63;
+    --paper-brown-500: #795548;
+    --paper-brown-600: #6d4c41;
+    --paper-brown-700: #5d4037;
+    --paper-brown-800: #4e342e;
+    --paper-brown-900: #3e2723;
+ 
+    --paper-grey-50: #fafafa;
+    --paper-grey-100: #f5f5f5;
+    --paper-grey-200: #eeeeee;
+    --paper-grey-300: #e0e0e0;
+    --paper-grey-400: #bdbdbd;
+    --paper-grey-500: #9e9e9e;
+    --paper-grey-600: #757575;
+    --paper-grey-700: #616161;
+    --paper-grey-800: #424242;
+    --paper-grey-900: #212121;
+ 
+    --paper-blue-grey-50: #eceff1;
+    --paper-blue-grey-100: #cfd8dc;
+    --paper-blue-grey-200: #b0bec5;
+    --paper-blue-grey-300: #90a4ae;
+    --paper-blue-grey-400: #78909c;
+    --paper-blue-grey-500: #607d8b;
+    --paper-blue-grey-600: #546e7a;
+    --paper-blue-grey-700: #455a64;
+    --paper-blue-grey-800: #37474f;
+    --paper-blue-grey-900: #263238;
+
+    /* opacity for dark text on a light background */
+    --dark-divider-opacity: 0.12;
+    --dark-disabled-opacity: 0.26; /* or hint text */
+    --dark-secondary-opacity: 0.54; /* or icon */
+    --dark-primary-opacity: 0.87;
+
+    /* opacity for light text on a dark background */
+    --light-divider-opacity: 0.12;
+    --light-disabled-opacity: 0.3; /* or hint text */
+    --light-secondary-opacity: 0.7; /* or icon */
+    --light-primary-opacity: 1.0;
+
+  }
+
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700">
+<style is="custom-style">
+
+  :root {
+
+    /* Shared Styles */
+
+    /*
+    Unfortunately, we can't use nested rules
+    See https://github.com/Polymer/polymer/issues/1399
+    */
+    --paper-font-common-base: {
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    };
+
+    --paper-font-common-code: {
+      font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
+      -webkit-font-smoothing: antialiased;
+    };
+
+    --paper-font-common-expensive-kerning: {
+      text-rendering: optimizeLegibility;
+    };
+
+    --paper-font-common-nowrap: {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    };
+
+    /* Material Font Styles */
+
+    --paper-font-display4: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+      /* @apply(--paper-font-common-nowrap); */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      font-size: 112px;
+      font-weight: 300;
+      letter-spacing: -.044em;
+      line-height: 120px;
+    };
+
+    --paper-font-display3: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+      /* @apply(--paper-font-common-nowrap); */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      font-size: 56px;
+      font-weight: 400;
+      letter-spacing: -.026em;
+      line-height: 60px;
+    };
+
+    --paper-font-display2: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+
+      font-size: 45px;
+      font-weight: 400;
+      letter-spacing: -.018em;
+      line-height: 48px;
+    };
+
+    --paper-font-display1: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+
+      font-size: 34px;
+      font-weight: 400;
+      letter-spacing: -.01em;
+      line-height: 40px;
+    };
+
+    --paper-font-headline: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -.012em;
+      line-height: 32px;
+    };
+
+    --paper-font-title: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+      /* @apply(--paper-font-common-nowrap); */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+    };
+
+    --paper-font-subhead: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    };
+
+    --paper-font-body2: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 24px;
+    };
+
+    --paper-font-body1: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    };
+
+    --paper-font-caption: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      /* @apply(--paper-font-common-nowrap); */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.011em;
+      line-height: 20px;
+    };
+
+    --paper-font-menu: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+      /* @apply(--paper-font-common-nowrap); */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 24px;
+    };
+
+    --paper-font-button: {
+      /* @apply(--paper-font-common-base) */
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+
+      /* @apply(--paper-font-common-nowrap); */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.018em;
+      line-height: 24px;
+      text-transform: uppercase;
+    };
+
+    --paper-font-code2: {
+      /* @apply(--paper-font-common-code); */
+      font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
+      -webkit-font-smoothing: antialiased;
+
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+    };
+
+    --paper-font-code1: {
+      /* @apply(--paper-font-common-code); */
+      font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
+      -webkit-font-smoothing: antialiased;
+
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+    };
+
+  }
+
+</style>
 <!--
 Material design: [Lists](https://www.google.com/design/spec/components/lists.html)
 
-`<paper-item>` is an interactive list item. By default, it is a horizontal flexbox.
+`<paper-item>` is a non-interactive list item. By default, it is a horizontal flexbox.
 
     <paper-item>Item</paper-item>
 
@@ -11706,6 +11885,7 @@ Custom property               | Description                                    |
 `--paper-item-disabled`       | Mixin applied to disabled paper-items        | `{}`
 `--paper-item-focused`        | Mixin applied to focused paper-items         | `{}`
 `--paper-item-focused-before` | Mixin applied to :before focused paper-items | `{}`
+
 
 ### Accessibility
 
@@ -12549,8 +12729,6 @@ This element has `role="listitem"` by default. Depending on usage, it may be mor
 
 </script>
 <!--
-Material design: [Menus](https://www.google.com/design/spec/components/menus.html)
-
 `<paper-menu>` implements an accessible menu control with Material Design styling. The focused item
 is highlighted, and the selected item has bolded text.
 
@@ -12581,7 +12759,7 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-menu-background-color`   | Menu background color                                            | `--primary-background-color`
-`--paper-menu-color`              | Menu foreground color                                            | `--primary-text-color`
+`--paper-menu-color`               | Menu foreground color                                            | `--primary-text-color`
 `--paper-menu-disabled-color`     | Foreground color for a disabled item                             | `--disabled-text-color`
 `--paper-menu`                    | Mixin applied to the menu                                        | `{}`
 `--paper-menu-selected-item`      | Mixin applied to the selected item                               | `{}`
@@ -12883,8 +13061,8 @@ Custom property | Description | Default
 @demo demo/transform-header-1.html Transform header 1
 @demo demo/transform-header-2.html Transform header 2
 @demo demo/transform-header-3.html Transform header 3
-@demo demo/transform-header-4.html Transform header 4
-@demo demo/transform-header-5.html Transform header 5
+@demo demo/transform-header-4.html Tranform header 4
+@demo demo/transform-header-5.html Tranform header 5
 @demo demo/transform-header-6.html Transform header 6
 @demo demo/keep-header.html Keep header
 @demo demo/hide-header.html Hide header
@@ -12894,574 +13072,6 @@ Custom property | Description | Default
 -->
 
 <!--
-The `<paper-styles>` component provides simple ways to use Material Design CSS styles
-in your application. The following imports are available:
-
-1. [color.html](https://github.com/PolymerElements/paper-styles/blob/master/color.html):
-a complete list of the colors defined in the Material Design [palette](https://www.google.com/design/spec/style/color.html)
-
-2. [default-theme.html](https://github.com/PolymerElements/paper-styles/blob/master/default-theme.html): text,
-background and accent colors that match the default Material Design theme
-
-3. [shadow.html](https://github.com/PolymerElements/paper-styles/blob/master/shadow.html): Material Design
-[elevation](https://www.google.com/design/spec/what-is-material/elevation-shadows.html) and shadow styles
-
-4. [typography.html](https://github.com/PolymerElements/paper-styles/blob/master/typography.html):
-Material Design [font](http://www.google.com/design/spec/style/typography.html#typography-styles) styles and sizes
-
-5. [demo-pages.html](https://github.com/PolymerElements/paper-styles/blob/master/demo-pages.html): generic styles
-used in the PolymerElements demo pages
-
-We recommend importing each of these individual files, and using the style mixins
-available in each ones, rather than the aggregated `paper-styles.html` as a whole.
-
-@group Paper Elements
-@pseudoElement paper-styles
-@demo demo/index.html
--->
-
-<style is="custom-style">
-
-  :root {
-
-    /* Material Design color palette for Google products */
-
-    --google-red-100: #f4c7c3;
-    --google-red-300: #e67c73;
-    --google-red-500: #db4437;
-    --google-red-700: #c53929;
-
-    --google-blue-100: #c6dafc;
-    --google-blue-300: #7baaf7;
-    --google-blue-500: #4285f4;
-    --google-blue-700: #3367d6;
-
-    --google-green-100: #b7e1cd;
-    --google-green-300: #57bb8a;
-    --google-green-500: #0f9d58;
-    --google-green-700: #0b8043;
-
-    --google-yellow-100: #fce8b2;
-    --google-yellow-300: #f7cb4d;
-    --google-yellow-500: #f4b400;
-    --google-yellow-700: #f09300;
-
-    --google-grey-100: #f5f5f5;
-    --google-grey-300: #e0e0e0;
-    --google-grey-500: #9e9e9e;
-    --google-grey-700: #616161;
-    
-    /* Material Design color palette from online spec document */
-
-    --paper-red-50: #ffebee;
-    --paper-red-100: #ffcdd2;
-    --paper-red-200: #ef9a9a;
-    --paper-red-300: #e57373;
-    --paper-red-400: #ef5350;
-    --paper-red-500: #f44336;
-    --paper-red-600: #e53935;
-    --paper-red-700: #d32f2f;
-    --paper-red-800: #c62828;
-    --paper-red-900: #b71c1c;
-    --paper-red-a100: #ff8a80;
-    --paper-red-a200: #ff5252;
-    --paper-red-a400: #ff1744;
-    --paper-red-a700: #d50000;
- 
-    --paper-pink-50: #fce4ec;
-    --paper-pink-100: #f8bbd0;
-    --paper-pink-200: #f48fb1;
-    --paper-pink-300: #f06292;
-    --paper-pink-400: #ec407a;
-    --paper-pink-500: #e91e63;
-    --paper-pink-600: #d81b60;
-    --paper-pink-700: #c2185b;
-    --paper-pink-800: #ad1457;
-    --paper-pink-900: #880e4f;
-    --paper-pink-a100: #ff80ab;
-    --paper-pink-a200: #ff4081;
-    --paper-pink-a400: #f50057;
-    --paper-pink-a700: #c51162;
- 
-    --paper-purple-50: #f3e5f5;
-    --paper-purple-100: #e1bee7;
-    --paper-purple-200: #ce93d8;
-    --paper-purple-300: #ba68c8;
-    --paper-purple-400: #ab47bc;
-    --paper-purple-500: #9c27b0;
-    --paper-purple-600: #8e24aa;
-    --paper-purple-700: #7b1fa2;
-    --paper-purple-800: #6a1b9a;
-    --paper-purple-900: #4a148c;
-    --paper-purple-a100: #ea80fc;
-    --paper-purple-a200: #e040fb;
-    --paper-purple-a400: #d500f9;
-    --paper-purple-a700: #aa00ff;
- 
-    --paper-deep-purple-50: #ede7f6;
-    --paper-deep-purple-100: #d1c4e9;
-    --paper-deep-purple-200: #b39ddb;
-    --paper-deep-purple-300: #9575cd;
-    --paper-deep-purple-400: #7e57c2;
-    --paper-deep-purple-500: #673ab7;
-    --paper-deep-purple-600: #5e35b1;
-    --paper-deep-purple-700: #512da8;
-    --paper-deep-purple-800: #4527a0;
-    --paper-deep-purple-900: #311b92;
-    --paper-deep-purple-a100: #b388ff;
-    --paper-deep-purple-a200: #7c4dff;
-    --paper-deep-purple-a400: #651fff;
-    --paper-deep-purple-a700: #6200ea;
- 
-    --paper-indigo-50: #e8eaf6;
-    --paper-indigo-100: #c5cae9;
-    --paper-indigo-200: #9fa8da;
-    --paper-indigo-300: #7986cb;
-    --paper-indigo-400: #5c6bc0;
-    --paper-indigo-500: #3f51b5;
-    --paper-indigo-600: #3949ab;
-    --paper-indigo-700: #303f9f;
-    --paper-indigo-800: #283593;
-    --paper-indigo-900: #1a237e;
-    --paper-indigo-a100: #8c9eff;
-    --paper-indigo-a200: #536dfe;
-    --paper-indigo-a400: #3d5afe;
-    --paper-indigo-a700: #304ffe;
- 
-    --paper-blue-50: #e3f2fd;
-    --paper-blue-100: #bbdefb;
-    --paper-blue-200: #90caf9;
-    --paper-blue-300: #64b5f6;
-    --paper-blue-400: #42a5f5;
-    --paper-blue-500: #2196f3;
-    --paper-blue-600: #1e88e5;
-    --paper-blue-700: #1976d2;
-    --paper-blue-800: #1565c0;
-    --paper-blue-900: #0d47a1;
-    --paper-blue-a100: #82b1ff;
-    --paper-blue-a200: #448aff;
-    --paper-blue-a400: #2979ff;
-    --paper-blue-a700: #2962ff;
- 
-    --paper-light-blue-50: #e1f5fe;
-    --paper-light-blue-100: #b3e5fc;
-    --paper-light-blue-200: #81d4fa;
-    --paper-light-blue-300: #4fc3f7;
-    --paper-light-blue-400: #29b6f6;
-    --paper-light-blue-500: #03a9f4;
-    --paper-light-blue-600: #039be5;
-    --paper-light-blue-700: #0288d1;
-    --paper-light-blue-800: #0277bd;
-    --paper-light-blue-900: #01579b;
-    --paper-light-blue-a100: #80d8ff;
-    --paper-light-blue-a200: #40c4ff;
-    --paper-light-blue-a400: #00b0ff;
-    --paper-light-blue-a700: #0091ea;
- 
-    --paper-cyan-50: #e0f7fa;
-    --paper-cyan-100: #b2ebf2;
-    --paper-cyan-200: #80deea;
-    --paper-cyan-300: #4dd0e1;
-    --paper-cyan-400: #26c6da;
-    --paper-cyan-500: #00bcd4;
-    --paper-cyan-600: #00acc1;
-    --paper-cyan-700: #0097a7;
-    --paper-cyan-800: #00838f;
-    --paper-cyan-900: #006064;
-    --paper-cyan-a100: #84ffff;
-    --paper-cyan-a200: #18ffff;
-    --paper-cyan-a400: #00e5ff;
-    --paper-cyan-a700: #00b8d4;
- 
-    --paper-teal-50: #e0f2f1;
-    --paper-teal-100: #b2dfdb;
-    --paper-teal-200: #80cbc4;
-    --paper-teal-300: #4db6ac;
-    --paper-teal-400: #26a69a;
-    --paper-teal-500: #009688;
-    --paper-teal-600: #00897b;
-    --paper-teal-700: #00796b;
-    --paper-teal-800: #00695c;
-    --paper-teal-900: #004d40;
-    --paper-teal-a100: #a7ffeb;
-    --paper-teal-a200: #64ffda;
-    --paper-teal-a400: #1de9b6;
-    --paper-teal-a700: #00bfa5;
- 
-    --paper-green-50: #e8f5e9;
-    --paper-green-100: #c8e6c9;
-    --paper-green-200: #a5d6a7;
-    --paper-green-300: #81c784;
-    --paper-green-400: #66bb6a;
-    --paper-green-500: #4caf50;
-    --paper-green-600: #43a047;
-    --paper-green-700: #388e3c;
-    --paper-green-800: #2e7d32;
-    --paper-green-900: #1b5e20;
-    --paper-green-a100: #b9f6ca;
-    --paper-green-a200: #69f0ae;
-    --paper-green-a400: #00e676;
-    --paper-green-a700: #00c853;
- 
-    --paper-light-green-50: #f1f8e9;
-    --paper-light-green-100: #dcedc8;
-    --paper-light-green-200: #c5e1a5;
-    --paper-light-green-300: #aed581;
-    --paper-light-green-400: #9ccc65;
-    --paper-light-green-500: #8bc34a;
-    --paper-light-green-600: #7cb342;
-    --paper-light-green-700: #689f38;
-    --paper-light-green-800: #558b2f;
-    --paper-light-green-900: #33691e;
-    --paper-light-green-a100: #ccff90;
-    --paper-light-green-a200: #b2ff59;
-    --paper-light-green-a400: #76ff03;
-    --paper-light-green-a700: #64dd17;
- 
-    --paper-lime-50: #f9fbe7;
-    --paper-lime-100: #f0f4c3;
-    --paper-lime-200: #e6ee9c;
-    --paper-lime-300: #dce775;
-    --paper-lime-400: #d4e157;
-    --paper-lime-500: #cddc39;
-    --paper-lime-600: #c0ca33;
-    --paper-lime-700: #afb42b;
-    --paper-lime-800: #9e9d24;
-    --paper-lime-900: #827717;
-    --paper-lime-a100: #f4ff81;
-    --paper-lime-a200: #eeff41;
-    --paper-lime-a400: #c6ff00;
-    --paper-lime-a700: #aeea00;
- 
-    --paper-yellow-50: #fffde7;
-    --paper-yellow-100: #fff9c4;
-    --paper-yellow-200: #fff59d;
-    --paper-yellow-300: #fff176;
-    --paper-yellow-400: #ffee58;
-    --paper-yellow-500: #ffeb3b;
-    --paper-yellow-600: #fdd835;
-    --paper-yellow-700: #fbc02d;
-    --paper-yellow-800: #f9a825;
-    --paper-yellow-900: #f57f17;
-    --paper-yellow-a100: #ffff8d;
-    --paper-yellow-a200: #ffff00;
-    --paper-yellow-a400: #ffea00;
-    --paper-yellow-a700: #ffd600;
- 
-    --paper-amber-50: #fff8e1;
-    --paper-amber-100: #ffecb3;
-    --paper-amber-200: #ffe082;
-    --paper-amber-300: #ffd54f;
-    --paper-amber-400: #ffca28;
-    --paper-amber-500: #ffc107;
-    --paper-amber-600: #ffb300;
-    --paper-amber-700: #ffa000;
-    --paper-amber-800: #ff8f00;
-    --paper-amber-900: #ff6f00;
-    --paper-amber-a100: #ffe57f;
-    --paper-amber-a200: #ffd740;
-    --paper-amber-a400: #ffc400;
-    --paper-amber-a700: #ffab00;
- 
-    --paper-orange-50: #fff3e0;
-    --paper-orange-100: #ffe0b2;
-    --paper-orange-200: #ffcc80;
-    --paper-orange-300: #ffb74d;
-    --paper-orange-400: #ffa726;
-    --paper-orange-500: #ff9800;
-    --paper-orange-600: #fb8c00;
-    --paper-orange-700: #f57c00;
-    --paper-orange-800: #ef6c00;
-    --paper-orange-900: #e65100;
-    --paper-orange-a100: #ffd180;
-    --paper-orange-a200: #ffab40;
-    --paper-orange-a400: #ff9100;
-    --paper-orange-a700: #ff6500;
- 
-    --paper-deep-orange-50: #fbe9e7;
-    --paper-deep-orange-100: #ffccbc;
-    --paper-deep-orange-200: #ffab91;
-    --paper-deep-orange-300: #ff8a65;
-    --paper-deep-orange-400: #ff7043;
-    --paper-deep-orange-500: #ff5722;
-    --paper-deep-orange-600: #f4511e;
-    --paper-deep-orange-700: #e64a19;
-    --paper-deep-orange-800: #d84315;
-    --paper-deep-orange-900: #bf360c;
-    --paper-deep-orange-a100: #ff9e80;
-    --paper-deep-orange-a200: #ff6e40;
-    --paper-deep-orange-a400: #ff3d00;
-    --paper-deep-orange-a700: #dd2c00;
- 
-    --paper-brown-50: #efebe9;
-    --paper-brown-100: #d7ccc8;
-    --paper-brown-200: #bcaaa4;
-    --paper-brown-300: #a1887f;
-    --paper-brown-400: #8d6e63;
-    --paper-brown-500: #795548;
-    --paper-brown-600: #6d4c41;
-    --paper-brown-700: #5d4037;
-    --paper-brown-800: #4e342e;
-    --paper-brown-900: #3e2723;
- 
-    --paper-grey-50: #fafafa;
-    --paper-grey-100: #f5f5f5;
-    --paper-grey-200: #eeeeee;
-    --paper-grey-300: #e0e0e0;
-    --paper-grey-400: #bdbdbd;
-    --paper-grey-500: #9e9e9e;
-    --paper-grey-600: #757575;
-    --paper-grey-700: #616161;
-    --paper-grey-800: #424242;
-    --paper-grey-900: #212121;
- 
-    --paper-blue-grey-50: #eceff1;
-    --paper-blue-grey-100: #cfd8dc;
-    --paper-blue-grey-200: #b0bec5;
-    --paper-blue-grey-300: #90a4ae;
-    --paper-blue-grey-400: #78909c;
-    --paper-blue-grey-500: #607d8b;
-    --paper-blue-grey-600: #546e7a;
-    --paper-blue-grey-700: #455a64;
-    --paper-blue-grey-800: #37474f;
-    --paper-blue-grey-900: #263238;
-
-    /* opacity for dark text on a light background */
-    --dark-divider-opacity: 0.12;
-    --dark-disabled-opacity: 0.38; /* or hint text or icon */
-    --dark-secondary-opacity: 0.54;
-    --dark-primary-opacity: 0.87;
-
-    /* opacity for light text on a dark background */
-    --light-divider-opacity: 0.12;
-    --light-disabled-opacity: 0.3; /* or hint text or icon */
-    --light-secondary-opacity: 0.7;
-    --light-primary-opacity: 1.0;
-
-  }
-
-</style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700">
-<style is="custom-style">
-
-  :root {
-
-    /* Shared Styles */
-
-    /*
-    Unfortunately, we can't use nested rules
-    See https://github.com/Polymer/polymer/issues/1399
-    */
-    --paper-font-common-base: {
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    };
-
-    --paper-font-common-code: {
-      font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
-      -webkit-font-smoothing: antialiased;
-    };
-
-    --paper-font-common-expensive-kerning: {
-      text-rendering: optimizeLegibility;
-    };
-
-    --paper-font-common-nowrap: {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    };
-
-    /* Material Font Styles */
-
-    --paper-font-display4: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-      /* @apply(--paper-font-common-nowrap); */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      font-size: 112px;
-      font-weight: 300;
-      letter-spacing: -.044em;
-      line-height: 120px;
-    };
-
-    --paper-font-display3: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-      /* @apply(--paper-font-common-nowrap); */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      font-size: 56px;
-      font-weight: 400;
-      letter-spacing: -.026em;
-      line-height: 60px;
-    };
-
-    --paper-font-display2: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-
-      font-size: 45px;
-      font-weight: 400;
-      letter-spacing: -.018em;
-      line-height: 48px;
-    };
-
-    --paper-font-display1: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-
-      font-size: 34px;
-      font-weight: 400;
-      letter-spacing: -.01em;
-      line-height: 40px;
-    };
-
-    --paper-font-headline: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-
-      font-size: 24px;
-      font-weight: 400;
-      letter-spacing: -.012em;
-      line-height: 32px;
-    };
-
-    --paper-font-title: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-      /* @apply(--paper-font-common-nowrap); */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 28px;
-    };
-
-    --paper-font-subhead: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-    };
-
-    --paper-font-body2: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 24px;
-    };
-
-    --paper-font-body1: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-    };
-
-    --paper-font-caption: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      /* @apply(--paper-font-common-nowrap); */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.011em;
-      line-height: 20px;
-    };
-
-    --paper-font-menu: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-      /* @apply(--paper-font-common-nowrap); */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 24px;
-    };
-
-    --paper-font-button: {
-      /* @apply(--paper-font-common-base) */
-      font-family: 'Roboto', 'Noto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-
-      /* @apply(--paper-font-common-nowrap); */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.018em;
-      line-height: 24px;
-      text-transform: uppercase;
-    };
-
-    --paper-font-code2: {
-      /* @apply(--paper-font-common-code); */
-      font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
-      -webkit-font-smoothing: antialiased;
-
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 20px;
-    };
-
-    --paper-font-code1: {
-      /* @apply(--paper-font-common-code); */
-      font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
-      -webkit-font-smoothing: antialiased;
-
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 20px;
-    };
-
-  }
-
-</style>
-<!--
-Material design: [Toolbars](https://www.google.com/design/spec/components/toolbars.html)
-
 `paper-toolbar` is a horizontal bar containing items that can be used for
 label, navigation, search and actions.  The items place inside the
 `paper-toolbar` are projected into a `class="horizontal center layout"` container inside of
@@ -13470,42 +13080,34 @@ sizing.
 
 Example:
 
-```html
-<paper-toolbar>
-  <paper-icon-button icon="menu" on-tap="menuAction"></paper-icon-button>
-  <div class="title">Title</div>
-  <paper-icon-button icon="more-vert" on-tap="moreAction"></paper-icon-button>
-</paper-toolbar>
-```
+    <paper-toolbar>
+      <paper-icon-button icon="menu" on-tap="menuAction"></paper-icon-button>
+      <div class="title">Title</div>
+      <paper-icon-button icon="more-vert" on-tap="moreAction"></paper-icon-button>
+    </paper-toolbar>
 
 `paper-toolbar` has a standard height, but can made be taller by setting `tall`
 class on the `paper-toolbar`.  This will make the toolbar 3x the normal height.
 
-```html
-<paper-toolbar class="tall">
-  <paper-icon-button icon="menu"></paper-icon-button>
-</paper-toolbar>
-```
+    <paper-toolbar class="tall">
+      <paper-icon-button icon="menu"></paper-icon-button>
+    </paper-toolbar>
 
 Apply `medium-tall` class to make the toolbar medium tall.  This will make the
 toolbar 2x the normal height.
 
-```html
-<paper-toolbar class="medium-tall">
-  <paper-icon-button icon="menu"></paper-icon-button>
-</paper-toolbar>
-```
+    <paper-toolbar class="medium-tall">
+      <paper-icon-button icon="menu"></paper-icon-button>
+    </paper-toolbar>
 
 When `tall`, items can pin to either the top (default), middle or bottom.  Use
 `middle` class for middle content and `bottom` class for bottom content.
 
-```html
-<paper-toolbar class="tall">
-  <paper-icon-button icon="menu"></paper-icon-button>
-  <div class="middle title">Middle Title</div>
-  <div class="bottom title">Bottom Title</div>
-</paper-toolbar>
-```
+    <paper-toolbar class="tall">
+      <paper-icon-button icon="menu"></paper-icon-button>
+      <div class="middle title">Middle Title</div>
+      <div class="bottom title">Bottom Title</div>
+    </paper-toolbar>
 
 For `medium-tall` toolbar, the middle and bottom contents overlap and are
 pinned to the bottom.  But `middleJustify` and `bottomJustify` attributes are
@@ -13514,11 +13116,9 @@ still honored separately.
 To make an element completely fit at the bottom of the toolbar, use `fit` along
 with `bottom`.
 
-```html
-<paper-toolbar class="tall">
-  <div id="progressBar" class="bottom fit"></div>
-</paper-toolbar>
-```
+    <paper-toolbar class="tall">
+      <div id="progressBar" class="bottom fit"></div>
+    </paper-toolbar>
 
 ### Styling
 
@@ -13526,14 +13126,9 @@ The following custom properties and mixins are available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
-`--paper-toolbar-title`      | Mixin applied to the title of the toolbar | `{}`
 `--paper-toolbar-background` | Toolbar background color     | `--default-primary-color`
 `--paper-toolbar-color`      | Toolbar foreground color     | `--text-primary-color`
-`--paper-toolbar-height`     | Custom height for toolbar    | `64px`
-`--paper-toolbar-sm-height`  | Custom height for small screen toolbar | `56px`
 `--paper-toolbar`            | Mixin applied to the toolbar | `{}`
-`--paper-toolbar-medium`     | Mixin applied to medium height toolbar | `{}`
-`--paper-toolbar-tall`       | Mixin applied to tall height toolbar | `{}`
 
 ### Accessibility
 
@@ -15318,6 +14913,10 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
         transform: translate3d(0, 0, 0);
       }
 
+      :host([noink]) {
+        pointer-events: none;
+      }
+
       #background,
       #waves,
       .wave-container,
@@ -15761,6 +15360,10 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
         }
       },
 
+      observers: [
+        '_noinkChanged(noink, isAttached)'
+      ],
+
       get target () {
         var ownerRoot = Polymer.dom(this).getOwnerRoot();
         var target;
@@ -15781,10 +15384,6 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       },
 
       attached: function() {
-        // Set up a11yKeysBehavior to listen to key events on the target,
-        // so that space and enter activate the ripple even if the target doesn't
-        // handle key events. The key handlers deal with `noink` themselves.
-        this.keyEventTarget = this.target;
         this.listen(this.target, 'up', 'uiUpAction');
         this.listen(this.target, 'down', 'uiDownAction');
       },
@@ -15953,6 +15552,12 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
           this.downAction();
         } else {
           this.upAction();
+        }
+      },
+
+      _noinkChanged: function(noink, attached) {
+        if (attached) {
+          this.keyEventTarget = noink ? this : this.target;
         }
       }
     });
@@ -16198,84 +15803,147 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
     Polymer({
       is: 'paper-item',
 
+      hostAttributes: {
+        role: 'option',
+        tabindex: '0'
+      },
+
       behaviors: [
-        Polymer.PaperItemBehavior
+        Polymer.IronControlState,
+        Polymer.IronButtonState
       ]
     });
   </script>
 </dom-module>
-<dom-module id="paper-menu-shared-styles" assetpath="../bower_components/paper-menu/">
-  <template>
-    <style>
-      /* need a wrapper element to make this higher specificity than the :host rule in paper-item */
-      .selectable-content > ::content > .iron-selected {
-        font-weight: bold;
-
-        @apply(--paper-menu-selected-item);
-      }
-
-      .selectable-content > ::content > [disabled] {
-        color: var(--paper-menu-disabled-color, --disabled-text-color);
-      }
-
-      .selectable-content > ::content > *:focus {
-        position: relative;
-        outline: 0;
-
-        @apply(--paper-menu-focused-item);
-      }
-
-      .selectable-content > ::content > *:focus:after {
-        @apply(--layout-fit);
-        background: currentColor;
-        opacity: var(--dark-divider-opacity);
-        content: '';
-
-        @apply(--paper-menu-focused-item-after);
-      }
-
-      .selectable-content > ::content > *[colored]:focus:after {
-        opacity: 0.26;
-      }
-    </style>
-  </template>
-</dom-module>
 <dom-module id="paper-menu" assetpath="../bower_components/paper-menu/">
+  <style>
+/**
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+/* need a wrapper element to make this higher specificity than the :host rule in paper-item */
+.selectable-content > ::content > .iron-selected {
+  font-weight: bold;
+
+  @apply(--paper-menu-selected-item);
+}
+
+.selectable-content > ::content > [disabled] {
+  color: var(--paper-menu-disabled-color, --disabled-text-color);
+}
+
+.selectable-content > ::content > *:focus {
+  position: relative;
+  outline: 0;
+
+  @apply(--paper-menu-focused-item);
+}
+
+.selectable-content > ::content > *:focus:after {
+  @apply(--layout-fit);
+  background: currentColor;
+  opacity: var(--dark-divider-opacity);
+  content: '';
+
+  @apply(--paper-menu-focused-item-after);
+}
+
+.selectable-content > ::content > *[colored]:focus:after {
+  opacity: 0.26;
+}
+
+</style>
+
+  <style>
+    :host {
+      display: block;
+      padding: 8px 0;
+
+      background: var(--paper-menu-background-color, --primary-background-color);
+      color: var(--paper-menu-color, --primary-text-color);
+
+      @apply(--paper-menu);
+    }
+  </style>
   <template>
-    <style include="paper-menu-shared-styles"></style>
-    <style>
-      :host {
-        display: block;
-        padding: 8px 0;
-
-        background: var(--paper-menu-background-color, --primary-background-color);
-        color: var(--paper-menu-color, --primary-text-color);
-
-        @apply(--paper-menu);
-      }
-    </style>
 
     <div class="selectable-content">
       <content></content>
     </div>
+
   </template>
 
-  <script>
-    (function() {
-      Polymer({
-        is: 'paper-menu',
-
-        behaviors: [
-          Polymer.IronMenuBehavior
-        ]
-      });
-    })();
-  </script>
 </dom-module>
-<dom-module id="paper-submenu" assetpath="../bower_components/paper-menu/">
-  <template>
-    <style include="paper-menu-shared-styles"></style>
 
+<script>
+
+(function() {
+
+  Polymer({
+
+    is: 'paper-menu',
+
+    behaviors: [
+      Polymer.IronMenuBehavior
+    ]
+
+  });
+
+})();
+
+</script>
+<dom-module id="paper-submenu" assetpath="../bower_components/paper-menu/">
+  <style>
+/**
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+/* need a wrapper element to make this higher specificity than the :host rule in paper-item */
+.selectable-content > ::content > .iron-selected {
+  font-weight: bold;
+
+  @apply(--paper-menu-selected-item);
+}
+
+.selectable-content > ::content > [disabled] {
+  color: var(--paper-menu-disabled-color, --disabled-text-color);
+}
+
+.selectable-content > ::content > *:focus {
+  position: relative;
+  outline: 0;
+
+  @apply(--paper-menu-focused-item);
+}
+
+.selectable-content > ::content > *:focus:after {
+  @apply(--layout-fit);
+  background: currentColor;
+  opacity: var(--dark-divider-opacity);
+  content: '';
+
+  @apply(--paper-menu-focused-item-after);
+}
+
+.selectable-content > ::content > *[colored]:focus:after {
+  opacity: 0.26;
+}
+
+</style>
+
+  <template>
     <div class="selectable-content" on-tap="_onTap">
       <content id="trigger" select=".menu-trigger"></content>
     </div>
@@ -16284,136 +15952,143 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
     </iron-collapse>
   </template>
 
-  <script>
-    (function() {
-      Polymer({
-        is: 'paper-submenu',
-
-        properties: {
-          /**
-           * Fired when the submenu is opened.
-           *
-           * @event paper-submenu-open
-           */
-
-          /**
-           * Fired when the submenu is closed.
-           *
-           * @event paper-submenu-close
-           */
-
-          /**
-           * Set opened to true to show the collapse element and to false to hide it.
-           *
-           * @attribute opened
-           */
-          opened: {
-            type: Boolean,
-            value: false,
-            notify: true,
-            observer: '_openedChanged'
-          }
-        },
-
-        behaviors: [
-          Polymer.IronControlState
-        ],
-
-        get __parent() {
-          return Polymer.dom(this).parentNode;
-        },
-
-        get __trigger() {
-          return Polymer.dom(this.$.trigger).getDistributedNodes()[0];
-        },
-
-        attached: function() {
-          this.listen(this.__parent, 'iron-activate', '_onParentIronActivate');
-        },
-
-        dettached: function() {
-          this.unlisten(this.__parent, 'iron-activate', '_onParentIronActivate');
-        },
-
-        /**
-         * Expand the submenu content.
-         */
-        open: function() {
-          if (this.disabled)
-            return;
-          this.$.collapse.show();
-          this._active = true;
-          this.__trigger.classList.add('iron-selected');
-        },
-
-        /**
-         * Collapse the submenu content.
-         */
-        close: function() {
-          this.$.collapse.hide();
-          this._active = false;
-          this.__trigger.classList.remove('iron-selected');
-        },
-
-        /**
-         * A handler that is called when the trigger is tapped.
-         */
-        _onTap: function() {
-          if (this.disabled)
-            return;
-          this.$.collapse.toggle();
-        },
-
-        /**
-         * Toggles the submenu content when the trigger is tapped.
-         */
-        _openedChanged: function(opened, oldOpened) {
-          if (opened) {
-            this.fire('paper-submenu-open');
-          } else if (oldOpened != null) {
-            this.fire('paper-submenu-close');
-          }
-        },
-
-        /**
-         * A handler that is called when `iron-activate` is fired.
-         *
-         * @param {CustomEvent} event An `iron-activate` event.
-         */
-        _onParentIronActivate: function(event) {
-          if (Polymer.Gestures.findOriginalTarget(event) !== this.__parent) {
-            return;
-          }
-
-          // The activated item can either be this submenu, in which case it
-          // should be expanded, or any of the other sibling submenus, in which
-          // case this submenu should be collapsed.
-          if (event.detail.item == this) {
-            if (this._active)
-              return;
-            this.open();
-          } else {
-            this.close();
-          }
-        },
-
-        /**
-         * If the dropdown is open when disabled becomes true, close the
-         * dropdown.
-         *
-         * @param {boolean} disabled True if disabled, otherwise false.
-         */
-        _disabledChanged: function(disabled) {
-          Polymer.IronControlState._disabledChanged.apply(this, arguments);
-          if (disabled && this._active) {
-            this.close();
-
-          }
-        }
-      });
-    })();
-  </script>
 </dom-module>
+
+<script>
+
+(function() {
+
+  Polymer({
+
+    is: 'paper-submenu',
+
+    properties: {
+      /**
+       * Fired when the submenu is opened.
+       *
+       * @event paper-submenu-open
+       */
+
+      /**
+       * Fired when the submenu is closed.
+       *
+       * @event paper-submenu-close
+       */
+
+      /**
+       * Set opened to true to show the collapse element and to false to hide it.
+       *
+       * @attribute opened
+       */
+      opened: {
+        type: Boolean,
+        value: false,
+        notify: true,
+        observer: '_openedChanged'
+      }
+    },
+
+    behaviors: [
+      Polymer.IronControlState
+    ],
+
+    get __parent() {
+      return Polymer.dom(this).parentNode;
+    },
+
+    get __trigger() {
+      return Polymer.dom(this.$.trigger).getDistributedNodes()[0];
+    },
+
+    attached: function() {
+      this.listen(this.__parent, 'iron-activate', '_onParentIronActivate');
+    },
+
+    dettached: function() {
+      this.unlisten(this.__parent, 'iron-activate', '_onParentIronActivate');
+    },
+
+    /**
+     * Expand the submenu content.
+     */
+    open: function() {
+      if (this.disabled)
+        return;
+      this.$.collapse.show();
+      this._active = true;
+      this.__trigger.classList.add('iron-selected');
+    },
+
+    /**
+     * Collapse the submenu content.
+     */
+    close: function() {
+      this.$.collapse.hide();
+      this._active = false;
+      this.__trigger.classList.remove('iron-selected');
+    },
+
+    /**
+     * A handler that is called when the trigger is tapped.
+     */
+    _onTap: function() {
+      if (this.disabled)
+        return;
+      this.$.collapse.toggle();
+    },
+
+    /**
+     * Toggles the submenu content when the trigger is tapped.
+     */
+    _openedChanged: function(opened, oldOpened) {
+      if (opened) {
+        this.fire('paper-submenu-open');
+      } else if (oldOpened != null) {
+        this.fire('paper-submenu-close');
+      }
+    },
+
+    /**
+     * A handler that is called when `iron-activate` is fired.
+     *
+     * @param {CustomEvent} event An `iron-activate` event.
+     */
+    _onParentIronActivate: function(event) {
+      if (Polymer.Gestures.findOriginalTarget(event) !== this.__parent) {
+        return;
+      }
+
+      // The activated item can either be this submenu, in which case it
+      // should be expanded, or any of the other sibling submenus, in which
+      // case this submenu should be collapsed.
+      if (event.detail.item == this) {
+        if (this._active)
+          return;
+        this.open();
+      } else {
+        this.close();
+      }
+    },
+
+    /**
+     * If the dropdown is open when disabled becomes true, close the
+     * dropdown.
+     *
+     * @param {boolean} disabled True if disabled, otherwise false.
+     */
+    _disabledChanged: function(disabled) {
+      Polymer.IronControlState._disabledChanged.apply(this, arguments);
+      if (disabled && this._active) {
+        this.close();
+
+      }
+    }
+
+  });
+
+})();
+
+</script>
 <dom-module id="paper-scroll-header-panel" assetpath="../bower_components/paper-scroll-header-panel/">
 
   <style>
@@ -16605,7 +16280,6 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       headerState: {
         type: Number,
         readOnly: true,
-        notify:true,
         value: 0
       },
 
@@ -16915,191 +16589,191 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
 
 </script>
 <dom-module id="paper-toolbar" assetpath="../bower_components/paper-toolbar/">
-  <template>
-    <style>
+
+  <style>
+    :host {
+      /* technical */
+      display: block;
+      position: relative;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+
+      /* size */
+      height: 64px;
+
+      background: var(--paper-toolbar-background, --default-primary-color);
+      color: var(--paper-toolbar-color, --text-primary-color);
+
+      @apply(--paper-toolbar);
+    }
+
+    :host(.animate) {
+      /* transition */
+      transition: height 0.18s ease-in;
+    }
+
+    :host(.medium-tall) {
+      height: 128px;
+    }
+
+    :host(.tall) {
+      height: 192px;
+    }
+
+    .toolbar-tools {
+      position: relative;
+      height: 64px;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+
+    /*
+     * TODO: Where should media query breakpoints live so they can be shared between elements?
+     */
+
+    @media (max-width: 639px) {
       :host {
-        /* technical */
-        display: block;
-        position: relative;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-
-        /* size */
-        height: var(--paper-toolbar-height, 64px);
-
-        background: var(--paper-toolbar-background, --default-primary-color);
-        color: var(--paper-toolbar-color, --text-primary-color);
-
-        @apply(--paper-toolbar);
-      }
-
-      :host(.animate) {
-        /* transition */
-        transition: height 0.18s ease-in;
+        height: 56px;
       }
 
       :host(.medium-tall) {
-        height: calc(var(--paper-toolbar-height, 64px) * 2);
-        @apply(--paper-toolbar-medium);
+        height: 112px;
       }
 
       :host(.tall) {
-        height: calc(var(--paper-toolbar-height, 64px) * 3);
-        @apply(--paper-toolbar-tall);
+        height: 168px;
       }
 
       .toolbar-tools {
-        position: relative;
-        height: var(--paper-toolbar-height, 64px);
-        padding: 0 16px;
-        pointer-events: none;
-        @apply(--layout-horizontal);
-        @apply(--layout-center);
+        height: 56px;
       }
+    }
+
+    #topBar {
+      position: relative;
+    }
+
+    /* middle bar */
+    #middleBar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+    }
+
+    :host(.tall) #middleBar,
+    :host(.medium-tall) #middleBar {
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+    }
+
+    /* bottom bar */
+    #bottomBar {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    /*
+     * make elements (e.g. buttons) respond to mouse/touch events
+     *
+     * `.toolbar-tools` disables touch events so multiple toolbars can stack and not
+     * absorb events. All children must have pointer events re-enabled to work as
+     * expected.
+     */
+    .toolbar-tools > ::content > *:not([disabled]) {
+      pointer-events: auto;
+    }
+
+    .toolbar-tools > ::content .title {
+      @apply(--paper-font-title);
+      @apply(--layout-flex);
+
+      pointer-events: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
 
       /*
-       * TODO: Where should media query breakpoints live so they can be shared between elements?
+       * Polymer/polymer/issues/1525
+       * --paper-font-title defines a `font-weight`
+       * let's override its value, but we need `important!`
+       * because all mixins are resolved in rule's selector that has higher precedence
+       * than the current selector.
        */
+      font-weight: 400 !important;
+    }
 
-      @media (max-width: 639px) {
-        :host {
-          height: var(--paper-toolbar-sm-height, 56px);
-        }
+    /**
+     * TODO: Refactor these selectors
+     * Work in progress.
+     */
+    .toolbar-tools > ::content paper-icon-button[icon=menu] {
+      margin-right: 24px;
+    }
 
-        :host(.medium-tall) {
-          height: calc(var(--paper-toolbar-sm-height, 56px) * 2);
-        }
+    .toolbar-tools > ::content > .title,
+    .toolbar-tools > ::content[select=".middle"] > .title,
+    .toolbar-tools > ::content[select=".bottom"] > .title {
+      margin-left: 56px;
+    }
 
-        :host(.tall) {
-          height: calc(var(--paper-toolbar-sm-height, 56px) * 3);
-        }
+    .toolbar-tools > ::content > paper-icon-button + .title,
+    .toolbar-tools > ::content[select=".middle"] paper-icon-button + .title,
+    .toolbar-tools > ::content[select=".bottom"] paper-icon-button + .title {
+      margin-left: 0;
+    }
 
-        .toolbar-tools {
-          height: var(--paper-toolbar-sm-height, 56px);
-        }
-      }
+    .toolbar-tools > ::content > .fit {
+      position: absolute;
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: auto;
+      margin: 0;
+    }
 
-      #topBar {
-        position: relative;
-      }
+  </style>
 
-      /* middle bar */
-      #middleBar {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-      }
+  <template>
 
-      :host(.tall) #middleBar,
-      :host(.medium-tall) #middleBar {
-        -webkit-transform: translateY(100%);
-        transform: translateY(100%);
-      }
-
-      /* bottom bar */
-      #bottomBar {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
-
-      /*
-       * make elements (e.g. buttons) respond to mouse/touch events
-       *
-       * `.toolbar-tools` disables touch events so multiple toolbars can stack and not
-       * absorb events. All children must have pointer events re-enabled to work as
-       * expected.
-       */
-      .toolbar-tools > ::content > *:not([disabled]) {
-        pointer-events: auto;
-      }
-
-      .toolbar-tools > ::content .title {
-        @apply(--paper-font-common-base);
-
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 1;
-        pointer-events: none;
-
-        @apply(--layout-flex);
-        @apply(--paper-toolbar-title);
-      }
-
-      /**
-       * TODO: Refactor these selectors
-       * Work in progress.
-       */
-      .toolbar-tools > ::content paper-icon-button[icon=menu] {
-        margin-right: 24px;
-      }
-
-      .toolbar-tools > ::content > .title,
-      .toolbar-tools > ::content[select=".middle"] > .title,
-      .toolbar-tools > ::content[select=".bottom"] > .title {
-        margin-left: 56px;
-      }
-
-      .toolbar-tools > ::content > paper-icon-button + .title,
-      .toolbar-tools > ::content[select=".middle"] paper-icon-button + .title,
-      .toolbar-tools > ::content[select=".bottom"] paper-icon-button + .title {
-        margin-left: 0;
-      }
-
-      .toolbar-tools > ::content > .fit {
-        position: absolute;
-        top: auto;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: auto;
-        margin: 0;
-      }
-
-      /* TODO(noms): Until we have a better solution for classes that don't use
-       * /deep/ create our own.
-       */
-      .start-justified {
-        @apply(--layout-start-justified);
-      }
-
-      .center-justified {
-        @apply(--layout-center-justified);
-      }
-
-      .end-justified {
-        @apply(--layout-end-justified);
-      }
-
-      .around-justified {
-        @apply(--layout-around-justified);
-      }
-
-      .justified {
-        @apply(--layout-justified);
-      }
-    </style>
-
-    <div id="topBar" class$="toolbar-tools [[_computeBarExtraClasses(justify)]]">
+    <div id="topBar" class$="[[_computeBarClassName(justify)]]">
       <content select=":not(.middle):not(.bottom)"></content>
     </div>
 
-    <div id="middleBar" class$="toolbar-tools [[_computeBarExtraClasses(middleJustify)]]">
+    <div id="middleBar" class$="[[_computeBarClassName(middleJustify)]]">
       <content select=".middle"></content>
     </div>
 
-    <div id="bottomBar" class$="toolbar-tools [[_computeBarExtraClasses(bottomJustify)]]">
+    <div id="bottomBar" class$="[[_computeBarClassName(bottomJustify)]]">
       <content select=".bottom"></content>
     </div>
+
   </template>
 
-  <script>
+</dom-module>
+
+<script>
+
+  (function() {
+
+    'use strict';
+
+    function classNames(obj) {
+      var classNames = [];
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key) && obj[key]) {
+          classNames.push(key);
+        }
+      }
+
+      return classNames.join(' ');
+    }
+
     Polymer({
+
       is: 'paper-toolbar',
 
       hostAttributes: {
@@ -17107,6 +16781,7 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
       },
 
       properties: {
+
         /**
          * Controls how the items are aligned horizontally when they are placed
          * at the bottom.
@@ -17194,14 +16869,32 @@ Byutv.Jsonp = Byutv.elements.Jsonp = Polymer({
         }
       },
 
-      _computeBarExtraClasses: function(barJustify) {
-        if (!barJustify) return '';
+      _computeBarClassName: function(barJustify) {
+        var classObj = {
+          'center': true,
+          'horizontal': true,
+          'layout': true,
+          'toolbar-tools': true
+        };
 
-        return barJustify + (barJustify === 'justified' ? '' : '-justified');
+        // If a blank string or any falsy value is given, no other class name is
+        // added.
+        if (barJustify) {
+          var justifyClassName = (barJustify === 'justified') ?
+              barJustify :
+              barJustify + '-justified';
+
+          classObj[justifyClassName] = true;
+        }
+
+        return classNames(classObj);
       }
+
     });
-  </script>
-</dom-module>
+
+  }());
+
+</script>
 <dom-module id="paper-tooltip" assetpath="../bower_components/paper-tooltip/">
   <template>
     <style>
