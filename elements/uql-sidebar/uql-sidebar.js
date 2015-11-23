@@ -58,11 +58,10 @@
         event.stopPropagation();
       }
 
-      for (var t in toggles) {
-        if (toggles.hasOwnProperty(t)) {
-          toggles[t].addEventListener('click', _innerToggleVisibility);
-        }
+      for (var i = 0, l = toggles.length; i < l; i++ ) {
+        toggles[i].addEventListener('click', _innerToggleVisibility);
       }
+
       this._computeVisibility();
     },
     _goLink: function (event) {
