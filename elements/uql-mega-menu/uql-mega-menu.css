@@ -39,11 +39,6 @@
     min-height: 32px;
 }
 
-:host paper-menu paper-item,
-:host paper-menu paper-item * {
-    pointer-events: none;
-}
-
 :host .uql-submenu paper-item:hover {
     background-color: #ddd;
 }
