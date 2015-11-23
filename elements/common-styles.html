@@ -1,0 +1,58 @@
+<dom-module id="common-styles">
+  <template>
+    <style is="custom-style">
+      :host {
+        --max-width: 1140px;
+        --font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+        --text-color: #000;
+        --text-color-inverse: #FFF;
+        --focus-outline-color: rgb(59, 153, 252);
+
+        /*UQ theme colours*/
+        --uq-purple: #49075E;
+        --uq-purple-dark: #370546;
+        --uq-purple-lighter: #6B0C8A;
+        --uq-purple-light: #d2c1d7;
+
+        --uq-blue: #2377CB;
+        --uq-blue-lighter: #288BED;
+        --uq-blue-dark: #005EA5;
+      }
+
+      .button-inverse {
+        font-size: 10px;
+        color: var(--text-color-inverse);
+        background-color: var(--uq-purple);
+      }
+
+      .button-inverse:hover {
+        background: var(--uq-purple-lighter);
+      }
+
+      .button-inverse:focus,
+      .button-action:focus {
+        outline: var(--focus-outline-color) auto 5px;
+      }
+
+      .button-action {
+        background-color: var(--uq-blue);
+      }
+
+      .button-action:focus {
+        outline: var(--focus-outline-color) auto 5px;
+      }
+
+      .button-title {
+        padding: 8px;
+      }
+
+      @media all and (max-width: 700px) {
+        .button-title {
+          display: none;
+        }
+      }
+
+    </style>
+  </template>
+</dom-module>

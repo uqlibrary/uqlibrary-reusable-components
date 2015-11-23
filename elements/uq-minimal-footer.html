@@ -1,17 +1,32 @@
 <dom-module id="uq-minimal-footer">
 
-  <link rel="stylesheet" href="../styles/elements-styles.css">
+  <!--<link rel="stylesheet" href="../styles/elements-styles.css">-->
 
-  <style is="custom-style">
+  <style is="custom-style" include="common-styles">
 
     :host {
-
       display: block;
       width: 100%;
+      font-family: var(--font-family);
 
       --global-links-style: {
-       color: #d2c1d7 !important;
+        color: var(--uq-purple-light) !important;
       }
+    }
+
+    .footer-container {
+      background-color: var(--uq-purple);
+      color: var(--uq-purple-light);
+
+      text-decoration: none;
+      line-height: 20px;
+      font-size: 14px;
+      padding: 20px;
+    }
+
+    a {
+      color: var(--text-color-inverse)!important;
+      text-decoration: none;
     }
 
     .footer-content {
@@ -55,7 +70,7 @@
       }
 
       li.footer-column:last-child {
-        border-top: 1px solid #d2c1d7;
+        border-top: 1px solid var(----uq-purple-light);
         padding-top: 10px;
       }
 
@@ -75,21 +90,20 @@
         <ul class="footer-column-list">
           <li class="footer-column">
             <ul class="footer-uq-details">
-              <li>Authorised by: University Librarian aaa</li>
+              <li>Authorised by: University Librarian</li>
+              <li>© The University of Queensland</li>
+              <li>
+                Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
+                &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
+              </li>
 
-                <li>© The University of Queensland</li>
-                <li>
-                  Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
-                  &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
-                </li>
+              <li><uql-global-links separator="|"></uql-global-links></li>
 
-                <li><uql-global-links separator="|"></uql-global-links></li>
-
-                <li>
-                  <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
-                  <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
-                  Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
-                </li>
+              <li>
+                <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
+                <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
+                Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
+              </li>
             </ul>
           </li>
           <li class="footer-column">
@@ -110,14 +124,7 @@
   <script>
     (function() {
       Polymer({
-        is: 'uq-minimal-footer',
-
-        properties: {
-          applicationTitle: {
-            type: String,
-            notify: true
-          }
-        }
+        is: 'uq-minimal-footer'
       });
     })();
   </script>

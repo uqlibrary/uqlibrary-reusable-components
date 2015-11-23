@@ -17689,118 +17689,92 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </script>
 
 </dom-module>
-<dom-module id="uq-minimal-footer" assetpath="/">
+<dom-module id="common-styles" assetpath="/">
+  <template>
+    <style is="custom-style">
+      :host {
+        --max-width: 1140px;
+        --font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 
-  <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
+        --text-color: #000;
+        --text-color-inverse: #FFF;
+        --focus-outline-color: rgb(59, 153, 252);
 
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
+        /*UQ theme colours*/
+        --uq-purple: #49075E;
+        --uq-purple-dark: #370546;
+        --uq-purple-lighter: #6B0C8A;
+        --uq-purple-light: #d2c1d7;
 
-uql-menu {
-  font-weight: lighter; }
+        --uq-blue: #2377CB;
+        --uq-blue-lighter: #288BED;
+        --uq-blue-dark: #005EA5;
+      }
 
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
+      .button-inverse {
+        font-size: 10px;
+        color: var(--text-color-inverse);
+        background-color: var(--uq-purple);
+      }
 
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
+      .button-inverse:hover {
+        background: var(--uq-purple-lighter);
+      }
 
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
+      .button-inverse:focus,
+      .button-action:focus {
+        outline: var(--focus-outline-color) auto 5px;
+      }
 
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
+      .button-action {
+        background-color: var(--uq-blue);
+      }
 
-/*# sourceMappingURL=elements-styles.css.map */
+      .button-action:focus {
+        outline: var(--focus-outline-color) auto 5px;
+      }
 
-</style>
+      .button-title {
+        padding: 8px;
+      }
 
-  <style is="custom-style">
+      @media all and (max-width: 700px) {
+        .button-title {
+          display: none;
+        }
+      }
+
+    </style>
+  </template>
+</dom-module><dom-module id="uq-minimal-footer" assetpath="/">
+
+  <!--<link rel="stylesheet" href="../styles/elements-styles.css">-->
+
+  <style is="custom-style" include="common-styles">
 
     :host {
-
       display: block;
       width: 100%;
+      font-family: var(--font-family);
 
       --global-links-style: {
-       color: #d2c1d7 !important;
+        color: var(--uq-purple-light) !important;
       }
+    }
+
+    .footer-container {
+      background-color: var(--uq-purple);
+      color: var(--uq-purple-light);
+
+      text-decoration: none;
+      line-height: 20px;
+      font-size: 14px;
+      padding: 20px;
+    }
+
+    a {
+      color: var(--text-color-inverse)!important;
+      text-decoration: none;
     }
 
     .footer-content {
@@ -17844,7 +17818,7 @@ uql-menu {
       }
 
       li.footer-column:last-child {
-        border-top: 1px solid #d2c1d7;
+        border-top: 1px solid var(----uq-purple-light);
         padding-top: 10px;
       }
 
@@ -17864,21 +17838,20 @@ uql-menu {
         <ul class="footer-column-list">
           <li class="footer-column">
             <ul class="footer-uq-details">
-              <li>Authorised by: University Librarian aaa</li>
+              <li>Authorised by: University Librarian</li>
+              <li>© The University of Queensland</li>
+              <li>
+                Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
+                &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
+              </li>
 
-                <li>© The University of Queensland</li>
-                <li>
-                  Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
-                  &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
-                </li>
+              <li><uql-global-links separator="|"></uql-global-links></li>
 
-                <li><uql-global-links separator="|"></uql-global-links></li>
-
-                <li>
-                  <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
-                  <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
-                  Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
-                </li>
+              <li>
+                <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
+                <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
+                Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
+              </li>
             </ul>
           </li>
           <li class="footer-column">
@@ -17899,14 +17872,7 @@ uql-menu {
   <script>
     (function() {
       Polymer({
-        is: 'uq-minimal-footer',
-
-        properties: {
-          applicationTitle: {
-            type: String,
-            notify: true
-          }
-        }
+        is: 'uq-minimal-footer'
       });
     })();
   </script>
@@ -17915,84 +17881,12 @@ uql-menu {
 <dom-module id="uq-connect-footer" assetpath="/">
 
   <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
-
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
+uql-menu {
   font-family: "Roboto","Helvetica","Arial",sans-serif; }
 
 uql-menu {
   font-weight: lighter; }
 
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18114,84 +18008,12 @@ uql-menu {
 </dom-module>
 <dom-module id="uql-mega-menu" assetpath="uql-mega-menu/">
   <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
-
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
+uql-menu {
   font-family: "Roboto","Helvetica","Arial",sans-serif; }
 
 uql-menu {
   font-weight: lighter; }
 
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */
@@ -18691,109 +18513,9 @@ uql-menu {
 </dom-module>
 <dom-module id="uql-chat-button" assetpath="uql-chat-button/">
 
-  <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
+  <style is="custom-style" include="common-styles">
 
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
-
-uql-menu {
-  font-weight: lighter; }
-
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
-
-/*# sourceMappingURL=elements-styles.css.map */
-
-</style>
-
-  <style is="custom-style">
-
-    paper-tooltip {
+    --paper-tooltip: {
       width: 155px;
       text-align: center;
       line-break: normal;
@@ -18801,6 +18523,8 @@ uql-menu {
       white-space: normal;
     }
 
+
+    /* /deep/ selector is under review, might be deprecated  */
     paper-tooltip /deep/ #tooltip.paper-tooltip {
       background-color: #e5e5e5;
       color: #666;
@@ -18981,105 +18705,8 @@ uql-menu {
 </dom-module>
 <dom-module id="uql-login-button" assetpath="uql-login-button/">
 
-  <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
-
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
-
-uql-menu {
-  font-weight: lighter; }
-
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
-
-/*# sourceMappingURL=elements-styles.css.map */
-
-</style>
+  <style is="custom-style" include="common-styles">
+  </style>
 
   <template>
     <uqlibrary-api-account id="accountApi" auto="true"></uqlibrary-api-account>
@@ -19163,106 +18790,8 @@ uql-menu {
 </dom-module>
 <dom-module id="uql-ia-button" assetpath="uql-ia-button/">
 
-  <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
-
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
-
-uql-menu {
-  font-weight: lighter; }
-
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
-
-/*# sourceMappingURL=elements-styles.css.map */
-
-</style>
-
+  <style is="custom-style" include="common-styles">
+  </style>
   <template>
     <paper-button class="button-inverse" on-tap="toggleIA" id="iaButton">
       <template is="dom-if" if="{{isIAEnabled}}">
@@ -19325,105 +18854,8 @@ uql-menu {
 </dom-module>
 <dom-module id="uql-search-button" assetpath="uql-search-button/">
 
-  <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
-
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
-
-uql-menu {
-  font-weight: lighter; }
-
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
-
-/*# sourceMappingURL=elements-styles.css.map */
-
-</style>
+  <style is="custom-style" include="common-styles">
+  </style>
 
   <template>
     <paper-button class="button-inverse" on-tap="searchClicked" id="searchButton">
@@ -19464,107 +18896,10 @@ uql-menu {
 </dom-module>
 <dom-module id="uql-apps-button" assetpath="uql-apps-button/">
 
-  <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
+  <style is="custom-style" include="common-styles">
+  </style>
 
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
-
-uql-menu {
-  font-weight: lighter; }
-
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
-
-/*# sourceMappingURL=elements-styles.css.map */
-
-</style>
-
-  <template>
+    <template>
     <paper-button class="button-inverse" on-tap="myLibraryClicked" id="appsButton">
       <iron-icon icon="icons:apps" aria-label="Go to my library"></iron-icon>
       <template is="dom-if" if="{{showTitle}}">
@@ -19601,112 +18936,13 @@ uql-menu {
 </dom-module>
 <dom-module id="uql-global-links" assetpath="uql-global-links/">
 
-  <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
-
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
-
-uql-menu {
-  font-weight: lighter; }
-
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
-
-/*# sourceMappingURL=elements-styles.css.map */
-
-</style>
-
   <style is="custom-style">
     :host {
       margin: 0 auto;
       max-width: 1140px;
       width: 100%;
       display: block;
+      font-family: var(--font-family);
     }
 
     ul {
@@ -19786,106 +19022,7 @@ uql-menu {
 </dom-module>
 <dom-module id="uq-minimal-header" assetpath="/">
 
-  <style>
-paper-button {
-  font-size: 10px; }
-  paper-button.button-inverse {
-    color: #FFF; }
-    paper-button.button-inverse:hover {
-      background: #6B0C8A; }
-    paper-button.button-inverse:focus {
-      outline: #3b99fc auto 5px; }
-  paper-button.button-action {
-    background-color: #2377CB; }
-    paper-button.button-action:hover {
-      background: #288BED; }
-  paper-button .button-title {
-    padding: 8px; }
-
-@media all and (max-width: 700px) {
-  paper-button .button-title {
-    padding: 8px;
-    display: none; } }
-uql-menu,
-.header-container,
-.footer-container {
-  font-family: "Roboto","Helvetica","Arial",sans-serif; }
-
-uql-menu {
-  font-weight: lighter; }
-
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
-/* mobile-small */
-/* mobile-large */
-/* mobile-small-landscape */
-/* mobile-large-landscape */
-/* tablet-small-landscape */
-/* tablet-large-landscape */
-/* tablet-small */
-/* tablet-large */
-/* desktop-x-small-landscape */
-/* desktop-x-small */
-/* desktop-small-landscape */
-/* desktop-small */
-/* desktop-medium-landscape */
-/* desktop-medium */
-/* desktop-large */
-/* desktop-xlarge */
-
-/*# sourceMappingURL=elements-styles.css.map */
-
-</style>
-  <style is="custom-style">
+  <style is="custom-style" include="common-styles">
 
     :host {
       display: block;
@@ -19895,21 +19032,64 @@ uql-menu {
       width: 100%;
       overflow: visible;
       z-index: 9999;
+      font-family: var(--font-family);
 
       @apply(--layout-vertical);
 
       --global-links-style: {
          text-transform: uppercase;
          font-size: 10.4px;
-         color: #d2c1d7 !important;
+         color: var(--uq-purple-light) !important;
          font-weight: 500;
        }
     }
 
     .header-content {
       margin: 0 auto;
-      max-width: 1140px;
+      max-width: var(--max-width);
       width: 100%;
+    }
+
+    .header-container {
+      height: 100px;
+      background-color: var(--uq-purple);
+
+      text-decoration: none;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: .02em;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    a {
+      color: var(--text-color-inverse) !important;
+      text-decoration: none;
+    }
+
+    .application-title,
+    .library-title,
+    .uq-title {
+      color: var(--text-color-inverse);
+      margin: 10px;
+    }
+
+    .uq-title {
+      min-width: 190px;
+      height: 50px;
+      background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+      background-size: 178px 50px;
+      border-right: 1px solid var(--text-color-inverse);
+    }
+
+    .uq-title a {
+      display: block;
+      width: 190px;
+      height: 50px;
+    }
+
+    .uq-title-text {
+      display: none !important;
     }
 
     .header-container {
@@ -19938,11 +19118,27 @@ uql-menu {
       @apply(--layout-horizontal);
       @apply(--layout-end-justified);
     }
+
     .actions {
       @apply(--layout-flex-2);
       @apply(--layout-horizontal);
       @apply(--layout-end-justified);
       @apply(--layout-center);
+    }
+
+    @media all and (max-width: 1047px) {
+      .header-container {
+        height: 66px;
+      }
+
+      .uq-title {
+        display: none !important;
+      }
+
+      uql-global-links {
+        display: none !important;
+      }
+
     }
 
   </style>

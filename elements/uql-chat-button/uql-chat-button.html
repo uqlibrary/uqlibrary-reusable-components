@@ -1,11 +1,10 @@
 <dom-module id="uql-chat-button">
 
   <link rel="import" href="../elements.html">
-  <link rel="stylesheet" href="../../styles/elements-styles.css">
 
-  <style is="custom-style">
+  <style is="custom-style" include="common-styles">
 
-    paper-tooltip {
+    --paper-tooltip: {
       width: 155px;
       text-align: center;
       line-break: normal;
@@ -13,6 +12,8 @@
       white-space: normal;
     }
 
+
+    /* /deep/ selector is under review, might be deprecated  */
     paper-tooltip /deep/ #tooltip.paper-tooltip {
       background-color: #e5e5e5;
       color: #666;
