@@ -1,0 +1,70 @@
+<dom-module id="uql-connect-footer">
+
+  <link rel="import" href="../elements.html">
+  <link rel="stylesheet" href="/styles/elements-styles.css">
+  <link rel="stylesheet" href="uql-connect-footer.css">
+
+  <template>
+    <iron-ajax auto url="../uql-connect-footer/uql-connect-footer.json" handle-as="json" on-response="_handleResponse"
+               on-error="_handleError" verbose="{{verbose}}"></iron-ajax>
+
+    <div class="sub-footer-container">
+      <div class="sub-footer-content">
+        <template is="dom-if" if="{{cfmenu.columns}}">
+          <template is="dom-repeat" items="{{cfmenu.columns}}" as="column">
+            <div class="sub-footer-column">
+              <div class="sub-footer-column-top">
+                <template is="dom-if" if="{{column.heading}}">
+                  {{column.heading}}
+                </template>
+              </div>
+
+              <div class="sub-footer-column-body">
+                <template is="dom-if" if="{{column.links}}">
+                  <ul class="sub-footer-links">
+                    <template is="dom-repeat" items="{{column.links}}" as="link">
+                      <li>
+                        <a href="{{link.href}}">{{link.label}}</a>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+                <template is="dom-if" if="{{column.buttons}}">
+                  <ul class="sub-footer-buttons">
+                    <template is="dom-repeat" items="{{column.buttons}}" as="button">
+                      <li>
+                        <a href="{{button.href}}">{{button.label}}</a>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+              </div>
+
+              <div class="sub-footer-column-bottom">
+                <template is="dom-if" if="{{column.icons}}">
+                  <div class="sub-footer-buttons">
+                    <template is="dom-repeat" items="{{column.icons}}" as="icon">
+                      <paper-button>
+                        <iron-icon class="big" src="{{icon.img}}" title="{{icon.label}}"></iron-icon>
+                      </paper-button>
+                    </template>
+                  </div>
+                </template>
+                <template is="dom-if" if="{{column.text}}">
+                  <ul class="sub-footer-texts">
+                    <template is="dom-repeat" items="{{column.text}}" as="text">
+                      <li>{{text.label}}</li>
+                    </template>
+                  </ul>
+                </template>
+              </div>
+            </div>
+          </template>
+        </template>
+      </div>
+    </div>
+
+  </template>
+  <script src="uql-connect-footer.js"></script>
+
+</dom-module>
