@@ -5,16 +5,13 @@
   <style is="custom-style">
 
     :host {
+
       display: block;
       width: 100%;
-      overflow: hidden;
 
-      @apply(--layout-vertical);
-
-
-    --global-links-style: {
+      --global-links-style: {
        color: #d2c1d7 !important;
-     }
+      }
     }
 
     .footer-content {
@@ -23,15 +20,12 @@
       width: 100%;
     }
 
-    .footer-content{
-      @apply(--layout-horizontal);
-      @apply(--layout-wrap);
-      @apply(--layout-justified);
-    }
-
-    .footer-legal-details{
-      @apply(--layout-flex);
-      text-align: right;
+    ul, li {
+      list-style-image: none;
+      list-style-position: outside;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
     }
 
     h6 {
@@ -41,34 +35,73 @@
       font-weight: 500;
     }
 
+    .footer-column {
+      display: inline-block;
+      vertical-align: top;
+      width: 49%;
+    }
+
+    .footer-legal-details li {
+      text-align: right;
+    }
+
+    @media all and (max-width: 840px) {
+
+      li.footer-column {
+        display: block;
+        vertical-align: top;
+        width: 100%;
+        padding-bottom: 10px;
+      }
+
+      li.footer-column:last-child {
+        border-top: 1px solid #d2c1d7;
+        padding-top: 10px;
+      }
+
+      li,
+      .footer-legal-details li{
+        text-align: center;
+      }
+
+    }
+
   </style>
 
   <template>
 
     <div class="footer-container">
       <div class="footer-content">
-        <div class="footer-uq-details">
-        <div>Authorised by: University Librarian</div>
-        <div>© The University of Queensland</div>
-        <div>
-          Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
-          &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
-        </div>
+        <ul class="footer-column-list">
+          <li class="footer-column">
+            <ul class="footer-uq-details">
+              <li>Authorised by: University Librarian aaa</li>
 
-        <uql-global-links separator="|"></uql-global-links>
+                <li>© The University of Queensland</li>
+                <li>
+                  Enquiries: <a href="tel:+61733651111">+61 7 3365 1111</a>
+                  &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
+                </li>
 
-        <div>
-          <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
-          <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
-          Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
-        </div>
-        </div>
-        <div class="footer-legal-details">
-          <div><h6>Emergency</h6>Phone: <a href="tel:+61733653333">3365 3333</a></div>
-          <div><a href="http://www.uq.edu.au/terms-of-use/" rel="external" class="footer__link footer__terms-link">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
-            <a href="http://www.uq.edu.au/rti/" rel="external" class="footer__link footer__rti-link">Right to Information</a></div>
-          </div>
-        </div>
+                <li><uql-global-links separator="|"></uql-global-links></li>
+
+                <li>
+                  <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
+                  <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
+                  Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external">00025B</a>
+                </li>
+            </ul>
+          </li>
+          <li class="footer-column">
+            <ul class="footer-legal-details">
+              <li></li>
+              <li><h6>Emergency</h6></li>
+              <li>Phone: <a href="tel:+61733653333">3365 3333</a></li>
+              <li><a href="http://www.uq.edu.au/terms-of-use/" rel="external">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
+                <a href="http://www.uq.edu.au/rti/" rel="external">Right to Information</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
 
