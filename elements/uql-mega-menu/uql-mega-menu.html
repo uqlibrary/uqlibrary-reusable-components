@@ -35,13 +35,11 @@
             <paper-menu class="flex">
               <template is="dom-repeat" items="{{item.items}}" as="subitem">
                 <template is="dom-if" if="{{!subitem.right}}">
-                  <paper-item>
-                    <a href="{{subitem.href}}">
-                      <template is="dom-if" if="{{subitem.icon}}">
-                        <iron-icon icon="{{subitem.icon}}"></iron-icon>
-                      </template>
-                      <span>{{subitem.label}}</span>
-                    </a>
+                  <paper-item on-tap="_goLink" href="{{subitem.href}}">
+                    <template is="dom-if" if="{{subitem.icon}}">
+                      <iron-icon icon="{{subitem.icon}}"></iron-icon>
+                    </template>
+                    <span>{{subitem.label}}</span>
                     <template is="dom-if" if="{{subitem.subtext}}">
                       <div class="subtext">{{subitem.subtext}}</div>
                     </template>
@@ -52,35 +50,31 @@
             <paper-menu class="uql-submenu-right flex">
               <template is="dom-repeat" items="{{item.items}}" as="subitem">
                 <template is="dom-if" if="{{subitem.right}}">
-                  <paper-item>
+                  <paper-item on-tap="_goLink" href="{{subitem.href}}">
                     <template is="dom-if" if="{{subitem.image}}">
                       <div class="image">
-                        <a href="{{subitem.href}}">
-                          <iron-image preload alt="Image for item" fade src="{{subitem.image}}"></iron-image>
-                        </a>
+                        <iron-image preload alt="Image for item" fade src="{{subitem.image}}"></iron-image>
                       </div>
                     </template>
-                    <a href="{{subitem.href}}">
-                      <template is="dom-if" if="{{subitem.icon}}">
-                        <iron-icon icon="{{subitem.icon}}"></iron-icon>
-                      </template>
-                      <template is="dom-if" if="{{subitem.label}}">
-                        <span>{{subitem.label}}</span>
-                    </a>
+                    <template is="dom-if" if="{{subitem.icon}}">
+                      <iron-icon icon="{{subitem.icon}}"></iron-icon>
+                    </template>
+                    <template is="dom-if" if="{{subitem.label}}">
+                      <span>{{subitem.label}}</span>
+                    </template>
+                    <template is="dom-if" if="{{subitem.subtext}}">
+                      <div class="subtext">{{subitem.subtext}}</div>
+                    </template>
+                  </paper-item>
                 </template>
-                <template is="dom-if" if="{{subitem.subtext}}">
-                  <div class="subtext">{{subitem.subtext}}</div>
-                </template>
-                </paper-item>
               </template>
+            </paper-menu>
+          </paper-material>
+
         </template>
-        </paper-menu>
-        </paper-material>
 
       </template>
-
-  </template>
-  </paper-toolbar>
+    </paper-toolbar>
   </template>
 
   <script src="uql-mega-menu.js"></script>
