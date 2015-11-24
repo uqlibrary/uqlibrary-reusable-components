@@ -1,66 +1,157 @@
 <dom-module id="uql-connect-footer">
 
   <link rel="import" href="../elements.html">
-  <link rel="stylesheet" href="/styles/elements-styles.css">
-  <link rel="stylesheet" href="uql-connect-footer.css">
+  <link rel="stylesheet" href="../../styles/elements-styles.css">
+  <style>
+    :host {
+      display: block;
+      width: 100%;
+      color: #222;
+      font-family: "Roboto","Helvetica","Arial",sans-serif;
+    }
+
+    .sub-footer-container {
+      background-color: #e5e5e5;
+      padding: 15px;
+    }
+
+    .sub-footer-content {
+      margin: 0 auto;
+      max-width: 1140px;
+      width: 100%;
+      @apply(--layout-flex);
+      @apply(--layout-horizontal);
+      @apply(--layout-justified);
+    }
+
+    .sub-footer-content.top {
+      font-size:18px;
+      font-weight:bold;
+      @apply(--layout-flex);
+    }
+
+    .sub-footer-column {
+      position:relative;
+    }
+
+    .sub-footer-column:last-child {
+      max-width:320px;
+    }
+
+    .sub-footer-column ul, .sub-footer-column ul li {
+      list-style-type: none;
+      margin:0;
+      padding:0;
+    }
+
+    .sub-footer-column a, .sub-footer-column a:visited {
+      color:#000;
+      text-decoration:none;
+    }
+
+    .sub-footer-column a:hover {
+      text-decoration:underline;
+    }
+
+    .big {
+      --iron-icon-height: 32px;
+      --iron-icon-width: 32px;
+      padding-right:10px;
+      cursor:pointer;
+    }
+
+    .blue-button {
+      white-space: nowrap;
+      color:#fff;
+      background-color:#2277CA;
+      text-align:center;
+      padding:16px!important;
+      margin:10px 0!important;
+      width:100%;
+      max-width:300px;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    .blue-button:hover {
+      color:#2277CA;
+      background-color:#d2d2d2;
+    }
+
+    .sub-footer-column .sub-footer-column-bottom {
+      position: absolute;
+      bottom: 0px;
+      font-size: 13px;
+      color: #333;
+      white-space: nowrap;
+
+      @apply(--layout-flex);
+      @apply(--layout-horizontal);
+      @apply(--layout-justified);
+    }
+
+    @media all and (max-width: 640px) {
+      .sub-footer-content {
+        @apply(--layout-vertical);
+        max-width:300px;
+        margin:0 auto;
+      }
+      .sub-footer-column .sub-footer-column-bottom {
+        position:relative;
+        @apply(--layout-start-justified);
+        margin:24px 0;
+      }
+    }
+  </style>
 
   <template>
-    <iron-ajax auto url="../uql-connect-footer/uql-connect-footer.json" handle-as="json" on-response="_handleResponse"
+    <iron-ajax auto url="{{footerMenu}}" handle-as="json" on-response="_handleResponse"
                on-error="_handleError" verbose="{{verbose}}"></iron-ajax>
 
     <div class="sub-footer-container">
+      <div class="sub-footer-content top">
+        Library Home
+      </div>
       <div class="sub-footer-content">
-        <template is="dom-if" if="{{cfmenu.columns}}">
-          <template is="dom-repeat" items="{{cfmenu.columns}}" as="column">
-            <div class="sub-footer-column">
-              <div class="sub-footer-column-top">
-                <template is="dom-if" if="{{column.heading}}">
-                  {{column.heading}}
+        <div class="sub-footer-column">
+          <template is="dom-if" if="{{cfmenu.items}}">
+            <div class="sub-footer-column-body">
+              <ul class="sub-footer-links">
+                <template is="dom-repeat" items="{{cfmenu.items}}" as="item">
+                  <li><a href="{{item.href}}">{{item.label}}</a></li>
                 </template>
-              </div>
-
-              <div class="sub-footer-column-body">
-                <template is="dom-if" if="{{column.links}}">
-                  <ul class="sub-footer-links">
-                    <template is="dom-repeat" items="{{column.links}}" as="link">
-                      <li>
-                        <a href="{{link.href}}">{{link.label}}</a>
-                      </li>
-                    </template>
-                  </ul>
-                </template>
-                <template is="dom-if" if="{{column.buttons}}">
-                  <ul class="sub-footer-buttons">
-                    <template is="dom-repeat" items="{{column.buttons}}" as="button">
-                      <li>
-                        <a href="{{button.href}}">{{button.label}}</a>
-                      </li>
-                    </template>
-                  </ul>
-                </template>
-              </div>
-
-              <div class="sub-footer-column-bottom">
-                <template is="dom-if" if="{{column.icons}}">
-                  <div class="sub-footer-buttons">
-                    <template is="dom-repeat" items="{{column.icons}}" as="icon">
-                      <paper-button>
-                        <iron-icon class="big" src="{{icon.img}}" title="{{icon.label}}"></iron-icon>
-                      </paper-button>
-                    </template>
-                  </div>
-                </template>
-                <template is="dom-if" if="{{column.text}}">
-                  <ul class="sub-footer-texts">
-                    <template is="dom-repeat" items="{{column.text}}" as="text">
-                      <li>{{text.label}}</li>
-                    </template>
-                  </ul>
-                </template>
-              </div>
+              </ul>
             </div>
           </template>
-        </template>
+        </div>
+
+        <div class="sub-footer-column">
+          <div class="sub-footer-column-top"></div>
+          <div class="sub-footer-column-body">
+            <ul class="sub-footer-links">
+              <li><a href="">Contact Us</a></li>
+              <li><a href="">News</a></li>
+              <li><a href="">Site Map</a></li>
+            </ul>
+          </div>
+          <div class="sub-footer-column-bottom">
+            <iron-icon class="big" src="../../resources/social-media-icons/youtube35.svg" title="YouTube"></iron-icon>
+            <iron-icon class="big" src="../../resources/social-media-icons/facebook56.svg" title="Facebook"></iron-icon>
+            <iron-icon class="big" src="../../resources/social-media-icons/twitter47.svg" title="Twitter"></iron-icon>
+          </div>
+        </div>
+
+        <div class="sub-footer-column">
+          <div class="sub-footer-column-top"></div>
+          <div class="sub-footer-column-body">
+            <paper-button raised class="blue-button" aria-label="Join Friends of the Library">
+              Join Friends of the Library
+            </paper-button>
+            <paper-button raised class="blue-button" aria-label="Give to the Library">
+              Give to the Library
+            </paper-button>
+          </div>
+        </div>
       </div>
     </div>
 

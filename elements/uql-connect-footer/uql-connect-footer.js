@@ -4,6 +4,9 @@
     cfmenu: {},
     jsonURL: '../uql-connect-footer/uql-connect-footer.json',
     properties: {
+      footerMenu: {
+        type: String
+      },
       verbose: {
         type: Boolean,
         value: true
@@ -15,7 +18,6 @@
     },
     _handleResponse: function (event) {
       this.cfmenu = event.detail.response;
-      console.log(this.cfmenu);
     }
   });
 })();
