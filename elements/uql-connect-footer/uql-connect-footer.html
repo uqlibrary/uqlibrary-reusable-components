@@ -116,7 +116,7 @@
         <div class="sub-footer-column">
           <template is="dom-if" if="{{cfmenu.items}}">
             <div class="sub-footer-column-body">
-              <ul class="sub-footer-links">
+              <ul id='cFtMenu' class="sub-footer-links">
                 <template is="dom-repeat" items="{{cfmenu.items}}" as="item">
                   <li><a href="{{item.href}}">{{item.label}}</a></li>
                 </template>
@@ -128,7 +128,7 @@
         <div class="sub-footer-column">
           <div class="sub-footer-column-top"></div>
           <div class="sub-footer-column-body">
-            <ul class="sub-footer-links">
+            <ul id="cFtSubMenu" class="sub-footer-links">
               <li><a href="">Contact Us</a></li>
               <li><a href="">News</a></li>
               <li><a href="">Site Map</a></li>
