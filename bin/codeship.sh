@@ -56,12 +56,12 @@ fi
 echo "Checking vulcanization was performed correctly"
 set +e
 result=`diff elements/elements.html elements/elements.vulcanized.html`
+set -e
 
 if [ -z "${result}" ]; then
     echo "Improperly vulcanized file"
     exit 1;
 fi
-set -e
 
 echo "Check file syntax"
 gulp syntax
