@@ -55,7 +55,13 @@
       return false;
     },
     _goLink: function (event) {
-      window.location.href = event.currentTarget.getAttribute('href');
+      var href;
+      if (event.currentTarget.hasOwnProperty('href')) {
+        href = event.currentTarget.href;
+      } else {
+        href = event.currentTarget.getAttribute('href');
+      }
+      window.location.href = href;
     },
     _handleError: function (event) {
       console.log(event);
