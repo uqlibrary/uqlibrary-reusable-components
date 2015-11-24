@@ -20,14 +20,6 @@
       flex: none !important;
     }
 
-    paper-item:hover {
-      background-color: #ddd;
-    }
-
-    paper-item {
-      display: block;
-    }
-
     div.subtext {
       color: #666;
       font-size: 80%;
@@ -35,6 +27,8 @@
 
     .dropdown-content {
       width: 480px;
+      background-color: #f2f2f2;
+      box-shadow: rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px;
       @apply(--layout-flex);
       @apply(--layout-horizontal);
     }
@@ -51,9 +45,11 @@
     }
 
     paper-menu {
+      background-color: #f2f2f2;
       margin: 0px;
       padding: 0px;
     }
+
     paper-menu a {
       color: rgb(17, 17, 17);
       cursor: auto;
@@ -74,7 +70,7 @@
     }
 
     paper-menu a:hover {
-      background-color: #999;
+      background-color: #e5e5e5;
     }
 
   </style>
@@ -98,7 +94,7 @@
         </paper-tabs>
 
         <iron-dropdown id="subMenu" horizontal-align="left" vertical-align="top" vertical-offset="48">
-          <div class="dropdown-content" style="border: 1px solid #000;">
+          <div class="dropdown-content">
 
             <paper-menu>
               <template is="dom-repeat" items="{{currentItem.items}}">
