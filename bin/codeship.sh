@@ -49,7 +49,6 @@ echo "Vulcanizing elements"
 gulp vulcanize
 
 # If these files are the same, it means an error in vulcanizing
-# todo: vulcanize as part of the build, remove elements.vulcanized.html from git
 echo "Checking vulcanization was performed correctly"
 set +e
 result=`diff elements/elements.html elements/elements.vulcanized.html`
@@ -57,6 +56,7 @@ set -e
 
 if [ -z "${result}" ]; then
     echo "Improperly vulcanized file"
+    echo "This happens sporadically, rebuilding should fix"
     exit 1;
 fi
 
