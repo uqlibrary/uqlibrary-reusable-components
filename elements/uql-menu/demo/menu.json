@@ -319,12 +319,7 @@
     },
     {
       "label": "Ask us",
-      "items": [
-        {
-          "label": "FAQs",
-          "href": "/item1"
-        }
-      ]
+      "href": "/item1"
     }
   ]
 }

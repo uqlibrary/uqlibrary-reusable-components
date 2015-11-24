@@ -3,84 +3,200 @@
 
   <link rel="import" type="css" href="../../styles/elements-styles.css">
   <link rel="import" type="css" href="uql-mega-menu.css">
+  <style is="custom-style">
+
+    .menu-container {
+
+    }
+
+    .menu-content {
+      margin: 0 auto;
+      max-width: 1140px;
+      width: 100%;
+    }
+
+    /* make top-level menu sized according to label, not same size for all */
+    paper-tab {
+      flex: none !important;
+    }
+
+    paper-item:hover {
+      background-color: #ddd;
+    }
+
+    paper-item {
+      display: block;
+    }
+
+    div.subtext {
+      color: #666;
+      font-size: 80%;
+    }
+
+    .dropdown-content {
+      width: 480px;
+      @apply(--layout-flex);
+      @apply(--layout-horizontal);
+    }
+
+    .dropdown-content paper-menu {
+      @apply(--layout-flex);
+      /*width: 50%;*/
+    }
+
+    paper-menu.uql-submenu-right {
+      border-left-width: thin;
+      border-left-style: solid;
+      border-color: #999;
+    }
+
+    paper-menu {
+      margin: 0px;
+      padding: 0px;
+    }
+    paper-menu a {
+      color: rgb(17, 17, 17);
+      cursor: auto;
+      display: flex;
+      flex-direction: column;
+      font-family: Roboto, Noto, sans-serif;
+      font-size: 14px;
+      font-weight: normal;
+      height: 48px;
+      line-height: 24px;
+      min-height: 48px;
+      padding-bottom: 0px;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-top: 0px;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    paper-menu a:hover {
+      background-color: #999;
+    }
+
+  </style>
 
   <template>
     <iron-ajax auto url="{{menuJson}}" handle-as="json" on-response="_handleResponse" on-error="_handleError"
                verbose="{{verbose}}"></iron-ajax>
-    <paper-toolbar id="uql-toolbar" role="toolbar" justify="center">
-      <paper-icon-button href="/" icon="home" alt="home" on-tap="_goLink"></paper-icon-button>
-      <template is="dom-repeat" items="{{menu.items}}">
-        <!-- load up single menu items without submenus -->
-        <paper-button on-tap="_toggleMenu" id="{{_getName('button', item.label)}}">
-          <template is="dom-if" if="{{!item.href}}">
-            <template is="dom-if" if="{{item.icon}}">
-              <iron-icon icon="{{item.icon}}"></iron-icon>
-            </template>
-            <span>{{item.label}}</span>
-          </template>
-          <template is="dom-if" if="{{item.href}}">
-            <a href="{{item.href}}">
-              <template is="dom-if" if="{{item.icon}}">
-                <iron-icon icon="{{item.icon}}"></iron-icon>
-              </template>
-              <span>{{item.label}}</span>
-            </a>
-          </template>
-        </paper-button>
 
-        <!-- load up menu items with submenus -->
-        <template is="dom-if" if="{{item.items}}">
-          <paper-material id="{{_getName('menu', item.label)}}" hidden$="{{_isHidden(selectedMenu, item.label)}}"
-                          class="uql-submenu horizontal layout">
-            <paper-menu class="flex">
-              <template is="dom-repeat" items="{{item.items}}" as="subitem">
-                <template is="dom-if" if="{{!subitem.right}}">
-                  <paper-item>
-                    <a href="{{subitem.href}}">
-                      <template is="dom-if" if="{{subitem.icon}}">
-                        <iron-icon icon="{{subitem.icon}}"></iron-icon>
-                      </template>
-                      <span>{{subitem.label}}</span>
-                    </a>
-                    <template is="dom-if" if="{{subitem.subtext}}">
-                      <div class="subtext">{{subitem.subtext}}</div>
-                    </template>
-                  </paper-item>
+
+    <div class="menu-container">
+      <div class="menu-content">
+        <paper-tabs id="topMenu" on-tap="_topMenuSelected" on-hover="_topMenuSelected">
+          <template is="dom-repeat" items="{{menu.items}}">
+            <paper-tab data-menu-index$="{{index}}">
+              {{item.label}}
+              <template is="dom-if" if="{{item.items}}">
+                <iron-icon icon="icons:icons:arrow-drop-down"></iron-icon>
+              </template>
+            </paper-tab>
+          </template>
+        </paper-tabs>
+
+        <iron-dropdown id="subMenu" horizontal-align="left" vertical-align="top" vertical-offset="48">
+          <div class="dropdown-content" style="border: 1px solid #000;">
+
+            <paper-menu>
+              <template is="dom-repeat" items="{{currentItem.items}}">
+                <template is="dom-if" if="{{!item.right}}">
+                  <a class="paper-item" href="{{item.href}}">
+                    <div>{{item.label}}</div>
+                    <div class="subtext">{{item.subtext}}</div>
+                  </a>
                 </template>
               </template>
             </paper-menu>
-            <paper-menu class="uql-submenu-right flex">
-              <template is="dom-repeat" items="{{item.items}}" as="subitem">
-                <template is="dom-if" if="{{subitem.right}}">
-                  <paper-item>
-                    <template is="dom-if" if="{{subitem.image}}">
-                      <div class="image">
-                        <a href="{{subitem.href}}">
-                          <iron-image preload alt="Image for item" fade src="{{subitem.image}}"></iron-image>
-                        </a>
-                      </div>
-                    </template>
-                    <a href="{{subitem.href}}">
-                      <template is="dom-if" if="{{subitem.icon}}">
-                        <iron-icon icon="{{subitem.icon}}"></iron-icon>
-                      </template>
-                      <template is="dom-if" if="{{subitem.label}}">
-                        <span>{{subitem.label}}</span>
-                    </a>
+
+            <paper-menu class="uql-submenu-right">
+              <template is="dom-repeat" items="{{currentItem.items}}">
+                <template is="dom-if" if="{{item.right}}">
+                  <a class="paper-item" href="{{item.href}}">
+                    <div>{{item.label}}</div>
+                    <div class="subtext">{{item.subtext}}</div>
+                  </a>
                 </template>
-                <template is="dom-if" if="{{subitem.subtext}}">
-                  <div class="subtext">{{subitem.subtext}}</div>
-                </template>
-                </paper-item>
               </template>
-        </template>
-        </paper-menu>
-        </paper-material>
+            </paper-menu>
 
-      </template>
+          </div>
+        </iron-dropdown>
 
-  </template>
-  </paper-toolbar>
+      </div>
+    </div>
+
+    <!--<paper-toolbar id="uql-toolbar" role="toolbar" justify="center">-->
+    <!--<paper-icon-button href="/" icon="home" alt="home" on-tap="_goLink"></paper-icon-button>-->
+    <!--<template is="dom-repeat" items="{{menu.items}}">-->
+    <!--&lt;!&ndash; load up single menu items without submenus &ndash;&gt;-->
+    <!--<paper-button on-tap="_toggleMenu" id="{{_getName('button', item.label)}}">-->
+    <!--<template is="dom-if" if="{{!item.href}}">-->
+    <!--<template is="dom-if" if="{{item.icon}}">-->
+    <!--<iron-icon icon="{{item.icon}}"></iron-icon>-->
+    <!--</template>-->
+    <!--<span>{{item.label}}</span>-->
+    <!--</template>-->
+    <!--<template is="dom-if" if="{{item.href}}">-->
+    <!--<a href="{{item.href}}">-->
+    <!--<template is="dom-if" if="{{item.icon}}">-->
+    <!--<iron-icon icon="{{item.icon}}"></iron-icon>-->
+    <!--</template>-->
+    <!--<span>{{item.label}}</span>-->
+    <!--</a>-->
+    <!--</template>-->
+    <!--</paper-button>-->
+
+    <!--&lt;!&ndash; load up menu items with submenus &ndash;&gt;-->
+    <!--<template is="dom-if" if="{{item.items}}">-->
+    <!--<paper-material id="{{_getName('menu', item.label)}}" hidden$="{{_isHidden(selectedMenu, item.label)}}"-->
+    <!--class="uql-submenu horizontal layout">-->
+    <!--<paper-menu class="flex">-->
+    <!--<template is="dom-repeat" items="{{item.items}}" as="subitem">-->
+    <!--<template is="dom-if" if="{{!subitem.right}}">-->
+    <!--<paper-item on-tap="_goLink" href="{{subitem.href}}">-->
+    <!--<template is="dom-if" if="{{subitem.icon}}">-->
+    <!--<iron-icon icon="{{subitem.icon}}"></iron-icon>-->
+    <!--</template>-->
+    <!--<span>{{subitem.label}}</span>-->
+    <!--<template is="dom-if" if="{{subitem.subtext}}">-->
+    <!--<div class="subtext">{{subitem.subtext}}</div>-->
+    <!--</template>-->
+    <!--</paper-item>-->
+    <!--</template>-->
+    <!--</template>-->
+    <!--</paper-menu>-->
+    <!--<paper-menu class="uql-submenu-right flex">-->
+    <!--<template is="dom-repeat" items="{{item.items}}" as="subitem">-->
+    <!--<template is="dom-if" if="{{subitem.right}}">-->
+    <!--<paper-item on-tap="_goLink" href="{{subitem.href}}">-->
+    <!--<template is="dom-if" if="{{subitem.image}}">-->
+    <!--<div class="image">-->
+    <!--<iron-image preload alt="Image for item" fade src="{{subitem.image}}"></iron-image>-->
+    <!--</div>-->
+    <!--</template>-->
+    <!--<template is="dom-if" if="{{subitem.icon}}">-->
+    <!--<iron-icon icon="{{subitem.icon}}"></iron-icon>-->
+    <!--</template>-->
+    <!--<template is="dom-if" if="{{subitem.label}}">-->
+    <!--<span>{{subitem.label}}</span>-->
+    <!--</template>-->
+    <!--<template is="dom-if" if="{{subitem.subtext}}">-->
+    <!--<div class="subtext">{{subitem.subtext}}</div>-->
+    <!--</template>-->
+    <!--</paper-item>-->
+    <!--</template>-->
+    <!--</template>-->
+    <!--</paper-menu>-->
+    <!--</paper-material>-->
+
+    <!--</template>-->
+
+    <!--</template>-->
+    <!--</paper-toolbar>-->
+
   </template>
 
   <script src="uql-mega-menu.js"></script>

@@ -2,6 +2,7 @@
   Polymer({
     is: 'uql-mega-menu',
     menu: {},
+    currentItem: {},
     tbCoords: null,
     init: true,
     properties: {
@@ -17,7 +18,36 @@
         value: true
       }
     },
+
+    _topMenuSelected: function(event) {
+      this.$.subMenu.close();
+
+      var selectedMenuTab = event.target;
+      if (selectedMenuTab.tagName.toLowerCase() !== "paper-tab") {
+        selectedMenuTab = selectedMenuTab.parentElement;
+      };
+
+      this.currentItem = this.menu.items[Number(selectedMenuTab.getAttribute('data-menu-index'))];
+
+      if (this.currentItem.items) {
+        //open sub-menu
+        //check menu is not going offscreen
+        this.$.subMenu.horizontalOffset = -50;
+
+        this.$.subMenu.positionTarget = selectedMenuTab;
+        this.$.subMenu.open();
+      } else {
+        //follow the link
+        window.location.href = this.currentItem.href;
+      }
+    },
+
+    _click: function(event) {
+      window.location.href = "https://wtf.com";
+    },
+
     _toggleMenu: function (event) {
+      console.log(event);
       if (this.init) {
         this._addBodyListener();
         this.init = false;
@@ -27,6 +57,7 @@
       var sm = this._getName('menu', span.textContent);
       this.selectedMenu = sm === this.selectedMenu ? null : sm;
     },
+
     _addBodyListener: function () {
       var that = this;
       document.querySelector('html').addEventListener('click', function () {
@@ -54,9 +85,11 @@
 
       return false;
     },
+
     _goLink: function (event) {
       window.location.href = event.currentTarget.getAttribute('href');
     },
+
     _handleError: function (event) {
       console.log(event);
     },

@@ -2,7 +2,7 @@
   "heading": "Menu demo",
   "items": [
     {
-      "label": "Library Services",
+      "label": "Library Services sssssss",
       "items": [
         {
           "label": "Your librarian",
@@ -333,12 +333,7 @@
     },
     {
       "label": "Ask us",
-      "items": [
-        {
-          "label": "FAQs",
-          "href": "/ask-us"
-        }
-      ]
+      "href": "/ask-us"
     }
   ]
 }
