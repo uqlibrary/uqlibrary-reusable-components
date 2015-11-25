@@ -1,13 +1,82 @@
 <dom-module id="uql-menu">
+
   <link rel="import" href="../elements.html">
+  <style is="custom-style">
+    :host {
+      --menu-background-color: #fff;
+      --menu-open-background-color: #f2f2f2;
+      --menu-hover-background-color: #e5e5e5;
+      --menu-selected-bar-color: #595959;
+      --menu-text-color: #222;
+      --menu-sub-text-color: #222;
+      --menu-border-color: #222;
 
-  <!-- no styles yet -->
-  <!--link rel="import" type="css" href="uql-menu.css"-->
+      --paper-tabs-selection-bar-color: var(--menu-selected-bar-color);
+      --paper-tabs-ink-color: var(--menu-selected-bar-color);
 
+      font-family: Roboto, Noto, sans-serif;
+    }
+
+    paper-drawer-panel /deep/ #drawer {
+      z-index: 1000;
+    }
+
+    paper-menu a {
+      color: var(--menu-text-color);
+      cursor: auto;
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      font-weight: normal;
+      height: 48px;
+      line-height: 24px;
+      min-height: 48px;
+      padding-bottom: 2px;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-top: 2px;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    paper-menu a:hover {
+      background-color: var(--menu-hover-background-color);
+    }
+
+    paper-toolbar {
+      height: 66px !important;
+    }
+
+  </style>
   <template>
     <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
+
     <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
-    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
+
+    <paper-drawer-panel id="paperDrawerPanel" force-narrow="true">
+
+      <!-- Drawer Scroll Header Panel -->
+      <paper-scroll-header-panel drawer fixed>
+
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <span class="paper-font-title">UQ Library Menu</span>
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+        <paper-menu class="list">
+          <a href="#">Home</a>
+
+          <a href="#">Users</a>
+          <a href="#">Users</a>
+          <a href="#">Users</a>
+          <a href="#">Users</a>
+
+        </paper-menu>
+      </paper-scroll-header-panel>
+    </paper-drawer-panel>
+
+    <!--<uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>-->
   </template>
 
   <script src="uql-menu.js"></script>

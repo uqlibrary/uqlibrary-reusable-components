@@ -9,6 +9,15 @@
         type: Boolean,
         value: true
       }
+    },
+
+    ready: function() {
+
+    },
+
+    toggleMenu: function() {
+      console.log('received command from somewhere... need to toggle menu...')
+      this.$.paperDrawerPanel.togglePanel();
     }
   });
 })();

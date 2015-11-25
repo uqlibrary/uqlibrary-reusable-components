@@ -1,0 +1,17 @@
+<dom-module id="uql-menu-button">
+
+  <link rel="import" href="../elements.html">
+  <link rel="stylesheet" href="../../styles/elements-styles.css">
+
+  <template>
+    <paper-button class="button-inverse" id="menuButton">
+      <iron-icon icon="icons:menu" aria-label="open site menu"></iron-icon>
+      <template is="dom-if" if="{{showTitle}}">
+        <div class="button-title">{{buttonTitle}}</div>
+      </template>
+    </paper-button>
+  </template>
+
+  <script src="uql-menu-button.js"></script>
+
+</dom-module>

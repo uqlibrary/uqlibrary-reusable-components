@@ -9,7 +9,7 @@
       --menu-selected-bar-color: #595959;
       --menu-text-color: #222;
       --menu-sub-text-color: #222;
-      --menu-border-color: #666;
+      --menu-border-color: #222;
 
       --paper-tabs-selection-bar-color: var(--menu-selected-bar-color);
       --paper-tabs-ink-color: var(--menu-selected-bar-color);
@@ -85,6 +85,10 @@
 
     paper-tab /deep/ paper-ripple.paper-tab {
       color: var(--menu-hover-background-color);
+    }
+
+    paper-tab:focus /deep/ .tab-content.paper-tab {
+      font-weight: 500;
     }
 
   </style>
