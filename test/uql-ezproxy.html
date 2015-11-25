@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UQ Library EzProxy Access</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../bower_components/web-component-tester/browser.js"></script>
+  <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+  <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
+
+  <link rel="import" href="../elements/uql-ezproxy/uql-ezproxy.html">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body class="fullbleed layout vertical">
+<test-fixture id="basic">
+  <template>
+    <uql-ezproxy></uql-ezproxy>
+  </template>
+</test-fixture>
+<script>
+  suite('<uql-ezproxy> tests', function () {
+    var testObj;
+
+    setup(function () {
+      testObj = fixture('basic');
+    });
+
+    test('Input field and Submit button should be visible', function (done) {
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var proxie = testObj.querySelector('#proxie');
+
+        console.log(url);
+        console.log(proxie);
+
+        expect(url).to.be.visible;
+        expect(proxie).to.be.visible;
+
+        done();
+      });
+    });
+
+    test('Test URL Validation method with multiple entries', function (done) {
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        // Test empty urls
+        assert.isFalse(testObj.checkURL());
+
+        // Test urls including the proxy domain
+        url.value = 'http://ezproxy.library.uq.edu.au/login?url=nature.com';
+        assert.isFalse(testObj.checkURL());
+
+        // Test urls with no protocol
+        url.value = 'nature.com';
+        assert.isFalse(testObj.checkURL());
+
+        // Test correct urls
+        url.value = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        assert.isTrue(testObj.checkURL());
+
+        done();
+      });
+    });
+  });
+</script>
+</body>
+</html>
