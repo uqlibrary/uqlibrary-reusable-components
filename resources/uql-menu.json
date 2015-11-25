@@ -1,5 +1,5 @@
 {
-  "heading": "Menu demo",
+  "heading": "UQ Library menu",
   "items": [
     {
       "label": "Library Services",
@@ -33,6 +33,7 @@
         },
         {
           "label": "for Researchers",
+          "subtext": "Research assistance, Author identifiers, Research impact & document delivery",
           "href": "/library-services/services-for-researchers",
           "right": "right"
         },
@@ -126,7 +127,7 @@
       ]
     },
     {
-      "label": "Our Collections",
+      "label": "Collections",
       "items": [
         {
           "label": "Collection strengths",
@@ -263,7 +264,7 @@
       ]
     },
     {
-      "label": "About us",
+      "label": "About",
       "items": [
         {
           "label": "News",
@@ -332,7 +333,7 @@
       ]
     },
     {
-      "label": "Ask us",
+      "label": "Contacts",
       "items": [
         {
           "label": "FAQs",
