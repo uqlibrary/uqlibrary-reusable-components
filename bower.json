@@ -11,7 +11,8 @@
     "webcomponentsjs": "^0.7.12",
     "byutv-jsonp": "~1.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api#polymer1.0",
-    "iron-ajax": "PolymerElements/iron-ajax#1.0.8"
+    "iron-ajax": "PolymerElements/iron-ajax#1.0.8",
+    "validator-js": "~4.2.0"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",

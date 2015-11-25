@@ -45,23 +45,26 @@ sed -i -e "s#<S3BucketSubDir>#${S3BucketSubDir}#g" ${awsconfig}
 sed -i -e "s#<CFDistribution>#${CFDistribution}#g" ${awsconfig}
 sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
 
+echo "Vulcanizing elements"
+gulp vulcanize
+
+# If these files are the same, it means an error in vulcanizing
+echo "Checking vulcanization was performed correctly"
+set +e
+result=`diff elements/elements.html elements/elements.vulcanized.html`
+set -e
+
+if [ -z "${result}" ]; then
+    echo "Improperly vulcanized file"
+    echo "This happens sporadically, rebuilding should fix"
+    exit 1;
+fi
+
 #run css min tasks for staging/production, don't run for master - for better debugging
 if [ $branch = "staging" ] || [ $branch = "production" ]; then
   echo "Run gulp task to optimize css..."
   gulp optimize
 fi
-
-# If these files are the same, it means an error in vulcanizing
-# todo: vulcanize as part of the build, remove elements.vulcanized.html from git
-echo "Checking vulcanization was performed correctly"
-set +e
-result=`diff elements/elements.html elements/elements.vulcanized.html`
-
-if [ -z "${result}" ]; then
-    echo "Improperly vulcanized file"
-    exit 1;
-fi
-set -e
 
 echo "Check file syntax"
 gulp syntax

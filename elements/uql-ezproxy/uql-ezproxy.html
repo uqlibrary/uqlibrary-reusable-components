@@ -1,0 +1,20 @@
+<dom-module id="uql-ezproxy">
+  <link rel="import" href="../elements.html">
+  <link rel="import" type="css" href="../../styles/elements-styles.css">
+  <link rel="import" type="css" href="uql-ezproxy.css">
+
+  <template>
+    <paper-card elevation="1">
+      <h2>UQ Library - EzProxy Access</h2>
+
+      <div class="horizontal layout">
+        <paper-input-container id="urlContainer" label="URL Address" class="flex">
+          <input is="iron-input" id="url" name="url" type="URL" placeholder="http://example.com" required>
+          <paper-input-error id="errorMsg"></paper-input-error>
+        </paper-input-container>
+        <paper-button id="proxie" on-click="_submit">Go</paper-button>
+      </div>
+    </paper-card>
+  </template>
+  <script src="uql-ezproxy.js"></script>
+</dom-module>
