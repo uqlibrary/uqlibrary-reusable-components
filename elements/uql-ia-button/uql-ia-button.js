@@ -28,7 +28,7 @@
 
     toggleIA: function() {
       if (this.isIAEnabled){
-        document.cookie = "toggleia=0";
+        document.cookie = "toggleia=0; path=/";
       } else {
         document.cookie = "toggleia=1";
       }
