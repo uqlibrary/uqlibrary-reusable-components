@@ -7,76 +7,89 @@
       "items": [
         {
           "label": "Your librarian",
-          "subtext": "Item subtext",
-          "href": "/library-services/your-librarian"
+          "subtext": "get subject specific help",
+          "href": "/library-services/your-librarian",
+          "right": "right"
         },
         {
           "label": "Training",
-          "href": "/library-services/training"
+          "subtext": "online & in-person classes",
+          "href": "/library-services/training",
+          "right": "right"
         },
         {
           "label": "I.T.",
-          "href": "/library-services/it"
+          "subtext": "printing, wifi, available computers etc.",
+          "href": "/library-services/it",
+          "right": "right"
         },
         {
           "label": "Copyright advice",
-          "href": "/library-services/copyright-advice"
+          "subtext": "avoid issues when publishing",
+          "href": "/library-services/copyright-advice",
+          "right": "right"
         },
         {
           "label": "Digitisation",
-          "subtext": "Specific categories below",
-          "href": "/library-services/digitisation"
+          "subtext": "print to digital conversion,
+          "href": "/library-services/digitisation",
+          "right": "right"
         },
         {
           "label": "for Students",
+          "subtext": "reading lists, past exams etc.",
           "href": "/library-services/services-for-students",
-          "right": "right"
+          
         },
         {
           "label": "for Researchers",
+          "subtext": "data, impact, publishing support",
           "subtext": "Research assistance, Author identifiers, Research impact & document delivery",
           "href": "/library-services/services-for-researchers",
-          "right": "right"
+          
         },
         {
           "label": "for Teaching staff",
+          "subtext": "resources, training, Library requests",
           "href": "/library-services/services-for-teaching-staff",
-          "right": "right"
+          
         },
         {
           "label": "for Professional staff",
           "href": "/library-services/services-for-professional-staff",
-          "right": "right"
+          
         },
         {
           "label": "for Hospital staff",
           "href": "/library-services/services-for-hospital-staff",
-          "right": "right"
+          
         },
         {
           "label": "for UQ alumni",
           "href": "/library-services/services-for-uq-alumni",
-          "right": "right"
+          
         },
         {
           "label": "for Community",
+          "subtext": "public access & services",
           "href": "/library-services/services-for-community",
-          "right": "right"
+          
         },
         {
           "label": "for Secondary schools",
           "href": "/library-services/services-for-secondary-schools",
-          "right": "right"
+          
         },
         {
           "label": "for Clients with disabilities",
           "href": "/library-services/support-for-clients-disabilities",
-          "right": "right"
+          
         },
         {
           "label": "for Other libraries",
+          "subtext": "order UQ theses, ILL requests",
           "href": "/library-services/for-other-libraries",
-          "right": "right"
+          
         }
       ]
     },
@@ -91,7 +104,6 @@
         {
           "label": "Journals & newspapers",
           "href": "/research-tools-techniques/journals-newspapers",
-          "subtext": "Item subtext"
         },
         {
           "label": "Catalogue",
@@ -99,26 +111,30 @@
         },
         {
           "label": "UQ eSpace",
+          "subtext": "archive of UQ research and more",
           "href": "/research-tools-techniques/uq-espace"
         },
         {
           "label": "Research by subject",
+          "subtext": "law, engineering, biology, art etc.",
           "href": "/research-tools-techniques/research-subject"
         },
         {
           "label": "Search techniques",
+          "subtext": "best ways to find quality data",
           "href": "/research-tools-techniques/search-techniques",
           "right": "right"
         },
         {
           "label": "Evaluate your search results",
+          "subtext": "ensure the quality of search results",
           "href": "/research-tools-techniques/evaluate-your-search-results",
           "right": "right"
         },
         {
           "label": "Referencing",
+          "subtext": "Endnote, style guides, plagiarism",
           "href": "/research-tools-techniques/referencing",
-          "subtext": "Referencing subtext",
           "right": "right"
         },
         {
@@ -138,8 +154,7 @@
         },
         {
           "label": "Online exhibitions",
-          "href": "/our-collections/online-exhibitions",
-          "subtext": "Item subtext"
+          "href": "/our-collections/online-exhibitions"
         },
         {
           "label": "Cultural & historical collections",
@@ -157,12 +172,13 @@
       "items": [
         {
           "label": "How to borrow",
+          "subtext": "rules, finding items, returning",
           "href": "/borrowing-requesting/how-to-borrow"
         },
         {
           "label": "Overdue items",
           "href": "/borrowing-requesting/overdue-items",
-          "subtext": "Item subtext"
+          "subtext": "pay library fines"
         },
         {
           "label": "View your loans",
@@ -170,20 +186,23 @@
         },
         {
           "label": "Renewing",
+          "subtext": "rules on keeping an item",
           "href": "/borrowing-requesting/renewing-loans"
         },
         {
           "label": "Requesting",
+          "subtext": "loaned items, from a UQ campus, scanned docs",
           "href": "/borrowing-requesting/requesting"
         },
         {
           "label": "Accessing restricted materials",
-          "subtext": "Item subtext",
+          "subtext": "Fryer Library access",
           "href": "/borrowing-requesting/accessing-restricted-materials",
           "right": "right"
         },
         {
           "label": "Borrow & request from other libraries",
+          "subtext": "Access other libraries' collections",
           "href": "/borrowing-requesting/borrow-request-other-libraries",
           "right": "right"
         }
@@ -339,7 +358,7 @@
       ]
     },
     {
-      "label": "Contacts",
+      "label": "Contact",
       "href": "",
       "items": [
         {
