@@ -44,7 +44,6 @@
         {
           "label": "for Researchers",
           "subtext": "data, impact, publishing support",
-          "subtext": "Research assistance, Author identifiers, Research impact & document delivery",
           "href": "/library-services/services-for-researchers"
         },
         {
@@ -126,7 +125,6 @@
         },
         {
           "label": "Evaluate your search results",
-          "subtext": "ensure the quality of search results",
           "href": "/research-tools-techniques/evaluate-your-search-results",
           "right": "right"
         },
@@ -190,7 +188,7 @@
         },
         {
           "label": "Requesting",
-          "subtext": "loaned items, from a UQ campus, scanned docs",
+          "subtext": "loaned items, scans, purchase",
           "href": "/borrowing-requesting/requesting"
         },
         {
@@ -200,8 +198,8 @@
           "right": "right"
         },
         {
-          "label": "Borrow & request from other libraries",
-          "subtext": "Access other libraries' collections",
+          "label": "From other libraries",
+          "subtext": "access non-UQ libraries",
           "href": "/borrowing-requesting/borrow-request-other-libraries",
           "right": "right"
         }
@@ -213,76 +211,78 @@
       "items": [
         {
           "label": "Opening hours",
-          "href": "/locations-hours/opening-hours"
+          "href": "/locations-hours/opening-hours",
+          "right": "right"
         },
         {
           "label": "Room bookings",
           "href": "/locations-hours/room-bookings",
-          "subtext": "Item subtext"
+          "right": "right"
         },
         {
           "label": "24/7 spaces",
-          "href": "/locations-hours/247-study-spaces"
+          "href": "/locations-hours/247-study-spaces",
+          "right": "right"
         },
         {
           "label": "Biological Sciences",
-          "href": "/locations-hours/biological-sciences-library",
-          "right": "right"
+          "href": "/locations-hours/biological-sciences-library"
+          
         },
         {
           "label": "D.H. Engineering & Sciences",
-          "href": "/locations-hours/dorothy-hill-engineering-and-sciences-library",
-          "right": "right"
+          "href": "/locations-hours/dorothy-hill-engineering-and-sciences-library"
+          
         },
         {
           "label": "Fryer",
-          "href": "/locations-hours/fryer-library",
-          "right": "right"
+          "href": "/locations-hours/fryer-library"
+          
         },
         {
           "label": "Gatton",
-          "href": "/locations-hours/uq-gatton-library",
-          "right": "right"
+          "href": "/locations-hours/uq-gatton-library"
+          
         },
         {
           "label": "Grad. Economics & Business",
-          "href": "/locations-hours/graduate-economics-and-business-library",
-          "right": "right"
+          "href": "/locations-hours/graduate-economics-and-business-library"
+          
         },
         {
           "label": "Herston Health Sciences",
-          "href": "/locations-hours/herston-health-sciences-library",
-          "right": "right"
+          "href": "/locations-hours/herston-health-sciences-library"
+          
         },
         {
           "label": "Law",
-          "href": "/locations-hours/walter-harrison-law-library",
-          "right": "right"
+          "href": "/locations-hours/walter-harrison-law-library"
+          
         },
         {
           "label": "Mater",
-          "href": "/locations-hours/uqmater-mcauley-library",
-          "right": "right"
+          "href": "/locations-hours/uqmater-mcauley-library"
+          
         },
         {
           "label": "PACE Health Sciences",
-          "href": "/locations-hours/pace-health-sciences-library",
-          "right": "right"
+          "href": "/locations-hours/pace-health-sciences-library"
+          
         },
         {
           "label": "Rural Clinical School",
-          "href": "/locations-hours/rural-clinical-school-rcs-library",
-          "right": "right"
+          "href": "/locations-hours/rural-clinical-school-rcs-library"
+          
         },
         {
           "label": "Social Sciences & Humanities",
-          "href": "/locations-hours/social-sciences-humanities-library",
-          "right": "right"
+          "href": "/locations-hours/social-sciences-humanities-library"
+          
         },
         {
           "label": "Warehouse",
-          "href": "/locations-hours/warehouse",
-          "right": "right"
+          "href": "/locations-hours/warehouse"
+          
         }
       ]
     },
@@ -296,8 +296,7 @@
         },
         {
           "label": "Events",
-          "href": "/about-us/events",
-          "subtext": "Active"
+          "href": "/about-us/events"
         },
         {
           "label": "Friends of the Library",
@@ -326,31 +325,26 @@
         },
         {
           "label": "Policies & guidelines",
-          "subtext": "Item subtext",
           "href": "/about-us/policies-guidelines",
           "right": "right"
         },
         {
           "label": "Reports & publications",
-          "subtext": "Item subtext",
           "href": "/about-us/reports-and-publications",
           "right": "right"
         },
         {
           "label": "Employment",
-          "subtext": "Item subtext",
           "href": "/about-us/employment",
           "right": "right"
         },
         {
           "label": "Awards & competitions",
-          "subtext": "Item subtext",
           "href": "/about-us/awards-and-competitions",
           "right": "right"
         },
         {
           "label": "Contacting us & feedback",
-          "subtext": "Item subtext",
           "href": "/about-us/contact-us-and-feedback",
           "right": "right"
         }
