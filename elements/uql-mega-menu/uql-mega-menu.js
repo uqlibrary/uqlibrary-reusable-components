@@ -24,7 +24,7 @@
 
       if (currentItem.items) {
         //open sub menu for top level menu item
-        var subMenu = document.querySelector('#subMenu' + tabIndex);
+        var subMenu = this.querySelector('#subMenu' + tabIndex);
         subMenu.positionTarget = selectedMenuTab;
         selectedMenuTab.toggleClass("sub-menu-opened");
 
