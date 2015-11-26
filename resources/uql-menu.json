@@ -38,57 +38,56 @@
         {
           "label": "for Students",
           "subtext": "reading lists, past exams etc.",
-          "href": "/library-services/services-for-students",
+          "href": "/library-services/services-for-students"
           
         },
         {
           "label": "for Researchers",
           "subtext": "data, impact, publishing support",
           "subtext": "Research assistance, Author identifiers, Research impact & document delivery",
-          "href": "/library-services/services-for-researchers",
-          
+          "href": "/library-services/services-for-researchers"
         },
         {
           "label": "for Teaching staff",
           "subtext": "resources, training, Library requests",
-          "href": "/library-services/services-for-teaching-staff",
+          "href": "/library-services/services-for-teaching-staff"
           
         },
         {
           "label": "for Professional staff",
-          "href": "/library-services/services-for-professional-staff",
+          "href": "/library-services/services-for-professional-staff"
           
         },
         {
           "label": "for Hospital staff",
-          "href": "/library-services/services-for-hospital-staff",
+          "href": "/library-services/services-for-hospital-staff"
           
         },
         {
           "label": "for UQ alumni",
-          "href": "/library-services/services-for-uq-alumni",
+          "href": "/library-services/services-for-uq-alumni"
           
         },
         {
           "label": "for Community",
           "subtext": "public access & services",
-          "href": "/library-services/services-for-community",
+          "href": "/library-services/services-for-community"
           
         },
         {
           "label": "for Secondary schools",
-          "href": "/library-services/services-for-secondary-schools",
+          "href": "/library-services/services-for-secondary-schools"
           
         },
         {
           "label": "for Clients with disabilities",
-          "href": "/library-services/support-for-clients-disabilities",
+          "href": "/library-services/support-for-clients-disabilities"
           
         },
         {
           "label": "for Other libraries",
           "subtext": "order UQ theses, ILL requests",
-          "href": "/library-services/for-other-libraries",
+          "href": "/library-services/for-other-libraries"
           
         }
       ]
@@ -103,7 +102,7 @@
         },
         {
           "label": "Journals & newspapers",
-          "href": "/research-tools-techniques/journals-newspapers",
+          "href": "/research-tools-techniques/journals-newspapers"
         },
         {
           "label": "Catalogue",
