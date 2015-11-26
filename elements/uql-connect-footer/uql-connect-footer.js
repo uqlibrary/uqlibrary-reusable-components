@@ -2,10 +2,10 @@
   Polymer({
     is: 'uql-connect-footer',
     cfmenu: {},
-    jsonURL: '../uql-connect-footer/uql-connect-footer.json',
     properties: {
-      footerMenu: {
-        type: String
+      createLink: {
+        type: Boolean,
+        value: false
       },
       verbose: {
         type: Boolean,
