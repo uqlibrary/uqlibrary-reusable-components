@@ -1,0 +1,121 @@
+<dom-module id="uql-drawer-panel">
+
+  <link rel="import" href="../elements.html">
+  <style is="custom-style">
+    :host {
+      --menu-background-color: #fff;
+      --menu-open-background-color: #f2f2f2;
+      --menu-hover-background-color: #e5e5e5;
+      --menu-selected-bar-color: #595959;
+      --menu-text-color: #222;
+      --menu-sub-text-color: #222;
+      --menu-border-color: #222;
+
+      font-family: Roboto, Noto, sans-serif;
+    }
+
+    paper-drawer-panel /deep/ #drawer {
+      z-index: 1000;
+    }
+
+    paper-menu a {
+      @apply(--layout-flex);
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+
+      color: var(--menu-text-color);
+      cursor: auto;
+      font-size: 14px;
+      font-weight: normal;
+      height: 48px;
+      line-height: 24px;
+      min-height: 48px;
+      padding-left: 16px;
+      padding-right: 16px;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .menuItem .label {
+      @apply(--layout-flex);
+    }
+
+    paper-menu a:hover {
+      background-color: var(--menu-hover-background-color);
+    }
+
+    paper-toolbar {
+      height: 66px !important;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    paper-menu.sub-menu a {
+      padding-left: 30px;
+    }
+
+    paper-menu.menu {
+      padding-top: 66px;
+    }
+
+    .menuItem {
+      border-top: 1px solid var(--menu-open-background-color);
+    }
+
+    paper-menu.menu {
+      border-bottom: 1px solid var(--menu-open-background-color);
+    }
+
+  </style>
+  <template>
+
+    <paper-drawer-panel id="paperDrawerPanel" force-narrow="true" class="hidden" on-selected-changed="isDrawerVisible">
+
+      <!-- Drawer Scroll Header Panel -->
+      <paper-scroll-header-panel drawer fixed>
+
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <span class="paper-font-title">{{menu.heading}}</span>
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+        <paper-menu class="menu">
+
+          <template is="dom-repeat" items="{{menu.items}}">
+
+            <template is="dom-if" if="{{!item.items}}">
+              <a class="menuItem" href="{{item.href}}">{{item.label}}</a>
+            </template>
+
+            <template is="dom-if" if="{{item.items}}">
+              <a class="menuItem" href="#" data-item-index$="{{index}}" on-tap="menuSelected">
+                <div class="label">{{item.label}}</div>
+                <iron-icon class="icon" icon="icons:icons:arrow-drop-down"></iron-icon>
+              </a>
+
+              <iron-collapse id$="subMenu{{index}}">
+                <paper-menu class="sub-menu">
+                  <template is="dom-repeat" items="{{item.items}}" as="subItem">
+                    <a href="{{subItem.href}}">{{subItem.label}}</a>
+                  </template>
+                </paper-menu>
+              </iron-collapse>
+            </template>
+
+          </template>
+        </paper-menu>
+
+      </paper-scroll-header-panel>
+      <paper-scroll-header-panel main>
+        <content></content>
+      </paper-scroll-header-panel>
+    </paper-drawer-panel>
+
+  </template>
+
+  <script src="uql-drawer-panel.js"></script>
+
+</dom-module>

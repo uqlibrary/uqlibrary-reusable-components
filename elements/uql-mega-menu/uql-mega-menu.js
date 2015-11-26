@@ -1,16 +1,20 @@
 (function () {
   Polymer({
     is: 'uql-mega-menu',
-    menu: {},
+
     subMenuWidth: 480,
+
     properties: {
-      menuJson: {
-        type: String
+
+      menu: {
+        type: Object
       },
+
       verbose: {
         type: Boolean,
         value: true
       }
+
     },
 
     _topMenuSelected: function(event) {
@@ -20,7 +24,7 @@
 
       if (currentItem.items) {
         //open sub menu for top level menu item
-        var subMenu = document.querySelector('#subMenu' + tabIndex);
+        var subMenu = this.querySelector('#subMenu' + tabIndex);
         subMenu.positionTarget = selectedMenuTab;
         selectedMenuTab.toggleClass("sub-menu-opened");
 
@@ -47,14 +51,6 @@
 
       if(deselectedTab.className.indexOf("sub-menu-opened") >= 0)
         deselectedTab.toggleClass ("sub-menu-opened");
-    },
-
-    _handleError: function (event) {
-      console.log(event);
-    },
-
-    _handleResponse: function (event) {
-      this.menu = event.detail.response;
     }
 
   })

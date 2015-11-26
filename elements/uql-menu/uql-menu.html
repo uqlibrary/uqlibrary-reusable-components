@@ -1,13 +1,36 @@
 <dom-module id="uql-menu">
+
   <link rel="import" href="../elements.html">
+  <style is="custom-style">
 
-  <!-- no styles yet -->
-  <!--link rel="import" type="css" href="uql-menu.css"-->
+    uql-drawer-panel {
+      displaly: none;
+    }
 
+    @media all and (max-width: 1047px) {
+      uql-mega-menu {
+        display: none;
+      }
+
+      uql-drawer-panel {
+        displaly: block;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+  </style>
   <template>
-    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
-    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
-    <uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>
+    <iron-ajax auto url="{{menuJson}}"
+               handle-as="json"
+               on-response="_handleResponse"
+               on-error="_handleError"
+               verbose="{{verbose}}"></iron-ajax>
+
+    <uql-mega-menu id="horizontalMenu" menu="{{menu}}"></uql-mega-menu>
+    <uql-drawer-panel id="drawerPanelMenu" menu="{{menu}}"></uql-drawer-panel>
   </template>
 
   <script src="uql-menu.js"></script>

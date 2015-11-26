@@ -12,7 +12,7 @@
       left: 0;
       width: 100%;
       overflow: visible;
-      z-index: 9999;
+      z-index: 1000;
 
       @apply(--layout-vertical);
 
@@ -63,12 +63,23 @@
       @apply(--layout-center);
     }
 
+    @media all and (min-width: 1047px) {
+      uql-menu-button {
+        display: none;
+      }
+    }
+
   </style>
 
   <template>
     <div class="header-container">
       <div class="header-content">
         <div class="header-title">
+
+          <template is="dom-if" if="{{showMenuButton}}">
+            <uql-menu-button show-title="{{showButtonsTitle}}" on-click="handleMenuClicked"></uql-menu-button>
+          </template>
+
           <div class="uq-title">
             <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
               <div class="uq-title-text">UQ</div>
@@ -157,10 +168,18 @@
             type: Boolean,
             value: true
           },
+          showMenuButton: {
+            type: Boolean,
+            value: true
+          },
           userLoggedIn: Boolean //set by notification from login button
         },
 
         ready: function() {
+        },
+
+        handleMenuClicked: function(event) {
+          this.fire('menu-clicked');
         }
 
       });

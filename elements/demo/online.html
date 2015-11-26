@@ -44,8 +44,10 @@
                      show-login-button="{{showLoginStatus}}"
                      show-apps-button="{{showAppsStatus}}"
                      show-buttons-title="{{showButtonTitle}}"
+                     show-menu-button="{{showMenuButton}}"
+                     on-menu-clicked="processEvent"
           ></uq-minimal-header>
-  <uql-menu menu-json = "{{menuJson}}"></uql-menu>
+  <uql-menu id="menu" menu-json="{{menuJson}}"></uql-menu>
   <div class="body">
     <div> Application title <input value="{{appTitle::input}}"> </div>
     <div> Show buttons title <input type="checkbox" checked="{{showButtonTitle::change}}"> </div>
@@ -69,6 +71,12 @@
 
 <script>
   document.cookie="UQLMockData=enabled";
+
+  Demo.processEvent = function (event) {
+    console.log('menu button was clicked, now open menu');
+    var menu = document.getElementById('menu');
+    menu.toggleMenu();
+  }
 
   Demo.appTitle = '';
   Demo.menuJson = '../../resources/uql-menu.json';
