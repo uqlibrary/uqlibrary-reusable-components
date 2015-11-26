@@ -3,9 +3,8 @@
     is: 'uql-connect-footer',
     cfmenu: {},
     properties: {
-      createLink: {
-        type: Boolean,
-        value: false
+      footerMenu: {
+        type: String
       },
       verbose: {
         type: Boolean,
