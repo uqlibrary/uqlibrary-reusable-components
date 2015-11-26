@@ -102,9 +102,9 @@
 
     <div class="menu-container">
       <div class="menu-content">
-        <paper-tabs id="topMenu" on-iron-select="_topMenuSelected">
+        <paper-tabs id="topMenu" on-tap="_topMenuSelected">
           <template is="dom-repeat" items="{{menu.items}}">
-            <paper-tab data-menu-index$="{{index}}">
+            <paper-tab data-item-index$="{{index}}">
               {{item.label}}
               <template is="dom-if" if="{{item.items}}">
                 <iron-icon icon="icons:icons:arrow-drop-down"></iron-icon>
@@ -114,7 +114,7 @@
         </paper-tabs>
 
         <template is="dom-repeat" items="{{menu.items}}">
-        <iron-dropdown id$="subMenu{{index}}" horizontal-align="left" vertical-align="top" vertical-offset="48" on-iron-overlay-closed="_subMenuClosed" data-menu-index$="{{index}}">
+        <iron-dropdown id$="subMenu{{index}}" horizontal-align="left" vertical-align="top" vertical-offset="48" on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
           <div class="dropdown-content">
 
             <paper-menu>

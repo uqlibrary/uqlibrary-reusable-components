@@ -13,7 +13,6 @@
     },
 
     isDrawerVisible: function(event) {
-      console.log(event);
       if (this.$.paperDrawerPanel.selected === 'main') {
 
         if (this.$.paperDrawerPanel.className.indexOf('hidden') < 0) {
@@ -35,8 +34,16 @@
     },
 
     menuSelected: function(event) {
-      var menuIndex = Number(event.target.getAttribute('data-item-index'));
+
+      var menuItem = event.target;
+      while(!menuItem.getAttribute('data-item-index')) {
+        menuItem = menuItem.parentElement;
+      }
+
+      var menuIndex = Number(menuItem.getAttribute('data-item-index'));
       var subMenu = this.querySelector('#subMenu' + menuIndex);
+      console.log("menu item index: " + menuIndex);
+
       subMenu.toggle();
     }
   });
