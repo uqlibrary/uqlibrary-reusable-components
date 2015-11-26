@@ -53,9 +53,7 @@
     }
 
     uql-global-links {
-      @apply(--layout-horizontal);
-      @apply(--layout-end-justified);
-      visibility: hidden;
+      display: none;
     }
 
     .actions {
@@ -71,7 +69,8 @@
       }
 
       uql-global-links {
-        visibility: visible;
+        @apply(--layout-horizontal);
+        @apply(--layout-end-justified);
       }
     }
 
