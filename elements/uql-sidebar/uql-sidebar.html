@@ -5,14 +5,17 @@
 
   <template>
     <iron-ajax auto url="{{menuJson}}" handle-as="json" on-response="_handleResponse" verbose="{{debug}}"></iron-ajax>
+
     <paper-toolbar id="topBar" role="toolbar">
       <paper-button class="toggle flex"><iron-icon icon="menu" alt="Menu"></iron-icon> Menu</paper-button>
       <paper-icon-button href="/" icon="home" alt="home" on-tap="_goLink"></paper-icon-button>
     </paper-toolbar>
+
     <paper-material elevation="1" id="main" hidden="{{hideMenu}}" class="layout vertical">
       <paper-toolbar class="toggle">
         <div class="title">{{menu.heading}}</div>
       </paper-toolbar>
+
       <paper-menu id="main-menu" attr-for-selected="data-route" selected="[[route]]" class="flex">
         <template is="dom-repeat" items="{{menu.items}}">
           <!-- load up single menu items without submenus -->
@@ -67,6 +70,7 @@
           </template>
         </template>
       </paper-menu>
+
       <paper-button class="toggle">
         <iron-icon icon="backspace"></iron-icon>
         Close

@@ -9,12 +9,17 @@
       --menu-selected-bar-color: #595959;
       --menu-text-color: #222;
       --menu-sub-text-color: #222;
-      --menu-border-color: #666;
+      --menu-border-color: #222;
 
       --paper-tabs-selection-bar-color: var(--menu-selected-bar-color);
       --paper-tabs-ink-color: var(--menu-selected-bar-color);
 
       font-family: Roboto, Noto, sans-serif;
+    }
+
+    .menu-container,
+    .menu-content {
+      background-color: var(--menu-background-color);
     }
 
     .menu-content {
@@ -87,17 +92,19 @@
       color: var(--menu-hover-background-color);
     }
 
+    paper-tab:focus /deep/ .tab-content.paper-tab {
+      font-weight: 500;
+    }
+
   </style>
 
   <template>
-    <iron-ajax auto url="{{menuJson}}" handle-as="json" on-response="_handleResponse" on-error="_handleError"
-               verbose="{{verbose}}"></iron-ajax>
 
     <div class="menu-container">
       <div class="menu-content">
-        <paper-tabs id="topMenu" on-iron-select="_topMenuSelected">
+        <paper-tabs id="topMenu" on-tap="_topMenuSelected">
           <template is="dom-repeat" items="{{menu.items}}">
-            <paper-tab data-menu-index$="{{index}}">
+            <paper-tab data-item-index$="{{index}}">
               {{item.label}}
               <template is="dom-if" if="{{item.items}}">
                 <iron-icon icon="icons:icons:arrow-drop-down"></iron-icon>
@@ -107,7 +114,7 @@
         </paper-tabs>
 
         <template is="dom-repeat" items="{{menu.items}}">
-        <iron-dropdown id$="subMenu{{index}}" horizontal-align="left" vertical-align="top" vertical-offset="48" on-iron-overlay-closed="_subMenuClosed" data-menu-index$="{{index}}">
+        <iron-dropdown id$="subMenu{{index}}" horizontal-align="left" vertical-align="top" vertical-offset="48" on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
           <div class="dropdown-content">
 
             <paper-menu>
