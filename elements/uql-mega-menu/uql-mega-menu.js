@@ -1,16 +1,20 @@
 (function () {
   Polymer({
     is: 'uql-mega-menu',
-    menu: {},
+
     subMenuWidth: 480,
+
     properties: {
-      menuJson: {
-        type: String
+
+      menu: {
+        type: Object
       },
+
       verbose: {
         type: Boolean,
         value: true
       }
+
     },
 
     _topMenuSelected: function(event) {
@@ -46,14 +50,6 @@
 
       if(deselectedTab.className.indexOf("sub-menu-opened") >= 0)
         deselectedTab.toggleClass ("sub-menu-opened");
-    },
-
-    _handleError: function (event) {
-      console.log(event);
-    },
-
-    _handleResponse: function (event) {
-      this.menu = event.detail.response;
     }
 
   })

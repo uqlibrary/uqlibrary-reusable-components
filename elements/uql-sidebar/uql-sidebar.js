@@ -30,6 +30,7 @@
     listeners: {
       'neon-animation-finish': '_onNeonAnimationFinish'
     },
+
     _handleError: function (event) {
       console.log(event);
     },

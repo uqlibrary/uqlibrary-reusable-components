@@ -2,81 +2,35 @@
 
   <link rel="import" href="../elements.html">
   <style is="custom-style">
-    :host {
-      --menu-background-color: #fff;
-      --menu-open-background-color: #f2f2f2;
-      --menu-hover-background-color: #e5e5e5;
-      --menu-selected-bar-color: #595959;
-      --menu-text-color: #222;
-      --menu-sub-text-color: #222;
-      --menu-border-color: #222;
 
-      --paper-tabs-selection-bar-color: var(--menu-selected-bar-color);
-      --paper-tabs-ink-color: var(--menu-selected-bar-color);
-
-      font-family: Roboto, Noto, sans-serif;
+    uql-drawer-panel {
+      displaly: none;
     }
 
-    paper-drawer-panel /deep/ #drawer {
-      z-index: 1000;
+    @media all and (max-width: 1047px) {
+      uql-mega-menu {
+        display: none;
+      }
+
+      uql-drawer-panel {
+        displaly: block;
+      }
     }
 
-    paper-menu a {
-      color: var(--menu-text-color);
-      cursor: auto;
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-      font-weight: normal;
-      height: 48px;
-      line-height: 24px;
-      min-height: 48px;
-      padding-bottom: 2px;
-      padding-left: 16px;
-      padding-right: 16px;
-      padding-top: 2px;
-      text-decoration: none;
-      overflow: hidden;
-    }
-
-    paper-menu a:hover {
-      background-color: var(--menu-hover-background-color);
-    }
-
-    paper-toolbar {
-      height: 66px !important;
+    .hidden {
+      display: none;
     }
 
   </style>
   <template>
-    <iron-media-query query="(min-width: 1047px)" query-matches="{{wide}}"></iron-media-query>
+    <iron-ajax auto url="{{menuJson}}"
+               handle-as="json"
+               on-response="_handleResponse"
+               on-error="_handleError"
+               verbose="{{verbose}}"></iron-ajax>
 
-    <uql-mega-menu menu-json="{{menuJson}}" hidden="{{!wide}}"></uql-mega-menu>
-
-    <paper-drawer-panel id="paperDrawerPanel" force-narrow="true">
-
-      <!-- Drawer Scroll Header Panel -->
-      <paper-scroll-header-panel drawer fixed>
-
-        <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <span class="paper-font-title">UQ Library Menu</span>
-        </paper-toolbar>
-
-        <!-- Drawer Content -->
-        <paper-menu class="list">
-          <a href="#">Home</a>
-
-          <a href="#">Users</a>
-          <a href="#">Users</a>
-          <a href="#">Users</a>
-          <a href="#">Users</a>
-
-        </paper-menu>
-      </paper-scroll-header-panel>
-    </paper-drawer-panel>
-
-    <!--<uql-sidebar menu-json="{{menuJson}}" visible="false" hidden="{{wide}}"></uql-sidebar>-->
+    <uql-mega-menu id="horizontalMenu" menu="{{menu}}"></uql-mega-menu>
+    <uql-drawer-panel id="drawerPanelMenu" menu="{{menu}}"></uql-drawer-panel>
   </template>
 
   <script src="uql-menu.js"></script>
