@@ -1,7 +1,7 @@
 (function() {
   Polymer({
     is: 'uql-connect-footer',
-    cfmenu: {},
+    menu: {},
     properties: {
       footerMenu: {
         type: String
@@ -15,8 +15,9 @@
     _handleError: function (event) {
       console.log(event);
     },
+
     _handleResponse: function (event) {
-      this.cfmenu = event.detail.response;
+      this.menu = event.detail.response;
     }
   });
 })();
