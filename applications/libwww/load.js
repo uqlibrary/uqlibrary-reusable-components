@@ -1,16 +1,17 @@
 /* global menuJson:false */
 window.addEventListener('WebComponentsReady', function() {
+  //original document
+  var firstElement = document.body.children[0];
+
   // insert header after body-tag
   var header = document.createElement('uq-minimal-header');
   header.showIAButton = true;
-
-  document.body.insertBefore(header, document.body.children[0]);
+  document.body.insertBefore(header, firstElement);
 
   // insert menu after header
   var menu = document.createElement('uql-menu');
   menu.menuJson = menuJson;
-
-  document.body.insertBefore(menu, header);
+  document.body.insertBefore(menu, firstElement);
   //header.appendChild(menu);
 
   header.addEventListener("menu-clicked", function(event) {
