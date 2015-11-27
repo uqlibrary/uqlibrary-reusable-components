@@ -25,10 +25,6 @@
       }
     },
 
-    attached: function() {
-      console.log('im ready');
-    },
-
     _handleError: function (event) {
       console.log(event);
     },
@@ -36,9 +32,6 @@
     _handleResponse: function (event) {
       var that = this;
       this.menu = event.detail.response;
-
-      console.log('data loaded');
-
 
       //set currently selected menu items
       this.menu.items.forEach(function(element, index){

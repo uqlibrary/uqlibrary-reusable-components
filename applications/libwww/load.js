@@ -9,12 +9,14 @@ window.addEventListener('WebComponentsReady', function() {
   // insert menu after header
   var menu = document.createElement('uql-menu');
   menu.menuJson = menuJson;
-  header.appendChild(menu);
 
-  header.addEventListener("menuClicked", function(event) {
+  document.body.insertBefore(menu, header);
+  //header.appendChild(menu);
+
+  header.addEventListener("menu-clicked", function(event) {
     menu.toggleMenu();
   });
-  
+
   // insert footer before body-tag
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
