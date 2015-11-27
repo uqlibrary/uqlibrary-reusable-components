@@ -50,25 +50,25 @@
       @apply(--layout-horizontal);
     }
 
-    .dropdown-content paper-menu {
+    .dropdown-content .sub-menu{
       @apply(--layout-flex);
     }
 
-    paper-menu.uql-submenu-right {
+    .sub-menu.uql-submenu-right {
       border-left-width: thin;
       border-left-style: solid;
       border-color: var(--menu-border-color);
     }
 
-    paper-menu {
+    .sub-menu {
       background-color: var(--menu-open-background-color);
       margin: 0px;
       padding: 0px;
     }
 
-    paper-menu a {
+    .sub-menu a {
       color: var(--menu-text-color);
-      cursor: auto;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       font-size: 14px;
@@ -84,7 +84,7 @@
       overflow: hidden;
     }
 
-    paper-menu a:hover {
+    .sub-menu a:hover {
       background-color: var(--menu-hover-background-color);
     }
 
@@ -118,7 +118,8 @@
                        on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
           <div class="dropdown-content">
 
-            <paper-menu>
+            <!--<paper-menu>-->
+            <div class="sub-menu">
               <template is="dom-repeat" items="{{item.items}}" as="subItem">
                 <template is="dom-if" if="{{!subItem.right}}">
                   <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}">
@@ -127,9 +128,11 @@
                   </a>
                 </template>
               </template>
-            </paper-menu>
+            </div>
+            <!--</paper-menu>-->
 
-            <paper-menu class="uql-submenu-right">
+            <!--<paper-menu class="uql-submenu-right">-->
+            <div class="sub-menu uql-submenu-right">
               <template is="dom-repeat" items="{{item.items}}" as="subItem">
                 <template is="dom-if" if="{{subItem.right}}">
                   <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}">
@@ -138,7 +141,8 @@
                   </a>
                 </template>
               </template>
-            </paper-menu>
+            </div>
+            <!--</paper-menu>-->
 
           </div>
         </iron-dropdown>
