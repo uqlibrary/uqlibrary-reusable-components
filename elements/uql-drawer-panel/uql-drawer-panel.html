@@ -14,21 +14,17 @@
       font-family: Roboto, Noto, sans-serif;
     }
 
-    paper-drawer-panel {
-      height: calc(100%);
-    }
-
     paper-drawer-panel /deep/ #drawer {
       z-index: 1000;
     }
 
-    paper-menu a {
+    .menu a {
       @apply(--layout-flex);
       @apply(--layout-horizontal);
       @apply(--layout-center);
 
       color: var(--menu-text-color);
-      cursor: auto;
+      cursor: pointer;
       font-size: 14px;
       font-weight: normal;
       height: 48px;
@@ -44,7 +40,7 @@
       @apply(--layout-flex);
     }
 
-    paper-menu a:hover {
+    .menu a:hover {
       background-color: var(--menu-hover-background-color);
     }
 
@@ -56,11 +52,11 @@
       display: none;
     }
 
-    paper-menu.sub-menu a {
+    .sub-menu a {
       padding-left: 30px;
     }
 
-    paper-menu.menu {
+    .menu {
       padding-top: 66px;
     }
 
@@ -68,7 +64,7 @@
       border-top: 1px solid var(--menu-open-background-color);
     }
 
-    paper-menu.menu {
+    .menu {
       border-bottom: 1px solid var(--menu-open-background-color);
     }
 
@@ -86,7 +82,7 @@
         </paper-toolbar>
 
         <!-- Drawer Content -->
-        <paper-menu class="menu">
+        <div class="menu">
 
           <template is="dom-repeat" items="{{menu.items}}">
 
@@ -104,16 +100,16 @@
 
               <!-- render sub-menu -->
               <iron-collapse id$="subMenu{{index}}">
-                <paper-menu class="sub-menu">
+                <div class="sub-menu">
                   <template is="dom-repeat" items="{{item.items}}" as="subItem">
                     <a href="{{subItem.href}}" class$="{{subItem.class}}">{{subItem.label}}</a>
                   </template>
-                </paper-menu>
+                </div>
               </iron-collapse>
             </template>
 
           </template>
-        </paper-menu>
+        </div>
 
       </paper-scroll-header-panel>
       <paper-scroll-header-panel main>
