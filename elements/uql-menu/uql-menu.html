@@ -29,8 +29,8 @@
                on-error="_handleError"
                verbose="{{verbose}}"></iron-ajax>
 
-    <uql-mega-menu id="horizontalMenu" menu="{{menu}}"></uql-mega-menu>
-    <uql-drawer-panel id="drawerPanelMenu" menu="{{menu}}"></uql-drawer-panel>
+    <uql-mega-menu id="horizontalMenu" menu="{{menu}}" selected-menu-item-index="{{selectedMenuItemIndex}}" selected-sub-menu-item-index="{{selectedSubMenuItemIndex}}"></uql-mega-menu>
+    <uql-drawer-panel id="drawerPanelMenu" menu="{{menu}}" selected-menu-item-index="{{selectedMenuItemIndex}}" selected-sub-menu-item-index="{{selectedSubMenuItemIndex}}"></uql-drawer-panel>
   </template>
 
   <script src="uql-menu.js"></script>

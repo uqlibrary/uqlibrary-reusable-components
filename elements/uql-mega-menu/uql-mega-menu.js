@@ -13,8 +13,24 @@
       verbose: {
         type: Boolean,
         value: true
-      }
+      },
 
+      selectedMenuItemIndex: {
+        type: Number,
+        observer: '_selectedMenuChanged'
+
+      }
+    },
+
+    _selectedMenuChanged: function(newValue, oldValue) {
+      console.log(newValue);
+      var that = this;
+
+      //temp fix for FFox/Safari, menu item is selected before all elemnets are drawn on the screen
+      //making selection underline misplaced
+      window.setTimeout(function() {
+        that.$.topMenu.select(newValue);
+      }, 1000);
     },
 
     _topMenuSelected: function(event) {

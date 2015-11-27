@@ -36,7 +36,7 @@
       overflow: hidden;
     }
 
-    .menuItem .label {
+    .menu-item .label {
       @apply(--layout-flex);
     }
 
@@ -60,7 +60,7 @@
       padding-top: 66px;
     }
 
-    .menuItem {
+    .menu-item {
       border-top: 1px solid var(--menu-open-background-color);
     }
 
@@ -87,19 +87,22 @@
           <template is="dom-repeat" items="{{menu.items}}">
 
             <template is="dom-if" if="{{!item.items}}">
-              <a class="menuItem" href="{{item.href}}">{{item.label}}</a>
+              <!-- render top level menu item without sub menu -->
+              <a href="{{item.href}}" class$="menu-item {{item.class}}">{{item.label}}</a>
             </template>
 
             <template is="dom-if" if="{{item.items}}">
-              <a class="menuItem" href="#" data-item-index$="{{index}}" on-tap="menuSelected">
+              <!-- render top level menu item with sub menu -->
+              <a href="#" data-item-index$="{{index}}" on-tap="menuSelected" class$="menu-item {{item.class}}">
                 <div class="label">{{item.label}}</div>
                 <iron-icon class="icon" icon="icons:icons:arrow-drop-down"></iron-icon>
               </a>
 
+              <!-- render sub-menu -->
               <iron-collapse id$="subMenu{{index}}">
                 <paper-menu class="sub-menu">
                   <template is="dom-repeat" items="{{item.items}}" as="subItem">
-                    <a href="{{subItem.href}}">{{subItem.label}}</a>
+                    <a href="{{subItem.href}}" class$="{{subItem.class}}">{{subItem.label}}</a>
                   </template>
                 </paper-menu>
               </iron-collapse>

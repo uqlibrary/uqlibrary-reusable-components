@@ -257,7 +257,7 @@
         },
         {
           "label": "Events",
-          "href": "/item2",
+          "href": "/item55",
           "subtext": "Item subtext"
         },
         {
@@ -312,7 +312,7 @@
         {
           "label": "Contacting us & feedback",
           "subtext": "Item subtext",
-          "href": "/item1",
+          "href": "reusable-components/elements/demo/minimal-demo.html",
           "right": "right"
         }
       ]
