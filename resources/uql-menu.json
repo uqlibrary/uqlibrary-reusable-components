@@ -351,14 +351,8 @@
       ]
     },
     {
-      "label": "Contact",
-      "href": "",
-      "items": [
-        {
-          "label": "FAQs",
-          "href": "/ask-us"
-        }
-      ]
+      "label": "Contact us",
+      "href": "/about-us/contact-us"
     }
   ]
 }
