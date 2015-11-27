@@ -11,6 +11,10 @@ window.addEventListener('WebComponentsReady', function() {
   menu.menuJson = menuJson;
   header.appendChild(menu);
 
+  header.addEventListener("menuClicked", function(event) {
+    menu.toggleMenu();
+  });
+  
   // insert footer before body-tag
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
