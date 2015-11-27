@@ -342,17 +342,12 @@
           "label": "Awards & competitions",
           "href": "/about-us/awards-and-competitions",
           "right": "right"
-        },
-        {
-          "label": "Contacting us & feedback",
-          "href": "/about-us/contact-us-and-feedback",
-          "right": "right"
         }
       ]
     },
     {
       "label": "Contact us",
-      "href": "/about-us/contact-us"
+      "href": "/contact-us"
     }
   ]
 }
