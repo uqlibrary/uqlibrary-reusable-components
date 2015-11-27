@@ -12,8 +12,8 @@ window.addEventListener('WebComponentsReady', function() {
   // insert menu after header
   var menu = document.createElement('uql-menu');
   menu.menuJson = menuJson;
-  document.body.insertBefore(menu, firstElement);
-  //header.appendChild(menu);
+  //document.body.insertBefore(menu, firstElement);
+  header.appendChild(menu);
 
   header.addEventListener("menu-clicked", function(event) {
     menu.toggleMenu();

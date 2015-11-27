@@ -1,16 +1,4 @@
 uq-minimal-header {
   overflow: visible !important; }
 
-.menu-container {
-  margin-top: 100px; }
-
-body.ia-enabled.admin-menu .menu-container {
-  margin-top: 120px; }
-
-uql-menu /deep/ uql-mega-menu .menu-container {
-  margin-top: 100px; }
-
-body.ia-enabled.admin-menu uql-menu /deep/ uql-mega-menu .menu-container {
-  margin-top: 120px; }
-
 /*# sourceMappingURL=custom-styles.css.map */

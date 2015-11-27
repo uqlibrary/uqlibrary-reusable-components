@@ -10,6 +10,7 @@
     },
 
     ready: function() {
+      this.$.paperDrawerPanel.setAttribute('style', 'height: ' + window.innerHeight + 'px');
     },
 
     isDrawerVisible: function(event) {
