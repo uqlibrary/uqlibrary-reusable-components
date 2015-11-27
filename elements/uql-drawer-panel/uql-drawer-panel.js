@@ -10,7 +10,15 @@
     },
 
     ready: function() {
-      this.$.paperDrawerPanel.setAttribute('style', 'height: ' + window.innerHeight + 'px');
+
+      var D = document;
+      var height = Math.max(
+        D.body.scrollHeight, D.documentElement.scrollHeight,
+        D.body.offsetHeight, D.documentElement.offsetHeight,
+        D.body.clientHeight, D.documentElement.clientHeight, window.innerHeight
+      );
+
+      this.$.paperDrawerPanel.setAttribute('style', 'height: ' + height + 'px');
     },
 
     isDrawerVisible: function(event) {
