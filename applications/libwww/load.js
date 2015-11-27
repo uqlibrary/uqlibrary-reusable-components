@@ -1,5 +1,6 @@
 /* global menuJson:false */
 window.addEventListener('WebComponentsReady', function() {
+  
   //original document
   var firstElement = document.body.children[0];
 
