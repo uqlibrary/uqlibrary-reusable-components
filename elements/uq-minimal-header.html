@@ -74,6 +74,13 @@
       }
     }
 
+    @media all and (max-width: 700px) {
+      uql-ia-button,
+      uql-login-button.true {
+        display: none;
+      }
+    }
+
   </style>
 
   <template>
@@ -123,7 +130,7 @@
             </template>
 
             <template is="dom-if" if="{{showLoginButton}}">
-              <uql-login-button show-title="{{showButtonsTitle}}" is-logged-in="{{userLoggedIn}}"></uql-login-button>
+              <uql-login-button show-title="{{showButtonsTitle}}" class$="{{userLoggedIn}}" is-logged-in="{{userLoggedIn}}"></uql-login-button>
             </template>
           </div>
         </div>
