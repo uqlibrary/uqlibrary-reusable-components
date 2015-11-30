@@ -2,7 +2,7 @@
   "heading": "UQ Library menu",
   "items": [
     {
-      "label": "Library Services",
+      "label": "Library services",
       "href": "",
       "items": [
         {
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "label": "Borrowing & Requesting",
+      "label": "Borrowing & requesting",
       "href": "",
       "items": [
         {
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "label": "Locations & Hours",
+      "label": "Locations & hours",
       "href": "",
       "items": [
         {
