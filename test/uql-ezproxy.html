@@ -70,6 +70,20 @@
         done();
       });
     });
+
+    test('Test DOI URL entry', function (done) {
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
+      flush(function () {
+        var url = testObj.querySelector('#url');
+
+        // Test urls including the proxy domain
+        url.value = '10.3390/insects3020402';
+        assert.isTrue(testObj.checkURL());
+
+        done();
+      });
+    });
   });
 </script>
 </body>

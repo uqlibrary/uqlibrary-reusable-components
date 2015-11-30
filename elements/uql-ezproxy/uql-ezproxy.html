@@ -5,16 +5,24 @@
 
   <template>
     <paper-card elevation="1">
-      <h2>UQ Library - EzProxy Access</h2>
-
-      <div class="horizontal layout">
+      <div hidden$="{{!hide}}" class="horizontal layout">
         <paper-input-container id="urlContainer" label="URL Address" class="flex">
-          <input is="iron-input" id="url" name="url" type="URL" placeholder="http://example.com" required>
+          <input is="iron-input" id="url" name="url" type="URL" placeholder="DOI or URL" required>
           <paper-input-error id="errorMsg"></paper-input-error>
         </paper-input-container>
-        <paper-button id="proxie" on-click="_submit">Go</paper-button>
+        <paper-button on-click="_submit">{{label}}</paper-button>
+      </div>
+      <div hidden$="{{hide}}" class="link vertical layout">
+        <textarea class$="{{result}}" id="target" readonly>{{target}}</textarea>
+        <div class="horizontal layout hidden">
+          <paper-button on-click="goProxie">Test link</paper-button>
+          <paper-button on-click="grabUrl">Copy link</paper-button>
+          <div class="flex"></div>
+          <paper-button on-click="panelToggle">Create new link</paper-button>
+        </div>
       </div>
     </paper-card>
+    <paper-toast id="notification">{{msg}}</paper-toast>
   </template>
   <script src="uql-ezproxy.js"></script>
 </dom-module>
