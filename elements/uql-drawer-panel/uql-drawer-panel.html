@@ -14,6 +14,10 @@
       font-family: Roboto, Noto, sans-serif;
     }
 
+    .paper-font-title {
+      font-size: 20px;
+    }
+
     paper-drawer-panel /deep/ #drawer {
       z-index: 1000;
     }
@@ -42,6 +46,11 @@
 
     .menu a:hover {
       background-color: var(--menu-hover-background-color);
+    }
+
+    .menu a.iron-selected,
+    .sub-menu a.iron-selected {
+      font-weight: bold !important;
     }
 
     paper-toolbar {
