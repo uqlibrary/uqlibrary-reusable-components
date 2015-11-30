@@ -292,7 +292,7 @@
       "items": [
         {
           "label": "News",
-          "href": "/item1"
+          "href": "/about-us/news"
         },
         {
           "label": "Events",
@@ -304,7 +304,7 @@
         },
         {
           "label": "Membership",
-          "href": "/item3"
+          "href": "/about-us/membership"
         },
         {
           "label": "History of the Library",
@@ -316,7 +316,7 @@
         },
         {
           "label": "Library tours",
-          "href": "/item3"
+          "href": "/about-us/library-tours"
         },
         {
           "label": "Organisational structure",
