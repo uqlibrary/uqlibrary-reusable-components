@@ -44,16 +44,18 @@
             debounce-duration="300"></byutv-jsonp>
 
     <paper-button class="button-inverse" on-tap="openChat" id="chatButton">
-      <template is="dom-if" if="{{!isChatOnline}}">
-        <iron-icon icon="notification:sms-failed" aria-label="UQ Library chat is offline"></iron-icon>
-      </template>
+      <iron-icon icon="communication:forum" aria-label="UQ Library chat"></iron-icon>
 
       <template is="dom-if" if="{{isChatOnline}}">
-        <iron-icon icon="communication:chat-bubble" aria-label="UQ Library chat is online"></iron-icon>
+        <template is="dom-if" if="{{showTitle}}">
+          <div class="button-title">{{buttonTitle}}</div>
+        </template>
       </template>
 
-      <template is="dom-if" if="{{showTitle}}">
-        <div class="button-title">{{buttonTitle}}</div>
+      <template is="dom-if" if="{{!isChatOnline}}">
+        <template is="dom-if" if="{{showTitle}}">
+          <div class="button-title">{{buttonTitleOffline}}</div>
+        </template>
       </template>
 
     </paper-button>
