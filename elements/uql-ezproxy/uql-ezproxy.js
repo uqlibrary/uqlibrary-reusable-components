@@ -33,7 +33,6 @@ Polymer({
   showUrl: function () {
     if (this.checkURL()) {
       this.panelToggle();
-      this.hide = false;
     }
   },
   goProxie: function () {
@@ -44,8 +43,11 @@ Polymer({
   },
   checkURL: function () {
     var valid = false;
-    var dest = this.$.url.value;
     var doi = /\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
+
+    var dest = this.$.url.value;
+    dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
+    dest = dest.replace('http://dx.doi.org/', '');
 
     if (dest.length <= 0) {
       this.$.errorMsg.textContent = "Please enter a URL";
@@ -76,10 +78,14 @@ Polymer({
   },
   panelToggle: function() {
     this.hide=!this.hide;
+    this.msg = "";
     if(this.hide) {
       this.$.url.value = "";
+      this.target = "";
       this.$.urlContainer.invalid = false;
       this.$.url.focus();
+    } else {
+      this.$.target.focus();
     }
   },
   grabUrl: function() {
@@ -87,11 +93,15 @@ Polymer({
 
     try {
       var successful = document.execCommand('copy');
-      this.msg = 'Copying text command was ' + (successful ? 'copied' : 'error');
+      this.msg = (successful ? 'URL copied successfully' : 'Unable to copy URL');
     } catch (err) {
-      this.msg = 'Oops, unable to copy.';
+      this.msg = 'Unable to copy URL';
     }
-    this.$.notification.show();
+  },
+  enterKey: function (e) {
+    if (e.keyCode === 13) {
+      this._submit();
+    }
   },
 /*
   The ready callback is called when an element’s local DOM is ready.
