@@ -86,14 +86,21 @@
       margin: 10px;
     }
 
+    .separator {
+      display: none;
+    }
+
+
     @media all and (max-width: 767px) {
-      .title {
-        text-align: center;
+
+      .navigation,
+      .contacts,
+      .buttons {
+        width: 80%;
       }
 
-      .sub-footer-content {
-        max-width: 300px;
-        margin: 0 auto;
+      .title {
+        text-align: center;
       }
 
       .links {
@@ -101,10 +108,21 @@
         @apply(--layout-center);
       }
 
-      .navigation,
-      .contacts,
-      .buttons {
-        width: 99%;
+      .separator {
+        display: inline-block;
+      }
+
+      ul {
+        width: 100%;
+      }
+
+      ul, li {
+        display: inline-block;
+        text-align: center;
+      }
+
+      li.separator:last-of-type {
+        display: none;
       }
     }
 
@@ -124,16 +142,18 @@
             <ul>
               <template is="dom-repeat" items="{{menu.items}}">
                 <li><a href="{{item.href}}">{{item.label}}</a></li>
+                <li class="separator"> | </li>
               </template>
             </ul>
           </template>
         </div>
 
         <div class="contacts">
-
           <ul>
-            <li><a href="">Contact Us</a></li>
+            <li><a href="">Contact us</a></li>
+            <li class="separator"> | </li>
             <li><a href="">News</a></li>
+            <li class="separator"> | </li>
             <li><a href="">Site Map</a></li>
           </ul>
 
@@ -153,7 +173,6 @@
 
         <div class="buttons">
           <paper-button class="button-action" aria-label="Join Friends of the Library">Join Friends of the Library</paper-button>
-
           <paper-button class="button-action" aria-label="Give to the Library">Give to the Library</paper-button>
         </div>
         </div>
