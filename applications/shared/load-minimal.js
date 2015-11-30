@@ -1,8 +1,5 @@
 window.addEventListener('WebComponentsReady', function(e) {
 
-  // imports are loaded and elements have been registered
-  console.log('Components are ready');
-
   // insert header after body-tag
   var header = document.createElement('uq-minimal-header');
   header.showLoginButton = false;

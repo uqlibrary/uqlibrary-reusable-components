@@ -8,6 +8,7 @@ window.addEventListener('WebComponentsReady', function() {
   var header = document.createElement('uq-minimal-header');
   header.showIAButton = true;
   header.showMenuButton = true;
+  header.showSearchButton = true;
   document.body.insertBefore(header, firstElement);
 
   // insert menu after header

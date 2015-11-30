@@ -109,6 +109,7 @@
             <template is="dom-if" if="{{showChatButton}}">
               <uql-chat-button show-title="{{showButtonsTitle}}"
                                button-title="{{chatConfiguration.buttonTitle}}"
+                               button-title-offline="{{chatConfiguration.buttonTitleOffline}}"
                                chat-online-text="{{chatConfiguration.chatOnlineText}}"
                                chat-offline-text="{{chatConfiguration.chatOfflineText}}"
                                offline-url="{{chatConfiguration.offlineUrl}}">
@@ -143,7 +144,8 @@
           chatConfiguration: {
             type: Object,
             value: {
-              buttonTitle: "Ask Us",
+              buttonTitle: "Chat",
+              buttonTitleOffline: "Ask",
               chatOnlineText: "Chat with us now!",
               chatOfflineText: "Click here for help.",
               offlineUrl: "http://answers.library.uq.edu.au"
@@ -155,7 +157,7 @@
           },
           showSearchButton: {
             type: Boolean,
-            value: true
+            value: false
           },
           showIAButton: {
             type: Boolean,
