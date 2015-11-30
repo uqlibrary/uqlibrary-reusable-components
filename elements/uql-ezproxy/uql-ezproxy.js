@@ -71,8 +71,8 @@ Polymer({
         this.target += 'http://dx.doi.org/';
       }
       this.target += dest;
-      return true;
     }
+    return valid;
   },
   panelToggle: function() {
     this.hide=!this.hide;
