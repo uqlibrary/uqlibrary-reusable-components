@@ -8,6 +8,7 @@
       --sub-footer-text-color: #333;
       --text-color-inverse: #fff;
       --button-action-color: #2377CB;
+      --social-button-hover-background-color: #999;
 
       @apply(--layout-flex);
 
@@ -80,6 +81,10 @@
       color: var(--text-color-inverse);
       font-size: 14px;
       text-transform: uppercase;
+    }
+
+    .button-social:hover {
+      background: var(--social-button-hover-background-color);
     }
 
     paper-button {
@@ -158,6 +163,7 @@
           </ul>
 
           <div class="social">
+
           <paper-button class="button-inverse" id="youTubeButton">
             <iron-icon class="big" src="../resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube"></iron-icon>
           </paper-button>
@@ -165,6 +171,7 @@
           <paper-button class="button-inverse" id="youTubeButton">
             <iron-icon class="big" src="../resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook"  title="Facebook"></iron-icon>
           </paper-button>
+
           <paper-button class="button-inverse" id="youTubeButton">
             <iron-icon class="big" src="../resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter"  title="Twitter"></iron-icon>
           </paper-button>
