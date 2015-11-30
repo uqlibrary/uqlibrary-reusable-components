@@ -33,7 +33,7 @@ paper-button {
   paper-button {
     &.button-inverse {
       padding: 0.6em 0.47em;
-      max-width: 5px;
+      min-width: 5px;
     }
     .button-title {
       //padding: 6px;
