@@ -98,18 +98,12 @@
         <div class="header-actions">
           <uql-global-links></uql-global-links>
           <div class="actions">
-            <template is="dom-if" if="{{showSearchButton}}">
-              <uql-search-button show-title="{{showButtonsTitle}}"></uql-search-button>
-            </template>
-            
             <template is="dom-if" if="{{showIAButton}}">
               <uql-ia-button show-title="{{showButtonsTitle}}"></uql-ia-button>
             </template>
 
-            <template is="dom-if" if="{{showAppsButton}}">
-              <template is="dom-if" if="{{userLoggedIn}}">
-                <uql-apps-button show-title="{{showButtonsTitle}}"></uql-apps-button>
-              </template>
+            <template is="dom-if" if="{{showSearchButton}}">
+              <uql-search-button show-title="{{showButtonsTitle}}"></uql-search-button>
             </template>
 
             <template is="dom-if" if="{{showChatButton}}">
@@ -119,6 +113,12 @@
                                chat-offline-text="{{chatConfiguration.chatOfflineText}}"
                                offline-url="{{chatConfiguration.offlineUrl}}">
               </uql-chat-button>
+            </template>
+
+            <template is="dom-if" if="{{showAppsButton}}">
+              <template is="dom-if" if="{{userLoggedIn}}">
+                <uql-apps-button show-title="{{showButtonsTitle}}"></uql-apps-button>
+              </template>
             </template>
 
             <template is="dom-if" if="{{showLoginButton}}">

@@ -8,7 +8,7 @@
       },
       buttonTitle: {
         type: String,
-        value: "This Site"
+        value: "Site Search"
       },
       redirectUrl: {
         type: String,

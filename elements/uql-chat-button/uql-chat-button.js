@@ -20,7 +20,12 @@
 
       buttonTitle: {
         type: String,
-        value: "Ask Us"
+        value: "Chat"
+      },
+
+      buttonTitleOffline: {
+        type: String,
+        value: "Ask"
       },
 
       chatOnlineText: {
