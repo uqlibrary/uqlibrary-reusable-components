@@ -14,8 +14,9 @@ paper-button {
     padding: 8px; }
 
 @media all and (max-width: 700px) {
+  paper-button.button-inverse {
+    padding: 0.6em 0.47em; }
   paper-button .button-title {
-    padding: 8px;
     display: none; } }
 uql-menu,
 .header-container,

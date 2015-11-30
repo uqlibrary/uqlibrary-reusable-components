@@ -31,8 +31,11 @@ paper-button {
 
 @media all and (max-width: 700px) {
   paper-button {
+    &.button-inverse {
+      padding: 0.6em 0.47em;
+    }
     .button-title {
-      padding: 8px;
+      //padding: 6px;
       //display: inline;
       display: none;
     }
