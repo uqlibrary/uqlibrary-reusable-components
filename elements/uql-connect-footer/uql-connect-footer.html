@@ -15,6 +15,8 @@
       font-size: 14px;
       color: var(--sub-footer-text-color);
       font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-weight:300;
+      line-height:25px;
     }
 
     a {
@@ -34,15 +36,15 @@
     .sub-footer-content {
       margin: 0 auto;
       max-width: 1140px;
-      width: 100%;
-      padding-bottom: 20px;
+      padding: 20px;
 
+      @apply(--layout-flex);
       @apply(--layout-vertical);
     }
 
     .links {
       @apply(--layout-horizontal);
-      @apply(--layout-around-justified);
+      @apply(--layout-justified);
       @apply(--layout-wrap);
     }
 
@@ -53,12 +55,32 @@
     }
 
     .social {
-      text-align: center;
+      margin:50px 0 0 -12px;
+    }
+
+    .social paper-button {
+      margin: 0;
+    }
+
+    .social iron-icon.iron-icon-0 {
+      width:36px;
+      height:36px;
     }
 
     .buttons {
       @apply(--layout-vertical);
-      @apply(--layout-around-justified);
+      @apply(--layout-center-justified);
+    }
+
+    .buttons paper-button {
+      margin: 0 0 10px;
+      text-transform: none;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .buttons paper-button:hover {
+      background-color: #005ea5;
     }
 
     ul, li {
@@ -71,8 +93,7 @@
 
     .title {
       font-size: 16px;
-      padding-left: 20px;
-      font-weight: bold;
+      font-weight: 500;
       line-height: 30px;
     }
 
@@ -80,15 +101,10 @@
       background-color: var(--button-action-color);
       color: var(--text-color-inverse);
       font-size: 14px;
-      text-transform: uppercase;
     }
 
     .button-social:hover {
       background: var(--social-button-hover-background-color);
-    }
-
-    paper-button {
-      margin: 10px;
     }
 
     .separator {
@@ -104,8 +120,12 @@
         width: 80%;
       }
 
-      .title {
+      .title, .social {
         text-align: center;
+      }
+
+      .social {
+        margin:30px 0;
       }
 
       .links {
@@ -142,46 +162,52 @@
       <div class="sub-footer-content">
         <div class="title">Library Home</div>
         <div class="links">
-        <div class="navigation">
-          <template is="dom-if" if="{{menu.items}}">
-            <ul>
-              <template is="dom-repeat" items="{{menu.items}}">
-                <li><a href="{{item.href}}">{{item.label}}</a></li>
-                <li class="separator"> | </li>
-              </template>
-            </ul>
-          </template>
-        </div>
-
-        <div class="contacts">
-          <ul>
-            <li><a href="">Contact us</a></li>
-            <li class="separator"> | </li>
-            <li><a href="">News</a></li>
-            <li class="separator"> | </li>
-            <li><a href="">Site Map</a></li>
-          </ul>
-
-          <div class="social">
-
-          <paper-button class="button-social" id="youTubeButton">
-            <iron-icon class="big" src="../resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube"></iron-icon>
-          </paper-button>
-
-          <paper-button class="button-social" id="youTubeButton">
-            <iron-icon class="big" src="../resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook"  title="Facebook"></iron-icon>
-          </paper-button>
-
-          <paper-button class="button-social" id="youTubeButton">
-            <iron-icon class="big" src="../resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter"  title="Twitter"></iron-icon>
-          </paper-button>
+          <div class="navigation">
+            <template is="dom-if" if="{{menu.items}}">
+              <ul>
+                <template is="dom-repeat" items="{{menu.items}}">
+                  <li><a href="{{mainDomain}}{{item.href}}">{{item.label}}</a></li>
+                  <li class="separator"> | </li>
+                </template>
+              </ul>
+            </template>
           </div>
-        </div>
 
-        <div class="buttons">
-          <paper-button class="button-action" aria-label="Join Friends of the Library">Join Friends of the Library</paper-button>
-          <paper-button class="button-action" aria-label="Give to the Library">Give to the Library</paper-button>
-        </div>
+          <div class="contacts">
+            <ul>
+              <li><a href="{{mainDomain}}/feedback/add">Feedback</a></li>
+              <li class="separator"> | </li>
+              <li><a href="{{mainDomain}}/blog">News</a></li>
+              <li class="separator"> | </li>
+              <li><a href="{{mainDomain}}">Site Map</a></li>
+            </ul>
+
+            <div class="social">
+
+            <paper-button class="button-social">
+              <a href="https://www.youtube.com/user/uqlibrary" target="_blank">
+                <iron-icon class="big" src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube"></iron-icon>
+              </a>
+            </paper-button>
+
+            <paper-button class="button-social">
+              <a href="https://www.facebook.com/uniofqldlibrary" target="_blank">
+                <iron-icon class="big" src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook"  title="Facebook"></iron-icon>
+              </a>
+            </paper-button>
+
+            <paper-button class="button-social">
+              <a href="https://twitter.com/uqlibrary/" target="_blank">
+                <iron-icon class="big" src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter"  title="Twitter"></iron-icon>
+              </a>
+            </paper-button>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <paper-button id="joinFriend" class="button-action" aria-label="Join Friends of the Library" raised>Join friends of the library</paper-button>
+            <paper-button id="giveToLibrary" class="button-action" aria-label="Give to the Library" raised>Give to the library</paper-button>
+          </div>
         </div>
       </div>
     </div>

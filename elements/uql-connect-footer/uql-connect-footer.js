@@ -3,6 +3,10 @@
     is: 'uql-connect-footer',
     menu: {},
     properties: {
+      mainDomain: {
+        type: String,
+        value: ""
+      },
       footerMenu: {
         type: String
       },
@@ -11,7 +15,6 @@
         value: true
       }
     },
-
     _handleError: function (event) {
       console.log(event);
     },
