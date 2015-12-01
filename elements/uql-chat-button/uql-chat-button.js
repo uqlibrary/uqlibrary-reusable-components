@@ -93,10 +93,15 @@
       } else {
         var url = this.buildChatUrl(this.isChatOnline);
 
-        window.open(url,
-          'libchat',
-          'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + this.chatOptions.width + ', ' +
-          'height=' + this.chatOptions.height);
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          window.open(url);
+        } else {
+          window.open(url,
+            'libchat',
+            'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + this.chatOptions.width + ', ' +
+            'height=' + this.chatOptions.height);
+        }
+
       }
     },
 

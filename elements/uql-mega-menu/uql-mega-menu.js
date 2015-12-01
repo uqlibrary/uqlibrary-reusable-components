@@ -7,7 +7,8 @@
     properties: {
 
       menu: {
-        type: Object
+        type: Object,
+        observer: '_menuChanged'
       },
 
       verbose: {
@@ -23,7 +24,6 @@
     },
 
     _selectedMenuChanged: function(newValue, oldValue) {
-      console.log(newValue);
       var that = this;
 
       //temp fix for FFox/Safari, menu item is selected before all elemnets are drawn on the screen
@@ -31,6 +31,17 @@
       window.setTimeout(function() {
         that.$.topMenu.select(newValue);
       }, 1000);
+    },
+
+    _closeDropdown: function(event) {
+      var menuItem = event.target;
+      while(!menuItem.getAttribute('data-item-index')) {
+        menuItem = menuItem.parentElement;
+      }
+
+      var tabIndex = Number(menuItem.getAttribute('data-item-index'));
+      var subMenu = this.querySelector('#subMenu' + tabIndex);
+      subMenu.close();
     },
 
     _topMenuSelected: function(event) {
@@ -49,7 +60,6 @@
         subMenu.positionTarget = menuItem;
         menuItem.toggleClass("sub-menu-opened");
 
-
         //adjust sub-menu display for narrow screens
         var screenWidth = window.innerWidth || document.getElementsByTagName('body')[0].clientWidth;
         var tabCoords = menuItem.getBoundingClientRect();
@@ -64,7 +74,6 @@
       }
     },
 
-
     _subMenuClosed: function(event) {
       //reset styles
       var menuIndex = Number(event.target.getAttribute('data-item-index'));
@@ -72,6 +81,24 @@
 
       if(deselectedTab.className.indexOf("sub-menu-opened") >= 0)
         deselectedTab.toggleClass("sub-menu-opened");
+    },
+
+    _menuChanged: function(newValue, oldValue) {
+      if (newValue !== null) {
+        newValue.items.forEach(function(element, index){
+
+          element.hasRight = false;
+
+          if (element.items) {
+            element.items.forEach(function(subItem, subIndex) {
+              if (subItem.right) {
+                element.hasRight = true;
+              }
+            });
+          }
+
+        });
+      }
     }
 
   })

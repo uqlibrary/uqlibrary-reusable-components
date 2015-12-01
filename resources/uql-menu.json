@@ -225,9 +225,27 @@
           "right": "right"
         },
         {
+          "label": "Lost or stolen property",
+          "href": "/locations-hours/lost-or-stolen-property",
+          "right": "right"
+        },
+        {
+          "label": "Using and sharing library spaces",
+          "href": "/locations-hours/using-and-sharing-your-library-spaces",
+          "right": "right"
+        },
+        {
+          "label": "Lockers",
+          "href": "/locations-hours/lockers",
+          "right": "right"
+        },
+        {
+          "label": "Architecture and Music",
+          "href": "/locations-hours/architecture-music-library"
+        },
+        {
           "label": "Biological Sciences",
           "href": "/locations-hours/biological-sciences-library"
-          
         },
         {
           "label": "D.H. Engineering & Sciences",
@@ -253,6 +271,10 @@
           "label": "Herston Health Sciences",
           "href": "/locations-hours/herston-health-sciences-library"
           
+        },
+        {
+          "label": "USQ Ipswich",
+          "href": "/locations-hours/usq-ipswich-library"
         },
         {
           "label": "Law",

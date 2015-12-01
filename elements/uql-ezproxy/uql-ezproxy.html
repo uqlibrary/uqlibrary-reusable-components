@@ -1,16 +1,120 @@
 <dom-module id="uql-ezproxy">
   <link rel="import" href="../elements.html">
   <link rel="import" type="css" href="../../styles/elements-styles.css">
-  <link rel="import" type="css" href="uql-ezproxy.css">
+  <style>
+    :host {
+      margin: 150px auto 0px;
+      width: 800px;
+      max-width: 90%;
+      display: block;
+    }
+
+    #target {
+      margin:0;
+      padding:26px 20px 0;
+
+      width: -moz-calc(100% - 40px);
+      width: -webkit-calc(100% - 40px);
+      width: calc(100% - 40px);
+
+      border: 1px solid #ccc;
+      overflow: auto;
+      outline: none;
+
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+
+      -ms-word-break: break-all;
+      word-break: break-all;
+      word-break: break-word;
+
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+
+      font-size:14px;
+      color:#2377CB;
+      text-decoration: underline;
+
+      position:relative;
+      display:block;
+    }
+
+    .urlinput {
+      @apply(--layout-horizontal);
+    }
+
+    #notification {
+      font-size: 12px;
+      color: #666;
+      display: block;
+      font-style: italic;
+      text-align: right;
+      z-index: 100;
+      top: 0px;
+      position: absolute;
+      background-color: rgb(204, 204, 204);
+      padding: 1px 6px;
+      right: -1px;
+    }
+
+    paper-card {
+      width: 100%;
+      padding: 20px;
+      background-color: rgba(245, 245, 245, 0.6);
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    }
+
+    paper-button {
+      background-color: #2377CB;
+      color: #fff;
+      min-width: 50px;
+      height: 35px;
+      margin-top: 20px;
+      padding-top:8px;
+      font-size:16px;
+      white-space: nowrap;
+    }
+
+    .link paper-button:nth-child(2) {
+      background-color: #d96a00;
+    }
+
+    .link paper-button:last-child {
+      background-color:#49075E;
+    }
+
+    @media all and (max-width: 420px) {
+      paper-button {
+        white-space: normal;
+        height: 56px;
+        margin:2px;
+      }
+      .firstbutton {
+        height:auto!important;
+      }
+      .urlinput {
+        @apply(--layout-vertical);
+      }
+      #target {
+        margin-bottom:6px;
+      }
+    }
+  </style>
 
   <template>
     <paper-card elevation="1">
-      <div hidden$="{{!hide}}" class="horizontal layout">
+      <div hidden$="{{!hide}}" class="urlinput">
         <paper-input-container id="urlContainer" label="URL Address" class="flex">
           <input is="iron-input" id="url" name="url" type="URL" placeholder="DOI or URL" on-keydown="enterKey" required>
           <paper-input-error id="errorMsg"></paper-input-error>
         </paper-input-container>
-        <paper-button on-click="_submit">{{label}}</paper-button>
+        <paper-button on-click="_submit" class="firstbutton">{{label}}</paper-button>
       </div>
       <div hidden$="{{hide}}" class="link vertical layout relative">
         <span id="notification">{{msg}}</span>

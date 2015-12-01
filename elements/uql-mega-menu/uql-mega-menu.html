@@ -8,8 +8,8 @@
       --menu-hover-background-color: #e5e5e5;
       --menu-selected-bar-color: #595959;
       --menu-text-color: #222;
-      --menu-sub-text-color: #222;
-      --menu-border-color: #222;
+      --menu-sub-text-color: #3F3F3F;
+      --menu-border-color: #ccc;
 
       --paper-tabs-selection-bar-color: var(--menu-selected-bar-color);
       --paper-tabs-ink-color: var(--menu-selected-bar-color);
@@ -17,9 +17,19 @@
       font-family: Roboto, Noto, sans-serif;
     }
 
+    .menu-container {
+      box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    }
+
     .menu-container,
     .menu-content {
       background-color: var(--menu-background-color);
+    }
+
+    .menu-container,
+    .menu-content,
+    paper-tabs {
+      height: 67px;
     }
 
     .menu-content {
@@ -31,11 +41,14 @@
     /* make top-level menu sized according to label, not same size for all */
     paper-tab {
       flex: none !important;
+      font-size: 16px;
+      font-weight: 300;
     }
 
     div.subtext {
       color: var(--menu-sub-text-color);
-      font-size: 80%;
+      font-size: 90%;
+      margin-top: -8px;
     }
 
     paper-tab.sub-menu-opened {
@@ -43,15 +56,23 @@
     }
 
     .dropdown-content {
-      width: 480px;
       background-color: var(--menu-open-background-color);
       box-shadow: rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px;
       @apply(--layout-flex);
       @apply(--layout-horizontal);
     }
 
+    .has-right-true {
+      width: 480px;
+    }
+
+    .has-right-false {
+      width: 240px;
+    }
+
     .dropdown-content .sub-menu{
       @apply(--layout-flex);
+      padding-top: 15px;
     }
 
     .sub-menu.uql-submenu-right {
@@ -72,7 +93,7 @@
       display: flex;
       flex-direction: column;
       font-size: 14px;
-      font-weight: normal;
+      font-weight: 300;
       height: 48px;
       line-height: 24px;
       min-height: 48px;
@@ -89,7 +110,7 @@
     }
 
     .sub-menu a.iron-selected {
-      font-weight: bold !important;
+      font-weight: 500 !important;
     }
 
     paper-tab /deep/ paper-ripple.paper-tab {
@@ -97,8 +118,10 @@
     }
 
     paper-tab:focus /deep/ .tab-content.paper-tab {
-      font-weight: 500;
+      font-weight: 400;
     }
+
+
 
   </style>
 
@@ -118,35 +141,32 @@
         </paper-tabs>
 
         <template is="dom-repeat" items="{{menu.items}}">
-        <iron-dropdown id$="subMenu{{index}}" horizontal-align="left" vertical-align="top" vertical-offset="48"
+        <iron-dropdown id$="subMenu{{index}}" horizontal-align="left" vertical-align="top" vertical-offset="67"
                        on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
-          <div class="dropdown-content">
-
-            <!--<paper-menu>-->
+          <div class$="dropdown-content has-right-{{item.hasRight}}">
             <div class="sub-menu">
               <template is="dom-repeat" items="{{item.items}}" as="subItem">
                 <template is="dom-if" if="{{!subItem.right}}">
-                  <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}">
+                  <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="closeDropdown">
                     <div>{{subItem.label}}</div>
                     <div class="subtext">{{subItem.subtext}}</div>
                   </a>
                 </template>
               </template>
             </div>
-            <!--</paper-menu>-->
 
-            <!--<paper-menu class="uql-submenu-right">-->
+            <template is="dom-if" if="{{item.hasRight}}">
             <div class="sub-menu uql-submenu-right">
               <template is="dom-repeat" items="{{item.items}}" as="subItem">
                 <template is="dom-if" if="{{subItem.right}}">
-                  <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}">
+                  <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="_closeDropdown">
                     <div>{{subItem.label}}</div>
                     <div class="subtext">{{subItem.subtext}}</div>
                   </a>
                 </template>
               </template>
             </div>
-            <!--</paper-menu>-->
+            </template>
 
           </div>
         </iron-dropdown>
