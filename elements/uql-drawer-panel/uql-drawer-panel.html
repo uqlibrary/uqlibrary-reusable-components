@@ -3,6 +3,9 @@
   <link rel="import" href="../elements.html">
   <style is="custom-style">
     :host {
+      --uq-purple: #49075E;
+      --text-color-inverse: #fff;
+
       --menu-background-color: #fff;
       --menu-open-background-color: #f2f2f2;
       --menu-hover-background-color: #e5e5e5;
@@ -65,8 +68,13 @@
       padding-left: 30px;
     }
 
-    .menu {
-      padding-top: 66px;
+    .menu-title-bar {
+      line-height: 66px;
+      font-size: 20px;
+      font-weight: 500;
+      background-color: var(--uq-purple);
+      color: var(--text-color-inverse);
+      padding-left: 16px;
     }
 
     .menu-item {
@@ -86,9 +94,9 @@
       <paper-scroll-header-panel drawer fixed>
 
         <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <span class="paper-font-title">{{menu.heading}}</span>
-        </paper-toolbar>
+        <!--<paper-toolbar id="drawerToolbar">-->
+        <div class="menu-title-bar">{{menu.heading}}</div>
+        <!--</paper-toolbar>-->
 
         <!-- Drawer Content -->
         <div class="menu">

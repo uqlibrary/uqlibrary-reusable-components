@@ -259,7 +259,7 @@
       "items": [
         {
           "label": "News",
-          "href": "/item1"
+          "href": "#"
         },
         {
           "label": "Events",

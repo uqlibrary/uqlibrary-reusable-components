@@ -51,7 +51,6 @@
 
       var menuIndex = Number(menuItem.getAttribute('data-item-index'));
       var subMenu = this.querySelector('#subMenu' + menuIndex);
-      console.log("menu item index: " + menuIndex);
 
       subMenu.toggle();
     }
