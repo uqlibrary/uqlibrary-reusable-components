@@ -18,7 +18,6 @@
     },
 
     ready: function() {
-      var that = this;
       this.isIAEnabled = document.cookie.indexOf("toggleia=1") >= 0;
     },
 
