@@ -1,4 +1,4 @@
-var $buoop = {vs:{i:9,f:25,o:12.1,s:7},c:2, reminder: 0};
+var $buoop = {vs:{i:9,f:25,o:12.1,s:8},c:2, reminder: 0};
 
 function $buo_f(){
   var e = document.createElement("script");
