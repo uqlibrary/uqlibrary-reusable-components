@@ -26,6 +26,14 @@
       text-decoration: underline;
     }
 
+    ul, li {
+      list-style-image: none;
+      list-style-position: outside;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
     .sub-footer-container,
     .sub-footer-content {
       background-color: var(--sub-footer-background-color);
@@ -52,7 +60,7 @@
     }
 
     .social {
-      margin:50px 0 0 -12px;
+      margin:60px 0 0 -12px;
     }
 
     .social paper-button {
@@ -64,8 +72,22 @@
       height:36px;
     }
 
-    .buttons {
+    .contacts, .buttons {
       @apply(--layout-vertical);
+      align-self:center;
+      -webkit-align-self:center;
+      -ms-flex-pack:center;
+    }
+
+    .contacts {
+      @apply(--layout-start);
+    }
+
+    .contacts ul {
+      margin-top:26px;
+    }
+
+    .buttons {
       @apply(--layout-end);
     }
 
@@ -88,20 +110,6 @@
 
     .buttons paper-button:hover {
       background-color: #005ea5;
-    }
-
-    ul, li {
-      list-style-image: none;
-      list-style-position: outside;
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .title {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 30px;
     }
 
     .button-action {
@@ -127,12 +135,8 @@
         width: 80%;
       }
 
-      .title, .social {
-        text-align: center;
-      }
-
       .social {
-        margin:30px 0;
+        margin:30px auto;
       }
 
       .links, .buttons {
@@ -142,6 +146,10 @@
 
       .separator {
         display: inline-block;
+      }
+
+      .contacts ul {
+        margin-top:0;
       }
 
       ul {
@@ -167,11 +175,12 @@
 
     <div class="sub-footer-container">
       <div class="sub-footer-content">
-        <div class="title">Library home</div>
         <div class="links">
           <div class="navigation">
             <template is="dom-if" if="{{menu.items}}">
               <ul>
+                <li><a href="{{mainDomain}}/">Library home</a></li>
+                <li class="separator"> | </li>
                 <template is="dom-repeat" items="{{menu.items}}">
                   <li><a href="{{mainDomain}}{{item.href}}">{{item.label}}</a></li>
                   <li class="separator"> | </li>
@@ -213,12 +222,12 @@
           <div class="buttons">
             <paper-button id="joinFriend" class="button-action" aria-label="Join Friends of the Library" raised>
               <a href="http://app.library.uq.edu.au/about-us/friends-library">
-                Join friends of the library
+                Join Friends of the Library
               </a>
             </paper-button>
             <paper-button id="giveToLibrary" class="button-action" aria-label="Give to the Library" raised>
               <a href="http://app.library.uq.edu.au/about-us/giving-to-library">
-                Give to the library
+                Give to the Library
               </a>
             </paper-button>
           </div>
