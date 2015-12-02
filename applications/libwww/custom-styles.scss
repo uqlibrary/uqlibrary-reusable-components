@@ -66,7 +66,31 @@ body.ia-enabled {
 
 /* Normal Layout */
 @media all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+  body.ia-enabled {
+    background-position: 50% 125px;
+    &.front {
+      &.responsive-layout-mobile {
+        #region-content #uql-search {
+          margin-top: 180px;
+        }
+      }
+    }
 
+    #section-content {
+      #zone-content-wrapper {
+        margin-top: 180px;
+        margin-bottom: 20px;
+      }
+    }
+
+    &.admin-menu {
+      #section-content {
+        #zone-content-wrapper {
+          margin-top: 200px;
+        }
+      }
+    }
+  }
 }
 
 /* Wide Layout */

@@ -239,7 +239,7 @@ catch (err) {
 // pastes in contents of resources/uql-menu.json to uql-menu and uql-connect-footer to prevent extra call to load json
 gulp.task('menu-replace', function () {
   var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
-  var regEx = new RegExp("menuJsonFileData;");
+  var regEx = new RegExp("menuJsonFileData;", "g");
 
   gulp.src([config.elements + '/elements.vulcanized.html'])
     .pipe(replace({
