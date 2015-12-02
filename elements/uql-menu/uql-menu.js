@@ -46,8 +46,6 @@
     },
 
     _handleResponse: function (event) {
-      console.log('getting menu json/....');
-
       var that = this;
       this.menu = event.detail.response;
 
