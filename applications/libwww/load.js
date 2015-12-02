@@ -23,7 +23,7 @@ window.addEventListener('WebComponentsReady', function() {
   // insert footer before body-tag
   var subFooter = document.createElement('uql-connect-footer');
   document.body.appendChild(subFooter);
-  subFooter.footerMenu = menuJson;
+  subFooter.footerMenuUrl = menuJson;
   subFooter.mainDomain = 'https://www.library.uq.edu.au';
 
   var footer = document.createElement('uq-minimal-footer');
