@@ -1,7 +1,75 @@
-uq-minimal-header {
-  overflow: visible !important;
-}
-
 .responsive-layout-mobile {
   position: absolute !important;
+}
+
+body.ia-enabled {
+  uq-minimal-header {
+    overflow: visible !important;
+    z-index: 1000;
+  }
+
+  &.admin-menu {
+    uq-minimal-header {
+      margin-top: 20px;
+    }
+  }
+
+  #overlay-container {
+    top: 164px;
+  }
+
+  #zone-postscript-wrapper,
+  #section-header,
+  #section-footer {
+    display: none;
+  }
+
+  #section-content {
+    #zone-content-wrapper {
+      margin-top: 164px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &.front {
+    &.responsive-layout-mobile {
+      #section-content #zone-content-wrapper {
+        margin-top: 0px;
+      }
+
+      #region-content #uql-search {
+        margin-top: 140px;
+      }
+    }
+  }
+}
+
+/* Default Layout */
+@media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation: landscape) {
+  body.ia-enabled {
+    background-position: 50% 125px;
+  }
+}
+
+/* Narrow Layout */
+@media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation: landscape) {
+  body.ia-enabled {
+    &.front {
+      &.responsive-layout-mobile {
+        #region-content #uql-search {
+          margin-top: 164px;
+        }
+      }
+    }
+  }
+}
+
+/* Normal Layout */
+@media all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation: landscape) {
+
+}
+
+/* Wide Layout */
+@media all and (min-width: 1220px) {
+
 }
