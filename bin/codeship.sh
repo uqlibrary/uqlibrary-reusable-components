@@ -48,6 +48,9 @@ sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
 echo "Vulcanizing elements"
 gulp vulcanize
 
+echo "Optimizing local loading of JSON (uql-menu.json)"
+gulp menu-replace
+
 # If these files are the same, it means an error in vulcanizing
 echo "Checking vulcanization was performed correctly"
 set +e
