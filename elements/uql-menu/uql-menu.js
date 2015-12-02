@@ -12,8 +12,24 @@
         value: true
       },
 
+      autoLoad: {
+        type: Boolean,
+        value: false
+      },
+
       menu: {
-        type: Object
+        type: Object,
+        value: function() {
+          var menuJsonFileData = null;
+          var menuJson = menuJsonFileData;
+          if (menuJson !== null) {
+            return menuJson;
+          }
+          else {
+            this.autoLoad = true;
+            return null;
+          }
+        }
       },
 
       selectedMenuItemIndex: {
@@ -30,6 +46,8 @@
     },
 
     _handleResponse: function (event) {
+      console.log('getting menu json/....');
+
       var that = this;
       this.menu = event.detail.response;
 

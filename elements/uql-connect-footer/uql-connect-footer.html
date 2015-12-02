@@ -9,6 +9,7 @@
       --text-color-inverse: #fff;
       --button-action-color: #2377CB;
       --social-button-hover-background-color: #999;
+      --button-action-hover-color: #005ea5;
 
       font-size: 14px;
       color: var(--sub-footer-text-color);
@@ -55,11 +56,11 @@
       margin:50px 0 0 -12px;
     }
 
-    .social paper-button {
+    paper-button.button-social {
       margin: 0;
     }
 
-    .social iron-icon.iron-icon-0 {
+    .button-social iron-icon {
       width:36px;
       height:36px;
     }
@@ -79,7 +80,7 @@
     }
 
     .buttons a {
-      color:#fff;
+      color: var(--text-color-inverse);
     }
 
     .buttons a:hover {
@@ -87,7 +88,7 @@
     }
 
     .buttons paper-button:hover {
-      background-color: #005ea5;
+      background-color: var(--button-action-hover-color);
     }
 
     ul, li {
@@ -162,7 +163,7 @@
   </style>
 
   <template>
-    <iron-ajax auto url="{{footerMenu}}" handle-as="json" on-response="_handleResponse"
+    <iron-ajax auto="{{autoLoad}}" url="{{footerMenuUrl}}" handle-as="json" on-response="_handleResponse"
                on-error="_handleError" verbose="{{verbose}}"></iron-ajax>
 
     <div class="sub-footer-container">
@@ -192,19 +193,19 @@
             <div class="social">
               <paper-button class="button-social">
                 <a href="https://www.youtube.com/user/uqlibrary" target="_blank">
-                  <iron-icon class="big" src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube"></iron-icon>
+                  <iron-icon src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube"></iron-icon>
                 </a>
               </paper-button>
 
               <paper-button class="button-social">
                 <a href="https://www.facebook.com/uniofqldlibrary" target="_blank">
-                  <iron-icon class="big" src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook"  title="Facebook"></iron-icon>
+                  <iron-icon src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook"  title="Facebook"></iron-icon>
                 </a>
               </paper-button>
 
               <paper-button class="button-social">
                 <a href="https://twitter.com/uqlibrary/" target="_blank">
-                  <iron-icon class="big" src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter"  title="Twitter"></iron-icon>
+                  <iron-icon src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter"  title="Twitter"></iron-icon>
                 </a>
               </paper-button>
             </div>

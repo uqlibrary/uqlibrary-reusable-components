@@ -29,6 +29,7 @@ var taskList = require('gulp-task-listing');
 var cssmin = require('gulp-cssmin');
 var jsonlint = require('gulp-jsonlint');
 var cloudfront = require('gulp-invalidate-cloudfront');
+var replace = require('gulp-replace-task');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -217,7 +218,8 @@ gulp.task('syntax', [
 gulp.task('build', [
   'syntax',
   'optimize',
-  'vulcanize'
+  'vulcanize',
+  'menu-replace'
 ]);
 
 // display a list of available tasks
@@ -232,6 +234,25 @@ try {
 }
 catch (err) {
 }
+
+// menu-replace task
+// pastes in contents of resources/uql-menu.json to uql-menu and uql-connect-footer to prevent extra call to load json
+gulp.task('menu-replace', function () {
+  var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
+  var regEx = new RegExp("menuJsonFileData;");
+
+  gulp.src([config.elements + '/elements.vulcanized.html'])
+    .pipe(replace({
+      patterns: [
+        {
+          match: regEx,
+          replacement: menuJson + ';'
+        }
+      ],
+      usePrefix: false
+    }))
+    .pipe(gulp.dest(config.elements));
+});
 
 //// Load custom tasks from the `tasks` directory
 //try { require('require-dir')('tasks'); } catch (err) {}

@@ -23,7 +23,7 @@
 
   </style>
   <template>
-    <iron-ajax auto url="{{menuJson}}"
+    <iron-ajax auto="{{autoLoad}}" url="{{menuJson}}"
                handle-as="json"
                on-response="_handleResponse"
                on-error="_handleError"

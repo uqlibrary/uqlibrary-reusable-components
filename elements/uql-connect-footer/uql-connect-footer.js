@@ -3,16 +3,39 @@
     is: 'uql-connect-footer',
     menu: {},
     properties: {
+
       mainDomain: {
         type: String,
         value: ""
       },
-      footerMenu: {
+
+      autoLoad: {
+        type: Boolean,
+        value: false
+      },
+
+      footerMenuUrl: {
         type: String
       },
+
       verbose: {
         type: Boolean,
         value: true
+      },
+
+      menu: {
+        type: Object,
+        value: function() {
+          var menuJsonFileData = null;
+          var menuJson = menuJsonFileData;
+          if (menuJson !== null) {
+            return menuJson;
+          }
+          else {
+            this.autoLoad = true;
+            return null;
+          }
+        }
       }
     },
     _handleError: function (event) {
