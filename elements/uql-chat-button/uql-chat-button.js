@@ -12,7 +12,7 @@
         type: Object,
         value: function() {
           var now = new Date();
-          return { 'timestamp' : now.getTime() }
+          return { 'timestamp' : now.getTime() };
         }
       },
 
