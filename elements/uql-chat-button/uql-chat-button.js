@@ -8,6 +8,14 @@
         value: "https://api2.libanswers.com/1.0/chat/widgets/status/1193"
       },
 
+      timestamp: {
+        type: Object,
+        value: function() {
+          var now = new Date();
+          return { 'timestamp' : now.getTime() }
+        }
+      },
+
       isChatOnline: {
         type: Boolean,
         value: false
