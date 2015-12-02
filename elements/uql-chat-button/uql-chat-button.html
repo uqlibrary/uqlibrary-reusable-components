@@ -39,6 +39,7 @@
     <byutv-jsonp
             auto
             url="{{chatStatusUrl}}"
+            params="{{timestamp}}"
             on-response="handleChatStatusResponse"
             on-error="handleChatStatusError"
             debounce-duration="300"></byutv-jsonp>
