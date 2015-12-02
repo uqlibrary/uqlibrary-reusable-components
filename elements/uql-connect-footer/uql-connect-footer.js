@@ -1,7 +1,6 @@
 (function() {
   Polymer({
     is: 'uql-connect-footer',
-    menu: {},
     properties: {
 
       mainDomain: {
