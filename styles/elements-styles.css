@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 paper-button {
   font-size: 10px; }
   paper-button.button-inverse {
@@ -22,62 +23,14 @@ paper-button {
 uql-menu,
 .header-container,
 .footer-container {
+=======
+uql-menu {
+>>>>>>> 36ac6a401d08aaa968489d560ddf38db8de16874
   font-family: "Roboto","Helvetica","Arial",sans-serif; }
 
 uql-menu {
   font-weight: lighter; }
 
-.header-container {
-  height: 100px;
-  background-color: #49075E;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  white-space: nowrap; }
-  .header-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .header-container .application-title,
-  .header-container .library-title,
-  .header-container .uq-title {
-    color: #FFF;
-    margin: 10px; }
-  .header-container .uq-title {
-    min-width: 190px;
-    height: 50px;
-    background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
-    background-size: 178px 50px;
-    border-right: 1px solid #FFF; }
-    .header-container .uq-title a {
-      display: block;
-      width: 190px;
-      height: 50px; }
-    .header-container .uq-title .uq-title-text {
-      display: none !important; }
-
-.footer-container {
-  background-color: #49075E;
-  text-decoration: none;
-  line-height: 20px;
-  color: #FFF !important;
-  font-size: 14px;
-  padding: 20px; }
-  .footer-container a {
-    color: #FFF !important;
-    text-decoration: none; }
-  .footer-container div {
-    color: #d2c1d7; }
-
-@media all and (max-width: 1047px) {
-  .header-container {
-    height: 66px; }
-    .header-container .uq-title {
-      display: none !important; }
-
-  uq-minimal-header uql-global-links {
-    display: none !important; } }
 /* mobile-small */
 /* mobile-large */
 /* mobile-small-landscape */

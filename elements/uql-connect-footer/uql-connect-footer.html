@@ -1,22 +1,20 @@
 <dom-module id="uql-connect-footer">
 
   <link rel="import" href="../elements.html">
-  <link rel="stylesheet" href="../../styles/elements-styles.css">
-  <style>
-    :host {
-      --sub-footer-background-color: #e5e5e5;
-      --sub-footer-text-color: #333;
-      --text-color-inverse: #fff;
-      --button-action-color: #2377CB;
-      --social-button-hover-background-color: #999;
-      --button-action-hover-color: #005ea5;
+  <!--<link rel="stylesheet" href="../../styles/elements-styles.css">-->
+  <style is="custom-style" include="common-styles">
 
+  :host {
       font-size: 14px;
       color: var(--sub-footer-text-color);
-      font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-family: var(--font-family);
       font-weight:300;
       line-height:25px;
     }
+
+  div, ul {
+    border: 1px solid #000;
+  }
 
     a {
       color: var(--sub-footer-text-color);
@@ -42,7 +40,7 @@
 
     .sub-footer-content {
       margin: 0 auto;
-      max-width: 1140px;
+      max-width: var(--max-width);
       padding: 20px;
 
       @apply(--layout-flex);
@@ -61,11 +59,12 @@
     }
 
     .social {
-      margin:60px 0 0 -12px;
+      /*margin:60px 0 0 -12px;*/
+
     }
 
     paper-button.button-social {
-      margin: 0;
+      /*margin: 0;*/
     }
 
     .button-social iron-icon {
@@ -73,11 +72,9 @@
       height:36px;
     }
 
-    .contacts, .buttons {
-      @apply(--layout-vertical);
-      align-self:center;
-      -webkit-align-self:center;
-      -ms-flex-pack:center;
+    .contacts,
+    .buttons {
+      /*@apply(--layout-vertical);*/
     }
 
     .contacts {
@@ -92,32 +89,13 @@
       @apply(--layout-end);
     }
 
-    .buttons paper-button {
-      margin: 0 0 10px;
-      text-transform: none;
-      font-weight: 500;
-      font-size: 16px;
+    .button-action {
       width:100%;
       max-width:244px;
+      text-transform: none;
+      margin: 0 0 10px;
     }
 
-    .buttons a {
-      color: var(--text-color-inverse);
-    }
-
-    .buttons a:hover {
-      text-decoration:none;
-    }
-
-    .buttons paper-button:hover {
-      background-color: var(--button-action-hover-color);
-    }
-
-    .button-action {
-      background-color: var(--button-action-color);
-      color: var(--text-color-inverse);
-      font-size: 14px;
-    }
 
     .button-social:hover {
       background: var(--social-button-hover-background-color);
@@ -136,8 +114,8 @@
         width: 80%;
       }
 
-      .social {
-        margin:30px auto;
+      .social{
+        text-align: center;
       }
 
       .links, .buttons {
@@ -221,12 +199,12 @@
           </div>
 
           <div class="buttons">
-            <paper-button id="joinFriend" class="button-action" aria-label="Join Friends of the Library" raised>
+            <paper-button id="joinFriend" class="button-action button-medium" aria-label="Join Friends of the Library" raised>
               <a href="http://app.library.uq.edu.au/about-us/friends-library">
                 Join Friends of the Library
               </a>
             </paper-button>
-            <paper-button id="giveToLibrary" class="button-action" aria-label="Give to the Library" raised>
+            <paper-button id="giveToLibrary" class="button-action button-medium" aria-label="Give to the Library" raised>
               <a href="http://app.library.uq.edu.au/about-us/giving-to-library">
                 Give to the Library
               </a>

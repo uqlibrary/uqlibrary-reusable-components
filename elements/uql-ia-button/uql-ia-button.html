@@ -1,10 +1,10 @@
 <dom-module id="uql-ia-button">
 
   <link rel="import" href="../elements.html">
-  <link rel="stylesheet" href="../../styles/elements-styles.css">
-
+  <style is="custom-style" include="common-styles">
+  </style>
   <template>
-    <paper-button class="button-inverse" on-tap="toggleIA" id="iaButton">
+    <paper-button class="button-inverse button-small" on-tap="toggleIA" id="iaButton">
       <template is="dom-if" if="{{isIAEnabled}}">
         <iron-icon icon="icons:radio-button-checked" aria-label="ia switch"></iron-icon>
       </template>

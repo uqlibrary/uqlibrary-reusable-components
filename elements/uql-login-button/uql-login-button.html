@@ -1,13 +1,15 @@
 <dom-module id="uql-login-button">
 
   <link rel="import" href="../elements.html">
-  <link rel="stylesheet" href="../../styles/elements-styles.css">
+
+  <style is="custom-style" include="common-styles">
+  </style>
 
   <template>
     <uqlibrary-api-account id="accountApi" auto="true"></uqlibrary-api-account>
 
     <template is="dom-if" if="{{!isLoggedIn}}">
-      <paper-button class="button-action button-inverse" on-tap="performLogin" id="loginButton">
+      <paper-button class="button-action button-small" on-tap="performLogin" id="loginButton">
         <iron-icon icon="social:person-outline" aria-label="Login"></iron-icon>
         <template is="dom-if" if="{{showTitle}}">
           <div class="button-title">Log in</div>
@@ -16,7 +18,7 @@
     </template>
 
     <template is="dom-if" if="{{isLoggedIn}}">
-      <paper-button class="button-action button-inverse" on-tap="performLogout" id="logoutButton">
+      <paper-button class="button-action button-small" on-tap="performLogout" id="logoutButton">
         <iron-icon icon="icons:lock" aria-label="Logout"></iron-icon>
         <template is="dom-if" if="{{showTitle}}">
           <div class="button-title">Log out</div>

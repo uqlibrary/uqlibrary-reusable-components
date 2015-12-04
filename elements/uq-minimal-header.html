@@ -1,9 +1,7 @@
 <dom-module id="uq-minimal-header">
 
-  <link rel="stylesheet" href="../styles/elements-styles.css">
   <link rel="import" href="elements.html">
-
-  <style is="custom-style">
+  <style is="custom-style" include="common-styles">
 
     :host {
       display: block;
@@ -13,21 +11,64 @@
       width: 100%;
       overflow: visible;
       z-index: 1000;
+      font-family: var(--font-family);
 
       @apply(--layout-vertical);
 
       --global-links-style: {
          text-transform: uppercase;
          font-size: 10.4px;
-         color: #d2c1d7 !important;
+         color: var(--uq-purple-light) !important;
          font-weight: 500;
        }
     }
 
     .header-content {
       margin: 0 auto;
-      max-width: 1140px;
+      max-width: var(--max-width);
       width: 100%;
+    }
+
+    .header-container {
+      height: 100px;
+      background-color: var(--uq-purple);
+
+      text-decoration: none;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: .02em;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    a {
+      color: var(--text-color-inverse) !important;
+      text-decoration: none;
+    }
+
+    .application-title,
+    .library-title,
+    .uq-title {
+      color: var(--text-color-inverse);
+      margin: 10px;
+    }
+
+    .uq-title {
+      min-width: 190px;
+      height: 50px;
+      background: url("https://static.uq.net.au/v1/logos/corporate/uq-logo-white.svg") no-repeat 0 0;
+      background-size: 178px 50px;
+      border-right: 1px solid var(--text-color-inverse);
+    }
+
+    .uq-title a {
+      display: block;
+      width: 190px;
+      height: 50px;
+    }
+
+    .uq-title-text {
+      display: none !important;
     }
 
     .header-container {
@@ -74,9 +115,20 @@
       }
     }
 
-    @media all and (max-width: 700px) {
+    @media all and (max-width: 1047px) {
       uql-ia-button {
-        display: none;
+          display: none;
+      }
+      .header-container {
+          height: 66px;
+      }
+
+      .uq-title {
+          display: none !important;
+      }
+
+      uql-global-links {
+          display: none !important;
       }
     }
 

@@ -1,24 +1,13 @@
 <dom-module id="uql-mega-menu">
   <link rel="import" href="../elements.html">
 
-  <style is="custom-style">
+  <style is="custom-style" include="common-styles">
     :host {
-      --menu-background-color: #fff;
-      --menu-open-background-color: #f2f2f2;
-      --menu-hover-background-color: #e5e5e5;
-      --menu-selected-bar-color: #595959;
-      --menu-text-color: #222;
-      --menu-sub-text-color: #3F3F3F;
-      --menu-border-color: #ccc;
-
-      --paper-tabs-selection-bar-color: var(--menu-selected-bar-color);
-      --paper-tabs-ink-color: var(--menu-selected-bar-color);
-
-      font-family: Roboto, Noto, sans-serif;
+      font-family: var(--font-family);
     }
 
     .menu-container {
-      box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+      @apply(--uq-box-shadow);
     }
 
     .menu-container,
@@ -34,7 +23,7 @@
 
     .menu-content {
       margin: 0 auto;
-      max-width: 1140px;
+      max-width: var(--max-width);
       width: 100%;
     }
 
@@ -57,7 +46,7 @@
 
     .dropdown-content {
       background-color: var(--menu-open-background-color);
-      box-shadow: rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px;
+      @apply(--uq-box-shadow);
       @apply(--layout-flex);
       @apply(--layout-horizontal);
     }
@@ -88,21 +77,10 @@
     }
 
     .sub-menu a {
-      color: var(--menu-text-color);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-      font-weight: 300;
-      height: 48px;
-      line-height: 24px;
-      min-height: 48px;
-      padding-bottom: 2px;
-      padding-left: 16px;
-      padding-right: 16px;
-      padding-top: 2px;
-      text-decoration: none;
-      overflow: hidden;
+      @apply(--layout-flex);
+      @apply(--layout-vertical);
+
+      @apply(--menu-item);
     }
 
     .sub-menu a:hover {
@@ -120,8 +98,6 @@
     paper-tab:focus /deep/ .tab-content.paper-tab {
       font-weight: 400;
     }
-
-
 
   </style>
 
