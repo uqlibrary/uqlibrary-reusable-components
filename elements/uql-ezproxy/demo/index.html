@@ -14,11 +14,20 @@
       position: fixed;
       bottom: 0;
     }
+    .content {
+      margin:120px auto 0;
+      max-width:1140px;
+      width:-moz-calc( 100% - 40px);
+      width:-webkit-calc( 100% - 40px);
+      width:calc(100% - 40px);
+    }
   </style>
 </head>
 <body class="fullbleed layout vertical">
   <uq-minimal-header application-title=""></uq-minimal-header>
-  <uql-ezproxy create-link=true></uql-ezproxy>
+  <div class="content">
+    <uql-ezproxy create-link=true></uql-ezproxy>
+  </div>
   <uq-minimal-footer application-title=""></uq-minimal-footer>
 </body>
 </html>
