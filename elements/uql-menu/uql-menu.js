@@ -29,7 +29,8 @@
             this.autoLoad = true;
             return null;
           }
-        }
+        },
+        observer: '_menuChanged'
       },
 
       selectedMenuItemIndex: {
@@ -41,6 +42,24 @@
       }
     },
 
+    _menuChanged: function(newValue, oldValue) {
+      //set currently selected menu items
+      if (this.menu !== null) {
+        var that = this;
+        this.menu.items.forEach(function (element, index) {
+          if (element.items) {
+            element.items.forEach(function (subItem, subItemIndex) {
+              if (window.location.href.indexOf(subItem.href) >= 0) {
+                that.selectedMenuItemIndex = index;
+                element.class = 'iron-selected';
+                subItem.class = 'iron-selected';
+              }
+            });
+          }
+        });
+      }
+    },
+
     _handleError: function (event) {
       console.log(event);
     },
@@ -48,19 +67,6 @@
     _handleResponse: function (event) {
       var that = this;
       this.menu = event.detail.response;
-
-      //set currently selected menu items
-      this.menu.items.forEach(function(element, index){
-        if (element.items) {
-          element.items.forEach(function(subItem, subItemIndex){
-            if (window.location.href.indexOf(subItem.href) >= 0) {
-              that.selectedMenuItemIndex = index;
-              element.class = 'iron-selected';
-              subItem.class = 'iron-selected';
-            }
-          });
-        }
-      });
     },
 
     toggleMenu: function() {
