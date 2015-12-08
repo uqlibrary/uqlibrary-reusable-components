@@ -3,10 +3,8 @@
   <link rel="import" type="css" href="../../styles/elements-styles.css">
   <style>
     :host {
-      margin: 150px auto 0px;
-      width: 800px;
-      max-width: 90%;
-      display: block;
+      margin: 30px 0;
+      @apply(--layout-flex);
     }
 
     #target {
@@ -56,7 +54,7 @@
       font-style: italic;
       text-align: right;
       z-index: 100;
-      top: 0px;
+      top: 0;
       position: absolute;
       background-color: rgb(204, 204, 204);
       padding: 1px 6px;
@@ -93,7 +91,8 @@
       paper-button {
         white-space: normal;
         height: 56px;
-        margin:2px;
+        margin:2px auto;
+        max-width:160px;
       }
       .firstbutton {
         height:auto!important;

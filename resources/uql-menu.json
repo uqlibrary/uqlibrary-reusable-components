@@ -248,8 +248,13 @@
           "href": "/locations-hours/biological-sciences-library"
         },
         {
-          "label": "D.H. Engineering & Sciences",
-          "href": "/locations-hours/dorothy-hill-engineering-and-sciences-library"
+          "label": "Duhig Tower",
+          "href": "/locations-hours/duhig-tower"
+        },
+        {
+          "label": "Engineering & Sciences",
+          "subtext": "Dorothy Hill Library",
+          "href": "/locations-hours/engineering-and-sciences-library-dorothy-hill-library"
           
         },
         {
@@ -259,7 +264,8 @@
         },
         {
           "label": "Gatton",
-          "href": "/locations-hours/uq-gatton-library"
+          "subtext": "J.K. Murray Library",
+          "href": "/locations-hours/uq-gatton-library-jk-murray-library"
           
         },
         {
@@ -278,11 +284,12 @@
         },
         {
           "label": "Law",
-          "href": "/locations-hours/walter-harrison-law-library"
+          "subtext": "Walter Harrison Library",
+          "href": "/locations-hours/law-library-walter-harrison-library"
           
         },
         {
-          "label": "Mater",
+          "label": "UQ/Mater McAuley Library",
           "href": "/locations-hours/uqmater-mcauley-library"
           
         },
