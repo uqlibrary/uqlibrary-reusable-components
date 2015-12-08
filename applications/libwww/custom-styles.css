@@ -7,7 +7,9 @@ body.ia-enabled uq-minimal-header {
 body.ia-enabled.admin-menu uq-minimal-header {
   margin-top: 20px; }
 body.ia-enabled #overlay-container {
-  top: 164px; }
+  z-index: 1001; }
+  body.ia-enabled #overlay-container .overlay-element {
+    z-index: 1002; }
 body.ia-enabled #zone-postscript-wrapper,
 body.ia-enabled #section-header,
 body.ia-enabled #section-footer {

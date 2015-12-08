@@ -15,7 +15,10 @@ body.ia-enabled {
   }
 
   #overlay-container {
-    top: 164px;
+    z-index: 1001;
+    .overlay-element {
+      z-index: 1002;
+    }
   }
 
   #zone-postscript-wrapper,
