@@ -1,28 +1,23 @@
 Polymer({
+
   is: 'uql-ezproxy',
-  target:'',
+
   properties: {
     createLink: {
-      type: Boolean,
-      value: false
-    },
-    label: {
-      type: String,
-      value: ''
-    },
-    hide: {
-      type: Boolean,
-      value: true
-    },
-    url: {
-      type: String,
-      value: ''
-    },
-    result: {
-      type: String,
-      value: ''
+      type: Object,
+      value: false,
+      observer: "_createLinkChanged"
     }
   },
+
+  _createLinkChanged: function(newValue, oldValue) {
+    if(this.createLink) {
+      this.buttonLabelValue='Create Link';
+    } else {
+      this.buttonLabelValue='Go';
+    }
+  },
+
   _submit: function () {
     if (this.createLink) {
       this.showUrl();
@@ -30,17 +25,20 @@ Polymer({
       this.goProxie();
     }
   },
+
   showUrl: function () {
     if (this.checkURL()) {
       this.panelToggle();
     }
   },
+
   goProxie: function () {
     if (this.checkURL()) {
       var win = window.open(this.target, '_blank');
       win.focus();
     }
   },
+
   checkURL: function () {
     var valid = false;
     var doi = /\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
@@ -76,45 +74,35 @@ Polymer({
     }
     return valid;
   },
+
   panelToggle: function() {
     this.hide=!this.hide;
-    this.msg = "";
+    this.copyStatus = "";
     if(this.hide) {
       this.$.url.value = "";
       this.target = "";
       this.$.urlContainer.invalid = false;
       this.$.url.focus();
     } else {
-      this.$.target.focus();
+      this.$.testLinkButton.focus();
     }
   },
+
   grabUrl: function() {
-    this.$.target.select();
+    this.$.outputUrl.querySelector("#textarea").select();
 
     try {
       var successful = document.execCommand('copy');
-      this.msg = (successful ? 'URL copied successfully' : 'Unable to copy URL');
+      this.copyStatus = (successful ? 'URL copied successfully' : 'Unable to copy URL');
     } catch (err) {
-      this.msg = 'Unable to copy URL';
+      this.copyStatus = 'Unable to copy URL';
     }
+
+    this.$.copyNotification.open();
   },
-  enterKey: function (e) {
-    if (e.keyCode === 13) {
-      this._submit();
-    }
-  },
-/*
-  The ready callback is called when an element’s local DOM is ready.
-  It is called after the element’s template has been stamped and all elements
-  inside the element’s local DOM have been configured (with values bound from
-  parents, deserialized attributes, or else default values) and had their
-  ready method called.
-*/
+
   ready: function() {
-    if(this.createLink) {
-      this.label='Create Link';
-    } else {
-      this.label='Go';
-    }
+    this.hide = true;
   }
+
 });
