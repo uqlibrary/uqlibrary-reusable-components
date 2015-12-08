@@ -1,28 +1,27 @@
 <dom-module id="uql-drawer-panel">
 
   <link rel="import" href="../elements.html">
-  <style is="custom-style">
+
+  <style is="custom-style" include="common-styles">
     :host {
-      --uq-purple: #49075E;
-      --text-color-inverse: #fff;
-
-      --menu-background-color: #fff;
-      --menu-open-background-color: #f2f2f2;
-      --menu-hover-background-color: #e5e5e5;
-      --menu-selected-bar-color: #595959;
-      --menu-text-color: #222;
-      --menu-sub-text-color: #222;
-      --menu-border-color: #222;
-
-      font-family: Roboto, Noto, sans-serif;
+      font-family: var(--font-family);
     }
 
-    .paper-font-title {
+    .menu-title-bar {
+      line-height: 66px;
       font-size: 20px;
+      font-weight: 400;
+      background-color: var(--uq-purple);
+      color: var(--text-color-inverse);
+      padding-left: 16px;
     }
 
     paper-drawer-panel /deep/ #drawer {
       z-index: 1000;
+    }
+
+    .menu {
+      border-bottom: 1px solid var(--menu-open-background-color);
     }
 
     .menu a {
@@ -30,20 +29,12 @@
       @apply(--layout-horizontal);
       @apply(--layout-center);
 
-      color: var(--menu-text-color);
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: normal;
-      height: 48px;
-      line-height: 24px;
-      min-height: 48px;
-      padding-left: 16px;
-      padding-right: 16px;
-      text-decoration: none;
-      overflow: hidden;
+      @apply(--menu-item);
+
+      border-top: 1px solid var(--menu-open-background-color);
     }
 
-    .menu-item .label {
+    .menu a .label {
       @apply(--layout-flex);
     }
 
@@ -53,36 +44,12 @@
 
     .menu a.iron-selected,
     .sub-menu a.iron-selected {
-      font-weight: bold !important;
-    }
-
-    paper-toolbar {
-      height: 66px !important;
-    }
-
-    .hidden {
-      display: none;
+      font-weight: 500 !important;
     }
 
     .sub-menu a {
-      padding-left: 30px;
-    }
-
-    .menu-title-bar {
-      line-height: 66px;
-      font-size: 20px;
-      font-weight: 500;
-      background-color: var(--uq-purple);
-      color: var(--text-color-inverse);
-      padding-left: 16px;
-    }
-
-    .menu-item {
-      border-top: 1px solid var(--menu-open-background-color);
-    }
-
-    .menu {
-      border-bottom: 1px solid var(--menu-open-background-color);
+      padding-left: 30px !important;
+      border: 0 !important;
     }
 
   </style>
@@ -94,9 +61,7 @@
       <paper-scroll-header-panel drawer fixed>
 
         <!-- Drawer Toolbar -->
-        <!--<paper-toolbar id="drawerToolbar">-->
         <div class="menu-title-bar">{{menu.heading}}</div>
-        <!--</paper-toolbar>-->
 
         <!-- Drawer Content -->
         <div class="menu">

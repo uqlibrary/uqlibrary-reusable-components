@@ -1,19 +1,12 @@
 <dom-module id="uql-connect-footer">
 
   <link rel="import" href="../elements.html">
-  <link rel="stylesheet" href="../../styles/elements-styles.css">
-  <style>
-    :host {
-      --sub-footer-background-color: #e5e5e5;
-      --sub-footer-text-color: #333;
-      --text-color-inverse: #fff;
-      --button-action-color: #2377CB;
-      --social-button-hover-background-color: #999;
-      --button-action-hover-color: #005ea5;
+  <style is="custom-style" include="common-styles">
 
+  :host {
       font-size: 14px;
       color: var(--sub-footer-text-color);
-      font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-family: var(--font-family);
       font-weight:300;
       line-height:25px;
     }
@@ -27,7 +20,8 @@
       text-decoration: underline;
     }
 
-    ul, li {
+    .sub-footer-content ul,
+    .sub-footer-content li {
       list-style-image: none;
       list-style-position: outside;
       list-style-type: none;
@@ -42,30 +36,37 @@
 
     .sub-footer-content {
       margin: 0 auto;
-      max-width: 1140px;
+      max-width: var(--max-width);
       padding: 20px;
 
-      @apply(--layout-flex);
-      @apply(--layout-vertical);
-    }
-
-    .links {
       @apply(--layout-horizontal);
       @apply(--layout-justified);
       @apply(--layout-wrap);
     }
 
     .navigation,
+    .buttons,
+    .contacts {
+      @apply(--layout-flex);
+    }
+
+    .contacts {
+      @apply(--layout-vertical);
+    }
+
+    .buttons{
+      @apply(--layout-vertical);
+      @apply(--layout-center);
+      @apply(--layout-center-justified);
+    }
+
+    .contacts ul {
+      @apply(--layout-flex);
+    }
+
+
     .buttons {
-      width: 34%;
-    }
-
-    .social {
-      margin:60px 0 0 -12px;
-    }
-
-    paper-button.button-social {
-      margin: 0;
+      text-align: center;
     }
 
     .button-social iron-icon {
@@ -73,50 +74,11 @@
       height:36px;
     }
 
-    .contacts, .buttons {
-      @apply(--layout-vertical);
-      align-self:center;
-      -webkit-align-self:center;
-      -ms-flex-pack:center;
-    }
-
-    .contacts {
-      @apply(--layout-start);
-    }
-
-    .contacts ul {
-      margin-top:26px;
-    }
-
-    .buttons {
-      @apply(--layout-end);
-    }
-
-    .buttons paper-button {
-      margin: 0 0 10px;
-      text-transform: none;
-      font-weight: 500;
-      font-size: 16px;
+    .button-action {
       width:100%;
       max-width:244px;
-    }
-
-    .buttons a {
-      color: var(--text-color-inverse);
-    }
-
-    .buttons a:hover {
-      text-decoration:none;
-    }
-
-    .buttons paper-button:hover {
-      background-color: var(--button-action-hover-color);
-    }
-
-    .button-action {
-      background-color: var(--button-action-color);
-      color: var(--text-color-inverse);
-      font-size: 14px;
+      text-transform: none;
+      margin: 0 0 10px;
     }
 
     .button-social:hover {
@@ -128,38 +90,30 @@
     }
 
 
-    @media all and (max-width: 767px) {
+    @media all and (max-width: 780px) {
+
+      .sub-footer-content {
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+      }
 
       .navigation,
+      .buttons,
       .contacts,
-      .buttons {
-        width: 80%;
-      }
-
-      .social {
-        margin:30px auto;
-      }
-
-      .links, .buttons {
-        @apply(--layout-vertical);
-        @apply(--layout-center);
-      }
-
-      .separator {
-        display: inline-block;
-      }
-
       .contacts ul {
-        margin-top:0;
+        @apply(--layout-flex-none);
       }
 
-      ul {
-        width: 100%;
+      .buttons {
+        padding-top: 10px;
       }
 
-      ul, li {
-        display: inline-block;
+      .social,
+      .separator,
+      .sub-footer-content ul,
+      .sub-footer-content li {
         text-align: center;
+        display: inline-block;
       }
 
       li.separator:last-of-type {
@@ -176,51 +130,51 @@
 
     <div class="sub-footer-container">
       <div class="sub-footer-content">
-        <div class="links">
-          <div class="navigation">
-            <template is="dom-if" if="{{menu.items}}">
-              <ul>
-                <li><a href="{{mainDomain}}/">Library home</a></li>
-                <li class="separator"> | </li>
-                <template is="dom-repeat" items="{{menu.items}}">
-                  <li><a href="{{mainDomain}}{{item.href}}">{{item.label}}</a></li>
-                  <li class="separator"> | </li>
-                </template>
-              </ul>
-            </template>
-          </div>
 
-          <div class="contacts">
+        <div class="navigation">
+          <template is="dom-if" if="{{menu.items}}">
             <ul>
-              <li><a href="{{mainDomain}}/feedback/add">Feedback</a></li>
+              <li><a href="{{mainDomain}}/">Library home</a></li>
               <li class="separator"> | </li>
-              <li><a href="{{mainDomain}}/blog">News</a></li>
-              <li class="separator"> | </li>
-              <li><a href="{{mainDomain}}/site-information/site-map">Site Map</a></li>
+              <template is="dom-repeat" items="{{menu.items}}">
+                <li><a href="{{mainDomain}}{{item.href}}">{{item.label}}</a></li>
+                <li class="separator"> | </li>
+              </template>
             </ul>
+          </template>
+        </div>
 
-            <div class="social">
+        <div class="contacts">
+          <ul>
+            <li><a href="{{mainDomain}}/feedback/add">Feedback</a></li>
+            <li class="separator"> | </li>
+            <li><a href="{{mainDomain}}/blog">News</a></li>
+            <li class="separator"> | </li>
+            <li><a href="{{mainDomain}}/site-information/site-map">Site Map</a></li>
+          </ul>
+
+          <div class="social">
               <paper-button class="button-social">
                 <a href="https://www.youtube.com/user/uqlibrary" target="_blank">
-                  <iron-icon src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube" alt="YouTube"></iron-icon>
+                  <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube" alt="YouTube"></iron-icon>
                 </a>
               </paper-button>
 
               <paper-button class="button-social">
                 <a href="https://www.facebook.com/uniofqldlibrary" target="_blank">
-                  <iron-icon src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook" title="Facebook" alt="Facebook"></iron-icon>
+                  <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook" title="Facebook" alt="Facebook"></iron-icon>
                 </a>
               </paper-button>
 
               <paper-button class="button-social">
                 <a href="https://twitter.com/uqlibrary/" target="_blank">
-                  <iron-icon src="//s3-ap-southeast-2.amazonaws.com/uql-assets/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter" title="Twitter" alt="Twitter"></iron-icon>
+                  <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter" title="Twitter" alt="Twitter"></iron-icon>
                 </a>
               </paper-button>
             </div>
-          </div>
+        </div>
 
-          <div class="buttons">
+        <div class="buttons">
             <paper-button id="joinFriend" class="button-action" aria-label="Join Friends of the Library" raised>
               <a href="{{mainDomain}}/about-us/friends-library">
                 Join Friends of the Library
@@ -232,7 +186,7 @@
               </a>
             </paper-button>
           </div>
-        </div>
+
       </div>
     </div>
   </template>

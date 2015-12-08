@@ -1,0 +1,161 @@
+<dom-module id="common-styles">
+  <template>
+    <style is="custom-style">
+      :host {
+        --max-width: 1140px;
+        --font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+        --text-color: #000;
+        --text-color-inverse: #FFF;
+        --focus-outline-color: rgb(59, 153, 252);
+
+        /*UQ theme colours*/
+        --uq-purple: #49075E;
+        --uq-purple-dark: #370546;
+        --uq-purple-lighter: #6B0C8A;
+        --uq-purple-light: #d2c1d7;
+
+        --uq-blue: #2377CB;
+        --uq-blue-lighter: #288BED;
+        --uq-blue-dark: #005EA5;
+
+        --uq-grey: #595959;
+        --uq-grey-light: #f2f2f2;
+        --uq-grey-dark: #333;
+
+        /* sub-footer colours */
+        --sub-footer-background-color: #e5e5e5;
+        --sub-footer-text-color: #333;
+        --text-color-inverse: #fff;
+        --button-action-color: #2377CB;
+        --social-button-hover-background-color: #999;
+        --button-action-hover-color: #005ea5;
+
+        /* Menu colours */
+        --menu-background-color: #fff;
+        --menu-open-background-color: #f2f2f2;
+        --menu-hover-background-color: #e5e5e5;
+        --menu-selected-bar-color: #595959;
+        --menu-text-color: #222;
+        --menu-sub-text-color: #3F3F3F;
+        --menu-border-color: #ccc;
+
+        --paper-tabs-selection-bar-color: var(--menu-selected-bar-color);
+        --paper-tabs-ink-color: var(--menu-selected-bar-color);
+
+        --uq-box-shadow: {
+          box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+          -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+          -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+        }
+
+        /* Menu mix in */
+        --menu-item: {
+          color: var(--menu-text-color);
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 300;
+
+          height: 48px;
+          line-height: 24px;
+          min-height: 48px;
+          text-decoration: none;
+          overflow: hidden;
+
+          padding: 2px 16px;
+        }
+
+        /* Tooltip styles */
+        --paper-tooltip: {
+          background-color: var(--menu-open-background-color);
+          color: #666;
+          font-size: 13px;
+          padding: 20px;
+          border: 1px solid #ccc;
+          opacity: 0.99;
+        }
+
+        --paper-tooltip-pointer: {
+          border-bottom: 8px solid var(--menu-open-background-color);
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          content: '';
+          position: absolute;
+          top: -7px;
+          right: 50%;
+        }
+
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .button-small {
+        font-size: 10px;
+      }
+
+      .button-medium {
+        font-weight: 400;
+        font-size: 16px;
+      }
+
+      .button-inverse,
+      .button-inverse a {
+        color: var(--text-color-inverse);
+        background-color: var(--uq-purple);
+        text-decoration: none;
+      }
+
+      .button-inverse:hover,
+      .button-inverse:hover a,
+      .button-inverse a:hover{
+        background-color: var(--uq-purple-lighter);
+      }
+
+      .button-inverse:focus,
+      .button-action:focus,
+      .button-secondary-action:focus {
+        outline: var(--focus-outline-color) auto 5px;
+        font-weight: 400;
+      }
+
+      .button-action,
+      .button-action a{
+        color: var(--text-color-inverse);
+        background-color: var(--uq-blue);
+        text-decoration: none;
+      }
+
+      .button-action:hover,
+      .button-action:hover a,
+      .button-action:hover a:hover {
+        background: var(--uq-blue-dark);
+      }
+
+      .button-secondary-action,
+      .button-secondary-action a{
+        color: var(--text-color-inverse);
+        background-color: var(--uq-grey);
+        text-decoration: none;
+      }
+
+      .button-secondary-action:hover,
+      .button-secondary-action:hover a,
+      .button-secondary-action:hover a:hover {
+        background: var(--uq-grey-dark);
+      }
+
+      .button-title {
+        padding: 8px;
+      }
+
+      @media all and (max-width: 700px) {
+        .button-title {
+          display: none;
+        }
+      }
+
+    </style>
+  </template>
+</dom-module>
