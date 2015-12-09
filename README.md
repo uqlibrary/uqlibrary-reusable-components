@@ -2,14 +2,19 @@
 
 central repository contains:
 
-- /styles/ - common style templates, eg brand colors in scss 
 - /elements/ - common elements, eg header/footer
+- /test/ - tests for elements
 - /applications/ - applications customisations, eg LibGuides styles/scripts
 - /bin/ - deployment scripts
+- /resources/ - icons, uql-menu.json, etc
 
-#### Prerequisites 
+#### Polymer style guide documentation for development
 
-The full starter kit requires the following major dependencies:
+Please, read [Style Guide](http://polymerelements.github.io/style-guide/) before starting development.
+
+#### Prerequisites
+
+Project requires the following major dependencies:
 
 - Node.js, used to run JavaScript tools from the command line.
 - npm, the node package manager, installed with Node.js and used to install Node.js packages.
@@ -39,11 +44,15 @@ This checks the syntax, runs the tests and then triggers a rebuild of the cache.
 
 ### Elements
 
+- common-styles
 - uq-minimal-header
 - uq-minimal-footer
-- uq-mega-menu
-- uq-menu
-- uq-sidebar (menu)
+- uql-menu - contains uql-menu-menu and uql-drawer-panel, shows either menu, depending on desktop/mobile screen
+- uql-mega-menu - horizontal menu, based on paper-tabs and
+- uql-drawer-panel
+- uql-global-links
+- uql-ezproxy
+- header buttons (uql-apps-button, uql-chat-button, uql-ia-button, uql-login-button, uql-search-button)
 - elements.html - contains imports of all polymer and custom components, it's used to vulcanize all required components into one distribution
 
 
