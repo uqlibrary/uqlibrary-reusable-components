@@ -1,5 +1,17 @@
 {
   "name": "uqlibrary-reusable-components",
+  "description": "Set of reusable components for UQ Library web sites and web applications",
+  "authors": [
+    "UQ Library development team"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/uqlibrary/uqlibrary-reusable-components.git"
+  },
   "private": true,
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#^1.0.3",
@@ -18,5 +30,7 @@
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
     "web-component-tester": "*"
-  }
+  },
+  "main": "",
+  "ignore": []
 }
