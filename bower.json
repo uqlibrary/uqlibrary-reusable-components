@@ -32,6 +32,6 @@
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
     "web-component-tester": "*"
   },
-  "main": "",
+  "main": "elements/uq-minimal-header.html",
   "ignore": []
 }
