@@ -1,5 +1,5 @@
 {
-  "name": "reusable components",
+  "name": "uqlibrary-reusable-components",
   "private": true,
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#^1.0.3",
