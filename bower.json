@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git://github.com/uqlibrary/uqlibrary-reusable-components.git"
   },
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#^1.0.3",
