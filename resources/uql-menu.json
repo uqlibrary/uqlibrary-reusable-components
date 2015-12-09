@@ -189,12 +189,7 @@
         {
           "label": "Requesting",
           "subtext": "Loaned items, scans, purchase",
-          "href": "/borrowing-requesting/requesting"
-        },
-        {
-          "label": "Accessing restricted materials",
-          "subtext": "Fryer Library access",
-          "href": "/borrowing-requesting/accessing-restricted-materials",
+          "href": "/borrowing-requesting/requesting",
           "right": "right"
         },
         {
