@@ -31,7 +31,7 @@
         },
         {
           "label": "Digitisation",
-          "subtext": "Conversion of material to digital format",
+          "subtext": "Convert material to digital format",
           "href": "/library-services/digitisation",
           "right": "right"
         },
@@ -109,12 +109,12 @@
         },
         {
           "label": "UQ eSpace",
-          "subtext": "Archive of UQ research and more",
+          "subtext": "Archive of UQ research & more",
           "href": "/research-tools-techniques/uq-espace"
         },
         {
           "label": "Research by subject",
-          "subtext": "Law, medicine, management & more",
+          "subtext": "Law, medicine, management, & more",
           "href": "/research-tools-techniques/research-subject"
         },
         {
