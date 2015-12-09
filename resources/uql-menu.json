@@ -7,48 +7,48 @@
       "items": [
         {
           "label": "Your librarian",
-          "subtext": "get subject specific help",
+          "subtext": "Get subject specific help",
           "href": "/library-services/your-librarian",
           "right": "right"
         },
         {
           "label": "Training",
-          "subtext": "online & in-person classes",
+          "subtext": "Online & in-person classes",
           "href": "/library-services/training",
           "right": "right"
         },
         {
           "label": "I.T.",
-          "subtext": "printing, wifi, available computers etc.",
+          "subtext": "Printing, WiFi, available computers",
           "href": "/library-services/it",
           "right": "right"
         },
         {
           "label": "Copyright advice",
-          "subtext": "avoid issues when publishing",
+          "subtext": "Tailored advice on copyright",
           "href": "/library-services/copyright-advice",
           "right": "right"
         },
         {
           "label": "Digitisation",
-          "subtext": "print to digital conversion",
+          "subtext": "Conversion of material to digital format",
           "href": "/library-services/digitisation",
           "right": "right"
         },
         {
           "label": "for Students",
-          "subtext": "reading lists, past exams etc.",
+          "subtext": "Reading lists, past exams",
           "href": "/library-services/services-for-students"
           
         },
         {
           "label": "for Researchers",
-          "subtext": "data, impact, publishing support",
+          "subtext": "Data, impact, publishing support",
           "href": "/library-services/services-for-researchers"
         },
         {
           "label": "for Teaching staff",
-          "subtext": "resources, training, Library requests",
+          "subtext": "Resources, training, library requests",
           "href": "/library-services/services-for-teaching-staff"
           
         },
@@ -85,7 +85,7 @@
         },
         {
           "label": "for Other libraries",
-          "subtext": "order UQ theses, ILL requests",
+          "subtext": "Order UQ theses, ILL requests",
           "href": "/library-services/for-other-libraries"
           
         }
@@ -109,17 +109,17 @@
         },
         {
           "label": "UQ eSpace",
-          "subtext": "archive of UQ research and more",
+          "subtext": "Archive of UQ research and more",
           "href": "/research-tools-techniques/uq-espace"
         },
         {
           "label": "Research by subject",
-          "subtext": "law, engineering, biology, art etc.",
+          "subtext": "Law, medicine, management & more",
           "href": "/research-tools-techniques/research-subject"
         },
         {
           "label": "Search techniques",
-          "subtext": "best ways to find quality data",
+          "subtext": "Find quality information",
           "href": "/research-tools-techniques/search-techniques",
           "right": "right"
         },
@@ -169,13 +169,13 @@
       "items": [
         {
           "label": "How to borrow",
-          "subtext": "rules, finding items, returning",
+          "subtext": "Rules, finding items, returning",
           "href": "/borrowing-requesting/how-to-borrow"
         },
         {
           "label": "Overdue items",
           "href": "/borrowing-requesting/overdue-items",
-          "subtext": "pay library fines"
+          "subtext": "Pay library fines"
         },
         {
           "label": "View your loans",
@@ -183,12 +183,12 @@
         },
         {
           "label": "Renewing",
-          "subtext": "rules on keeping an item",
+          "subtext": "Rules on keeping an item",
           "href": "/borrowing-requesting/renewing-loans"
         },
         {
           "label": "Requesting",
-          "subtext": "loaned items, scans, purchase",
+          "subtext": "Loaned items, scans, purchase",
           "href": "/borrowing-requesting/requesting"
         },
         {
@@ -199,7 +199,7 @@
         },
         {
           "label": "From other libraries",
-          "subtext": "access non-UQ libraries",
+          "subtext": "Access non-UQ libraries",
           "href": "/borrowing-requesting/borrow-request-other-libraries",
           "right": "right"
         }
