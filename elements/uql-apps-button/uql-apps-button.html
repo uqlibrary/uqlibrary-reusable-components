@@ -1,11 +1,24 @@
+<link rel="import" href="../elements.html">
+
+<!--
+`<uql-apps-button>` is a simple button which links to my library application.
+In the future, it will have a Google-like drop down to display apps as icons.
+
+Example:
+      <uql-apps-button button-title="My Library"></uql-apps-button>
+
+@demo uql-apps-button/demo/index.html
+-->
 <dom-module id="uql-apps-button">
 
-  <link rel="import" href="../elements.html">
   <style is="custom-style" include="common-styles">
+    :host {
+      font-family: var(--font-family);
+    }
   </style>
 
     <template>
-    <paper-button class="button-inverse button-small" on-tap="myLibraryClicked" id="appsButton">
+    <paper-button class="button-inverse button-small" on-tap="_myLibraryClicked" id="appsButton">
       <iron-icon icon="icons:apps" aria-label="Go to my library"></iron-icon>
       <template is="dom-if" if="{{showTitle}}">
         <div class="button-title">{{buttonTitle}}</div>
