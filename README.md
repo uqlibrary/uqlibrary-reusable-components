@@ -3,7 +3,7 @@
 central repository contains:
 
 - /elements/ - common elements, eg header/footer
-    - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/demo)
+    - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
     - full documentation [here] (http://uqlibrary.github.io/uqlibrary-reusable-components)
 - /test/ - tests for elements
 - /applications/ - applications customisations, eg LibGuides styles/scripts
@@ -122,7 +122,7 @@ All common styles, colours, or mix-ins are located in /elements/common-styles.ht
  - run generate-gh-pages.sh from this new empty directory
  - script will update gh-pages branch of the project
  - check gh-pages were updated successfully
-    - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/demo)
+    - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
     - full documentation [here] (http://uqlibrary.github.io/uqlibrary-reusable-components)
 
 Codeship will deploy changes automatically by running deployment task /bin/codeship.sh:
