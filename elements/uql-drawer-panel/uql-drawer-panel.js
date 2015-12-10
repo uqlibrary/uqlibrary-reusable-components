@@ -21,7 +21,7 @@
       this.$.paperDrawerPanel.setAttribute('style', 'height: ' + height + 'px');
     },
 
-    isDrawerVisible: function(event) {
+    _isDrawerVisible: function(event) {
       if (this.$.paperDrawerPanel.selected === 'main') {
 
         if (this.$.paperDrawerPanel.className.indexOf('hidden') < 0) {
@@ -37,12 +37,21 @@
       }
     },
 
-    toggleMenu: function() {
-      this.$.paperDrawerPanel.toggleClass('hidden');
-      this.$.paperDrawerPanel.togglePanel();
+    toggleMenu: function(event) {
+      var that = this;
+
+      if (event) {
+        setTimeout(function(){
+          that.$.paperDrawerPanel.toggleClass('hidden');
+          that.$.paperDrawerPanel.togglePanel();
+        }, 100);
+      } else {
+        this.$.paperDrawerPanel.toggleClass('hidden');
+        this.$.paperDrawerPanel.togglePanel();
+      }
     },
 
-    menuSelected: function(event) {
+    _menuSelected: function(event) {
 
       var menuItem = event.target;
       while(!menuItem.getAttribute('data-item-index')) {
@@ -54,5 +63,6 @@
 
       subMenu.toggle();
     }
+
   });
 })();
