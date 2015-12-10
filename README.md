@@ -117,9 +117,9 @@ All common styles, colours, or mix-ins are located in /elements/common-styles.ht
 1. If component is to be included into a specific application, update /applications/[app name]/load.js for this application
 1. If styling update is required for a specific application, make sure styles are compiled
 1. Commit all changes
-1. Run generate-gh-pages.sh to update documentation
+1. Update documentation for the project:
  - create a new temporary non-git directory
- - run generate-gh-pages.sh from this new empty directory
+ - run /bin/generate-gh-pages.sh from this new empty directory
  - script will update gh-pages branch of the project
  - check gh-pages were updated successfully
     - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
