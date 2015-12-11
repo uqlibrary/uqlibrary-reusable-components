@@ -1,6 +1,19 @@
-<dom-module id="uql-chat-button">
+<link rel="import" href="../elements.html">
 
-  <link rel="import" href="../elements.html">
+<!--
+`<uql-chat-button>` is a simple button with indication if libchat is online or not. If chat is online, when user clicks
+chat button it will open a chat window, if chat is offline, it will open a specified URL (lib-answers).
+
+If chat is online, a tooltip will popup to draw user's attention to the button.
+A cookie is created to make sure this popup only shows up once a day for this user-session.
+
+Example:
+      <uql-chat-button></uql-chat-button>
+
+@demo uql-chat-button/demo/index.html
+-->
+
+<dom-module id="uql-chat-button">
 
   <style is="custom-style" include="common-styles">
 
@@ -33,8 +46,8 @@
             auto
             url="{{chatStatusUrl}}"
             params="{{timestamp}}"
-            on-response="handleChatStatusResponse"
-            on-error="handleChatStatusError"
+            on-response="_handleChatStatusResponse"
+            on-error="_handleChatStatusError"
             debounce-duration="300"></byutv-jsonp>
 
     <paper-button class="button-inverse button-small" on-tap="openChat" id="chatButton">
