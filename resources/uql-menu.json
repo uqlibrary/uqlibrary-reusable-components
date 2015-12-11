@@ -7,7 +7,7 @@
       "items": [
         {
           "label": "Your librarian",
-          "subtext": "Get subject specific help",
+          "subtext": "Get subject-specific help",
           "href": "/library-services/your-librarian",
           "right": "right"
         },
@@ -25,7 +25,6 @@
         },
         {
           "label": "Copyright advice",
-          "subtext": "Tailored advice on copyright",
           "href": "/library-services/copyright-advice",
           "right": "right"
         },
@@ -37,7 +36,7 @@
         },
         {
           "label": "for Students",
-          "subtext": "Reading lists, past exams",
+          "subtext": "Reading lists, past exams ...",
           "href": "/library-services/services-for-students"
           
         },
@@ -48,7 +47,7 @@
         },
         {
           "label": "for Teaching staff",
-          "subtext": "Resources, training, library requests",
+          "subtext": "Reading lists, Blackboard links ...",
           "href": "/library-services/services-for-teaching-staff"
           
         },
@@ -85,7 +84,6 @@
         },
         {
           "label": "for Other libraries",
-          "subtext": "Order UQ theses, ILL requests",
           "href": "/library-services/for-other-libraries"
           
         }
@@ -114,7 +112,7 @@
         },
         {
           "label": "Research by subject",
-          "subtext": "Law, medicine, management, & more",
+          "subtext": "Law, medicine, management ...",
           "href": "/research-tools-techniques/research-subject"
         },
         {
@@ -124,19 +122,14 @@
           "right": "right"
         },
         {
-          "label": "Evaluate your search results",
-          "href": "/research-tools-techniques/evaluate-your-search-results",
-          "right": "right"
-        },
-        {
           "label": "Referencing",
           "subtext": "Endnote, style guides, plagiarism",
           "href": "/research-tools-techniques/referencing",
           "right": "right"
         },
         {
-          "label": "Easier off-campus access",
-          "href": "/research-tools-techniques/easier-campus-access",
+          "label": "Off-campus access",
+          "href": "/research-tools-techniques/campus-access",
           "right": "right"
         }
       ]
@@ -146,8 +139,8 @@
       "href": "/collections",
       "items": [
         {
-          "label": "Collection strengths",
-          "href": "/collections/collection-strengths"
+          "label": "Collection strength",
+          "href": "/collections/collection-strength"
         },
         {
           "label": "Online exhibitions",
@@ -168,6 +161,10 @@
       "href": "/borrowing-requesting",
       "items": [
         {
+          "label": "View & renew your loans",
+          "href": "/borrowing-requesting/view-renew-your-loans"
+        },
+        {
           "label": "How to borrow",
           "subtext": "Rules, finding items, returning",
           "href": "/borrowing-requesting/how-to-borrow"
@@ -176,15 +173,6 @@
           "label": "Overdue items",
           "href": "/borrowing-requesting/overdue-items",
           "subtext": "Pay library fines"
-        },
-        {
-          "label": "View your loans",
-          "href": "/borrowing-requesting/view-your-loans"
-        },
-        {
-          "label": "Renewing",
-          "subtext": "Rules on keeping an item",
-          "href": "/borrowing-requesting/renewing-loans"
         },
         {
           "label": "Requesting",
@@ -225,7 +213,7 @@
           "right": "right"
         },
         {
-          "label": "Using and sharing library spaces",
+          "label": "Using & sharing library spaces",
           "href": "/locations-hours/using-and-sharing-your-library-spaces",
           "right": "right"
         },
@@ -235,7 +223,7 @@
           "right": "right"
         },
         {
-          "label": "Architecture and Music",
+          "label": "Architecture & Music",
           "href": "/locations-hours/architecture-music-library"
         },
         {
@@ -247,9 +235,8 @@
           "href": "/locations-hours/duhig-tower"
         },
         {
-          "label": "Engineering & Sciences",
-          "subtext": "Dorothy Hill Library",
-          "href": "/locations-hours/engineering-and-sciences-library-dorothy-hill-library"
+          "label": "D. H. Engineering & Sciences",
+          "href": "/locations-hours/dorothy-hill-engineering-and-sciences-library"
           
         },
         {
@@ -365,6 +352,16 @@
         {
           "label": "Awards & competitions",
           "href": "/about-us/awards-and-competitions",
+          "right": "right"
+        },
+        {
+          "label": "Mission",
+          "href": "/about-us/mission",
+          "right": "right"
+        },
+        {
+          "label": "Participate in customer research",
+          "href": "/about-us/participate-customer-research",
           "right": "right"
         }
       ]

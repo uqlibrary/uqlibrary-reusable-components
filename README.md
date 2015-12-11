@@ -1,16 +1,17 @@
-# reusable-components
+# uqlibrary-reusable-components
 
 central repository contains:
 
 - /elements/ - common elements, eg header/footer
+    - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
+    - full documentation [here] (http://uqlibrary.github.io/uqlibrary-reusable-components)
 - /test/ - tests for elements
 - /applications/ - applications customisations, eg LibGuides styles/scripts
-- /bin/ - deployment scripts
+- /bin/ - shell scripts, eg deployment, gh-pages
 - /resources/ - icons, uql-menu.json, etc
+- /backup/ - styles/scripts of applications before reusable components were applied
 
-#### Polymer style guide documentation for development
-
-Please, read [Style Guide](http://polymerelements.github.io/style-guide/) before starting development.
+### Getting Started
 
 #### Prerequisites
 
@@ -21,7 +22,7 @@ Project requires the following major dependencies:
 - gulp, a Node.js-based build tool.
 - bower, a Node.js-based package manager used to install front-end packages (like Polymer).
 
-### Getting Started
+#### Installing Dependencies 
 
 With Node.js installed, run the following one liner from the root of the repo:
 
@@ -41,24 +42,14 @@ Once you have committed (and pushed if using a client) the changes, a build will
     
 This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
 
-
-### Elements
-
-- common-styles
-- uq-minimal-header
-- uq-minimal-footer
-- uql-menu - contains uql-menu-menu and uql-drawer-panel, shows either menu, depending on desktop/mobile screen
-- uql-mega-menu - horizontal menu, based on paper-tabs and
-- uql-drawer-panel
-- uql-global-links
-- uql-ezproxy
-- header buttons (uql-apps-button, uql-chat-button, uql-ia-button, uql-login-button, uql-search-button)
-- elements.html - contains imports of all polymer and custom components, it's used to vulcanize all required components into one distribution
-
-
 ### Applications Customisations
 
-- LibGuides
+All custom styles/scripts are located in /applications/[app name]/
+
+- load.js - script contains injection of components for the application 
+- custom-styles.scss/custom-styles.css - custom css for the application
+
+#### LibGuides
 
 test group (uses master branch): http://guides.library.uq.edu.au/test
 include this code in Custom JS/CSS Code in LibGuides configuration
@@ -71,7 +62,7 @@ include this code in Custom JS/CSS Code in LibGuides configuration
         <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
         <script src="//assets.library.uq.edu.au/[master]/reusable-components/shared/load-minimal.js"></script>
 
-- LibAnswers
+#### LibAnswers
 
 test group (uses master branch): http://answers.library.uq.edu.au/test
 
@@ -85,7 +76,7 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
         <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
         <script src="//assets.library.uq.edu.au/[master]/reusable-components/shared/load-minimal.js"></script>
         
-- UQL Drupal
+#### UQL Drupal (libwww)
 
 include this code in Omega's html.tpl.php 
 
@@ -99,7 +90,9 @@ include this code in Omega's html.tpl.php
         </script>
         <script src="//assets.library.uq.edu.au/[master]/reusable-components/libwww/load.js"></script>
 
-- Add more ...
+#### Shared (uqlais)
+
+[TODO: add details here]
 
 ### Forcing IMS logins
 
@@ -107,22 +100,37 @@ Embed the following if you want to force an IMS login for on campus workstations
 
         <script src="https://www.library.uq.edu.au/js/ims.js"></script>
 
-### Development/Deployment process
+### Elements Development
 
-1. Update styles
-1. Update any custom elements
-1. Compile all styles 
-1. Run build task
-```sh
-gulp build
-```
+Please, read [Style Guide](http://polymerelements.github.io/style-guide/) before starting development.
 
+All common styles, colours, or mix-ins are located in /elements/common-styles.html
+
+#### Development/Deployment process
+
+1. Create/update required component following [Style Guide](http://polymerelements.github.io/style-guide/)
+1. Use common styles/variables/mix-ins from /elements/common-styles.html, customise styling in the element.
+1. Create/update demo page for the component in /elements/[component]/demo/index.html
+1. Create/update test suite in /test/ directory
+1. If new component is a stand alone component - add it to complete demo page /elements/demo/index.html
+1. Run 'gulp syntax' to check project passes validations
+1. If component is to be included into a specific application, update /applications/[app name]/load.js for this application
+1. If styling update is required for a specific application, make sure styles are compiled
 1. Commit all changes
-1. Codeship will deploy changes automatically by running
-deployment task /bin/codeship.sh:
+1. Update documentation for the project:
+ - create a new temporary non-git directory
+ - run /bin/generate-gh-pages.sh from this new empty directory
+ - script will update gh-pages branch of the project
+ - check gh-pages were updated successfully
+    - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
+    - full documentation [here] (http://uqlibrary.github.io/uqlibrary-reusable-components)
+
+Codeship will deploy changes automatically by running deployment task /bin/codeship.sh:
 - installs all dependencies
 - sets AWS configuration
-- runs gulp publish task which uploads files to S3 bucket
+- runs checks/tests
+- runs vulcanization task
+- runs gulp publish task which uploads files to S3 bucket and invalidates cache
 
 Distribution package on S3 looks like this:
 
