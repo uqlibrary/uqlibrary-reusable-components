@@ -3,11 +3,13 @@
     is: 'uql-chat-button',
     properties: {
 
+      /** LibChat status API URL */
       chatStatusUrl: {
         type: String,
         value: "https://api2.libanswers.com/1.0/chat/widgets/status/1193"
       },
 
+      /** Timestamp for API call to prevent caching */
       timestamp: {
         type: Object,
         value: function() {
@@ -16,41 +18,50 @@
         }
       },
 
+      /** Indicates whether chat is online or not */
       isChatOnline: {
         type: Boolean,
         value: false
       },
 
+      /** Whether to display title of the button */
       showTitle : {
-        type: String,
+        type: Boolean,
         value: true
       },
 
+      /** Button title text */
       buttonTitle: {
         type: String,
         value: "Chat"
       },
 
+      /** Button title text when chat is offline */
       buttonTitleOffline: {
         type: String,
         value: "Ask"
       },
 
+      /** Tooltip text when chat is online */
       chatOnlineText: {
         type: String,
         value: "Chat with us now!"
       },
 
+      /** Tooltip text when chat is offline */
       chatOfflineText: {
         type: String,
         value: "Click here for help."
       },
 
+      /** Redirect URL when chat is offline */
       offlineUrl: {
         type: String,
         value: "http://answers.library.uq.edu.au"
       },
 
+      /** Chat window configuration properties
+       * @type {{height: String, width: String, baseDomain: String, iid: number, hash: String}} */
       chatOptions : {
         type: Object,
         value : {
@@ -63,17 +74,24 @@
       }
     },
 
-    handleChatStatusResponse: function(response) {
+    /**  Processes successful chat status api response
+     * @param {Object} API call response
+     * */
+    _handleChatStatusResponse: function(response) {
       this.isChatOnline = response.detail.data.online;
-      this.setupChatTooltip();
+      this._setupChatTooltip();
     },
 
-    handleChatStatusError: function(response) {
+    /**  Processes error chat status api response
+     * @param {Object} API call response
+     * */
+    _handleChatStatusError: function(response) {
       this.isChatOnline = false;
-      this.setupChatTooltip();
+      this._setupChatTooltip();
     },
 
-    setupChatTooltip: function() {
+    /**  Shows chat status tooltip, creates a cookie not to show tooltip for next 24 hrs */
+    _setupChatTooltip: function() {
       var tooltip = document.getElementById('chatStatusTooltip');
 
       if (this.isChatOnline && document.cookie.indexOf("UQL-Show-Chat=1") <= -1) {
@@ -95,11 +113,12 @@
       }
     },
 
+    /** Opens chat in a new window */
     openChat: function() {
       if (!this.isChatOnline && this.offlineUrl !== '') {
         window.location.href = this.offlineUrl;
       } else {
-        var url = this.buildChatUrl(this.isChatOnline);
+        var url = this._buildChatUrl(this.isChatOnline);
 
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
           window.open(url);
@@ -109,11 +128,15 @@
             'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + this.chatOptions.width + ', ' +
             'height=' + this.chatOptions.height);
         }
-
       }
     },
 
-    buildChatUrl: function(isOnline) {
+    /**
+     * Builds chat url based on chat status
+     *
+     * @param {Boolean} Chat status online/offline
+     * @return {String} Constructed chat URL */
+    _buildChatUrl: function(isOnline) {
       var qs = window.location.protocol + '//' + this.chatOptions.baseDomain + '/chati.php?';
       qs += "iid=" + this.chatOptions.iid + "&hash=" + this.chatOptions.hash;
       qs += "&online=" + isOnline;

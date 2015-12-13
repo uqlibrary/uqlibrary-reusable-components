@@ -9,13 +9,13 @@
 # subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 #
 
-# This script pushes a demo-friendly version of your element and its
+# This script pushes a demo-friendly version of uqlibrary-reusable-components and its
 # dependencies to gh-pages.
 
-# usage gp Polymer core-item [branch]
 # Run in a clean directory passing in a GitHub org and repo name
-org=$1
-repo=$2
+org="uqlibrary"
+repo="uqlibrary-reusable-components"
+
 branch=${3:-"master"} # default to master when branch isn't specified
 
 # make folder (same as input, no checking!)
@@ -26,24 +26,23 @@ git clone git@github.com:$org/$repo.git --single-branch
 pushd $repo >/dev/null
 git checkout --orphan gh-pages
 
-# remove all content
-git rm -rf -q .
+# remove all non-relevant content
+git rm -rf .gitignore
+git rm -rf gulpfile.js
+git rm -rf template.aws.json
+git rm -rf wct.conf.js
+
+git rm -rf applications
+git rm -rf backup
+git rm -rf bin
+git rm -rf test
 
 # use bower to install runtime deployment
 bower cache clean $repo # ensure we're getting the latest from the desired branch.
-git show ${branch}:bower.json > bower.json
-echo "{
-  \"directory\": \"components\"
-}
-" > .bowerrc
 bower install
-bower install $org/$repo#$branch
-git checkout ${branch} -- demo
-rm -rf components/$repo/demo
-mv demo components/$repo/
 
-# redirect by default to the component folder
-echo "<META http-equiv="refresh" content=\"0;URL=components/$repo/\">" >index.html
+# redirect by default to the elements folder
+echo "<META http-equiv="refresh" content=\"0;URL=elements\">" >index.html
 
 # send it all to github
 git add -A .

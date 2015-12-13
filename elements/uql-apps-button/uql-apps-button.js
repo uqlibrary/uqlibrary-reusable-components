@@ -19,7 +19,7 @@
       }
     },
 
-    /** redirects to specific URL */
+    /** Redirects to the specified URL */
     _myLibraryClicked: function() {
       window.location.href = this.redirectUrl;
     }

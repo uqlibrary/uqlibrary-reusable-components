@@ -3,12 +3,11 @@
 <html>
 
 <head>
-  <title>header-minimal demo</title>
+  <title>UQLibrary Reusable Components Demo</title>
   <meta name=viewport content="width=device-width, initial-scale=1">
 
-  <!-- this demo is configured with live paths -->
-  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
-  <link rel="import" href="../../elements.vulcanized.html">
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../elements.html">
 
   <style>
     @media (max-width: 1047px) {
@@ -27,7 +26,8 @@
     }
 
     .body {
-      margin: 0px auto;
+      /*padding: 50px 0px 0px 100px;*/
+      margin: 0 auto;
     }
     input {
       margin: 5px;
@@ -49,6 +49,7 @@
                      on-menu-clicked="processEvent"
           ></uq-minimal-header>
   <uql-menu id="menu" menu-json="{{menuJson}}"></uql-menu>
+
   <div class="body">
     <div> Application title <input value="{{appTitle::input}}"> </div>
     <div> Show buttons title <input type="checkbox" checked="{{showButtonTitle::change}}"> </div>
@@ -63,6 +64,8 @@
     <div> Show login button <input type="checkbox" checked="{{showLoginStatus::change}}"> </div>
     <div> Show IA button <input type="checkbox" checked="{{showIAStatus::change}}"> </div>
     <div> Show menu button <input type="checkbox" checked="{{showMenuButton::change}}"> </div>
+
+
   </div>
   <uql-connect-footer footer-menu-url="{{menuJson}}" main-domain="https://www.library.uq.edu.au"></uql-connect-footer>
   <uq-minimal-footer></uq-minimal-footer>
@@ -70,30 +73,24 @@
 
 
 <script>
-  document.cookie="UQLMockData=enabled";
 
   Demo.processEvent = function (event) {
-    console.log('menu button was clicked, now open menu');
     var menu = document.getElementById('menu');
     menu.toggleMenu();
   }
 
+  document.cookie="UQLMockData=enabled";
+
   Demo.appTitle = '';
-  Demo.menuJson = '../../resources/uql-menu.json';
+  Demo.menuJson = '../uql-menu/demo/menu.json';
 
   Demo.chatStatusConfig = {
     buttonTitle: "Chat",
     buttonTitleOffline: "Ask",
     chatOnlineText: "Chat with us now!",
     chatOfflineText: "Chat is offline.",
-    offlineUrl: "https://library.uq.edu.au"
+    offlineUrl: "http://answers.library.uq.edu.au"
   };
-
-    Demo.showMenuButton = true;
-  //  Demo.showSearchStatus = true;
-  //  Demo.showAppsStatus = true;
-  //  Demo.showChatStatus = true;
-  //  Demo.showLoginStatus = true;
 
   Demo.showButtonTitle = true;
 
