@@ -89,7 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // so wait to check for updates
       flush(function () {
 
-        var url = testObj.buildChatUrl(false);
+        var url = testObj._buildChatUrl(false);
         var testUrl = window.location.protocol + '//library.uq.edu.au/chati.php?iid=1234&hash=1234ABCD&online=false'
 
         assert.equal(url, testUrl, "BuildChatUrl has constructed an invalid URL");
