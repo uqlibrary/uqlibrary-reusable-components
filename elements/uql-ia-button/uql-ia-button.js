@@ -18,11 +18,11 @@
     },
 
     ready: function() {
-      this.isIAEnabled = (document.cookie.indexOf("toggleia=1") >= 0 || document.cookie.indexOf("iabutton") >= 0);
+      this.isIAEnabled = (document.cookie.indexOf("iabutton") >= 0);
     },
 
     _IAEnabledChanged: function(newValue, oldValue) {
-      this.buttonTitle = newValue ? "New Site" : "Old Site";
+      this.buttonTitle = newValue ? "Old Site" : "New Site";
     },
 
     toggleIA: function() {
