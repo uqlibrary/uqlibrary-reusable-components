@@ -6,7 +6,7 @@
       /** LibChat status API URL */
       chatStatusUrl: {
         type: String,
-        value: "https://api2.libanswers.com/1.0/chat/widgets/status/1193"
+        value: "https://api2.libanswers.com/1.0/chat/widgets/status/1871"
       },
 
       /** Timestamp for API call to prevent caching */
