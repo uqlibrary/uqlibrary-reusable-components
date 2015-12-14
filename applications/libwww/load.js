@@ -6,7 +6,7 @@ window.addEventListener('WebComponentsReady', function() {
 
   // insert header after body-tag
   var header = document.createElement('uq-minimal-header');
-  header.showIAButton = false;
+  header.showIAButton = (document.cookie.indexOf("iabutton") >= 0);
   header.showMenuButton = true;
   header.showSearchButton = true;
   document.body.insertBefore(header, firstElement);
