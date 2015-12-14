@@ -18,11 +18,11 @@
     },
 
     ready: function() {
-      this.isIAEnabled = document.cookie.indexOf("toggleia=1") >= 0;
+      this.isIAEnabled = (document.cookie.indexOf("toggleia=1") >= 0 || document.cookie.indexOf("iabutton") >= 0);
     },
 
     _IAEnabledChanged: function(newValue, oldValue) {
-      this.buttonTitle = newValue ? "Disable IA" : "Enable IA";
+      this.buttonTitle = newValue ? "New Site" : "Old Site";
     },
 
     toggleIA: function() {
