@@ -12,6 +12,11 @@
           "right": "right"
         },
         {
+          "label": "Room bookings",
+          "href": "/locations-hours/room-bookings",
+          "right": "right"
+        },
+        {
           "label": "Training",
           "subtext": "Online & in-person classes",
           "href": "/library-services/training",
@@ -194,33 +199,23 @@
       "items": [
         {
           "label": "Opening hours",
-          "href": "/locations-hours/opening-hours",
-          "right": "right"
-        },
-        {
-          "label": "Room bookings",
-          "href": "/locations-hours/room-bookings",
-          "right": "right"
+          "href": "/locations-hours/opening-hours"
         },
         {
           "label": "24/7 spaces",
-          "href": "/locations-hours/247-study-spaces",
-          "right": "right"
+          "href": "/locations-hours/247-study-spaces"
         },
         {
           "label": "Lost or stolen property",
-          "href": "/locations-hours/lost-or-stolen-property",
-          "right": "right"
+          "href": "/locations-hours/lost-or-stolen-property"
         },
         {
           "label": "Using & sharing library spaces",
-          "href": "/locations-hours/using-and-sharing-your-library-spaces",
-          "right": "right"
+          "href": "/locations-hours/using-and-sharing-your-library-spaces"
         },
         {
           "label": "Lockers",
-          "href": "/locations-hours/lockers",
-          "right": "right"
+          "href": "/locations-hours/lockers"
         },
         {
           "label": "Architecture & Music",
@@ -247,52 +242,61 @@
         {
           "label": "Gatton",
           "subtext": "J.K. Murray Library",
-          "href": "/locations-hours/uq-gatton-library-jk-murray-library"
-          
+          "href": "/locations-hours/uq-gatton-library-jk-murray-library",
+          "right": "right"
         },
         {
           "label": "Grad. Economics & Business",
-          "href": "/locations-hours/graduate-economics-and-business-library"
+          "href": "/locations-hours/graduate-economics-and-business-library",
+          "right": "right"
           
         },
         {
           "label": "Herston Health Sciences",
-          "href": "/locations-hours/herston-health-sciences-library"
+          "href": "/locations-hours/herston-health-sciences-library",
+          "right": "right"
           
         },
         {
           "label": "USQ Ipswich",
-          "href": "/locations-hours/usq-ipswich-library"
+          "href": "/locations-hours/usq-ipswich-library",
+          "right": "right"
         },
         {
           "label": "Law",
           "subtext": "Walter Harrison Library",
-          "href": "/locations-hours/law-library-walter-harrison-library"
+          "href": "/locations-hours/law-library-walter-harrison-library",
+          "right": "right"
           
         },
         {
           "label": "UQ/Mater McAuley Library",
-          "href": "/locations-hours/uqmater-mcauley-library"
+          "href": "/locations-hours/uqmater-mcauley-library",
+          "right": "right"
           
         },
         {
           "label": "PACE Health Sciences",
-          "href": "/locations-hours/pace-health-sciences-library"
+          "href": "/locations-hours/pace-health-sciences-library",
+          "right": "right"
           
         },
         {
           "label": "Rural Clinical School",
-          "href": "/locations-hours/rural-clinical-school-rcs-library"
+          "href": "/locations-hours/rural-clinical-school-rcs-library",
+          "right": "right"
           
         },
         {
           "label": "Social Sciences & Humanities",
-          "href": "/locations-hours/social-sciences-humanities-library"
+          "href": "/locations-hours/social-sciences-humanities-library",
+          "right": "right"
           
         },
         {
           "label": "Warehouse",
-          "href": "/locations-hours/warehouse"
+          "href": "/locations-hours/warehouse",
+          "right": "right"
           
         }
       ]
