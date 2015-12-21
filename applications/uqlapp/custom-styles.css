@@ -1,17 +1,51 @@
+html {
+  height: 100%; }
+
 body {
-  min-height: 100vh;
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  display: -ms-flexbox;
+  display: -webkit-box;
   display: -webkit-flex;
-  display: flex; }
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%; }
+
+.has-breadcrumbs body {
+  padding-top: 0; }
+
+.sidebar {
+  top: 0;
+  padding-top: 100px; }
+
+uq-minimal-header,
+uq-minimal-footer {
+  z-index: 1001;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  position: relative; }
 
 .app {
-  -ms-flex: 1 1 0.000000001px;
-  -webkit-flex: 1;
-  flex: 1;
-  -webkit-flex-basis: 0.000000001px;
-  flex-basis: 0.000000001px; }
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  padding: 1.5em 1.5em 0;
+  width: 100%; }
+
+.app::after {
+  content: '\00a0';
+  display: block;
+  margin-top: 1.5em;
+  height: 0;
+  visibility: hidden; }
+
+.uql-journals,
+.uql-gateways {
+  padding-top: 0; }
 
 /*# sourceMappingURL=custom-styles.css.map */

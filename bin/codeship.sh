@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
 set -e
