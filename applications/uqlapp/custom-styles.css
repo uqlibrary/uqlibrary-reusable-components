@@ -21,7 +21,8 @@ body {
   padding-top: 100px; }
 
 uq-minimal-header,
-uq-minimal-footer {
+uq-minimal-footer,
+uql-commect-footer {
   z-index: 1001;
   -webkit-box-flex: 0;
   -webkit-flex: none;
