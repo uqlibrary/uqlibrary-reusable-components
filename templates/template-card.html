@@ -20,9 +20,8 @@
     <link rel="import" href="../elements/elements.html">
     <script src="../applications/shared/load-minimal.js"></script>
 
-
     <style is="custom-style" include="common-styles">
-        html,
+    html,
         body {
             height: 100%;
             margin: 0;
@@ -35,8 +34,10 @@
         }
 
         #content {
-            @apply(--layout-flex-auto);
-
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 0 auto;
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
             padding: 1.5em 1.5em 0;
             max-width: 1170px;
             width: 90%;
@@ -55,62 +56,50 @@
         uq-minimal-footer,
         uql-connect-footer {
             z-index: 1001;
-            @apply(--layout-flex-none);
-            position: relative;
-        }
+            -webkit-box-flex: 0;
+            -webkit-flex: none;
+            -ms-flex: none;
+            flex: none;
+            position: relative; }
 
         .big {
             font-size: 18px;
-            font-weight: 500;
             padding: 8px 0 16px;
+            font-weight: 500;
         }
 
         .flex-end-justified {
             @apply(--layout-horizontal);
             @apply(--layout-end-justified);
         }
-
     </style>
 </head>
 <body unresolved>
 
 <div id="content">
-    <paper-card heading="There may be a problem with this link">
+    <paper-card heading="Template page title">
 
         <div class="card-content">
-            You were trying to go to http://site-not-in-ezproxy.com via UQ Library, but this is not a Library resource.
+            Card content goes here... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu luctus ante. Mauris magna neque, condimentum et imperdiet sagittis, commodo ac ante. Morbi cursus blandit fringilla. Ut bibendum purus ligula, a fringilla lorem porta eget. Nullam ultrices finibus auctor. Sed nec justo eget nisl eleifend mattis sit amet in metus. Quisque efficitur, purus sed pellentesque convallis, urna arcu aliquet purus, quis interdum magna velit eget turpis. Vestibulum semper arcu arcu, et semper purus consequat porttitor. Nulla non nibh lorem. Morbi fermentum diam eu fringilla porttitor. Proin semper eu nulla non consequat. Quisque semper eros justo, ut cursus nunc luctus eu. Integer eros lectus, convallis vel pellentesque a, gravida ut sem. Donec lacus justo, lobortis eget feugiat sit amet, cursus id elit. Ut suscipit nunc nec sem cursus, in semper dolor vestibulum. Nam massa mi, lacinia a venenatis quis, tempus et urna.
         </div>
 
         <div class="card-content">
+            <div class="big">Template sub title</div>
 
-            <div class="big">What should you do now?</div>
-
-            There are a few reasons why you might see this message:
-
-            <ul>
-                <li>Most likely, the link is a public website which doesn't need to be accessed via the Library, but the link has sent you via the Library by mistake.</li>
-                <li>Sometimes the URL is actually a Library resource but we have an error in our configuration.</li>
-                <li>Sometimes the link is a scam trying to look more trustworthy by being sent via by the Library.</li>
-            </ul>
-
-            If you trust this link you can continue to http://notinezproxy.com
-
+            More content... Cras posuere massa a nisl cursus, eu sollicitudin odio aliquet. Curabitur nec augue sapien. Morbi maximus non libero non condimentum. Donec ipsum risus, viverra nec sagittis non, tempus in sapien. Sed nec mattis odio, eu laoreet odio. Nulla euismod ligula quis condimentum ullamcorper. Donec facilisis quam a suscipit ullamcorper. Cras ultrices pretium tortor, eu sodales lectus ultricies sit amet. Nunc laoreet nulla at lacus vehicula, vitae dictum mi pharetra. Fusce at luctus enim. Mauris in tortor vel orci rutrum sagittis. Proin maximus vestibulum lacus at ullamcorper.
         </div>
+
 
         <div class="card-content">
 
-            <div class="big">Help us fix the problem</div>
+            <div class="big">Some sample form</div>
 
-            This error has been automatically logged for investigation. <br/><br/>
-
-            The following information will help us fix the problem: <br/>
-
-            <paper-input id="linkInfo" label="Where did you find the link?" value=""></paper-input>
-            <paper-input id="email" label="Your email address, if you would like us to get back to you"></paper-input>
-            <paper-textarea id="details" label="Any other information about the link?"></paper-textarea>
+            <paper-input id="itemName" label="Your name" value=""></paper-input>
+            <paper-input id="itemEmail" label="Your email"></paper-input>
+            <paper-textarea id="itemDetails" label="Your address"></paper-textarea>
 
             <div class="flex-end-justified">
-                <paper-button onClick="" class="button-medium button-action">Submit</paper-button>
+                <paper-button onClick="alert('form submitted')" class="button-medium button-action">Submit</paper-button>
             </div>
 
         </div>
