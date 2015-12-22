@@ -4,6 +4,9 @@
     is: 'uql-drawer-panel',
 
     properties: {
+
+      /** menu structure
+       * @type {{ "heading": String, "items": Array }} */
       menu: {
         type: Object
       }
@@ -37,6 +40,9 @@
       }
     },
 
+    /**  Toggles drawer panel
+     * @param {Object} event details
+     * */
     toggleMenu: function(event) {
       var that = this;
 

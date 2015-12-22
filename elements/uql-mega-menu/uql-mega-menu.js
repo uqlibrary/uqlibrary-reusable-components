@@ -6,16 +6,20 @@
 
     properties: {
 
+      /** menu structure
+       * @type {{ "heading": String, "items": Array }} */
       menu: {
         type: Object,
         observer: '_menuChanged'
       },
 
+      /** debugging flag */
       verbose: {
         type: Boolean,
         value: true
       },
 
+      /** currently selected top level menu item */
       selectedMenuItemIndex: {
         type: Number,
         observer: '_selectedMenuChanged'
@@ -77,9 +81,9 @@
     _subMenuClosed: function(event) {
       //reset styles
       var menuIndex = Number(event.target.getAttribute('data-item-index'));
-      var deselectedTab = document.querySelectorAll('paper-tab')[menuIndex];
+      var deselectedTab = this.querySelectorAll('paper-tab')[menuIndex];
 
-      if(deselectedTab.className.indexOf("sub-menu-opened") >= 0)
+      if(deselectedTab && deselectedTab.className.indexOf("sub-menu-opened") >= 0)
         deselectedTab.toggleClass("sub-menu-opened");
     },
 
