@@ -1,38 +1,380 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html>
-
 <head>
-  <title>UQL Menu demo</title>
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../../uql-menu/uql-menu.html">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+  <title>uql-mega-menu demo</title>
+
+  <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../../../bower_components/iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+
+  <link rel="import" href="../uql-drawer-panel.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+    .vertical-section-container {
+      max-width:766px;
     }
   </style>
+
 </head>
-<body>
-
-<uql-menu menu-json="menu.json"></uql-menu>
-
-<div class="main">
-  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-    quam,
-    feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
-    mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
-    wisi,
-    condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum
-    rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent
-    dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
-    volutpat.
-    Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-
-  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-    quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-    ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+<body unresolved>
+<div class="vertical-section-container centered">
+  <h3>Demo for uql-drawer-panel</h3>
+  <demo-snippet class="centered-demo">
+    <template>
+      <paper-button>Open menu</paper-button>
+      <uql-drawer-panel></uql-drawer-panel>
+    </template>
+  </demo-snippet>
 </div>
+
+<script>
+  window.addEventListener('WebComponentsReady', function(e) {
+
+    var menuJson = {
+      "heading": "Menu demo",
+      "items": [
+        {
+          "label": "Library Services",
+          "href": "/uql-mega-menu",
+          "items": [
+            {
+              "label": "Your subject Librarian",
+              "subtext": "Item subtext",
+              "href": "/uql-mega-menu/demo/index.html"
+            },
+            {
+              "label": "IT",
+              "href": "/item2"
+            },
+            {
+              "label": "Copyright advice",
+              "href": "/item3"
+            },
+            {
+              "label": "Digitisation",
+              "subtext": "Specific categories below",
+              "href": "/item1",
+              "right": "right"
+            },
+            {
+              "label": "for Students",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Researchers",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Teaching Staff",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Professional Staff",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Hospital Staff",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Alumni",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Community",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Secondary Schools",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Clients with disabilities",
+              "href": "/item2",
+              "right": "right"
+            },
+            {
+              "label": "for Other Libraries Staff",
+              "href": "/item2",
+              "right": "right"
+            }
+          ]
+        },
+        {
+          "label": "Research tools & techniques",
+          "href": "",
+          "items": [
+            {
+              "label": "Databases",
+              "href": "/item1"
+            },
+            {
+              "label": "Journals & newspapers",
+              "href": "/item2",
+              "subtext": "Item subtext"
+            },
+            {
+              "label": "Catalogue",
+              "href": "/item3"
+            },
+            {
+              "label": "UQ eSpace",
+              "href": "/item3"
+            },
+            {
+              "label": "Research by subject",
+              "href": "/item3"
+            },
+            {
+              "label": "Search techniques",
+              "href": "/item3"
+            },
+            {
+              "label": "Evaluate your results",
+              "href": "/item3"
+            },
+            {
+              "label": "Referencing",
+              "href": "/item1",
+              "image": "demo.jpg",
+              "subtext": "Images are nice",
+              "right": "right"
+            }
+          ]
+        },
+        {
+          "label": "Our Collections",
+          "href": "",
+          "items": [
+            {
+              "label": "Collection strengths",
+              "href": "/item1"
+            },
+            {
+              "label": "Online exhibitions",
+              "href": "/item2",
+              "subtext": "Item subtext"
+            },
+            {
+              "label": "Cultural & historical collections",
+              "href": "/item3"
+            },
+            {
+              "label": "Collection development",
+              "href": "/item3"
+            }
+          ]
+        },
+        {
+          "label": "Borrowing & Requesting",
+          "href": "",
+          "items": [
+            {
+              "label": "How to borrow",
+              "href": "/item1"
+            },
+            {
+              "label": "Overdue items",
+              "href": "/item2",
+              "subtext": "Item subtext"
+            },
+            {
+              "label": "View your loans",
+              "href": "/item3"
+            },
+            {
+              "label": "Renewing",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Accessing restricted materials",
+              "subtext": "Item subtext",
+              "href": "/item1",
+              "right": "right"
+            },
+            {
+              "label": "Borrow & request from other libraries",
+              "href": "/item2",
+              "right": "right"
+            }
+          ]
+        },
+        {
+          "label": "Locations & Hours",
+          "href": "",
+          "items": [
+            {
+              "label": "Opening hours",
+              "href": "/item1"
+            },
+            {
+              "label": "Room & desk booking",
+              "href": "/item2",
+              "subtext": "Item subtext"
+            },
+            {
+              "label": "24/7 spaces",
+              "href": "/item3"
+            },
+            {
+              "label": "Biological Sciences",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "D.H. Engineering & Sciences",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Fryer",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Gatton",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Grad. Economics & Business",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Herston Health Sciences",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Law",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Mater",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "PACE Health Sciences",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Rural Clinical School",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Social Sciences & Humanities",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Warehouse",
+              "href": "/item3",
+              "right": "right"
+            }
+          ]
+        },
+        {
+          "label": "About us",
+          "href": "",
+          "items": [
+            {
+              "label": "News",
+              "href": "/item1"
+            },
+            {
+              "label": "Events",
+              "href": "/item2",
+              "subtext": "Item subtext"
+            },
+            {
+              "label": "Friends of the Library",
+              "href": "/item3"
+            },
+            {
+              "label": "Membership",
+              "href": "/item3"
+            },
+            {
+              "label": "History of the Library",
+              "href": "/item3"
+            },
+            {
+              "label": "Giving to the Library",
+              "href": "/item3"
+            },
+            {
+              "label": "Library tours",
+              "href": "/item3"
+            },
+            {
+              "label": "Organisational structure",
+              "href": "/item3",
+              "right": "right"
+            },
+            {
+              "label": "Policies & guidelines",
+              "subtext": "Item subtext",
+              "href": "/item1",
+              "right": "right"
+            },
+            {
+              "label": "Reports & publications",
+              "subtext": "Item subtext",
+              "href": "/item1",
+              "right": "right"
+            },
+            {
+              "label": "Employment",
+              "subtext": "Item subtext",
+              "href": "/item1",
+              "right": "right"
+            },
+            {
+              "label": "Awards & competitions",
+              "subtext": "Item subtext",
+              "href": "/item1",
+              "right": "right"
+            },
+            {
+              "label": "Contacting us & feedback",
+              "subtext": "Item subtext",
+              "href": "/item1",
+              "right": "right"
+            }
+          ]
+        },
+        {
+          "label": "Ask us",
+          "href": "/item1"
+        }
+      ]
+    };
+    document.querySelector('uql-drawer-panel').menu = menuJson;
+
+    document.querySelector('paper-button').addEventListener('click', function() {
+      document.querySelector('uql-drawer-panel').toggleMenu();
+    } );
+  });
+</script>
+
 </body>
 </html>

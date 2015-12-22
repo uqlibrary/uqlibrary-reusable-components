@@ -44,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           items: [
             {label: 'Your subject Librarian', 'subtext': 'Item subtext', href: '/item1'},
             {label: 'IT', href: '/item2'}, {label: 'Copyright advice', href: '/item3'},
-            {label: 'Digitisation', 'subtext': 'Specific categories below', href: '/item1', right: 'right'},
+            {label: 'Digitisation', 'subtext': 'Specific categories below', href: '/item3', right: 'right'},
             {label: 'for Students', href: '/item2', right: 'right'},
             {label: 'for Researchers', href: '/item2', right: 'right'},
             {label: 'for Teaching Staff', href: '/item2', right: 'right'},
@@ -58,7 +58,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           ]
         },
         {
-          label: 'Research tools & techniques', items: []
+          label: 'Research tools & techniques',
+          href: '/research-tools-techniques',
+          items: []
         },
         {
           label: 'Our Collections', items: []
@@ -70,12 +72,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           label: 'Locations & Hours', items: []
         },
         {
-          label: 'About us', items: []
+          label: 'About us',
+          items: [],
+          href: '/about-us'
         },
         {
           label: 'Ask us',
+          href: '/ask-us',
           items: [
-            {label: 'FAQs', href: '/item1'}
+            {label: 'FAQs', href: '/item4'}
           ]
         }
       ]
@@ -84,6 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     setup(function () {
       testObj = fixture('basic');
       testObj.menuJson = '/menu.json';
+
 
       server = sinon.fakeServer.create();
       server.respondWith(
@@ -112,7 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.ok;
         expect(request.response).to.be.an('object');
 
-        var menuHeadings = testObj.querySelectorAll('uql-mega-menu paper-button');
+        var menuHeadings = testObj.querySelectorAll('uql-mega-menu paper-tab');
         assert.equal(menuHeadings.length, testJson.items.length, 'Should be an item for each top level menu');
 
         done();
@@ -130,7 +136,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.ok;
         expect(request.response).to.be.an('object');
 
-        var menuHeadings = testObj.querySelector('uql-mega-menu paper-button');
+        var menuHeadings = testObj.querySelector('uql-mega-menu paper-tab');
         assert.include(menuHeadings.textContent, 'Library Services', 'Button text matches');
         done();
       });
@@ -147,8 +153,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.ok;
         expect(request.response).to.be.an('object');
 
-        var menuItems = testObj.querySelectorAll('uql-mega-menu paper-material:nth-of-type(1) paper-item');
+        var topLevelMenu = testObj.querySelectorAll('uql-mega-menu iron-dropdown')[0];
+        var menuItems = topLevelMenu.querySelectorAll('.paper-item');
+
         assert.equal(menuItems.length, testJson.items[0].items.length, 'Should be an item for each of the submenus');
+
 
         done();
       });
@@ -165,7 +174,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.ok;
         expect(request.response).to.be.an('object');
 
-        var menuHeadings = testObj.querySelector('uql-mega-menu paper-item');
+        var menuHeadings = testObj.querySelector('uql-mega-menu .paper-item');
         assert.include(menuHeadings.textContent, 'Your subject Librarian', 'Paper item matches');
         done();
       });
@@ -182,12 +191,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.ok;
         expect(request.response).to.be.an('object');
 
-        var material = testObj.querySelector('paper-material');
+        var material = testObj.querySelector('paper-tab');
         expect(material).to.not.be.visible;
-        testObj.querySelector('uql-mega-menu paper-button').click();
+        testObj.querySelector('uql-mega-menu paper-tab').click();
         expect(material).to.be.visible;
         done();
       });
+    });
+
+    test('Current url menu should be selected', function(done) {
+
+      var ajax = testObj.querySelector('iron-ajax');
+      var request = ajax.generateRequest();
+      server.respond();
+
+
+      var url="library.uq.edu.au/ask-us/item4";
+
+      flush(function () {
+        testObj.selectCurrentMenuItem(url, testJson);
+
+        expect(testJson.items[6].class == 'iron-selected').to.be.true;
+        expect(testJson.items[6].items[0].class == 'iron-selected').to.be.true;
+
+        done();
+      });
+
+    });
+
+    test('Current url menu should be selected even if not a part of menu json', function(done) {
+
+      var ajax = testObj.querySelector('iron-ajax');
+      var request = ajax.generateRequest();
+      server.respond();
+
+
+      var url="library.uq.edu.au/about-us/item5";
+
+      flush(function () {
+        testObj.selectCurrentMenuItem(url, testJson);
+
+        expect(testJson.items[5].class == 'iron-selected').to.be.true;
+
+        done();
+      });
+
     });
 
   });

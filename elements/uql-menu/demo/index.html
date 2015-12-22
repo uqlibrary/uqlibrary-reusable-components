@@ -1,38 +1,43 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html>
-
 <head>
-  <title>UQL Menu demo</title>
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../../uql-menu/uql-menu.html">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+  <title>uql-mega-menu demo</title>
+
+  <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../../../bower_components/iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+
+  <link rel="import" href="../uql-menu.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+    .vertical-section-container {
+      max-width:90%;
     }
   </style>
+
 </head>
-<body>
+<body unresolved>
+<div class="vertical-section-container centered">
+  <h3>Demo for uql-menu</h3>
+  <demo-snippet class="centered-demo">
+    <template>
 
-<uql-menu menu-json="menu.json"></uql-menu>
+      <uql-menu menu-json="menu.json"></uql-menu>
 
-<div class="main">
-  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-    quam,
-    feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
-    mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
-    wisi,
-    condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum
-    rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent
-    dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
-    volutpat.
-    Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-
-  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-    quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-    ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+    </template>
+  </demo-snippet>
 </div>
+
+<script>
+  window.addEventListener('WebComponentsReady', function(e) {
+
+  });
+</script>
+
 </body>
 </html>
