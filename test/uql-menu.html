@@ -107,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       server.restore();
     });
 
-    test('Should create paper buttons for each menu', function (done) {
+    test('Should create paper tabs for each menu', function (done) {
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
       server.respond();
@@ -125,7 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
     });
 
-    test('Paper button should have menu as text', function (done) {
+    test('Paper tab should have menu as text', function (done) {
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
       server.respond();
@@ -137,7 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.an('object');
 
         var menuHeadings = testObj.querySelector('uql-mega-menu paper-tab');
-        assert.include(menuHeadings.textContent, 'Library Services', 'Button text matches');
+        assert.include(menuHeadings.textContent, 'Library Services', 'tab text matches');
         done();
       });
     });
@@ -180,7 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
     });
 
-    test('Menu should appear on button click', function (done) {
+    test('Menu should appear on tab click', function (done) {
       var ajax = testObj.querySelector('iron-ajax');
       var request = ajax.generateRequest();
       server.respond();
