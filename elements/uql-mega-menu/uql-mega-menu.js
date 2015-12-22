@@ -83,7 +83,7 @@
       var menuIndex = Number(event.target.getAttribute('data-item-index'));
       var deselectedTab = this.querySelectorAll('paper-tab')[menuIndex];
 
-      if(deselectedTab != null && deselectedTab.className.indexOf("sub-menu-opened") >= 0)
+      if(deselectedTab && deselectedTab.className.indexOf("sub-menu-opened") >= 0)
         deselectedTab.toggleClass("sub-menu-opened");
     },
 
