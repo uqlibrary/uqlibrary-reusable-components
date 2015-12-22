@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+    <title>Title</title>
+
+    <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico" />
+
+    <!-- production -->
+    <!--<script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js"></script>-->
+    <!--<script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>-->
+    <!--<link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>-->
+    <!--<script src="//assets.library.uq.edu.au/reusable-components/shared/load-minimal.js"></script>-->
+
+    <!-- local development -->
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../elements/elements.html">
+    <script src="../applications/shared/load-minimal.js"></script>
+
+
+    <style is="custom-style" include="common-styles">
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            @apply(--layout-vertical);
+            background-color: var(--body-color);
+        }
+
+        #content {
+            @apply(--layout-flex-auto);
+
+            padding: 1.5em 1.5em 0;
+            max-width: 1170px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        #content::after {
+            content: '\00a0';
+            display: block;
+            margin-top: 1.5em;
+            height: 0;
+            visibility: hidden
+        }
+
+        uq-minimal-header,
+        uq-minimal-footer,
+        uql-connect-footer {
+            z-index: 1001;
+            @apply(--layout-flex-none);
+            position: relative;
+        }
+
+        .big {
+            font-size: 18px;
+            font-weight: 500;
+            padding: 8px 0 16px;
+        }
+
+        .flex-end-justified {
+            @apply(--layout-horizontal);
+            @apply(--layout-end-justified);
+        }
+
+    </style>
+</head>
+<body unresolved>
+
+<div id="content">
+    <paper-card heading="There may be a problem with this link">
+
+        <div class="card-content">
+            You were trying to go to http://site-not-in-ezproxy.com via UQ Library, but this is not a Library resource.
+        </div>
+
+        <div class="card-content">
+
+            <div class="big">What should you do now?</div>
+
+            There are a few reasons why you might see this message:
+
+            <ul>
+                <li>Most likely, the link is a public website which doesn't need to be accessed via the Library, but the link has sent you via the Library by mistake.</li>
+                <li>Sometimes the URL is actually a Library resource but we have an error in our configuration.</li>
+                <li>Sometimes the link is a scam trying to look more trustworthy by being sent via by the Library.</li>
+            </ul>
+
+            If you trust this link you can continue to http://notinezproxy.com
+
+        </div>
+
+        <div class="card-content">
+
+            <div class="big">Help us fix the problem</div>
+
+            This error has been automatically logged for investigation. <br/><br/>
+
+            The following information will help us fix the problem: <br/>
+
+            <paper-input id="linkInfo" label="Where did you find the link?" value=""></paper-input>
+            <paper-input id="email" label="Your email address, if you would like us to get back to you"></paper-input>
+            <paper-textarea id="details" label="Any other information about the link?"></paper-textarea>
+
+            <div class="flex-end-justified">
+                <paper-button onClick="" class="button-medium button-action">Submit</paper-button>
+            </div>
+
+        </div>
+
+    </paper-card>
+</div>
+
+</body>
+</html>
