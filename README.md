@@ -9,6 +9,7 @@ central repository contains:
 - /applications/ - applications customisations, eg LibGuides styles/scripts
 - /bin/ - shell scripts, eg deployment, gh-pages
 - /resources/ - icons, uql-menu.json, etc
+- /templates/ - simple layouts for static pages, used for EZProxy error display etc
 - /backup/ - styles/scripts of applications before reusable components were applied
 
 ### Getting Started
@@ -90,9 +91,25 @@ include this code in Omega's html.tpl.php
         </script>
         <script src="//assets.library.uq.edu.au/[master]/reusable-components/libwww/load.js"></script>
 
-#### Shared (uqlais)
+#### UQLAPP
+frontend/app/index.html includes following:
 
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/[master]/reusable-components/resources/favicon.ico" />
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/uqlapp/custom-styles.css" />
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html" async>
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/uqlapp/load.js"></script>
+
+#### Shared (uqlais, ezproxy static pages)
 [TODO: add details here]
+
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/[master]/reusable-components/resources/favicon.ico" />
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html" async>
+        <script src="//assets.library.uq.edu.au/[master]/reusable-components/shared/load-minimal.js"></script>
+    
 
 ### Forcing IMS logins
 
@@ -138,6 +155,7 @@ Distribution package on S3 looks like this:
     - /libguides/*
     - /libanswers/*
     - /libwww/*
+    - /uqlapp/*
     - /other-uql-apps/*
     - /webcomponents/*
     - elements.vulcanized.html   
