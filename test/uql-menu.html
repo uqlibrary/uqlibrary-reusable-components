@@ -88,7 +88,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     setup(function () {
       testObj = fixture('basic');
-      testObj.menuJson = '/menu.json';
+      testObj.menu = testJson;
+
+//      testObj.menuJson = '../elements/uql-menu/demo/menu.json';
 
 
       server = sinon.fakeServer.create();
