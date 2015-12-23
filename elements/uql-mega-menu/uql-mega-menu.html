@@ -128,7 +128,7 @@ Example:
         </paper-tabs>
 
         <template is="dom-repeat" items="{{menu.items}}">
-        <iron-dropdown id$="subMenu{{index}}" horizontal-align="left" vertical-align="top" vertical-offset="67"
+        <iron-dropdown id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
                        on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
           <div class$="dropdown-content has-right-{{item.hasRight}}">
             <div class="sub-menu">
