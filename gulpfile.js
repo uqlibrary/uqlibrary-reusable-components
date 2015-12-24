@@ -30,6 +30,8 @@ var cssmin = require('gulp-cssmin');
 var jsonlint = require('gulp-jsonlint');
 var cloudfront = require('gulp-invalidate-cloudfront');
 var replace = require('gulp-replace-task');
+var crisper = require('gulp-crisper');
+var uglify = require('gulp-uglify');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -91,6 +93,16 @@ gulp.task('vulcanize', ['clean:vulcanize', 'copy:vulcanize'], function () {
     .pipe($.size({title: 'vulcanize'}));
 });
 
+gulp.task('crisper', function () {
+  return gulp.src(config.elements + '/elements.vulcanized.html')
+      .pipe(crisper({
+        scriptInHead: false, // true is default
+        onlySplit: false
+      }))
+      .pipe(gulp.dest(config.elements))
+      .pipe($.size({title: 'crisper'}));
+});
+
 // delete old vulcanized file
 gulp.task('clean:vulcanize', function (done) {
   del([
@@ -109,16 +121,25 @@ gulp.task('copy:vulcanize', function () {
 });
 
 // optimize files
-gulp.task('optimize', function () {
+gulp.task('optimize', ['cssmin', 'jsmin-vulcanized']);
+
+//optimize css
+gulp.task('cssmin', function () {
   gulp.src(config.applications + '/**/*.css')
     .pipe(cssmin())
     .pipe(gulp.dest(config.applications));
 });
 
+//optimize vulcinized js
+gulp.task('jsmin-vulcanized', ['crisper'], function() {
+  return gulp.src([config.elements + '/elements.vulcanized.js'])
+      .pipe(uglify())
+      .pipe(gulp.dest(config.elements));
+});
 
 // copy and rename elements.html to elements.vulcanized.html
 gulp.task('copy:aws', function () {
-  var vulcanized = gulp.src([config.elements + '/elements.vulcanized.html'])
+  var vulcanized = gulp.src([config.elements + '/elements.vulcanized.*'])
     .pipe(gulp.dest(config.applications));
 
   var dependencies = gulp.src([config.dependencies + '/webcomponentsjs/**/*'])
@@ -215,13 +236,6 @@ gulp.task('syntax', [
   'jsonlint'
 ]);
 
-gulp.task('build', [
-  'syntax',
-  'optimize',
-  'vulcanize',
-  'menu-replace'
-]);
-
 // display a list of available tasks
 gulp.task('help', taskList);
 gulp.task('default', ['help']);
@@ -253,6 +267,7 @@ gulp.task('menu-replace', function () {
     }))
     .pipe(gulp.dest(config.elements));
 });
+
 
 //// Load custom tasks from the `tasks` directory
 //try { require('require-dir')('tasks'); } catch (err) {}
