@@ -67,7 +67,7 @@ if [ -z "${result}" ]; then
     exit 1;
 fi
 
-run css min tasks for staging/production, don't run for master - for better debugging
+#run css min tasks for staging/production, don't run for master - for better debugging
 if [ $branch = "optimize" ] || [ $branch = "production" ]; then
     echo "Run gulp task to optimize css..."
     gulp optimize
