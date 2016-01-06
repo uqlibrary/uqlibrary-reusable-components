@@ -10,4 +10,4 @@ aws-env.sh
 
 tmp
 .sass-cache
-/elements/elements.vulcanized.html
+/elements/elements.vulcanized.*

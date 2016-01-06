@@ -87,7 +87,8 @@ gulp.task('vulcanize', ['clean:vulcanize', 'copy:vulcanize'], function () {
       dest: config.elements,
       strip: true,
       inlineCss: true,
-      inlineScripts: true
+      inlineScripts: true,
+      stripComments: true
     }))
     .pipe(gulp.dest(config.elements))
     .pipe($.size({title: 'vulcanize'}));
@@ -121,17 +122,17 @@ gulp.task('copy:vulcanize', function () {
 });
 
 // optimize files
-gulp.task('optimize', ['cssmin', 'jsmin-vulcanized']);
+gulp.task('optimize', ['optimize:cssmin', 'optimize:jsmin']);
 
 //optimize css
-gulp.task('cssmin', function () {
+gulp.task('optimize:cssmin', function () {
   gulp.src(config.applications + '/**/*.css')
     .pipe(cssmin())
     .pipe(gulp.dest(config.applications));
 });
 
 //optimize vulcinized js
-gulp.task('jsmin-vulcanized', ['crisper'], function() {
+gulp.task('optimize:jsmin', ['crisper'], function() {
   return gulp.src([config.elements + '/elements.vulcanized.js'])
       .pipe(uglify())
       .pipe(gulp.dest(config.elements));
