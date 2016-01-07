@@ -2,10 +2,27 @@
   Polymer({
     is: 'uql-global-links',
     properties: {
+      /**
+       * string/character to be used / displayed between links
+       * (only in use if the link object has the settings showSeparator=true)
+       *
+       * @type {{elements: Array<HTMLElement>, level: o}}
+       */
       separator: {
         type: String,
         value: ''
       },
+
+      /**
+       * array containing links as objects where:
+       *
+       *  url: target web link (http|https)://domain/path
+       *  title: text/label
+       *  accessKey: browser keyboard shortcut
+       *  showSeparator: enable/disable the separator string after the link
+       *
+       * @type {{elements: Array<HTMLElement>, level: object}}
+       */
       links: {
         type: Array,
          value: function() {
