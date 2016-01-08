@@ -1,1 +1,85 @@
-.responsive-layout-mobile{position:absolute!important}body.ia-enabled uq-minimal-header{overflow:visible!important;z-index:1000}body.ia-enabled.admin-menu uq-minimal-header{margin-top:20px}body.ia-enabled #overlay-container{z-index:1001}body.ia-enabled #overlay-container .overlay-element{z-index:1002}body.ia-enabled #section-footer,body.ia-enabled #section-header,body.ia-enabled #zone-postscript-wrapper{display:none}body.ia-enabled #section-content #zone-content-wrapper{margin-top:64px}@media all and (min-width:740px) and (min-device-width:740px),(max-device-width:800px) and (min-width:740px) and (orientation:landscape){body.ia-enabled{background-position:50% 64px}body.ia-enabled #section-content #zone-content-wrapper{margin-top:84px;margin-bottom:20px}body.ia-enabled.front.responsive-layout-mobile #region-content #uql-search{margin-top:164px}}@media all and (min-width:1025px){body.ia-enabled{background-position:50% 125px}body.ia-enabled.front.responsive-layout-mobile #region-content #uql-search{margin-top:180px}body.ia-enabled #section-content #zone-content-wrapper{margin-top:180px;margin-bottom:20px}body.ia-enabled.admin-menu #section-content #zone-content-wrapper{margin-top:200px}}
+body {
+  margin: 0px;
+  padding: 0px; }
+
+uq-minimal-header {
+  height: 100px;
+  background-color: #49075E;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; }
+
+uq-minimal-footer {
+  display: block;
+  width: 100%;
+  background-color: #49075E;
+  min-height: 140px; }
+
+uql-connect-footer {
+  display: block;
+  width: 100%;
+  background-color: #e5e5e5;
+  min-height: 240px; }
+
+@media all and (max-width: 1047px) {
+  uq-minimal-header {
+    height: 66px; } }
+@media all and (min-width: 1048px) {
+  uql-menu {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+    display: block;
+    width: 100%;
+    height: 67px;
+    background-color: #fff; } }
+.responsive-layout-mobile {
+  position: absolute !important; }
+
+body.ia-enabled {
+  /* Default Layout */
+  /* Narrow Layout */
+  /* Normal Layout */
+  /* Wide Layout */
+  /* This is the default in drupal omega theme, but found it wasn't working for us
+  @media all and (min-width: 1220px) {
+  */ }
+  body.ia-enabled uq-minimal-header {
+    overflow: visible !important;
+    z-index: 1000; }
+  body.ia-enabled.admin-menu uq-minimal-header {
+    margin-top: 20px; }
+  body.ia-enabled #overlay-container {
+    z-index: 1001; }
+    body.ia-enabled #overlay-container .overlay-element {
+      z-index: 1002; }
+  body.ia-enabled #zone-postscript-wrapper,
+  body.ia-enabled #section-header,
+  body.ia-enabled #section-footer {
+    display: none; }
+  body.ia-enabled #section-content #zone-content-wrapper {
+    margin-top: 64px; }
+  @media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation: landscape) {
+    body.ia-enabled {
+      background-position: 50% 64px; }
+      body.ia-enabled #section-content #zone-content-wrapper {
+        margin-top: 84px; } }
+  @media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation: landscape) {
+    body.ia-enabled.front.responsive-layout-mobile #region-content #uql-search {
+      margin-top: 164px; }
+    body.ia-enabled #section-content #zone-content-wrapper {
+      margin-bottom: 20px; } }
+  @media all and (min-width: 1025px) {
+    body.ia-enabled {
+      background-position: 50% 125px; }
+      body.ia-enabled.front.responsive-layout-mobile #region-content #uql-search {
+        margin-top: 180px; }
+      body.ia-enabled #section-content #zone-content-wrapper {
+        margin-top: 180px;
+        margin-bottom: 20px; }
+      body.ia-enabled.admin-menu #section-content #zone-content-wrapper {
+        margin-top: 200px; } }
+
+/*# sourceMappingURL=custom-styles.css.map */

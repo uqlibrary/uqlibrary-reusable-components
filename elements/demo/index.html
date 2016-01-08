@@ -6,11 +6,11 @@
   <title>UQLibrary Reusable Components Demo</title>
   <meta name=viewport content="width=device-width, initial-scale=1">
 
-  <!--<script src="../../webcomponentsjs/webcomponents-lite.js" async></script>-->
-  <!--<link rel="import" href="../../elements.vulcanized.html">-->
+  <script src="../../webcomponentsjs/webcomponents-lite.js" async></script>
+  <link rel="import" href="../../elements.vulcanized.html" async>
 
-  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../elements.vulcanized.html">
+  <!--<script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>-->
+  <!--<link rel="import" href="../elements.vulcanized.html">-->
   <!--<link rel="import" href="../elements.html">-->
 
   <style>
@@ -71,32 +71,45 @@
 
 
   </div>
-  <!--<uql-connect-footer footer-menu-url="{{menuJson}}" main-domain="https://www.library.uq.edu.au"></uql-connect-footer>-->
+  <uql-connect-footer main-domain="https://www.library.uq.edu.au"></uql-connect-footer>
   <uq-minimal-footer></uq-minimal-footer>
 </template>
 
 
 <script>
 
-  Demo.processEvent = function (event) {
-    var menu = document.getElementById('menu');
-    menu.toggleMenu();
-  }
-
   document.cookie="UQLMockData=enabled";
 
-  Demo.appTitle = '';
-  Demo.menuJson = '../uql-menu/demo/menu.json';
+  window.addEventListener('WebComponentsReady', function() {
+    // when polymer is ready - configure elements
 
-  Demo.chatStatusConfig = {
-    buttonTitle: "Chat",
-    buttonTitleOffline: "Ask",
-    chatOnlineText: "Chat with us now!",
-    chatOfflineText: "Chat is offline.",
-    offlineUrl: "http://answers.library.uq.edu.au"
-  };
+    Demo.processEvent = function (event) {
+      var menu = document.getElementById('menu');
+      menu.toggleMenu();
+    }
 
-  Demo.showButtonTitle = true;
+
+    Demo.appTitle = '';
+    Demo.menuJson = '../uql-menu/demo/menu.json';
+
+    Demo.chatStatusConfig = {
+      buttonTitle: "Chat",
+      buttonTitleOffline: "Ask",
+      chatOnlineText: "Chat with us now!",
+      chatOfflineText: "Chat is offline.",
+      offlineUrl: "http://answers.library.uq.edu.au"
+    };
+
+    Demo.showButtonTitle = true;
+
+    //reveal elements with easing in effect
+    var content = document.querySelectorAll(".loading");
+    for(var i=0; i< content.length; i++){
+      var element = content[i];
+      element.removeAttribute('unresolved');
+    }
+
+  });
 
 </script>
 
