@@ -56,7 +56,8 @@ Polymer({
   },
 
   /*
-   * Validate users URL request
+   * Verify if users URL request is a valid link
+   * @return {Boolean}
    */
   checkURL: function () {
     var valid = false;
