@@ -114,9 +114,10 @@ Example:
       position: absolute !important;
     }
 
-    #tabsContent paper-tab:not(.iron-selected) > .tab-content.paper-tab {
-      opacity: 1 !important;
+    paper-tab:not(.iron-selected) /deep/ .tab-content.paper-tab {
+      opacity:1!important;
     }
+
   </style>
 
   <template>
