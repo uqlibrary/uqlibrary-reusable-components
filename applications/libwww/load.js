@@ -37,5 +37,5 @@ window.addEventListener('WebComponentsReady', function() {
   for(var i=0; i< content.length; i++){
     var element = content[i];
     element.removeAttribute('unresolved');
-  };
+  }
 });
