@@ -45,7 +45,7 @@
     /**
      * handles if the separator string had been set and if it should be displayed at the current item index position
      * @param {Number} Item index
-     * @return Boolean
+     * @return {Boolean}
      */
     displaySeparator: function(i) {
       return (this.separator!=='' && (this.links.length-1)>i);
