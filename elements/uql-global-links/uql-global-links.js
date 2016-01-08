@@ -35,10 +35,18 @@
       }
     },
 
+    /**
+     * getAccessKey() returns an access key based on the current item index
+     * @return Integer
+     */
     getAccessKey: function(i) {
       return (i+1);
     },
 
+    /**
+     * displaySeparator() handles if the separator string should be included
+     * @return Boolean
+     */
     displaySeparator: function(i) {
       return (this.separator!=='' && (this.links.length-1)>i);
     },
