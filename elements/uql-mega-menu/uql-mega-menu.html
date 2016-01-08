@@ -119,7 +119,7 @@ Example:
   <template>
 
     <div class="menu-container">
-      <div class="menu-content">
+      <div class="menu-content loading" unresolved>
         <paper-tabs id="topMenu" on-tap="_topMenuSelected">
           <template is="dom-repeat" items="{{menu.items}}">
             <paper-tab data-item-index$="{{index}}">

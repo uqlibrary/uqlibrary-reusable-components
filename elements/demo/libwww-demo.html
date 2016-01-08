@@ -4,32 +4,34 @@
   <title>UQL Menu demo</title>
   <meta name=viewport content="width=device-width, initial-scale=1">
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js" async></script>
-  <link rel="import" href="../../elements.vulcanized.html">
+  <!--<script src="../../webcomponentsjs/webcomponents-lite.js" async></script>-->
+  <!--<link rel="import" href="../../elements.vulcanized.html">-->
 
-  <!--<script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>-->
-  <!--<link rel="import" href="../elements.vulcanized.html">-->
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js" async></script>
+  <link rel="import" href="../elements.vulcanized.html" async>
 
-  <link rel="stylesheet" type="text/css" href="../../applications/libwww/custom-styles.css">
+  <link rel="stylesheet" type="text/css" href="../../applications/libanswers/custom-styles.css">
 
   <style>
-    @media (max-width: 1047px) {
+    .main {
+      margin: 150px 50px;
+    }
+
+    @media all and (max-width: 1047px) {
       body {
-        margin: 0px;
-        padding: 0px;
-        margin-top: 122px !important;
+        /*margin-top: 67px !important;*/
       }
     }
-    @media (min-width: 1048px) {
-    body {
-      margin: 0px;
-      padding: 0px;
-      margin-top: 164px !important;
-    }
+
+    @media all and (min-width: 1048px) {
+      body {
+        /*margin-top: 100px !important;*/
+      }
     }
   </style>
 </head>
-<body unresolved>
+<body>
+
 <div class="main">
   <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
     quam,
@@ -46,10 +48,10 @@
     quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
     ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 </div>
+
 <script>
-  var menuJson = "../uql-menu/demo/menu.json";
   document.cookie="UQLMockData=enabled";
 </script>
-<script src="../../applications/libwww/load.js"></script>
+<script src="../../applications/libanswers/load.js"></script>
 </body>
 </html>

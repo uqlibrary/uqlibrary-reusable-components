@@ -52,9 +52,6 @@ gulp syntax
 echo "Vulcanizing elements"
 gulp vulcanize
 
-echo "Optimizing local loading of JSON (uql-menu.json)"
-gulp menu-replace
-
 # If these files are the same, it means an error in vulcanizing
 echo "Checking vulcanization was performed correctly"
 set +e
@@ -68,10 +65,10 @@ if [ -z "${result}" ]; then
 fi
 
 #run css min tasks for staging/production, don't run for master - for better debugging
-if [ $branch = "optimize" ] || [ $branch = "production" ]; then
+#if [ $branch = "optimize" ] || [ $branch = "production" ]; then
     echo "Run gulp task to optimize css..."
     gulp optimize
-fi
+#fi
 
 echo "Run tests"
 gulp test

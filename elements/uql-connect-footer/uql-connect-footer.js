@@ -37,6 +37,10 @@
         }
       }
     },
+
+    ready: function() {
+    },
+
     _handleError: function (event) {
       console.log(event);
     },
