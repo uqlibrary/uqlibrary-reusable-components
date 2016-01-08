@@ -160,6 +160,6 @@ Distribution package on S3 looks like this:
     - /webcomponents/*
     - elements.vulcanized.html   
     
-Subdirectory [branch_name] only exists for non-production branches, eg master/uat 
+Subdirectory [branch_name] only exists for non-production branches, eg master/uat .
 
 
