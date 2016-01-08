@@ -3,6 +3,10 @@ Polymer({
   is: 'uql-ezproxy',
 
   properties: {
+    /**
+     * Set the Widget mode to Display target link (true) or open the url in a new window/tab (false). Default: false
+     * @type {Boolean}
+     */
     createLink: {
       type: Object,
       value: false,
@@ -10,6 +14,9 @@ Polymer({
     }
   },
 
+  /*
+   * Set button label according to the widget mode
+   */
   _createLinkChanged: function(newValue, oldValue) {
     if(this.createLink) {
       this.buttonLabelValue='Create Link';
@@ -18,6 +25,9 @@ Polymer({
     }
   },
 
+  /*
+   * Based on the widget mode, the submit method will display the ezproxy link or will open the URL in a new windows/tab
+   */
   _submit: function () {
     if (this.createLink) {
       this.showUrl();
@@ -26,12 +36,18 @@ Polymer({
     }
   },
 
+  /*
+   * Display ezproxy link
+   */
   showUrl: function () {
     if (this.checkURL()) {
       this.panelToggle();
     }
   },
 
+  /*
+   * Open ezproxy link in a new window/tab
+   */
   goProxie: function () {
     if (this.checkURL()) {
       var win = window.open(this.target, '_blank');
@@ -39,6 +55,10 @@ Polymer({
     }
   },
 
+  /*
+   * Verify if users URL request is a valid link
+   * @return {Boolean}
+   */
   checkURL: function () {
     var valid = false;
     var doi = /\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
@@ -75,6 +95,9 @@ Polymer({
     return valid;
   },
 
+  /*
+   * Show ezproxy link panel or Hide and clean its values
+   */
   panelToggle: function() {
     this.hide=!this.hide;
     this.copyStatus = "";
@@ -88,6 +111,10 @@ Polymer({
     }
   },
 
+  /*
+   * Copy URL to Clipboard (same as ctrl+a / ctrl+c)
+   * Only available for Firefox 41+, Chrome 43+, Opera 29+, IE 10+
+   */
   grabUrl: function() {
     this.$.outputUrl.querySelector("#textarea").select();
 
@@ -101,6 +128,9 @@ Polymer({
     this.$.copyNotification.open();
   },
 
+  /*
+   * Display widget primary panel
+   */
   ready: function() {
     this.hide = true;
   }
