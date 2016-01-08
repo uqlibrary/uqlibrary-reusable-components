@@ -12,9 +12,7 @@
       },
 
       /**
-       * array containing links as objects
-       * {url:string, title:string}.
-       *
+       * array containing links as objects, ie: {url:string, title:string}
        * @type {{elements: Array<HTMLElement>, level: object}}
        */
       links: {
@@ -36,15 +34,17 @@
     },
 
     /**
-     * getAccessKey() returns an access key based on the current item index
-     * @return Integer
+     * returns an access key based on the current item index
+     * @param {Number} Item index
+     * @return {Number}
      */
     getAccessKey: function(i) {
       return (i+1);
     },
 
     /**
-     * displaySeparator() handles if the separator string should be included
+     * handles if the separator string had been set and if it should be displayed at the current item index position
+     * @param {Number} Item index
      * @return Boolean
      */
     displaySeparator: function(i) {
