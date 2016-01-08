@@ -3,10 +3,8 @@
     is: 'uql-global-links',
     properties: {
       /**
-       * string/character to be used / displayed between links
-       * (only in use if the link object has the settings showSeparator=true)
-       *
-       * @type {{elements: Array<HTMLElement>, level: o}}
+       * character to be displayed between links
+       * @type String
        */
       separator: {
         type: String,
@@ -14,17 +12,8 @@
       },
 
       /**
-       * array containing links as objects.
-       * [
-       *   { url: "http://www.uq.edu.au/", title: "UQ Home", accessKey: 1, showSeparator: true },
-       *   { url: "http://www.uq.edu.au/contacts/", title: "Contacts", accessKey: 2, showSeparator: true },
-       *   { url: "http://www.uq.edu.au/study/", title: "Study", accessKey: 3, showSeparator: true },
-       *   { url: "http://www.uq.edu.au/maps/", title: "Maps", accessKey: 4, showSeparator: true },
-       *   { url: "http://www.uq.edu.au/news/", title: "News", accessKey: 5, showSeparator: true },
-       *   { url: "http://www.uq.edu.au/events/", title: "Events", accessKey: 6, showSeparator: true },
-       *   { url: "http://jobs.uq.edu.au/", title: "Jobs", accessKey: 7, showSeparator: true },
-       *   { url: "http://my.uq.edu.au/", title: "my.UQ", accessKey: 9, showSeparator: false }
-       * ];
+       * array containing links as objects
+       * {url:string, title:string}.
        *
        * @type {{elements: Array<HTMLElement>, level: object}}
        */
@@ -32,18 +21,26 @@
         type: Array,
          value: function() {
            var links = [
-             { url: "http://www.uq.edu.au/", title: "UQ Home", accessKey: 1, showSeparator: true },
-             { url: "http://www.uq.edu.au/contacts/", title: "Contacts", accessKey: 2, showSeparator: true },
-             { url: "http://www.uq.edu.au/study/", title: "Study", accessKey: 3, showSeparator: true },
-             { url: "http://www.uq.edu.au/maps/", title: "Maps", accessKey: 4, showSeparator: true },
-             { url: "http://www.uq.edu.au/news/", title: "News", accessKey: 5, showSeparator: true },
-             { url: "http://www.uq.edu.au/events/", title: "Events", accessKey: 6, showSeparator: true },
-             { url: "http://jobs.uq.edu.au/", title: "Jobs", accessKey: 7, showSeparator: true },
-             { url: "http://my.uq.edu.au/", title: "my.UQ", accessKey: 9, showSeparator: false }
+             { url: "http://www.uq.edu.au/", title: "UQ Home" },
+             { url: "http://www.uq.edu.au/contacts/", title: "Contacts" },
+             { url: "http://www.uq.edu.au/study/", title: "Study" },
+             { url: "http://www.uq.edu.au/maps/", title: "Maps" },
+             { url: "http://www.uq.edu.au/news/", title: "News" },
+             { url: "http://www.uq.edu.au/events/", title: "Events" },
+             { url: "http://jobs.uq.edu.au/", title: "Jobs" },
+             { url: "http://my.uq.edu.au/", title: "my.UQ" }
            ];
            return links;
          }
       }
+    },
+
+    getAccessKey: function(i) {
+      return (i+1);
+    },
+
+    displaySeparator: function(i) {
+      return (this.separator!=='' && (this.links.length-1)>i);
     },
 
     ready: function() {
