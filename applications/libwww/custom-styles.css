@@ -52,6 +52,8 @@ body.ia-enabled {
     z-index: 1000; }
   body.ia-enabled.admin-menu uq-minimal-header {
     margin-top: 20px; }
+  body.ia-enabled.admin-menu uql-menu {
+    margin-top: 120px; }
   body.ia-enabled #overlay-container {
     z-index: 1001; }
     body.ia-enabled #overlay-container .overlay-element {
@@ -60,13 +62,9 @@ body.ia-enabled {
   body.ia-enabled #section-header,
   body.ia-enabled #section-footer {
     display: none; }
-  body.ia-enabled #section-content #zone-content-wrapper {
-    margin-top: 64px; }
   @media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation: landscape) {
     body.ia-enabled {
-      background-position: 50% 64px; }
-      body.ia-enabled #section-content #zone-content-wrapper {
-        margin-top: 84px; } }
+      background-position: 50% 64px; } }
   @media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation: landscape) {
     body.ia-enabled.front.responsive-layout-mobile #region-content #uql-search {
       margin-top: 164px; }
