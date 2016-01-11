@@ -241,12 +241,17 @@
         },
 
         ready: function() {
-//          //reveal elements with easing in effect
-//          var content = this.querySelectorAll(".loading");
-//          for(var i=0; i< content.length; i++){
-//            var element = content[i];
-//            element.removeAttribute('unresolved');
-//          }
+          var that = this;
+
+          setTimeout(function() {
+            //reveal elements with easing in effect
+            var content = that.querySelectorAll(".loading");
+
+            for(var i=0; i< content.length; i++){
+              var element = content[i];
+              element.removeAttribute('unresolved');
+            }
+          }, 0);
         },
 
         handleMenuClicked: function(event) {
