@@ -99,4 +99,10 @@ body.ia-enabled {
       }
     }
   }
+
+  @media all and (max-width: 739px) {
+    #uql-search {
+      margin-top: 87px;
+    }
+  }
 }

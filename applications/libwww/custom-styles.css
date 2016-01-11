@@ -83,5 +83,8 @@ body.ia-enabled {
         margin-bottom: 20px; }
       body.ia-enabled.admin-menu #section-content #zone-content-wrapper {
         margin-top: 20px; } }
+  @media all and (max-width: 739px) {
+    body.ia-enabled #uql-search {
+      margin-top: 87px; } }
 
 /*# sourceMappingURL=custom-styles.css.map */
