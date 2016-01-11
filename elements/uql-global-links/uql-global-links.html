@@ -42,7 +42,7 @@
       <template is="dom-repeat" items="{{links}}">
         <li><a href="{{item.url}}" accesskey="{{item.accessKey}}">{{item.title}}</a>
           <template is="dom-if" if="{{item.showSeparator}}">
-            <span>{{separator}}</span>
+            <span>&nbsp;{{separator}}&nbsp;</span>
           </template>
         </li>
       </template>

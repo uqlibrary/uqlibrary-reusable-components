@@ -76,13 +76,13 @@ body.ia-enabled {
       margin-bottom: 20px; } }
   @media all and (min-width: 1025px) {
     body.ia-enabled {
-      background-position: 50% 125px; }
+      background-position: 50% 66px; }
       body.ia-enabled.front.responsive-layout-mobile #region-content #uql-search {
         margin-top: 180px; }
       body.ia-enabled #section-content #zone-content-wrapper {
-        margin-top: 20px;
+        margin-top: 87px;
         margin-bottom: 20px; }
       body.ia-enabled.admin-menu #section-content #zone-content-wrapper {
-        margin-top: 20px; } }
+        margin-top: 107px; } }
 
 /*# sourceMappingURL=custom-styles.css.map */
