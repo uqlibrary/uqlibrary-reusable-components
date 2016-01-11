@@ -135,10 +135,10 @@
           <template is="dom-if" if="{{menu.items}}">
             <ul>
               <li><a href="{{mainDomain}}/">Library home</a></li>
-              <li class="separator"> | </li>
+              <li class="separator">&nbsp;|&nbsp;</li>
               <template is="dom-repeat" items="{{menu.items}}">
                 <li><a href="{{mainDomain}}{{item.href}}">{{item.label}}</a></li>
-                <li class="separator"> | </li>
+                <li class="separator">&nbsp;|&nbsp;</li>
               </template>
             </ul>
           </template>
@@ -147,9 +147,9 @@
         <div class="contacts">
           <ul>
             <li><a href="{{mainDomain}}/feedback/add">Feedback</a></li>
-            <li class="separator"> | </li>
+            <li class="separator">&nbsp;|&nbsp;</li>
             <li><a href="{{mainDomain}}/blog">News</a></li>
-            <li class="separator"> | </li>
+            <li class="separator">&nbsp;|&nbsp;</li>
             <li><a href="{{mainDomain}}/site-information/site-map">Site Map</a></li>
           </ul>
 

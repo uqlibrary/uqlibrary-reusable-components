@@ -4,6 +4,10 @@
   position: absolute !important;
 }
 
+uql-menu div#scrim {
+  z-index: 1000;
+}
+
 body.ia-enabled {
   uq-minimal-header {
     overflow: visible !important;

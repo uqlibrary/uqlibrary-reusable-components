@@ -39,6 +39,9 @@ uql-connect-footer {
 .responsive-layout-mobile {
   position: absolute !important; }
 
+uql-menu div#scrim {
+  z-index: 1000; }
+
 body.ia-enabled {
   /* Default Layout */
   /* Narrow Layout */
