@@ -39,8 +39,8 @@
         observer: '_menuChanged'
       },
 
-    /** selected top menu item index */
-     selectedMenuItemIndex: {
+      /** selected top menu item index */
+      selectedMenuItemIndex: {
         type: Number
       },
 
@@ -48,20 +48,6 @@
       selectedSubMenuItemIndex: {
         type: Number
       }
-    },
-
-    ready: function() {
-      var that = this;
-
-      setTimeout(function() {
-        //reveal elements with easing in effect
-        var content = that.querySelectorAll(".loading");
-
-        for(var i=0; i< content.length; i++){
-          var element = content[i];
-          element.removeAttribute('unresolved');
-        }
-      }, 0);
     },
 
     _menuChanged: function(newValue, oldValue) {

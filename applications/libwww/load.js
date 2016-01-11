@@ -36,6 +36,8 @@ function loadReusableComponents() {
     header.showMenuButton = true;
     header.showSearchButton = true;
 
+    menu.menuJson = '../uql-menu/demo/menu.json';
+
     header.addEventListener("menu-clicked", function(event) {
       menu.toggleMenu();
     });

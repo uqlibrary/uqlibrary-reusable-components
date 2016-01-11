@@ -83,8 +83,22 @@
       var menuIndex = Number(event.target.getAttribute('data-item-index'));
       var deselectedTab = this.querySelectorAll('paper-tab')[menuIndex];
 
-      if(deselectedTab != null && deselectedTab.className.indexOf("sub-menu-opened") >= 0)
+      if(deselectedTab && deselectedTab.className.indexOf("sub-menu-opened") >= 0)
         deselectedTab.toggleClass("sub-menu-opened");
+    },
+
+    ready: function() {
+      var that = this;
+
+      setTimeout(function() {
+        //reveal elements with easing in effect
+        var content = that.querySelectorAll(".loading");
+
+        for(var i=0; i< content.length; i++){
+          var element = content[i];
+          element.removeAttribute('unresolved');
+        }
+      }, 0);
     },
 
     _menuChanged: function(newValue, oldValue) {
