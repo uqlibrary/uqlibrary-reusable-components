@@ -42,11 +42,7 @@ uql-connect-footer {
 body.ia-enabled {
   /* Default Layout */
   /* Narrow Layout */
-  /* Normal Layout */
-  /* Wide Layout */
-  /* This is the default in drupal omega theme, but found it wasn't working for us
-  @media all and (min-width: 1220px) {
-  */ }
+  /* Wide Layout */ }
   body.ia-enabled uq-minimal-header {
     overflow: visible !important;
     z-index: 1000; }
@@ -74,7 +70,7 @@ body.ia-enabled {
       margin-top: 164px; }
     body.ia-enabled #section-content #zone-content-wrapper {
       margin-bottom: 20px; } }
-  @media all and (min-width: 1025px) {
+  @media all and (min-width: 1048px) {
     body.ia-enabled {
       background-position: 50% 66px; }
       body.ia-enabled.front.responsive-layout-mobile #region-content #uql-search {

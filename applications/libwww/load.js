@@ -1,12 +1,12 @@
-function ready(fn) {
-  if (document.readyState != 'loading'){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-}
-
-function loadReusableComponents() {
+//function ready(fn) {
+//  if (document.readyState != 'loading'){
+//    fn();
+//  } else {
+//    document.addEventListener('DOMContentLoaded', fn);
+//  }
+//}
+//
+//function loadReusableComponents() {
 
   //insert elements, even before Polymer is loaded
 
@@ -44,8 +44,8 @@ function loadReusableComponents() {
 
     subFooter.mainDomain = 'https://www.library.uq.edu.au';
   });
-}
-
-ready(loadReusableComponents);
+//}
+//
+//ready(loadReusableComponents);
 
 
