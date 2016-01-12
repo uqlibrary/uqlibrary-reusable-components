@@ -37,6 +37,21 @@
         }
       }
     },
+
+    ready: function() {
+      var that = this;
+
+      setTimeout(function() {
+        //reveal elements with easing in effect
+        var content = that.querySelectorAll(".loading");
+
+        for(var i=0; i< content.length; i++){
+          var element = content[i];
+          element.removeAttribute('unresolved');
+        }
+      }, 0);
+    },
+
     _handleError: function (event) {
       console.log(event);
     },
