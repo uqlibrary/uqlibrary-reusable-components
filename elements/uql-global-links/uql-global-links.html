@@ -30,7 +30,7 @@
     li a:active,
     li a:visited {
       @apply(--global-links-style);
-      margin-right: 4px;
+      margin-right: 10px;
       text-decoration: none;
     }
 
@@ -38,6 +38,11 @@
       color: #fff;
       text-decoration: underline;
     }
+
+    .separator {
+      margin-right: 10px;
+    }
+
   </style>
   <template>
     <ul class="global-links">
@@ -45,7 +50,7 @@
         <li>
           <a href="{{ item.url }}" accesskey="{{getAccessKey(index)}}">{{ item.title }}</a>
           <template is="dom-if" if="{{displaySeparator(index)}}">
-            <span>&nbsp;{{separator}}&nbsp;</span>
+            <span class="separator">{{separator}}</span>
           </template>
         </li>
       </template>

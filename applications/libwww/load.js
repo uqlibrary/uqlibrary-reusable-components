@@ -17,7 +17,7 @@ window.addEventListener('WebComponentsReady', function() {
   var menu = document.querySelector('uql-menu');
   if (!menu) {
     menu = document.createElement('uql-menu');
-    //header.appendChild(menu);
+    header.appendChild(menu);
     document.body.insertBefore(menu, firstElement);
   }
 
