@@ -55,13 +55,12 @@ All custom styles/scripts are located in /applications/[app name]/
 test group (uses master branch): http://guides.library.uq.edu.au/test
 include this code in Custom JS/CSS Code in LibGuides configuration
 
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico" />
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/libguides/custom-styles.css" />
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/shared/common-minimal-styles.css" />
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
-        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/shared/load-minimal.js"></script>
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico">
+        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+        <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/custom-styles.css" />
 
 #### LibAnswers
 
@@ -69,54 +68,47 @@ test group (uses master branch): http://answers.library.uq.edu.au/test
 
 include this code in Custom JS/CSS Code in LinAnswers configuration
 
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico">
-        <script src="//assets.library.uq.edu.au/master/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/master/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/master/reusable-components/elements.vulcanized.html" async>
-        <script src="//assets.library.uq.edu.au/master/reusable-components/libapps/load.js" async></script>
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/master/reusable-components/libapps/libanswers/custom-styles.css" />
-
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico" />
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/libanswers/custom-styles.css" />
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/shared/common-minimal-styles.css" />
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents.js"></script>
-        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/shared/load-minimal.js"></script>
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico">
+        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+        <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libanswers/custom-styles.css" />
         
 #### UQL Drupal (libwww)
 
 include this code in Omega's html.tpl.php 
 
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico" />
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents-lite.min.js"></script>
-        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html">
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/libwww/custom-styles.css" />
-        <script>
-            var menuJson = '//path/to/menu.json';
-        </script>
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/libwww/load.js"></script>
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
+        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+        
+        <script src="//assets.library.uq.edu.au/reusable-components/libwww/load.js" async></script>
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css" />
 
 #### UQLAPP
 frontend/app/index.html includes following:
 
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/[master]/reusable-components/resources/favicon.ico" />
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/[master]/reusable-components/uqlapp/custom-styles.css" />
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html" async>
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/uqlapp/load.js"></script>
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
+        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+        
+        <script src="//assets.library.uq.edu.au/reusable-components/libapp/load.js" async></script>
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapp/custom-styles.css" />
+                
 
 #### Shared (uqlais, ezproxy static pages)
 [TODO: add details here]
 
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/[master]/reusable-components/resources/favicon.ico" />
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/resources/preloader.js"></script>
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/[master]/reusable-components/elements.vulcanized.html" async>
-        <script src="//assets.library.uq.edu.au/[master]/reusable-components/shared/load-minimal.js"></script>
-    
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
+        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+                
+        <script src="//assets.library.uq.edu.au/reusable-components/shared/load-minimal.js" async></script>
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/shared/common-minimal-styles.css" />
 
 ### Forcing IMS logins
 
