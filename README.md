@@ -95,12 +95,12 @@ frontend/app/index.html includes following:
         <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
         
-        <script src="//assets.library.uq.edu.au/reusable-components/libapp/load.js" async></script>
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapp/custom-styles.css" />
+        <script src="//assets.library.uq.edu.au/reusable-components/uqlapp/load.js" async></script>
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/uqlapp/custom-styles.css" />
                 
 
 #### Shared (uqlais, ezproxy static pages)
-[TODO: add details here]
+https://github.com/uqlibrary/UQLAIS/blob/master/templates/header.tpl.html includes following:
 
         <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
@@ -151,13 +151,14 @@ Codeship will deploy changes automatically by running deployment task /bin/codes
 Distribution package on S3 looks like this:
 
 - [branch_name]/reusable-components/
-    - /libguides/*
-    - /libanswers/*
+    - /libapps/libguides/*
+    - /libapps/libanswers/*
     - /libwww/*
     - /uqlapp/*
     - /other-uql-apps/*
     - /webcomponents/*
-    - elements.vulcanized.html   
+    - elements.vulcanized.html
+    - elements.vulcanized.js
     
 Subdirectory [branch_name] only exists for non-production branches, eg master/uat .
 
