@@ -39,8 +39,8 @@
         observer: '_menuChanged'
       },
 
-    /** selected top menu item index */
-     selectedMenuItemIndex: {
+      /** selected top menu item index */
+      selectedMenuItemIndex: {
         type: Number
       },
 

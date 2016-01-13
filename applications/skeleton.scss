@@ -1,0 +1,51 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+uq-minimal-header {
+    height: 100px;
+    background-color: #49075E;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+uq-minimal-footer {
+    display: block;
+    width: 100%;
+    background-color: #49075E;
+    min-height: 140px;
+}
+uql-connect-footer {
+    display: block;
+    width: 100%;
+    background-color: #e5e5e5;
+    min-height: 240px;
+}
+
+@media all and (max-width: 1047px) {
+
+    uq-minimal-header {
+        height: 66px;
+    }
+}
+
+@media all and (min-width: 1048px) {
+
+    uql-menu {
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+
+        margin-top: 100px;
+        display: block;
+        width: 100%;
+        height: 67px;
+        background-color: #fff;
+    }
+}
+
+

@@ -87,6 +87,20 @@
         deselectedTab.toggleClass("sub-menu-opened");
     },
 
+    ready: function() {
+      var that = this;
+
+      setTimeout(function() {
+        //reveal elements with easing in effect
+        var content = that.querySelectorAll(".loading");
+
+        for(var i=0; i< content.length; i++){
+          var element = content[i];
+          element.removeAttribute('unresolved');
+        }
+      }, 0);
+    },
+
     _menuChanged: function(newValue, oldValue) {
       if (newValue !== null) {
         newValue.items.forEach(function(element, index){

@@ -1,31 +1,42 @@
-/* global menuJson:false */
 window.addEventListener('WebComponentsReady', function() {
-
-  //original document
+  //first element of the original document
   var firstElement = document.body.children[0];
 
-  // insert header after body-tag
-  var header = document.createElement('uq-minimal-header');
+  var header = document.querySelector('uq-minimal-header');
+  if (!header) {
+    //as a back up insert header if it's not defined already
+    header = document.createElement('uq-minimal-header');
+    document.body.insertBefore(header, firstElement);
+  }
+
+  //configure elements
   header.showIAButton = (document.cookie.indexOf("iabutton") >= 0);
   header.showMenuButton = true;
   header.showSearchButton = true;
-  document.body.insertBefore(header, firstElement);
 
-  // insert menu after header
-  var menu = document.createElement('uql-menu');
-  menu.menuJson = menuJson;
-  header.appendChild(menu);
+  var menu = document.querySelector('uql-menu');
+  if (!menu) {
+    menu = document.createElement('uql-menu');
+    header.appendChild(menu);
+    document.body.insertBefore(menu, firstElement);
+  }
 
   header.addEventListener("menu-clicked", function(event) {
     menu.toggleMenu();
   });
 
-  // insert footer before body-tag
-  var subFooter = document.createElement('uql-connect-footer');
-  document.body.appendChild(subFooter);
-  subFooter.footerMenuUrl = menuJson;
+  var subFooter = document.querySelector('uql-connect-footer');
+  if (!subFooter) {
+    subFooter = document.createElement('uql-connect-footer');
+    document.body.appendChild(subFooter);
+  }
   subFooter.mainDomain = 'https://www.library.uq.edu.au';
 
-  var footer = document.createElement('uq-minimal-footer');
-  document.body.appendChild(footer);
+  var footer = document.querySelector("uq-minimal-footer");
+  if (!footer) {
+    footer = document.createElement('uq-minimal-footer');
+    document.body.appendChild(footer);
+  }
 });
+
+

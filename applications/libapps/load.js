@@ -16,6 +16,10 @@ function loadReusableComponents() {
   var header = document.createElement('uq-minimal-header');
   document.body.insertBefore(header, firstElement);
 
+  // insert sub footer before body-tag
+  var subFooter = document.createElement('uql-connect-footer');
+  document.body.appendChild(subFooter);
+
   // insert footer before body-tag
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
@@ -23,7 +27,8 @@ function loadReusableComponents() {
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
-    header.showLoginButton = false;
+    //set up domain for links in sub footer
+    subFooter.mainDomain = 'https://www.library.uq.edu.au';
   });
 }
 
