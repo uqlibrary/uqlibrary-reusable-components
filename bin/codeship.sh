@@ -73,6 +73,14 @@ fi
 echo "Check file syntax"
 gulp syntax
 
+echo "Update elements to use its vulcanized version"
+files=( test/uql* )
+for file in "${files[@]}"; do
+  file2=${file#test/}
+  element=${file2%.html}
+  sed -i -e "s#${element}/${file2}#elements.vulcanized.html#g" ${file}
+done
+
 echo "Run tests"
 gulp test
 
