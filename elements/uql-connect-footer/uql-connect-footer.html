@@ -1,6 +1,10 @@
-<dom-module id="uql-connect-footer">
+<link rel="import" href="../elements.html">
+<!--
+`<uql-connect-footer>` provides a footer panel containing links and shortcuts to the UQ Library
 
-  <link rel="import" href="../elements.html">
+@demo uql-connect-footer/demo/index.html
+-->
+<dom-module id="uql-connect-footer">
   <style is="custom-style" include="common-styles">
 
   :host {
@@ -125,11 +129,11 @@
   </style>
 
   <template>
-    <iron-ajax auto="{{autoLoad}}" url="{{footerMenuUrl}}" handle-as="json" on-response="_handleResponse"
-               on-error="_handleError" verbose="{{verbose}}"></iron-ajax>
+    <iron-ajax auto="true" url="{{footerMenuUrl}}" handle-as="json" on-response="_handleResponse"
+               on-error="_handleError" verbose="true"></iron-ajax>
 
     <div class="sub-footer-container">
-      <div class="sub-footer-content loading" unresolved>
+      <div class="sub-footer-content">
 
         <div class="navigation">
           <template is="dom-if" if="{{menu.items}}">

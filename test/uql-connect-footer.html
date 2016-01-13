@@ -43,7 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     test('External links from a json file', function(done) {
       flush(function () {
         setTimeout(function(){
-          var links = testObj.querySelectorAll('#cFtMenu a');
+          var links = testObj.querySelectorAll('.navigation a');
           expect(links).to.not.be.null;
           expect(links).to.be.visible;
           done();
@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     test('Internal links', function(done) {
       flush(function () {
-        var internal = testObj.querySelectorAll('#cFtSubMenu a');
+        var internal = testObj.querySelectorAll('.contacts li a');
         expect(internal).to.be.visible;
         expect(internal.length).to.equal(3);
         done();
@@ -62,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     test('Icons', function(done) {
       flush(function () {
-        var icons = testObj.querySelectorAll('iron-icon');
+        var icons = testObj.querySelectorAll('.social img');
         expect(icons).to.be.visible;
         expect(icons.length).to.equal(3);
         done();
@@ -73,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
-        var buttons = testObj.querySelectorAll('.blue-button');
+        var buttons = testObj.querySelectorAll('.buttons a');
         expect(buttons).to.be.visible;
         expect(buttons.length).to.equal(2);
         done();
