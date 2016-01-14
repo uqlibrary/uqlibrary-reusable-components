@@ -15,21 +15,18 @@ var $ = require('gulp-load-plugins')();
 var argv = require('yargs').argv;
 var del = require('del');
 var runSequence = require('run-sequence');
-//var browserSync = require('browser-sync');
-var vulcanize = require('gulp-vulcanize');
-//var reload = browserSync.reload;
 var merge = require('merge-stream');
+
+//var browserSync = require('browser-sync');
+//var reload = browserSync.reload;
+
 var path = require('path');
 var fs = require('fs');
 var glob = require('glob');
-var awspublish = require('gulp-awspublish');
-var gutil = require('gulp-util');
-var rename = require('gulp-rename');
-var taskList = require('gulp-task-listing');
-var cssmin = require('gulp-cssmin');
-var jsonlint = require('gulp-jsonlint');
+
 var cloudfront = require('gulp-invalidate-cloudfront');
 var replace = require('gulp-replace-task');
+var taskList = require('gulp-task-listing');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -54,84 +51,99 @@ var config = {
 // Lint JavaScript
 gulp.task('jshint', function () {
   return gulp.src([
-      config.applications + '/**/*.js',
-      config.elements + '/**/*.js'
-    ])
-    //.pipe(reload({stream: true, once: true}))
-    .pipe($.jshint.extract()) // Extract JS from .html files
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.jshint.reporter('fail'));
+        config.applications + '/**/*.js',
+        config.elements + '/**/*.js',
+        '!' + config.elements + '/elements.vulcanized.js'
+      ])
+      //.pipe(reload({stream: true, once: true}))
+      .pipe($.jshint.extract()) // Extract JS from .html files
+      .pipe($.jshint())
+      .pipe($.jshint.reporter('jshint-stylish'))
+      .pipe($.jshint.reporter('fail'));
   //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 // Lint JSON
 gulp.task('jsonlint', function () {
   return gulp.src([
-      config.resources + '/**/*.json',
-      config.applications + '/**/*.json',
-      config.elements + '/**/*.json'
-    ])
-    .pipe(jsonlint())
-    .pipe(jsonlint.failAfterError())
-    .pipe(jsonlint.reporter());
+        config.resources + '/**/*.json',
+        config.applications + '/**/*.json',
+        config.elements + '/**/*.json'
+      ])
+      .pipe($.jsonlint())
+      .pipe($.jsonlint.failAfterError())
+      .pipe($.jsonlint.reporter());
 });
 
-// Vulcanize imports
-gulp.task('vulcanize', ['clean:vulcanize', 'copy:vulcanize'], function () {
+/** Vulcanize */
+// vulcanizes and splits html/js, replaces menu-json with value from resources/uql-menu.json, min html/js
+gulp.task('vulcanize', ['vulcanize:clean', 'vulcanize:copy'], function() {
+
+  var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
+  var regEx = new RegExp("menuJsonFileData;", "g");
 
   return gulp.src(config.elements + '/elements.vulcanized.html')
-    .pipe($.vulcanize({
-      dest: config.elements,
-      strip: true,
-      inlineCss: true,
-      inlineScripts: true
-    }))
-    .pipe(gulp.dest(config.elements))
-    .pipe($.size({title: 'vulcanize'}));
+      .pipe($.vulcanize({
+        dest: config.elements,
+        strip: true,
+        inlineCss: true,
+        inlineScripts: true,
+        stripComments: true
+      }))
+      .pipe($.crisper({
+        scriptInHead: false, // true is default
+        onlySplit: false
+      })) // Separate JS into its own file for CSP compliance and reduce html parser load.
+      .pipe($.if('*.js',replace({patterns: [{ match: regEx, replacement: menuJson + ';'}], usePrefix: false}))) //replace menu-json with value from resources/uql-menu.json
+      .pipe($.if('*.js',$.uglify({preserveComments: 'some'}))) // Minify js output
+      .pipe($.if('*.html', $.minifyHtml({quotes: true, empty: true, spare: true}))) // Minify html output
+      .pipe(gulp.dest(config.elements))
+      .pipe($.size({title: 'vulcanize'}));
 });
 
 // delete old vulcanized file
-gulp.task('clean:vulcanize', function (done) {
+gulp.task('vulcanize:clean', function (done) {
   del([
-    config.elements + '/elements.vulcanized.html'
+    config.elements + '/elements.vulcanized.html',
+    config.elements + '/elements.vulcanized.js'
   ], done);
 });
 
 // copy and rename elements.html to elements.vulcanized.html
-gulp.task('copy:vulcanize', function () {
+gulp.task('vulcanize:copy', function () {
   var vulcanized = gulp.src([config.elements + '/elements.html'])
-    .pipe($.rename('elements.vulcanized.html'))
-    .pipe(gulp.dest(config.elements));
+      .pipe($.rename('elements.vulcanized.html'))
+      .pipe(gulp.dest(config.elements));
 
   return merge(vulcanized)
-    .pipe($.size({title: 'copy'}));
+      .pipe($.size({title: 'copy'}));
 });
 
-// optimize files
+//optimize css and js of application specific files
 gulp.task('optimize', function () {
-  gulp.src(config.applications + '/**/*.css')
-    .pipe(cssmin())
-    .pipe(gulp.dest(config.applications));
+  gulp.src(config.applications + '/**/*')
+      //.pipe($.cssmin())
+      .pipe($.if('*.css',$.cssmin())) // Minify css output
+      .pipe($.if('*.js',$.uglify({preserveComments: 'some'}))) // Minify js output
+      .pipe(gulp.dest(config.applications));
 });
-
 
 // copy and rename elements.html to elements.vulcanized.html
 gulp.task('copy:aws', function () {
-  var vulcanized = gulp.src([config.elements + '/elements.vulcanized.html'])
-    .pipe(gulp.dest(config.applications));
+  var vulcanized = gulp.src([config.elements + '/elements.vulcanized.*'])
+      .pipe(gulp.dest(config.applications));
 
   var dependencies = gulp.src([config.dependencies + '/webcomponentsjs/**/*'])
-    .pipe(gulp.dest(config.applications + '/webcomponentsjs'));
+      .pipe(gulp.dest(config.applications + '/webcomponentsjs'));
 
   var resources = gulp.src([config.resources + '/**/*'])
-    .pipe(gulp.dest(config.applications + '/resources'));
+      .pipe(gulp.dest(config.applications + '/resources'));
 
   var demo = gulp.src([config.demo + '/**/*'])
-    .pipe(gulp.dest(config.applications + '/elements/demo'));
+      .pipe(gulp.dest(config.applications + '/elements/demo'));
 
   return merge(vulcanized, dependencies, resources, demo)
-    .pipe($.size({title: 'copy'}));
+      .pipe($.size({title: 'copy'}));
 });
 
 /**
@@ -151,7 +163,7 @@ gulp.task('invalidate', function () {
     invalidatePath += '/reusable-components/*';
   }
 
-  gutil.log('Invalidation path: ' + invalidatePath);
+  $.util.log('Invalidation path: ' + invalidatePath);
 
   var invalidationBatch = {
     CallerReference: new Date().toString(),
@@ -185,7 +197,7 @@ gulp.task('publish', ['copy:aws'], function () {
 
   // create a new publisher using S3 options
   var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
-  var publisher = awspublish.create(awsConfig);
+  var publisher = $.awspublish.create(awsConfig);
 
   // define custom headers
   var headers = {
@@ -193,33 +205,26 @@ gulp.task('publish', ['copy:aws'], function () {
   };
 
   return gulp.src('./' + config.applications + '/**')
-    .pipe(rename(function (path) {
-      path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
-    }))
-    // gzip, Set Content-Encoding headers
-    .pipe(awspublish.gzip())
+      .pipe($.rename(function (path) {
+        path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
+      }))
+      // gzip, Set Content-Encoding headers
+      .pipe($.awspublish.gzip())
 
-    // publisher will add Content-Length, Content-Type and headers specified above
-    // If not specified it will set x-amz-acl to public-read by default
-    .pipe(publisher.publish(headers))
+      // publisher will add Content-Length, Content-Type and headers specified above
+      // If not specified it will set x-amz-acl to public-read by default
+      .pipe(publisher.publish(headers))
 
-    // create a cache file to speed up consecutive uploads
-    .pipe(publisher.cache())
+      // create a cache file to speed up consecutive uploads
+      .pipe(publisher.cache())
 
-    // print upload updates to console
-    .pipe(awspublish.reporter());
+      // print upload updates to console
+      .pipe($.awspublish.reporter());
 });
 
 gulp.task('syntax', [
   'jshint',
   'jsonlint'
-]);
-
-gulp.task('build', [
-  'syntax',
-  'optimize',
-  'vulcanize',
-  'menu-replace'
 ]);
 
 // display a list of available tasks

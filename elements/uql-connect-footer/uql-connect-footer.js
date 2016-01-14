@@ -13,26 +13,60 @@
 
       /**
        * json URL containing the links that should be displayed
-       * @type {String}
+       * @type {Boolean}
+       */
+      autoLoad: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * URL to a json file containing the links that should be displayed
+       * @type {URL}
        */
       footerMenuUrl: {
         type: String
       },
 
+      verbose: {
+        type: Boolean,
+        value: true
+      },
+
       /**
-       * Menu Links
+       * Object containing all the links imported via ajax
        * @type {Object}
        */
       menu: {
         type: Object,
-        value: {}
+        value: function() {
+          var menuJsonFileData = null;
+          var menuJson = menuJsonFileData;
+          if (menuJson !== null) {
+            return menuJson;
+          }
+          else {
+            this.autoLoad = true;
+            return null;
+          }
+        }
       }
     },
 
-    /**
-     * Ajax: Log errors to the browser console
-     * @type {Boolean}
-     */
+    /** Reveal elements with easing in effect once the element has been loaded **/
+    ready: function() {
+      var that = this;
+
+      setTimeout(function() {
+        var content = that.querySelectorAll(".loading");
+
+        for(var i=0; i< content.length; i++){
+          var element = content[i];
+          element.removeAttribute('unresolved');
+        }
+      }, 0);
+    },
+
     _handleError: function (event) {
       console.log(event);
     },

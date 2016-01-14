@@ -129,11 +129,11 @@
   </style>
 
   <template>
-    <iron-ajax auto="true" url="{{footerMenuUrl}}" handle-as="json" on-response="_handleResponse"
-               on-error="_handleError" verbose="true"></iron-ajax>
+    <iron-ajax auto="{{autoLoad}}" url="{{footerMenuUrl}}" handle-as="json" on-response="_handleResponse"
+               on-error="_handleError" verbose="{{verbose}}"></iron-ajax>
 
     <div class="sub-footer-container">
-      <div class="sub-footer-content">
+      <div class="sub-footer-content loading" unresolved>
 
         <div class="navigation">
           <template is="dom-if" if="{{menu.items}}">
