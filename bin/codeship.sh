@@ -64,6 +64,12 @@ if [ -z "${result}" ]; then
     exit 1;
 fi
 
+vulcanizedJs = "elements/elements.vulcanized.html"
+if ! [-f "$vulcanizedJs"]; then
+    echo "Improperly vulcanized file - missing vulcanized.js"
+    exit 1;
+fi
+
 #run css min tasks for staging/production, don't run for master - for better debugging
 if [ $branch = "staging" ] || [ $branch = "production" ]; then
   echo "Run gulp task to optimize css..."

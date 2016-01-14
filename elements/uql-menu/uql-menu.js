@@ -26,6 +26,8 @@
       menu: {
         type: Object,
         value: function() {
+          //DO NOT REMOVE!!
+          //this will be replaced with gulp task to avoid an api call for a static json file
           var menuJsonFileData = null;
           var menuJson = menuJsonFileData;
           if (menuJson !== null) {
