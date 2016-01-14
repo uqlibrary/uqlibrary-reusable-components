@@ -11,14 +11,18 @@
         value: ""
       },
 
+      /**
+       * json URL containing the links that should be displayed
+       * @type {Boolean}
+       */
       autoLoad: {
         type: Boolean,
         value: false
       },
 
       /**
-       * json URL containing the links that should be displayed
-       * @type {String}
+       * URL to a json file containing the links that should be displayed
+       * @type {URL}
        */
       footerMenuUrl: {
         type: String
@@ -29,6 +33,10 @@
         value: true
       },
 
+      /**
+       * Object containing all the links imported via ajax
+       * @type {Object}
+       */
       menu: {
         type: Object,
         value: function() {
@@ -45,11 +53,11 @@
       }
     },
 
+    /** Reveal elements with easing in effect once the element has been loaded **/
     ready: function() {
       var that = this;
 
       setTimeout(function() {
-        //reveal elements with easing in effect
         var content = that.querySelectorAll(".loading");
 
         for(var i=0; i< content.length; i++){
