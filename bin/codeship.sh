@@ -64,8 +64,7 @@ if [ -z "${result}" ]; then
     exit 1;
 fi
 
-vulcanizedJs = "elements/elements.vulcanized.html"
-if ! [-f "$vulcanizedJs"]; then
+if ! [ -f elements/elements.vulcanized.html ]; then
     echo "Improperly vulcanized file - missing vulcanized.js"
     exit 1;
 fi
