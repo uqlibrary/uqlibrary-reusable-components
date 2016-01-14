@@ -239,5 +239,25 @@ try {
 }
 catch (err) {
 }
+
+// menu-replace task
+// pastes in contents of resources/uql-menu.json to uql-menu and uql-connect-footer to prevent extra call to load json
+gulp.task('menu-replace', function () {
+  var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
+  var regEx = new RegExp("menuJsonFileData;", "g");
+
+  gulp.src([config.elements + '/elements.vulcanized.html'])
+    .pipe(replace({
+      patterns: [
+        {
+          match: regEx,
+          replacement: menuJson + ';'
+        }
+      ],
+      usePrefix: false
+    }))
+    .pipe(gulp.dest(config.elements));
+});
+
 //// Load custom tasks from the `tasks` directory
 //try { require('require-dir')('tasks'); } catch (err) {}
