@@ -46,6 +46,9 @@ sed -i -e "s#<S3BucketSubDir>#${S3BucketSubDir}#g" ${awsconfig}
 sed -i -e "s#<CFDistribution>#${CFDistribution}#g" ${awsconfig}
 sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
 
+echo "Check file syntax"
+gulp syntax
+
 echo "Vulcanizing elements"
 gulp vulcanize
 
@@ -74,9 +77,6 @@ if [ $branch = "staging" ] || [ $branch = "production" ]; then
   echo "Run gulp task to optimize css..."
   gulp optimize
 fi
-
-echo "Check file syntax"
-gulp syntax
 
 echo "Update elements to use its vulcanized version"
 files=( test/uql* )
