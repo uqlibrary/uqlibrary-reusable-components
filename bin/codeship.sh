@@ -86,6 +86,12 @@ for file in "${files[@]}"; do
   sed -i -e "s#${element}/${file2}#elements.vulcanized.html#g" ${file}
 done
 
+echo "Update app cache manifest version"
+appcache="applications/libwww/reusable-components.appcache"
+version=$(git rev-parse HEAD)
+
+sed -i -e "s#<VERSION>#${version}#g" ${appcache}
+
 echo "Run tests"
 gulp test
 
