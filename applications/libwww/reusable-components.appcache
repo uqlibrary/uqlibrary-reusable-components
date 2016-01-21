@@ -6,9 +6,9 @@ NETWORK:
 *
 
 CACHE:
-assets.library.uq.edu.au/reusable-components/resources/favicon.ico
-assets.library.uq.edu.au/reusable-components/resources/preloader.js
-assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js
-assets.library.uq.edu.au/reusable-components/elements.vulcanized.html
-assets.library.uq.edu.au/reusable-components/libwww/load.js
-assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css
+http://assets.library.uq.edu.au/reusable-components/resources/favicon.ico
+http://assets.library.uq.edu.au/reusable-components/resources/preloader.js
+http://assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js
+http://assets.library.uq.edu.au/reusable-components/elements.vulcanized.html
+http://assets.library.uq.edu.au/reusable-components/libwww/load.js
+http://assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css
