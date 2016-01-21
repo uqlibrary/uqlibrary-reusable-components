@@ -78,6 +78,14 @@
 
 <script>
 
+  if (window.applicationCache) {
+    applicationCache.addEventListener('updateready', function() {
+      if (confirm('An update is available. Reload now?')) {
+        window.location.reload();
+      }
+    });
+  }
+
   document.cookie="UQLMockData=enabled";
 
   window.addEventListener('WebComponentsReady', function() {
