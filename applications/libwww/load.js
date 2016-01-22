@@ -1,3 +1,11 @@
+//reload page when browser updates cached files
+if (window.applicationCache) {
+  applicationCache.addEventListener('updateready', function () {
+    window.applicationCache.swapCache();
+    window.location.reload();
+  });
+}
+
 window.addEventListener('WebComponentsReady', function() {
   //first element of the original document
   var firstElement = document.body.children[0];
