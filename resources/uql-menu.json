@@ -118,7 +118,8 @@
         {
           "label": "Research by subject",
           "subtext": "Law, medicine, management ...",
-          "href": "/research-tools-techniques/research-subject"
+          "href": "/research-tools-techniques/research-subject",
+          "right": "right"
         },
         {
           "label": "Search techniques",
