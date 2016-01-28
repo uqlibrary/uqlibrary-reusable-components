@@ -78,7 +78,7 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
 #### UQL Drupal (libwww)
 
 include this code in Omega's html.tpl.php 
-
+        <html manifest="//assets.library.uq.edu.au/master/reusable-components/libwww/reusable-components.appcache">
         <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
         <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
@@ -86,6 +86,8 @@ include this code in Omega's html.tpl.php
         
         <script src="//assets.library.uq.edu.au/reusable-components/libwww/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css" />
+
+reusable-components.appcache is a manifest file which contains a list of files that can be cached by a browser. Application cache file has a version number which signals to a browser that cached files were updated. Version is updated automatically at deployment time. 
 
 #### UQLAPP
 frontend/app/index.html includes following:
