@@ -15,15 +15,16 @@ Example:
   <style is="custom-style" include="common-styles">
     :host {
       font-family: var(--font-family);
+      font-size: 10px;
     }
   </style>
 
   <template>
-    <paper-button class="button-inverse button-small" on-tap="_searchClicked" id="searchButton">
+    <paper-button class="button-colored-theme" on-tap="_searchClicked" id="searchButton">
       <iron-icon icon="icons:search" aria-label="search UQ library site"></iron-icon>
 
       <template is="dom-if" if="{{showTitle}}">
-        <div class="button-title">{{buttonTitle}}</div>
+        <div class="button-small inverse icon-button-title">{{buttonTitle}}</div>
       </template>
     </paper-button>
   </template>

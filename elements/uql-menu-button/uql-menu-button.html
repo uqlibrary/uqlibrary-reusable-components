@@ -1,14 +1,28 @@
+<link rel="import" href="../elements.html">
+
+<!--
+`<uql-menu-button>` is a button to access menu on mobile devices
+
+Example:
+      <uql-menu-button button-title="Menu"></uql-menu-button>
+
+@demo uql-menu-button/demo/index.html
+-->
+
 <dom-module id="uql-menu-button">
 
-  <link rel="import" href="../elements.html">
   <style is="custom-style" include="common-styles">
+    :host {
+      font-family: var(--font-family);
+      font-size: 10px;
+    }
   </style>
 
   <template>
-    <paper-button class="button-inverse button-small" id="menuButton">
+    <paper-button class="button-colored-theme" id="menuButton">
       <iron-icon icon="icons:menu" aria-label="open site menu"></iron-icon>
       <template is="dom-if" if="{{showTitle}}">
-        <div class="button-title">{{buttonTitle}}</div>
+        <div class="button-small inverse icon-button-title">{{buttonTitle}}</div>
       </template>
     </paper-button>
   </template>

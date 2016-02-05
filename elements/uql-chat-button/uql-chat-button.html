@@ -19,6 +19,7 @@ Example:
 
     :host {
       font-family: var(--font-family);
+      font-size: 10px;
     }
 
     --paper-tooltip: {
@@ -50,18 +51,18 @@ Example:
             on-error="_handleChatStatusError"
             debounce-duration="300"></byutv-jsonp>
 
-    <paper-button class="button-inverse button-small" on-tap="openChat" id="chatButton">
+    <paper-button class="button-colored-theme" on-tap="openChat" id="chatButton">
       <iron-icon icon="communication:forum" aria-label="UQ Library chat"></iron-icon>
 
       <template is="dom-if" if="{{isChatOnline}}">
         <template is="dom-if" if="{{showTitle}}">
-          <div class="button-title">{{buttonTitle}}</div>
+          <div class="button-small inverse icon-button-title">{{buttonTitle}}</div>
         </template>
       </template>
 
       <template is="dom-if" if="{{!isChatOnline}}">
         <template is="dom-if" if="{{showTitle}}">
-          <div class="button-title">{{buttonTitleOffline}}</div>
+          <div class="button-small inverse icon-button-title">{{buttonTitleOffline}}</div>
         </template>
       </template>
 
