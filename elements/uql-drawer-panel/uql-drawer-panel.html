@@ -14,6 +14,15 @@ Example:
   <style is="custom-style" include="common-styles">
     :host {
       font-family: var(--font-family);
+
+      --paper-drawer-panel-scrim: {
+        z-index: 100;
+      };
+
+      --paper-drawer-panel-drawer-container: {
+        z-index: 1000;
+      };
+
     }
 
     .menu-title-bar {
@@ -23,10 +32,6 @@ Example:
       background-color: var(--theme-color);
       color: var(--text-color-inverse);
       padding-left: 16px;
-    }
-
-    paper-drawer-panel /deep/ #drawer {
-      z-index: 1000;
     }
 
     .menu {
