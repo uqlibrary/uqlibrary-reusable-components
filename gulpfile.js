@@ -75,9 +75,29 @@ gulp.task('jsonlint', function () {
       .pipe($.jsonlint.reporter());
 });
 
+// Clean elements.html from bower_components, all required elements should be defined in elements/elements.html
+// and do not rely on bower_components/element-x/elements.html
+gulp.task('vulcanize:clean_bower', function() {
+
+  return del(['bower_components/**/**/elements.html']).then(paths => {
+
+        //console.log('Deleted files and folders:\n', paths.join('\n'));
+
+        //create an empty file?
+        for(var i=0; i < paths.length; i++)
+  {
+    var path = paths[i];
+    console.log(path);
+    fs.writeFile(path, '', function(){});
+  }
+
+});
+});
+
+
 /** Vulcanize */
 // vulcanizes and splits html/js, replaces menu-json with value from resources/uql-menu.json, min html/js
-gulp.task('vulcanize', ['vulcanize:clean', 'vulcanize:copy'], function() {
+gulp.task('vulcanize', ['vulcanize:clean', 'vulcanize:copy', 'vulcanize:clean_bower'], function() {
 
   var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
   var regEx = new RegExp("menuJsonFileData;", "g");
