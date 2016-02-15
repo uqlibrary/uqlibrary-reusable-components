@@ -61,7 +61,7 @@ set -e
 if [ -z "${result}" ]; then
     echo "Improperly vulcanized file"
     echo "This happens sporadically, rebuilding should fix"
-    exit
+    exit 1;
 fi
 
 if ! [ -f elements/elements.vulcanized.js ]; then

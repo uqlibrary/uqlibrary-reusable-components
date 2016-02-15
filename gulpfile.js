@@ -95,7 +95,7 @@ gulp.task('vulcanize:clean_bower', function() {
 
 /** Vulcanize */
 // vulcanizes and splits html/js, replaces menu-json with value from resources/uql-menu.json, min html/js 'vulcanize:clean_bower'
-gulp.task('vulcanize', ['vulcanize:clean', 'vulcanize:copy'], function() {
+gulp.task('vulcanize', ['vulcanize:clean_bower', 'vulcanize:clean', 'vulcanize:copy'], function() {
 
   var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
   var regEx = new RegExp("menuJsonFileData;", "g");
