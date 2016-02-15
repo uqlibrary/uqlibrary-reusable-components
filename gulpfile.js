@@ -79,25 +79,23 @@ gulp.task('jsonlint', function () {
 // and do not rely on bower_components/element-x/elements.html
 gulp.task('vulcanize:clean_bower', function() {
 
-  return del(['bower_components/**/**/elements.html']).then(paths => {
+  return del([config.dependencies + '/**/**/elements.html']).then(paths => {
+        if (paths) {
+          //create an empty file?
+          for (var i = 0; i < paths.length; i++) {
+            var path = paths[i];
+            console.log(path);
+            fs.writeFile(path, '', function () {
+            });
+          }
+        }
 
-        //console.log('Deleted files and folders:\n', paths.join('\n'));
-
-        //create an empty file?
-        for(var i=0; i < paths.length; i++)
-  {
-    var path = paths[i];
-    console.log(path);
-    fs.writeFile(path, '', function(){});
-  }
-
+    });
 });
-});
-
 
 /** Vulcanize */
-// vulcanizes and splits html/js, replaces menu-json with value from resources/uql-menu.json, min html/js
-gulp.task('vulcanize', ['vulcanize:clean', 'vulcanize:copy', 'vulcanize:clean_bower'], function() {
+// vulcanizes and splits html/js, replaces menu-json with value from resources/uql-menu.json, min html/js 'vulcanize:clean_bower'
+gulp.task('vulcanize', ['vulcanize:clean', 'vulcanize:copy'], function() {
 
   var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
   var regEx = new RegExp("menuJsonFileData;", "g");
@@ -123,10 +121,10 @@ gulp.task('vulcanize', ['vulcanize:clean', 'vulcanize:copy', 'vulcanize:clean_bo
 
 // delete old vulcanized file
 gulp.task('vulcanize:clean', function (done) {
-  del([
+  return del([
     config.elements + '/elements.vulcanized.html',
     config.elements + '/elements.vulcanized.js'
-  ], done);
+  ]);
 });
 
 // copy and rename elements.html to elements.vulcanized.html
@@ -259,25 +257,6 @@ try {
 }
 catch (err) {
 }
-
-// menu-replace task
-// pastes in contents of resources/uql-menu.json to uql-menu and uql-connect-footer to prevent extra call to load json
-gulp.task('menu-replace', function () {
-  var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
-  var regEx = new RegExp("menuJsonFileData;", "g");
-
-  gulp.src([config.elements + '/elements.vulcanized.html'])
-    .pipe(replace({
-      patterns: [
-        {
-          match: regEx,
-          replacement: menuJson + ';'
-        }
-      ],
-      usePrefix: false
-    }))
-    .pipe(gulp.dest(config.elements));
-});
 
 //// Load custom tasks from the `tasks` directory
 //try { require('require-dir')('tasks'); } catch (err) {}

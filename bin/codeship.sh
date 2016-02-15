@@ -52,9 +52,6 @@ gulp syntax
 echo "Vulcanizing elements"
 gulp vulcanize
 
-echo "Optimizing local loading of JSON (uql-menu.json)"
-gulp menu-replace
-
 # If these files are the same, it means an error in vulcanizing
 echo "Checking vulcanization was performed correctly"
 set +e
@@ -64,10 +61,10 @@ set -e
 if [ -z "${result}" ]; then
     echo "Improperly vulcanized file"
     echo "This happens sporadically, rebuilding should fix"
-    exit 1;
+    exit
 fi
 
-if ! [ -f elements/elements.vulcanized.html ]; then
+if ! [ -f elements/elements.vulcanized.js ]; then
     echo "Improperly vulcanized file - missing vulcanized.js"
     exit 1;
 fi
@@ -84,6 +81,22 @@ for file in "${files[@]}"; do
   file2=${file#test/}
   element=${file2%.html}
   sed -i -e "s#${element}/${file2}#elements.vulcanized.html#g" ${file}
+done
+
+echo "Update DEMO pages to use its vulcanized version"
+elements_ref="../elements.html"
+webcomponents_ref="../../bower_components/webcomponentsjs/webcomponents-lite.js"
+application_ref="../../applications"
+
+webcomponents_ref_online="../../webcomponentsjs/webcomponents-lite.js"
+elements_ref_online="../elements.vulcanized.html"
+application_ref_online="../../"
+
+files=( elements/demo/* )
+for file in "${files[@]}"; do
+  sed -i -e "s#${elements_ref}#${elements_ref_online}#g" ${file}
+  sed -i -e "s#${webcomponents_ref}#${webcomponents_ref_online}#g" ${file}
+  sed -i -e "s#${application_ref}#${application_ref_online}#g" ${file}
 done
 
 echo "Update app cache manifest version"
