@@ -151,6 +151,9 @@ gulp.task('copy:aws', function () {
   var vulcanized = gulp.src([config.elements + '/elements.vulcanized.*'])
       .pipe(gulp.dest(config.applications));
 
+  var vulcanized2elements = gulp.src([config.elements + '/elements.vulcanized.*'])
+      .pipe(gulp.dest(config.applications + '/elements'));
+
   var dependencies = gulp.src([config.dependencies + '/webcomponentsjs/**/webcomponents*.js'])
       .pipe(gulp.dest(config.applications + '/webcomponentsjs'));
 
@@ -163,7 +166,7 @@ gulp.task('copy:aws', function () {
   var mock_data = gulp.src([config.dependencies + '/uqlibrary-api/mock/**/*'])
       .pipe(gulp.dest(config.applications + '/bower_components/uqlibrary-api/mock'));
 
-  return merge(vulcanized, dependencies, resources, demo, mock_data)
+  return merge(vulcanized, dependencies, resources, demo, mock_data, vulcanized2elements)
       .pipe($.size({title: 'copy'}));
 });
 

@@ -89,7 +89,7 @@ webcomponents_ref="../../bower_components/webcomponentsjs/webcomponents-lite.js"
 application_ref="../../applications"
 
 webcomponents_ref_online="../../webcomponentsjs/webcomponents-lite.js"
-elements_ref_online="../../elements.vulcanized.html"
+elements_ref_online="../elements.vulcanized.html"
 application_ref_online="../.."
 
 files=( elements/demo/* )
