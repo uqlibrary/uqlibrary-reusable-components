@@ -5,130 +5,129 @@
 @demo uql-connect-footer/demo/index.html
 -->
 <dom-module id="uql-connect-footer">
-  <style is="custom-style" include="common-styles">
+  <template>
+    <style is="custom-style" include="common-styles">
 
-  :host {
-      font-size: 14px;
-      color: var(--sub-footer-text-color);
-      font-family: var(--font-family);
-      font-weight:300;
-      line-height:25px;
-    }
+      :host {
+        font-size: 14px;
+        color: var(--sub-footer-text-color);
+        font-family: var(--font-family);
+        font-weight:300;
+        line-height:25px;
+      }
 
-    a {
-      color: var(--sub-footer-text-color);
-      text-decoration: none;
-    }
+      a {
+        color: var(--sub-footer-text-color);
+        text-decoration: none;
+      }
 
-    a:hover {
-      text-decoration: underline;
-    }
+      a:hover {
+        text-decoration: underline;
+      }
 
-    .sub-footer-content ul,
-    .sub-footer-content li {
-      list-style-image: none;
-      list-style-position: outside;
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
+      .sub-footer-content ul,
+      .sub-footer-content li {
+        list-style-image: none;
+        list-style-position: outside;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
 
-    .sub-footer-container,
-    .sub-footer-content {
-      background-color: var(--sub-footer-background-color);
-    }
-
-    .sub-footer-content {
-      margin: 0 auto;
-      max-width: var(--max-width);
-      padding: 20px;
-
-      @apply(--layout-horizontal);
-      @apply(--layout-justified);
-      @apply(--layout-wrap);
-    }
-
-    .navigation,
-    .buttons,
-    .contacts {
-      @apply(--layout-flex);
-    }
-
-    .contacts {
-      @apply(--layout-vertical);
-    }
-
-    .buttons{
-      @apply(--layout-vertical);
-      @apply(--layout-center);
-      @apply(--layout-center-justified);
-    }
-
-    .contacts ul {
-      @apply(--layout-flex);
-    }
-
-
-    .buttons {
-      text-align: center;
-    }
-
-    .social img {
-      width:36px;
-      height:36px;
-    }
-
-    .button-colored-accent {
-      width:100%;
-      max-width:244px;
-      text-transform: none;
-      margin: 0 0 10px;
-    }
-
-    .button-social:hover {
-      background: var(--social-button-hover-background-color);
-    }
-
-    .separator {
-      display: none;
-    }
-
-
-    @media all and (max-width: 780px) {
+      .sub-footer-container,
+      .sub-footer-content {
+        background-color: var(--sub-footer-background-color);
+      }
 
       .sub-footer-content {
-        @apply(--layout-vertical);
-        @apply(--layout-center-justified);
+        margin: 0 auto;
+        max-width: var(--max-width);
+        padding: 20px;
+
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+        @apply(--layout-wrap);
       }
 
       .navigation,
       .buttons,
-      .contacts,
-      .contacts ul {
-        @apply(--layout-flex-none);
+      .contacts {
+        @apply(--layout-flex);
       }
+
+      .contacts {
+        @apply(--layout-vertical);
+      }
+
+      .buttons{
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+        @apply(--layout-center-justified);
+      }
+
+      .contacts ul {
+        @apply(--layout-flex);
+      }
+
 
       .buttons {
-        padding-top: 10px;
-      }
-
-      .social,
-      .separator,
-      .sub-footer-content ul,
-      .sub-footer-content li {
         text-align: center;
-        display: inline-block;
       }
 
-      li.separator:last-of-type {
+      .social img {
+        width:36px;
+        height:36px;
+      }
+
+      .button-colored-accent {
+        width:100%;
+        max-width:244px;
+        text-transform: none;
+        margin: 0 0 10px;
+      }
+
+      .button-social:hover {
+        background: var(--social-button-hover-background-color);
+      }
+
+      .separator {
         display: none;
       }
-    }
 
 
-  </style>
+      @media all and (max-width: 780px) {
 
-  <template>
+        .sub-footer-content {
+          @apply(--layout-vertical);
+          @apply(--layout-center-justified);
+        }
+
+        .navigation,
+        .buttons,
+        .contacts,
+        .contacts ul {
+          @apply(--layout-flex-none);
+        }
+
+        .buttons {
+          padding-top: 10px;
+        }
+
+        .social,
+        .separator,
+        .sub-footer-content ul,
+        .sub-footer-content li {
+          text-align: center;
+          display: inline-block;
+        }
+
+        li.separator:last-of-type {
+          display: none;
+        }
+      }
+
+
+    </style>
     <iron-ajax auto="{{autoLoad}}" url="{{footerMenuUrl}}" handle-as="json" on-response="_handleResponse"
                on-error="_handleError" verbose="{{verbose}}"></iron-ajax>
 
@@ -158,33 +157,33 @@
           </ul>
 
           <div class="social">
-              <paper-button class="button-social">
-                <a href="https://www.youtube.com/user/uqlibrary" target="_blank">
-                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube" alt="YouTube">
+              <paper-button class="button-social" tabindex="-1">
+                <a href="https://www.youtube.com/user/uqlibrary" target="_blank" rel="external" title="UQ Library on YouTube">
+                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube" alt="YouTube icon">
                 </a>
               </paper-button>
 
-              <paper-button class="button-social">
-                <a href="https://www.facebook.com/uniofqldlibrary" target="_blank">
-                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook" title="Facebook" alt="Facebook">
+              <paper-button class="button-social" tabindex="-1">
+                <a href="https://www.facebook.com/uniofqldlibrary" target="_blank" rel="external" title="UQ Library on Facebook">
+                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook" title="Facebook" alt="Facebook icon">
                 </a>
               </paper-button>
 
-              <paper-button class="button-social">
-                <a href="https://twitter.com/uqlibrary/" target="_blank">
-                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter" title="Twitter" alt="Twitter">
+              <paper-button class="button-social" tabindex="-1">
+                <a href="https://twitter.com/uqlibrary/" target="_blank" rel="external" title="UQ Library on Twitter">
+                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter" title="Twitter" alt="Twitter icon">
                 </a>
               </paper-button>
             </div>
         </div>
 
         <div class="buttons">
-            <paper-button id="joinFriend" class="button-colored-accent" aria-label="Join Friends of the Library" raised>
+            <paper-button id="joinFriend" class="button-colored-accent" aria-label="Join Friends of the Library" raised tabindex="-1">
               <a href="{{mainDomain}}/about-us/friends-library">
                 Join Friends of the Library
               </a>
             </paper-button>
-            <paper-button id="giveToLibrary" class="button-colored-accent" aria-label="Give to the Library" raised>
+            <paper-button id="giveToLibrary" class="button-colored-accent" aria-label="Give to the Library" raised tabindex="-1">
               <a href="{{mainDomain}}/about-us/giving-to-library">
                 Give to the Library
               </a>
