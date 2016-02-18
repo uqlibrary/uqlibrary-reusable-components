@@ -84,6 +84,8 @@ Example:
 
           <template is="dom-repeat" items="{{menu.items}}">
 
+            <a href="https://app.library.uq.edu.au/v1/home/" class$="menu-item">My Library</a>
+
             <template is="dom-if" if="{{!item.items}}">
               <!-- render top level menu item without sub menu -->
               <a href="{{item.href}}" class$="menu-item {{item.class}}">{{item.label}}</a>
