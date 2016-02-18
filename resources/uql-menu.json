@@ -182,7 +182,7 @@
         },
         {
           "label": "Requesting",
-          "subtext": "Loaned items, scans, purchase",
+          "subtext": "Document delivery, holds, purchase",
           "href": "/borrowing-requesting/requesting",
           "right": "right"
         },
