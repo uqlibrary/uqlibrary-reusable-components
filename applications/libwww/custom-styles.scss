@@ -1,4 +1,5 @@
-@import "../skeleton";
+//@import "../skeleton";
+@import "../../bower_components/uqlibrary-styles/skeleton";
 
 .responsive-layout-mobile {
   position: absolute !important;
@@ -13,6 +14,8 @@ body.ia-enabled {
     overflow: visible !important;
     z-index: 1000;
   }
+
+
 
   &.admin-menu {
     uq-minimal-header {

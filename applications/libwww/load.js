@@ -19,6 +19,13 @@ function loadReusableComponents() {
     //first element of the original document
     var firstElement = document.body.children[0];
 
+    var alerts = document.querySelector('uqlibrary-alerts');
+    if (!alerts) {
+      //as a back up insert header if it's not defined already
+      alerts = document.createElement('uqlibrary-alerts');
+      document.body.insertBefore(alerts, firstElement);
+    }
+
     var header = document.querySelector('uq-minimal-header');
     if (!header) {
       //as a back up insert header if it's not defined already
