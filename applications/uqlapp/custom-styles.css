@@ -32,11 +32,10 @@ uql-connect-footer {
     width: 100%;
     height: 67px;
     background-color: #fff; } }
-html {
-  height: 100%; }
-
+html,
 body {
-  height: 100%; }
+  height: 100%;
+  min-height: 100vh; }
 
 .has-breadcrumbs body {
   padding-top: 0; }
@@ -58,7 +57,8 @@ uql-connect-footer {
 .app {
   padding: 1.5em 1.5em 0;
   width: 100%;
-  min-height: 400px; }
+  min-height: 400px;
+  height: calc(100vh - 450px); }
 
 .uql-journals,
 .uql-gateways {
