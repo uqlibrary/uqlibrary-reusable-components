@@ -47,8 +47,6 @@ body.ia-enabled {
     z-index: 1000; }
   body.ia-enabled.admin-menu uq-minimal-header {
     margin-top: 20px; }
-  body.ia-enabled.admin-menu uql-menu {
-    margin-top: 120px; }
   body.ia-enabled #overlay-container {
     z-index: 1001; }
     body.ia-enabled #overlay-container .overlay-element {

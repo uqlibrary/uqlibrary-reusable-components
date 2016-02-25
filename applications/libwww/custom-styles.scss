@@ -15,14 +15,12 @@ body.ia-enabled {
     z-index: 1000;
   }
 
-
-
   &.admin-menu {
     uq-minimal-header {
       margin-top: 20px;
     }
     uql-menu {
-      margin-top: 120px;
+      //margin-top: 120px;
     }
   }
 

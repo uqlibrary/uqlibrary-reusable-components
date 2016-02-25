@@ -64,6 +64,7 @@ function loadReusableComponents() {
   });
 }
 
+document.cookie="UQLMockData=enabled";
 ready(loadReusableComponents);
 
 
