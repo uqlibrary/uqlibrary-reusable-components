@@ -10,7 +10,7 @@ body.ia-enabled {
     z-index: 1000;
   }
 
-  body.admin-menu  {
+  .admin-menu  {
     margin: 0px !important;
   }
 
@@ -24,6 +24,7 @@ body.ia-enabled {
   }
 
   /* hide Drupal header/footer */
+  #mobile-user-greeting
   #zone-postscript-wrapper,
   #section-header,
   #section-footer {
@@ -32,7 +33,7 @@ body.ia-enabled {
 
   #section-content {
     #zone-content-wrapper {
-      margin-top: 20px;
+      //margin-top: 20px;
     }
   }
 
@@ -43,7 +44,7 @@ body.ia-enabled {
 
     #section-content {
       #zone-content-wrapper {
-        margin-top: 107px;
+        //margin-top: 107px;
       }
     }
 
@@ -55,7 +56,7 @@ body.ia-enabled {
     &.front {
       &.responsive-layout-mobile {
         #region-content #uql-search {
-          margin-top: 164px;
+          //margin-top: 164px;
         }
       }
     }
@@ -96,7 +97,7 @@ body.ia-enabled {
 
   @media all and (max-width: 739px) {
     #uql-search {
-      margin-top: 107px !important;
+      //margin-top: 107px !important;
     }
   }
 }

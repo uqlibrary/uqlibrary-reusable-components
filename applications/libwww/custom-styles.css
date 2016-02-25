@@ -43,26 +43,21 @@ body.ia-enabled {
   body.ia-enabled uq-minimal-header {
     overflow: visible !important;
     z-index: 1000; }
-  body.ia-enabled body.admin-menu {
+  body.ia-enabled .admin-menu {
     margin: 0px !important; }
   body.ia-enabled #overlay-container {
     z-index: 1001; }
     body.ia-enabled #overlay-container .overlay-element {
       z-index: 1002; }
-  body.ia-enabled #zone-postscript-wrapper,
+  body.ia-enabled #mobile-user-greeting
+  #zone-postscript-wrapper,
   body.ia-enabled #section-header,
   body.ia-enabled #section-footer {
     display: none; }
-  body.ia-enabled #section-content #zone-content-wrapper {
-    margin-top: 20px; }
   @media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation: landscape) {
     body.ia-enabled {
-      background-position: 50% 64px; }
-      body.ia-enabled #section-content #zone-content-wrapper {
-        margin-top: 107px; } }
+      background-position: 50% 64px; } }
   @media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation: landscape) {
-    body.ia-enabled.front.responsive-layout-mobile #region-content #uql-search {
-      margin-top: 164px; }
     body.ia-enabled #section-content #zone-content-wrapper {
       margin-bottom: 20px; } }
   @media all and (min-width: 1048px) {
@@ -75,8 +70,5 @@ body.ia-enabled {
         margin-bottom: 20px; }
       body.ia-enabled.admin-menu #section-content #zone-content-wrapper {
         margin-top: 20px; } }
-  @media all and (max-width: 739px) {
-    body.ia-enabled #uql-search {
-      margin-top: 107px !important; } }
 
 /*# sourceMappingURL=custom-styles.css.map */
