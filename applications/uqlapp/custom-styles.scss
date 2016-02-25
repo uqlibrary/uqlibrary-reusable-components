@@ -5,15 +5,15 @@ html {
 }
 
 body {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  //display: -webkit-box;
+  //display: -webkit-flex;
+  //display: -ms-flexbox;
+  //display: flex;
+  //-webkit-box-orient: vertical;
+  //-webkit-box-direction: normal;
+  //-webkit-flex-direction: column;
+  //-ms-flex-direction: column;
+  //flex-direction: column;
   height: 100%
 }
 
@@ -34,7 +34,7 @@ uq-minimal-header,
 uq-minimal-footer,
 uql-connect-footer
 {
-  z-index: 1001;
+  z-index: 1001 !important;
   -webkit-box-flex: 0;
   -webkit-flex: none;
   -ms-flex: none;
