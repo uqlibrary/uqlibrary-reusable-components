@@ -71,4 +71,10 @@ body.ia-enabled {
       body.ia-enabled.admin-menu #section-content #zone-content-wrapper {
         margin-top: 20px; } }
 
+.page {
+  min-height: calc(100vh - 450px); }
+
+.navigation {
+  display: none; }
+
 /*# sourceMappingURL=custom-styles.css.map */

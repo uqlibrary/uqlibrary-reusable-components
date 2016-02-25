@@ -78,3 +78,13 @@ body.ia-enabled {
   @media all and (max-width: 739px) {
   }
 }
+
+//uq drupal styles
+
+.page {
+  min-height: calc(100vh - 450px);
+}
+
+.navigation {
+  display: none;
+}
