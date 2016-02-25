@@ -17,6 +17,10 @@ body {
   height: 100%
 }
 
+uqlibrary-alerts {
+  z-index: 1001 !important;
+}
+
 .has-breadcrumbs body {
   padding-top: 0;
 }
