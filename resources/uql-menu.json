@@ -43,7 +43,7 @@
           "label": "for Students",
           "subtext": "Reading lists, past exams ...",
           "href": "/library-services/services-for-students"
-          
+
         },
         {
           "label": "for Researchers",
@@ -54,43 +54,43 @@
           "label": "for Teaching staff",
           "subtext": "Reading lists, Blackboard links ...",
           "href": "/library-services/services-for-teaching-staff"
-          
+
         },
         {
           "label": "for Professional staff",
           "href": "/library-services/services-for-professional-staff"
-          
+
         },
         {
           "label": "for Hospital staff",
           "href": "/library-services/services-for-hospital-staff"
-          
+
         },
         {
           "label": "for UQ alumni",
           "href": "/library-services/services-for-uq-alumni"
-          
+
         },
         {
           "label": "for Community",
           "subtext": "Public access & services",
           "href": "/library-services/services-for-community"
-          
+
         },
         {
           "label": "for Secondary schools",
           "href": "/library-services/services-for-secondary-schools"
-          
+
         },
         {
           "label": "for Clients with disabilities",
           "href": "/library-services/support-for-clients-disabilities"
-          
+
         },
         {
           "label": "for Other libraries",
           "href": "/library-services/for-other-libraries"
-          
+
         }
       ]
     },
@@ -182,7 +182,7 @@
         },
         {
           "label": "Requesting",
-          "subtext": "Loaned items, scans, purchase",
+          "subtext": "Document delivery, holds, purchase",
           "href": "/borrowing-requesting/requesting",
           "right": "right"
         },
@@ -233,12 +233,12 @@
         {
           "label": "D. H. Engineering & Sciences",
           "href": "/locations-hours/dorothy-hill-engineering-and-sciences-library"
-          
+
         },
         {
           "label": "Fryer",
           "href": "/locations-hours/fryer-library"
-          
+
         },
         {
           "label": "Gatton",
@@ -250,13 +250,13 @@
           "label": "Grad. Economics & Business",
           "href": "/locations-hours/graduate-economics-and-business-library",
           "right": "right"
-          
+
         },
         {
           "label": "Herston Health Sciences",
           "href": "/locations-hours/herston-health-sciences-library",
           "right": "right"
-          
+
         },
         {
           "label": "USQ Ipswich",
@@ -268,37 +268,37 @@
           "subtext": "Walter Harrison Library",
           "href": "/locations-hours/law-library-walter-harrison-library",
           "right": "right"
-          
+
         },
         {
           "label": "UQ/Mater McAuley Library",
           "href": "/locations-hours/uqmater-mcauley-library",
           "right": "right"
-          
+
         },
         {
           "label": "PACE Health Sciences",
           "href": "/locations-hours/pace-health-sciences-library",
           "right": "right"
-          
+
         },
         {
           "label": "Rural Clinical School",
           "href": "/locations-hours/rural-clinical-school-rcs-library",
           "right": "right"
-          
+
         },
         {
           "label": "Social Sciences & Humanities",
           "href": "/locations-hours/social-sciences-humanities-library",
           "right": "right"
-          
+
         },
         {
           "label": "Warehouse",
           "href": "/locations-hours/warehouse",
           "right": "right"
-          
+
         }
       ]
     },
