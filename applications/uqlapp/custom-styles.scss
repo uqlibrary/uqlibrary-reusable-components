@@ -5,15 +5,15 @@ html {
 }
 
 body {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  //display: -webkit-box;
+  //display: -webkit-flex;
+  //display: -ms-flexbox;
+  //display: flex;
+  //-webkit-box-orient: vertical;
+  //-webkit-box-direction: normal;
+  //-webkit-flex-direction: column;
+  //-ms-flex-direction: column;
+  //flex-direction: column;
   height: 100%
 }
 
@@ -23,7 +23,7 @@ body {
 
 .sidebar {
   top: 0;
-  padding-top: 200px;
+  padding-top: 100px;
 }
 
 uq-minimal-header,
@@ -40,21 +40,22 @@ uql-connect-footer
 }
 
 .app {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
+  //-webkit-box-flex: 1;
+  //-webkit-flex: 1 0 auto;
+  //-ms-flex: 1 0 auto;
+  //flex: 1 0 auto;
   padding: 1.5em 1.5em 0;
   width: 100%;
+  min-height: 400px;
 }
 
-.app::after {
-  content: '\00a0';
-  display: block;
-  margin-top: 1.5em;
-  height: 0;
-  visibility: hidden
-}
+//.app::after {
+//  content: '\00a0';
+//  display: block;
+//  margin-top: 1.5em;
+//  height: 0;
+//  visibility: hidden
+//}
 
 .uql-journals,
 .uql-gateways {
