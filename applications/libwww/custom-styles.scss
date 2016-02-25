@@ -10,7 +10,7 @@ body.ia-enabled {
     z-index: 1000;
   }
 
-  .admin-menu  {
+  &.admin-menu  {
     margin: 0px !important;
   }
 
@@ -24,7 +24,7 @@ body.ia-enabled {
   }
 
   /* hide Drupal header/footer */
-  #mobile-user-greeting
+  #mobile-user-greeting,
   #zone-postscript-wrapper,
   #section-header,
   #section-footer {
