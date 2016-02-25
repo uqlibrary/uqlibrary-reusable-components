@@ -1,4 +1,4 @@
-@import '../../skeleton';
+@import "../../../bower_components/uqlibrary-styles/skeleton";
 
 * {
    margin: 0;
@@ -9,7 +9,6 @@
 html,
 body {
   height: 100%;
-  margin-top: 50px;
 }
 
 body {

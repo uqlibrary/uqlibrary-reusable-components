@@ -20,7 +20,7 @@ Example:
       };
 
       --paper-drawer-panel-drawer-container: {
-        z-index: 1000;
+        z-index: 1002;
       };
 
     }
@@ -83,7 +83,6 @@ Example:
         <div class="menu">
 
           <template is="dom-repeat" items="{{menu.items}}">
-
             <template is="dom-if" if="{{!item.items}}">
               <!-- render top level menu item without sub menu -->
               <a href="{{item.href}}" class$="menu-item {{item.class}}">{{item.label}}</a>
@@ -108,10 +107,12 @@ Example:
 
           </template>
 
+          <a href="https://app.library.uq.edu.au/v1/home/" class$="menu-item">My Library</a>
+
         </div>
 
         <div style="text-align:center">
-          <paper-button id="closeMenuButton" on-tap="toggleMenu">Close menu</paper-button>
+          <paper-button id="closeMenuButton" class="button-secondary" on-tap="toggleMenu">Close menu</paper-button>
         </div>
 
       </paper-scroll-header-panel>

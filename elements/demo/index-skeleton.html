@@ -14,12 +14,23 @@
     .main {
       margin: 0px 50px;
     }
-
   </style>
 </head>
 <body>
+<uqlibrary-alerts></uqlibrary-alerts>
+
+<uq-minimal-header show-chat-button="true"
+                   show-search-button="true"
+                   show-login-button="true"
+                   show-apps-button="true"
+                   show-menu-button="true"
+                   on-menu-clicked="processEvent"
+></uq-minimal-header>
+<uql-menu id="menu"></uql-menu>
 
 <div class="main">
+
+
   <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
     quam,
     feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
@@ -35,6 +46,9 @@
     quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
     ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 </div>
+
+<uql-connect-footer menu-json="{{menuJson}}" main-domain="https://www.library.uq.edu.au"></uql-connect-footer>
+<uq-minimal-footer></uq-minimal-footer>
 
 <script>
   document.cookie="UQLMockData=enabled";

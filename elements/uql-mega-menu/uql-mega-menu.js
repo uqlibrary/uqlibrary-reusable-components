@@ -34,6 +34,9 @@
       //making selection underline misplaced
       window.setTimeout(function() {
         that.$.topMenu.select(newValue);
+        if(that.$.topMenu.focusedItem) {
+          that.$.topMenu.focusedItem.blur();
+        }
       }, 1000);
     },
 

@@ -79,18 +79,25 @@ gulp.task('jsonlint', function () {
 // and do not rely on bower_components/element-x/elements.html
 gulp.task('vulcanize:clean_bower', function() {
 
-  return del([config.dependencies + '/**/**/elements.html']).then(paths => {
-        if (paths) {
-          //create an empty file?
-          for (var i = 0; i < paths.length; i++) {
-            var path = paths[i];
-            console.log(path);
-            fs.writeFile(path, '', function () {
-            });
-          }
-        }
+  var regEx = new RegExp("bower_components", "g");
 
-    });
+  return gulp.src('bower_components/**/*.html')
+      .pipe(replace({patterns: [{ match: regEx, replacement: ".."}], usePrefix: false}))
+      .pipe(gulp.dest('bower_components'))
+      .pipe($.size({title: 'vulcanize:clean_bower'}));
+
+  //return del([config.dependencies + '/**/**/elements.html']).then(paths => {
+  //      if (paths) {
+  //        //create an empty file?
+  //        for (var i = 0; i < paths.length; i++) {
+  //          var path = paths[i];
+  //          console.log(path);
+  //          fs.writeFile(path, '', function () {
+  //          });
+  //        }
+  //      }
+  //
+  //  });
 });
 
 /** Vulcanize */
