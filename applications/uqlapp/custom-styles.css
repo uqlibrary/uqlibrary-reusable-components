@@ -42,7 +42,7 @@ body {
 
 .sidebar {
   top: 0;
-  padding-top: 100px; }
+  padding-top: 120px; }
 
 uq-minimal-header,
 uq-minimal-footer,
@@ -57,8 +57,7 @@ uql-connect-footer {
 .app {
   padding: 1.5em 1.5em 0;
   width: 100%;
-  min-height: 400px;
-  height: calc(100vh - 450px); }
+  min-height: calc(100vh - 450px); }
 
 .uql-journals,
 .uql-gateways {
