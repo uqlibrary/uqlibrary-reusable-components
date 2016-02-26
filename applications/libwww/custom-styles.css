@@ -74,7 +74,7 @@ body.ia-enabled {
 .page {
   min-height: calc(100vh - 450px); }
 
-.navigation {
+body > div.navigation {
   display: none; }
 
 /*# sourceMappingURL=custom-styles.css.map */
