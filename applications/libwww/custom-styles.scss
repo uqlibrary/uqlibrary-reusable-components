@@ -83,6 +83,7 @@ body.ia-enabled {
 
 .page {
   min-height: calc(100vh - 450px);
+  position: relative;
 }
 
 body > div.navigation {

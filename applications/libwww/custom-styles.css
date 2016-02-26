@@ -72,7 +72,8 @@ body.ia-enabled {
         margin-top: 20px; } }
 
 .page {
-  min-height: calc(100vh - 450px); }
+  min-height: calc(100vh - 450px);
+  position: relative; }
 
 body > div.navigation {
   display: none; }
