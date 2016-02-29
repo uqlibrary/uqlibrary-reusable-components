@@ -5,7 +5,7 @@ uql-menu div#scrim {
 }
 
 /* let admin menu overlap UQ Library header */
-html body.admin-menu {
+html body.logged-in.admin-menu {
   margin-top: 0px !important;
 }
 
