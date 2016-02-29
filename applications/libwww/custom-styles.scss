@@ -4,14 +4,15 @@ uql-menu div#scrim {
   z-index: 1000;
 }
 
+/* let admin menu overlap UQ Library header */
+body.admin-menu {
+  margin: 0px !important;
+}
+
 body.ia-enabled {
   uq-minimal-header {
     overflow: visible !important;
     z-index: 1000;
-  }
-
-  &.admin-menu  {
-    margin: 0px !important;
   }
 
   #overlay-container {
@@ -92,8 +93,4 @@ body > div.navigation {
 
 #admin-menu {
   z-index: 1001 !important;
-}
-
-body.admin-menu iron-dropdown.uq-mega-menu {
-  margin-top: -29px;
 }
