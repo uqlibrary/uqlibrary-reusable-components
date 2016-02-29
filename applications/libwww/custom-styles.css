@@ -77,9 +77,6 @@ body.ia-enabled {
   min-height: calc(100vh - 450px);
   position: relative; }
 
-body > div.navigation {
-  display: none; }
-
 #admin-menu {
   z-index: 1001 !important; }
 
