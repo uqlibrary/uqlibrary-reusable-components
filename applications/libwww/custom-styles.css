@@ -36,8 +36,8 @@ uql-menu div#scrim {
   z-index: 1000; }
 
 /* let admin menu overlap UQ Library header */
-body.admin-menu {
-  margin: 0px !important; }
+html body.admin-menu {
+  margin-top: 0px !important; }
 
 body.ia-enabled {
   /* hide Drupal header/footer */
