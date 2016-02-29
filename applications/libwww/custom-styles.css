@@ -81,4 +81,7 @@ body > div.navigation {
 #admin-menu {
   z-index: 1001 !important; }
 
+body.admin-menu iron-dropdown.uq-mega-menu {
+  margin-top: -29px; }
+
 /*# sourceMappingURL=custom-styles.css.map */
