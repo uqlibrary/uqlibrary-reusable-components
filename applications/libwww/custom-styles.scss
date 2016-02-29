@@ -89,3 +89,7 @@ body.ia-enabled {
 body > div.navigation {
   display: none;
 }
+
+#admin-menu {
+  z-index: 1001 !important;
+}
