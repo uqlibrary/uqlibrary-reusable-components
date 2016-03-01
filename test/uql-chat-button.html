@@ -47,6 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     setup(function () {
       testObj = fixture('basic');
       testObj.chatOptions = chatOptions;
+      document.cookie="UQLMockData=enabled";
     });
 
     test('Display offline button', function (done) {
