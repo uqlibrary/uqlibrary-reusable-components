@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       testObj = fixture('basic');
     });
 
-    test('Display login button', function (done) {
+    test('Display login/logout button', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
@@ -59,34 +59,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
         assert.isNotNull(loginButton, 'Login button should be defined');
-        expect(loginButton).to.be.visible;
-
 
         done();
       });
     });
-
-    test('Perform login, logout button should be visible', function (done) {
-      // Data bindings will stamp out new DOM asynchronously
-      // so wait to check for updates
-      flush(function () {
-
-        var loginButton = testObj.querySelector('#loginButton');
-        loginButton.click();
-
-        setTimeout(function(){
-          var logoutButton = testObj.querySelector('#logoutButton');
-
-          expect(loginButton).to.not.be.visible;
-          assert.isNotNull(logoutButton, 'Logout button should be defined');
-          expect(logoutButton).to.be.visible;
-
-          done();
-
-        }, 1000);
-      });
-    })
-
   });
 </script>
 
