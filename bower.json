@@ -27,7 +27,8 @@
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga#polymer1.0",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#master",
     "validator-js": "~4.2.0",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2"
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
+    "uqlibrary-callout": "uqlibrary/uqlibrary-callout"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",

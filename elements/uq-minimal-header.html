@@ -163,13 +163,7 @@
             </template>
 
             <template is="dom-if" if="{{showChatButton}}">
-              <uql-chat-button show-title="{{showButtonsTitle}}"
-                               button-title="{{chatConfiguration.buttonTitle}}"
-                               button-title-offline="{{chatConfiguration.buttonTitleOffline}}"
-                               chat-online-text="{{chatConfiguration.chatOnlineText}}"
-                               chat-offline-text="{{chatConfiguration.chatOfflineText}}"
-                               offline-url="{{chatConfiguration.offlineUrl}}">
-              </uql-chat-button>
+              <uql-askus-button></uql-askus-button>
             </template>
 
             <template is="dom-if" if="{{showAppsButton}}">

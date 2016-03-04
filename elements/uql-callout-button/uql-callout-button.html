@@ -1,0 +1,60 @@
+<link rel="import" href="../elements.html">
+
+<!--
+`<uql-callout-button>` is an element that combines a paper-button and a uqlibrary-callout. It takes care of the alignment
+and positioning of uqlibrary-callout
+
+Example:
+      <uql-callout-button></uql-callout-button>
+
+@demo uql-callout-button/demo/index.html
+-->
+
+<dom-module id="uql-callout-button">
+
+    <style is="custom-style" include="common-styles">
+        :host {
+            font-family: var(--font-family);
+            font-size: 10px;
+        }
+
+        paper-button {
+            min-width: 65px;
+            z-index: auto;
+            display: block;
+        }
+
+        /** Margin is required because pages has a ".main" class that sets a massive margin... */
+        uqlibrary-callout {
+            --uqlibrary-callout-menu: {
+                width: 280px;
+                margin: 10px 0px;
+            }
+        }
+
+        /** On large screens the button has a label. Move the dropdown down by 30px **/
+        @media (min-width: 770px) {
+            iron-dropdown {
+                margin-top: 30px;
+            }
+        }
+    </style>
+    <template>
+
+        <paper-button id="button" class="button-colored-theme dropdown-trigger" on-tap="_openCallout">
+            <!-- Visible elements -->
+            <iron-icon id="{{icon}}" icon="communication:forum" aria-label="{{buttonLabel}}"></iron-icon>
+            <div class="button-small inverse icon-button-title">{{buttonLabel}}</div>
+        </paper-button>
+
+        <!-- Dropdown -->
+        <iron-dropdown id="dropdown" allow-outside-scroll="true" vertical-offset="25" vertical-align="top" horizontal-align="right">
+            <div class="dropdown-content">
+                <uqlibrary-callout id="callout" arrow-horizontal-align="right"></uqlibrary-callout>
+            </div>
+        </iron-dropdown>
+
+    </template>
+
+    <script src="uql-callout-button.js"></script>
+</dom-module>
