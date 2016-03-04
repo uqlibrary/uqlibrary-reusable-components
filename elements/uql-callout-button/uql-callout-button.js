@@ -72,6 +72,9 @@
       } else {
         this._alignCenterScreen(buttonBounds, screenWidth);
       }
+
+      this.$.dropdown.open();
+      this.$.dropdown.style.top = "50px !important";
     },
     /**
      * Aligns the callout to the left of the button

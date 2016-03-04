@@ -26,6 +26,10 @@ Example:
             @apply(--uql-callout-button);
         }
 
+        .callout-container {
+            position: relative;
+        }
+
         /** Margin is required because pages has a ".main" class that sets a massive margin... */
         uqlibrary-callout {
             --uqlibrary-callout-menu: {
@@ -33,32 +37,27 @@ Example:
                 margin: 10px 0px;
             }
         }
-
-        /** On large screens the button has a label. Move the dropdown down by 30px **/
-        @media (min-width: 770px) {
-            iron-dropdown {
-                margin-top: 30px;
-            }
-        }
     </style>
     <template>
 
-        <paper-button id="button" class$="{{buttonClass}} dropdown-trigger" on-tap="_openCallout">
-            <!-- Visible elements -->
-            <iron-icon id="{{icon}}" icon="{{icon}}" aria-label="{{buttonLabel}}"></iron-icon>
-            <div class="button-small inverse icon-button-title">{{buttonLabel}}</div>
-        </paper-button>
+        <div class="callout-container">
+            <paper-button id="button" class$="{{buttonClass}}" on-tap="_openCallout">
+                <!-- Visible elements -->
+                <iron-icon id="{{icon}}" icon="{{icon}}" aria-label="{{buttonLabel}}"></iron-icon>
+                <div class="button-small inverse icon-button-title">{{buttonLabel}}</div>
+            </paper-button>
 
-        <!-- Dropdown -->
-        <iron-dropdown id="dropdown" allow-outside-scroll="true" vertical-offset="25" vertical-align="top" horizontal-align="right">
-            <div class="dropdown-content">
-                <uqlibrary-callout
-                        id="callout"
-                        arrow-horizontal-align="right"
-                        container-width="{{calloutWidth}}">
-                </uqlibrary-callout>
-            </div>
-        </iron-dropdown>
+            <!-- Dropdown -->
+            <uqlibrary-iron-dropdown id="dropdown" vertical-offset="25" horizontal-align="right" position-absolute="true">
+                <div class="dropdown-content">
+                    <uqlibrary-callout
+                            id="callout"
+                            arrow-horizontal-align="right"
+                            container-width="{{calloutWidth}}">
+                    </uqlibrary-callout>
+                </div>
+            </uqlibrary-iron-dropdown>
+        </div>
 
     </template>
 

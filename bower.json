@@ -28,7 +28,9 @@
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#master",
     "validator-js": "~4.2.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
-    "uqlibrary-callout": "uqlibrary/uqlibrary-callout"
+    "uqlibrary-callout": "uqlibrary/uqlibrary-callout",
+    "iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#^1.2.0",
+    "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#master"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
