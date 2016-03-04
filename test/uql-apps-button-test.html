@@ -11,50 +11,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <title>uql-ia-button</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>uql-apps-button</title>
 
-  <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
-  <script src="../bower_components/web-component-tester/browser.js"></script>
-  <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
-  <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
+    <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+    <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
 
-  <!-- Import the element to test -->
-  <link rel="import" href="../elements/uql-apps-button/uql-apps-button.html">
+    <!-- Import the element to test -->
+    <link rel="import" href="../elements/uql-apps-button/uql-apps-button.html">
 
 </head>
 <body>
 
 <test-fixture id="basic">
-  <template>
-    <uql-apps-button></uql-apps-button>
-  </template>
+    <template>
+        <uql-apps-button></uql-apps-button>
+    </template>
 </test-fixture>
 
 <script>
-  suite('<uql-apps-button> tests', function () {
-    var testObj;
+    suite('<uql-apps-button> tests', function () {
+        var element;
 
-    setup(function () {
-      document.cookie="UQLMockData=enabled";
+        setup(function () {
+            document.cookie="UQLMockData=enabled";
 
-      testObj = fixture('basic');
+            element = fixture('basic');
+        });
+
+        test('Display Ask Us button', function (done) {
+            // Data bindings will stamp out new DOM asynchronously
+            // so wait to check for updates
+            flush(function () {
+
+                var calloutButton = element.$.callout;
+                var button = calloutButton.$.button;
+
+                expect(button).to.not.be.null;
+                expect(button).to.be.visible;
+
+                button.click();
+
+                expect(calloutButton.$.dropdown.opened).to.be.equal(true);
+
+                done();
+            });
+        });
     });
-
-    test('Display APPS button', function (done) {
-      // Data bindings will stamp out new DOM asynchronously
-      // so wait to check for updates
-      flush(function () {
-
-        var button = testObj.querySelector('#appsButton');
-
-        expect(button).to.not.be.null;
-        expect(button).to.be.visible;
-
-        done();
-      });
-    });
-  });
 </script>
 
 </body>

@@ -22,6 +22,8 @@ Example:
             min-width: 65px;
             z-index: auto;
             display: block;
+
+            @apply(--uql-callout-button);
         }
 
         /** Margin is required because pages has a ".main" class that sets a massive margin... */
@@ -41,16 +43,20 @@ Example:
     </style>
     <template>
 
-        <paper-button id="button" class="button-colored-theme dropdown-trigger" on-tap="_openCallout">
+        <paper-button id="button" class$="{{buttonClass}} dropdown-trigger" on-tap="_openCallout">
             <!-- Visible elements -->
-            <iron-icon id="{{icon}}" icon="communication:forum" aria-label="{{buttonLabel}}"></iron-icon>
+            <iron-icon id="{{icon}}" icon="{{icon}}" aria-label="{{buttonLabel}}"></iron-icon>
             <div class="button-small inverse icon-button-title">{{buttonLabel}}</div>
         </paper-button>
 
         <!-- Dropdown -->
         <iron-dropdown id="dropdown" allow-outside-scroll="true" vertical-offset="25" vertical-align="top" horizontal-align="right">
             <div class="dropdown-content">
-                <uqlibrary-callout id="callout" arrow-horizontal-align="right"></uqlibrary-callout>
+                <uqlibrary-callout
+                        id="callout"
+                        arrow-horizontal-align="right"
+                        container-width="{{calloutWidth}}">
+                </uqlibrary-callout>
             </div>
         </iron-dropdown>
 

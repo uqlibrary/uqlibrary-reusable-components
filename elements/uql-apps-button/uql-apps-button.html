@@ -1,32 +1,36 @@
 <link rel="import" href="../elements.html">
 
 <!--
-`<uql-apps-button>` is a simple button which links to my library application.
-In the future, it will have a Google-like drop down to display apps as icons.
+`<uql-apps-button>` is a simple button utilizing the `uqlibrary-callout` library to show a dropdown menu with UQ Library
+applications
 
 Example:
-      <uql-apps-button button-title="My Library"></uql-apps-button>
+      <uql-apps-button></uql-apps-button>
 
 @demo uql-apps-button/demo/index.html
 -->
+
 <dom-module id="uql-apps-button">
 
-  <style is="custom-style" include="common-styles">
-    :host {
-      font-family: var(--font-family);
-      font-size: 10px;
-    }
-  </style>
-
+    <style is="custom-style" include="common-styles">
+        :host {
+            font-family: var(--font-family);
+            font-size: 10px;
+        }
+    </style>
     <template>
-    <paper-button class="button-colored-theme" on-tap="_myLibraryClicked" id="appsButton">
-      <iron-icon icon="icons:apps" aria-label="Go to my library"></iron-icon>
-      <template is="dom-if" if="{{showTitle}}">
-        <div class="button-small inverse icon-button-title">{{buttonTitle}}</div>
-      </template>
-    </paper-button>
-  </template>
+        <uqlibrary-api-account id="apiAccount"></uqlibrary-api-account>
+        <uqlibrary-api-applications id="apiApplications" user="{{account}}"></uqlibrary-api-applications>
 
-  <script src="uql-apps-button.js"></script>
+        <uql-callout-button
+                id="callout"
+                icon="icons:apps"
+                button-label="My Library"
+                button-class="button-colored-accent"
+                callout-width="300">
+        </uql-callout-button>
 
+    </template>
+
+    <script src="uql-apps-button.js"></script>
 </dom-module>

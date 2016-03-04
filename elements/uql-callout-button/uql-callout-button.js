@@ -29,6 +29,13 @@
       buttonLabel: {
         type: String,
         value: "My button"
+      },
+      /**
+       * Class for the paper button
+       */
+      buttonClass: {
+        type: String,
+        value: "button-colored-theme"
       }
     },
     ready: function () {
