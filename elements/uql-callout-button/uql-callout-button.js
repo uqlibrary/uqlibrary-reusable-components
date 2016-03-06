@@ -119,8 +119,6 @@
 
       this.$.dropdown.horizontalOffset = (desiredX - buttonBounds.right) * -1;
       this.$.callout.arrow = false;
-
-      console.log("HMM?", this.$.callout.arrow);
     },
     /**
      * Checks if the callout can fit when left aligned on the button
