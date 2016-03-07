@@ -84,7 +84,7 @@
 
       if (this._canFitRight(screenWidth, buttonBounds)) {
         // Right align the callout
-        this._alignRight();
+        this._alignRight(buttonBounds);
       } else if (this._canFitCenter(screenWidth, buttonBounds)) {
         // Center align the callout
         this._alignCenter(buttonBounds);
@@ -100,7 +100,8 @@
      * @private
      */
     _alignLeft: function (buttonBounds) {
-      this.$.dropdown.horizontalOffset = 0 - this.calloutWidth + (buttonBounds.width);
+      var offset = ((buttonBounds.right - buttonBounds.left) / 2 - 20);
+      this.$.dropdown.horizontalOffset = 0 - this.calloutWidth + (buttonBounds.width) - offset;
 
       this.$.callout.arrowHorizontalAlign = "left";
       this.$.callout.arrow = true;
@@ -109,8 +110,8 @@
      * Aligns the callout on the right of the button
      * @private
      */
-    _alignRight: function () {
-      this.$.dropdown.horizontalOffset = 0;
+    _alignRight: function (buttonBounds) {
+      this.$.dropdown.horizontalOffset = ((buttonBounds.right - buttonBounds.left) / 2 - 20);
 
       this.$.callout.arrowHorizontalAlign = "right";
       this.$.callout.arrow = true;
@@ -146,6 +147,7 @@
      * @private
      */
     _canFitLeft: function (screenWidth, buttonBounds) {
+      var offset = ((buttonBounds.right - buttonBounds.left) / 2 + 20);
       return (screenWidth - buttonBounds.left >= this.calloutWidth);
     },
     /**
@@ -155,7 +157,9 @@
      * @private
      */
     _canFitRight: function (screenWidth, buttonBounds) {
-      return (buttonBounds.right >= this.calloutWidth);
+      var offset = ((buttonBounds.right - buttonBounds.left) / 2 - 20);
+
+      return (buttonBounds.right - offset >= this.calloutWidth);
     },
     /**
      * Checks if the callout will fit when center aligned on the BUTTON
