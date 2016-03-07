@@ -37,6 +37,12 @@ Example:
                 margin: 10px 0px;
             }
         }
+
+        @media all and (min-width: 700px) {
+            uqlibrary-iron-dropdown {
+                margin-top: 20px;
+            }
+        }
     </style>
     <template>
 
@@ -48,7 +54,7 @@ Example:
             </paper-button>
 
             <!-- Dropdown -->
-            <uqlibrary-iron-dropdown id="dropdown" vertical-offset="25" horizontal-align="right" position-absolute="true">
+            <uqlibrary-iron-dropdown id="dropdown" vertical-offset="32" horizontal-align="right" position-absolute="true">
                 <div class="dropdown-content">
                     <uqlibrary-callout
                             id="callout"
