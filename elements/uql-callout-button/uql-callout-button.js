@@ -36,7 +36,20 @@
       buttonClass: {
         type: String,
         value: "button-colored-theme"
+      },
+			/**
+       * A hack. Last timestamp the iron dropdown was closed. Iron dropdown does not prevent default of an event
+       * so tapping the menu button will first close the dropdown (clicked outside of dropdown) and then toggle it
+       * again.
+       */
+      _lastCloseTimestamp: {
+        type: Number,
+        value: 0
       }
+    },
+    listeners: {
+      'iron-overlay-closed': '_overlayClosed',
+      'iron-overlay-canceled': '_overlayClosed'
     },
     ready: function () {
 
@@ -48,10 +61,18 @@
      * Opens the Ask Us callout. Calculates whether to move the whole callout and/or the arrow
      * @private
      */
-    _openCallout: function () {
+    _openCallout: function (e) {
       this._alignCallout();
 
-      this.$.dropdown.open();
+      // Due to how bad iron-dropdown is made, we need to check timestamps here.
+      var max = this._lastCloseTimestamp + 200;
+      if (this._lastCloseTimestamp !== 0) {
+        if (e.timeStamp <= this._lastCloseTimestamp || e.timeStamp < max) {
+          return;
+        }
+      }
+
+      this.$.dropdown.toggle();
     },
     /**
      * Aligns the callout appropriate to the screen
@@ -72,9 +93,6 @@
       } else {
         this._alignCenterScreen(buttonBounds, screenWidth);
       }
-
-      this.$.dropdown.open();
-      this.$.dropdown.style.top = "50px !important";
     },
     /**
      * Aligns the callout to the left of the button
@@ -154,6 +172,14 @@
       } else {
         return false;
       }
+    },
+		/**
+     * Called whenever the iron dropdown closes
+     * @param e
+     * @private
+     */
+    _overlayClosed: function (e) {
+      this._lastCloseTimestamp = e.timeStamp;
     }
   });
 })();
