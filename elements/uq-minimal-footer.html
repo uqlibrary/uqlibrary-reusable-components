@@ -83,6 +83,7 @@
   </style>
 
   <template>
+    <uqlibrary-ga id="ga" app-name="UQFooter"></uqlibrary-ga>
 
     <div class="footer-container">
       <div class="footer-content loading" unresolved>
@@ -92,16 +93,16 @@
               <li>Authorised by: University Librarian</li>
               <li>© The University of Queensland</li>
               <li>
-                Enquiries: <a href="tel:+61733651111" title="UQ Enquiries phone number">+61 7 3365 1111</a>
-                &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts">Contact directory</a>
+                Enquiries: <a href="tel:+61733651111" title="UQ Enquiries phone number" on-tap="_gaLinkClicked">+61 7 3365 1111</a>
+                &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts" on-tap="_gaLinkClicked">Contact directory</a>
               </li>
 
-              <li><uql-global-links separator="|"></uql-global-links></li>
+              <li><uql-global-links app-name="UQFooter" separator="|"></uql-global-links></li>
 
               <li>
                 <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
                 <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
-                Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external" title="Provider number">00025B</a>
+                Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external" title="Provider number" on-tap="_gaLinkClicked">00025B</a>
               </li>
             </ul>
           </li>
@@ -109,9 +110,9 @@
             <ul class="footer-legal-details">
               <li></li>
               <li class="h6">Emergency</li>
-              <li>Phone: <a href="tel:+61733653333" title="UQ Emergency phone number">3365 3333</a></li>
-              <li><a href="http://www.uq.edu.au/terms-of-use/" rel="external">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
-                <a href="http://www.uq.edu.au/rti/" rel="external">Right to Information</a></li>
+              <li>Phone: <a href="tel:+61733653333" title="UQ Emergency phone number" on-tap="_gaLinkClicked">3365 3333</a></li>
+              <li><a href="http://www.uq.edu.au/terms-of-use/" rel="external" on-tap="_gaLinkClicked">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
+                <a href="http://www.uq.edu.au/rti/" rel="external" on-tap="_gaLinkClicked">Right to Information</a></li>
             </ul>
           </li>
         </ul>
@@ -137,8 +138,16 @@
               element.removeAttribute('unresolved');
             }
           }, 0);
+        },
+        /**
+         * Called when any link in the footer is clicked
+         * @param e
+         * @private
+         */
+        _gaLinkClicked: function (e) {
+          console.log(e.target);
+          this.$.ga.addEvent('Click', e.href);
         }
-
       });
     })();
   </script>
