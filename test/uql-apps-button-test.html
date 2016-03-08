@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>uql-apps-button</title>
+    <title>uql-ia-button</title>
 
     <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <script src="../bower_components/web-component-tester/browser.js"></script>
@@ -33,28 +33,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <script>
     suite('<uql-apps-button> tests', function () {
-        var element;
+        var testObj;
 
         setup(function () {
             document.cookie="UQLMockData=enabled";
 
-            element = fixture('basic');
+            testObj = fixture('basic');
         });
 
-        test('Display Ask Us button', function (done) {
+        test('Display APPS button', function (done) {
             // Data bindings will stamp out new DOM asynchronously
             // so wait to check for updates
             flush(function () {
 
-                var calloutButton = element.$.callout;
-                var button = calloutButton.$.button;
+                var button = testObj.querySelector('#appsButton');
 
                 expect(button).to.not.be.null;
                 expect(button).to.be.visible;
-
-                button.click();
-
-                expect(calloutButton.$.dropdown.opened).to.be.equal(true);
 
                 done();
             });
