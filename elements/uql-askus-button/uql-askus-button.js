@@ -10,7 +10,7 @@
           {
             "label": "FAQ",
             "icon": "communication:import-contacts",
-            "link": "https://http://answers.library.uq.edu.au/"
+            "link": "https://answers.library.uq.edu.au/"
           },
           {
             "label": "In Person",
@@ -21,7 +21,9 @@
             "label": "Chat",
             "icon": "communication:chat",
             "link": "https://v2.libanswers.com/chati.php?iid=1193&hash=fdbdf3c1190c1b6147b92d38c20194a8&online=true&referer=https%3A%2F%2Fwww.library.uq.edu.au%2F",
-            "disabled": "chat-offline"
+            "disabled": "chat-offline",
+            "target": "chatWindow",
+            "targetOptions": "width=400, height=400"
           },
           {
             "label": "Phone",
