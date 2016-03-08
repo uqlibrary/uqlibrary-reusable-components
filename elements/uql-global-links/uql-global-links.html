@@ -45,10 +45,12 @@
 
   </style>
   <template>
+    <uqlibrary-ga id="ga" app-name="UQHeader"></uqlibrary-ga>
+
     <ul class="global-links">
       <template is="dom-repeat" items="{{links}}">
         <li>
-          <a href="{{ item.url }}" accesskey="{{getAccessKey(index)}}">{{ item.title }}</a>
+          <a href accesskey="{{getAccessKey(index)}}" on-tap="_linkClicked">{{ item.title }}</a>
           <template is="dom-if" if="{{displaySeparator(index)}}">
             <span class="separator">{{separator}}</span>
           </template>

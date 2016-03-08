@@ -53,6 +53,15 @@
 
     ready: function() {
 
+    },
+		/**
+     * Called when a link is clicked
+     * @param e
+     * @private
+     */
+    _linkClicked: function (e) {
+      this.$.ga.addEvent("Click", e.model.item.url);
+      window.location.href = e.model.item.url;
     }
 
 
