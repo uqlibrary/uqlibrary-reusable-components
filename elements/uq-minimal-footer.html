@@ -145,8 +145,7 @@
          * @private
          */
         _gaLinkClicked: function (e) {
-          console.log(e.target);
-          this.$.ga.addEvent('Click', e.href);
+          this.$.ga.addEvent('Click', e.target.href);
         }
       });
     })();
