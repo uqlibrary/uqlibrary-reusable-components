@@ -10,6 +10,14 @@
         type: String,
         value: ''
       },
+			/**
+       * Appname to be used by uqlibrary-ga
+       * @type String
+       */
+      appName: {
+        type: String,
+        value: 'UQGlobalLinks'
+      },
 
       /**
        * array containing links as objects, ie: {url:string, title:string}
