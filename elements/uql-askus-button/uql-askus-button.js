@@ -10,7 +10,7 @@
           {
             "label": "FAQ",
             "icon": "communication:import-contacts",
-            "link": "https://answers.library.uq.edu.au/"
+            "link": "http://answers.library.uq.edu.au/"
           },
           {
             "label": "In Person",
