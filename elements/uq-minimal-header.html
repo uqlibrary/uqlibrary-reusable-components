@@ -141,7 +141,8 @@
   </style>
 
   <template>
-  
+    <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
+
     <div class="header-container">
       <div class="header-content loading" unresolved>
         <div class="header-title">
@@ -151,12 +152,12 @@
           </template>
 
           <div class="uq-title">
-            <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
+            <a href="https://www.uq.edu.au/" aria-label="link to UQ home page" on-tap="_linkClicked">
               <div class="uq-title-text">UQ</div>
             </a>
           </div>
           <div class="library-title">
-            <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+            <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page" on-tap="_linkClicked">UQ Library</a>
           </div>
           <div class="application-title">{{applicationTitle}}</div>
         </div>
@@ -251,6 +252,14 @@
 
         handleMenuClicked: function(event) {
           this.fire('menu-clicked');
+        },
+        /**
+         * Called when the UQ or Library links is clicked
+         * @param e
+         * @private
+         */
+        _linkClicked: function (e) {
+          this.$.ga.addEvent('Click', e.target.href);
         }
 
       });
