@@ -73,6 +73,10 @@
       }
 
       this.$.dropdown.toggle();
+
+      if (this.$.dropdown.opened) {
+        this.fire('uqlibrary-callout-button-opened');
+      }
     },
     /**
      * Aligns the callout appropriate to the screen

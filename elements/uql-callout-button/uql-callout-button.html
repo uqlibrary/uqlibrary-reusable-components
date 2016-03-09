@@ -11,40 +11,39 @@ Example:
 -->
 
 <dom-module id="uql-callout-button">
-
-    <style is="custom-style" include="common-styles">
-        :host {
-            font-family: var(--font-family);
-            font-size: 10px;
-        }
-
-        paper-button {
-            min-width: 65px;
-            z-index: auto;
-            display: block;
-
-            @apply(--uql-callout-button);
-        }
-
-        .callout-container {
-            position: relative;
-        }
-
-        /** Margin is required because pages has a ".main" class that sets a massive margin... */
-        uqlibrary-callout {
-            --uqlibrary-callout-menu: {
-                width: 280px;
-                margin: 10px 0px;
-            }
-        }
-
-        @media all and (min-width: 700px) {
-            uqlibrary-iron-dropdown {
-                margin-top: 20px;
-            }
-        }
-    </style>
     <template>
+        <style is="custom-style" include="common-styles">
+            :host {
+                font-family: var(--font-family);
+                font-size: 10px;
+            }
+
+            paper-button {
+                min-width: 65px;
+                z-index: auto;
+                display: block;
+
+                @apply(--uql-callout-button);
+            }
+
+            .callout-container {
+                position: relative;
+            }
+
+            /** Margin is required because pages has a ".main" class that sets a massive margin... */
+            uqlibrary-callout {
+                --uqlibrary-callout-menu: {
+                    width: 280px;
+                    margin: 10px 0px;
+                }
+            }
+
+            @media all and (min-width: 700px) {
+                uqlibrary-iron-dropdown {
+                    margin-top: 20px;
+                }
+            }
+        </style>
 
         <div class="callout-container">
             <paper-button id="button" class$="button-header {{buttonClass}}" on-tap="_openCallout">
