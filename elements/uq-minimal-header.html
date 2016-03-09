@@ -104,6 +104,23 @@
       margin-right: 5px;
     }
 
+    #skipNavigation {
+      position: absolute;
+      z-index: 99999999999;
+      left: -200px;
+      top: -200px;
+      width: 200px;
+
+      margin: 5px;
+      background-color: #000;
+      color: #FFF;
+    }
+
+    #skipNavigation:focus {
+      outline: #288BED auto 5px;
+      outline-offset: -4px;
+    }
+
     @media all and (min-width: 1047px) {
       uql-menu-button {
         display: none;
@@ -142,6 +159,15 @@
 
   <template>
     <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
+
+    <paper-button id="skipNavigation"
+                  aria-label="skip navigation"
+                  title="Skip navigation"
+                  on-focus="_skipNavigationFocused"
+                  on-blur="_skipNavigationBlurred"
+                  on-tap="_skipNavigation">
+      Skip navigation
+    </paper-button>
 
     <div class="header-container">
       <div class="header-content loading" unresolved>
@@ -189,6 +215,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Hidden span to skip navigation -->
+    <span id="headerAfter" tabindex="0" aria-label="Start of content" style="position: fixed; top: -200px; left: -200px;"></span>
   </template>
 
   <script>
@@ -266,8 +295,39 @@
          */
         _linkClicked: function (e) {
           this.$.ga.addEvent('Click', e.target.href);
+        },
+        /**
+         * Called when the "skipNavigation" button is focused
+         * @param e
+         * @private
+         */
+        _skipNavigationFocused: function (e) {
+          this.$.skipNavigation.style.left = 'calc(50% - 100px)';
+          this.$.skipNavigation.style.top = "20px";
+        },
+        /**
+         * Called when the "skipNavigation" button loses focus
+         * @param e
+         * @private
+         */
+        _skipNavigationBlurred: function (e) {
+          this.$.skipNavigation.style.left = '-20000px';
+          this.$.skipNavigation.style.top = "-20000px";
+        },
+        /**
+         * Skips navigation by moving to the "after" span. Will prefer to navigate to the Mega Menu's after
+         * @param e
+         * @private
+         */
+        _skipNavigation: function (e) {
+          // Check if mega menu after exists
+          var menuAfter = document.querySelector('#megaMenuAfter');
+          if (menuAfter !== null) {
+            document.querySelector('#megaMenuAfter').focus();
+          } else {
+            document.querySelector('#headerAfter').focus();
+          }
         }
-
       });
     })();
   </script>
