@@ -132,16 +132,18 @@
     <iron-ajax auto="{{autoLoad}}" url="{{footerMenuUrl}}" handle-as="json" on-response="_handleResponse"
                on-error="_handleError" verbose="{{verbose}}"></iron-ajax>
 
+    <uqlibrary-ga id="ga" app-name="Footer"></uqlibrary-ga>
+
     <div class="sub-footer-container">
       <div class="sub-footer-content loading" unresolved>
 
         <div class="navigation">
           <template is="dom-if" if="{{menu.items}}">
             <ul>
-              <li><a href="{{mainDomain}}/">Library home</a></li>
+              <li><a href="{{mainDomain}}/" on-tap="_gaLinkClicked">Library home</a></li>
               <li class="separator">&nbsp;|&nbsp;</li>
               <template is="dom-repeat" items="{{menu.items}}">
-                <li><a href="{{mainDomain}}{{item.href}}">{{item.label}}</a></li>
+                <li><a href="{{mainDomain}}{{item.href}}" on-tap="_gaLinkClicked">{{item.label}}</a></li>
                 <li class="separator">&nbsp;|&nbsp;</li>
               </template>
             </ul>
@@ -150,28 +152,28 @@
 
         <div class="contacts">
           <ul>
-            <li><a href="{{mainDomain}}/contact-us/feedback">Feedback</a></li>
+            <li><a href="{{mainDomain}}/contact-us/feedback" on-tap="_gaLinkClicked">Feedback</a></li>
             <li class="separator">&nbsp;|&nbsp;</li>
-            <li><a href="{{mainDomain}}/blog">News</a></li>
+            <li><a href="{{mainDomain}}/blog" on-tap="_gaLinkClicked">News</a></li>
             <li class="separator">&nbsp;|&nbsp;</li>
-            <li><a href="{{mainDomain}}/site-information/site-map">Site Map</a></li>
+            <li><a href="{{mainDomain}}/site-information/site-map" on-tap="_gaLinkClicked">Site Map</a></li>
           </ul>
 
           <div class="social">
               <paper-button class="button-social" tabindex="-1">
-                <a href="https://www.youtube.com/user/uqlibrary" target="_blank" rel="external" title="UQ Library on YouTube">
+                <a href="https://www.youtube.com/user/uqlibrary" target="_blank" rel="external" title="UQ Library on YouTube" on-tap="_gaLinkClicked">
                   <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube" alt="YouTube icon">
                 </a>
               </paper-button>
 
               <paper-button class="button-social" tabindex="-1">
-                <a href="https://www.facebook.com/uniofqldlibrary" target="_blank" rel="external" title="UQ Library on Facebook">
+                <a href="https://www.facebook.com/uniofqldlibrary" target="_blank" rel="external" title="UQ Library on Facebook" on-tap="_gaLinkClicked">
                   <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook" title="Facebook" alt="Facebook icon">
                 </a>
               </paper-button>
 
               <paper-button class="button-social" tabindex="-1">
-                <a href="https://twitter.com/uqlibrary/" target="_blank" rel="external" title="UQ Library on Twitter">
+                <a href="https://twitter.com/uqlibrary/" target="_blank" rel="external" title="UQ Library on Twitter" on-tap="_gaLinkClicked">
                   <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter" title="Twitter" alt="Twitter icon">
                 </a>
               </paper-button>
@@ -180,12 +182,12 @@
 
         <div class="buttons">
             <paper-button id="joinFriend" class="button-colored-accent" aria-label="Join Friends of the Library" raised tabindex="-1">
-              <a href="{{mainDomain}}/about-us/friends-library">
+              <a href="{{mainDomain}}/about-us/friends-library" on-tap="_gaLinkClicked">
                 Join Friends of the Library
               </a>
             </paper-button>
             <paper-button id="giveToLibrary" class="button-colored-accent" aria-label="Give to the Library" raised tabindex="-1">
-              <a href="{{mainDomain}}/about-us/giving-to-library">
+              <a href="{{mainDomain}}/about-us/giving-to-library" on-tap="_gaLinkClicked">
                 Give to the Library
               </a>
             </paper-button>
