@@ -422,4 +422,7 @@ ul, ol {
 #s-la-vote {
   display: none; }
 
+.s-la-public-home.s-la-public-header-text {
+  text-align: left !important;
+}
 /*# sourceMappingURL=custom-styles.css.map */
