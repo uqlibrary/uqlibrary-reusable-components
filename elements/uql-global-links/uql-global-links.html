@@ -48,7 +48,7 @@
     <ul class="global-links">
       <template is="dom-repeat" items="{{links}}">
         <li>
-          <a href="{{ item.url }}" accesskey="{{getAccessKey(index)}}">{{ item.title }}</a>
+          <a href$="{{ item.url }}" accesskey$="{{getAccessKey(index)}}">{{ item.title }}</a>
           <template is="dom-if" if="{{displaySeparator(index)}}">
             <span class="separator">{{separator}}</span>
           </template>
