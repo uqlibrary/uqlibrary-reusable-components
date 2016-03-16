@@ -69,7 +69,6 @@
      */
     _linkClicked: function (e) {
       this.$.ga.addEvent("Click", e.model.item.url);
-      window.location.href = e.model.item.url;
     }
 
 
