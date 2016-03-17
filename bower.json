@@ -21,7 +21,7 @@
     "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
     "polymer": "Polymer/polymer#^1.0.0",
     "webcomponentsjs": "^0.7.12",
-    "byutv-jsonp": "~1.2.0",
+    "byutv-jsonp": "uqlibrary/byutv-jsonp#master",
     "uqlibrary-api": "uqlibrary/uqlibrary-api#polymer1.0",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#master",
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga#polymer1.0",
