@@ -50,11 +50,7 @@
     <ul class="global-links">
       <template is="dom-repeat" items="{{links}}">
         <li>
-<<<<<<< HEAD
-          <a href accesskey="{{getAccessKey(index)}}" on-tap="_linkClicked">{{ item.title }}</a>
-=======
-          <a href$="{{ item.url }}" accesskey$="{{getAccessKey(index)}}">{{ item.title }}</a>
->>>>>>> master
+          <a href$="{{item.url}}" accesskey$="{{getAccessKey(index)}}" on-tap="_linkClicked">{{ item.title }}</a>
           <template is="dom-if" if="{{displaySeparator(index)}}">
             <span class="separator">{{separator}}</span>
           </template>
