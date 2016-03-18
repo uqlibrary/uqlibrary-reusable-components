@@ -24,6 +24,7 @@
 
     /** Redirects to the specified URL */
     _searchClicked: function() {
+      this.$.ga.addEvent("Click", this.redirectUrl);
       window.location.href = this.redirectUrl;
     }
   });

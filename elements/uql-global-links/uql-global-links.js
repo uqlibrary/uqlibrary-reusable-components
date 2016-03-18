@@ -10,6 +10,14 @@
         type: String,
         value: ''
       },
+			/**
+       * Appname to be used by uqlibrary-ga
+       * @type String
+       */
+      appName: {
+        type: String,
+        value: 'UQGlobalLinks'
+      },
 
       /**
        * array containing links as objects, ie: {url:string, title:string}
@@ -53,6 +61,14 @@
 
     ready: function() {
 
+    },
+		/**
+     * Called when a link is clicked
+     * @param e
+     * @private
+     */
+    _linkClicked: function (e) {
+      this.$.ga.addEvent("Click", e.model.item.url);
     }
 
 

@@ -110,6 +110,8 @@ Example:
 
   <template>
 
+    <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
+
     <div class="menu-container">
       <div class="menu-content loading" unresolved>
         <paper-tabs id="topMenu" on-tap="_topMenuSelected">
@@ -130,7 +132,7 @@ Example:
               <div class="sub-menu">
                 <template is="dom-repeat" items="{{item.items}}" as="subItem">
                   <template is="dom-if" if="{{!subItem.right}}">
-                    <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="closeDropdown">
+                    <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="_closeDropdown">
                       <div>{{subItem.label}}</div>
                       <div class="subtext">{{subItem.subtext}}</div>
                     </a>
@@ -157,6 +159,9 @@ Example:
 
       </div>
     </div>
+
+    <!-- Hidden span to skip navigation -->
+    <span id="megaMenuAfter" tabindex="0" aria-label="Start of content" style="position: fixed; top:-2000px; left: -2000px">Start of content</span>
 
   </template>
 

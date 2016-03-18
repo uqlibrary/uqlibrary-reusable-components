@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+    <title>uql-callout-button demo</title>
+
+    <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../../bower_components/iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+
+    <link rel="import" href="../uql-callout-button.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+        .vertical-section-container {
+            max-width: 500px;
+        }
+        .demo-centered {
+            width: 150px;
+        }
+        uql-callout-button {
+            margin: 10px;
+        }
+    </style>
+
+</head>
+<body unresolved>
+<div class="vertical-section-container centered">
+    <h3>Demo for uql-callout-button</h3>
+    <div class="demo-centered">
+        <uql-callout-button id="calloutbutton"></uql-callout-button>
+    </div>
+</div>
+
+<script>
+    (function () {
+        HTMLImports.whenReady(function () {
+            var button = document.querySelector("#calloutbutton");
+
+            button.calloutItems = {
+                "items": [
+                    {
+                        "label": "FAQ",
+                        "icon": "communication:import-contacts",
+                        "link": "https://http://answers.library.uq.edu.au/"
+                    },
+                    {
+                        "label": "In Person",
+                        "icon": "social:people",
+                        "link": "https://www.library.uq.edu.au/locations-hours/service-points"
+                    },
+                    {
+                        "label": "Chat",
+                        "icon": "communication:chat",
+                        "link": "https://v2.libanswers.com/chati.php?iid=1193&hash=fdbdf3c1190c1b6147b92d38c20194a8&online=true&referer=https%3A%2F%2Fwww.library.uq.edu.au%2F",
+                        "disabled": "chat-offline"
+                    },
+                    {
+                        "label": "Phone",
+                        "icon": "communication:call",
+                        "link": "https://www.library.uq.edu.au/contact-us",
+                        "linkMobile": "tel: +61733464312",
+                        "disabled": "chat-offline"
+                    },
+                    {
+                        "label": "Email",
+                        "icon": "communication:email",
+                        "link": "mailto:askus@library.uq.edu.au"
+                    },
+                    {
+                        "label": "Form",
+                        "icon": "hardware:desktop-mac",
+                        "link": "http://answers.library.uq.edu.au/ask"
+                    }
+                ],
+                "summary": {
+                    "label": "More ways to contact us",
+                    "link": "https://www.library.uq.edu.au/contact-us"
+                }
+            };
+        });
+    })();
+</script>
+</body>
+</html>

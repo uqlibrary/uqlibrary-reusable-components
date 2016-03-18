@@ -100,6 +100,27 @@
       @apply(--layout-center);
     }
 
+    uql-login-button {
+      margin-right: 5px;
+    }
+
+    #skipNavigation {
+      position: absolute;
+      z-index: 99999999999;
+      left: -200px;
+      top: -200px;
+      width: 200px;
+
+      margin: 5px;
+      background-color: #000;
+      color: #FFF;
+    }
+
+    #skipNavigation:focus {
+      outline: #288BED auto 5px;
+      outline-offset: -4px;
+    }
+
     @media all and (min-width: 1047px) {
       uql-menu-button {
         display: none;
@@ -112,8 +133,7 @@
     }
 
     @media all and (max-width: 1047px) {
-      uql-ia-button,
-      uql-apps-button {
+      uql-ia-button, uql-apps-button {
           display: none;
       }
       .header-container {
@@ -129,10 +149,26 @@
       }
     }
 
+    @media all and (max-width: 700px) {
+      .library-title {
+        margin: 0;
+      }
+    }
+
   </style>
 
   <template>
-  
+    <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
+
+    <paper-button id="skipNavigation"
+                  aria-label="skip navigation"
+                  title="Skip navigation"
+                  on-focus="_skipNavigationFocused"
+                  on-blur="_skipNavigationBlurred"
+                  on-tap="_skipNavigation">
+      Skip navigation
+    </paper-button>
+
     <div class="header-container">
       <div class="header-content loading" unresolved>
         <div class="header-title">
@@ -142,17 +178,17 @@
           </template>
 
           <div class="uq-title">
-            <a href="http://www.uq.edu.au/" aria-label="link to UQ home page">
+            <a href="https://www.uq.edu.au/" aria-label="link to UQ home page" on-tap="_linkClicked">
               <div class="uq-title-text">UQ</div>
             </a>
           </div>
           <div class="library-title">
-            <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page">UQ Library</a>
+            <a href="https://www.library.uq.edu.au/" aria-label="link to UQ Library home page" on-tap="_linkClicked">UQ Library</a>
           </div>
           <div class="application-title">{{applicationTitle}}</div>
         </div>
         <div class="header-actions">
-          <uql-global-links></uql-global-links>
+          <uql-global-links app-name="UQHeader"></uql-global-links>
           <div class="actions">
             <template is="dom-if" if="{{showIAButton}}">
               <uql-ia-button show-title="{{showButtonsTitle}}"></uql-ia-button>
@@ -163,13 +199,7 @@
             </template>
 
             <template is="dom-if" if="{{showChatButton}}">
-              <uql-chat-button show-title="{{showButtonsTitle}}"
-                               button-title="{{chatConfiguration.buttonTitle}}"
-                               button-title-offline="{{chatConfiguration.buttonTitleOffline}}"
-                               chat-online-text="{{chatConfiguration.chatOnlineText}}"
-                               chat-offline-text="{{chatConfiguration.chatOfflineText}}"
-                               offline-url="{{chatConfiguration.offlineUrl}}">
-              </uql-chat-button>
+              <uql-askus-button></uql-askus-button>
             </template>
 
             <template is="dom-if" if="{{showAppsButton}}">
@@ -185,6 +215,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Hidden span to skip navigation -->
+    <span id="headerAfter" tabindex="0" aria-label="Start of content" style="position: fixed; top: -200px; left: -200px;"></span>
   </template>
 
   <script>
@@ -254,8 +287,47 @@
 
         handleMenuClicked: function(event) {
           this.fire('menu-clicked');
+        },
+        /**
+         * Called when the UQ or Library links is clicked
+         * @param e
+         * @private
+         */
+        _linkClicked: function (e) {
+          this.$.ga.addEvent('Click', e.target.href);
+        },
+        /**
+         * Called when the "skipNavigation" button is focused
+         * @param e
+         * @private
+         */
+        _skipNavigationFocused: function (e) {
+          this.$.skipNavigation.style.left = 'calc(50% - 100px)';
+          this.$.skipNavigation.style.top = "20px";
+        },
+        /**
+         * Called when the "skipNavigation" button loses focus
+         * @param e
+         * @private
+         */
+        _skipNavigationBlurred: function (e) {
+          this.$.skipNavigation.style.left = '-20000px';
+          this.$.skipNavigation.style.top = "-20000px";
+        },
+        /**
+         * Skips navigation by moving to the "after" span. Will prefer to navigate to the Mega Menu's after
+         * @param e
+         * @private
+         */
+        _skipNavigation: function (e) {
+          // Check if mega menu after exists
+          var menuAfter = document.querySelector('#megaMenuAfter');
+          if (menuAfter !== null) {
+            document.querySelector('#megaMenuAfter').focus();
+          } else {
+            document.querySelector('#headerAfter').focus();
+          }
         }
-
       });
     })();
   </script>

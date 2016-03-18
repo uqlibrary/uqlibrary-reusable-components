@@ -39,6 +39,7 @@
     },
 
     performLogin: function() {
+      this.$.ga.addEvent('Click', 'Login');
       this.$.accountApi.login(window.location.href);
     },
 
@@ -46,6 +47,7 @@
       this.user = {};
       this.isLoggedIn = false;
 
+      this.$.ga.addEvent('Click', 'Logout');
       this.$.accountApi.logout();
     }
 

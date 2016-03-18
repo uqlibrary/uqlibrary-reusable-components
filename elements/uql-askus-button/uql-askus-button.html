@@ -1,0 +1,33 @@
+<link rel="import" href="../elements.html">
+
+<!--
+`<uql-askus-button>` is a simple button utilizing the `uqlibrary-callout` library to show a dropdown menu with methods
+of contacting the UQ Library
+
+Example:
+      <uql-askus-button></uql-askus-button>
+
+@demo uql-askus-button/demo/index.html
+-->
+
+<dom-module id="uql-askus-button">
+
+    <style is="custom-style" include="common-styles">
+        :host {
+            font-family: var(--font-family);
+            font-size: 10px;
+        }
+    </style>
+    <template>
+        <uqlibrary-ga id="ga" app-name="Header Ask Us"></uqlibrary-ga>
+        <uql-callout-button
+                id="callout"
+                icon="communication:forum"
+                button-label="Ask Us"
+                callout-width="260">
+        </uql-callout-button>
+
+    </template>
+
+    <script src="uql-askus-button.js"></script>
+</dom-module>

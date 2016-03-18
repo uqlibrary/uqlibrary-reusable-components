@@ -1,0 +1,69 @@
+<link rel="import" href="../elements.html">
+
+<!--
+`<uql-callout-button>` is an element that combines a paper-button and a uqlibrary-callout. It takes care of the alignment
+and positioning of uqlibrary-callout
+
+Example:
+      <uql-callout-button></uql-callout-button>
+
+@demo uql-callout-button/demo/index.html
+-->
+
+<dom-module id="uql-callout-button">
+    <template>
+        <style is="custom-style" include="common-styles">
+            :host {
+                font-family: var(--font-family);
+                font-size: 10px;
+            }
+
+            paper-button {
+                min-width: 65px;
+                z-index: auto;
+                display: block;
+
+                @apply(--uql-callout-button);
+            }
+
+            .callout-container {
+                position: relative;
+            }
+
+            /** Margin is required because pages has a ".main" class that sets a massive margin... */
+            uqlibrary-callout {
+                --uqlibrary-callout-menu: {
+                    margin: 10px 0px;
+                }
+            }
+
+            @media all and (min-width: 700px) {
+                uqlibrary-iron-dropdown {
+                    margin-top: 20px;
+                }
+            }
+        </style>
+
+        <div class="callout-container">
+            <paper-button id="button" class$="button-header {{buttonClass}}" on-tap="_openCallout">
+                <!-- Visible elements -->
+                <iron-icon id="{{icon}}" icon="{{icon}}" aria-label="{{buttonLabel}}"></iron-icon>
+                <div class="button-small inverse icon-button-title">{{buttonLabel}}</div>
+            </paper-button>
+
+            <!-- Dropdown -->
+            <uqlibrary-iron-dropdown id="dropdown" vertical-offset="32" horizontal-align="right" position-absolute="true">
+                <div class="dropdown-content">
+                    <uqlibrary-callout
+                            id="callout"
+                            arrow-horizontal-align="right"
+                            container-width="{{calloutWidth}}">
+                    </uqlibrary-callout>
+                </div>
+            </uqlibrary-iron-dropdown>
+        </div>
+
+    </template>
+
+    <script src="uql-callout-button.js"></script>
+</dom-module>

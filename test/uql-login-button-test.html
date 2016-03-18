@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <title>uql-ia-button</title>
+  <title>uql-login-button</title>
 
   <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
   <script src="../bower_components/web-component-tester/browser.js"></script>
@@ -20,19 +20,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
 
   <!-- Import the element to test -->
-  <link rel="import" href="../elements/uql-apps-button/uql-apps-button.html">
+  <link rel="import" href="../elements/uql-login-button/uql-login-button.html">
 
 </head>
 <body>
 
 <test-fixture id="basic">
   <template>
-    <uql-apps-button></uql-apps-button>
+    <uql-login-button></uql-login-button>
   </template>
 </test-fixture>
 
 <script>
-  suite('<uql-apps-button> tests', function () {
+  suite('<uql-login-button> tests', function () {
     var testObj;
 
     setup(function () {
@@ -41,15 +41,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       testObj = fixture('basic');
     });
 
-    test('Display APPS button', function (done) {
+    test('Display login/logout button', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
 
-        var button = testObj.querySelector('#appsButton');
+        var loginButton = testObj.querySelector('#loginButton');
+        var logoutButton = testObj.querySelector('#logoutButton');
 
-        expect(button).to.not.be.null;
-        expect(button).to.be.visible;
+        console.log(loginButton);
+        console.log(logoutButton);
+
+        if (logoutButton != null)
+          expect(logoutButton).to.not.be.visible;
+        else
+          assert.isNull(logoutButton, 'Logout button should be defined');
+
+
+        assert.isNotNull(loginButton, 'Login button should be defined');
 
         done();
       });

@@ -20,14 +20,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
 
   <!-- Import the element to test -->
-  <link rel="import" href="../elements/uql-mega-menu/uql-mega-menu.html">
+  <link rel="import" href="../elements/uql-drawer-panel/uql-drawer-panel.html">
 
 </head>
 <body>
 
 <test-fixture id="basic">
   <template>
-    <uql-mega-menu></uql-mega-menu>
+    <uql-drawer-panel></uql-drawer-panel>
   </template>
 </test-fixture>
 
@@ -62,72 +62,69 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     };
 
     setup(function () {
+      document.cookie="UQLMockData=enabled";
+
       testObj = fixture('basic');
       testObj.menu = testJson;
+      testObj.toggleMenu();
+
     });
 
-    test('Item lengths should be equalled', function (done) {
+    test('number of top level items', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
-        var menuHeadings = testObj.querySelectorAll('paper-button');
+        var menuHeadings = testObj.querySelectorAll('.menu-item');
         assert.equal(testJson.items.length, menuHeadings.length, 'Should be an item for each top level menu');
-        var menuItems = testObj.querySelectorAll('paper-item');
-        assert.equal(testJson.items[0].items.length, menuItems.length, 'Should be an item for each of the submenus');
-        done();
-      });
-    })
-
-    test('Should create paper buttons for each menu', function (done) {
-      // Data bindings will stamp out new DOM asynchronously
-      // so wait to check for updates
-      flush(function () {
-        var menuHeadings = testObj.querySelectorAll('uql-mega-menu paper-button');
-        assert.equal(menuHeadings.length, testJson.items.length, 'Should be an item for each top level menu');
 
         done();
       });
     });
 
-    test('Paper button should have menu as text', function (done) {
+    test('top level menu text is set', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
-        var menuHeadings = testObj.querySelector('uql-mega-menu paper-button');
+        var menuHeadings = testObj.querySelector('.menu-item');
         assert.include(menuHeadings.textContent, 'Library Services', 'Button text matches');
         done();
       });
     });
 
-    test('Should create paper items for menu', function (done) {
+    test('sub menu is created', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
-        var menuItems = testObj.querySelectorAll('uql-mega-menu paper-material:nth-of-type(1) paper-item');
-        assert.equal(menuItems.length, testJson.items[0].items.length, 'Should be an item for each of the submenus');
-
+        var subMenu = testObj.querySelector('#subMenu0');
+        expect(subMenu).not.to.null;
         done();
       });
     })
 
-    test('Paper item should have menu item as text', function (done) {
+    test('text of submenu item is set', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
-        var menuHeadings = testObj.querySelector('uql-mega-menu paper-item');
-        assert.include(menuHeadings.textContent, 'Your subject Librarian', 'Paper item matches');
+        var subMenuItem = testObj.querySelector('#subMenu0 a');
+        assert.include(subMenuItem.textContent, 'Your subject Librarian', 'Button text matches');
         done();
       });
     });
 
-    test('Menu should appear on button click', function (done) {
+    test('sub-menu should appear on button click', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
       flush(function () {
-        var material = testObj.querySelector('paper-material');
-        expect(material).to.not.be.visible;
-        testObj.querySelector('uql-mega-menu paper-button').click();
-        expect(material).to.be.visible;
+        var subMenu = testObj.querySelector('#subMenu0');
+        console.log(subMenu);
+
+        expect(subMenu).not.to.null;
+        expect(subMenu).not.to.be.visible;
+
+        testObj.querySelectorAll('.menu-item')[0].click();
+        expect(subMenu).to.be.visible;
+        console.log(subMenu);
+
         done();
       });
     });

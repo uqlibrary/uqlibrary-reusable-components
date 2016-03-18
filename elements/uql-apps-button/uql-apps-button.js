@@ -1,3 +1,4 @@
+
 (function () {
   Polymer({
     is: 'uql-apps-button',
@@ -25,4 +26,3 @@
     }
   });
 })();
-

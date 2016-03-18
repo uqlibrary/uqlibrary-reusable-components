@@ -41,6 +41,7 @@ Polymer({
    */
   showUrl: function () {
     if (this.checkURL()) {
+      this.$.ga.addEvent('ShowUrl', this.target);
       this.panelToggle();
     }
   },
@@ -50,6 +51,7 @@ Polymer({
    */
   goProxie: function () {
     if (this.checkURL()) {
+      this.$.ga.addEvent('GoProxy', this.target);
       var win = window.open(this.target, '_blank');
       win.focus();
     }

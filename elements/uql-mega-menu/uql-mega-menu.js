@@ -30,7 +30,7 @@
     _selectedMenuChanged: function(newValue, oldValue) {
       var that = this;
 
-      //temp fix for FFox/Safari, menu item is selected before all elemnets are drawn on the screen
+      //temp fix for FFox/Safari, menu item is selected before all elements are drawn on the screen
       //making selection underline misplaced
       window.setTimeout(function() {
         that.$.topMenu.select(newValue);
@@ -40,11 +40,18 @@
       }, 1000);
     },
 
+		/**
+     * Called when a sub menu item is clicked
+     * @param event
+     * @private
+     */
     _closeDropdown: function(event) {
       var menuItem = event.target;
       while(!menuItem.getAttribute('data-item-index')) {
         menuItem = menuItem.parentElement;
       }
+
+      this._gaLinkClicked(menuItem.href);
 
       var tabIndex = Number(menuItem.getAttribute('data-item-index'));
       var subMenu = this.querySelector('#subMenu' + tabIndex);
@@ -75,10 +82,29 @@
         }
 
         subMenu.open();
+
+        this._gaTopMenuClicked(currentItem.label);
       } else {
         //follow the top level link
+        this._gaLinkClicked(currentItem.href);
         window.location.href = currentItem.href;
       }
+    },
+		/**
+     * Called when a menu item is clicked that has a dropdown menu
+     * @param label
+     * @private
+     */
+    _gaTopMenuClicked: function (label) {
+      this.$.ga.addEvent('Navigate', "Top menu " + label);
+    },
+		/**
+     * Called when a link is clicked in the menu
+     * @param link
+     * @private
+     */
+    _gaLinkClicked: function (link) {
+      this.$.ga.addEvent('Click', link);
     },
 
     _subMenuClosed: function(event) {

@@ -19,6 +19,7 @@ Example:
 
   <template>
     <uqlibrary-api-account id="accountApi" auto="true"></uqlibrary-api-account>
+    <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
 
     <template is="dom-if" if="{{!isLoggedIn}}">
       <paper-button class="button-colored-accent" on-tap="performLogin" id="loginButton">

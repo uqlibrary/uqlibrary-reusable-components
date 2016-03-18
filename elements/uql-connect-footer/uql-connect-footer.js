@@ -79,6 +79,15 @@
      */
     _handleResponse: function (event) {
       this.menu = event.detail.response;
+    },
+
+    /**
+     * Called when any link in the footer is clicked
+     * @param e
+     * @private
+     */
+    _gaLinkClicked: function (e) {
+      this.$.ga.addEvent('Click', e.target.href);
     }
   });
 })();
