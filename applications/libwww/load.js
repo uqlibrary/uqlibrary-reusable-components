@@ -1,3 +1,6 @@
+//display browser update message for unsupported browsers
+//bower_components/uqlibrary-browser-supported/browser-update.js
+
 //reload page when browser updates cached files
 if (window.applicationCache) {
   applicationCache.addEventListener('updateready', function () {
@@ -19,12 +22,12 @@ function loadReusableComponents() {
     //first element of the original document
     var firstElement = document.body.children[0];
 
-    //var alerts = document.querySelector('uqlibrary-alerts');
-    //if (!alerts) {
-    //  //as a back up insert header if it's not defined already
-    //  alerts = document.createElement('uqlibrary-alerts');
-    //  document.body.insertBefore(alerts, firstElement);
-    //}
+    var alerts = document.querySelector('uqlibrary-alerts');
+    if (!alerts) {
+      //as a back up insert header if it's not defined already
+      alerts = document.createElement('uqlibrary-alerts');
+      document.body.insertBefore(alerts, firstElement);
+    }
 
     var header = document.querySelector('uq-minimal-header');
     if (!header) {
