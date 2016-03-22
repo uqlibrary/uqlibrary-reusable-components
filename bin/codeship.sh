@@ -49,6 +49,9 @@ sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
 echo "Check file syntax"
 gulp syntax
 
+echo "Insert browser detection message"
+gulp inject-browser-update
+
 echo "Vulcanizing elements"
 gulp vulcanize
 

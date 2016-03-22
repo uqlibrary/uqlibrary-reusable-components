@@ -1,3 +1,6 @@
+//display browser update message for unsupported browsers
+//bower_components/uqlibrary-browser-supported/browser-update.js
+
 //reload page when browser updates cached files
 if (window.applicationCache) {
   applicationCache.addEventListener('updateready', function () {

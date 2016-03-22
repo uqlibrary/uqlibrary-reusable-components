@@ -30,7 +30,8 @@
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
     "uqlibrary-callout": "uqlibrary/uqlibrary-callout",
     "iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#^1.2.0",
-    "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#master"
+    "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#master",
+    "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#master"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
