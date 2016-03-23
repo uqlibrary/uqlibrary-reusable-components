@@ -1,6 +1,3 @@
-//display browser update message for unsupported browsers
-//bower_components/uqlibrary-browser-supported/browser-update.js
-
 function ready(fn) {
   if (document.readyState != 'loading'){
     fn();

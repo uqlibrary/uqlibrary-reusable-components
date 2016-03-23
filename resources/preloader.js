@@ -1,10 +1,3 @@
-var $buoop = {vs:{i:9,f:25,o:12.1,s:8},c:2, reminder: 0};
-
-function $buo_f(){
-  var e = document.createElement("script");
-  e.src = "//browser-update.org/update.min.js";
-  document.body.appendChild(e);
-};
-
-try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-catch(e){window.attachEvent("onload", $buo_f)}
+//display browser update message for unsupported browsers - will be replaces in by gulp task at deployment
+//do not modify this file
+//bower_components/uqlibrary-browser-supported/browser-update.js
