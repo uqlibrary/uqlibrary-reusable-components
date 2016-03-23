@@ -73,6 +73,10 @@
         text-align: center;
       }
 
+      paper-button {
+        max-height:40px;
+      }
+
       .social{
         @apply(--layout-horizontal);
         @apply(--layout-top);
@@ -84,17 +88,14 @@
         height:36px;
       }
 
-      paper-button {
-        max-height:40px;
-      }
-
       .social paper-button:first-child {
         background-color:#000;
-        border-radius:10px;
+        border-radius:4px;
       }
 
       .social a {
         color:#fff;
+        font-weight: 400;
       }
 
       .button-colored-accent {
@@ -139,8 +140,21 @@
           display: inline-block;
         }
 
+        .contacts, .internal {
+          margin-top:30px;
+          @apply(--layout-center);
+        }
+
         li.separator:last-of-type {
           display: none;
+        }
+
+        paper-button {
+          min-width:0;
+        }
+
+        .internal {
+          margin-bottom:30px;
         }
       }
 
@@ -166,7 +180,7 @@
           </template>
         </div>
 
-        <div class="contacts fullbleed vertical layout">
+        <div class="contacts">
           <h4>Connect with us</h4>
           <div class="social">
             <paper-button class="button-social" tabindex="-1">
@@ -195,7 +209,7 @@
           </div>
           <div class="internal">
             <a href="{{mainDomain}}/contact-us/feedback">Feedback</a>
-            &nbsp;/&nbsp;
+            &nbsp;|&nbsp;
             <a href="{{mainDomain}}/site-information/site-map">Site Map</a>
           </div>
         </div>
