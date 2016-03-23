@@ -259,9 +259,9 @@ gulp.task('inject-browser-update', function() {
   var regEx = new RegExp("//bower_components/uqlibrary-browser-supported/browser-update.js", "g");
   var browserUpdate=fs.readFileSync("bower_components/uqlibrary-browser-supported/browser-update.js", "utf8");
 
-  return gulp.src(config.applications + '/**/*.js')
+  return gulp.src(config.resources + '/**/*.js')
       .pipe(replace({patterns: [{ match: regEx, replacement: browserUpdate}], usePrefix: false}))
-      .pipe(gulp.dest(config.applications))
+      .pipe(gulp.dest(config.resources))
       .pipe($.size({title: 'inject-browser-update'}));
 });
 
