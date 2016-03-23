@@ -53,9 +53,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     test('Internal links', function(done) {
       flush(function () {
-        var internal = testObj.querySelectorAll('.contacts li a');
+        var internal = testObj.querySelectorAll('.internal a');
         expect(internal).to.be.visible;
-        expect(internal.length).to.equal(3);
+        expect(internal.length).to.equal(2);
         done();
       });
     });
