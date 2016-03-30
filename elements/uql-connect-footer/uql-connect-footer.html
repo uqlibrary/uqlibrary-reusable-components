@@ -26,6 +26,15 @@
         text-decoration: underline;
       }
 
+      .social a {
+        color:#fff;
+        font-weight: 400;
+      }
+
+      .social a:hover {
+        text-decoration: none;
+      }
+
       .sub-footer-content ul,
       .sub-footer-content li {
         list-style-image: none;
@@ -58,26 +67,48 @@
 
       .contacts {
         @apply(--layout-vertical);
+        min-height:100%;
+        position:relative;
       }
 
       .buttons{
         @apply(--layout-vertical);
         @apply(--layout-center);
-        @apply(--layout-center-justified);
       }
 
-      .contacts ul {
-        @apply(--layout-flex);
+      h4 {
+        margin:0 0 10px;
       }
-
 
       .buttons {
         text-align: center;
       }
 
-      .social img {
-        width:36px;
-        height:36px;
+      .social{
+        @apply(--layout-horizontal);
+        @apply(--layout-top);
+      }
+
+      .social paper-button {
+        background-color:#000;
+        border-radius:4px;
+        max-height:44px;
+        min-width:44px;
+        padding:4px;
+      }
+
+      .social paper-button:first-child {
+        min-width:60px;
+      }
+
+      .social paper-button iron-icon {
+        height:20px;
+        width:20px;
+      }
+
+      .internal {
+        position:absolute;
+        bottom:0;
       }
 
       .button-colored-accent {
@@ -114,7 +145,6 @@
           padding-top: 10px;
         }
 
-        .social,
         .separator,
         .sub-footer-content ul,
         .sub-footer-content li {
@@ -122,8 +152,22 @@
           display: inline-block;
         }
 
+        .contacts, .internal {
+          margin-top:30px;
+          @apply(--layout-center);
+        }
+
         li.separator:last-of-type {
           display: none;
+        }
+
+        paper-button {
+          min-width:0;
+        }
+
+        .internal {
+          margin-bottom:30px;
+          position:relative;
         }
       }
 
@@ -136,7 +180,6 @@
 
     <div class="sub-footer-container">
       <div class="sub-footer-content loading" unresolved>
-
         <div class="navigation">
           <template is="dom-if" if="{{menu.items}}">
             <ul>
@@ -151,48 +194,54 @@
         </div>
 
         <div class="contacts">
-          <ul>
-            <li><a href="{{mainDomain}}/contact-us/feedback" on-tap="_gaLinkClicked">Feedback</a></li>
-            <li class="separator">&nbsp;|&nbsp;</li>
-            <li><a href="{{mainDomain}}/blog" on-tap="_gaLinkClicked">News</a></li>
-            <li class="separator">&nbsp;|&nbsp;</li>
-            <li><a href="{{mainDomain}}/site-information/site-map" on-tap="_gaLinkClicked">Site Map</a></li>
-          </ul>
-
+          <h4>Connect with us</h4>
           <div class="social">
-              <paper-button class="button-social" tabindex="-1">
-                <a href="https://www.youtube.com/user/uqlibrary" target="_blank" rel="external" title="UQ Library on YouTube" on-tap="_gaLinkClicked">
-                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/youtube35.svg" arial-label="UQ Library on YouTube" title="YouTube" alt="YouTube icon">
-                </a>
-              </paper-button>
-
-              <paper-button class="button-social" tabindex="-1">
-                <a href="https://www.facebook.com/uniofqldlibrary" target="_blank" rel="external" title="UQ Library on Facebook" on-tap="_gaLinkClicked">
-                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/facebook56.svg" arial-label="UQ Library on Facebook" title="Facebook" alt="Facebook icon">
-                </a>
-              </paper-button>
-
-              <paper-button class="button-social" tabindex="-1">
-                <a href="https://twitter.com/uqlibrary/" target="_blank" rel="external" title="UQ Library on Twitter" on-tap="_gaLinkClicked">
-                  <img src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/twitter47.svg" arial-label="UQ Library on Twitter" title="Twitter" alt="Twitter icon">
-                </a>
-              </paper-button>
-            </div>
-        </div>
-
-        <div class="buttons">
-            <paper-button id="joinFriend" class="button-colored-accent" aria-label="Join Friends of the Library" raised tabindex="-1">
-              <a href="{{mainDomain}}/about-us/friends-library" on-tap="_gaLinkClicked">
-                Join Friends of the Library
+            <paper-button class="button-social" tabindex="-1">
+              <a href="{{mainDomain}}/site-information/site-map" target="_blank" title="UQ Library Latest News" on-tap="_gaLinkClicked">
+                News
               </a>
             </paper-button>
-            <paper-button id="giveToLibrary" class="button-colored-accent" aria-label="Give to the Library" raised tabindex="-1">
-              <a href="{{mainDomain}}/about-us/giving-to-library" on-tap="_gaLinkClicked">
-                Give to the Library
+
+            <paper-button class="button-social" tabindex="-1">
+              <a href="https://twitter.com/uqlibrary/" target="_blank" rel="external" title="UQ Library on Twitter" on-tap="_gaLinkClicked">
+                <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/twitter.png"
+                           arial-label="UQ Library on Twitter" title="Twitter" alt="Twitter icon"></iron-icon>
+              </a>
+            </paper-button>
+
+            <paper-button class="button-social" tabindex="-1">
+              <a href="https://www.facebook.com/uniofqldlibrary" target="_blank" rel="external" title="UQ Library on Facebook" on-tap="_gaLinkClicked">
+                <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/facebook.png"
+                           arial-label="UQ Library on Facebook" title="Facebook" alt="Facebook icon"></iron-icon>
+              </a>
+            </paper-button>
+
+            <paper-button class="button-social" tabindex="-1">
+              <a href="https://www.youtube.com/user/uqlibrary" target="_blank" rel="external" title="UQ Library on YouTube" on-tap="_gaLinkClicked">
+                <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/youtube.png"
+                           arial-label="UQ Library on YouTube" title="YouTube" alt="YouTube icon"></iron-icon>
               </a>
             </paper-button>
           </div>
+          <div class="internal">
+            <a href="{{mainDomain}}/contact-us/feedback">Feedback</a>
+            &nbsp;|&nbsp;
+            <a href="{{mainDomain}}/site-information/site-map">Site Map</a>
+          </div>
+        </div>
 
+        <div class="buttons">
+          <paper-button id="joinFriend" class="button-colored-accent" aria-label="Join Friends of the Library" raised tabindex="-1">
+            <a href="{{mainDomain}}/about-us/friends-library" on-tap="_gaLinkClicked">
+              Join Friends of the Library
+            </a>
+          </paper-button>
+          <paper-button id="giveToLibrary" class="button-colored-accent" aria-label="Give to the Library" raised tabindex="-1">
+            <a href="{{mainDomain}}/about-us/giving-to-library" on-tap="_gaLinkClicked">
+              Give to the Library
+            </a>
+          </paper-button>
+        </div>
       </div>
     </div>
   </template>
