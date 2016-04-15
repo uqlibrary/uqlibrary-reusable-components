@@ -23,14 +23,14 @@
     "webcomponentsjs": "^0.7.12",
     "byutv-jsonp": "uqlibrary/byutv-jsonp#master",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
-    "iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#^1.2.0",
+    "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
     "validator-js": "~4.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.0.0",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.1",
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.0",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#v1.0.0",
     "uqlibrary-callout": "uqlibrary/uqlibrary-callout#v1.0.1",
-    "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#v1.2.1",
+    "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#master",
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#1.0.0"
   },
   "devDependencies": {
