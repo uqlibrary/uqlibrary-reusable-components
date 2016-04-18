@@ -3,15 +3,6 @@
     is: 'uql-connect-footer',
     properties: {
       /**
-       * Set the root domain to be used on all links
-       * @type {String}
-       */
-      mainDomain: {
-        type: String,
-        value: ""
-      },
-
-      /**
        * json URL containing the links that should be displayed
        * @type {Boolean}
        */
