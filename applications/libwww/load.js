@@ -34,7 +34,7 @@ function loadReusableComponents() {
     }
 
     //configure elements
-    header.showIAButton = (document.cookie.indexOf("iabutton") >= 0);
+    header.showIAButton = false; 
     header.showMenuButton = true;
     header.showSearchButton = true;
 
@@ -54,7 +54,6 @@ function loadReusableComponents() {
       subFooter = document.createElement('uql-connect-footer');
       document.body.appendChild(subFooter);
     }
-    subFooter.mainDomain = 'https://www.library.uq.edu.au';
 
     var footer = document.querySelector("uq-minimal-footer");
     if (!footer) {

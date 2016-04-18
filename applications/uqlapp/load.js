@@ -35,9 +35,6 @@ function loadReusableComponents() {
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
-
-    //set up domain for links in sub footer
-    subFooter.mainDomain = 'https://www.library.uq.edu.au';
   });
 }
 
