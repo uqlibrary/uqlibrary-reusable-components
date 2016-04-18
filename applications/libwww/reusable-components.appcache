@@ -6,15 +6,15 @@ NETWORK:
 *
 
 CACHE:
-http://assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico
-http://assets.library.uq.edu.au/master/reusable-components/resources/preloader.js
-http://assets.library.uq.edu.au/master/reusable-components/webcomponentsjs/webcomponents-lite.js
-http://assets.library.uq.edu.au/master/reusable-components/elements.vulcanized.html
-http://assets.library.uq.edu.au/master/reusable-components/libwww/load.js
-http://assets.library.uq.edu.au/master/reusable-components/libwww/custom-styles.css
-https://assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico
-https://assets.library.uq.edu.au/master/reusable-components/resources/preloader.js
-https://assets.library.uq.edu.au/master/reusable-components/webcomponentsjs/webcomponents-lite.js
-https://assets.library.uq.edu.au/master/reusable-components/elements.vulcanized.html
-https://assets.library.uq.edu.au/master/reusable-components/libwww/load.js
-https://assets.library.uq.edu.au/master/reusable-components/libwww/custom-styles.css
+http://assets.library.uq.edu.au/reusable-components/resources/favicon.ico
+http://assets.library.uq.edu.au/reusable-components/resources/preloader.js
+http://assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js
+http://assets.library.uq.edu.au/reusable-components/elements.vulcanized.html
+http://assets.library.uq.edu.au/reusable-components/libwww/load.js
+http://assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css
+https://assets.library.uq.edu.au/reusable-components/resources/favicon.ico
+https://assets.library.uq.edu.au/reusable-components/resources/preloader.js
+https://assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js
+https://assets.library.uq.edu.au/reusable-components/elements.vulcanized.html
+https://assets.library.uq.edu.au/reusable-components/libwww/load.js
+https://assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css
