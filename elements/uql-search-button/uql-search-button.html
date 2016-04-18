@@ -22,11 +22,13 @@ Example:
   <template>
     <uqlibrary-ga app-name="Header" id="ga"></uqlibrary-ga>
 
-    <paper-button class="button-colored-theme button-header" on-tap="_searchClicked" id="searchButton">
-      <iron-icon icon="icons:search" aria-label="search UQ library site"></iron-icon>
+    <paper-button
+      class="button-colored-theme button-header"
+      on-tap="_searchClicked" id="searchButton">
+      <iron-icon icon="icons:search"></iron-icon>
 
       <template is="dom-if" if="{{showTitle}}">
-        <div class="button-small inverse icon-button-title">{{buttonTitle}}</div>
+        <div class="button-small inverse icon-button-title" aria-label="Search UQ library site">{{buttonTitle}}</div>
       </template>
     </paper-button>
   </template>
