@@ -40,6 +40,6 @@
   "main": "elements/uq-minimal-header.html",
   "ignore": [],
   "resolutions": {
-    "uqlibrary-ga": "v1.0.2"
+    "uqlibrary-ga": "v1.0.3"
   }
 }
