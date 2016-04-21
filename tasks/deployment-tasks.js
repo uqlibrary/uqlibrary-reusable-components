@@ -12,6 +12,7 @@ var cloudfront = require('gulp-invalidate-cloudfront');
 var path = require('path');
 var fs = require('fs');
 var argv = require('yargs').argv;
+var merge = require('merge-stream');
 
 var config = {
   applications: 'applications',
