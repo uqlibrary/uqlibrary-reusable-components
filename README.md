@@ -99,6 +99,17 @@ frontend/app/index.html includes following:
         
         <script src="//assets.library.uq.edu.au/reusable-components/uqlapp/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/uqlapp/custom-styles.css" />
+        
+#### PRIMO
+Primo files to include following:
+
+        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
+        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+        
+        <script src="//assets.library.uq.edu.au/reusable-components/primo/load.js" async></script>
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/primo/custom-styles.css" />
                 
 
 #### Shared (uqlais, ezproxy static pages)
