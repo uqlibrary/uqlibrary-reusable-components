@@ -1,3 +1,40 @@
+#preloader {
+  display: block; }
+  #preloader .header {
+    width: 100%;
+    height: 64px;
+    color: #FFF;
+    background-color: #49075E;
+    line-height: 64px;
+    padding-left: 10px;
+    font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif';
+    font-size: 20px; }
+  #preloader .preloader-card {
+    margin: 16px auto;
+    background-color: #FFF;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }
+  #preloader .preloader-card p {
+    font-family: 'helvetica', 'times new roman', 'sans-serif';
+    color: #595959; }
+  #preloader .preloader-card h2 {
+    line-break: auto;
+    white-space: normal;
+    font-size: 1.8em;
+    color: #757575;
+    font-weight: 400;
+    line-height: 1.1em; }
+  #preloader #preloader-loading {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 40px;
+    display: none; }
+  #preloader #preloader-unsupported {
+    padding: 20px 40px 40px 40px;
+    display: none; }
+
 body {
   margin: 0px;
   padding: 0px; }
@@ -37,13 +74,6 @@ body {
   height: 100%;
   min-height: 100vh; }
 
-.has-breadcrumbs body {
-  padding-top: 0; }
-
-.sidebar {
-  top: 0;
-  padding-top: 120px; }
-
 uq-minimal-header,
 uq-minimal-footer,
 uql-connect-footer {
@@ -54,13 +84,10 @@ uql-connect-footer {
   flex: none;
   position: relative; }
 
-.app {
-  padding: 1.5em 1.5em 0;
-  width: 100%;
-  min-height: calc(100vh - 450px); }
+#footerEXL {
+  visibility: hidden; }
 
-.uql-journals,
-.uql-gateways {
-  padding-top: 0; }
+uql-global-links {
+  margin-top: 5px; }
 
 /*# sourceMappingURL=custom-styles.css.map */
