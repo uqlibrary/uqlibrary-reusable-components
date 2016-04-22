@@ -30,22 +30,6 @@ else
   export InvalidationPath=/${dest}
 fi
 
-echo "Deploying to S3 bucket sub-dir: ${S3BucketSubDir}"
-echo "Prepare AWS configuration..."
-
-# Use env vars to set AWS config
-awsconfigtemp="template.aws.json"
-awsconfig="aws.json"
-
-cp $awsconfigtemp $awsconfig
-
-sed -i -e "s#<AWSAccessKeyId>#${AWSAccessKeyId}#g" ${awsconfig}
-sed -i -e "s#<AWSSecretKey>#${AWSSecretKey}#g" ${awsconfig}
-sed -i -e "s#<S3Bucket>#${S3Bucket}#g" ${awsconfig}
-sed -i -e "s#<S3BucketSubDir>#${S3BucketSubDir}#g" ${awsconfig}
-sed -i -e "s#<CFDistribution>#${CFDistribution}#g" ${awsconfig}
-sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
-
 echo "Check file syntax"
 gulp syntax
 
@@ -54,6 +38,9 @@ gulp inject-browser-update
 
 echo "Vulcanizing elements"
 gulp vulcanize
+
+echo "Update GA Values"
+gulp inject-ga-values
 
 # If these files are the same, it means an error in vulcanizing
 echo "Checking vulcanization was performed correctly"
@@ -110,6 +97,22 @@ sed -i -e "s#<VERSION>#${version}#g" ${appcache}
 
 echo "Run tests"
 gulp test
+
+echo "Deploying to S3 bucket sub-dir: ${S3BucketSubDir}"
+echo "Prepare AWS configuration..."
+
+# Use env vars to set AWS config
+awsconfigtemp="template.aws.json"
+awsconfig="aws.json"
+
+cp $awsconfigtemp $awsconfig
+
+sed -i -e "s#<AWSAccessKeyId>#${AWSAccessKeyId}#g" ${awsconfig}
+sed -i -e "s#<AWSSecretKey>#${AWSSecretKey}#g" ${awsconfig}
+sed -i -e "s#<S3Bucket>#${S3Bucket}#g" ${awsconfig}
+sed -i -e "s#<S3BucketSubDir>#${S3BucketSubDir}#g" ${awsconfig}
+sed -i -e "s#<CFDistribution>#${CFDistribution}#g" ${awsconfig}
+sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
 
 echo "Run gulp task to upload to AWS..."
 gulp publish
