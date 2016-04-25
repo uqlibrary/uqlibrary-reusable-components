@@ -1,0 +1,29 @@
+@import "../../bower_components/uqlibrary-styles/skeleton";
+
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+}
+
+uq-minimal-header,
+uq-minimal-footer,
+uql-connect-footer
+{
+  z-index: 1001 !important;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+
+  position: relative;
+}
+
+// Primo specific stuff
+#footerEXL {
+  visibility: hidden;
+}
+
+uql-global-links {
+  margin-top: 5px;
+}
