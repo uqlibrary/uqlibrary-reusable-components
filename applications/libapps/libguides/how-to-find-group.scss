@@ -1,0 +1,129 @@
+img {
+  border-radius: 1px;
+}
+#s-lg-guide-tabs .s-lg-tabs-side .nav {
+  background: none;
+  box-shadow: none;
+
+  padding-left: 0;
+}
+#s-lg-guide-tabs .dropdown-menu {
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+  0 1px 8px 0 rgba(0, 0, 0, 0.12),
+  0 3px 3px -2px rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+}
+.dropdown-menu>li>a {
+  white-space: normal;
+  background: none;
+}
+#s-lg-guide-tabs li.dropdown {
+  background: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+#s-lg-guide-tabs .s-lg-tabs-side .nav .dropdown a,#s-lg-tabs-container .nav-pills > li > a {
+  padding-left: 12px;
+  background: none;
+  border-left: 4px solid transparent;
+  transition: all .1s ease;
+  font-weight: 400;
+}
+#s-lg-guide-tabs .s-lg-tabs-side .nav .dropdown a:hover,#s-lg-tabs-container .nav-pills > li > a:hover {
+  border-left: 4px solid #8CB800;
+  transition: all .1s ease;
+  font-weight: 400;
+}
+#s-lg-tabs-container .nav-pills > .active > a {
+  background-image: url("http://s3.amazonaws.com/libapps/sites/731/icons/9226/ic_arrow_drop_down_black_24dp_2x.png") !important;
+  background-position: 0, -10px;
+  background-size: 20px 20px;
+  text-decoration: none;
+}
+#s-lg-guide-tabs .dropdown-menu {
+  padding-left: 0;
+  padding-bottom: 0px;
+  border: none;
+}
+#s-lg-guide-tabs .s-lg-tabs-side .s-lg-subtab-ul {
+  margin-top: 0;
+}
+#s-lg-guide-tabs .s-lg-tabs-side .nav .dropdown a, #s-lg-tabs-container .nav-pills > li > a {
+  background-image: url("http://s3.amazonaws.com/libapps/sites/731/icons/9227/ic_arrow_right_black_24dp_2x.png") !important;
+  background-position: 0, -10px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  padding-left: 22px;
+  margin: 0;
+}
+#s-lg-tabs-container .nav-pills > .active > a, #s-lg-tabs-container .nav-pills > .active > li > a, #s-lg-tabs-container .nav-pills > .active > li > a:hover, #s-lg-tabs-container .nav-pills > .active > a:hover {
+  background-color: transparent !important;
+  color: #333 !important;
+  text-decoration: none;
+  border-left: 4px solid #8CB800;
+  font-weight: 400 !important;
+  padding-left: 20px;
+}
+#s-lg-tabs-container .dropdown > .dropdown-toggle, #s-lg-tabs-container .nav-pills > li > a, #s-lg-guide-tabs .s-lg-tabs-side .nav .dropdown a, #s-lg-guide-tabs .s-lg-tabs-side .nav .dropdown a:hover, #s-lg-tabs-container .nav-pills > li > a:hover {
+  color: #333 !important;
+}
+#s-lg-tabs-container .nav-pills > li:not(.dropdown-menu) > ul > li > a {
+  background-image: url("http://s3.amazonaws.com/libapps/sites/731/icons/9227/ic_arrow_right_black_24dp_2x.png");
+  background-position: 0, -10px !important;
+  background-size: 20px 20px !important;
+  background-repeat: no-repeat !important;
+  border-bottom: 1px solid #eee;
+}
+
+/* admin styles */
+#s-lg-tabs-container .nav-pills>li>#s-lg-admin-tab-anchor {
+  text-align: center;
+  border: 1px solid transparent;
+  background: none;
+  transition: all 75ms ease-in-out;
+}
+#s-lg-tabs-container .nav-pills>li>#s-lg-admin-tab-anchor:hover {
+  text-decoration: none;
+  border: 1px solid #006880;
+  border-radius: 2px !important;
+  transition: all 75ms ease-in-out;
+}
+#s-lg-admin-edit-content-text-container .dropdown-menu {
+  padding-left: 0;
+}
+#s-lg-admin-edit-content-text-container .dropdown-menu>li {
+  margin-left: 0;
+}
+#s-lg-admin-edit-content-text-container .dropdown-menu>li>a {
+  white-space: nowrap;
+  padding: 8px 12px;
+}
+#s-lg-tabs-container .nav-pills > li:last-child > a {
+  border-bottom: none;
+}
+.nav-stacked>li+li {
+  margin-top: 0;
+}
+
+/* override styles */
+#s-lg-tabs-container .nav-pills > li > a.s-lg-tab-top-link,#s-lg-tabs-container .nav-pills > li > a.s-lg-tab-top-link:hover {
+  font-weight:normal;
+  padding: 0.6em 0px 0.6em 22px;
+}
+#s-lg-tabs-container .nav-pills .dropdown > a.s-lg-tab-drop.dropdown-toggle,#s-lg-tabs-container .nav-pills .dropdown > a.s-lg-tab-drop.dropdown-toggle:hover {
+  padding:4px 8px 31px 8px;
+  border: none;
+}
+#s-lg-guide-tabs li.dropdown {
+  margin-right: 0px;
+  padding-right: 0px;
+}
+
+@media (min-width: 992px) {
+  .col-md-3{
+    width: 32%;
+  }
+  .col-md-9{
+    width: 68%;
+  }
+}
