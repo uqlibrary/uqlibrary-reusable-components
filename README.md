@@ -61,7 +61,11 @@ include this code in Custom JS/CSS Code in LibGuides configuration
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
         <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/custom-styles.css" />
+       
+customisation of groups shall be done the same way as custom-styles, example:how-to-find-group.css
 
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/how-to-find-group.css" />
+        
 #### LibAnswers
 
 test group (uses master branch): http://answers.library.uq.edu.au/test
