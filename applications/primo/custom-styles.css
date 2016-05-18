@@ -84,6 +84,9 @@ uql-connect-footer {
   flex: none;
   position: relative; }
 
+#exlidHeaderSearchLimits {
+  display: none; }
+
 #exlidSearchRibbon input.submit {
   color: #fff;
   background-color: #2377CB;
@@ -104,10 +107,9 @@ uql-connect-footer {
   #EXLSearchFieldRibbonBrowseSearchLink a {
     display: inline; }
 
-#exlidSearchTile #exlidSearchTabs {
-  display: none; }
 #exlidSearchTile #exlidSearchRibbon * {
-  clear: both;
-  display: block; }
+  float: none; }
+#exlidSearchTile #EXLSearchTabsContainer {
+  display: none !important; }
 
 /*# sourceMappingURL=custom-styles.css.map */

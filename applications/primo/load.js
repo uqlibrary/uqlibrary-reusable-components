@@ -31,12 +31,13 @@ function loadReusableComponents() {
   // insert footer before body-tag
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
-
-
+  
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
     header.showLoginButton = false;
   });
+
+
 }
 
 ready(loadReusableComponents);

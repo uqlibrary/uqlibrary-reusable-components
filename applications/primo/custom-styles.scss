@@ -20,8 +20,10 @@ uql-connect-footer
 }
 
 // Primo specific stuff
-#footerEXL {
-  //visibility: hidden;
+
+// hide things
+#exlidHeaderSearchLimits {
+  display: none;
 }
 
 // Search box styles
@@ -52,13 +54,15 @@ uql-connect-footer
 
 // #exlidSearchTile - simple search
 #exlidSearchTile {
-  // hide scope from simple search box
-  #exlidSearchTabs {
-    display: none;
-  }
 
   #exlidSearchRibbon * {
-    clear: both;
-    display: block;
+    float: none;
+    //display: block;
   }
+
+  // hide scope from simple search box
+  #EXLSearchTabsContainer {
+    display: none !important;
+  }
+
 }
