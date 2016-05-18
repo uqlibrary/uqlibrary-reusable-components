@@ -21,10 +21,11 @@ uql-connect-footer
 
 // Primo specific stuff
 #footerEXL {
-  visibility: hidden;
+  //visibility: hidden;
 }
 
-#goButton {
+// Search box styles
+#exlidSearchRibbon input.submit {
   color: #fff;
   background-color: $accent-color;
   padding: 0.7em 0.57em;
@@ -47,7 +48,17 @@ uql-connect-footer
   }
 }
 
-//hide scope from simple search box
-#exlidSearchTabs {
-  display: none;
+// #exlidAdvancedSearchTile - advanced search
+
+// #exlidSearchTile - simple search
+#exlidSearchTile {
+  // hide scope from simple search box
+  #exlidSearchTabs {
+    display: none;
+  }
+
+  #exlidSearchRibbon * {
+    clear: both;
+    display: block;
+  }
 }

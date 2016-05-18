@@ -84,10 +84,7 @@ uql-connect-footer {
   flex: none;
   position: relative; }
 
-#footerEXL {
-  visibility: hidden; }
-
-#goButton {
+#exlidSearchRibbon input.submit {
   color: #fff;
   background-color: #2377CB;
   padding: 0.7em 0.57em;
@@ -107,7 +104,10 @@ uql-connect-footer {
   #EXLSearchFieldRibbonBrowseSearchLink a {
     display: inline; }
 
-#exlidSearchTabs {
+#exlidSearchTile #exlidSearchTabs {
   display: none; }
+#exlidSearchTile #exlidSearchRibbon * {
+  clear: both;
+  display: block; }
 
 /*# sourceMappingURL=custom-styles.css.map */
