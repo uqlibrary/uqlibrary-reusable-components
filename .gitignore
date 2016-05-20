@@ -3,6 +3,7 @@ bower_components
 *.tmp
 *.css.map
 .idea
+.DS_Store
 
 aws.json
 aws.json-e

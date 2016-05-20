@@ -54,14 +54,19 @@ uql-connect-footer
 
 // #exlidSearchTile - simple search
 #exlidSearchTile {
+  border: none;
+  background-image: none;
+  height: auto;
+  width: 100%;
+  font-size: 1em;
 
   #exlidSearchRibbon * {
     float: none;
-    //display: block;
+    display: inline-block;
   }
 
   // hide scope from simple search box
-  #EXLSearchTabsContainer {
+  .EXLSearchTabsContainer {
     display: none !important;
   }
 

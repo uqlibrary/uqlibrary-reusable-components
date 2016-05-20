@@ -107,9 +107,16 @@ uql-connect-footer {
   #EXLSearchFieldRibbonBrowseSearchLink a {
     display: inline; }
 
-#exlidSearchTile #exlidSearchRibbon * {
-  float: none; }
-#exlidSearchTile #EXLSearchTabsContainer {
-  display: none !important; }
+#exlidSearchTile {
+  border: none;
+  background-image: none;
+  height: auto;
+  width: 100%;
+  font-size: 1em; }
+  #exlidSearchTile #exlidSearchRibbon * {
+    float: none;
+    display: inline-block; }
+  #exlidSearchTile .EXLSearchTabsContainer {
+    display: none !important; }
 
 /*# sourceMappingURL=custom-styles.css.map */
