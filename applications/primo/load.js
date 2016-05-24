@@ -9,6 +9,9 @@ function ready(fn) {
 function loadReusableComponents() {
   //insert elements, even before Polymer is loaded
 
+
+  // load uq favicon to replace the exlibris logo
+
   //first element of the original document
   var firstElement = document.body.children[0];
 
@@ -37,6 +40,17 @@ function loadReusableComponents() {
     header.showLoginButton = false;
   });
 
+
+}
+
+function loadUQFavicon() {
+  var link = document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel = 'shortcut icon';
+  link.href = '//assets.library.uq.edu.au/reusable-components/resources/favicon.ico';
+  document.getElementsByTagName('head')[0].appendChild(link);
+  link.rel = 'icon'; //for IE
+  document.getElementsByTagName('head')[0].appendChild(link);
 
 }
 
