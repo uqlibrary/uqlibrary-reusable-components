@@ -84,11 +84,6 @@ uql-connect-footer {
   flex: none;
   position: relative; }
 
-#exlidHeaderSearchLimits,
-#exlidMainMenuContainer,
-#scopesList {
-  display: none; }
-
 #exlidSearchRibbon input.submit,
 #goButton {
   color: #fff;
@@ -122,5 +117,14 @@ uql-connect-footer {
     display: block; }
   #exlidSearchTile .EXLSearchTabsContainer {
     display: none !important; }
+
+#exlidSearchRibbon {
+  float: none;
+  clear: both; }
+
+#exlidHeaderSearchLimits,
+#exlidMainMenuContainer,
+#scopesList {
+  display: none; }
 
 /*# sourceMappingURL=custom-styles.css.map */

@@ -21,14 +21,6 @@ uql-connect-footer
 
 // Primo specific stuff
 
-// hide things
-#exlidHeaderSearchLimits,
-#exlidMainMenuContainer,
-#scopesList
-{
-  display: none;
-}
-
 // Search box styles
 #exlidSearchRibbon input.submit,
 #goButton {
@@ -75,4 +67,17 @@ uql-connect-footer
     display: none !important;
   }
 
+}
+
+#exlidSearchRibbon {
+  float: none;
+  clear: both;
+}
+
+// hide things
+#exlidHeaderSearchLimits,
+#exlidMainMenuContainer,
+#scopesList
+{
+  display: none;
 }
