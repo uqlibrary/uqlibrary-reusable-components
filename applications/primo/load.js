@@ -11,6 +11,7 @@ function loadReusableComponents() {
 
 
   // load uq favicon to replace the exlibris logo
+  loadUQFavicon();
 
   //first element of the original document
   var firstElement = document.body.children[0];
