@@ -22,12 +22,16 @@ uql-connect-footer
 // Primo specific stuff
 
 // hide things
-#exlidHeaderSearchLimits {
+#exlidHeaderSearchLimits,
+#exlidMainMenuContainer,
+#scopesList
+{
   display: none;
 }
 
 // Search box styles
-#exlidSearchRibbon input.submit {
+#exlidSearchRibbon input.submit,
+#goButton {
   color: #fff;
   background-color: $accent-color;
   padding: 0.7em 0.57em;
@@ -62,7 +66,8 @@ uql-connect-footer
 
   #exlidSearchRibbon * {
     float: none;
-    display: inline-block;
+    clear: both;
+    display: block;
   }
 
   // hide scope from simple search box
