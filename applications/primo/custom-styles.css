@@ -113,8 +113,7 @@ uql-connect-footer {
   font-size: 1em; }
   #exlidSearchTile #exlidSearchRibbon * {
     float: none;
-    clear: both;
-    display: block; }
+    clear: both; }
   #exlidSearchTile .EXLSearchTabsContainer {
     display: none !important; }
 
