@@ -160,8 +160,7 @@ uql-connect-footer {
 #exlidHeaderSystemFeedback {
   background-color: transparent; }
   #exlidHeaderSystemFeedback #alert-container {
-    border: 1px solid #bce8f1;
-    background-color: #d9edf7;
+    background-color: #64b10b;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -176,11 +175,10 @@ uql-connect-footer {
     #exlidHeaderSystemFeedback #alert-container #alert-text-container {
       font-family: "Roboto", "Helvetica", "Arial", sans-serif;
       font-size: 0.9em;
-      color: #31708f;
+      color: white;
       background-image: none;
       padding: 0.2em 0 0 0; }
       #exlidHeaderSystemFeedback #alert-container #alert-text-container a {
-        color: #4285f4;
-        text-decoration: none; }
+        text-decoration: underine; }
 
 /*# sourceMappingURL=custom-styles.css.map */
