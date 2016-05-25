@@ -159,16 +159,21 @@ uql-connect-footer {
     padding: 4px 0 0 4px;
     width: 90%;
     height: 36px; }
-  #exlidSearchTile #exlidSearchRibbon input#search_field {
-    background: #f2f2f2;
-    padding: 2px;
-    border: none;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px; }
-  #exlidSearchTile #exlidSearchRibbon div.EXLSearchFieldRibbon {
-    border: 0px;
-    height: auto; }
+  #exlidSearchTile #exlidSearchRibbon {
+    margin: auto;
+    float: none; }
+    #exlidSearchTile #exlidSearchRibbon fieldset {
+      float: none; }
+    #exlidSearchTile #exlidSearchRibbon input#search_field {
+      background: #f2f2f2;
+      padding: 2px;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px; }
+    #exlidSearchTile #exlidSearchRibbon div.EXLSearchFieldRibbon {
+      border: 0px;
+      height: auto; }
 
 #exlidHeaderSearchLimits,
 #exlidMainMenuContainer,
