@@ -173,8 +173,7 @@ uql-connect-footer
   background-color: transparent;
 
   #alert-container {
-    border:1px solid #bce8f1;
-    background-color: #d9edf7;
+    background-color: #64b10b;
     @include flexbox();
     justify-content: center;
     left: 0px;
@@ -186,13 +185,12 @@ uql-connect-footer
     #alert-text-container {
       font-family: "Roboto", "Helvetica", "Arial", sans-serif;
       font-size: 0.9em;
-      color: #31708f;
+      color: white;
       background-image: none;
       padding: 0.2em 0 0 0;
-
+      
       a {
-        color: #4285f4;
-        text-decoration: none;
+        text-decoration: underine;
       }
 
     }
