@@ -20,7 +20,6 @@ uql-connect-footer
 }
 
 //mixins
-
 @mixin uql-button($text-colour, $bg-colour) {
   color: $text-colour;
   background-color: $bg-colour;
@@ -45,24 +44,7 @@ uql-connect-footer
 // Search box styles
 #exlidSearchRibbon input.submit,
 #goButton {
-
   @include uql-button(#fff, $accent-color);
-
-  //color: #fff;
-  //background-color: $accent-color;
-  //padding: 0.7em 0.57em;
-  //min-width: 5.14em;
-  //margin: 0 0.29em;
-  //border-radius: 3px;
-  //font-size: 16px;
-  //background-image: none;
-  //height: auto;
-  //text-transform: uppercase;
-  //border: none;
-  //
-  //&:focus{
-  //  outline: #288BED auto 5px;
-  //}
 }
 
 
@@ -77,6 +59,12 @@ uql-connect-footer
 
 // advanced search
 #exlidAdvancedSearchRibbon {
+
+  .EXLSearchFieldRibbonFormSubmitSearch {
+    margin-top: 0.5em;
+    border: none;
+  }
+
   input.submit {
     @include uql-button(#fff, $accent-color);
   }
@@ -171,6 +159,7 @@ uql-connect-footer
 // disable feedback default yellow background color
 #exlidHeaderSystemFeedback {
   background-color: transparent;
+  border: none;
 
   #alert-container {
     background-color: #64b10b;

@@ -108,6 +108,9 @@ uql-connect-footer {
   #EXLSearchFieldRibbonBrowseSearchLink a {
     display: inline; }
 
+#exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch {
+  margin-top: 0.5em;
+  border: none; }
 #exlidAdvancedSearchRibbon input.submit {
   color: #fff;
   background-color: #2377CB;
@@ -187,7 +190,8 @@ uql-connect-footer {
   padding-top: 0px; }
 
 #exlidHeaderSystemFeedback {
-  background-color: transparent; }
+  background-color: transparent;
+  border: none; }
   #exlidHeaderSystemFeedback #alert-container {
     background-color: #64b10b;
     display: -webkit-box;
