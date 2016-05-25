@@ -225,3 +225,21 @@ uql-connect-footer
   color: #64b10b;
 }
 
+
+@media screen and (max-width: 500px) {
+
+  #exlidSearchTile {
+    width: 98%;
+    margin: auto;
+
+    .EXLSearchFieldRibbonFormFields {
+      width: 85% !important;
+    }
+
+    .EXLSearchFieldRibbonAdvancedSearchLink,
+    .EXLSearchFieldRibbonBrowseSearchLink {
+      display: none;
+    }
+  }
+
+}
