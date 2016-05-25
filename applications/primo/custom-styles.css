@@ -108,7 +108,7 @@ uql-connect-footer {
   #EXLSearchFieldRibbonBrowseSearchLink a {
     display: inline; }
 
-#exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch {
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
   margin-top: 0.5em;
   border: none; }
 #exlidAdvancedSearchRibbon input.submit {
