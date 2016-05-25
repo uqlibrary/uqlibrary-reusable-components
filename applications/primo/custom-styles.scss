@@ -72,6 +72,11 @@ uql-connect-footer
   input.submit.EXLAdvancedSearchClearSelection {
     @include uql-button(#fff, $secondary-color);
   }
+
+  .EXLSearchFieldRibbonFormLinks {
+    font-size: 16px;
+    padding-top: 13px;
+  }
 }
 
 // browse items search
