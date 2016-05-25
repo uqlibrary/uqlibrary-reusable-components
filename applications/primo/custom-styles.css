@@ -223,16 +223,17 @@ uql-connect-footer {
 
 #alert-icon-container {
   background-color: white;
-  top: 2px;
+  top: 4px;
   width: 1em;
   height: 1em;
   overflow: hidden;
   border: none;
   border-radius: 0.5em;
   box-shadow: #999 0 1px 1px;
-  font-size: 25px;
+  font-size: 1.4em;
   color: transparent;
-  margin-right: 5px;
+  margin-right: 0.2em;
+  margin-left: 0.4em;
   position: relative; }
 
 #alert-icon-container:after {
