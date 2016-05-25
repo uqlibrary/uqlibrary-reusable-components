@@ -154,7 +154,7 @@ uql-connect-footer
 }
 
 
-// login notfication bar
+// login reminder bar
 
 // disable feedback default yellow background color
 #exlidHeaderSystemFeedback {
@@ -186,5 +186,37 @@ uql-connect-footer
 
   }
 
+}
+
+// info icon for login reminder bar
+
+#alert-icon-container {
+  background-color: white;
+  top: -2px;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  border: none;
+  border-radius: 0.5em;
+  box-shadow: #999 0 1px 1px;
+  font-size: 25px;
+  color: transparent;
+  margin-right: 8px;
+  position: relative;
+}
+
+#alert-icon-container:after {
+  font-style: italic;
+  font-weight: bold;
+  content: "i";
+  display: block;
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Times New Roman", "Garamond", serif;
+  font-size: 0.65em;
+  color: #64b10b;
 }
 
