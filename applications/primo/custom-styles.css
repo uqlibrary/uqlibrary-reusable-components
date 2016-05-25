@@ -127,4 +127,14 @@ uql-connect-footer {
 #scopesList {
   display: none; }
 
+.EXLSearchFieldRibbonAdvancedSearchLink,
+.EXLSearchFieldRibbonBrowseSearchLink {
+  display: inline-block;
+  width: auto; }
+
+.EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,
+.EXLSearchFieldRibbonBrowseSearchLink a {
+  font-size: 1em;
+  padding-right: 1em; }
+
 /*# sourceMappingURL=custom-styles.css.map */

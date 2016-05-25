@@ -81,3 +81,15 @@ uql-connect-footer
 {
   display: none;
 }
+
+.EXLSearchFieldRibbonAdvancedSearchLink,
+.EXLSearchFieldRibbonBrowseSearchLink {
+  display: inline-block;
+  width: auto;
+}
+
+.EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,
+.EXLSearchFieldRibbonBrowseSearchLink a {
+  font-size: 1em;
+  padding-right: 1em;
+}
