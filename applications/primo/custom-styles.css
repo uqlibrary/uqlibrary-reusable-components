@@ -260,7 +260,9 @@ uql-connect-footer {
     width: 98%;
     margin: auto; }
     #exlidSearchTile .EXLSearchFieldRibbonFormFields {
-      width: 85% !important; }
+      width: 73% !important; }
+    #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
+      width: 94%; }
     #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink,
     #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
       display: none; } }
