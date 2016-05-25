@@ -57,8 +57,8 @@ uql-connect-footer
   font-size: 1em;
 
   #exlidSearchRibbon * {
-    float: none;
-    clear: both;
+    //float: none;
+    //clear: both;
     //display: block;
   }
 
@@ -70,8 +70,8 @@ uql-connect-footer
 }
 
 #exlidSearchRibbon {
-  float: none;
-  clear: both;
+  //float: none;
+  //clear: both;
 }
 
 // hide things
@@ -84,6 +84,8 @@ uql-connect-footer
 
 .EXLSearchFieldRibbonAdvancedSearchLink,
 .EXLSearchFieldRibbonBrowseSearchLink {
+  clear: both;
+  float: none;
   display: inline-block !important;
   width: auto;
 }

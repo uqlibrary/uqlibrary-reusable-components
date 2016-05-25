@@ -111,15 +111,8 @@ uql-connect-footer {
   height: auto;
   width: 100%;
   font-size: 1em; }
-  #exlidSearchTile #exlidSearchRibbon * {
-    float: none;
-    clear: both; }
   #exlidSearchTile .EXLSearchTabsContainer {
     display: none !important; }
-
-#exlidSearchRibbon {
-  float: none;
-  clear: both; }
 
 #exlidHeaderSearchLimits,
 #exlidMainMenuContainer,
@@ -128,6 +121,8 @@ uql-connect-footer {
 
 .EXLSearchFieldRibbonAdvancedSearchLink,
 .EXLSearchFieldRibbonBrowseSearchLink {
+  clear: both;
+  float: none;
   display: inline-block !important;
   width: auto; }
 
