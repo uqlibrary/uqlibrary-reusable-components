@@ -265,6 +265,6 @@ uql-connect-footer {
       width: 94%; }
     #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink,
     #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
-      display: none; } }
+      display: none !important; } }
 
 /*# sourceMappingURL=custom-styles.css.map */

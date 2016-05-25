@@ -255,7 +255,7 @@ uql-connect-footer
 
     .EXLSearchFieldRibbonAdvancedSearchLink,
     .EXLSearchFieldRibbonBrowseSearchLink {
-      display: none;
+      display: none !important;
     }
   }
 }
