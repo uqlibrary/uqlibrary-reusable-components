@@ -126,3 +126,39 @@ uql-connect-footer
   padding-top: 0px;
 }
 
+
+// login notfication bar
+
+// disable feedback default yellow background color
+#exlidHeaderSystemFeedback {
+  background-color: transparent;
+
+  #alert-container {
+    border:1px solid #bce8f1;
+    background-color: #d9edf7;
+    @include flexbox();
+    justify-content: center;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+    padding: 10px 0px;
+    margin-left:-2px;
+
+    #alert-text-container {
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-size: 0.9em;
+      color: #31708f;
+      background-image: none;
+      padding: 0.2em 0 0 0;
+
+      a {
+        color: #4285f4;
+        text-decoration: none;
+      }
+
+    }
+
+  }
+
+}
+
