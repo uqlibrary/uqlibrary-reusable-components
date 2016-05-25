@@ -149,4 +149,30 @@ uql-connect-footer {
   font-size: 1em;
   padding-right: 1em; }
 
+#exlidHeaderSystemFeedback {
+  background-color: transparent; }
+  #exlidHeaderSystemFeedback #alert-container {
+    border: 1px solid #bce8f1;
+    background-color: #d9edf7;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+    padding: 10px 0px;
+    margin-left: -2px; }
+    #exlidHeaderSystemFeedback #alert-container #alert-text-container {
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-size: 0.9em;
+      color: #31708f;
+      background-image: none;
+      padding: 0.2em 0 0 0; }
+      #exlidHeaderSystemFeedback #alert-container #alert-text-container a {
+        color: #4285f4;
+        text-decoration: none; }
+
 /*# sourceMappingURL=custom-styles.css.map */
