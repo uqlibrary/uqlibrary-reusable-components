@@ -73,7 +73,7 @@ uql-connect-footer
     height: 36px;
   }
 
-  #exlidSearchRibbon input {
+  #exlidSearchRibbon input#search_field {
     background: #f2f2f2;
     padding: 2px;
     border: none;
@@ -82,6 +82,10 @@ uql-connect-footer
     line-height: 24px;
   }
 
+  #exlidSearchRibbon div.EXLSearchFieldRibbon {
+    border: 0px;
+    height: auto;
+  }
 
 }
 
