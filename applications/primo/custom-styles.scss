@@ -19,13 +19,11 @@ uql-connect-footer
   position: relative;
 }
 
-// Primo specific stuff
+//mixins
 
-// Search box styles
-#exlidSearchRibbon input.submit,
-#goButton {
-  color: #fff;
-  background-color: $accent-color;
+@mixin uql-button($text-colour, $bg-colour) {
+  color: $text-colour;
+  background-color: $bg-colour;
   padding: 0.7em 0.57em;
   min-width: 5.14em;
   margin: 0 0.29em;
@@ -42,6 +40,32 @@ uql-connect-footer
 }
 
 
+// Primo specific stuff
+
+// Search box styles
+#exlidSearchRibbon input.submit,
+#goButton {
+
+  @include uql-button(#fff, $accent-color);
+
+  //color: #fff;
+  //background-color: $accent-color;
+  //padding: 0.7em 0.57em;
+  //min-width: 5.14em;
+  //margin: 0 0.29em;
+  //border-radius: 3px;
+  //font-size: 16px;
+  //background-image: none;
+  //height: auto;
+  //text-transform: uppercase;
+  //border: none;
+  //
+  //&:focus{
+  //  outline: #288BED auto 5px;
+  //}
+}
+
+
 #EXLSearchFieldRibbonAdvancedSearchLink,
 #EXLSearchFieldRibbonBrowseSearchLink {
   clear: both;
@@ -51,7 +75,22 @@ uql-connect-footer
   }
 }
 
-// #exlidAdvancedSearchTile - advanced search
+// advanced search
+#exlidAdvancedSearchRibbon {
+  input.submit {
+    @include uql-button(#fff, $accent-color);
+  }
+
+  input.submit.EXLAdvancedSearchClearSelection {
+    @include uql-button(#fff, $secondary-color);
+  }
+}
+
+// browse items search
+.EXLBrowseList {
+
+}
+
 
 // #exlidSearchTile - simple search
 #exlidSearchTile {

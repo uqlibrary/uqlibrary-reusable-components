@@ -108,6 +108,35 @@ uql-connect-footer {
   #EXLSearchFieldRibbonBrowseSearchLink a {
     display: inline; }
 
+#exlidAdvancedSearchRibbon input.submit {
+  color: #fff;
+  background-color: #2377CB;
+  padding: 0.7em 0.57em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 16px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none; }
+  #exlidAdvancedSearchRibbon input.submit:focus {
+    outline: #288BED auto 5px; }
+#exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection {
+  color: #fff;
+  background-color: #595959;
+  padding: 0.7em 0.57em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 16px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none; }
+  #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection:focus {
+    outline: #288BED auto 5px; }
+
 #exlidSearchTile {
   border: none;
   background-image: none;
