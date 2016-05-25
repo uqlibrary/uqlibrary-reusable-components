@@ -35,7 +35,12 @@ uql-connect-footer
   height: auto;
   text-transform: uppercase;
   border: none;
+
+  &:focus{
+    outline: #288BED auto 5px;
+  }
 }
+
 
 #EXLSearchFieldRibbonAdvancedSearchLink,
 #EXLSearchFieldRibbonBrowseSearchLink {
@@ -65,6 +70,7 @@ uql-connect-footer
     border-bottom: 1px solid #333333;
   }
 
+
   .EXLSearchFieldRibbonFormFields {
     background-color: #f2f2f2;
     border-radius: 3px;
@@ -73,18 +79,22 @@ uql-connect-footer
     height: 36px;
   }
 
-  #exlidSearchRibbon input#search_field {
-    background: #f2f2f2;
-    padding: 2px;
-    border: none;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-  }
+  #exlidSearchRibbon {
+    text-align: right;
 
-  #exlidSearchRibbon div.EXLSearchFieldRibbon {
-    border: 0px;
-    height: auto;
+    input#search_field {
+      background: #f2f2f2;
+      padding: 2px;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    div.EXLSearchFieldRibbon {
+      border: 0px;
+      height: auto;
+    }
   }
 
 }
@@ -103,11 +113,17 @@ uql-connect-footer
   float: none;
   display: inline-block !important;
   width: auto;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.EXLSearchFieldRibbonAdvancedSearchLink {
+  padding-right: 1em;
 }
 
 .EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,
 .EXLSearchFieldRibbonBrowseSearchLink a {
   font-size: 1em;
-  padding-right: 1em;
+  padding-top: 0px;
 }
 
