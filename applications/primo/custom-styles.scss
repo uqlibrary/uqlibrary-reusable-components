@@ -160,7 +160,11 @@ uql-connect-footer
 
 
 // login reminder bar
-
+@media screen and (max-width: 500px) {
+  #exlidHeaderSystemFeedback {
+    display: block;
+  }
+}
 // disable feedback default yellow background color
 #exlidHeaderSystemFeedback {
   background-color: transparent;
@@ -171,20 +175,21 @@ uql-connect-footer
     @include flexbox();
     justify-content: center;
     left: 0px;
-    height: 20px;
+    height: 2em;
     width: 100%;
     padding: 10px 0px;
-    margin-left:-2px;
 
     #alert-text-container {
       font-family: "Roboto", "Helvetica", "Arial", sans-serif;
       font-size: 0.9em;
       color: white;
       background-image: none;
-      padding: 0.2em 0 0 0;
-      
+      margin-top: auto;
+      margin-bottom: auto;
+
       a {
-        text-decoration: underine;
+        color: white;
+        text-decoration: underline;
       }
 
     }
@@ -197,16 +202,17 @@ uql-connect-footer
 
 #alert-icon-container {
   background-color: white;
-  top: -2px;
+  top: 4px;
   width: 1em;
   height: 1em;
   overflow: hidden;
   border: none;
   border-radius: 0.5em;
   box-shadow: #999 0 1px 1px;
-  font-size: 25px;
+  font-size: 1.4em;
   color: transparent;
-  margin-right: 8px;
+  margin-right: 0.2em;
+  margin-left: 0.4em;
   position: relative;
 }
 
@@ -241,5 +247,4 @@ uql-connect-footer
       display: none;
     }
   }
-
 }
