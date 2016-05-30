@@ -59,7 +59,7 @@ function createActions() {
   for (var index = 0; index < results.length; index++) {
     var actions = document.createElement('li');
     actions.setAttribute('class', 'EXLResultTab');
-    actions.setTextContent('Actions!');
+    actions.innerHTML = 'Actions!';
 
     results[index].appendChild(actions);
   }
