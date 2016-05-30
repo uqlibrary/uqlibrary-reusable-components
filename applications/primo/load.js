@@ -57,7 +57,11 @@ function createActions() {
   var results = document.querySelectorAll('.EXLResultTabs');
 
   for (var index = 0; index < results.length; index++) {
-    results[index].appendChild('<li class="EXLResultTab">Actions</li>');
+    var actions = document.createElement('<li>');
+    actions.setAttribute('class', 'EXLResultTab');
+    actions.setTextContent('Actions!');
+
+    results[index].appendChild(actions);
   }
 }
 
