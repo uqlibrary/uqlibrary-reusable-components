@@ -57,7 +57,7 @@ function createActions() {
   var results = document.querySelectorAll('.EXLResultTabs');
 
   for (var index = 0; index < results.length; index++) {
-    var actions = document.createElement('<li>');
+    var actions = document.createElement('li');
     actions.setAttribute('class', 'EXLResultTab');
     actions.setTextContent('Actions!');
 
