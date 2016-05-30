@@ -58,6 +58,16 @@ function loadUQFavicon() {
 
 }
 
+function moveActions(){
+  var actions = document.querySelectorAll('.EXLTabHeaderButtonSendTo');
+  var results = document.querySelectorAll('.EXLResultTabs');
+
+  for(var index = 0; index < actions.length; index++){
+    results[index].appendChild(actions[index]);
+  }
+
+}
+
 /* Call primo defined method isUserLoggedIn() to check users login status, show the notification if the user is not logged in */
 function loadSigninNotification() {
   if (isUserLoggedIn())
