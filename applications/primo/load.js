@@ -53,12 +53,11 @@ function loadUQFavicon() {
   document.getElementsByTagName('head')[0].appendChild(link);
 }
 
-function moveActions() {
-  var actions = document.querySelectorAll('.EXLTabHeaderButtonSendTo');
+function createActions() {
   var results = document.querySelectorAll('.EXLResultTabs');
 
   for (var index = 0; index < actions.length; index++) {
-    results[index].appendChild(actions[index]);
+    results[index].appendChild('<li class="EXLResultTab">Actions</li>');
   }
 }
 
@@ -118,10 +117,10 @@ function addItemActionsToResult(elem) {
   /* set parameters */
   var $result;
   if (isFullDisplay()) {
-    $result = jqLocal('.EXLResult');
+    $result = jQuery('.EXLResult');
   }
   else {
-    $result = jqLocal(elem).parent();
+    $result = jQuery(elem).parent();
   }
   /* create the tool generator */
   var toolsGen = new PrimoItemTools($result);
@@ -169,9 +168,9 @@ function generateToolbar($result, toolsGen) {
   var dropdownID = 'item-tools-dropdown-' + (index);
 
   /* create the toolbar */
-  var toolbarContainer = jqLocal('<div class="localItemToolsContainer">');
+  var toolbarContainer = jQuery('<div class="localItemToolsContainer">');
   toolbarContainer.attr('id', containerID);
-  var toolbar = jqLocal('<div class="localItemTools">');
+  var toolbar = jQuery('<div class="localItemTools">');
   toolbarContainer.append(toolbar);
 
   /********************************************************
@@ -183,7 +182,7 @@ function generateToolbar($result, toolsGen) {
   /********** END EDITABLE CODE **********/
 
   /* create the dropdown */
-  var dropdownMenu = jqLocal('<div class="localItemToolsMenu">');
+  var dropdownMenu = jQuery('<div class="localItemToolsMenu">');
 
   /* Handle the z-index so that menus properly overlap each other */
   dropdownMenu.css('z-index', 150 - (index % 50));
@@ -204,7 +203,7 @@ function generateToolbar($result, toolsGen) {
  dropdown menu)
  */
 function generateInlineItemToolButton(tool, index) {
-  var toolDiv = jqLocal('<div>');
+  var toolDiv = jQuery('<div>');
   /* adjust the id and name to reflect that this is a toolbar item */
   tool.attr('id', tool.attr('id') + '-toolbar');
   tool.attr('name', tool.attr('name') + '-toolbar');
