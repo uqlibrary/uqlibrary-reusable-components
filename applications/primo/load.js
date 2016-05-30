@@ -12,7 +12,7 @@ function loadReusableComponents() {
   //show notification bar if user is not logged in
   loadSigninNotification();
 
-  moveActions();
+  createActions();
 
   //first element of the original document
   var firstElement = document.body.children[0];
