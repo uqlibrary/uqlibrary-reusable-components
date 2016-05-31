@@ -167,18 +167,14 @@ uql-connect-footer
 
 
 // login reminder bar
-@media screen and (max-width: 500px) {
-  #exlidHeaderSystemFeedback {
-    display: block;
-  }
-}
-// disable feedback default yellow background color
+
+// disable feedback area default yellow background color
 #exlidHeaderSystemFeedback {
   background-color: transparent;
   border: none;
 
   #alert-container {
-    background-color: #64b10b;
+    background-color: $uq-emerald; // to meet WCAG 2.0 AA, PT#120068811
     @include flexbox();
     justify-content: center;
     left: 0px;
@@ -187,7 +183,7 @@ uql-connect-footer
     padding: 10px 0px;
 
     #alert-text-container {
-      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-family: var(--font-family);
       font-size: 0.9em;
       color: white;
       background-image: none;
@@ -206,7 +202,6 @@ uql-connect-footer
 }
 
 // info icon for login reminder bar
-
 #alert-icon-container {
   background-color: white;
   top: 4px;
@@ -240,7 +235,10 @@ uql-connect-footer
 
 
 @media screen and (max-width: 500px) {
-
+  // display login reminder bar in mobile screens
+  #exlidHeaderSystemFeedback {
+    display: block;
+  }
   #exlidSearchTile {
     width: 98%;
     margin: auto;

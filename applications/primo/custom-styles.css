@@ -197,14 +197,11 @@ uql-connect-footer {
   font-size: 1em;
   padding-top: 0px; }
 
-@media screen and (max-width: 500px) {
-  #exlidHeaderSystemFeedback {
-    display: block; } }
 #exlidHeaderSystemFeedback {
   background-color: transparent;
   border: none; }
   #exlidHeaderSystemFeedback #alert-container {
-    background-color: #64b10b;
+    background-color: #38852e;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -216,7 +213,7 @@ uql-connect-footer {
     width: 100%;
     padding: 10px 0px; }
     #exlidHeaderSystemFeedback #alert-container #alert-text-container {
-      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-family: var(--font-family);
       font-size: 0.9em;
       color: white;
       background-image: none;
@@ -256,6 +253,9 @@ uql-connect-footer {
   color: #64b10b; }
 
 @media screen and (max-width: 500px) {
+  #exlidHeaderSystemFeedback {
+    display: block; }
+
   #exlidSearchTile {
     width: 98%;
     margin: auto; }
