@@ -12,8 +12,6 @@ function loadReusableComponents() {
   //show notification bar if user is not logged in
   loadSigninNotification();
 
-  createActions();
-
   //first element of the original document
   var firstElement = document.body.children[0];
 
@@ -51,18 +49,6 @@ function loadUQFavicon() {
   document.getElementsByTagName('head')[0].appendChild(link);
   link.rel = 'icon'; //for IE
   document.getElementsByTagName('head')[0].appendChild(link);
-}
-
-function createActions() {
-  var results = document.querySelectorAll('.EXLResultTabs');
-
-  for (var index = 0; index < results.length; index++) {
-    var actions = document.createElement('li');
-    actions.setAttribute('class', 'EXLResultTab');
-    actions.innerHTML = 'Actions!';
-
-    results[index].appendChild(actions);
-  }
 }
 
 /* Call primo defined method isUserLoggedIn() to check users login status, show the notification if the user is not logged in */
