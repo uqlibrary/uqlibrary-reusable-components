@@ -18,7 +18,25 @@
   }
 }
 
-@import "../../bower_components/uqlibrary-styles/skeleton";
+@mixin uql-tab-button($text-colour, $bg-colour) {
+  color: $text-colour;
+  background-color: $bg-colour;
+  padding: 0.7em 0.57em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 10px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none;
+
+  &:focus{
+    outline: #288BED auto 5px;
+  }
+}
+
+@import "../../bower_components/uqlibrary-styles/skeleton.scss";
 @import "styles-imports/home-page";
 @import "styles-imports/login-bar";
 @import "styles-imports/search-tile";
@@ -50,10 +68,8 @@ uql-connect-footer
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
-
   position: relative;
 }
-
 
 //todo: move out these styles to corresponding imports
 
@@ -82,4 +98,3 @@ uql-connect-footer
   font-size: 1em;
   padding-top: 0px;
 }
-

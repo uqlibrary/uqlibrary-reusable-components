@@ -5,6 +5,7 @@
   height: auto;
   width: 100%;
   font-size: 1em;
+  padding-top: 40px;
 
   // hide scope from simple search box
   .EXLSearchTabsContainer {
@@ -12,7 +13,7 @@
   }
 
   .EXLSearchFieldRibbonFormSearchFor {
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #333;
   }
 
   .EXLSearchFieldRibbonFormFields {
@@ -46,5 +47,4 @@
       height: auto;
     }
   }
-
 }
