@@ -12,6 +12,7 @@
     @include uql-tab-button(#fff, $uq-emerald);
 
     a {
+      &:link,
       &:visited,
       &:active,
       &:hover,
