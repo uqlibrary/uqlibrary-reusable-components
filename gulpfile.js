@@ -53,7 +53,7 @@ var styleTask = function (srcs) {
       .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
       .pipe(gulp.dest('.tmp/'))
       .pipe($.minifyCss())
-      .pipe(gulp.dest('applications/primo'))
+      .pipe(gulp.dest('applications/'))
       .pipe($.size({title: 'custom-styles.css'}));
 };
 
@@ -74,7 +74,7 @@ gulp.task('jshint', function () {
 
 // Compile and automatically prefix stylesheets
 gulp.task('styles', function () {
-  return styleTask(['applications/primo/custom-styles.scss']);
+  return styleTask(['applications/**/*-styles.scss']);
 });
 
 // Lint JSON
