@@ -1,4 +1,31 @@
+//mixins
+//todo: move mixins to skeleton styles
+@mixin uql-button($text-colour, $bg-colour) {
+  color: $text-colour;
+  background-color: $bg-colour;
+  padding: 0.7em 0.57em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 16px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none;
+
+  &:focus{
+    outline: #288BED auto 5px;
+  }
+}
+
 @import "../../bower_components/uqlibrary-styles/skeleton";
+@import "styles-imports/home-page";
+@import "styles-imports/login-bar";
+@import "styles-imports/search-tile";
+@import "styles-imports/advanced-search-tile";
+@import "styles-imports/result-details-tab";
+
+@import "styles-imports/hide";
 
 html,
 body {
@@ -19,130 +46,13 @@ uql-connect-footer
   position: relative;
 }
 
-//mixins
-@mixin uql-button($text-colour, $bg-colour) {
-  color: $text-colour;
-  background-color: $bg-colour;
-  padding: 0.7em 0.57em;
-  min-width: 5.14em;
-  margin: 0 0.29em;
-  border-radius: 3px;
-  font-size: 16px;
-  background-image: none;
-  height: auto;
-  text-transform: uppercase;
-  border: none;
 
-  &:focus{
-    outline: #288BED auto 5px;
-  }
-}
-
-
-// Primo specific stuff
+//todo: move out these styles to corresponding imports
 
 // Search box styles
 #exlidSearchRibbon input.submit,
 #goButton {
   @include uql-button(#fff, $accent-color);
-}
-
-
-#EXLSearchFieldRibbonAdvancedSearchLink,
-#EXLSearchFieldRibbonBrowseSearchLink {
-  clear: both;
-
-  a {
-    display: inline;
-  }
-}
-
-// advanced search
-#exlidAdvancedSearchRibbon {
-
-  div.EXLSearchFieldRibbonFormSubmitSearch {
-    margin-top: 0.5em;
-    border: none;
-  }
-
-  input.submit {
-    @include uql-button(#fff, $accent-color);
-  }
-
-  input.submit.EXLAdvancedSearchClearSelection {
-    @include uql-button(#fff, $secondary-color);
-  }
-
-  .EXLSearchFieldRibbonFormLinks {
-    font-size: 16px;
-    padding-top: 13px;
-  }
-}
-
-// browse items search
-.EXLBrowseList {
-
-}
-
-
-// #exlidSearchTile - simple search
-#exlidSearchTile {
-  border: none;
-  background-image: none;
-  height: auto;
-  width: 100%;
-  font-size: 1em;
-
-  // hide scope from simple search box
-  .EXLSearchTabsContainer {
-    display: none !important;
-  }
-
-  .EXLSearchFieldRibbonFormSearchFor {
-    border-bottom: 1px solid #333333;
-  }
-
-
-  .EXLSearchFieldRibbonFormFields {
-    background-color: #f2f2f2;
-    border-radius: 3px;
-    padding: 4px 0 0 4px;
-    width: 90%;
-    height: 36px;
-  }
-
-  #exlidSearchRibbon {
-
-    margin: auto;
-    float: none;
-
-    fieldset {
-      float: none;
-    }
-
-    input#search_field {
-      background: #f2f2f2;
-      padding: 2px;
-      border: none;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-    }
-
-    div.EXLSearchFieldRibbon {
-      border: 0px;
-      height: auto;
-    }
-  }
-
-}
-
-// hide things
-#exlidHeaderSearchLimits,
-#exlidMainMenuContainer,
-#scopesList
-{
-  display: none;
 }
 
 .EXLSearchFieldRibbonAdvancedSearchLink,
@@ -165,95 +75,3 @@ uql-connect-footer
   padding-top: 0px;
 }
 
-
-// login reminder bar
-
-// disable feedback area default yellow background color
-#exlidHeaderSystemFeedback {
-  background-color: transparent;
-  border: none;
-
-  #alert-container {
-    background-color: $uq-emerald; // to meet WCAG 2.0 AA, PT#120068811
-    @include flexbox();
-    justify-content: center;
-    left: 0px;
-    height: 2em;
-    width: 100%;
-    padding: 10px 0px;
-
-    #alert-text-container {
-      font-family: var(--font-family);
-      font-size: 0.9em;
-      color: white;
-      background-image: none;
-      margin-top: auto;
-      margin-bottom: auto;
-
-      a {
-        color: white;
-        text-decoration: underline;
-      }
-
-    }
-
-  }
-
-}
-
-// info icon for login reminder bar
-#alert-icon-container {
-  background-color: white;
-  top: 4px;
-  height: 1em;
-  overflow: hidden;
-  border: none;
-  border-radius: 0.5em;
-  box-shadow: #999 0 1px 1px;
-  font-size: 1.4em;
-  color: transparent;
-  margin-right: 0.2em;
-  margin-left: 0.3em;
-  padding-right: 1em;
-  position: relative;
-}
-
-#alert-icon-container:after {
-  font-style: italic;
-  font-weight: bold;
-  content: "i";
-  display: block;
-  position: absolute;
-  top: 0.25em;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-family: "Times New Roman", "Garamond", serif;
-  font-size: 0.65em;
-  color: #64b10b;
-}
-
-
-@media screen and (max-width: 500px) {
-  // display login reminder bar in mobile screens
-  #exlidHeaderSystemFeedback {
-    display: block;
-  }
-  #exlidSearchTile {
-    width: 98%;
-    margin: auto;
-
-    .EXLSearchFieldRibbonFormFields {
-      width: 73% !important;
-    }
-
-    .EXLSearchFieldRibbonFormSearchFor {
-      width: 94%;
-    }
-
-    .EXLSearchFieldRibbonAdvancedSearchLink,
-    .EXLSearchFieldRibbonBrowseSearchLink {
-      display: none !important;
-    }
-  }
-}

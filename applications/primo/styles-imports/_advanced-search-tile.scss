@@ -1,0 +1,21 @@
+// advanced search
+#exlidAdvancedSearchRibbon {
+
+  div.EXLSearchFieldRibbonFormSubmitSearch {
+    margin-top: 0.5em;
+    border: none;
+  }
+
+  input.submit {
+    @include uql-button(#fff, $accent-color);
+  }
+
+  input.submit.EXLAdvancedSearchClearSelection {
+    @include uql-button(#fff, $secondary-color);
+  }
+
+  .EXLSearchFieldRibbonFormLinks {
+    font-size: 16px;
+    padding-top: 13px;
+  }
+}

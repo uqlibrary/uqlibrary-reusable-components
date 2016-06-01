@@ -1,0 +1,50 @@
+// #exlidSearchTile - simple search
+#exlidSearchTile {
+  border: none;
+  background-image: none;
+  height: auto;
+  width: 100%;
+  font-size: 1em;
+
+  // hide scope from simple search box
+  .EXLSearchTabsContainer {
+    display: none !important;
+  }
+
+  .EXLSearchFieldRibbonFormSearchFor {
+    border-bottom: 1px solid #333333;
+  }
+
+  .EXLSearchFieldRibbonFormFields {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    padding: 4px 0 0 4px;
+    width: 90%;
+    height: 36px;
+  }
+
+  #exlidSearchRibbon {
+
+    margin: auto;
+    float: none;
+
+    fieldset {
+      float: none;
+    }
+
+    input#search_field {
+      background: #f2f2f2;
+      padding: 2px;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    div.EXLSearchFieldRibbon {
+      border: 0px;
+      height: auto;
+    }
+  }
+
+}
