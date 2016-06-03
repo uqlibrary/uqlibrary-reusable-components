@@ -76,7 +76,7 @@ function rewriteLicenceContent() {
   if ($('#exlidResultsContainer .EXLResultsList')) {
     var resultList = $('#exlidResultsContainer .EXLResultsList');
     var summary = resultList.find('.EXLSummary');
-    var viewItLinks = summary.find('.EXLResult .EXLResultTabs .EXLResultFirstTab a');
+    var viewItLinks = summary.find('.EXLResultTabs .EXLResultFirstTab a');
     if (viewItLinks) {
       viewItLinks.on('click', function(e) {
         console.log('link clicked');
