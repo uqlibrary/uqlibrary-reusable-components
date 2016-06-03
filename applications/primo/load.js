@@ -12,8 +12,6 @@ function loadReusableComponents() {
   //show notification bar if user is not logged in
   loadSigninNotification();
 
-  rewriteLicenceContent();
-
   //first element of the original document
   var firstElement = document.body.children[0];
 
@@ -68,30 +66,6 @@ function loadSigninNotification() {
   //put the notification bar in the feedback area which is sitting right after search bar
   var container = $('#exlidHeaderSystemFeedback');
   container.prepend('<div id="alert-container"><div id="alert-icon-container"></div><div id="alert-text-container"><a aria-label="Log in" href="' + signInLink + '">Log in</a> to access full text, more search results and more services</div>');
-}
-
-function rewriteLicenceContent() {
-
-  // only needed in the result page
-  if ($('#exlidResultsContainer .EXLResultsList')) {
-    var resultList = $('#exlidResultsContainer .EXLResultsList');
-    var summary = resultList.find('.EXLSummary');
-    var viewItLinks = summary.find('.EXLResultTabs .EXLResultFirstTab a');
-    if (viewItLinks) {
-      viewItLinks.on('click', function(e) {
-        console.log('link clicked');
-        setTimeout(function(){
-          console.log(summary.find('.EXLContainer-viewOnlineTab .EXLDetailsTabContent iframe'));
-          if (summary.find('.EXLContainer-viewOnlineTab .EXLDetailsTabContent iframe').contents().find('.viewIt')){
-            console.log('able to find content in the iframe');
-          }
-        }, 1000);
-
-      });
-    }
-  }
-
-  // Show license - a id = $id_show, div id = div_$id
 }
 
 ready(loadReusableComponents);
