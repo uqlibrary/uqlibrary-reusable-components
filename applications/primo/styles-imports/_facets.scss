@@ -1,0 +1,14 @@
+.EXLDateRangeText {
+
+  //make min width for 4 digits
+  .datebox {
+    min-width: 3em;
+  }
+
+  //hide year range slider
+  #slider-range {
+    display: none;
+  }
+
+}
+

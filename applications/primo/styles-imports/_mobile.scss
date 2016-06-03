@@ -1,0 +1,23 @@
+@media screen and (max-width: 500px) {
+  // display login reminder bar in mobile screens
+  #exlidHeaderSystemFeedback {
+    display: block;
+  }
+  #exlidSearchTile {
+    width: 98%;
+    margin: auto;
+
+    .EXLSearchFieldRibbonFormFields {
+      width: 73% !important;
+    }
+
+    .EXLSearchFieldRibbonFormSearchFor {
+      width: 94%;
+    }
+
+    .EXLSearchFieldRibbonAdvancedSearchLink,
+    .EXLSearchFieldRibbonBrowseSearchLink {
+      display: none !important;
+    }
+  }
+}

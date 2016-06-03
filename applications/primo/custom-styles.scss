@@ -1,4 +1,58 @@
-@import "../../bower_components/uqlibrary-styles/skeleton";
+//mixins
+//todo: move mixins to skeleton styles
+@mixin uql-button($text-colour, $bg-colour) {
+  color: $text-colour;
+  background-color: $bg-colour;
+  padding: 0.7em 0.57em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 16px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none;
+
+  &:focus{
+    outline: #288BED auto 5px;
+  }
+}
+
+@mixin uql-tab-button($text-colour, $bg-colour) {
+  color: $text-colour;
+  background-color: $bg-colour;
+  padding: 0.7em 0.77em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 12px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none;
+
+  &:focus{
+    outline: #288BED auto 5px;
+  }
+}
+
+@import "../../bower_components/uqlibrary-styles/skeleton.scss";
+@import "styles-imports/home-page";
+@import "styles-imports/login-bar";
+@import "styles-imports/search-tile";
+@import "styles-imports/advanced-search-tile";
+
+@import "styles-imports/facets";
+
+@import "styles-imports/result-list";
+@import "styles-imports/result-tabs";
+@import "styles-imports/result-tab-details";
+@import "styles-imports/result-tab-getit";
+@import "styles-imports/result-footer";
+
+@import "styles-imports/footer";
+
+@import "styles-imports/hide";
 
 html,
 body {
@@ -15,50 +69,33 @@ uql-connect-footer
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
-
   position: relative;
 }
 
-// Primo specific stuff
-#footerEXL {
-  //visibility: hidden;
-}
+//todo: move out these styles to corresponding imports
 
 // Search box styles
-#exlidSearchRibbon input.submit {
-  color: #fff;
-  background-color: $accent-color;
-  padding: 0.7em 0.57em;
-  min-width: 5.14em;
-  margin: 0 0.29em;
-  border-radius: 3px;
-  font-size: 16px;
-  background-image: none;
-  height: auto;
-  text-transform: uppercase;
-  border: none;
+#exlidSearchRibbon input.submit,
+#goButton {
+  @include uql-button(#fff, $accent-color);
 }
 
-#EXLSearchFieldRibbonAdvancedSearchLink,
-#EXLSearchFieldRibbonBrowseSearchLink {
+.EXLSearchFieldRibbonAdvancedSearchLink,
+.EXLSearchFieldRibbonBrowseSearchLink {
   clear: both;
-
-  a {
-    display: inline;
-  }
+  float: none;
+  display: inline-block !important;
+  width: auto;
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 
-// #exlidAdvancedSearchTile - advanced search
+.EXLSearchFieldRibbonAdvancedSearchLink {
+  padding-right: 1em;
+}
 
-// #exlidSearchTile - simple search
-#exlidSearchTile {
-  // hide scope from simple search box
-  #exlidSearchTabs {
-    display: none;
-  }
-
-  #exlidSearchRibbon * {
-    clear: both;
-    display: block;
-  }
+.EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,
+.EXLSearchFieldRibbonBrowseSearchLink a {
+  font-size: 1em;
+  padding-top: 0px;
 }

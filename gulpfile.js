@@ -20,6 +20,7 @@ var merge = require('merge-stream');
 var path = require('path');
 var fs = require('fs');
 var glob = require('glob');
+var glob = require('glob');
 
 var cloudfront = require('gulp-invalidate-cloudfront');
 var replace = require('gulp-replace-task');
@@ -45,6 +46,17 @@ var config = {
   demo: 'elements/demo'
 };
 
+var styleTask = function (srcs) {
+  return gulp.src(srcs)
+      // .pipe($.changed(stylesPath, {extension: '.scss'}))
+      .pipe($.sass({style: 'expanded'}))
+      .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+      .pipe(gulp.dest('.tmp/'))
+      .pipe($.minifyCss())
+      .pipe(gulp.dest('applications/'))
+      .pipe($.size({title: 'custom-styles.css'}));
+};
+
 // Lint JavaScript
 gulp.task('jshint', function () {
   return gulp.src([
@@ -58,6 +70,11 @@ gulp.task('jshint', function () {
       .pipe($.jshint.reporter('jshint-stylish'))
       .pipe($.jshint.reporter('fail'));
   //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+});
+
+// Compile and automatically prefix stylesheets
+gulp.task('styles', function () {
+  return styleTask(['applications/**/*-styles.scss']);
 });
 
 // Lint JSON

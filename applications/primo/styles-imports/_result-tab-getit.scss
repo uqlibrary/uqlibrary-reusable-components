@@ -1,0 +1,30 @@
+.EXLTabHeader div.EXLTabHeaderContent {
+  padding-top: 0.9em;
+
+  em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName {
+    display: none;
+  }
+
+  /* use this selector to style the container of the login link */
+  em.EXLTabHeaderContentAdditionalDataLineSignIn {
+    float: none;
+    box-sizing: border-box;
+
+    @include uql-tab-button(#fff, $uq-emerald);
+
+    a {
+      &:link,
+      &:visited,
+      &:active,
+      &:hover,
+      &:focus {
+        color: #fff;
+      }
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}
