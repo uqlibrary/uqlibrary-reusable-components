@@ -47,4 +47,17 @@
       height: auto;
     }
   }
+
+  .EXLSearchFieldRibbonAdvancedSearchLink,
+  .EXLSearchFieldRibbonBrowseSearchLink {
+    float: right;
+  }
+}
+
+#exlidHeaderSearchLimits {
+  background-color: #fff;
+  border-bottom-width: 0;
+  width: 55em;
+  padding-left: 1em;
+  margin-top: -2.9em;
 }
