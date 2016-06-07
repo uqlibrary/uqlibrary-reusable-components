@@ -59,9 +59,14 @@
   .EXLSearchFieldRibbonBrowseSearchLink {
     float: right;
     width: auto;
-    margin-top: -1.15em;
+    margin-top: -1em;
     margin-bottom: 2em;
   }
+}
+
+/* selector hack - firefox needs just a little more space */
+body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
+  margin-top: -1.15em;
 }
 
 #exlidHeaderSearchLimits {
