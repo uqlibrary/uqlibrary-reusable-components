@@ -48,9 +48,12 @@
     }
   }
 
-  .EXLSearchFieldRibbonAdvancedSearchLink,
   .EXLSearchFieldRibbonBrowseSearchLink {
     float: right;
+  }
+  .EXLSearchFieldRibbonAdvancedSearchLink {
+    float: right;
+    padding-right: 10em;
   }
 }
 
@@ -59,5 +62,5 @@
   border-bottom-width: 0;
   width: 55em;
   padding-left: 1em;
-  margin-top: -2.9em;
+  margin-top: -2em;
 }
