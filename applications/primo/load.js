@@ -9,6 +9,8 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
+  modifyUserAreaTile();
+
   //show notification bar if user is not logged in
   loadSigninNotification();
 
@@ -67,6 +69,21 @@ function loadSigninNotification() {
   //put the notification bar in the feedback area which is sitting right after search bar
   var container = $('#exlidHeaderSystemFeedback');
   container.prepend('<div id="alert-container"><div id="alert-icon-container"></div><div id="alert-text-container"><a aria-label="Log in" href="' + signInLink + '">Log in</a> to access full text, more search results and more services</div>');
+}
+
+function modifyUserAreaTile() {
+  var userAreaRibbon = $('#exlidUserAreaTile #exlidUserAreaRibbon');
+  if (userAreaRibbon) {
+    if (isUserLoggedIn()){
+      // add saved searches and alerts link
+      var savedSearches = $('<li id="exlidSavedSearches" class="EXLSavedSearches"><a href="sessionQuery.do?fn=display">Saved searches & alerts</a></li>');
+      userAreaRibbon.find('#exlidMyShelf').after(savedSearches);
+    } else {
+      // hide my account link
+      userAreaRibbon.find('#exlidMyAccount').addClass('EXLHidden');
+    }
+  }
+
 }
 
 ready(loadReusableComponents);
