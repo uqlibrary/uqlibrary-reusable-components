@@ -57,19 +57,29 @@
 
   .EXLSearchFieldRibbonAdvancedSearchLink {
     padding-top: 1em;
-    padding-right: 7em;
     margin-bottom: auto;
+
+    position: absolute;
+    width: 7em;
+    margin-right: 0;
+    right: 32.2em;
+    padding-right: 0;
   }
 
   .EXLSearchFieldRibbonBrowseSearchLink {
     margin-top: -1em;
     margin-bottom: 2em;
+    padding-top: 3em;
   }
 }
 
-/* selector hack - firefox needs just a little more space */
+/* selector hack: had to fix overflow blocking the Browse Search link on webkit, which meant firefox needed to be moved a little */
+body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
+  margin-top: 0.85em;
+}
 body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
   margin-top: -1.15em;
+  padding-top: 3em;
 }
 
 #exlidHeaderSearchLimits {
@@ -96,18 +106,4 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
     padding-left: 0;
     width: 50%; /* may not need this */
   }
-}
-
-/* safari selector hack - the 'advanced search' link is overflowing allover the 'browse search' link, making it unclickable */
-.selector:not(*:root) #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
-  position: absolute;
-  width: 7em;
-  margin-right: 0;
-  right: 32.2em;
-  padding-right: 0;
-}
-
-.selector:not(*:root) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
-  padding-top: 3em;
-
 }
