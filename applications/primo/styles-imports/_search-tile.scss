@@ -43,22 +43,26 @@
     }
 
     div.EXLSearchFieldRibbon {
-      border: 0px;
+      border: 0;
       height: auto;
     }
   }
 
-  .EXLSearchFieldRibbonAdvancedSearchLink {
-    float: right;
-    width: auto;
-    padding-top: 1em;
-    padding-right: 7em;
-    margin-bottom: auto;
-  }
-
+  .EXLSearchFieldRibbonAdvancedSearchLink ,
   .EXLSearchFieldRibbonBrowseSearchLink {
     float: right;
     width: auto;
+    margin-right: 10.2em;
+  }
+
+  .EXLSearchFieldRibbonAdvancedSearchLink {
+    padding-top: 1em;
+    padding-right: 7em;
+    margin-bottom: auto;
+    over
+  }
+
+  .EXLSearchFieldRibbonBrowseSearchLink {
     margin-top: -1em;
     margin-bottom: 2em;
   }
@@ -87,5 +91,10 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
 
   select {
     font-size: 14.4px;
+  }
+
+  fieldset {
+    padding-left: 0;
+    width: 50%; /* may not need this */
   }
 }
