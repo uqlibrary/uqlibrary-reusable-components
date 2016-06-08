@@ -97,3 +97,17 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
     width: 50%; /* may not need this */
   }
 }
+
+/* safari selector hack - the 'advanced search' link is overflowing allover the 'browse search' link, making it unclickable */
+.selector:not(*:root) #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
+  position: absolute;
+  width: 7em;
+  margin-right: 0;
+  right: 32.2em;
+  padding-right: 0;
+}
+
+.selector:not(*:root) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
+  padding-top: 3em;
+
+}
