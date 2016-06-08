@@ -256,6 +256,8 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
   font-weight: bold;
   padding-top: 2em;
   border: none; }
+.EXLResultsList .EXLMyShelfStar {
+  padding: 5px; }
 
 .EXLResultTabContainer div.EXLTabHeader {
   min-height: 36px; }
