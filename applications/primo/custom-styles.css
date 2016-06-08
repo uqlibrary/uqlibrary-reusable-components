@@ -235,7 +235,9 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
   display: inline-block;
   height: 20px;
   width: 20px;
-  padding: 0; }
+  padding: 0;
+  vertical-align: middle;
+  margin-right: 5px; }
 .EXLFacetsTitle h3 {
   line-height: 35px; }
 
