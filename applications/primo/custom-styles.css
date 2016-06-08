@@ -1,1 +1,395 @@
-#preloader{display:block}#preloader .header{width:100%;height:64px;color:#FFF;background-color:#49075E;line-height:64px;padding-left:10px;font-family:Roboto,helvetica,'times new roman',sans-serif;font-size:20px}#preloader .preloader-card{margin:16px auto;background-color:#FFF;border-radius:2px;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);-moz-box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2)}uq-minimal-footer,uq-minimal-header{background-color:#49075E;display:block;width:100%}#preloader .preloader-card p{font-family:helvetica,'times new roman',sans-serif;color:#595959}#preloader .preloader-card h2{line-break:auto;white-space:normal;font-size:1.8em;color:#757575;font-weight:400;line-height:1.1em}#preloader #preloader-loading{text-align:center;text-transform:uppercase;padding:40px;display:none}#preloader #preloader-unsupported{padding:20px 40px 40px;display:none}body{margin:0;padding:0}uq-minimal-header{height:100px}uq-minimal-footer{min-height:140px}uql-connect-footer{display:block;width:100%;background-color:#e5e5e5;min-height:240px}@media all and (max-width:1047px){uq-minimal-header{height:66px}}@media all and (min-width:1048px){uql-menu{box-shadow:rgba(0,0,0,.2) 0 2px 2px 0;-moz-box-shadow:rgba(0,0,0,.2) 0 2px 2px 0;-webkit-box-shadow:rgba(0,0,0,.2) 0 2px 2px 0;display:block;width:100%;height:67px;background-color:#fff}}#exlidHomeContainer{height:calc(100vh/3)}#exlidHeaderSystemFeedback{background-color:transparent;border:none}#exlidHeaderSystemFeedback #alert-container{background-color:#38852e;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;left:0;height:2em;width:100%;padding:10px 0}#exlidHeaderSystemFeedback #alert-container #alert-text-container{font-family:var(--font-family);font-size:.9em;color:#fff;background-image:none;margin-top:auto;margin-bottom:auto}#exlidHeaderSystemFeedback #alert-container #alert-text-container a{color:#fff;text-decoration:underline}#alert-icon-container{background-color:#fff;top:4px;height:1em;overflow:hidden;border:none;border-radius:.5em;box-shadow:#999 0 1px 1px;font-size:1.4em;color:transparent;margin-right:.2em;margin-left:.3em;padding-right:1em;position:relative}#alert-icon-container:after{font-style:italic;font-weight:700;content:"i";display:block;position:absolute;top:.25em;left:0;width:100%;text-align:center;font-family:"Times New Roman",Garamond,serif;font-size:.65em;color:#64b10b}#exlidSearchTile{border:none;background-image:none;height:auto;width:100%;font-size:1em;padding-top:40px}#exlidSearchTile .EXLSearchTabsContainer{display:none!important}#exlidSearchTile .EXLSearchFieldRibbonFormSearchFor{border-bottom:1px solid #333}#exlidSearchTile .EXLSearchFieldRibbonFormFields{background-color:#f2f2f2;border-radius:3px;padding:4px 0 0 4px;width:90%;height:36px}#exlidSearchTile #exlidSearchRibbon{margin:auto;float:none}#exlidSearchTile #exlidSearchRibbon fieldset{float:none}#exlidSearchTile #exlidSearchRibbon input#search_field{background:#f2f2f2;padding:2px;border:none;font-size:16px;font-weight:400;line-height:24px}#exlidSearchTile #exlidSearchRibbon div.EXLSearchFieldRibbon{border:0;height:auto}#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch{margin-top:.5em;border:none}#exlidAdvancedSearchRibbon input.submit,#exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection{padding:.7em .57em;min-width:5.14em;margin:0 .29em;font-size:16px;background-image:none;height:auto;color:#fff;text-transform:uppercase}#exlidAdvancedSearchRibbon input.submit{background-color:#2377CB;border-radius:3px;border:none}#exlidAdvancedSearchRibbon input.submit:focus{outline:#288BED auto 5px}#exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection{background-color:#595959;border-radius:3px;border:none}#exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection:focus{outline:#288BED auto 5px}#exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks{font-size:16px;padding-top:13px}.EXLDateRangeText .datebox{min-width:3em}.EXLDateRangeText #slider-range{display:none}.EXLResultsList td.EXLResultNumber{display:block;font-weight:700;padding-top:2em;border:none}.EXLResultTabContainer div.EXLTabHeader{min-height:36px}.EXLDetailsTabContent div.EXLDetailsContent li{clear:both}.EXLDetailsTabContent div.EXLDetailsContent li>strong{display:block;float:left;width:8em;margin-right:1em;text-align:right;line-height:1.5}.EXLDetailsTabContent div.EXLDetailsContent li .EXLDetailsDisplayVal,.EXLDetailsTabContent div.EXLDetailsContent li .EXLLinkedField,.EXLDetailsTabContent div.EXLDetailsContent ul li div.EXLLinkedFieldTitle{display:block;margin-left:9em;line-height:1.5}.EXLDetailsTabContent div.EXLDetailsContent li[id^=MESH],.EXLDetailsTabContent div.EXLDetailsContent li[id^=Related],.EXLDetailsTabContent div.EXLDetailsContent li[id^=Subject],.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"],.EXLDetailsTabContent div.EXLDetailsContent li[id^=Author],.EXLDetailsTabContent div.EXLDetailsContent li[id^=Genre],.EXLDetailsTabContent div.EXLDetailsContent li[id^=Includes]{visibility:hidden;line-height:0}.EXLDetailsTabContent div.EXLDetailsContent li[id^=MESH] a,.EXLDetailsTabContent div.EXLDetailsContent li[id^=MESH] strong,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Related] a,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Related] strong,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Subject] a,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Subject] strong,.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] a,.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] strong,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Author] a,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Author] strong,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Genre] a,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Genre] strong,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Includes] a,.EXLDetailsTabContent div.EXLDetailsContent li[id^=Includes] strong{visibility:visible;line-height:1.5}.EXLDetailsTabContent div.EXLDetailsContent li br{display:none}.EXLDetailsTabContent div.EXLDetailsContent li[id^=Description] br{line-height:.75;display:inline-block}#exlidHeaderSearchLimits,#exlidMainMenuContainer,#scopesList,.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName{display:none}.EXLTabHeader div.EXLTabHeaderContent{padding-top:.9em}.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn{float:none;box-sizing:border-box;color:#fff;background-color:#38852e;padding:.7em .77em;min-width:5.14em;margin:0 .29em;border-radius:3px;font-size:12px;background-image:none;height:auto;text-transform:uppercase;border:none}.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn:focus{outline:#288BED auto 5px}.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:active,.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus,.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover,.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link,.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited{color:#fff}.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus,.EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover{text-decoration:underline}body.EXLFullView div.EXLResultsFooter div.EXLBackToResults,body.EXLFullView div.EXLResultsFooter.EXLResultsHeader div.EXLResultsNavigation{font-size:100%}#footerEXL{background:0 0;border:none}body,html{height:100%;min-height:100vh}uq-minimal-footer,uq-minimal-header,uql-connect-footer{z-index:1001!important;-webkit-box-flex:0;-webkit-flex:none;-ms-flex:none;flex:none;position:relative}#exlidSearchRibbon input.submit,#goButton{color:#fff;background-color:#2377CB;padding:.7em .57em;min-width:5.14em;margin:0 .29em;border-radius:3px;font-size:16px;background-image:none;height:auto;text-transform:uppercase;border:none}#exlidSearchRibbon input.submit:focus,#goButton:focus{outline:#288BED auto 5px}.EXLSearchFieldRibbonAdvancedSearchLink,.EXLSearchFieldRibbonBrowseSearchLink{clear:both;float:none;display:inline-block!important;width:auto;margin-top:1em;margin-bottom:2em}.EXLSearchFieldRibbonAdvancedSearchLink{padding-right:1em}.EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,.EXLSearchFieldRibbonBrowseSearchLink a{font-size:1em;padding-top:0}
+#preloader {
+  display: block; }
+  #preloader .header {
+    width: 100%;
+    height: 64px;
+    color: #FFF;
+    background-color: #49075E;
+    line-height: 64px;
+    padding-left: 10px;
+    font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif';
+    font-size: 20px; }
+  #preloader .preloader-card {
+    margin: 16px auto;
+    background-color: #FFF;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }
+  #preloader .preloader-card p {
+    font-family: 'helvetica', 'times new roman', 'sans-serif';
+    color: #595959; }
+  #preloader .preloader-card h2 {
+    line-break: auto;
+    white-space: normal;
+    font-size: 1.8em;
+    color: #757575;
+    font-weight: 400;
+    line-height: 1.1em; }
+  #preloader #preloader-loading {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 40px;
+    display: none; }
+  #preloader #preloader-unsupported {
+    padding: 20px 40px 40px 40px;
+    display: none; }
+
+body {
+  margin: 0px;
+  padding: 0px; }
+
+uq-minimal-header {
+  height: 100px;
+  display: block;
+  background-color: #49075E;
+  width: 100%; }
+
+uq-minimal-footer {
+  display: block;
+  width: 100%;
+  background-color: #49075E;
+  min-height: 140px; }
+
+uql-connect-footer {
+  display: block;
+  width: 100%;
+  background-color: #e5e5e5;
+  min-height: 240px; }
+
+@media all and (max-width: 1047px) {
+  uq-minimal-header {
+    height: 66px; } }
+@media all and (min-width: 1048px) {
+  uql-menu {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+    display: block;
+    width: 100%;
+    height: 67px;
+    background-color: #fff; } }
+#exlidHomeContainer {
+  height: calc(100vh/3); }
+
+#exlidHeaderSystemFeedback {
+  background-color: transparent;
+  border: none; }
+  #exlidHeaderSystemFeedback #alert-container {
+    background-color: #38852e;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    left: 0px;
+    height: 2em;
+    width: 100%;
+    padding: 10px 0px; }
+    #exlidHeaderSystemFeedback #alert-container #alert-text-container {
+      font-family: var(--font-family);
+      font-size: 0.9em;
+      color: white;
+      background-image: none;
+      margin-top: auto;
+      margin-bottom: auto; }
+      #exlidHeaderSystemFeedback #alert-container #alert-text-container a {
+        color: white;
+        text-decoration: underline; }
+
+#alert-icon-container {
+  background-color: white;
+  top: 4px;
+  height: 1em;
+  overflow: hidden;
+  border: none;
+  border-radius: 0.5em;
+  box-shadow: #999 0 1px 1px;
+  font-size: 1.4em;
+  color: transparent;
+  margin-right: 0.2em;
+  margin-left: 0.3em;
+  padding-right: 1em;
+  position: relative; }
+
+#alert-icon-container:after {
+  font-style: italic;
+  font-weight: bold;
+  content: "i";
+  display: block;
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Times New Roman", "Garamond", serif;
+  font-size: 0.65em;
+  color: #64b10b; }
+
+#exlidSearchTile {
+  border: none;
+  background-image: none;
+  height: auto;
+  width: 100%;
+  font-size: 1em;
+  padding-top: 40px; }
+  #exlidSearchTile .EXLSearchTabsContainer {
+    display: none !important; }
+  #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
+    border-bottom: 1px solid #333; }
+  #exlidSearchTile .EXLSearchFieldRibbonFormFields {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    padding: 4px 0 0 4px;
+    width: 90%;
+    height: 36px; }
+  #exlidSearchTile #exlidSearchRibbon {
+    margin: auto;
+    float: none; }
+    #exlidSearchTile #exlidSearchRibbon fieldset {
+      float: none; }
+    #exlidSearchTile #exlidSearchRibbon input#search_field {
+      background: #f2f2f2;
+      padding: 2px;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px; }
+    #exlidSearchTile #exlidSearchRibbon div.EXLSearchFieldRibbon {
+      border: 0px;
+      height: auto; }
+  #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
+    float: right;
+    width: auto;
+    padding-top: 1em;
+    padding-right: 7em;
+    margin-bottom: auto; }
+  #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
+    float: right;
+    width: auto;
+    margin-top: -1em;
+    margin-bottom: 2em; }
+
+/* selector hack - firefox needs just a little more space */
+body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
+  margin-top: -1.15em; }
+
+#exlidHeaderSearchLimits {
+  /* match the uql look and feel */
+  background-color: #fff;
+  /* remove border to visually integrate into uql search area */
+  border-bottom-width: 0;
+  /* move up from the default position */
+  margin-top: 1em;
+  /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
+  width: 55em;
+  padding-left: 1em;
+  margin-left: auto;
+  margin-right: auto; }
+  #exlidHeaderSearchLimits select {
+    font-size: 14.4px; }
+
+#exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
+  margin-top: 0.5em;
+  border: none; }
+#exlidAdvancedSearchRibbon input.submit {
+  color: #fff;
+  background-color: #2377CB;
+  padding: 0.7em 0.57em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 16px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none; }
+  #exlidAdvancedSearchRibbon input.submit:focus {
+    outline: #288BED auto 5px; }
+#exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection {
+  color: #fff;
+  background-color: #595959;
+  padding: 0.7em 0.57em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 16px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none; }
+  #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection:focus {
+    outline: #288BED auto 5px; }
+#exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
+  font-size: 16px;
+  padding-top: 13px; }
+
+.EXLDateRangeText .datebox {
+  min-width: 3em; }
+.EXLDateRangeText #slider-range {
+  display: none; }
+
+.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetRSSAction {
+  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/rss.png); }
+.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveSearchAction {
+  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/note-add.png); }
+.EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff {
+  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/star.png); }
+
+.EXLResultsList td.EXLResultNumber {
+  display: block;
+  font-weight: bold;
+  padding-top: 2em;
+  border: none; }
+
+.EXLResultTabContainer div.EXLTabHeader {
+  min-height: 36px; }
+
+/*-- Style item details tab as "table" --*/
+/* Make sure labels align with associated data */
+.EXLDetailsTabContent div.EXLDetailsContent li {
+  clear: both; }
+
+/* Float labels left, set width to 8em and align text right */
+.EXLDetailsTabContent div.EXLDetailsContent li > strong {
+  display: block;
+  float: left;
+  width: 8em;
+  margin-right: 1em;
+  text-align: right;
+  line-height: 1.5; }
+
+/* Position contents 9em to the left, leaving 1em of space between the labels and their associated data */
+.EXLDetailsTabContent div.EXLDetailsContent ul li div.EXLLinkedFieldTitle,
+.EXLDetailsTabContent div.EXLDetailsContent li .EXLDetailsDisplayVal,
+.EXLDetailsTabContent div.EXLDetailsContent li .EXLLinkedField {
+  display: block;
+  margin-left: 9em;
+  line-height: 1.5; }
+
+/* Hide semicolons between items in author, genre, MESH headings, related materials, and subject sections by making all text invisible */
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Related"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Subject"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] {
+  visibility: hidden;
+  line-height: 0; }
+
+/* Show labels and links in author, genre, MESH headings, related materials, and subject sections */
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Related"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Subject"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Related"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Subject"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] a {
+  visibility: visible;
+  line-height: 1.5; }
+
+/* Hide line breaks between items */
+.EXLDetailsTabContent div.EXLDetailsContent li br {
+  display: none; }
+
+/* Set line break height in description field to create space between paragraphs */
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Description"] br {
+  line-height: .75;
+  display: inline-block; }
+
+.EXLTabHeader div.EXLTabHeaderContent {
+  padding-top: 0.9em;
+  /* use this selector to style the container of the login link */ }
+  .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName {
+    display: none; }
+  .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn {
+    float: none;
+    box-sizing: border-box;
+    color: #fff;
+    background-color: #38852e;
+    padding: 0.7em 0.77em;
+    min-width: 5.14em;
+    margin: 0 0.29em;
+    border-radius: 3px;
+    font-size: 12px;
+    background-image: none;
+    height: auto;
+    text-transform: uppercase;
+    border: none; }
+    .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn:focus {
+      outline: #288BED auto 5px; }
+    .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:active, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
+      color: #fff; }
+    .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
+      text-decoration: underline; }
+
+body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div.EXLResultsFooter.EXLResultsHeader div.EXLResultsNavigation {
+  font-size: 100%; }
+
+#footerEXL {
+  background: none;
+  border: none; }
+
+#exlidMainMenuContainer,
+#scopesList {
+  display: none; }
+
+html,
+body {
+  height: 100%;
+  min-height: 100vh; }
+
+uq-minimal-header,
+uq-minimal-footer,
+uql-connect-footer {
+  z-index: 1001 !important;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  position: relative; }
+
+#exlidSearchRibbon input.submit,
+#goButton {
+  color: #fff;
+  background-color: #2377CB;
+  padding: 0.7em 0.57em;
+  min-width: 5.14em;
+  margin: 0 0.29em;
+  border-radius: 3px;
+  font-size: 16px;
+  background-image: none;
+  height: auto;
+  text-transform: uppercase;
+  border: none; }
+  #exlidSearchRibbon input.submit:focus,
+  #goButton:focus {
+    outline: #288BED auto 5px; }
+
+.EXLSearchFieldRibbonAdvancedSearchLink,
+.EXLSearchFieldRibbonBrowseSearchLink {
+  clear: both;
+  float: none;
+  display: inline-block !important;
+  width: auto;
+  margin-top: 1em;
+  margin-bottom: 2em; }
+
+.EXLSearchFieldRibbonAdvancedSearchLink {
+  padding-right: 1em; }
+
+.EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,
+.EXLSearchFieldRibbonBrowseSearchLink a {
+  font-size: 0.9em;
+  padding-top: 0px; }
+
+/*# sourceMappingURL=custom-styles.css.map */

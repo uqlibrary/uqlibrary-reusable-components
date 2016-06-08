@@ -12,3 +12,18 @@
 
 }
 
+//my account facets
+.EXLFacetContainer div.EXLFacetActionsV2 {
+
+  li.EXLFacetRSSAction {
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/rss.png);
+  }
+
+  li.EXLFacetSaveSearchAction {
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/note-add.png);
+  }
+
+  li.EXLFacetSaveToEShelfActionOff {
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/star.png);
+  }
+}
