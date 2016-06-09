@@ -62,34 +62,35 @@
     display: inline !important; /* back to default */
     clear: none;
   }
+}
 
-  #exlidHeaderSearchLimits {
-    /* match the uql look and feel */
+#exlidHeaderSearchLimits {
+  /* match the uql look and feel */
 
-    /* remove border to visually integrate into uql search area */
-    border-bottom-width: 0;
+  /* remove border to visually integrate into uql search area */
+  border-bottom-width: 0;
 
-    /* move up from the default position */
-    margin-top: 1em;
+  /* move up from the default position */
+  margin-top: 1em;
 
-    /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
-    width: 55em;
-    padding-left: 1em;
-    margin-left: auto;
-    margin-right: auto;
+  /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
+  width: 55em;
+  padding-left: 1em;
+  margin-left: auto;
+  margin-right: auto;
 
-    select {
-      font-size: 14.4px;
-    }
+  select {
+    font-size: 14.4px;
+  }
 
-    fieldset {
-      float: left;
-      width: 40em;
-      margin-top: -4.5em;
-      background-color: transparent;
-    }
+  fieldset {
+    float: left;
+    width: 40em;
+    margin-top: -4.5em;
+    background-color: transparent;
   }
 }
+
 
 
 /* selector hack: had to fix overflow blocking the Browse Search link on webkit, which meant firefox needed to be moved a little */
