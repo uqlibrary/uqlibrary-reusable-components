@@ -73,11 +73,17 @@ function loadSigninNotification() {
 
 function modifyUserAreaTile() {
   var userAreaRibbon = $('#exlidUserAreaTile #exlidUserAreaRibbon');
+
   if (userAreaRibbon) {
+
+    // move signin and signout button next to the user name
+    userAreaRibbon.find('.EXLLastItem').insertAfter(userAreaRibbon.find('#exlidUserName'));
+
     if (isUserLoggedIn()){
       // add saved searches and alerts link
       var savedSearches = $('<li id="exlidSavedSearches" class="EXLSavedSearches"><a href="query.do?fn=display">Saved searches & alerts</a></li>');
       userAreaRibbon.find('#exlidMyShelf').after(savedSearches);
+
     } else {
       // hide my account link
       userAreaRibbon.find('#exlidMyAccount').addClass('EXLHidden');

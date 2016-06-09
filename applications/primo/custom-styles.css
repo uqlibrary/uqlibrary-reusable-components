@@ -163,39 +163,34 @@ uql-connect-footer {
     float: right;
     width: 7em;
     margin-right: 9.1em;
-    margin-left: 1em; }
+    margin-left: 0.4em; }
   #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
     float: right;
     width: auto;
-    margin-left: 20em;
     display: inline !important;
     /* back to default */
     clear: none; }
-  #exlidSearchTile #exlidHeaderSearchLimits {
-    /* match the uql look and feel */
-    /* remove border to visually integrate into uql search area */
-    border-bottom-width: 0;
-    /* move up from the default position */
-    margin-top: 1em;
-    /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
-    width: 55em;
-    padding-left: 1em;
-    margin-left: auto;
-    margin-right: auto; }
-    #exlidSearchTile #exlidHeaderSearchLimits select {
-      font-size: 14.4px; }
-    #exlidSearchTile #exlidHeaderSearchLimits fieldset {
-      float: left;
-      width: 40em;
-      margin-top: -4.5em;
-      background-color: transparent; }
 
-/* selector hack: had to fix overflow blocking the Browse Search link on webkit, which meant firefox needed to be moved a little */
-body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
-  margin-top: -3.2em; }
-
-body:not(:-moz-handler-blocked) #exlidSearchTile #exlidHeaderSearchLimits fieldset {
-  margin-top: -4.7em; }
+#exlidHeaderSearchLimits {
+  /* match the uql look and feel */
+  background-color: #fff;
+  /* remove border to visually integrate into uql search area */
+  border-bottom-width: 0;
+  /* move up from the default position */
+  margin-top: 1em;
+  /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
+  width: 55em;
+  padding-left: 1em;
+  margin-left: auto;
+  margin-right: auto; }
+  #exlidHeaderSearchLimits select {
+    font-size: 14.4px; }
+  #exlidHeaderSearchLimits fieldset {
+    float: left;
+    width: 40em;
+    background-color: transparent;
+    margin-top: -4.5em;
+    padding-left: 0; }
 
 @media screen and (max-width: 500px) {
   #exlidHeaderSystemFeedback {
@@ -219,7 +214,14 @@ body:not(:-moz-handler-blocked) #exlidSearchTile #exlidHeaderSearchLimits fields
   .EXLSearchFieldRibbonFormSubmitSearch {
     position: relative;
     float: right;
-    width: 85px !important; } }
+    width: 85px !important; }
+
+  .EXLSearchFieldRibbonAdvancedSearchLink {
+    margin-right: 4.5em;
+    font-size: 0.8em; }
+
+  .EXLSearchFieldRibbonBrowseSearchLink {
+    font-size: 0.8em; } }
 #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
   margin-top: 0.5em;
   border: none; }
@@ -280,6 +282,20 @@ body:not(:-moz-handler-blocked) #exlidSearchTile #exlidHeaderSearchLimits fields
   background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/note-add.png); }
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff {
   background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/star.png); }
+
+#exlidUserAreaRibbon li {
+  background-image: none; }
+  #exlidUserAreaRibbon li a:link, #exlidUserAreaRibbon li a:visited {
+    text-decoration: underline;
+    color: #2377CB; }
+#exlidUserAreaRibbon #exlidUserName .EXLUserAreaStart {
+  width: 0px; }
+#exlidUserAreaRibbon #exlidMyShelf {
+  clear: left; }
+  #exlidUserAreaRibbon #exlidMyShelf span {
+    width: 0px;
+    margin: 0px;
+    background-image: none; }
 
 .EXLResultsList td.EXLResultNumber {
   display: block;
