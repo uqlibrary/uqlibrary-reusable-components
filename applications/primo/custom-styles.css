@@ -207,14 +207,14 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
 @media screen and (max-width: 500px) {
   #exlidSearchRibbon fieldset,
   #exlidSearchRibbon div.EXLSearchFieldRibbon {
-    width: 95%; }
+    width: 93%; }
 
   .EXLSearchFieldRibbonFormFields {
     display: inline-block;
     width: 80% !important; }
 
   .EXLSearchFieldRibbonFormSearchFor {
-    width: 89%;
+    width: 89% !important;
     height: 85%; }
 
   .EXLSearchFieldRibbonFormSubmitSearch {
