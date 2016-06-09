@@ -133,7 +133,7 @@ uql-connect-footer {
   height: auto;
   width: 100%;
   font-size: 1em;
-  padding: 40px 4px 4px 4px; }
+  padding-top: 40px; }
   #exlidSearchTile .EXLSearchTabsContainer {
     display: none !important; }
   #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
@@ -205,22 +205,25 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
     /* may not need this */ }
 
 @media screen and (max-width: 500px) {
-  #exlidSearchRibbon fieldset,
-  #exlidSearchRibbon div.EXLSearchFieldRibbon {
+  #exlidSearchRibbon fieldset {
     width: 93%;
+    margin: auto; }
+  #exlidSearchRibbon div.EXLSearchFieldRibbon {
+    width: 100%;
     margin: auto; }
 
   .EXLSearchFieldRibbonFormFields {
     display: inline-block;
-    width: 78% !important; }
+    width: calc(100% - 90px) !important; }
 
   .EXLSearchFieldRibbonFormSearchFor {
-    width: 89% !important;
+    width: 88% !important;
     height: 85%; }
 
   .EXLSearchFieldRibbonFormSubmitSearch {
     position: relative;
-    float: right; } }
+    float: right;
+    width: 85px !important; } }
 #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
   margin-top: 0.5em;
   border: none; }

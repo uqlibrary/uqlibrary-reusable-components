@@ -5,7 +5,7 @@
   height: auto;
   width: 100%;
   font-size: 1em;
-  padding: 40px 4px 4px 4px;
+  padding-top: 40px;
 
   // hide scope from simple search box
   .EXLSearchTabsContainer {
@@ -109,26 +109,31 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
 @media screen and (max-width: 500px) {
 
   #exlidSearchRibbon {
-    fieldset,
-    div.EXLSearchFieldRibbon {
+    fieldset {
       width: 93%;
+      margin: auto;
+    }
+
+    div.EXLSearchFieldRibbon {
+      width: 100%;
       margin: auto;
     }
   }
 
   .EXLSearchFieldRibbonFormFields {
     display: inline-block;
-    width: 78% !important;
+    width: calc(100% - 90px) !important
   }
 
   .EXLSearchFieldRibbonFormSearchFor {
-    width: 89% !important;
+    width: 88% !important;
     height: 85%;
   }
 
   .EXLSearchFieldRibbonFormSubmitSearch {
     position: relative;
     float: right;
+    width: 85px !important;
   }
 
 }
