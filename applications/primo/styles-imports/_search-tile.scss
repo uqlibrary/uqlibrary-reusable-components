@@ -112,12 +112,13 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
     fieldset,
     div.EXLSearchFieldRibbon {
       width: 93%;
+      margin: auto;
     }
   }
 
   .EXLSearchFieldRibbonFormFields {
     display: inline-block;
-    width: 80% !important;
+    width: 78% !important;
   }
 
   .EXLSearchFieldRibbonFormSearchFor {
