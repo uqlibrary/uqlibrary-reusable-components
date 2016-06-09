@@ -86,8 +86,9 @@
   fieldset {
     float: left;
     width: 40em;
-    margin-top: -4.5em;
     background-color: transparent;
+    margin-top: -4.5em;
+    padding-left: 0;
   }
 }
 
@@ -129,6 +130,10 @@
 
   .EXLSearchFieldRibbonAdvancedSearchLink {
     margin-right: 4.5em;
+    font-size: 0.8em;
   }
 
+  .EXLSearchFieldRibbonBrowseSearchLink {
+    font-size: 0.8em;
+  }
 }
