@@ -288,6 +288,10 @@ uql-connect-footer {
   #exlidUserAreaRibbon li a:link, #exlidUserAreaRibbon li a:visited {
     text-decoration: underline;
     color: #2377CB; }
+#exlidUserAreaRibbon .EXLLastItem :before {
+  content: "("; }
+#exlidUserAreaRibbon .EXLLastItem :after {
+  content: ")"; }
 #exlidUserAreaRibbon #exlidUserName .EXLUserAreaStart {
   width: 0px; }
 #exlidUserAreaRibbon #exlidMyShelf {

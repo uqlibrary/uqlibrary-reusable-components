@@ -10,6 +10,14 @@
       color: $accent-color;
     }
   }
+  .EXLLastItem{
+    :before {
+      content: "(";
+    }
+    :after {
+      content: ")";
+    }
+  }
 
   #exlidUserName .EXLUserAreaStart {
     width: 0px;

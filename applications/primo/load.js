@@ -87,6 +87,9 @@ function modifyUserAreaTile() {
     } else {
       // hide my account link
       userAreaRibbon.find('#exlidMyAccount').addClass('EXLHidden');
+
+      // insert a login reminder after myself
+      userAreaRibbon.find('#exlidMyShelf').append('<span> - log in for more options</span>');
     }
   }
 
