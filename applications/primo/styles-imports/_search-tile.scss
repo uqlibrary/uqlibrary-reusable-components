@@ -103,6 +103,10 @@ body:not(:-moz-handler-blocked) #exlidSearchTile #exlidHeaderSearchLimits  field
 
 @media screen and (max-width: 500px) {
 
+  #exlidHeaderSystemFeedback {
+    display: block;
+  }
+
   #exlidSearchRibbon {
     fieldset {
       width: 93%;

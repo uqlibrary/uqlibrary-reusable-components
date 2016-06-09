@@ -160,51 +160,47 @@ uql-connect-footer {
       border: 0;
       height: auto; }
   #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
-    position: absolute;
-    right: 23em;
+    float: right;
     width: 7em;
-    margin-right: 0;
-    margin-bottom: auto;
-    padding-top: 0.7em;
-    padding-right: 0; }
+    margin-right: 9.1em;
+    margin-left: 1em; }
   #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
     float: right;
     width: auto;
-    margin-top: -1em;
-    margin-right: 10.2em;
-    margin-bottom: 2em;
-    padding-top: 2.7em; }
+    margin-left: 20em;
+    display: inline !important;
+    /* back to default */
+    clear: none; }
+  #exlidSearchTile #exlidHeaderSearchLimits {
+    /* match the uql look and feel */
+    /* remove border to visually integrate into uql search area */
+    border-bottom-width: 0;
+    /* move up from the default position */
+    margin-top: 1em;
+    /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
+    width: 55em;
+    padding-left: 1em;
+    margin-left: auto;
+    margin-right: auto; }
+    #exlidSearchTile #exlidHeaderSearchLimits select {
+      font-size: 14.4px; }
+    #exlidSearchTile #exlidHeaderSearchLimits fieldset {
+      float: left;
+      width: 40em;
+      margin-top: -4.5em;
+      background-color: transparent; }
 
 /* selector hack: had to fix overflow blocking the Browse Search link on webkit, which meant firefox needed to be moved a little */
-body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
-  margin-top: 0.85em;
-  padding-right: 2em;
-  right: 32.2em; }
-
 body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
-  margin-top: -1.15em;
-  padding-top: 3em; }
+  margin-top: -3.2em; }
 
-#exlidHeaderSearchLimits {
-  /* match the uql look and feel */
-  background-color: #fff;
-  /* remove border to visually integrate into uql search area */
-  border-bottom-width: 0;
-  /* move up from the default position */
-  margin-top: 1em;
-  /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
-  width: 55em;
-  padding-left: 1em;
-  margin-left: auto;
-  margin-right: auto; }
-  #exlidHeaderSearchLimits select {
-    font-size: 14.4px; }
-  #exlidHeaderSearchLimits fieldset {
-    padding-left: 0;
-    width: 50%;
-    /* may not need this */ }
+body:not(:-moz-handler-blocked) #exlidSearchTile #exlidHeaderSearchLimits fieldset {
+  margin-top: -4.7em; }
 
 @media screen and (max-width: 500px) {
+  #exlidHeaderSystemFeedback {
+    display: block; }
+
   #exlidSearchRibbon fieldset {
     width: 93%;
     margin: auto; }
