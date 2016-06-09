@@ -133,7 +133,7 @@ uql-connect-footer {
   height: auto;
   width: 100%;
   font-size: 1em;
-  padding-top: 40px; }
+  padding: 40px 4px 4px 4px; }
   #exlidSearchTile .EXLSearchTabsContainer {
     display: none !important; }
   #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
@@ -157,23 +157,33 @@ uql-connect-footer {
       font-weight: 400;
       line-height: 24px; }
     #exlidSearchTile #exlidSearchRibbon div.EXLSearchFieldRibbon {
-      border: 0px;
+      border: 0;
       height: auto; }
   #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
-    float: right;
-    width: auto;
-    padding-top: 1em;
-    padding-right: 7em;
-    margin-bottom: auto; }
+    position: absolute;
+    right: 23em;
+    width: 7em;
+    margin-right: 0;
+    margin-bottom: auto;
+    padding-top: 0.7em;
+    padding-right: 0; }
   #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
     float: right;
     width: auto;
     margin-top: -1em;
-    margin-bottom: 2em; }
+    margin-right: 10.2em;
+    margin-bottom: 2em;
+    padding-top: 2.7em; }
 
-/* selector hack - firefox needs just a little more space */
+/* selector hack: had to fix overflow blocking the Browse Search link on webkit, which meant firefox needed to be moved a little */
+body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
+  margin-top: 0.85em;
+  padding-right: 2em;
+  right: 32.2em; }
+
 body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
-  margin-top: -1.15em; }
+  margin-top: -1.15em;
+  padding-top: 3em; }
 
 #exlidHeaderSearchLimits {
   /* match the uql look and feel */
@@ -189,7 +199,27 @@ body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSear
   margin-right: auto; }
   #exlidHeaderSearchLimits select {
     font-size: 14.4px; }
+  #exlidHeaderSearchLimits fieldset {
+    padding-left: 0;
+    width: 50%;
+    /* may not need this */ }
 
+@media screen and (max-width: 500px) {
+  #exlidSearchRibbon fieldset,
+  #exlidSearchRibbon div.EXLSearchFieldRibbon {
+    width: 95%; }
+
+  .EXLSearchFieldRibbonFormFields {
+    display: inline-block;
+    width: 80% !important; }
+
+  .EXLSearchFieldRibbonFormSearchFor {
+    width: 89%;
+    height: 85%; }
+
+  .EXLSearchFieldRibbonFormSubmitSearch {
+    position: relative;
+    float: right; } }
 #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
   margin-top: 0.5em;
   border: none; }
