@@ -66,6 +66,7 @@
 
 #exlidHeaderSearchLimits {
   /* match the uql look and feel */
+  background-color: #fff;
 
   /* remove border to visually integrate into uql search area */
   border-bottom-width: 0;
@@ -91,15 +92,6 @@
   }
 }
 
-
-
-/* selector hack: had to fix overflow blocking the Browse Search link on webkit, which meant firefox needed to be moved a little */
-body:not(:-moz-handler-blocked) #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
-  margin-top: -3.2em;
-}
-body:not(:-moz-handler-blocked) #exlidSearchTile #exlidHeaderSearchLimits  fieldset {
-  margin-top: -4.7em;
-}
 
 
 @media screen and (max-width: 500px) {
