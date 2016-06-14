@@ -162,7 +162,7 @@ uql-connect-footer {
   #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink {
     float: right;
     width: 7em;
-    margin-right: 9.1em;
+    margin-right: 3.9em;
     margin-left: 0.4em; }
   #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
     float: right;
@@ -189,7 +189,7 @@ uql-connect-footer {
     float: left;
     width: 40em;
     background-color: transparent;
-    margin-top: -4.5em;
+    margin-top: -1em;
     padding-left: 0; }
 
 @media screen and (max-width: 500px) {
@@ -217,11 +217,7 @@ uql-connect-footer {
     width: 85px !important; }
 
   .EXLSearchFieldRibbonAdvancedSearchLink {
-    margin-right: 4.5em;
-    font-size: 0.8em; }
-
-  .EXLSearchFieldRibbonBrowseSearchLink {
-    font-size: 0.8em; } }
+    margin-right: 1em; } }
 #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
   margin-top: 0.5em;
   border: none; }
@@ -404,6 +400,9 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 #footerEXL {
   background: none;
   border: none; }
+
+.EXLFooterUpdateContainer {
+  display: none; }
 
 #exlidMainMenuContainer,
 #scopesList {
