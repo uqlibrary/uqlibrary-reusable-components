@@ -292,13 +292,20 @@ uql-connect-footer {
         border-bottom: 1px solid #000; }
 
 @media screen and (max-width: 500px) {
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
+    float: none;
+    clear: both;
+    display: block;
+    width: 80vw;
+    text-align: center;
+    text-indent: 0; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon fieldset {
     margin: 0 auto;
     width: 80vw; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
     padding: 0;
     margin: 0 auto;
-    width: 95vw;
+    width: 81vw;
     overflow: hidden; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
@@ -332,13 +339,6 @@ uql-connect-footer {
     display: block; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon input.submit {
     margin: 0; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormLinks {
-    float: none;
-    clear: both;
-    display: block;
-    width: 80vw;
-    text-align: center;
-    text-indent: 0; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLBrowseFieldRibbon {
     padding: 0;
     width: 80vw; }
