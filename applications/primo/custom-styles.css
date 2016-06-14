@@ -261,12 +261,25 @@ uql-connect-footer {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
     border: none; }
 
-.EXLSearchFieldRibbonFormSubmitSearch,
-.EXLAdvancedSearchClearSelection {
-  float: none;
-  display: block;
-  clear: both; }
-
+@media screen and (max-width: 500px) {
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input {
+    width: 95vw; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLAdvancedSearchFormRowInlineInput {
+    display: block; }
+  #exlidAdvancedSearchTile .EXLSearchFieldRibbonFormSubmitSearch,
+  #exlidAdvancedSearchTile .EXLAdvancedSearchClearSelection {
+    float: none;
+    display: block;
+    clear: both;
+    margin: auto; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormFieldsGroup2 {
+    border: none;
+    width: 95vw; }
+  #exlidAdvancedSearchTile .EXLAdvancedSearchFormRow label {
+    display: block;
+    float: none;
+    width: 95vw;
+    padding: 5px 0; } }
 .EXLDateRangeText .datebox {
   min-width: 3em; }
 .EXLDateRangeText #slider-range {

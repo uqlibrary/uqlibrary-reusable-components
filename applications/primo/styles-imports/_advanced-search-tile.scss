@@ -37,9 +37,42 @@
   }
 }
 
-.EXLSearchFieldRibbonFormSubmitSearch,
-.EXLAdvancedSearchClearSelection {
-  float: none;
-  display: block;
-  clear: both;
+@media screen and (max-width: 500px) {
+
+  #exlidAdvancedSearchTile {
+
+    //keywords filter
+    #exlidAdvancedSearchRibbon input {
+      width: 95vw;
+    }
+
+    #exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLAdvancedSearchFormRowInlineInput {
+      display: block;
+    }
+
+    .EXLSearchFieldRibbonFormSubmitSearch,
+    .EXLAdvancedSearchClearSelection {
+      float: none;
+      display: block;
+      clear: both;
+      margin: auto;
+    }
+
+    //publishing filter
+    #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormFieldsGroup2 {
+      border: none;
+      width: 95vw;
+    }
+
+    .EXLAdvancedSearchFormRow label {
+      display: block;
+      float: none;
+      width: 95vw;
+      padding: 5px 0;
+    }
+
+
+
+  }
+
 }
