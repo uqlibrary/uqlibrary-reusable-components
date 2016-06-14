@@ -8,6 +8,9 @@
 
   #exlidAdvancedSearchRibbon {
 
+    max-width: 80em;
+    margin: 0 auto;
+
     div.EXLSearchFieldRibbonFormSubmitSearch {
       margin-top: 0.5em;
       border: none;
@@ -39,7 +42,7 @@
     &.EXLAdvancedBrowseRibbon {
 
       .EXLBrowseFieldRibbon {
-        width: 55em;
+        max-width: 80em;
         margin: 0 auto;
 
         border: none;
@@ -67,6 +70,7 @@
 
         background-color: #f2f2f2;
         border-radius: 3px;
+        border: none;
         padding: 4px 0 0 4px;
         height: 36px;
         margin-left: 5px;

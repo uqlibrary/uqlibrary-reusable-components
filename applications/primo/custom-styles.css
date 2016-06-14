@@ -222,70 +222,74 @@ uql-connect-footer {
   border-color: #fff;
   background-image: none;
   background: none; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
-    margin-top: 0.5em;
-    border: none; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit {
-    color: #fff;
-    background-color: #2377CB;
-    padding: 0.7em 0.57em;
-    min-width: 5.14em;
-    margin: 0 0.29em;
-    border-radius: 3px;
-    font-size: 16px;
-    background-image: none;
-    height: auto;
-    text-transform: uppercase;
-    border: none;
-    -webkit-appearance: none; }
-    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit:focus {
-      outline: #288BED auto 5px; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection {
-    color: #fff;
-    background-color: #595959;
-    padding: 0.7em 0.57em;
-    min-width: 5.14em;
-    margin: 0 0.29em;
-    border-radius: 3px;
-    font-size: 16px;
-    background-image: none;
-    height: auto;
-    text-transform: uppercase;
-    border: none;
-    -webkit-appearance: none; }
-    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection:focus {
-      outline: #288BED auto 5px; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
-    font-size: 16px;
-    padding-top: 13px; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchTabsContainer {
-    display: none; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
-    border: none; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLBrowseFieldRibbon {
-    width: 55em;
-    margin: 0 auto;
-    border: none;
-    background: none; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormFields {
-    float: none;
-    clear: both; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormSelectedBrowse {
-    float: none;
-    clear: both;
-    display: inline-block; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
-    float: none;
-    clear: both;
-    display: inline-block;
-    background-color: #f2f2f2;
-    border-radius: 3px;
-    padding: 4px 0 0 4px;
-    height: 36px;
-    margin-left: 5px; }
-    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor input {
-      background: none;
-      border-bottom: 1px solid #000; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon {
+    max-width: 80em;
+    margin: 0 auto; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
+      margin-top: 0.5em;
+      border: none; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit {
+      color: #fff;
+      background-color: #2377CB;
+      padding: 0.7em 0.57em;
+      min-width: 5.14em;
+      margin: 0 0.29em;
+      border-radius: 3px;
+      font-size: 16px;
+      background-image: none;
+      height: auto;
+      text-transform: uppercase;
+      border: none;
+      -webkit-appearance: none; }
+      #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit:focus {
+        outline: #288BED auto 5px; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection {
+      color: #fff;
+      background-color: #595959;
+      padding: 0.7em 0.57em;
+      min-width: 5.14em;
+      margin: 0 0.29em;
+      border-radius: 3px;
+      font-size: 16px;
+      background-image: none;
+      height: auto;
+      text-transform: uppercase;
+      border: none;
+      -webkit-appearance: none; }
+      #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection:focus {
+        outline: #288BED auto 5px; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
+      font-size: 16px;
+      padding-top: 13px; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchTabsContainer {
+      display: none; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
+      border: none; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLBrowseFieldRibbon {
+      max-width: 80em;
+      margin: 0 auto;
+      border: none;
+      background: none; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormFields {
+      float: none;
+      clear: both; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormSelectedBrowse {
+      float: none;
+      clear: both;
+      display: inline-block; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
+      float: none;
+      clear: both;
+      display: inline-block;
+      background-color: #f2f2f2;
+      border-radius: 3px;
+      border: none;
+      padding: 4px 0 0 4px;
+      height: 36px;
+      margin-left: 5px; }
+      #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor input {
+        background: none;
+        border-bottom: 1px solid #000; }
 
 @media screen and (max-width: 500px) {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
