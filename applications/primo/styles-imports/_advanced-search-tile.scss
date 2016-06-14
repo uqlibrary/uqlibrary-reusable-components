@@ -45,7 +45,7 @@
       //keywords filter
       input,
       select {
-        width: 90vw;
+        width: 80vw;
       }
 
       //search buttons
@@ -58,12 +58,13 @@
       }
 
       //publishing filter
+      .EXLSearchFieldRibbonFormFieldsGroup1,
       .EXLSearchFieldRibbonFormFieldsGroup2 {
         border: none;
-        width: 90vw;
+        width: 80vw;
 
         label {
-          width: 90vw;
+          width: 80vw;
         }
       }
 
@@ -73,7 +74,7 @@
         label {
           display: block;
           float: none;
-          width: 90vw;
+          width: 80vw;
           padding: 5px 0;
         }
 
