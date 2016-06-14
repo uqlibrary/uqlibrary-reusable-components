@@ -331,6 +331,8 @@ uql-connect-footer {
     margin: 0px;
     background-image: none; }
 
+.EXLResultsList .EXLTabHeaderButtonSendTo img {
+  padding-left: 0.4em; }
 .EXLResultsList td.EXLResultNumber {
   display: block;
   font-weight: bold;
