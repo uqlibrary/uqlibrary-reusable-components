@@ -40,47 +40,48 @@
 @media screen and (max-width: 500px) {
 
   #exlidAdvancedSearchTile {
+    #exlidAdvancedSearchRibbon {
 
-    //keywords filter
-    #exlidAdvancedSearchRibbon input {
-      width: 90vw;
-    }
-
-    #exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLAdvancedSearchFormRowInlineInput {
-      display: block;
-    }
-
-    //search buttons
-    .EXLSearchFieldRibbonFormSubmitSearch,
-    .EXLAdvancedSearchClearSelection {
-      float: none !important;
-      display: block !important;
-      clear: both !important;
-      margin: auto !important;
-    }
-
-    //publishing filter
-    div.EXLSearchFieldRibbonFormFieldsGroup2 {
-      border: none;
-      width: 90vw;
-    }
-
-
-    .EXLAdvancedSearchFormRow,
-    .EXLAdvancedSearchFormDateRangeRow,
-    .EXLAdvancedSearchFormDateRangeRow {
-      label {
-        display: block;
-        float: none;
+      //keywords filter
+      input,
+      select {
         width: 90vw;
-        padding: 5px 0;
       }
-    }
 
-    #exlidAdvancedSearchRibbon select {
-      width: 95vw;
-    }
+      //search buttons
+      .EXLSearchFieldRibbonFormSubmitSearch,
+      .EXLAdvancedSearchClearSelection {
+        float: none !important;
+        display: block !important;
+        clear: both !important;
+        margin: auto !important;
+      }
 
+      //publishing filter
+      .EXLSearchFieldRibbonFormFieldsGroup2 {
+        border: none;
+        width: 90vw;
+
+        label {
+          width: 90vw;
+        }
+      }
+
+      .EXLAdvancedSearchFormRow,
+      .EXLAdvancedSearchFormDateRangeRow,
+      .EXLAdvancedSearchFormDateRangeRow {
+        label {
+          display: block;
+          float: none;
+          width: 90vw;
+          padding: 5px 0;
+        }
+
+        fieldset span.EXLAdvancedSearchFormRowInlineInput {
+          display: block;
+        }
+      }
+
+    }
   }
-
 }

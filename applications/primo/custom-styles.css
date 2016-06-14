@@ -262,28 +262,31 @@ uql-connect-footer {
     border: none; }
 
 @media screen and (max-width: 500px) {
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input {
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input,
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
     width: 90vw; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon div.EXLAdvancedSearchFormRow fieldset span.EXLAdvancedSearchFormRowInlineInput {
-    display: block; }
-  #exlidAdvancedSearchTile .EXLSearchFieldRibbonFormSubmitSearch,
-  #exlidAdvancedSearchTile .EXLAdvancedSearchClearSelection {
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch,
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchClearSelection {
     float: none !important;
     display: block !important;
     clear: both !important;
     margin: auto !important; }
-  #exlidAdvancedSearchTile div.EXLSearchFieldRibbonFormFieldsGroup2 {
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormFieldsGroup2 {
     border: none;
     width: 90vw; }
-  #exlidAdvancedSearchTile .EXLAdvancedSearchFormRow label,
-  #exlidAdvancedSearchTile .EXLAdvancedSearchFormDateRangeRow label,
-  #exlidAdvancedSearchTile .EXLAdvancedSearchFormDateRangeRow label {
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormFieldsGroup2 label {
+      width: 90vw; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormRow label,
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormDateRangeRow label,
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormDateRangeRow label {
     display: block;
     float: none;
     width: 90vw;
     padding: 5px 0; }
-  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
-    width: 95vw; } }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormRow fieldset span.EXLAdvancedSearchFormRowInlineInput,
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormDateRangeRow fieldset span.EXLAdvancedSearchFormRowInlineInput,
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormDateRangeRow fieldset span.EXLAdvancedSearchFormRowInlineInput {
+    display: block; } }
 .EXLDateRangeText .datebox {
   min-width: 3em; }
 .EXLDateRangeText #slider-range {
