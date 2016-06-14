@@ -292,6 +292,9 @@ uql-connect-footer {
         border-bottom: 1px solid #000; }
 
 @media screen and (max-width: 500px) {
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon fieldset {
+    margin: 0 auto;
+    width: 80vw; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
     padding: 0;
     margin: 0 auto;
@@ -299,7 +302,7 @@ uql-connect-footer {
     overflow: hidden; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
-    width: 80vw;
+    width: 78vw;
     margin: 5px auto; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchClearSelection {
@@ -345,7 +348,7 @@ uql-connect-footer {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormSelectedCollectionLabel {
     display: block; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
-    width: 80vw;
+    width: 80vw !important;
     margin: 10px 0; } }
 .EXLDateRangeText .datebox {
   min-width: 3em; }

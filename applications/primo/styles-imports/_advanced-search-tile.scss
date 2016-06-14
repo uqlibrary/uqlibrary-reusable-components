@@ -105,6 +105,11 @@
   #exlidAdvancedSearchTile {
     #exlidAdvancedSearchRibbon {
 
+      fieldset {
+        margin: 0 auto;
+        width: 80vw;
+      }
+
       //outer search container
       .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
         padding: 0;
@@ -116,7 +121,7 @@
       //keywords filter
       input,
       select {
-        width: 80vw;
+        width: 78vw;
         margin: 5px auto;
       }
 
@@ -163,6 +168,7 @@
         input.submit {
           margin: 0;
         }
+
         .EXLSearchFieldRibbonFormLinks {
           float: none;
           clear: both;
@@ -187,7 +193,7 @@
         }
 
         .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
-          width: 80vw;
+          width: 80vw !important;
           margin: 10px 0;
         }
 
