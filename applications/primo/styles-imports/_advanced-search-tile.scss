@@ -157,6 +157,24 @@
         }
       }
 
+      //browser
+      &.EXLAdvancedBrowseRibbon {
+        .EXLSearchFieldRibbonFormSelectedBrowse {
+          width: 80vw;
+          margin: 0;
+        }
+
+        .EXLSearchFieldRibbonFormSelectedCollectionLabel {
+          display: block;
+        }
+
+        .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
+          width: 80vw;
+          margin: 10px 0;
+        }
+
+      }
+
     }
   }
 }

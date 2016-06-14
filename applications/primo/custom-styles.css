@@ -326,7 +326,15 @@ uql-connect-footer {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormRow fieldset span.EXLAdvancedSearchFormRowInlineInput,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormDateRangeRow fieldset span.EXLAdvancedSearchFormRowInlineInput,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormDateRangeRow fieldset span.EXLAdvancedSearchFormRowInlineInput {
-    display: block; } }
+    display: block; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormSelectedBrowse {
+    width: 80vw;
+    margin: 0; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormSelectedCollectionLabel {
+    display: block; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
+    width: 80vw;
+    margin: 10px 0; } }
 .EXLDateRangeText .datebox {
   min-width: 3em; }
 .EXLDateRangeText #slider-range {
