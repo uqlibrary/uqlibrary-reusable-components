@@ -219,7 +219,7 @@ uql-connect-footer {
   .EXLSearchFieldRibbonAdvancedSearchLink {
     margin-right: 1em; } }
 #exlidAdvancedSearchTile {
-  border: none;
+  border-color: #fff;
   background-image: none;
   background: none; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {
