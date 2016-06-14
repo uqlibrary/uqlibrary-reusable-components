@@ -262,6 +262,30 @@ uql-connect-footer {
     display: none; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
     border: none; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedBrowseRibbon .EXLBrowseFieldRibbon {
+    width: 55em;
+    margin: 0 auto;
+    border: none;
+    background: none; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormFields {
+    float: none;
+    clear: both; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormSelectedBrowse {
+    float: none;
+    clear: both;
+    display: inline-block; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
+    float: none;
+    clear: both;
+    display: inline-block;
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    padding: 4px 0 0 4px;
+    height: 36px;
+    margin-left: 5px; }
+    #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor input {
+      background: none;
+      border-bottom: 1px solid #000; }
 
 @media screen and (max-width: 500px) {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
@@ -272,7 +296,7 @@ uql-connect-footer {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
     width: 80vw;
-    margin: 5px 0; }
+    margin: 5px auto; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchClearSelection {
     float: none !important;

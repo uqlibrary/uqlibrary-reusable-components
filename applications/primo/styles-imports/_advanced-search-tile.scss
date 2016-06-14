@@ -34,6 +34,65 @@
     .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
       border: none;
     }
+
+    //browse search is part of advanced search
+    .EXLAdvancedBrowseRibbon {
+
+      .EXLBrowseFieldRibbon {
+        width: 55em;
+        margin: 0 auto;
+
+        border: none;
+        background: none;
+      }
+
+      //browse container
+      .EXLSearchFieldRibbonFormFields {
+        float: none;
+        clear: both;
+      }
+
+      //browse combobox
+      .EXLSearchFieldRibbonFormSelectedBrowse {
+        float: none;
+        clear: both;
+        display: inline-block;
+      }
+
+      //browse text box
+      .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
+        float: none;
+        clear: both;
+        display: inline-block;
+
+        background-color: #f2f2f2;
+        border-radius: 3px;
+        padding: 4px 0 0 4px;
+        height: 36px;
+        margin-left: 5px;
+
+        input {
+          background: none;
+          border-bottom: 1px solid #000;
+        }
+
+      }
+
+
+      //.EXLSearchFieldRibbonFormSelectedBrowse .EXLSearchFieldRibbonFormSelectedCollectionLabel {
+      //  display: block;
+      //}
+      //
+      //input#search_field {
+      //  line-height: 1.5em;
+      //  padding: 0;
+      //}
+      //
+      //.EXLSearchFieldRibbonFormSearchFor {
+      //  margin-top: 10px;
+      //}
+
+    }
   }
 }
 
@@ -54,7 +113,7 @@
       input,
       select {
         width: 80vw;
-        margin: 5px 0;
+        margin: 5px auto;
       }
 
       //search buttons
