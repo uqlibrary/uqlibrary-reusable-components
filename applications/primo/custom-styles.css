@@ -262,10 +262,15 @@ uql-connect-footer {
     border: none; }
 
 @media screen and (max-width: 500px) {
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
+    padding: 0;
+    margin: 0;
+    width: 95vw;
+    overflow: hidden; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
     width: 80vw;
-    padding: 5px 0; }
+    margin: 5px 0; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchClearSelection {
     float: none !important;
