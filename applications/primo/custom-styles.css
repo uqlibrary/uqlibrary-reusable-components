@@ -261,6 +261,12 @@ uql-connect-footer {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
     border: none; }
 
+.EXLSearchFieldRibbonFormSubmitSearch,
+.EXLAdvancedSearchClearSelection {
+  float: none;
+  display: block;
+  clear: both; }
+
 .EXLDateRangeText .datebox {
   min-width: 3em; }
 .EXLDateRangeText #slider-range {
