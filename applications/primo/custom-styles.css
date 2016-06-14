@@ -327,6 +327,18 @@ uql-connect-footer {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormDateRangeRow fieldset span.EXLAdvancedSearchFormRowInlineInput,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchFormDateRangeRow fieldset span.EXLAdvancedSearchFormRowInlineInput {
     display: block; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon input.submit {
+    margin: 0; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormLinks {
+    float: none;
+    clear: both;
+    display: block;
+    width: 80vw;
+    text-align: center;
+    text-indent: 0; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLBrowseFieldRibbon {
+    padding: 0;
+    width: 80vw; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormSelectedBrowse {
     width: 80vw;
     margin: 0; }
