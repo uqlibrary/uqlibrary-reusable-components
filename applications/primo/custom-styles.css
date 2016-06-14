@@ -264,7 +264,8 @@ uql-connect-footer {
 @media screen and (max-width: 500px) {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
-    width: 80vw; }
+    width: 80vw;
+    padding: 5px 0; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchClearSelection {
     float: none !important;
