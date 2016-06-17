@@ -89,7 +89,7 @@ function modifyUserAreaTile() {
       userAreaRibbon.find('#exlidMyAccount').addClass('EXLHidden');
 
       // insert a login reminder after myself
-      userAreaRibbon.find('#exlidMyShelf').append('<span> - log in for more options</span>');
+      userAreaRibbon.find('#exlidMyShelf').append('<span> - temporary if not logged in</span>');
     }
   }
 
