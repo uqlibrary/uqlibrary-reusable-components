@@ -69,6 +69,19 @@ uql-connect-footer {
     width: 100%;
     height: 67px;
     background-color: #fff; } }
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
+
+* {
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
+
+a:link, a:visited {
+  color: #2377CB !important;
+  text-decoration: none; }
+
 #exlidHomeContainer {
   height: calc(100vh/3); }
 
@@ -95,7 +108,7 @@ uql-connect-footer {
       margin-top: auto;
       margin-bottom: auto; }
       #exlidHeaderSystemFeedback #alert-container #alert-text-container a {
-        color: white;
+        color: #fff !important;
         text-decoration: underline; }
 
 #alert-icon-container {
@@ -507,15 +520,6 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 #exlidMainMenuContainer,
 #scopesList {
   display: none; }
-
-html,
-body {
-  height: 100%;
-  min-height: 100vh;
-  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
-
-* {
-  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
 
 uq-minimal-header,
 uq-minimal-footer,

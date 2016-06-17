@@ -39,6 +39,23 @@
 }
 
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
+
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+* {
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+a:link, a:visited {
+  color: $accent-color !important;
+  text-decoration: none
+}
+
 @import "styles-imports/home-page";
 @import "styles-imports/login-bar";
 @import "styles-imports/search-tile";
@@ -57,16 +74,6 @@
 
 @import "styles-imports/hide";
 
-html,
-body {
-  height: 100%;
-  min-height: 100vh;
-  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
-}
-
-* {
-  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
-}
 
 uq-minimal-header,
 uq-minimal-footer,
@@ -79,6 +86,7 @@ uql-connect-footer
   flex: none;
   position: relative;
 }
+
 
 //todo: move out these styles to corresponding imports
 
