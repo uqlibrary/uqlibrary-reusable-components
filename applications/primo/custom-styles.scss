@@ -68,6 +68,11 @@ body {
   font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
 }
 
+a:link, a:visited {
+  color: $accent-color !important;
+  text-decoration: none
+}
+
 uq-minimal-header,
 uq-minimal-footer,
 uql-connect-footer
@@ -79,6 +84,7 @@ uql-connect-footer
   flex: none;
   position: relative;
 }
+
 
 //todo: move out these styles to corresponding imports
 

@@ -517,6 +517,10 @@ body {
 * {
   font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
 
+a:link, a:visited {
+  color: #2377CB !important;
+  text-decoration: none; }
+
 uq-minimal-header,
 uq-minimal-footer,
 uql-connect-footer {
