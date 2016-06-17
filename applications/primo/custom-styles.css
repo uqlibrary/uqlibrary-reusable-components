@@ -511,7 +511,11 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 html,
 body {
   height: 100%;
-  min-height: 100vh; }
+  min-height: 100vh;
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
+
+* {
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
 
 uq-minimal-header,
 uq-minimal-footer,
