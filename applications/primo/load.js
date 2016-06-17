@@ -48,7 +48,7 @@ function loadUQFavicon() {
   var link = document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
-  link.href = '//assets.library.uq.edu.au/reusable-components/resources/favicon.ico';
+  link.href = '//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico';
   document.getElementsByTagName('head')[0].appendChild(link);
   link.rel = 'icon'; //for IE
   document.getElementsByTagName('head')[0].appendChild(link);
