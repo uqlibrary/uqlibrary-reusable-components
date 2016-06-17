@@ -61,6 +61,11 @@ html,
 body {
   height: 100%;
   min-height: 100vh;
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+* {
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
 }
 
 uq-minimal-header,
