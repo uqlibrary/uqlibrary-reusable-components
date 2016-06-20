@@ -1,4 +1,5 @@
 
+
 {
   "heading": "UQ Library menu",
   "items": [
@@ -102,6 +103,10 @@
         {
           "label": "Databases",
           "href": "https://app.library.uq.edu.au/#/gateways/database?browse=&alpha=&title=&sub="
+        },
+        {
+          "label": "Journals & newspapers",
+          "href": "https://app.library.uq.edu.au/#/journals"
         },
         {
           "label": "Catalogue",

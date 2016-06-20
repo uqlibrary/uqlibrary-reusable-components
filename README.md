@@ -66,7 +66,7 @@ customisation of groups shall be done the same way as custom-styles, example:how
 
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/how-to-find-group.css" />
         
-#### LibAnswers
+#### LibAnswers (http://answers.library.uq.edu.au)
 
 test group (uses master branch): http://answers.library.uq.edu.au/test
 
@@ -79,21 +79,25 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
         <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libanswers/custom-styles.css" />
         
-#### UQL Drupal (libwww)
+#### UQ Drupal (https://web.library.uq.edu.au)
 
-include this code in Omega's html.tpl.php 
-        <html manifest="//assets.library.uq.edu.au/master/reusable-components/libwww/reusable-components.appcache">
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
-        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+UQ ITS is managing UQ Drupal library's CMS (web.library.uq.edu.au). Any components to be used in UQ Drupal require registration within UQ Drupal.
+
+        <html manifest="//assets.library.uq.edu.au/reusable-components/libwww/reusable-components.appcache">
+
+        <script type="text/javascript" src="//www.library.uq.edu.au/js/ims.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/libwww/load.js"></script>
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-        
-        <script src="//assets.library.uq.edu.au/reusable-components/libwww/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css" />
+                
+        
 
 reusable-components.appcache is a manifest file which contains a list of files that can be cached by a browser. Application cache file has a version number which signals to a browser that cached files were updated. Version is updated automatically at deployment time. 
 
-#### UQLAPP
+#### UQLAPP (https://app.library.uq.edu.au)
+
 frontend/app/index.html includes following:
 
         <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
