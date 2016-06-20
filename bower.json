@@ -20,7 +20,7 @@
     "paper-elements": "PolymerElements/paper-elements#^1.0.1",
     "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
     "polymer": "Polymer/polymer#^1.4.0",
-    "webcomponentsjs": "^0.7.12",
+    "webcomponentsjs": "^0.7.22",
     "byutv-jsonp": "uqlibrary/byutv-jsonp#master",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
     "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
@@ -44,6 +44,7 @@
   "resolutions": {
     "uqlibrary-ga": "v1.0.3",
     "uqlibrary-api": "v1.0.5",
-    "uqlibrary-styles": "v1.0.3"
+    "uqlibrary-styles": "v1.0.3",
+    "webcomponentsjs": "^0.7.22"
   }
 }
