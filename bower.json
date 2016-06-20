@@ -20,7 +20,7 @@
     "paper-elements": "PolymerElements/paper-elements#^1.0.1",
     "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
     "polymer": "Polymer/polymer#^1.4.0",
-    "webcomponentsjs": "^0.7.22",
+    "webcomponentsjs": "^0.7.12",
     "byutv-jsonp": "uqlibrary/byutv-jsonp#master",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
     "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
@@ -33,7 +33,7 @@
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#v1.2.2",
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#1.0.2",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search#v1.0.5",
-    "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.1.5"
+    "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.1.7"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
@@ -44,7 +44,6 @@
   "resolutions": {
     "uqlibrary-ga": "v1.0.3",
     "uqlibrary-api": "v1.0.5",
-    "uqlibrary-styles": "v1.0.3",
-    "webcomponentsjs": "^0.7.22"
+    "uqlibrary-styles": "v1.0.3"
   }
 }
