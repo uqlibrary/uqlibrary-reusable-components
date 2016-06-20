@@ -416,6 +416,11 @@ a:link, a:visited {
   border: none; }
 .EXLResultsList .EXLMyShelfStar {
   padding: 5px; }
+.EXLResultsList h3 {
+  display: inline-block; }
+.EXLResultsList p.EXLResultSnippet {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em; }
 
 .EXLResultTabContainer div.EXLTabHeader {
   min-height: 36px; }
@@ -506,8 +511,23 @@ a:link, a:visited {
       color: #fff; }
     .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
       text-decoration: underline; }
+.EXLTabHeader div.EXLTabHeaderButtons li {
+  font-weight: bold; }
 
 body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div.EXLResultsFooter.EXLResultsHeader div.EXLResultsNavigation {
+  font-size: 100%; }
+
+.EXLResultsHeader h1 {
+  font-weight: normal; }
+  .EXLResultsHeader h1 em {
+    color: #8c8c8c; }
+.EXLResultsHeader div.EXLResultsNumbers div.EXLResultsSortBy {
+  float: none;
+  padding-bottom: 1em;
+  left: 13px;
+  font-size: 100%; }
+.EXLResultsHeader div.EXLResultsNavigation {
+  margin-top: 17px;
   font-size: 100%; }
 
 #footerEXL {
