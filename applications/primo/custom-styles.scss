@@ -122,13 +122,17 @@ uql-connect-footer
   display: none;
 }
 
-/* make saved search 'Go' button look like 'Refine (dates)' button */
-td.EXLEShelfFolderContentsTable * {
+/* make saved items 'Go' button look like 'Refine (dates)' button */
+td .EXLEShelfFolderContentsTable * {
   font-family: inherit;
 }
-td.EXLEShelfFolderContentsTable {
+td .EXLEShelfFolderContentsTable {
   font-size: 1.3em;
 }
+#tableBorder_id .itemsListTH th {
+  font-size: 0.9em;
+}
+
 #buttonsUl table {
   margin-top: 0.15em;
 }
@@ -147,10 +151,8 @@ td.EXLEShelfFolderContentsTable {
   color: #fff !important;
   font-weight: normal;
   border: 1px solid #7f9db9;
+  font-size: 1.3em;
 }
 select#saveAs {
   margin-top: 0.3em;
-}
-.itemsListTH th {
-  font-size: 0.9em;
 }
