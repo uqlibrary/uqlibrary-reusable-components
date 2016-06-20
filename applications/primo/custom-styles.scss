@@ -116,3 +116,8 @@ uql-connect-footer
   font-size: 0.9em;
   padding-top: 0px;
 }
+
+/* hide 'bX Hot Article' block */
+#resultsHeaderNoId .EXLCustomLayoutTile {
+  display: none;
+}
