@@ -445,12 +445,14 @@ a:link, a:visited {
 .EXLTabsRibbonClosed div li.EXLResultFirstTab {
   padding-left: 0.8em; }
 
-.EXLTabHeader div.EXLTabHeaderButtons li {
-  background-image: none;
-  border: none;
-  padding-top: 0.3em; }
-  .EXLTabHeader div.EXLTabHeaderButtons li span {
-    background-image: none; }
+.EXLTabHeader {
+  min-height: 32px; }
+  .EXLTabHeader div.EXLTabHeaderButtons li {
+    background-image: none;
+    border: none;
+    padding-top: 0.3em; }
+    .EXLTabHeader div.EXLTabHeaderButtons li span {
+      background-image: none; }
 
 /*-- Style item details tab as "table" --*/
 /* Make sure labels align with associated data */
@@ -535,7 +537,7 @@ a:link, a:visited {
     .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn:focus {
       outline: #288BED auto 5px; }
     .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:active, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
-      color: #fff; }
+      color: #fff !important; }
     .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
       text-decoration: underline; }
 .EXLTabHeader div.EXLTabHeaderButtons li {
@@ -619,12 +621,15 @@ uql-connect-footer {
 #resultsHeaderNoId .EXLCustomLayoutTile:first-child {
   display: none; }
 
-/* make saved search 'Go' button look like 'Refine (dates)' button */
-td.EXLEShelfFolderContentsTable * {
+/* make saved items 'Go' button look like 'Refine (dates)' button */
+td .EXLEShelfFolderContentsTable * {
   font-family: inherit; }
 
-td.EXLEShelfFolderContentsTable {
+td .EXLEShelfFolderContentsTable {
   font-size: 1.3em; }
+
+#tableBorder_id .itemsListTH th {
+  font-size: 0.9em; }
 
 #buttonsUl table {
   margin-top: 0.15em; }
@@ -643,12 +648,10 @@ td.EXLEShelfFolderContentsTable {
   padding: 0.1em 0.6em;
   color: #fff !important;
   font-weight: normal;
-  border: 1px solid #7f9db9; }
+  border: 1px solid #7f9db9;
+  font-size: 0.85em; }
 
 select#saveAs {
   margin-top: 0.3em; }
-
-.itemsListTH th {
-  font-size: 0.9em; }
 
 /*# sourceMappingURL=custom-styles.css.map */

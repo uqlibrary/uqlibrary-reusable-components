@@ -28,13 +28,16 @@
   padding-left: 0.8em;
 }
 
-.EXLTabHeader div.EXLTabHeaderButtons li {
-  background-image: none;
-  border: none;
-  padding-top: 0.3em;
-  
-  span {
+.EXLTabHeader {
+  min-height: 32px;
+  div.EXLTabHeaderButtons li {
     background-image: none;
+    border: none;
+    padding-top: 0.3em;
+
+    span {
+      background-image: none;
+    }
   }
 }
 
