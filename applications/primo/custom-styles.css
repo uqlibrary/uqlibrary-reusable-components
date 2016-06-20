@@ -426,10 +426,31 @@ a:link, a:visited {
   padding-bottom: 0.5em; }
 
 .EXLResultTabContainer div.EXLTabHeader {
-  min-height: 36px; }
+  background-color: transparent;
+  background-image: none;
+  border-top: 1px solid #8FB9D0; }
 
-iframe .internalSection li.bold {
-  font-weight: bold; }
+.EXLTabsRibbon {
+  border: none; }
+  .EXLTabsRibbon div li.EXLResultTab {
+    padding-top: 0.8em;
+    padding-bottom: 1em;
+    background-color: #f1f1f1; }
+  .EXLTabsRibbon div li.EXLResultSelectedTab {
+    background-color: #EFF3F6;
+    background-image: none; }
+  .EXLTabsRibbon div li.EXLResultFirstTab {
+    padding-left: 0.8em; }
+
+.EXLTabsRibbonClosed div li.EXLResultFirstTab {
+  padding-left: 0.8em; }
+
+.EXLTabHeader div.EXLTabHeaderButtons li {
+  background-image: none;
+  border: none;
+  padding-top: 0.3em; }
+  .EXLTabHeader div.EXLTabHeaderButtons li span {
+    background-image: none; }
 
 /*-- Style item details tab as "table" --*/
 /* Make sure labels align with associated data */
@@ -535,7 +556,7 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .EXLResultsHeader div.EXLResultsNumbers div.EXLResultsSortBy span.EXLResultsSortBySelected a {
     color: #32322f !important; }
 .EXLResultsHeader div.EXLResultsNavigation {
-  margin-top: 33px;
+  margin-top: 17px;
   font-size: 100%; }
 
 #footerEXL {
@@ -592,6 +613,42 @@ uql-connect-footer {
 .EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,
 .EXLSearchFieldRibbonBrowseSearchLink a {
   font-size: 0.9em;
-  padding-top: 0px; }
+  padding-top: 0; }
+
+/* hide 'bX Hot Article' block */
+#resultsHeaderNoId .EXLCustomLayoutTile:first-child {
+  display: none; }
+
+/* make saved search 'Go' button look like 'Refine (dates)' button */
+td.EXLEShelfFolderContentsTable * {
+  font-family: inherit; }
+
+td.EXLEShelfFolderContentsTable {
+  font-size: 1.3em; }
+
+#buttonsUl table {
+  margin-top: 0.15em; }
+
+#buttonsUl .buttonGo {
+  border-width: 0;
+  margin-top: 0.15em; }
+
+#buttonsUl .buttonGo a {
+  text-decoration: none !important;
+  height: 26px;
+  width: 96%;
+  background-color: #0075B0;
+  margin: 0;
+  cursor: pointer;
+  padding: 0.1em 0.6em;
+  color: #fff !important;
+  font-weight: normal;
+  border: 1px solid #7f9db9; }
+
+select#saveAs {
+  margin-top: 0.3em; }
+
+.itemsListTH th {
+  font-size: 0.9em; }
 
 /*# sourceMappingURL=custom-styles.css.map */

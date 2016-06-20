@@ -1,9 +1,41 @@
 .EXLResultTabContainer div.EXLTabHeader {
-  min-height: 36px;
+  background-color: transparent;
+  background-image: none;
+  border-top: 1px solid #8FB9D0;
 }
 
-iframe {
-  .internalSection  li.bold {
-    font-weight : bold;
+.EXLTabsRibbon {
+  border: none;
+
+  div {
+    li.EXLResultTab{
+      padding-top: 0.8em;
+      padding-bottom: 1em;
+      background-color: #f1f1f1;
+    }
+    li.EXLResultSelectedTab {
+      background-color: #EFF3F6;
+      background-image: none;
+    }
+
+    li.EXLResultFirstTab {
+      padding-left: 0.8em;
+    }
   }
 }
+
+.EXLTabsRibbonClosed div li.EXLResultFirstTab {
+  padding-left: 0.8em;
+}
+
+.EXLTabHeader div.EXLTabHeaderButtons li {
+  background-image: none;
+  border: none;
+  padding-top: 0.3em;
+  
+  span {
+    background-image: none;
+  }
+}
+
+
