@@ -137,16 +137,22 @@ td .EXLEShelfFolderContentsTable {
   border-width: 0;
 }
 #buttonsUl .buttonGo a {
-  text-decoration: none !important;
   background-color: #0075B0;
-  padding: 0.1em 0.6em;
+  padding: 0.2em 0.6em 0 0.6em;
   color: #fff !important;
   border: 1px solid #7f9db9;
-  font-size: 0.85em;
 }
 select#saveAs {
   margin-top: 0.3em;
 }
 .EXLEShelfFolderContentsManipulationButtonList li {
   margin-top: 0.1em;
+}
+
+/* change facet layout */
+#exlidFacetTile {
+  width:23%;
+}
+#resultsTileNoId {
+  width: 75%;
 }
