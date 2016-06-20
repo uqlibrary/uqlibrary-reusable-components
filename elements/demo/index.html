@@ -55,8 +55,31 @@
     <div> Show IA button <input type="checkbox" checked="{{showIAStatus::change}}"> </div>
     <div> Show menu button <input type="checkbox" checked="{{showMenuButton::change}}"> </div>
 
-
     <uql-ezproxy></uql-ezproxy>
+
+    <div>
+    <p>Fryer Search on Primo</p>
+    <uqlibrary-fryer-search search-type="primo"></uqlibrary-fryer-search>
+    </div>
+
+    <div>
+    <p>Fryer Search on Summon</p>
+    <uqlibrary-fryer-search search-type="summon"></uqlibrary-fryer-search>
+    </div>
+
+    <div>
+    <p>Fryer Search on Google</p>
+    <uqlibrary-fryer-search search-type="google"></uqlibrary-fryer-search>
+    </div>
+
+    <div>
+    <p>Fryer Search on eSpace</p>
+    <uqlibrary-fryer-search search-type="espace"></uqlibrary-fryer-search>
+    </div>
+
+    <div style="margin:16px; ">
+      <uqlibrary-search></uqlibrary-search>
+    </div>
 
   </div>
   <uql-connect-footer menu-json="{{menuJson}}" main-domain="https://www.library.uq.edu.au"></uql-connect-footer>
