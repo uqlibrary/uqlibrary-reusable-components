@@ -515,7 +515,7 @@ a:link, a:visited {
   display: inline-block; }
 
 .EXLTabHeader div.EXLTabHeaderContent {
-  padding-top: 0.9em;
+  padding-top: 0.7em;
   /* use this selector to style the container of the login link */ }
   .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName {
     display: none; }
@@ -524,7 +524,7 @@ a:link, a:visited {
     box-sizing: border-box;
     color: #fff;
     background-color: #38852e;
-    padding: 0.7em 0.77em;
+    padding: 0.5em 0.77em;
     min-width: 5.14em;
     margin: 0 0.29em;
     border-radius: 3px;
@@ -547,13 +547,13 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   font-size: 100%; }
 
 .EXLResultsHeader h1 {
-  color: #6c6c6c; }
+  color: #6c6c6c;
+  padding-left: 0px; }
   .EXLResultsHeader h1 em {
     color: #6c6c6c; }
 .EXLResultsHeader div.EXLResultsNumbers div.EXLResultsSortBy {
   float: none;
   padding-bottom: 1em;
-  left: 13px;
   font-size: 100%; }
   .EXLResultsHeader div.EXLResultsNumbers div.EXLResultsSortBy span.EXLResultsSortBySelected a {
     color: #32322f !important; }
@@ -626,32 +626,26 @@ td .EXLEShelfFolderContentsTable * {
   font-family: inherit; }
 
 td .EXLEShelfFolderContentsTable {
-  font-size: 1.3em; }
-
-#tableBorder_id .itemsListTH th {
-  font-size: 0.9em; }
+  font-size: 1.1em; }
 
 #buttonsUl table {
   margin-top: 0.15em; }
 
 #buttonsUl .buttonGo {
-  border-width: 0;
-  margin-top: 0.15em; }
+  border-width: 0; }
 
 #buttonsUl .buttonGo a {
   text-decoration: none !important;
-  height: 26px;
-  width: 96%;
   background-color: #0075B0;
-  margin: 0;
-  cursor: pointer;
   padding: 0.1em 0.6em;
   color: #fff !important;
-  font-weight: normal;
   border: 1px solid #7f9db9;
   font-size: 0.85em; }
 
 select#saveAs {
   margin-top: 0.3em; }
+
+.EXLEShelfFolderContentsManipulationButtonList li {
+  margin-top: 0.1em; }
 
 /*# sourceMappingURL=custom-styles.css.map */
