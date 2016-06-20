@@ -1,6 +1,11 @@
 .EXLResultsList {
 
-  //display search result number
+  //Save/share (actions) image spacing
+  .EXLTabHeaderButtonSendTo img {
+    padding-left: 0.4em;
+  }
+
+    //display search result number
   td.EXLResultNumber {
     display: block;
     font-weight: bold;
@@ -8,4 +13,9 @@
     border: none;
   }
 
+  .EXLMyShelfStar {
+    padding: 5px;
+  }
 }
+
+

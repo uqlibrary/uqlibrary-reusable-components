@@ -43,8 +43,93 @@
     }
 
     div.EXLSearchFieldRibbon {
-      border: 0px;
+      border: 0;
       height: auto;
     }
   }
+
+  .EXLSearchFieldRibbonAdvancedSearchLink {
+    float: right;
+    width: 7em;
+    margin-right: 3.9em;
+    margin-left: 0.4em;
+  }
+
+  .EXLSearchFieldRibbonBrowseSearchLink {
+    float: right;
+    width: auto;
+    display: inline !important; /* back to default */
+    clear: none;
+  }
+}
+
+#exlidHeaderSearchLimits {
+  /* match the uql look and feel */
+  background-color: #fff;
+
+  /* remove border to visually integrate into uql search area */
+  border-bottom-width: 0;
+
+  /* move up from the default position */
+  margin-top: 1em;
+
+  /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
+  width: 55em;
+  padding-left: 1em;
+  margin-left: auto;
+  margin-right: auto;
+
+  select {
+    font-size: 14.4px;
+  }
+
+  fieldset {
+    float: left;
+    width: 40em;
+    background-color: transparent;
+    margin-top: -1em;
+    padding-left: 0;
+  }
+}
+
+
+
+@media screen and (max-width: 500px) {
+
+  #exlidHeaderSystemFeedback {
+    display: block;
+  }
+
+  #exlidSearchRibbon {
+    fieldset {
+      width: 93%;
+      margin: auto;
+    }
+
+    div.EXLSearchFieldRibbon {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  .EXLSearchFieldRibbonFormFields {
+    display: inline-block;
+    width: calc(100% - 90px) !important
+  }
+
+  .EXLSearchFieldRibbonFormSearchFor {
+    width: 88% !important;
+    height: 85%;
+  }
+
+  .EXLSearchFieldRibbonFormSubmitSearch {
+    position: relative;
+    float: right;
+    width: 85px !important;
+  }
+
+  .EXLSearchFieldRibbonAdvancedSearchLink {
+    margin-right: 1em;
+  }
+
 }

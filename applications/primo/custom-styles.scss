@@ -12,6 +12,7 @@
   height: auto;
   text-transform: uppercase;
   border: none;
+  -webkit-appearance: none;
 
   &:focus{
     outline: #288BED auto 5px;
@@ -30,6 +31,7 @@
   height: auto;
   text-transform: uppercase;
   border: none;
+  -webkit-appearance: none;
 
   &:focus{
     outline: #288BED auto 5px;
@@ -37,12 +39,30 @@
 }
 
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
+
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+* {
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+a:link, a:visited {
+  color: $accent-color !important;
+  text-decoration: none
+}
+
 @import "styles-imports/home-page";
 @import "styles-imports/login-bar";
 @import "styles-imports/search-tile";
 @import "styles-imports/advanced-search-tile";
 
 @import "styles-imports/facets";
+@import "styles-imports/account-ribbon";
 
 @import "styles-imports/result-list";
 @import "styles-imports/result-tabs";
@@ -54,11 +74,6 @@
 
 @import "styles-imports/hide";
 
-html,
-body {
-  height: 100%;
-  min-height: 100vh;
-}
 
 uq-minimal-header,
 uq-minimal-footer,
@@ -71,6 +86,7 @@ uql-connect-footer
   flex: none;
   position: relative;
 }
+
 
 //todo: move out these styles to corresponding imports
 
@@ -96,6 +112,6 @@ uql-connect-footer
 
 .EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,
 .EXLSearchFieldRibbonBrowseSearchLink a {
-  font-size: 1em;
+  font-size: 0.9em;
   padding-top: 0px;
 }

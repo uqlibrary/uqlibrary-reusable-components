@@ -1,0 +1,34 @@
+#exlidUserAreaRibbon {
+  li span.EXLMyShelfStarSelected {
+    //background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/folder-special.png);
+  }
+
+  li {
+    background-image: none;
+    a:link, a:visited {
+      text-decoration: underline;
+      color: $accent-color;
+    }
+  }
+  .EXLLastItem{
+    :before {
+      content: "(";
+    }
+    :after {
+      content: ")";
+    }
+  }
+
+  #exlidUserName .EXLUserAreaStart {
+    width: 0px;
+  }
+
+  #exlidMyShelf {
+    clear: left;
+    span {
+      width: 0px;
+      margin: 0px;
+      background-image: none;
+    }
+  }
+}
