@@ -1,10 +1,9 @@
 .EXLResultsHeader {
 
  h1 {
-   font-weight: normal;
-
+   color: #6c6c6c;
    em {
-     color: #8c8c8c;
+     color: #6c6c6c;
    }
  }
 
@@ -12,11 +11,14 @@
     float:none;
     padding-bottom: 1em;
     left: 13px;
-    font-size: 100%
+    font-size: 100%;
+    span.EXLResultsSortBySelected a {
+      color: #32322f !important;
+    }
   }
   div.EXLResultsNavigation {
-    margin-top: 17px;
-    font-size: 100%
+    margin-top: 33px;
+    font-size: 100%;
   }
 }
 

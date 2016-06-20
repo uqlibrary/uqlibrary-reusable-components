@@ -96,6 +96,7 @@ uql-connect-footer {
   width: 100%;
   min-height: calc(100vh - 450px); }
 
+.uql-journals,
 .uql-gateways {
   padding-top: 0; }
 
