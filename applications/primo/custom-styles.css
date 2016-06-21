@@ -402,7 +402,7 @@ body {
   margin: 10px;
   line-height: 35px; }
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetRSSAction {
-  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/rss.png); }
+  display: none; }
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveSearchAction {
   background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/note-add.png); }
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff {
