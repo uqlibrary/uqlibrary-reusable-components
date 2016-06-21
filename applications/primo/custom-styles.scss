@@ -149,6 +149,15 @@ select#saveAs {
   margin-top: 0.1em;
 }
 
+/* make certain options in the save/share selector disappear */
+#exlidTabHeaderButtons-1 .EXLButtonSendToEasyBib,
+#exlidTabHeaderButtons-1 .EXLButtonSendToRefWorks,
+#exlidTabHeaderButtons-1 .EXLButtonSendToDelicious,
+#exlidTabHeaderButtons-1 .EXLButtonSendToFacebook {
+  display: none;
+}
+
+
 /* facet sidebar */
 #exlidFacetTile {
   width:23%;
@@ -214,16 +223,15 @@ div.EXLFacetActionsV2 {
   border: 2px solid #F1F1F1;
 }
 
-/* put a grey brackground on publication date */
-/* this asumes exlidFacet1 is tied to the pub date field */
+/* put a grey background on publication date */
+/* this assumes exlidFacet1 is tied to the pub date field */
 #exlidFacet1 {
   margin-bottom: 0;
 }
 #exlidFacet1 .EXLDateRangeText {
   background-color: #F8F8F8;
   color: inherit;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 1px 0; /* force space for background color */
   margin-bottom: 0;
 }
 
