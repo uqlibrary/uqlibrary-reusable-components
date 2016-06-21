@@ -101,6 +101,9 @@ body {
 #resultsHeaderNoId .EXLCustomLayoutTile:first-child {
   display: none; }
 
+#exlidUserAreaTile {
+  padding-top: 0.5em; }
+
 #exlidHeaderSystemFeedback {
   background-color: transparent;
   border: none; }
