@@ -66,24 +66,17 @@
   display: inline-block;
 }
 
-/* make certain options in the save/share selector disappear */
-.EXLButtonSendToEasyBib {
-  display: none;
-}
 
-.EXLButtonSendToRefWorks {
-  display: none;
-}
-
-.EXLButtonSendToDelicious {
-  display: none;
-}
-
-.EXLButtonSendToFacebook {
-  display: none;
-}
-
-/* remove the icons on each Send/Share selector item */
-.EXLTabHeaderButtonSendToList .EXLButtonSendToIcon {
-  display: none !important;
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList {
+  /* make certain options in the save/share selector disappear */
+  .EXLButtonSendToEasyBib ,
+  .EXLButtonSendToRefWorks ,
+  .EXLButtonSendToDelicious ,
+  .EXLButtonSendToFacebook {
+    display: none !important;
+  }
+  /* remove the icons on each Send/Share selector item */
+  .EXLButtonSendToIcon {
+    display: none !important;
+  }
 }
