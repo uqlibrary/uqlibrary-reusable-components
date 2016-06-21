@@ -83,6 +83,7 @@
   display: none;
 }
 
-.EXLButtonSendToMyShelfRemove .EXLButtonSendToIconMyShelf {
-  display: none;
+/* remove the icons on each Send/Share selector item */
+.EXLTabHeaderButtonSendToList .EXLButtonSendToIcon {
+  display: none !important;
 }
