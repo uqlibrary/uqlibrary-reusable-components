@@ -658,6 +658,14 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   margin-top: 17px;
   font-size: 100%; }
 
+.browse-help-text {
+  max-width: 80em;
+  margin: 20px auto;
+  font-size: 80%; }
+
+@media screen and (max-width: 500px) {
+  .browse-help-text {
+    padding: 0 6px; } }
 #footerEXL {
   background: none;
   border: none; }
