@@ -669,7 +669,7 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 @media screen and (max-width: 500px) {
   .browse-help-text {
     padding: 0 6px; } }
-#footerEXL {
+#footerEXL, .EXLFooterTile {
   background: none;
   border: none; }
 
