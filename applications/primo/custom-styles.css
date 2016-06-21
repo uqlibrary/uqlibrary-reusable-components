@@ -433,13 +433,19 @@ a:link, a:visited {
 
 .EXLTabsRibbon {
   border: none; }
+  .EXLTabsRibbon div ul {
+    margin-bottom: -1px; }
   .EXLTabsRibbon div li.EXLResultTab {
     padding-top: 0.8em;
     padding-bottom: 1em;
     background-color: #f1f1f1; }
   .EXLTabsRibbon div li.EXLResultSelectedTab {
-    background-color: #EFF3F6;
-    background-image: none; }
+    background-color: #FFF;
+    background-image: none;
+    margin-left: 0px;
+    border-bottom: 1px solid #FFF; }
+    .EXLTabsRibbon div li.EXLResultSelectedTab a {
+      color: #32322F !important; }
   .EXLTabsRibbon div li.EXLResultFirstTab {
     padding-left: 0.8em; }
 
