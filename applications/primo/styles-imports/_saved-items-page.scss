@@ -27,11 +27,9 @@ select#saveAs {
 
 
 /* make certain options in the save/share selector disappear */
-iframe.EXLEshelfDocumentDetailsIFrame .EXLButtonSendToEasyBib,
-iframe.EXLEshelfDocumentDetailsIFrame .EXLButtonSendToRefWorks,
-iframe.EXLEshelfDocumentDetailsIFrame .EXLButtonSendToDelicious,
-iframe.EXLEshelfDocumentDetailsIFrame .EXLButtonSendToFacebook {
-  display: none;
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList li {
+  .EXLButtonSendToEasyBib {display: none;}
+  .EXLButtonSendToRefWorks {display: none;}
+  .EXLButtonSendToDelicious {display:none;}
+  .EXLButtonSendToFacebook {display:none;}
 }
-
-
