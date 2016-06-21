@@ -149,10 +149,81 @@ select#saveAs {
   margin-top: 0.1em;
 }
 
-/* change facet layout */
+/* facet sidebar */
 #exlidFacetTile {
   width:23%;
 }
+
+/* main result body */
 #resultsTileNoId {
   width: 75%;
+  border-left-width: 0;
+}
+
+/* facet tile header */
+.EXLFacetContainer h1 {
+  background-color: inherit;
+  color:#000;
+  font-size: 100%;
+  font-weight: bold;
+  line-height: 150%;
+  text-indent: 0;
+  margin-bottom: 0.3em;
+  padding-left: 0.5em;
+}
+
+/* facet tile header */
+.EXLFacetContainer h3 {
+  background-color: #F8F8F8;
+  color: #757575;
+  font-weight: bold;
+  font-size: 100%;
+  border-top: 1px solid #E4E4E4;
+  border-bottom: 1px solid #E4E4E4;
+  line-height: 150%;
+  text-indent: 0;
+  margin-bottom: 0.3em;
+  padding: 0 0 0 0.5em;
+}
+
+/* facet tile header */
+.EXLFacetContainer h4 {
+  background-color: #EAEAEA;
+  color: #606060;
+  font-weight: bold;
+  font-size: 85%;
+  text-indent: 0;
+  padding: 0.5em 0 0.5em 0.5em;
+  border-bottom: 2px solid #6F6F6F;
+}
+
+/* block of links in each facet tile */
+.EXLFacetContainer ol {
+  background-color: #F8F8F8;
+  padding: 6px 4px;
+  border: 2px solid #F1F1F1;
+  text-indent: 1em;
+}
+
+/* icon-text link block at top of facet sidebar */
+div.EXLFacetActionsV2 {
+  background-color: #F8F8F8;
+  color: #000;
+  font-weight: normal;
+  font-size: 80%;
+  display: block;
+  height: auto;
+  padding: 4px 4px 16px 4px;
+  border: 2px solid #F1F1F1;
+}
+
+/* publication date block - assumes that the anonymous #exlidFacet1 block maps directly to pub date */
+#exlidFacet1 {
+  /* remove excess space below publication date block */
+  padding-bottom: 0;
+  margin-bottom: -1em;
+
+  /* add grey background */
+  background-color: #F8F8F8;
+  color: inherit;
 }
