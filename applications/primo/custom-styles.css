@@ -78,12 +78,28 @@ body {
 * {
   font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
 
-a:link, a:visited {
+#exlidHeaderContainer a:link, #exlidHeaderContainer a:visited,
+#exlidHomeContainer a:link,
+#exlidHomeContainer a:visited,
+.EXLFooterTile a:link,
+.EXLFooterTile a:visited,
+#exlidResultsContainer a:link,
+#exlidResultsContainer a:visited,
+#exlidFindDBContainer a:link,
+#exlidFindDBContainer a:visited,
+.EXLResultsContainer a:link,
+.EXLResultsContainer a:visited,
+.EXLMyAccountTabsRibbon a:link,
+.EXLMyAccountTabsRibbon a:visited {
   color: #2377CB !important;
   text-decoration: none; }
 
 #exlidHomeContainer {
   height: calc(100vh/3); }
+
+/* hide 'bX Hot Article' block */
+#resultsHeaderNoId .EXLCustomLayoutTile:first-child {
+  display: none; }
 
 #exlidHeaderSystemFeedback {
   background-color: transparent;
@@ -389,6 +405,81 @@ a:link, a:visited {
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff {
   background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/star.png); }
 
+/* facet sidebar */
+#exlidFacetTile {
+  width: 23%; }
+
+/* main result body */
+#resultsTileNoId {
+  width: 75%;
+  border-left-width: 0; }
+
+/* facet tile headers */
+.EXLFacetContainer {
+  /* facet tile header */
+  /* facet tile header */
+  /* block of links in each facet tile */ }
+  .EXLFacetContainer h1 {
+    background-color: inherit;
+    color: #000;
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 150%;
+    text-indent: 0;
+    margin-bottom: 0.3em;
+    padding-left: 0.5em; }
+  .EXLFacetContainer h3 {
+    background-color: #F8F8F8;
+    color: #757575;
+    font-weight: bold;
+    font-size: 100%;
+    line-height: 150%;
+    text-indent: 0;
+    margin-bottom: 0.3em;
+    padding: 0 0 0 0.5em; }
+  .EXLFacetContainer h4 {
+    background-color: #EAEAEA;
+    color: #606060;
+    font-weight: bold;
+    font-size: 85%;
+    text-indent: 0;
+    padding: 0.5em 0 0.5em 0.5em; }
+  .EXLFacetContainer ol {
+    background-color: #F8F8F8;
+    padding: 6px 4px;
+    border: 2px solid #F1F1F1;
+    text-indent: 1em; }
+
+/* icon-text link block at top of facet sidebar */
+div.EXLFacetActionsV2 {
+  background-color: #F8F8F8;
+  color: #000;
+  font-weight: normal;
+  font-size: 80%;
+  display: block;
+  height: auto;
+  padding: 4px 4px 16px 4px;
+  border: 2px solid #F1F1F1; }
+
+/* put a grey background on publication date */
+/* this assumes exlidFacet1 is tied to the pub date field */
+#exlidFacet1 {
+  margin-bottom: 0; }
+
+#exlidFacet1 .EXLDateRangeText {
+  background-color: #F8F8F8;
+  color: inherit;
+  padding: 1px 0;
+  /* force space for background color */
+  margin-bottom: 0; }
+
+/* remove stray grey bottom of publication date box */
+#exlidFacetSublist1 {
+  padding-bottom: 0;
+  background-color: #fff;
+  color: inherit;
+  border-width: 0; }
+
 #exlidUserAreaRibbon li {
   background-image: none; }
   #exlidUserAreaRibbon li a:link, #exlidUserAreaRibbon li a:visited {
@@ -622,41 +713,5 @@ uql-connect-footer {
 .EXLSearchFieldRibbonBrowseSearchLink a {
   font-size: 0.9em;
   padding-top: 0; }
-
-/* hide 'bX Hot Article' block */
-#resultsHeaderNoId .EXLCustomLayoutTile:first-child {
-  display: none; }
-
-/* make saved items 'Go' button look like 'Refine (dates)' button */
-td .EXLEShelfFolderContentsTable * {
-  font-family: inherit; }
-
-td .EXLEShelfFolderContentsTable {
-  font-size: 1.1em; }
-
-#buttonsUl table {
-  margin-top: 0.15em; }
-
-#buttonsUl .buttonGo {
-  border-width: 0; }
-
-#buttonsUl .buttonGo a {
-  background-color: #0075B0;
-  padding: 0.2em 0.6em 0 0.6em;
-  color: #fff !important;
-  border: 1px solid #7f9db9; }
-
-select#saveAs {
-  margin-top: 0.3em; }
-
-.EXLEShelfFolderContentsManipulationButtonList li {
-  margin-top: 0.1em; }
-
-/* change facet layout */
-#exlidFacetTile {
-  width: 23%; }
-
-#resultsTileNoId {
-  width: 75%; }
 
 /*# sourceMappingURL=custom-styles.css.map */
