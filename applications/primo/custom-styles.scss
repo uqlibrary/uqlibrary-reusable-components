@@ -217,13 +217,3 @@ div.EXLFacetActionsV2 {
   border: 2px solid #F1F1F1;
 }
 
-/* publication date block - assumes that the anonymous #exlidFacet1 block maps directly to pub date */
-#exlidFacet1 {
-  /* remove excess space below publication date block */
-  padding-bottom: 0;
-  margin-bottom: -1em;
-
-  /* add grey background */
-  background-color: #F8F8F8;
-  color: inherit;
-}
