@@ -214,10 +214,24 @@ div.EXLFacetActionsV2 {
   border: 2px solid #F1F1F1;
 }
 
-/* remove stray grey bottom */
+/* put a grey brackground on publication date */
+/* this asumes exlidFacet1 is tied to the pub date field */
+#exlidFacet1 {
+  margin-bottom: 0;
+}
+#exlidFacet1 .EXLDateRangeText {
+  background-color: #F8F8F8;
+  color: inherit;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-bottom: 0;
+}
+
+/* remove stray grey bottom of publication date box */
 #exlidFacetSublist1 {
   padding-bottom: 0;
   background-color: #fff;
   color: inherit;
   border-width: 0;
 }
+
