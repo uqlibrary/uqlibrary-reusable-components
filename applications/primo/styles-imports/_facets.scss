@@ -106,6 +106,12 @@
     border: 2px solid #F1F1F1;
     text-indent: 1em;
   }
+
+  /* make list items line up on left - remove 'wrapping backwards' */
+  li {
+    margin-left: 1em;
+    text-indent: 0;
+  }
 }
 
 /* icon-text link block at top of facet sidebar */
