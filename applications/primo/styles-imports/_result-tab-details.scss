@@ -65,3 +65,21 @@
   line-height: .75;
   display: inline-block;
 }
+
+/* make certain options in the save/share selector disappear */
+.EXLButtonSendToEasyBib {
+  display: none;
+}
+
+.EXLButtonSendToRefWorks {
+  display: none;
+}
+
+.EXLButtonSendToDelicious {
+  display: none;
+}
+
+.EXLButtonSendToFacebook {
+  display: none;
+}
+
