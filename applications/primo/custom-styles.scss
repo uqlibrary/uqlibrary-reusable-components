@@ -178,8 +178,6 @@ select#saveAs {
   color: #757575;
   font-weight: bold;
   font-size: 100%;
-  border-top: 1px solid #E4E4E4;
-  border-bottom: 1px solid #E4E4E4;
   line-height: 150%;
   text-indent: 0;
   margin-bottom: 0.3em;
@@ -194,7 +192,6 @@ select#saveAs {
   font-size: 85%;
   text-indent: 0;
   padding: 0.5em 0 0.5em 0.5em;
-  border-bottom: 2px solid #6F6F6F;
 }
 
 /* block of links in each facet tile */
@@ -217,3 +214,10 @@ div.EXLFacetActionsV2 {
   border: 2px solid #F1F1F1;
 }
 
+/* remove stray grey bottom */
+#exlidFacetSublist1 {
+  padding-bottom: 0;
+  background-color: #fff;
+  color: inherit;
+  border-width: 0;
+}
