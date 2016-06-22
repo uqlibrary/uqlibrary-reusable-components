@@ -5,6 +5,7 @@
 
   li {
     background-image: none;
+    padding-top: 5px; /* spacing to fit eshelf_on icon */
     a:link, a:visited {
       text-decoration: underline;
       color: $accent-color;
@@ -30,7 +31,6 @@
     background-position: left top;
     padding-left: 26px; /* 24px image + a little space */
     min-height: 24px;
-    padding-top: 5px;
 
     span {
       width: 0;
