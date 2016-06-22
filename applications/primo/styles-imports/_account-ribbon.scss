@@ -26,6 +26,11 @@
   #exlidMyShelf {
     clear: left;
     background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on.png);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-left: 26px; /* 24px image + a little space */
+    min-height: 24px;
+
     span {
       width: 0;
       margin: 0;
