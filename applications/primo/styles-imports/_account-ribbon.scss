@@ -5,13 +5,12 @@
 
   li {
     background-image: none;
-    padding-top: 5px; /* spacing to fit eshelf_on icon */
     a:link, a:visited {
       text-decoration: underline;
       color: $accent-color;
     }
   }
-  .EXLLastItem{
+  .EXLLastItem {
     :before {
       content: "(";
     }
@@ -31,11 +30,16 @@
     background-position: left top;
     padding-left: 26px; /* 24px image + a little space */
     min-height: 24px;
+    padding-top: 5px; /* spacing to fit eshelf_on icon */
 
     span {
       width: 0;
       margin: 0;
       background-image: none;
     }
+  }
+  #exlidSavedSearches ,
+  #exlidMyAccount {
+    padding-top: 5px; /* spacing to fit eshelf_on icon */
   }
 }
