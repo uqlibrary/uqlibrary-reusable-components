@@ -701,6 +701,7 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   border-bottom: 1px solid #8FB9D0; }
   .EXLMyAccountTabsRibbon div ul.EXLMyAccountTabs li.EXLMyAccountTab {
     line-height: 31px;
+    height: 31px;
     background-color: #f1f1f1; }
   .EXLMyAccountTabsRibbon div ul.EXLMyAccountTabs li.EXLMyAccountSelectedTab {
     background-color: #FFF;
