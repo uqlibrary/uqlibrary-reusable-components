@@ -6,37 +6,35 @@
     -webkit-user-select:none;
     min-width:200px;
   }
+
   .EXLFacetTile {
     display:none;
   }
+
   .EXLResultsContainer {
-    width:auto;
-    height:auto;
-    padding-left:0em;
-    padding-right:0em;
-    padding-top:1em;
-    margin-top:auto;
-    overflow:hidden;
-    margin-bottom:1em
-  }
-  .EXLResultsContainer div.EXLResultsTile {
-    width:100%;
-    float:none;
-    border:none;
-    padding:0em;
-    background-color:#FFFFFF;
-    margin:0em;
-    margin-bottom:2em
+    width: auto;
+    height: auto;
+    padding-left: 0em;
+    padding-right: 0em;
+    padding-top: 1em;
+    margin-top: auto;
+    overflow: hidden;
+    margin-bottom: 1em;
+
+    .EXLResultsTile {
+      width: 100%;
+      float: none;
+      border: none;
+      padding: 0em;
+      background-color: #FFFFFF;
+      margin: 0em;
+      margin-bottom: 2em
+    }
   }
 
-  #exlidHeaderContainer {
-    display: none;
-  }
-
-  //hide facets on tablet
-  #exlidFacetTile {
-    display: none;
-  }
+  //#exlidSearchRibbon {
+  //  width: 95vw;
+  //}
 
   #resultsTileNoId {
     max-width: 95vw;
@@ -46,4 +44,5 @@
     display: block;
     margin: 0;
   }
+
 }

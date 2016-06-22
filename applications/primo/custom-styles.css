@@ -200,6 +200,7 @@ body {
     width: 90%;
     height: 36px; }
   #exlidSearchTile #exlidSearchRibbon {
+    width: 95vw;
     margin: auto;
     float: none; }
     #exlidSearchTile #exlidSearchRibbon fieldset {
@@ -732,21 +733,14 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     margin-top: auto;
     overflow: hidden;
     margin-bottom: 1em; }
-
-  .EXLResultsContainer div.EXLResultsTile {
-    width: 100%;
-    float: none;
-    border: none;
-    padding: 0em;
-    background-color: #FFFFFF;
-    margin: 0em;
-    margin-bottom: 2em; }
-
-  #exlidHeaderContainer {
-    display: none; }
-
-  #exlidFacetTile {
-    display: none; }
+    .EXLResultsContainer .EXLResultsTile {
+      width: 100%;
+      float: none;
+      border: none;
+      padding: 0em;
+      background-color: #FFFFFF;
+      margin: 0em;
+      margin-bottom: 2em; }
 
   #resultsTileNoId {
     max-width: 95vw;
