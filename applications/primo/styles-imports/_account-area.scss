@@ -1,3 +1,40 @@
+.EXLMyAccountMainMenuBulletSelected {
+  //TODO: some blue pointer image
+  //background-image: url(../images/bullet_myAccount_menu.png);
+}
+
 .EXLMyAccountContainer {
   background: none;
+}
+
+.EXLMyAccountTabsRibbon {
+  min-height: 32px;
+  background: none;
+  background-image: none;
+  border-bottom: 1px solid #8FB9D0;
+
+  .EXLMyAccountTabs {
+    .EXLTabsRibbon {
+      border: none;
+
+      div {
+        ul {
+          margin-bottom: -1px;
+        }
+        li.EXLMyAccountTab {
+          padding-top: 0.8em;
+          padding-bottom: 1em;
+          background-color: #f1f1f1;
+        }
+        li.EXLMyAccountSelectedTab {
+          background-color: #FFF;
+          background-image: none;
+          margin-left: 0px;
+          margin-right: 2px;
+          border: 1px solid #8FB9D0;
+          border-bottom: 1px solid #FFF;
+        }
+      }
+    }
+  }
 }

@@ -694,6 +694,27 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 .EXLMyAccountContainer {
   background: none; }
 
+.EXLMyAccountTabsRibbon {
+  min-height: 32px;
+  background: none;
+  background-image: none;
+  border-bottom: 1px solid #8FB9D0; }
+  .EXLMyAccountTabsRibbon .EXLMyAccountTabs .EXLTabsRibbon {
+    border: none; }
+    .EXLMyAccountTabsRibbon .EXLMyAccountTabs .EXLTabsRibbon div ul {
+      margin-bottom: -1px; }
+    .EXLMyAccountTabsRibbon .EXLMyAccountTabs .EXLTabsRibbon div li.EXLMyAccountTab {
+      padding-top: 0.8em;
+      padding-bottom: 1em;
+      background-color: #f1f1f1; }
+    .EXLMyAccountTabsRibbon .EXLMyAccountTabs .EXLTabsRibbon div li.EXLMyAccountSelectedTab {
+      background-color: #FFF;
+      background-image: none;
+      margin-left: 0px;
+      margin-right: 2px;
+      border: 1px solid #8FB9D0;
+      border-bottom: 1px solid #FFF; }
+
 .browse-help-text {
   max-width: 80em;
   margin: 20px auto;
