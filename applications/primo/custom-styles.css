@@ -721,6 +721,13 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     -webkit-user-select: none;
     min-width: 200px; }
 
+  #exlidHeaderSearchLimits {
+    display: block;
+    float: none;
+    clear: both;
+    width: 92vw;
+    padding: 0; }
+
   .EXLFacetTile {
     display: none; }
 
