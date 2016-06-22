@@ -13,8 +13,9 @@
     border: none;
   }
 
-  .EXLMyShelfStar {
-    padding: 5px;
+  td.EXLMyShelfStar {
+    padding-top: 0.7em;
+    padding-right: 10px;
   }
 
   h2 {
@@ -33,10 +34,6 @@
 
   td.EXLThumbnail  {
     padding-top: 1em;
-  }
-  td.EXLMyShelfStar {
-    padding-top: 1em;
-    padding-right: 10px;
   }
 
   div.EXLSummaryContainer div.EXLSummaryFields {
