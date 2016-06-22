@@ -15,12 +15,8 @@
 
   .EXLMyAccountTabs {
       div {
-        ul {
-          margin-bottom: -1px;
-        }
         li.EXLMyAccountTab {
-          padding-top: 0.8em;
-          padding-bottom: 1em;
+          line-height: 31px;
           background-color: #f1f1f1;
         }
         li.EXLMyAccountSelectedTab {
