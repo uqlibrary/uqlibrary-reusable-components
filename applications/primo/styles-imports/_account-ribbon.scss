@@ -26,13 +26,14 @@
       width: 0;
     }
 
-    #exlidMyShelf {
-      clear: left;
-      background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
-      background-repeat: no-repeat;
-      background-position: left top;
-      padding-left: 21px; /* 20px image + a little space */
-      min-height: 16px;
+  #exlidMyShelf {
+    clear: left;
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-top: 1px;
+    padding-left: 21px; /* 20px image + a little space */
+    min-height: 16px;
 
       span {
         width: 0;
@@ -40,5 +41,9 @@
         background-image: none;
       }
     }
+  }
+  #exlidSavedSearches,
+  #exlidMyAccount {
+    padding-top: 1px; /* spacing to fit eshelf_on_small icon */
   }
 }
