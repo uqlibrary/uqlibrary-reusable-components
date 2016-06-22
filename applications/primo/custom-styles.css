@@ -382,6 +382,15 @@ body {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
     width: 80vw !important;
     margin: 10px 0; } }
+/* facet sidebar */
+#exlidFacetTile {
+  width: 23%; }
+
+/* main result body */
+#resultsTileNoId {
+  width: 75%;
+  border-left-width: 0; }
+
 .EXLDateRangeText .datebox {
   min-width: 3em; }
 .EXLDateRangeText #slider-range {
@@ -408,38 +417,32 @@ body {
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff {
   background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/star.png); }
 
-/* facet sidebar */
-#exlidFacetTile {
-  width: 23%; }
-
-/* main result body */
-#resultsTileNoId {
-  width: 75%;
-  border-left-width: 0; }
-
 /* facet tile headers */
 .EXLFacetContainer {
   /* facet tile header */
   /* facet tile header */
-  /* block of links in each facet tile */ }
+  /* block of links in each facet tile */
+  /* make list items line up on left - remove 'wrapping backwards' */ }
   .EXLFacetContainer h1 {
-    background-color: inherit;
+    background-color: #fff;
     color: #000;
     font-size: 100%;
     font-weight: bold;
     line-height: 150%;
     text-indent: 0;
     margin-bottom: 0.3em;
-    padding-left: 0.5em; }
+    padding-left: 0.5em;
+    border-width: 0; }
   .EXLFacetContainer h3 {
-    background-color: #F8F8F8;
-    color: #757575;
+    background-color: #fff;
+    color: #000;
     font-weight: bold;
     font-size: 100%;
     line-height: 150%;
     text-indent: 0;
     margin-bottom: 0.3em;
-    padding: 0 0 0 0.5em; }
+    padding: 0 0 0 0.5em;
+    border-width: 0; }
   .EXLFacetContainer h4 {
     background-color: #EAEAEA;
     color: #606060;
@@ -452,6 +455,9 @@ body {
     padding: 6px 4px;
     border: 2px solid #F1F1F1;
     text-indent: 1em; }
+  .EXLFacetContainer ol li {
+    margin-left: 1em;
+    text-indent: 0; }
 
 /* icon-text link block at top of facet sidebar */
 div.EXLFacetActionsV2 {
@@ -464,24 +470,24 @@ div.EXLFacetActionsV2 {
   padding: 4px 4px 16px 4px;
   border: 2px solid #F1F1F1; }
 
-/* put a grey background on publication date */
+/* put a grey background on publication date and removes extraneous space */
 /* this assumes exlidFacet1 is tied to the pub date field */
 #exlidFacet1 {
-  margin-bottom: 0; }
-
-#exlidFacet1 .EXLDateRangeText {
-  background-color: #F8F8F8;
-  color: inherit;
-  padding: 1px 0;
-  /* force space for background color */
-  margin-bottom: 0; }
-
-/* remove stray grey bottom of publication date box */
-#exlidFacetSublist1 {
-  padding-bottom: 0;
-  background-color: #fff;
-  color: inherit;
-  border-width: 0; }
+  margin-bottom: 0;
+  /* remove stray grey bottom & space */ }
+  #exlidFacet1 .EXLDateRangeText {
+    background-color: #F8F8F8;
+    color: inherit;
+    padding: 1px 0;
+    /* force space for background color */
+    margin-bottom: 0.5em; }
+  #exlidFacet1 .EXLDateRangeLine {
+    margin-bottom: 1em; }
+  #exlidFacet1 #exlidFacetSublist1 {
+    padding-bottom: 0;
+    background-color: #fff;
+    color: inherit;
+    border-width: 0; }
 
 #exlidUserAreaRibbon li {
   background-image: none; }
@@ -613,6 +619,17 @@ div.EXLFacetActionsV2 {
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="Description"] br {
   line-height: .75;
   display: inline-block; }
+
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList {
+  /* make certain options in the save/share selector disappear */
+  /* remove the icons on each Send/Share selector item */ }
+  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToEasyBib,
+  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToRefWorks,
+  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToDelicious,
+  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToFacebook {
+    display: none !important; }
+  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToIcon {
+    display: none !important; }
 
 .EXLTabHeader div.EXLTabHeaderContent {
   padding-top: 0.7em;

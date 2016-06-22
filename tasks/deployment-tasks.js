@@ -85,7 +85,7 @@ gulp.task('publish', ['copy:aws'], function () {
         path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
       }))
       // gzip, Set Content-Encoding headers
-      .pipe($.awspublish.gzip())
+      // .pipe($.awspublish.gzip())
 
       // publisher will add Content-Length, Content-Type and headers specified above
       // If not specified it will set x-amz-acl to public-read by default
