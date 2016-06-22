@@ -65,3 +65,18 @@
   line-height: .75;
   display: inline-block;
 }
+
+
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList {
+  /* make certain options in the save/share selector disappear */
+  .EXLButtonSendToEasyBib ,
+  .EXLButtonSendToRefWorks ,
+  .EXLButtonSendToDelicious ,
+  .EXLButtonSendToFacebook {
+    display: none !important;
+  }
+  /* remove the icons on each Send/Share selector item */
+  .EXLButtonSendToIcon {
+    display: none !important;
+  }
+}

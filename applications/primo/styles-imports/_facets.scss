@@ -1,3 +1,14 @@
+/* facet sidebar */
+#exlidFacetTile {
+  width: 23%;
+}
+
+/* main result body */
+#resultsTileNoId {
+  width: 75%;
+  border-left-width: 0;
+}
+
 .EXLDateRangeText {
 
   //make min width for 4 digits
@@ -51,21 +62,10 @@
   }
 }
 
-/* facet sidebar */
-#exlidFacetTile {
-  width: 23%;
-}
-
-/* main result body */
-#resultsTileNoId {
-  width: 75%;
-  border-left-width: 0;
-}
-
 /* facet tile headers */
 .EXLFacetContainer {
   h1 {
-    background-color: inherit;
+    background-color: #fff;
     color: #000;
     font-size: 100%;
     font-weight: bold;
@@ -73,18 +73,20 @@
     text-indent: 0;
     margin-bottom: 0.3em;
     padding-left: 0.5em;
+    border-width: 0;
   }
 
   /* facet tile header */
   h3 {
-    background-color: #F8F8F8;
-    color: #757575;
+    background-color: #fff;
+    color: #000;
     font-weight: bold;
     font-size: 100%;
     line-height: 150%;
     text-indent: 0;
     margin-bottom: 0.3em;
     padding: 0 0 0 0.5em;
+    border-width: 0;
   }
 
   /* facet tile header */
@@ -104,6 +106,12 @@
     border: 2px solid #F1F1F1;
     text-indent: 1em;
   }
+
+  /* make list items line up on left - remove 'wrapping backwards' */
+  ol li {
+    margin-left: 1em;
+    text-indent: 0;
+  }
 }
 
 /* icon-text link block at top of facet sidebar */
@@ -118,25 +126,29 @@ div.EXLFacetActionsV2 {
   border: 2px solid #F1F1F1;
 }
 
-/* put a grey background on publication date */
+/* put a grey background on publication date and removes extraneous space */
 /* this assumes exlidFacet1 is tied to the pub date field */
 #exlidFacet1 {
   margin-bottom: 0;
-}
 
-#exlidFacet1 .EXLDateRangeText {
-  background-color: #F8F8F8;
-  color: inherit;
-  padding: 1px 0; /* force space for background color */
-  margin-bottom: 0;
-}
+  .EXLDateRangeText {
+    background-color: #F8F8F8;
+    color: inherit;
+    padding: 1px 0; /* force space for background color */
+    margin-bottom: 0.5em;
+  }
 
-/* remove stray grey bottom of publication date box */
-#exlidFacetSublist1 {
-  padding-bottom: 0;
-  background-color: #fff;
-  color: inherit;
-  border-width: 0;
+  .EXLDateRangeLine {
+    margin-bottom: 1em; // remove extraneous space at bottom
+  }
+
+  /* remove stray grey bottom & space */
+  #exlidFacetSublist1 {
+    padding-bottom: 0;
+    background-color: #fff;
+    color: inherit;
+    border-width: 0;
+  }
 }
 
 
