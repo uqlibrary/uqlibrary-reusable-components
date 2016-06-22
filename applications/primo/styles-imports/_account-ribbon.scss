@@ -25,21 +25,16 @@
 
   #exlidMyShelf {
     clear: left;
-    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on.png);
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
     background-repeat: no-repeat;
     background-position: left top;
-    padding-left: 26px; /* 24px image + a little space */
-    min-height: 24px;
-    padding-top: 5px; /* spacing to fit eshelf_on icon */
+    padding-left: 21px; /* 20px image + a little space */
+    min-height: 16px;
 
     span {
       width: 0;
       margin: 0;
       background-image: none;
     }
-  }
-  #exlidSavedSearches ,
-  #exlidMyAccount {
-    padding-top: 5px; /* spacing to fit eshelf_on icon */
   }
 }
