@@ -9,12 +9,13 @@
   td.EXLResultNumber {
     display: block;
     font-weight: bold;
-    padding-top: 2em;
+    padding-top: 1em;
     border: none;
   }
 
-  .EXLMyShelfStar {
-    padding: 5px;
+  td.EXLMyShelfStar {
+    padding-top: 10px;
+    padding-right: 10px;
   }
 
   h2 {
@@ -29,6 +30,14 @@
   p.EXLResultSnippet {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+  }
+
+  td.EXLThumbnail  {
+    padding-top: 1em;
+  }
+
+  div.EXLSummaryContainer div.EXLSummaryFields {
+    padding-top: 0.4em;
   }
 }
 

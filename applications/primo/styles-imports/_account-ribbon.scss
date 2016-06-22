@@ -20,14 +20,15 @@
   }
 
   #exlidUserName .EXLUserAreaStart {
-    width: 0px;
+    width: 0;
   }
 
   #exlidMyShelf {
     clear: left;
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on.png);
     span {
-      width: 0px;
-      margin: 0px;
+      width: 0;
+      margin: 0;
       background-image: none;
     }
   }
