@@ -1,0 +1,19 @@
+@media screen and (max-width: 800px) {
+  #exlidHeaderContainer {
+    display: none;
+  }
+
+  //hide facets on tablet
+  #exlidFacetTile {
+    display: none;
+  }
+
+  #resultsTileNoId {
+    max-width: 95vw;
+    width: 95%;
+    float: none;
+    clear: both;
+    display: block;
+    margin: 0;
+  }
+}
