@@ -9,7 +9,7 @@
   td.EXLResultNumber {
     display: block;
     font-weight: bold;
-    padding-top: 2em;
+    padding-top: 1em;
     border: none;
   }
 
@@ -29,6 +29,18 @@
   p.EXLResultSnippet {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+  }
+
+  td.EXLThumbnail  {
+    padding-top: 1em;
+  }
+  td.EXLMyShelfStar {
+    padding-top: 1em;
+    padding-right: 10px;
+  }
+
+  div.EXLSummaryContainer div.EXLSummaryFields {
+    padding-top: 0.4em;
   }
 }
 
