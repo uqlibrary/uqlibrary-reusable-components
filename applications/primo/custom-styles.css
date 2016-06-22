@@ -646,6 +646,7 @@ div.EXLFacetActionsV2 {
 
 .EXLTabHeader div.EXLTabHeaderContent {
   padding-top: 0.7em;
+  width: 50%;
   /* use this selector to style the container of the login link */ }
   .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName {
     display: none; }
