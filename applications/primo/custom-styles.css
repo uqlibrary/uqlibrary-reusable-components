@@ -699,10 +699,10 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   background: none;
   background-image: none;
   border-bottom: 1px solid #8FB9D0; }
-  .EXLMyAccountTabsRibbon .EXLMyAccountTabs div li.EXLMyAccountTab {
+  .EXLMyAccountTabsRibbon div ul.EXLMyAccountTabs li.EXLMyAccountTab {
     line-height: 31px;
     background-color: #f1f1f1; }
-  .EXLMyAccountTabsRibbon .EXLMyAccountTabs div li.EXLMyAccountSelectedTab {
+  .EXLMyAccountTabsRibbon div ul.EXLMyAccountTabs li.EXLMyAccountSelectedTab {
     background-color: #FFF;
     background-image: none;
     margin-left: 0px;

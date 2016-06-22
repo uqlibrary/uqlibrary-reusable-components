@@ -12,9 +12,8 @@
   background: none;
   background-image: none;
   border-bottom: 1px solid #8FB9D0;
-
-  .EXLMyAccountTabs {
-      div {
+    div {
+      ul.EXLMyAccountTabs {
         li.EXLMyAccountTab {
           line-height: 31px;
           background-color: #f1f1f1;
@@ -28,5 +27,6 @@
           border-bottom: 1px solid #FFF;
         }
       }
+    }
   }
-}
+
