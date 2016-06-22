@@ -103,6 +103,29 @@ body {
 
 #exlidUserAreaTile {
   padding-top: 0.5em; }
+  #exlidUserAreaTile #exlidUserAreaRibbon li {
+    background-image: none; }
+    #exlidUserAreaTile #exlidUserAreaRibbon li a:link, #exlidUserAreaTile #exlidUserAreaRibbon li a:visited {
+      text-decoration: underline;
+      color: #2377CB; }
+  #exlidUserAreaTile #exlidUserAreaRibbon .EXLLastItem :before {
+    content: "("; }
+  #exlidUserAreaTile #exlidUserAreaRibbon .EXLLastItem :after {
+    content: ")"; }
+  #exlidUserAreaTile #exlidUserAreaRibbon #exlidUserName .EXLUserAreaStart {
+    width: 0; }
+  #exlidUserAreaTile #exlidUserAreaRibbon #exlidMyShelf {
+    clear: left;
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-left: 21px;
+    /* 20px image + a little space */
+    min-height: 16px; }
+    #exlidUserAreaTile #exlidUserAreaRibbon #exlidMyShelf span {
+      width: 0;
+      margin: 0;
+      background-image: none; }
 
 #exlidHeaderSystemFeedback {
   background-color: transparent;
@@ -489,30 +512,6 @@ div.EXLFacetActionsV2 {
     color: inherit;
     border-width: 0; }
 
-#exlidUserAreaRibbon li {
-  background-image: none; }
-  #exlidUserAreaRibbon li a:link, #exlidUserAreaRibbon li a:visited {
-    text-decoration: underline;
-    color: #2377CB; }
-#exlidUserAreaRibbon .EXLLastItem :before {
-  content: "("; }
-#exlidUserAreaRibbon .EXLLastItem :after {
-  content: ")"; }
-#exlidUserAreaRibbon #exlidUserName .EXLUserAreaStart {
-  width: 0; }
-#exlidUserAreaRibbon #exlidMyShelf {
-  clear: left;
-  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
-  background-repeat: no-repeat;
-  background-position: left top;
-  padding-left: 21px;
-  /* 20px image + a little space */
-  min-height: 16px; }
-  #exlidUserAreaRibbon #exlidMyShelf span {
-    width: 0;
-    margin: 0;
-    background-image: none; }
-
 .EXLResultsList .EXLTabHeaderButtonSendTo img {
   padding-left: 0.4em; }
 .EXLResultsList td.EXLResultNumber {
@@ -691,6 +690,9 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   margin-top: 17px;
   font-size: 100%; }
 
+.EXLMyAccountContainer {
+  background: none; }
+
 .browse-help-text {
   max-width: 80em;
   margin: 20px auto;
@@ -712,6 +714,34 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   display: none; }
 
 @media screen and (max-width: 800px) {
+  body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    min-width: 200px; }
+
+  .EXLFacetTile {
+    display: none; }
+
+  .EXLResultsContainer {
+    width: auto;
+    height: auto;
+    padding-left: 0em;
+    padding-right: 0em;
+    padding-top: 1em;
+    margin-top: auto;
+    overflow: hidden;
+    margin-bottom: 1em; }
+
+  .EXLResultsContainer div.EXLResultsTile {
+    width: 100%;
+    float: none;
+    border: none;
+    padding: 0em;
+    background-color: #FFFFFF;
+    margin: 0em;
+    margin-bottom: 2em; }
+
   #exlidHeaderContainer {
     display: none; }
 

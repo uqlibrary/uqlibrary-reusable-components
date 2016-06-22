@@ -67,13 +67,12 @@ body {
 }
 
 @import "styles-imports/home-page";
-@import "styles-imports/user-tile";
+@import "styles-imports/account-ribbon";
 @import "styles-imports/login-bar";
 @import "styles-imports/search-tile";
 @import "styles-imports/advanced-search-tile";
 
 @import "styles-imports/facets";
-@import "styles-imports/account-ribbon";
 
 @import "styles-imports/result-list";
 @import "styles-imports/result-tabs";
@@ -81,6 +80,8 @@ body {
 @import "styles-imports/result-tab-getit";
 @import "styles-imports/result-footer";
 @import "styles-imports/result-header";
+
+@import "styles-imports/account-area";
 
 @import "styles-imports/browse-help";
 @import "styles-imports/footer";

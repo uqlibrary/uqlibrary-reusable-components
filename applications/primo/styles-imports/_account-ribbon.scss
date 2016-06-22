@@ -1,40 +1,44 @@
-#exlidUserAreaRibbon {
-  li span.EXLMyShelfStarSelected {
-    //background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/folder-special.png);
-  }
+#exlidUserAreaTile {
+  padding-top: 0.5em;
 
-  li {
-    background-image: none;
-    a:link, a:visited {
-      text-decoration: underline;
-      color: $accent-color;
+  #exlidUserAreaRibbon {
+    li span.EXLMyShelfStarSelected {
+      //background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/folder-special.png);
     }
-  }
-  .EXLLastItem {
-    :before {
-      content: "(";
-    }
-    :after {
-      content: ")";
-    }
-  }
 
-  #exlidUserName .EXLUserAreaStart {
-    width: 0;
-  }
-
-  #exlidMyShelf {
-    clear: left;
-    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
-    background-repeat: no-repeat;
-    background-position: left top;
-    padding-left: 21px; /* 20px image + a little space */
-    min-height: 16px;
-
-    span {
-      width: 0;
-      margin: 0;
+    li {
       background-image: none;
+      a:link, a:visited {
+        text-decoration: underline;
+        color: $accent-color;
+      }
+    }
+    .EXLLastItem {
+      :before {
+        content: "(";
+      }
+      :after {
+        content: ")";
+      }
+    }
+
+    #exlidUserName .EXLUserAreaStart {
+      width: 0;
+    }
+
+    #exlidMyShelf {
+      clear: left;
+      background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
+      background-repeat: no-repeat;
+      background-position: left top;
+      padding-left: 21px; /* 20px image + a little space */
+      min-height: 16px;
+
+      span {
+        width: 0;
+        margin: 0;
+        background-image: none;
+      }
     }
   }
 }
