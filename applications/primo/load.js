@@ -42,6 +42,10 @@ function loadReusableComponents() {
     header.showLoginButton = false;
     header.showAppsButton = true;
   });
+
+  // make the primo publication date preload the start and end date
+  onTBChange('start');
+  onTBChange('end');
 }
 
 function loadUQFavicon() {
