@@ -108,8 +108,12 @@ frontend/app/index.html includes following:
         <script src="//assets.library.uq.edu.au/reusable-components/uqlapp/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/uqlapp/custom-styles.css" />
         
-#### PRIMO
-Primo files to include following:
+#### PRIMO (https://search.library.uq.edu.au)
+Primo includes static_html/footer.html on every page which loads all UQL styling and JavaScript. 
+footer.html is uploaded to Primo Back Office via File Uploader to 61UQ view.
+
+
+Primo static_html/footer.html to include following:
 
         <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
@@ -118,7 +122,19 @@ Primo files to include following:
         
         <script src="//assets.library.uq.edu.au/reusable-components/primo/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/primo/custom-styles.css" />
-                
+        
+Primo styling for Primo iframes.
+When custom-styles.css is finalised, it has to be uploaded to Primo to apply styles to Primo iframes (not Alma iframes).
+
+In Primo Back Office:
+
+1. Upload custom-styles.css to 61UQ view via Deploy & Utilities -> File Uploader
+2. In FE & Delivery -> Views List edit 61UQ view, Save & Continue all the way through, and Deploy.
+
+To test your new CSS has been applied go to a Primo page and add attribute &wroDevMode=true to query string. This will stop CSS concat tool from merging all CSS files on server side.
+More details [Primo CSS customisation](https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Customizing_the_Default_CSS_File)
+, [File Uploader Tool](https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Back_Office_Guide/Primo_Utilities/The_File_Uploader_Tool)
+and [Debugging CSS/JS in Primo] (https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Debugging_CSS_and_JavaScript)                
 
 #### Shared (uqlais, ezproxy static pages)
 https://github.com/uqlibrary/UQLAIS/blob/master/templates/header.tpl.html includes following:
