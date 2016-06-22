@@ -499,12 +499,18 @@ div.EXLFacetActionsV2 {
 #exlidUserAreaRibbon .EXLLastItem :after {
   content: ")"; }
 #exlidUserAreaRibbon #exlidUserName .EXLUserAreaStart {
-  width: 0px; }
+  width: 0; }
 #exlidUserAreaRibbon #exlidMyShelf {
-  clear: left; }
+  clear: left;
+  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
+  background-repeat: no-repeat;
+  background-position: left top;
+  padding-left: 21px;
+  /* 20px image + a little space */
+  min-height: 16px; }
   #exlidUserAreaRibbon #exlidMyShelf span {
-    width: 0px;
-    margin: 0px;
+    width: 0;
+    margin: 0;
     background-image: none; }
 
 .EXLResultsList .EXLTabHeaderButtonSendTo img {
@@ -512,10 +518,11 @@ div.EXLFacetActionsV2 {
 .EXLResultsList td.EXLResultNumber {
   display: block;
   font-weight: bold;
-  padding-top: 2em;
+  padding-top: 1em;
   border: none; }
-.EXLResultsList .EXLMyShelfStar {
-  padding: 5px; }
+.EXLResultsList td.EXLMyShelfStar {
+  padding-top: 8px;
+  padding-right: 10px; }
 .EXLResultsList h2 {
   font-size: 120%;
   padding-bottom: 0.5em; }
@@ -524,6 +531,10 @@ div.EXLFacetActionsV2 {
 .EXLResultsList p.EXLResultSnippet {
   padding-top: 0.5em;
   padding-bottom: 0.5em; }
+.EXLResultsList td.EXLThumbnail {
+  padding-top: 1em; }
+.EXLResultsList div.EXLSummaryContainer div.EXLSummaryFields {
+  padding-top: 0.4em; }
 
 .EXLResultTabContainer div.EXLTabHeader {
   min-height: 32px;
@@ -694,7 +705,8 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   display: none; }
 
 #exlidMainMenuContainer,
-#scopesList {
+#scopesList,
+#exlidSearchBanner {
   display: none; }
 
 uq-minimal-header,
