@@ -1,17 +1,37 @@
-.EXLMyAccountMainMenuBulletSelected {
-  //TODO: some blue pointer image
-  //background-image: url(../images/bullet_myAccount_menu.png);
-}
+#exlidMyAccountContainer {
 
-.EXLMyAccountContainer {
-  background: none;
-}
+  .buttonGo{
+    border: none;
 
-.EXLMyAccountTabsRibbon {
-  min-height: 32px;
-  background: none;
-  background-image: none;
-  border-bottom: 1px solid #8FB9D0;
+    a {
+      color: #fff !important;
+      background-color: #2377CB;
+      padding: 0.2em .57em;
+      min-width: 5.14em;
+      border-radius: 3px;
+      font-size: 13px;
+      background-image: none;
+      height: auto;
+      text-transform: uppercase;
+      border: none;
+      -webkit-appearance: none;
+    }
+  }
+
+  .EXLMyAccountMainMenuBulletSelected {
+    //TODO: some blue pointer image
+    //background-image: url(../images/bullet_myAccount_menu.png);
+  }
+
+  .EXLMyAccountContainer {
+    background: none;
+  }
+
+  .EXLMyAccountTabsRibbon {
+    min-height: 32px;
+    background: none;
+    background-image: none;
+    border-bottom: 1px solid #8FB9D0;
     div {
       ul.EXLMyAccountTabs {
         li.EXLMyAccountTab {
@@ -30,4 +50,4 @@
       }
     }
   }
-
+}
