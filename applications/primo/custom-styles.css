@@ -200,7 +200,6 @@ body {
     width: 90%;
     height: 36px; }
   #exlidSearchTile #exlidSearchRibbon {
-    width: 95vw;
     margin: auto;
     float: none; }
     #exlidSearchTile #exlidSearchRibbon fieldset {
@@ -721,6 +720,9 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     -webkit-text-size-adjust: none;
     -webkit-user-select: none;
     min-width: 200px; }
+
+  #exlidSearchRibbon {
+    width: 95vw; }
 
   #exlidHeaderSearchLimits {
     display: block;
