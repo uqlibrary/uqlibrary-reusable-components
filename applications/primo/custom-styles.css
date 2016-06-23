@@ -681,6 +681,9 @@ div.EXLFacetActionsV2 {
 .EXLTabHeader div.EXLTabHeaderButtons li {
   font-weight: bold; }
 
+.EXLTabBrowseContent div.caroufredsel_wrapper {
+  width: auto !important; }
+
 body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div.EXLResultsFooter.EXLResultsHeader div.EXLResultsNavigation {
   font-size: 100%; }
 
