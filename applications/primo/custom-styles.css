@@ -581,6 +581,11 @@ div.EXLFacetActionsV2 {
     background-image: none; }
 
 /*-- Style item details tab as "table" --*/
+/* Fix result list jumping issue */
+.EXLDetailsTabContent div.EXLDetailsContent {
+  margin-right: 0.5em;
+  margin-left: 0.5em; }
+
 /* Make sure labels align with associated data */
 .EXLDetailsTabContent div.EXLDetailsContent li {
   clear: both; }
