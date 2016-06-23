@@ -21,11 +21,11 @@ function loadReusableComponents() {
   $.fn.fadeIn = function(){
     var self = this;
     _old.apply(this,arguments).promise().done(function(){
-      self.trigger("fadeIn");
+      self.trigger('fadeIn');
     });
   };
 
-  $("exlidSignOut").on("fadeIn",function(){
+  $('#exlidSignOut').on('fadeIn',function(){
     modifyUserAreaTile();
     if ($('#alert-container')) {
       $('#alert-container').fadeOut(500);
