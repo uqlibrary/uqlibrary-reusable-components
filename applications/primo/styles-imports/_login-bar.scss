@@ -27,11 +27,15 @@
         text-decoration: underline;
       }
 
+      span {
+        white-space: nowrap;
+      }
     }
 
   }
 
 }
+
 
 // info icon for login reminder bar
 #alert-icon-container {
