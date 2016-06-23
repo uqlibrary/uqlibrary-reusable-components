@@ -99,7 +99,7 @@ function loadSigninNotification() {
 }
 
 function modifyUserAreaTile() {
-  var userAreaRibbon = $('#exlidUserAreaTile #exlidUserAreaRibbon')
+  var userAreaRibbon = $('#exlidUserAreaTile #exlidUserAreaRibbon');
 
   if (userAreaRibbon) {
 
