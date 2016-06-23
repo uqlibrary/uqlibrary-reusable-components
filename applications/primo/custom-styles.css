@@ -119,6 +119,7 @@ body {
     background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
     background-repeat: no-repeat;
     background-position: left top;
+    padding-top: 1px;
     padding-left: 21px;
     /* 20px image + a little space */
     min-height: 16px; }
@@ -126,6 +127,13 @@ body {
       width: 0;
       margin: 0;
       background-image: none; }
+  #exlidUserAreaTile #exlidSavedSearches,
+  #exlidUserAreaTile #exlidMyAccount {
+    padding-top: 1px;
+    /* spacing to fit eshelf_on_small icon */ }
+  #exlidUserAreaTile li span.EXLUserNameDisplay {
+    padding-left: 0;
+    /* left align username with eshelf_on_small icon */ }
 
 #exlidHeaderSystemFeedback {
   background-color: transparent;
@@ -672,6 +680,9 @@ div.EXLFacetActionsV2 {
       text-decoration: underline; }
 .EXLTabHeader div.EXLTabHeaderButtons li {
   font-weight: bold; }
+
+.EXLTabBrowseContent .caroufredsel_wrapper {
+  width: auto; }
 
 body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div.EXLResultsFooter.EXLResultsHeader div.EXLResultsNavigation {
   font-size: 100%; }
