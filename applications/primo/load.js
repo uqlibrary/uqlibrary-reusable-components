@@ -14,6 +14,24 @@ function loadReusableComponents() {
   //show notification bar if user is not logged in
   loadSigninNotification();
 
+  // add a event on fadein, this is to solve session timeout issue,
+  // when session timeout, primo will trigger an ajax call via function ssoByAjax then update the user login status
+  var _old = $.fn.fadeIn;
+
+  $.fn.fadeIn = function(){
+    var self = this;
+    _old.apply(this,arguments).promise().done(function(){
+      self.trigger("fadeIn");
+    });
+  };
+
+  $("exlidSignOut").on("fadeIn",function(){
+    modifyUserAreaTile();
+    if ($('#alert-container')) {
+      $('#alert-container').fadeOut(500);
+    }
+  });
+
   //first element of the original document
   var firstElement = document.body.children[0];
 
@@ -81,24 +99,37 @@ function loadSigninNotification() {
 }
 
 function modifyUserAreaTile() {
-  var userAreaRibbon = $('#exlidUserAreaTile #exlidUserAreaRibbon');
+  var userAreaRibbon = $('#exlidUserAreaTile #exlidUserAreaRibbon')
 
   if (userAreaRibbon) {
+
+    var myAccount = userAreaRibbon.find('#exlidMyAccount'),
+        myShelf = userAreaRibbon.find('#exlidMyShelf'),
+        hiddenClass = 'EXLHidden';
 
     // move signin and signout button next to the user name
     userAreaRibbon.find('.EXLLastItem').insertAfter(userAreaRibbon.find('#exlidUserName'));
 
     if (isUserLoggedIn()){
+      // undo not logged in changes
+      if (myAccount.hasClass(hiddenClass)) {
+        myAccount.removeClass(hiddenClass);
+        myShelf.remove('span');
+      }
+
       // add saved searches and alerts link
       var savedSearches = $('<li id="exlidSavedSearches" class="EXLSavedSearches"><a href="query.do?fn=display">Saved searches & alerts</a></li>');
-      userAreaRibbon.find('#exlidMyShelf').after(savedSearches);
+      myShelf.after(savedSearches);
 
     } else {
+      if ($('#exlidSavedSearches')){
+        $('#exlidSavedSearches').remove();
+      }
       // hide my account link
-      userAreaRibbon.find('#exlidMyAccount').addClass('EXLHidden');
+      myAccount.addClass(hiddenClass);
 
       // insert a login reminder after myself
-      userAreaRibbon.find('#exlidMyShelf').append('<span> - temporary if not logged in</span>');
+      myShelf.append('<span> - temporary if not logged in</span>');
     }
   }
 
