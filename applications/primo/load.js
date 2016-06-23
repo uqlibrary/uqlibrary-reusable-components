@@ -14,23 +14,7 @@ function loadReusableComponents() {
   //show notification bar if user is not logged in
   loadSigninNotification();
 
-  // add a event on fadein, this is to solve session timeout issue,
-  // when session timeout, primo will trigger an ajax call via function ssoByAjax then update the user login status
-  var _old = $.fn.fadeIn;
-
-  $.fn.fadeIn = function(){
-    var self = this;
-    _old.apply(this,arguments).promise().done(function(){
-      self.trigger('fadeIn');
-    });
-  };
-
-  $('#exlidSignOut').on('fadeIn',function(){
-    modifyUserAreaTile();
-    if ($('#alert-container')) {
-      $('#alert-container').fadeOut(500);
-    }
-  });
+  listenToLoginStatusChanges();
 
   //first element of the original document
   var firstElement = document.body.children[0];
@@ -114,7 +98,7 @@ function modifyUserAreaTile() {
       // undo not logged in changes
       if (myAccount.hasClass(hiddenClass)) {
         myAccount.removeClass(hiddenClass);
-        myShelf.remove('span');
+        myShelf.children('span').remove();
       }
 
       // add saved searches and alerts link
@@ -133,6 +117,26 @@ function modifyUserAreaTile() {
     }
   }
 
+}
+
+// add a event on fadein, this is to solve session timeout issue,
+// when session timeout, primo will trigger an ajax call via function ssoByAjax then update the user login status
+function listenToLoginStatusChanges() {
+  var _old = $.fn.fadeIn;
+
+  $.fn.fadeIn = function(){
+    var self = this;
+    _old.apply(this,arguments).promise().done(function(){
+      self.trigger('fadeIn');
+    });
+  };
+
+  $('#exlidSignOut').on('fadeIn',function(){
+    modifyUserAreaTile();
+    if ($('#alert-container')) { // remove the login reminder
+      $('#alert-container').fadeOut(500);
+    }
+  });
 }
 
 ready(loadReusableComponents);
