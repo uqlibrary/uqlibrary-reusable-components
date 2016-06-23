@@ -136,6 +136,29 @@ More details [Primo CSS customisation](https://knowledge.exlibrisgroup.com/Primo
 , [File Uploader Tool](https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Back_Office_Guide/Primo_Utilities/The_File_Uploader_Tool)
 and [Debugging CSS/JS in Primo] (https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Debugging_CSS_and_JavaScript)                
 
+Styling for Alma iframes:
+1. Login to https://uq.alma.exlibrisgroup.com/SAML
+2. Go to Alma > Administration > General Configuration > General Configuration Menu
+3. Select Delivery System Skins
+4. Select "uqskin" and click on Action->Edit
+5. Download the branding_skin.zip
+6. Unzip the file and uncomment and edit css class in the mashup.css as required
+7. Rezip the file (remember to remove all the system hidden folders and files e.g. .Dstore)
+8. Upload the zip file and Save
+
+Then Go To Primo Back Office:
+1. Go to Advanced Configuration > Mapping Tables
+2. Select "Delivery" for subsystem
+3. Select "Templates" and click on Edit
+4. Look for "Almagetit" and "Almaviewit" and make sure they have "&req.skin=uqskin" appended
+5. If they dont, append the text and click Save and Deploy.
+
+On the search result page, confirm the settings have been applied correctly:
+1. Check the iframe src, it shall have "&req.skin=uqskin" appended
+2. Check in the header section, it shall load the mashup.css from the uqskin:
+
+        <link href="/view/branding_skin/css/mashup.css?skinName=uqskin&version=June2016&skinVersion=1466583814&customerId=3130&institutionId=3131" rel="stylesheet" type="text/css">
+
 #### Shared (uqlais, ezproxy static pages)
 https://github.com/uqlibrary/UQLAIS/blob/master/templates/header.tpl.html includes following:
 
