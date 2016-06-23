@@ -444,9 +444,9 @@ body {
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetRSSAction {
   display: none; }
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveSearchAction {
-  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/note-add.png); }
+  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/save-search.png); }
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff {
-  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/star.png); }
+  background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/note-add.png); }
 
 /* facet tile headers */
 .EXLFacetContainer {
