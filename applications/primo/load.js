@@ -88,11 +88,11 @@ function addAppleTouchIcon() {
 
   for (var i = 0; i < sizes.length; i++) {
     var size = sizes[i],
-        link = document.createElement('link');
-    link.rel = rel;
-    link.sizes = size;
-    link.href = href.replace('icon.png','icon-' + size + '.png');
-    document.getElementsByTagName('head')[0].appendChild(link);
+        tmplink = document.createElement('link');
+    tmplink.rel = rel;
+    tmplink.sizes = size;
+    tmplink.href = href.replace('icon.png','icon-' + size + '.png');
+    document.getElementsByTagName('head')[0].appendChild(tmplink);
   }
 }
 
