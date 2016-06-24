@@ -152,18 +152,20 @@ body {
     display: flex;
     height: auto; }
     #exlidHeaderSystemFeedback #alert-container #alert-text-container {
+      text-align: left;
+      padding: 0 5px;
       font-size: 0.9em;
-      color: white;
+      color: #fff !important;
       background-image: none;
       margin-top: auto;
       margin-bottom: auto; }
-      #exlidHeaderSystemFeedback #alert-container #alert-text-container a {
+      #exlidHeaderSystemFeedback #alert-container #alert-text-container a, #exlidHeaderSystemFeedback #alert-container #alert-text-container a:link, #exlidHeaderSystemFeedback #alert-container #alert-text-container a:visited {
         color: #fff !important;
         text-decoration: underline; }
 
 #alert-icon-container {
   top: 0;
-  margin: auto 0.2em auto 0.3em; }
+  margin: auto 0.3em auto 0.3em; }
 
 #exlidSearchTile {
   border: none;
