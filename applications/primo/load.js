@@ -9,6 +9,8 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
+  addAppleTouchIcon();
+
   modifyUserAreaTile();
 
   //show notification bar if user is not logged in
@@ -65,10 +67,30 @@ function loadUQFavicon() {
   link.rel = 'icon'; //for IE
   document.getElementsByTagName('head')[0].appendChild(link);
 
+}
+
+function addAppleTouchIcon() {
   // replace apple-touch-icon
-  link = $('link[rel="apple-touch-icon"]');
-  if (link) {
-    link.attr('href', href);
+  var appleTouchIconlink = $('link[rel="apple-touch-icon"]'),
+      link = document.createElement('link'),
+      sizes = ['152x152', '120x120', '76x76'],
+      href = '//assets.library.uq.edu.au/master/reusable-components/resources/images/apple-touch-icon.png';
+
+  link.rel = 'apple-touch-icon';
+
+  if (appleTouchIconlink) {
+    appleTouchIconlink.attr('href', href);
+  } else {
+    appleTouchIconlink = link;
+    appleTouchIconlink.href = href;
+    document.getElementsByTagName('head')[0].appendChild(appleTouchIconlink);
+  }
+
+  for (var i = 0; i < sizes.length; i++) {
+    var size = sizes[i];
+    link.sizes = size;
+    link.href = href.replace('icon.png','icon-' + size + '.png');
+    appleTouchIconlink.after(link);
   }
 }
 
