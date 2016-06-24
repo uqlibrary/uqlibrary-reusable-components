@@ -132,10 +132,7 @@ function listenToLoginStatusChanges() {
   };
 
   $('#exlidSignOut').on('fadeIn',function(){
-    modifyUserAreaTile();
-    if ($('#alert-container')) { // remove the login reminder
-      $('#alert-container').fadeOut(500);
-    }
+    location.reload();
   });
 }
 
