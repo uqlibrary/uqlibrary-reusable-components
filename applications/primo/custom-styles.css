@@ -507,7 +507,7 @@ div.EXLFacetActionsV2 {
   font-size: 120%;
   padding-bottom: 0.5em; }
 .EXLResultsList h3 {
-  display: inline-block; }
+  display: block; }
 .EXLResultsList p.EXLResultSnippet {
   padding-top: 0.5em;
   padding-bottom: 0.5em; }
