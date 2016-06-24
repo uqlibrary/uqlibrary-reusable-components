@@ -152,7 +152,6 @@ body {
     display: flex;
     height: auto; }
     #exlidHeaderSystemFeedback #alert-container #alert-text-container {
-      font-family: var(--font-family);
       font-size: 0.9em;
       color: white;
       background-image: none;
