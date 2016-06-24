@@ -11,6 +11,7 @@
     height: auto;
 
     #alert-text-container {
+      text-align: left;
       padding: 0 5px;
       font-size: 0.9em;
       color: #fff !important;
@@ -32,6 +33,6 @@
 // info icon for login reminder bar
 #alert-icon-container {
   top: 0;
-  margin: auto 0.2em auto 0.3em;
+  margin: auto 0.3em auto 0.3em;
 }
 
