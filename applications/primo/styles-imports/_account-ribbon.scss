@@ -22,19 +22,12 @@
       }
     }
 
-    /* there is some chrome specific markup which is adding a list item with a pointless select
-     * to the right of this ul
-     * approach: hide the last one, then make sure the alternate last child is specifically not hidden by ID
+    /* there is some chrome specific markup which is adding a final list item with an empty select
+     * we need to hide this abberant item, as the drop down shows, without hiding the last item when this LI isnt injected
+     * approach: hide any select that is the child of a last item
     */
-    li:last-child {
+    li:last-child select  {
       display: none;
-    }
-    li#exlidMyAccount {
-      display: block;
-    }
-
-    #exlidUserName .EXLUserAreaStart {
-      width: 0;
     }
 
   #exlidMyShelf {
