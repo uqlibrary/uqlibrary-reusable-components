@@ -233,7 +233,7 @@ body {
 
 @media screen and (max-width: 500px) {
   #exlidHeaderSearchLimits fieldset {
-    width: 100vw; }
+    width: 85vw; }
 
   #exlidHeaderSystemFeedback {
     display: block; }
@@ -639,13 +639,13 @@ div.EXLFacetActionsV2 {
   .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToIcon {
     display: none !important; }
 
-.EXLTabHeader div.EXLTabHeaderContent {
+#exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent {
   padding-top: 0.7em;
   width: 50%;
   /* use this selector to style the container of the login link */ }
-  .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName {
+  #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName {
     display: none; }
-  .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn {
+  #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn {
     float: none;
     box-sizing: border-box;
     color: #fff !important;
@@ -660,15 +660,15 @@ div.EXLFacetActionsV2 {
     text-transform: uppercase;
     border: none;
     -webkit-appearance: none; }
-    .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn:focus {
+    #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn:focus {
       outline: #288BED auto 5px; }
-    .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited {
+    #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link, #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited {
       color: #fff !important; }
-    .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:active, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
+    #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link, #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited, #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:active, #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
       color: #fff !important; }
-    .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
+    #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
       text-decoration: underline; }
-.EXLTabHeader div.EXLTabHeaderButtons li {
+#exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderButtons li {
   font-weight: bold; }
 
 .EXLTabBrowseContent div.caroufredsel_wrapper {
