@@ -56,13 +56,20 @@ function displayPublicationDates() {
 }
 
 function loadUQFavicon() {
-  var link = document.createElement('link');
+  var link = document.createElement('link'),
+      href = '//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico';
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
-  link.href = '//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico';
+  link.href = href;
   document.getElementsByTagName('head')[0].appendChild(link);
   link.rel = 'icon'; //for IE
   document.getElementsByTagName('head')[0].appendChild(link);
+
+  // replace apple-touch-icon
+  link = $('link[rel="apple-touch-icon"]');
+  if (link) {
+    link.attr('href', href);
+  }
 }
 
 /* Call primo defined method isUserLoggedIn() to check users login status, show the notification if the user is not logged in */
