@@ -11,13 +11,14 @@
     height: auto;
 
     #alert-text-container {
+      padding: 0 5px;
       font-size: 0.9em;
-      color: white;
+      color: #fff !important;
       background-image: none;
       margin-top: auto;
       margin-bottom: auto;
 
-      a {
+      a, a:link, a:visited {
         color: #fff !important;
         text-decoration: underline;
       }

@@ -152,12 +152,13 @@ body {
     display: flex;
     height: auto; }
     #exlidHeaderSystemFeedback #alert-container #alert-text-container {
+      padding: 0 5px;
       font-size: 0.9em;
-      color: white;
+      color: #fff !important;
       background-image: none;
       margin-top: auto;
       margin-bottom: auto; }
-      #exlidHeaderSystemFeedback #alert-container #alert-text-container a {
+      #exlidHeaderSystemFeedback #alert-container #alert-text-container a, #exlidHeaderSystemFeedback #alert-container #alert-text-container a:link, #exlidHeaderSystemFeedback #alert-container #alert-text-container a:visited {
         color: #fff !important;
         text-decoration: underline; }
 
