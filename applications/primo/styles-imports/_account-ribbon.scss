@@ -13,6 +13,14 @@
         color: $accent-color;
       }
     }
+    // remove this line after we updated the css in primo backoffice
+    li.EXLLastItem:before {
+      content: "";
+    }
+    li.EXLLastItem:after {
+      content: "";
+    }
+
     .EXLLastItem {
       :before {
         content: "(";

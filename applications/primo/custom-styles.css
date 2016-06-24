@@ -113,6 +113,10 @@ body {
       #exlidUserAreaTile #exlidUserAreaRibbon li a:link, #exlidUserAreaTile #exlidUserAreaRibbon li a:visited {
         text-decoration: underline;
         color: #2377CB; }
+    #exlidUserAreaTile #exlidUserAreaRibbon li.EXLLastItem:before {
+      content: ""; }
+    #exlidUserAreaTile #exlidUserAreaRibbon li.EXLLastItem:after {
+      content: ""; }
     #exlidUserAreaTile #exlidUserAreaRibbon .EXLLastItem :before {
       content: "("; }
     #exlidUserAreaTile #exlidUserAreaRibbon .EXLLastItem :after {
