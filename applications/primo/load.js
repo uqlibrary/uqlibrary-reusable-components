@@ -75,23 +75,24 @@ function addAppleTouchIcon() {
   var appleTouchIconlink = $('link[rel="apple-touch-icon"]'),
       link = document.createElement('link'),
       sizes = ['152x152', '120x120', '76x76'],
+      rel = 'apple-touch-icon',
       href = '//assets.library.uq.edu.au/master/reusable-components/resources/images/apple-touch-icon.png';
-
-  link.rel = 'apple-touch-icon';
 
   if (appleTouchIconlink) {
     appleTouchIconlink.attr('href', href);
   } else {
-    appleTouchIconlink = link;
-    appleTouchIconlink.href = href;
-    document.getElementsByTagName('head')[0].appendChild(appleTouchIconlink);
+    link.rel = rel;
+    link.href = href;
+    document.getElementsByTagName('head')[0].appendChild(link);
   }
 
   for (var i = 0; i < sizes.length; i++) {
-    var size = sizes[i];
+    var size = sizes[i],
+        link = document.createElement('link');
+    link.rel = rel;
     link.sizes = size;
     link.href = href.replace('icon.png','icon-' + size + '.png');
-    appleTouchIconlink.after(link);
+    document.getElementsByTagName('head')[0].appendChild(link);
   }
 }
 
