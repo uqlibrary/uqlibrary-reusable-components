@@ -232,6 +232,9 @@ body {
     padding-left: 0; }
 
 @media screen and (max-width: 500px) {
+  #exlidHeaderSearchLimits fieldset {
+    width: 100vw; }
+
   #exlidHeaderSystemFeedback {
     display: block; }
 
@@ -282,6 +285,8 @@ body {
       -webkit-appearance: none; }
       #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit:focus {
         outline: #288BED auto 5px; }
+      #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit a:link, #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit a:visited {
+        color: #fff !important; }
     #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection {
       color: #fff !important;
       background-color: #595959 !important;
@@ -297,6 +302,8 @@ body {
       -webkit-appearance: none; }
       #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection:focus {
         outline: #288BED auto 5px; }
+      #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection a:link, #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input.submit.EXLAdvancedSearchClearSelection a:visited {
+        color: #fff !important; }
     #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
       font-size: 16px;
       padding-top: 13px; }
@@ -655,6 +662,8 @@ div.EXLFacetActionsV2 {
     -webkit-appearance: none; }
     .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn:focus {
       outline: #288BED auto 5px; }
+    .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited {
+      color: #fff !important; }
     .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:link, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:visited, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:active, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
       color: #fff !important; }
     .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:hover, .EXLTabHeader div.EXLTabHeaderContent em.EXLTabHeaderContentAdditionalDataLineSignIn a:focus {
@@ -810,6 +819,10 @@ uql-connect-footer {
   #exlidSearchRibbon input.submit:focus,
   #goButton:focus {
     outline: #288BED auto 5px; }
+  #exlidSearchRibbon input.submit a:link, #exlidSearchRibbon input.submit a:visited,
+  #goButton a:link,
+  #goButton a:visited {
+    color: #fff !important; }
 
 .EXLSearchFieldRibbonAdvancedSearchLink,
 .EXLSearchFieldRibbonBrowseSearchLink {

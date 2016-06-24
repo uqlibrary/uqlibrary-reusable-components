@@ -17,6 +17,10 @@
   &:focus{
     outline: #288BED auto 5px;
   }
+
+  a:link, a:visited {
+    color: $text-colour !important;
+  }
 }
 
 @mixin uql-tab-button($text-colour, $bg-colour) {
@@ -35,6 +39,10 @@
 
   &:focus{
     outline: #288BED auto 5px;
+  }
+
+  a:link, a:visited {
+    color: $text-colour !important;
   }
 }
 
