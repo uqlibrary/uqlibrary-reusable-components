@@ -1,5 +1,11 @@
 /*-- Style item details tab as "table" --*/
 
+/* Fix result list jumping issue */
+.EXLDetailsTabContent div.EXLDetailsContent{
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
+
 /* Make sure labels align with associated data */
 .EXLDetailsTabContent div.EXLDetailsContent li {
   clear: both;
@@ -64,4 +70,19 @@
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="Description"] br {
   line-height: .75;
   display: inline-block;
+}
+
+
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList {
+  /* make certain options in the save/share selector disappear */
+  .EXLButtonSendToEasyBib ,
+  .EXLButtonSendToRefWorks ,
+  .EXLButtonSendToDelicious ,
+  .EXLButtonSendToFacebook {
+    display: none !important;
+  }
+  /* remove the icons on each Send/Share selector item */
+  .EXLButtonSendToIcon {
+    display: none !important;
+  }
 }

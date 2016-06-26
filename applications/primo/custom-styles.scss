@@ -1,8 +1,8 @@
 //mixins
 //todo: move mixins to skeleton styles
 @mixin uql-button($text-colour, $bg-colour) {
-  color: $text-colour;
-  background-color: $bg-colour;
+  color: $text-colour !important;
+  background-color: $bg-colour !important;
   padding: 0.7em 0.57em;
   min-width: 5.14em;
   margin: 0 0.29em;
@@ -12,16 +12,21 @@
   height: auto;
   text-transform: uppercase;
   border: none;
+  -webkit-appearance: none;
 
   &:focus{
     outline: #288BED auto 5px;
   }
+
+  a:link, a:visited {
+    color: $text-colour !important;
+  }
 }
 
 @mixin uql-tab-button($text-colour, $bg-colour) {
-  color: $text-colour;
-  background-color: $bg-colour;
-  padding: 0.7em 0.77em;
+  color: $text-colour !important;
+  background-color: $bg-colour !important;
+  padding: 0.5em 0.77em;
   min-width: 5.14em;
   margin: 0 0.29em;
   border-radius: 3px;
@@ -30,14 +35,47 @@
   height: auto;
   text-transform: uppercase;
   border: none;
+  -webkit-appearance: none;
 
   &:focus{
     outline: #288BED auto 5px;
   }
+
+  a:link, a:visited {
+    color: $text-colour !important;
+  }
 }
 
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
+
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+* {
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+//all links colours should apply only to Primo containers
+#exlidHeaderContainer,
+#exlidHomeContainer,
+.EXLFooterTile,
+#exlidResultsContainer,
+#exlidFindDBContainer,
+.EXLResultsContainer,
+.EXLMyAccountTabsRibbon
+{
+  a:link, a:visited {
+    color: $accent-color !important;
+    text-decoration: none
+  }
+}
+
 @import "styles-imports/home-page";
+@import "styles-imports/account-ribbon";
 @import "styles-imports/login-bar";
 @import "styles-imports/search-tile";
 @import "styles-imports/advanced-search-tile";
@@ -48,17 +86,19 @@
 @import "styles-imports/result-tabs";
 @import "styles-imports/result-tab-details";
 @import "styles-imports/result-tab-getit";
+@import "styles-imports/result-tab-virtualbrowse";
 @import "styles-imports/result-footer";
+@import "styles-imports/result-header";
 
+@import "styles-imports/account-area";
+
+@import "styles-imports/browse-help";
 @import "styles-imports/footer";
 
 @import "styles-imports/hide";
 
-html,
-body {
-  height: 100%;
-  min-height: 100vh;
-}
+@import "styles-imports/tablet";
+
 
 uq-minimal-header,
 uq-minimal-footer,
@@ -96,6 +136,7 @@ uql-connect-footer
 
 .EXLSearchFieldRibbonAdvancedSearchLink a.EXLSearchFieldRibbonAdvancedTwoLinks,
 .EXLSearchFieldRibbonBrowseSearchLink a {
-  font-size: 1em;
-  padding-top: 0px;
+  font-size: 0.9em;
+  padding-top: 0;
 }
+

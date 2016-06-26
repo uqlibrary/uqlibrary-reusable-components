@@ -1,30 +1,40 @@
-.EXLTabHeader div.EXLTabHeaderContent {
-  padding-top: 0.9em;
+#exlidResultsContainer.EXLResultsContainer .EXLTabHeader {
+  div.EXLTabHeaderContent {
+    padding-top: 0.7em;
+    width: 50%;
 
-  em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName {
-    display: none;
-  }
+    em.EXLTabHeaderContentAdditionalDataLine.EXLTabHeaderContentAdditionalDataLineInstName {
+      display: none;
+    }
 
-  /* use this selector to style the container of the login link */
-  em.EXLTabHeaderContentAdditionalDataLineSignIn {
-    float: none;
-    box-sizing: border-box;
+    /* use this selector to style the container of the login link */
+    em.EXLTabHeaderContentAdditionalDataLineSignIn {
+      float: none;
+      box-sizing: border-box;
 
-    @include uql-tab-button(#fff, $uq-emerald);
+      @include uql-tab-button(#fff, $uq-emerald);
 
-    a {
-      &:link,
-      &:visited,
-      &:active,
-      &:hover,
-      &:focus {
-        color: #fff;
-      }
+      a {
+        &:link,
+        &:visited,
+        &:active,
+        &:hover,
+        &:focus {
+          color: #fff!important;
+        }
 
-      &:hover,
-      &:focus {
-        text-decoration: underline;
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
       }
     }
   }
+
+  div.EXLTabHeaderButtons {
+    li {
+      font-weight: bold;
+    }
+  }
 }
+

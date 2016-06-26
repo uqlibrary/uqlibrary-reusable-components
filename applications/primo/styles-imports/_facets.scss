@@ -1,3 +1,14 @@
+/* facet sidebar */
+#exlidFacetTile {
+  width: 23%;
+}
+
+/* main result body */
+#resultsTileNoId {
+  width: 75%;
+  border-left-width: 0;
+}
+
 .EXLDateRangeText {
 
   //make min width for 4 digits
@@ -11,4 +22,134 @@
   }
 
 }
+
+//my account facets
+
+.EXLFacetsTitle {
+  .EXLMyAccountRankingImage {
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/account.png);
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    padding: 0;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  h3 {
+    line-height: 35px;
+  }
+}
+
+.EXLFacetContainer div.EXLFacetActionsV2 {
+
+  li a {
+    margin: 10px;
+    line-height: 35px;
+  }
+
+  li.EXLFacetRSSAction {
+    //background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/rss.png);
+    display: none;
+  }
+
+  li.EXLFacetSaveSearchAction {
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/save-search.png);
+  }
+
+  li.EXLFacetSaveToEShelfActionOff {
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/note-add.png);
+  }
+}
+
+/* facet tile headers */
+.EXLFacetContainer {
+  h1 {
+    background-color: #fff;
+    color: #000;
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 150%;
+    text-indent: 0;
+    margin-bottom: 0.3em;
+    padding-left: 0.5em;
+    border-width: 0;
+  }
+
+  /* facet tile header */
+  h3 {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    font-size: 100%;
+    line-height: 150%;
+    text-indent: 0;
+    margin-bottom: 0.3em;
+    padding: 0 0 0 0.5em;
+    border-width: 0;
+  }
+
+  /* facet tile header */
+  h4 {
+    background-color: #EAEAEA;
+    color: #606060;
+    font-weight: bold;
+    font-size: 85%;
+    text-indent: 0;
+    padding: 0.5em 0 0.5em 0.5em;
+  }
+
+  /* block of links in each facet tile */
+  ol {
+    background-color: #F8F8F8;
+    padding: 6px 4px;
+    border: 2px solid #F1F1F1;
+    text-indent: 1em;
+  }
+
+  /* make list items line up on left - remove 'wrapping backwards' */
+  ol li {
+    margin-left: 1em;
+    text-indent: 0;
+  }
+}
+
+/* icon-text link block at top of facet sidebar */
+div.EXLFacetActionsV2 {
+  background-color: #F8F8F8;
+  color: #000;
+  font-weight: normal;
+  font-size: 80%;
+  display: block;
+  height: auto;
+  padding: 4px 4px 16px 4px;
+  border: 2px solid #F1F1F1;
+}
+
+/* put a grey background on publication date and removes extraneous space */
+/* this assumes exlidFacet1 is tied to the pub date field */
+#exlidFacet1 {
+  margin-bottom: 0;
+
+  .EXLDateRangeText {
+    background-color: #F8F8F8;
+    color: inherit;
+    padding: 1px 0; /* force space for background color */
+    margin-bottom: 0.5em;
+  }
+
+  .EXLDateRangeLine {
+    margin-bottom: 1em; // remove extraneous space at bottom
+  }
+
+  /* remove stray grey bottom & space */
+  #exlidFacetSublist1 {
+    padding-bottom: 0;
+    background-color: #fff;
+    color: inherit;
+    border-width: 0;
+  }
+}
+
+
 

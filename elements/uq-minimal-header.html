@@ -133,6 +133,7 @@
     }
 
     @media all and (max-width: 1047px) {
+
       uql-ia-button, uql-apps-button {
           display: none;
       }
@@ -150,6 +151,10 @@
     }
 
     @media all and (max-width: 700px) {
+      .header-container {
+        padding: 0 4px;
+      }
+
       .library-title {
         margin: 0;
       }
@@ -241,31 +246,31 @@
             }
           },
           showButtonsTitle: {
-            type: Boolean,
+            type: Object,
             value: true
           },
           showSearchButton: {
-            type: Boolean,
+            type: Object,
             value: false
           },
           showIAButton: {
-            type: Boolean,
+            type: Object,
             value: false
           },
           showAppsButton: {
-            type: Boolean,
+            type: Object,
             value: true
           },
           showLoginButton: {
-            type: Boolean,
+            type: Object,
             value: true
           },
           showChatButton: {
-            type: Boolean,
+            type: Object,
             value: true
           },
           showMenuButton: {
-            type: Boolean,
+            type: Object,
             value: false
           },
           userLoggedIn: Boolean //set by notification from login button

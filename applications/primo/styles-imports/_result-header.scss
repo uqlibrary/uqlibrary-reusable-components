@@ -1,0 +1,26 @@
+.EXLResultsHeader {
+
+ h1 {
+   color: #6c6c6c;
+   padding-left: 0px;
+
+   em {
+     color: #6c6c6c;
+   }
+ }
+
+  div.EXLResultsNumbers div.EXLResultsSortBy {
+    float:none;
+    padding-bottom: 1em;
+    font-size: 100%;
+    span.EXLResultsSortBySelected a {
+      color: #32322f !important;
+    }
+  }
+  div.EXLResultsNavigation {
+    margin-top: 17px;
+    font-size: 100%;
+  }
+}
+
+

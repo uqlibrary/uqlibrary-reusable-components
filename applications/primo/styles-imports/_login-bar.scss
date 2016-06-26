@@ -8,22 +8,19 @@
   #alert-container {
     background-color: $uq-emerald; // to meet WCAG 2.0 AA, PT#120068811
     @include flexbox();
-    justify-content: center;
-    left: 0px;
-    height: 2em;
-    width: 100%;
-    padding: 10px 0px;
+    height: auto;
 
     #alert-text-container {
-      font-family: var(--font-family);
+      text-align: left;
+      padding: 0 5px;
       font-size: 0.9em;
-      color: white;
+      color: #fff !important;
       background-image: none;
       margin-top: auto;
       margin-bottom: auto;
 
-      a {
-        color: white;
+      a, a:link, a:visited {
+        color: #fff !important;
         text-decoration: underline;
       }
 
@@ -35,32 +32,7 @@
 
 // info icon for login reminder bar
 #alert-icon-container {
-  background-color: white;
-  top: 4px;
-  height: 1em;
-  overflow: hidden;
-  border: none;
-  border-radius: 0.5em;
-  box-shadow: #999 0 1px 1px;
-  font-size: 1.4em;
-  color: transparent;
-  margin-right: 0.2em;
-  margin-left: 0.3em;
-  padding-right: 1em;
-  position: relative;
+  top: 0;
+  margin: auto 0.3em auto 0.3em;
 }
 
-#alert-icon-container:after {
-  font-style: italic;
-  font-weight: bold;
-  content: "i";
-  display: block;
-  position: absolute;
-  top: 0.25em;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-family: "Times New Roman", "Garamond", serif;
-  font-size: 0.65em;
-  color: #64b10b;
-}
