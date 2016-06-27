@@ -150,19 +150,22 @@ div.EXLFacetActionsV2 {
     border-width: 0;
   }
 
-  // The pub date facet resets the links on the "Refine" link dynamically according to the date selected in the fields
-  // If the intended url is one the user has already visited, then the colors are so close the label is 'invisible'
-  // force the text to always be white so it aleways looks like a button
 }
 
+// The pub date facet resets the links on the "Refine" link dynamically according to the date selected in the fields
+// If the intended url is one the user has already visited, then the colors are so close the label is 'invisible'
+// force the text to always be white so it aleways looks like a button
 #exlidResultsContainer {
   #exlidFacet1 {
-    #dateSubmit a:link,
-    #dateSubmit a:visited,
-    #dateSubmit a:hover,
-    #dateSubmit a:active {
-      background-color: inherit;
-      color: #FFF !important;
+    a#dateSubmit {
+      &:link,
+      &:visited,
+      &:active,
+      &:hover,
+      &:focus {
+        background-color: inherit;
+        color: #FFF !important;
+      }
     }
   }
 }
