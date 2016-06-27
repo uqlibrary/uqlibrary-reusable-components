@@ -33,7 +33,7 @@
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#v1.2.2",
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#1.0.5",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search#v1.0.5",
-    "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.2.0"
+    "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.2.1"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",

@@ -23,6 +23,12 @@ Project requires the following major dependencies:
 - gulp, a Node.js-based build tool.
 - bower, a Node.js-based package manager used to install front-end packages (like Polymer).
 
+#### Viewing the Demo 
+
+The demo page is available [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
+
+(Swap out alternate branch names for 'master' in this url to test other branches).
+
 #### Installing Dependencies 
 
 With Node.js installed, run the following one liner from the root of the repo:
