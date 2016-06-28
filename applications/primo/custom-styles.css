@@ -508,6 +508,10 @@ div.EXLFacetActionsV2 {
     color: inherit;
     border-width: 0; }
 
+#exlidResultsContainer #exlidFacet1 a#dateSubmit:link, #exlidResultsContainer #exlidFacet1 a#dateSubmit:visited, #exlidResultsContainer #exlidFacet1 a#dateSubmit:active, #exlidResultsContainer #exlidFacet1 a#dateSubmit:hover, #exlidResultsContainer #exlidFacet1 a#dateSubmit:focus {
+  background-color: #0075B0;
+  color: #FFF !important; }
+
 .EXLResultsList .EXLTabHeaderButtonSendTo img {
   padding-left: 0.4em; }
 .EXLResultsList td.EXLResultNumber {
@@ -530,6 +534,8 @@ div.EXLFacetActionsV2 {
   padding-bottom: 0.5em; }
 .EXLResultsList td.EXLThumbnail {
   padding-top: 1em; }
+.EXLResultsList .multipleCoverImageContainer {
+  z-index: 0; }
 .EXLResultsList div.EXLSummaryContainer div.EXLSummaryFields {
   padding-top: 0.4em; }
 
