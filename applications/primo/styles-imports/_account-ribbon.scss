@@ -65,11 +65,13 @@
 }
 
 @media screen and (max-width: 500px) {
-  #exlidUserAreaRibbon {
-    #exlidMyShelf {
-      display: list-item;
-      padding-left: 16px !important;
-      background-position-y: 7px;
+  #exlidUserAreaTile {
+    #exlidUserAreaRibbon {
+      #exlidMyShelf {
+        display: list-item;
+        padding-left: 16px !important;
+        background-position-y: 7px;
+      }
     }
   }
 }
