@@ -34,18 +34,19 @@
      * we need to hide this abberant item, as the drop down shows, without hiding the last item when this LI isnt injected
      * approach: hide any select that is the child of a last item
     */
-    li:last-child select  {
+    li:last-child select {
       display: none;
     }
 
-  #exlidMyShelf {
-    clear: left;
-    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
-    background-repeat: no-repeat;
-    background-position: left top;
-    padding-top: 1px;
-    padding-left: 21px; /* 20px image + a little space */
-    min-height: 16px;
+    #exlidMyShelf {
+      clear: left;
+      background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
+      background-repeat: no-repeat;
+      background-position: left top;
+      padding-top: 1px;
+      padding-left: 21px; /* 20px image + a little space */
+      min-height: 16px;
+      display: list-item;
 
       span {
         width: 0;
