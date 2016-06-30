@@ -743,6 +743,9 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     border: 1px solid #8FB9D0;
     border-bottom: 1px solid #FFF; }
 
+.EXLMyAccountTableCallNumber, .MyAccount_Requests_6 {
+  display: none; }
+
 @media screen and (max-width: 500px) {
   .EXLMyAccountTabsRibbon div {
     width: 100%; }
@@ -756,10 +759,20 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .EXLMyAccountContainer .EXLMyAccountMainMenuTileMyQueries {
     width: 100%; }
 
-  .MyAccount_Loans_2, .MyAccount_Loans_4 {
+  .MyAccount_Loans_2,
+  .MyAccount_Loans_4,
+  .EXLMyAccountTableDueHour,
+  .MyAccount_Loans_5,
+  .Location,
+  .MyAccount_Requests_4,
+  .MyAccount_Requests_5 {
     display: table-cell; }
 
-  .MyAccount_Loans_3, .MyAccount_Loans_7 {
+  .MyAccount_Loans_3,
+  .MyAccount_Loans_7,
+  .EXLMyAccountTableRequestType,
+  .EXLMyAccountTableCallNumber,
+  .MyAccount_Requests_1 {
     display: none; } }
 .browse-help-text {
   max-width: 80em;

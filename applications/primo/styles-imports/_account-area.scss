@@ -53,6 +53,11 @@
   }
 }
 
+// hide Location column in the requests list page
+.EXLMyAccountTableCallNumber, .MyAccount_Requests_6{
+  display: none;
+}
+
 @media screen and (max-width: 500px) {
   .EXLMyAccountTabsRibbon div {
     width: 100%;
@@ -75,12 +80,22 @@
     }
   }
 
-  // loans title and due date
-  .MyAccount_Loans_2, .MyAccount_Loans_4 {
+  // display loans title, due date and due hour, request status and pickup location
+  .MyAccount_Loans_2,
+  .MyAccount_Loans_4,
+  .EXLMyAccountTableDueHour,
+  .MyAccount_Loans_5,
+  .Location,
+  .MyAccount_Requests_4,
+  .MyAccount_Requests_5 {
     display:table-cell;
   }
-  // loans author and location
-  .MyAccount_Loans_3, .MyAccount_Loans_7 {
+  // hide loans author and location, request type and location
+  .MyAccount_Loans_3,
+  .MyAccount_Loans_7,
+  .EXLMyAccountTableRequestType,
+  .EXLMyAccountTableCallNumber,
+  .MyAccount_Requests_1 {
     display:none;
   }
 
