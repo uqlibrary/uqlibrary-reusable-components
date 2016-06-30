@@ -749,7 +749,12 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     .EXLMyAccountTabsRibbon div ul {
       margin-left: 0.5em; }
     .EXLMyAccountTabsRibbon div ul.EXLMyAccountTabs li.EXLMyAccountTab {
-      display: inline; } }
+      display: inline; }
+
+  .EXLMyAccountContainer .EXLMyAccountQueriesMainContainer {
+    margin-left: 2px; }
+  .EXLMyAccountContainer .EXLMyAccountMainMenuTileMyQueries {
+    width: 100%; } }
 .browse-help-text {
   max-width: 80em;
   margin: 20px auto;
