@@ -754,7 +754,13 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .EXLMyAccountContainer .EXLMyAccountQueriesMainContainer {
     margin-left: 2px; }
   .EXLMyAccountContainer .EXLMyAccountMainMenuTileMyQueries {
-    width: 100%; } }
+    width: 100%; }
+
+  .MyAccount_Loans_2, .MyAccount_Loans_4 {
+    display: table-cell; }
+
+  .MyAccount_Loans_3, .MyAccount_Loans_7 {
+    display: none; } }
 .browse-help-text {
   max-width: 80em;
   margin: 20px auto;

@@ -75,5 +75,14 @@
     }
   }
 
+  // loans title and due date
+  .MyAccount_Loans_2, .MyAccount_Loans_4 {
+    display:table-cell;
+  }
+  // loans author and location
+  .MyAccount_Loans_3, .MyAccount_Loans_7 {
+    display:none;
+  }
+
 }
 
