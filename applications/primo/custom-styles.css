@@ -763,7 +763,7 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .MyAccount_Loans_4,
   .EXLMyAccountTableDueHour,
   .MyAccount_Loans_5,
-  .Location,
+  #requestList .Location,
   .MyAccount_Requests_4,
   .MyAccount_Requests_5 {
     display: table-cell; }
