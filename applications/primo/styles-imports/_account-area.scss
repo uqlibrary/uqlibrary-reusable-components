@@ -79,6 +79,15 @@
       width: 100%;
     }
   }
+  // display folders in saved items
+  .folders_new {
+    display: block;
+    width: 100%;
+  }
+
+  .folder_details {
+    display: block;
+  }
 
   // display loans title, due date and due hour, request status and pickup location
   .MyAccount_Loans_2,

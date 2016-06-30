@@ -759,6 +759,13 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .EXLMyAccountContainer .EXLMyAccountMainMenuTileMyQueries {
     width: 100%; }
 
+  .folders_new {
+    display: block;
+    width: 100%; }
+
+  .folder_details {
+    display: block; }
+
   .MyAccount_Loans_2,
   .MyAccount_Loans_4,
   .EXLMyAccountTableDueHour,
