@@ -20,36 +20,51 @@
 
 }
 
-  .EXLMyAccountMainMenuBulletSelected {
-    //TODO: some blue pointer image
-    //background-image: url(../images/bullet_myAccount_menu.png);
-  }
+.EXLMyAccountMainMenuBulletSelected {
+  //TODO: some blue pointer image
+  //background-image: url(../images/bullet_myAccount_menu.png);
+}
 
-  .EXLMyAccountContainer {
-    background: none;
-  }
+.EXLMyAccountContainer {
+  background: none;
+}
 
-  .EXLMyAccountTabsRibbon {
-    min-height: 32px;
-    background: none;
-    background-image: none;
-    border-bottom: 1px solid #8FB9D0;
-    div {
-      ul.EXLMyAccountTabs {
-        li.EXLMyAccountTab {
-          line-height: 31px;
-          height: 31px;
-          background-color: #f1f1f1;
-        }
-        li.EXLMyAccountSelectedTab {
-          background-color: #FFF;
-          background-image: none;
-          margin-left: 0px;
-          margin-right: 2px;
-          border: 1px solid #8FB9D0;
-          border-bottom: 1px solid #FFF;
-        }
+.EXLMyAccountTabsRibbon {
+  min-height: 32px;
+  background: none;
+  background-image: none;
+  border-bottom: 1px solid #8FB9D0;
+  div {
+    ul.EXLMyAccountTabs {
+      li.EXLMyAccountTab {
+        line-height: 31px;
+        height: 31px;
+        background-color: #f1f1f1;
+      }
+      li.EXLMyAccountSelectedTab {
+        background-color: #FFF;
+        background-image: none;
+        margin-left: 0px;
+        margin-right: 2px;
+        border: 1px solid #8FB9D0;
+        border-bottom: 1px solid #FFF;
       }
     }
   }
+}
+
+@media screen and (max-width: 500px) {
+  .EXLMyAccountTabsRibbon div {
+    width: 100%;
+
+    ul {
+      margin-left:0.5em;
+    }
+
+    ul.EXLMyAccountTabs li.EXLMyAccountTab {
+      display:inline;
+    }
+
+  }
+}
 

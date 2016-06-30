@@ -6,15 +6,6 @@ body {
   min-height: 100vh;
 }
 
-.has-breadcrumbs body {
-  padding-top: 0;
-}
-
-.sidebar {
-  top: 0;
-  padding-top: 120px;
-}
-
 uq-minimal-header,
 uq-minimal-footer,
 uql-connect-footer
@@ -26,14 +17,4 @@ uql-connect-footer
   flex: none;
 
   position: relative;
-}
-
-.app {
-  padding: 1.5em 1.5em 0;
-  width: 100%;
-  min-height: calc(100vh - 450px);
-}
-
-.uql-gateways {
-  padding-top: 0;
 }

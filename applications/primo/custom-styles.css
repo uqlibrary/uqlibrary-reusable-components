@@ -144,6 +144,11 @@ body {
     padding-left: 0;
     /* left align username with eshelf_on_small icon */ }
 
+@media screen and (max-width: 500px) {
+  #exlidUserAreaTile #exlidUserAreaRibbon #exlidMyShelf {
+    display: list-item;
+    padding-left: 16px !important;
+    background-position-y: 7px; } }
 #exlidHeaderSystemFeedback {
   background-color: transparent;
   border: none; }
@@ -738,6 +743,13 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     border: 1px solid #8FB9D0;
     border-bottom: 1px solid #FFF; }
 
+@media screen and (max-width: 500px) {
+  .EXLMyAccountTabsRibbon div {
+    width: 100%; }
+    .EXLMyAccountTabsRibbon div ul {
+      margin-left: 0.5em; }
+    .EXLMyAccountTabsRibbon div ul.EXLMyAccountTabs li.EXLMyAccountTab {
+      display: inline; } }
 .browse-help-text {
   max-width: 80em;
   margin: 20px auto;
@@ -758,6 +770,26 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 #exlidSearchBanner {
   display: none; }
 
+@media screen and (max-width: 500px) {
+  #exlidHeaderSystemFeedback {
+    display: block; }
+
+  #exlidSearchTile {
+    width: 98%;
+    margin: auto; }
+    #exlidSearchTile .EXLSearchFieldRibbonFormFields {
+      width: 73% !important; }
+    #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
+      width: 94%; }
+    #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink,
+    #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
+      display: none !important; }
+
+  uql-connect-footer {
+    display: inline-block; }
+
+  .sub-footer-container {
+    display: inherit; } }
 @media screen and (max-width: 990px) {
   body {
     overflow-x: hidden;
