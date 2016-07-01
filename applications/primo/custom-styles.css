@@ -782,7 +782,11 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .EXLMyAccountTableRequestType,
   .EXLMyAccountTableCallNumber,
   .MyAccount_Requests_1 {
-    display: none; } }
+    display: none; }
+
+  .EXLMyAccountMainContainer div.EXLMyAccountTips {
+    display: block;
+    width: 88%; } }
 .browse-help-text {
   max-width: 80em;
   margin: 20px auto;
