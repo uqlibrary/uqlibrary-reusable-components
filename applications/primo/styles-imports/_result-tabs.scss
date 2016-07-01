@@ -54,13 +54,13 @@
 
 @media screen and (max-width: 500px) {
   #resultsListNoId {
+    margin-left: 0; // overwrite auto value which was pushing the tabs to the right
+
     #exlidResult0-TabsList {
       li {
-        margin-left: 0; // overwrite auto value which was pushing the tabs to the right
         -webkit-border-radius: 0; // remove curved corners
-        padding: .8em .8em 1em; // spacing on tab same for desktop and mobile
+        padding: .8em; // spacing on tab same for desktop and mobile
         font-size: 1em; // match font size with non-mobile view
-        border-bottom: 1px solid #8fb9d0; // make tabs look like desktop tabs
       }
       li.EXLResultSelectedTab {
         border: 1px solid #8fb9d0; // make tabs look like desktop tabs
