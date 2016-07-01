@@ -54,18 +54,25 @@
 
 @media screen and (max-width: 500px) {
   #resultsListNoId {
-    margin-left: 0; // overwrite auto value which was pushing the tabs to the right
 
     #exlidResult0-TabsList {
-      li {
+      margin-left: 0; // overwrite auto value which was pushing the tabs to the right
+
+      li.EXLResultTab {
         -webkit-border-radius: 0; // remove curved corners
-        padding: .8em; // spacing on tab same for desktop and mobile
+        padding: .8em .8em 1em; // spacing on tab same for desktop and mobile
         font-size: 1em; // match font size with non-mobile view
+        height: 15px; // match height of tab with non-mobile view
       }
+
       li.EXLResultSelectedTab {
         border: 1px solid #8fb9d0; // make tabs look like desktop tabs
         border-bottom-width: 0;
 
+      }
+
+      #exlidResult0-LocationsTab {
+        display: none;
       }
     }
 
@@ -76,6 +83,7 @@
     .EXLTabsRibbon {
       border-bottom-width: 0; // remove stray line appearing through tabs
     }
+
 
   }
 }
