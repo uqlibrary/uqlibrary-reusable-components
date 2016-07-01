@@ -102,9 +102,9 @@ UQ ITS is managing UQ Drupal library's CMS (web.library.uq.edu.au). Any componen
 
 reusable-components.appcache is a manifest file which contains a list of files that can be cached by a browser. Application cache file has a version number which signals to a browser that cached files were updated. Version is updated automatically at deployment time. 
 
-#### UQLAPP (https://app.library.uq.edu.au)
+#### UQLAPP (https://app.library.uq.edu.au), FBS (https://www.library.uq.edu.au)
 
-frontend/app/index.html includes following:
+in UQLAPP frontend/app/index.html and FBS public/lib/Template.class.php include following:
 
         <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
