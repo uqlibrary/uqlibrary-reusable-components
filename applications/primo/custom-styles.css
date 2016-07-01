@@ -725,6 +725,8 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 
 .EXLMyAccountContainer {
   background: none; }
+  .EXLMyAccountContainer .iframex {
+    border: #d7dde3 1px solid; }
 
 .EXLMyAccountTabsRibbon {
   min-height: 32px;
