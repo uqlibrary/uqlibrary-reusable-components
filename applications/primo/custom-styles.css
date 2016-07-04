@@ -808,7 +808,7 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .EXLMyAccountTableRequestType,
   .EXLMyAccountTableCallNumber,
   .MyAccount_Requests_1,
-  .EXLMyAccountTableFine .headerSortOptions {
+  .EXLMyAccountTableFine.headerSortOptions {
     display: none; }
 
   .EXLMyAccountMainContainer div.EXLMyAccountTips {
