@@ -62,7 +62,7 @@
   }
 }
 
-/* facet tile headers */
+// facet tile headers
 .EXLFacetContainer {
   h1 {
     background-color: #fff;
@@ -76,7 +76,6 @@
     border-width: 0;
   }
 
-  /* facet tile header */
   h3 {
     background-color: #fff;
     color: #000;
@@ -89,7 +88,6 @@
     border-width: 0;
   }
 
-  /* facet tile header */
   h4 {
     background-color: #EAEAEA;
     color: #606060;
@@ -99,7 +97,7 @@
     padding: 0.5em 0 0.5em 0.5em;
   }
 
-  /* block of links in each facet tile */
+  // block of links in each facet tile
   ol {
     background-color: #F8F8F8;
     padding: 6px 4px;
@@ -107,14 +105,14 @@
     text-indent: 1em;
   }
 
-  /* make list items line up on left - remove 'wrapping backwards' */
+  // make list items line up on left - remove 'wrapping backwards'
   ol li {
     margin-left: 1em;
     text-indent: 0;
   }
 }
 
-/* icon-text link block at top of facet sidebar */
+// icon-text link block at top of facet sidebar
 div.EXLFacetActionsV2 {
   background-color: #F8F8F8;
   color: #000;
@@ -126,8 +124,8 @@ div.EXLFacetActionsV2 {
   border: 2px solid #F1F1F1;
 }
 
-/* put a grey background on publication date and removes extraneous space */
-/* this assumes exlidFacet1 is tied to the pub date field */
+// put a grey background on publication date and removes extraneous space
+// this assumes exlidFacet1 is tied to the pub date field
 #exlidFacet1 {
   margin-bottom: 0;
 
@@ -142,7 +140,7 @@ div.EXLFacetActionsV2 {
     margin-bottom: 1em; // remove extraneous space at bottom
   }
 
-  /* remove stray grey bottom & space */
+  // remove stray grey bottom & space
   #exlidFacetSublist1 {
     padding-bottom: 0;
     background-color: #fff;
@@ -150,6 +148,10 @@ div.EXLFacetActionsV2 {
     border-width: 0;
   }
 
+  // remove little drop down icon on 'show more options' because it isnt a drop down
+  .EXLFacetsDisplayMore a img {
+    display: none;
+  }
 }
 
 // The pub date facet resets the links on the "Refine" link dynamically according to the date selected in the fields
