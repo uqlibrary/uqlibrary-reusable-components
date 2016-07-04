@@ -561,7 +561,7 @@ div.EXLFacetActionsV2 {
   .EXLTabsRibbon div li.EXLResultSelectedTab {
     background-color: #FFF;
     background-image: none;
-    margin-left: 0px;
+    margin-left: 0;
     margin-right: 2px;
     border-bottom: 1px solid #FFF; }
     .EXLTabsRibbon div li.EXLResultSelectedTab a {
@@ -579,6 +579,21 @@ div.EXLFacetActionsV2 {
   .EXLTabHeader div.EXLTabHeaderButtons li span {
     background-image: none; }
 
+@media screen and (max-width: 500px) {
+  #resultsListNoId #exlidResult0-TabsList {
+    margin-left: 0; }
+    #resultsListNoId #exlidResult0-TabsList li.EXLResultTab {
+      -webkit-border-radius: 0;
+      padding: .8em .8em 1em;
+      font-size: 1em;
+      height: 15px; }
+    #resultsListNoId #exlidResult0-TabsList li.EXLResultSelectedTab {
+      border: 1px solid #8fb9d0;
+      border-bottom-width: 0; }
+    #resultsListNoId #exlidResult0-TabsList #exlidResult0-LocationsTab {
+      display: none; }
+  #resultsListNoId .EXLTabsRibbon {
+    border-bottom-width: 0; } }
 /*-- Style item details tab as "table" --*/
 /* Fix result list jumping issue */
 .EXLDetailsTabContent div.EXLDetailsContent {
@@ -655,6 +670,14 @@ div.EXLFacetActionsV2 {
   .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToIcon {
     display: none !important; }
 
+@media screen and (max-width: 500px) {
+  .EXLResultTabContainer div#exlidResult-1-TabHeader {
+    background-image: none;
+    height: 0;
+    min-height: 0; }
+
+  #exlidResult0-TabContainer-detailsTab .EXLDetailsContent {
+    margin-top: 0; } }
 #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent {
   padding-top: 0.7em;
   width: 50%;
@@ -784,7 +807,8 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .MyAccount_Loans_7,
   .EXLMyAccountTableRequestType,
   .EXLMyAccountTableCallNumber,
-  .MyAccount_Requests_1 {
+  .MyAccount_Requests_1,
+  .EXLMyAccountTableFine .headerSortOptions {
     display: none; }
 
   .EXLMyAccountMainContainer div.EXLMyAccountTips {

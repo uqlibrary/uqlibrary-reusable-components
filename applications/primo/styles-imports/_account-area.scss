@@ -104,14 +104,15 @@
   .EXLMyAccountTableFine,
   .MyAccount_FineAndFees_4,
   .MyAccount_FineAndFees_5 {
-    display:table-cell; 
+    display:table-cell;
   }
   // hide loans author and location, request type and location
   .MyAccount_Loans_3,
   .MyAccount_Loans_7,
   .EXLMyAccountTableRequestType,
   .EXLMyAccountTableCallNumber,
-  .MyAccount_Requests_1 {
+  .MyAccount_Requests_1,
+  .EXLMyAccountTableFine .headerSortOptions{
     display:none;
   }
 
