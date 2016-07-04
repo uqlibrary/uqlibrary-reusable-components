@@ -148,10 +148,6 @@ div.EXLFacetActionsV2 {
     border-width: 0;
   }
 
-  // remove little drop down icon on 'show more options' because it isnt a drop down
-  .EXLFacetsDisplayMore a img {
-    display: none;
-  }
 }
 
 // The pub date facet resets the links on the "Refine" link dynamically according to the date selected in the fields
@@ -172,3 +168,9 @@ div.EXLFacetActionsV2 {
   }
 }
 
+#facetList {
+  // remove little drop down icon on 'show more options' because it isnt a drop down
+  .EXLFacetsDisplayMore a img {
+    display: none;
+  }
+}
