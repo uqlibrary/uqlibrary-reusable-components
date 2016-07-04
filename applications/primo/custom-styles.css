@@ -774,7 +774,10 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   .MyAccount_Loans_5,
   #requestList .Location,
   .MyAccount_Requests_4,
-  .MyAccount_Requests_5 {
+  .MyAccount_Requests_5,
+  .EXLMyAccountTableFine,
+  .MyAccount_FineAndFees_4,
+  .MyAccount_FineAndFees_5 {
     display: table-cell; }
 
   .MyAccount_Loans_3,
@@ -786,7 +789,8 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 
   .EXLMyAccountMainContainer div.EXLMyAccountTips {
     display: block;
-    width: 88%; } }
+    width: 90%;
+    float: left; } }
 .browse-help-text {
   max-width: 80em;
   margin: 20px auto;

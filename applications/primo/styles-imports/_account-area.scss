@@ -100,8 +100,11 @@
   .MyAccount_Loans_5,
   #requestList .Location,
   .MyAccount_Requests_4,
-  .MyAccount_Requests_5 {
-    display:table-cell;
+  .MyAccount_Requests_5,
+  .EXLMyAccountTableFine,
+  .MyAccount_FineAndFees_4,
+  .MyAccount_FineAndFees_5 {
+    display:table-cell; 
   }
   // hide loans author and location, request type and location
   .MyAccount_Loans_3,
@@ -116,7 +119,8 @@
   .EXLMyAccountMainContainer {
     div.EXLMyAccountTips {
       display: block;
-      width: 88%;
+      width: 90%;
+      float: left;
     }
   }
 
