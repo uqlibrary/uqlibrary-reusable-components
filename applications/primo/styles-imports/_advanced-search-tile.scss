@@ -78,6 +78,12 @@
         input {
           background: none;
           border-bottom: 1px solid #000;
+
+          &#search_field {
+            width: 92%;
+            padding-left: 0.5em;
+          }
+
         }
 
       }

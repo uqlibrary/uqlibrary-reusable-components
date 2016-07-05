@@ -349,6 +349,9 @@ body {
       #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor input {
         background: none;
         border-bottom: 1px solid #000; }
+        #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor input#search_field {
+          width: 92%;
+          padding-left: 0.5em; }
 
 @media screen and (max-width: 500px) {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
