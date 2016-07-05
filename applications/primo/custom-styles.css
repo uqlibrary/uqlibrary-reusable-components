@@ -270,6 +270,9 @@ body {
 
   .EXLSearchFieldRibbonAdvancedSearchLink {
     margin-right: 1em; } }
+@media screen and (min-width: 1707px) {
+  #exlidAdvancedSearchRibbon > fieldset {
+    min-width: 80em; } }
 #exlidAdvancedSearchTile {
   border-color: #fff;
   background-image: none;
@@ -395,6 +398,8 @@ body {
     display: block; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon input.submit {
     margin: 0; }
+  #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon input#search_field {
+    width: 90%; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon.EXLAdvancedBrowseRibbon .EXLBrowseFieldRibbon {
     padding: 0;
     width: 80vw; }
@@ -441,49 +446,42 @@ body {
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfActionOff {
   background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/note-add.png); }
 
-/* facet tile headers */
-.EXLFacetContainer {
-  /* facet tile header */
-  /* facet tile header */
-  /* block of links in each facet tile */
-  /* make list items line up on left - remove 'wrapping backwards' */ }
-  .EXLFacetContainer h1 {
-    background-color: #fff;
-    color: #000;
-    font-size: 100%;
-    font-weight: bold;
-    line-height: 150%;
-    text-indent: 0;
-    margin-bottom: 0.3em;
-    padding-left: 0.5em;
-    border-width: 0; }
-  .EXLFacetContainer h3 {
-    background-color: #fff;
-    color: #000;
-    font-weight: bold;
-    font-size: 100%;
-    line-height: 150%;
-    text-indent: 0;
-    margin-bottom: 0.3em;
-    padding: 0 0 0 0.5em;
-    border-width: 0; }
-  .EXLFacetContainer h4 {
-    background-color: #EAEAEA;
-    color: #606060;
-    font-weight: bold;
-    font-size: 85%;
-    text-indent: 0;
-    padding: 0.5em 0 0.5em 0.5em; }
-  .EXLFacetContainer ol {
-    background-color: #F8F8F8;
-    padding: 6px 4px;
-    border: 2px solid #F1F1F1;
-    text-indent: 1em; }
-  .EXLFacetContainer ol li {
-    margin-left: 1em;
-    text-indent: 0; }
+.EXLFacetContainer h1 {
+  background-color: #fff;
+  color: #000;
+  font-size: 100%;
+  font-weight: bold;
+  line-height: 150%;
+  text-indent: 0;
+  margin-bottom: 0.3em;
+  padding-left: 0.5em;
+  border-width: 0; }
+.EXLFacetContainer h3 {
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  font-size: 100%;
+  line-height: 150%;
+  text-indent: 0;
+  margin-bottom: 0.3em;
+  padding: 0 0 0 0.5em;
+  border-width: 0; }
+.EXLFacetContainer h4 {
+  background-color: #EAEAEA;
+  color: #606060;
+  font-weight: bold;
+  font-size: 85%;
+  text-indent: 0;
+  padding: 0.5em 0 0.5em 0.5em; }
+.EXLFacetContainer ol {
+  background-color: #F8F8F8;
+  padding: 6px 4px;
+  border: 2px solid #F1F1F1;
+  text-indent: 1em; }
+.EXLFacetContainer ol li {
+  margin-left: 1em;
+  text-indent: 0; }
 
-/* icon-text link block at top of facet sidebar */
 div.EXLFacetActionsV2 {
   background-color: #F8F8F8;
   color: #000;
@@ -494,11 +492,8 @@ div.EXLFacetActionsV2 {
   padding: 4px 4px 16px 4px;
   border: 2px solid #F1F1F1; }
 
-/* put a grey background on publication date and removes extraneous space */
-/* this assumes exlidFacet1 is tied to the pub date field */
 #exlidFacet1 {
-  margin-bottom: 0;
-  /* remove stray grey bottom & space */ }
+  margin-bottom: 0; }
   #exlidFacet1 .EXLDateRangeText {
     background-color: #F8F8F8;
     color: inherit;
@@ -516,6 +511,9 @@ div.EXLFacetActionsV2 {
 #exlidResultsContainer #exlidFacet1 a#dateSubmit:link, #exlidResultsContainer #exlidFacet1 a#dateSubmit:visited, #exlidResultsContainer #exlidFacet1 a#dateSubmit:active, #exlidResultsContainer #exlidFacet1 a#dateSubmit:hover, #exlidResultsContainer #exlidFacet1 a#dateSubmit:focus {
   background-color: #0075B0;
   color: #FFF !important; }
+
+#facetList .EXLFacetsDisplayMore a img {
+  display: none; }
 
 .EXLResultsList .EXLTabHeaderButtonSendTo img {
   padding-left: 0.4em; }
