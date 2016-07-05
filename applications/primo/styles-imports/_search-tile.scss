@@ -141,9 +141,9 @@
 }
 
 @media screen and (min-width: 1707px) {
-  #exlidAdvancedSearchRibbon {
-    fieldset {
-      min-width: 80em; // Advanced Search right column drops below left column in wide screen
-    }
+  // Advanced Search right column drops below left column in wide screen
+  // (there are fieldsets nested below this, so only hit the immediate child)
+  #exlidAdvancedSearchRibbon > fieldset {
+    min-width: 80em;
   }
 }
