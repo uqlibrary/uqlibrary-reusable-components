@@ -241,7 +241,7 @@ body {
     margin-top: -1em;
     padding-left: 0; }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 720px) {
   #exlidHeaderSearchLimits fieldset {
     width: 85vw; }
 
@@ -257,7 +257,8 @@ body {
 
   .EXLSearchFieldRibbonFormFields {
     display: inline-block;
-    width: calc(100% - 90px) !important; }
+    width: calc(100% - 90px) !important;
+    height: 100%; }
 
   .EXLSearchFieldRibbonFormSearchFor {
     width: 88% !important;
@@ -266,7 +267,8 @@ body {
   .EXLSearchFieldRibbonFormSubmitSearch {
     position: relative;
     float: right;
-    width: 85px !important; }
+    width: 85px !important;
+    margin-top: 0px !important; }
 
   .EXLSearchFieldRibbonAdvancedSearchLink {
     margin-right: 1em; } }

@@ -100,4 +100,17 @@ uql-connect-footer {
 .uql-gateways {
   padding-top: 0; }
 
+#exams li.uql-global-links {
+  margin-bottom: 0;
+  margin-top: 0; }
+#exams uql-connect-footer .contacts {
+  min-height: 1px !important; }
+#exams .page {
+  min-height: calc(100vh - 520px); }
+  #exams .page .content {
+    margin: 20px auto;
+    width: 800px;
+    border: 1px solid #ccc;
+    padding: 20px; }
+
 /*# sourceMappingURL=custom-styles.css.map */

@@ -94,7 +94,7 @@
 
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 720px) {
   #exlidHeaderSearchLimits {
     fieldset {
       width: 85vw;
@@ -120,7 +120,8 @@
 
   .EXLSearchFieldRibbonFormFields {
     display: inline-block;
-    width: calc(100% - 90px) !important
+    width: calc(100% - 90px) !important;
+    height: 100%;
   }
 
   .EXLSearchFieldRibbonFormSearchFor {
@@ -132,6 +133,7 @@
     position: relative;
     float: right;
     width: 85px !important;
+    margin-top: 0px !important;
   }
 
   .EXLSearchFieldRibbonAdvancedSearchLink {
