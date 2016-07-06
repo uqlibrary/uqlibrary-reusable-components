@@ -353,7 +353,7 @@ body {
         background: none;
         border-bottom: 1px solid #000; }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 720px) {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
     float: none;
     clear: both;
@@ -371,7 +371,7 @@ body {
     overflow: hidden; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
-    width: 78vw;
+    width: 81vw;
     margin: 5px auto; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchClearSelection {
