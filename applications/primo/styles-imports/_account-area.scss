@@ -20,36 +20,111 @@
 
 }
 
-  .EXLMyAccountMainMenuBulletSelected {
-    //TODO: some blue pointer image
-    //background-image: url(../images/bullet_myAccount_menu.png);
-  }
+.EXLMyAccountMainMenuBulletSelected {
+  //TODO: some blue pointer image
+  //background-image: url(../images/bullet_myAccount_menu.png);
+}
 
-  .EXLMyAccountContainer {
-    background: none;
-  }
+.EXLMyAccountContainer {
+  background: none;
 
-  .EXLMyAccountTabsRibbon {
-    min-height: 32px;
-    background: none;
-    background-image: none;
-    border-bottom: 1px solid #8FB9D0;
-    div {
-      ul.EXLMyAccountTabs {
-        li.EXLMyAccountTab {
-          line-height: 31px;
-          height: 31px;
-          background-color: #f1f1f1;
-        }
-        li.EXLMyAccountSelectedTab {
-          background-color: #FFF;
-          background-image: none;
-          margin-left: 0px;
-          margin-right: 2px;
-          border: 1px solid #8FB9D0;
-          border-bottom: 1px solid #FFF;
-        }
+  .iframex {
+    border: #d7dde3 1px solid;
+  }
+}
+
+.EXLMyAccountTabsRibbon {
+  min-height: 32px;
+  background: none;
+  background-image: none;
+  border-bottom: 1px solid #8FB9D0;
+  div {
+    ul.EXLMyAccountTabs {
+      li.EXLMyAccountTab {
+        line-height: 31px;
+        height: 31px;
+        background-color: #f1f1f1;
+      }
+      li.EXLMyAccountSelectedTab {
+        background-color: #FFF;
+        background-image: none;
+        margin-left: 0px;
+        margin-right: 2px;
+        border: 1px solid #8FB9D0;
+        border-bottom: 1px solid #FFF;
       }
     }
   }
+}
+
+// hide Location column in the requests list page
+.EXLMyAccountTableCallNumber, .MyAccount_Requests_6{
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .EXLMyAccountTabsRibbon div {
+    width: 100%;
+
+    ul {
+      margin-left:0.5em;
+    }
+
+    ul.EXLMyAccountTabs li.EXLMyAccountTab {
+      display:inline;
+    }
+
+  }
+  .EXLMyAccountContainer{
+    .EXLMyAccountQueriesMainContainer {
+      margin-left: 2px;
+    }
+    .EXLMyAccountMainMenuTileMyQueries {
+      width: 100%;
+    }
+  }
+  // display folders in saved items
+  .folders_new {
+    display: block;
+    width: 100%;
+  }
+
+  .folder_details {
+    display: block;
+  }
+
+  // display loans title, due date and due hour, request status and pickup location
+  .MyAccount_Loans_2,
+  .MyAccount_Loans_4,
+  .EXLMyAccountTableDueHour,
+  .MyAccount_Loans_5,
+  #requestList .Location,
+  .MyAccount_Requests_4,
+  .MyAccount_Requests_5,
+  .EXLMyAccountTableFine,
+  .MyAccount_FineAndFees_4,
+  .MyAccount_FineAndFees_5 {
+    display:table-cell;
+  }
+  // hide loans author and location, request type and location
+  .MyAccount_Loans_3,
+  .MyAccount_Loans_7,
+  .EXLMyAccountTableRequestType,
+  .EXLMyAccountTableCallNumber,
+  .MyAccount_Requests_1,
+  .EXLMyAccountTableFine.headerSortOptions{
+    display:none;
+  }
+
+  // display setting tips section
+  .EXLMyAccountMainContainer {
+    div.EXLMyAccountTips {
+      display: block;
+      width: 90%;
+      float: left;
+    }
+  }
+
+
+}
 

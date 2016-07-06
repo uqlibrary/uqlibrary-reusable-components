@@ -173,9 +173,10 @@ body {
 	padding: 0em;
 }*/
 
-/*.internalTitle {
-
-}*/
+.internalTitle {
+	padding-top: 12px;
+	display:inline-block;
+}
 
 /*.internalSection {
 	float: left;

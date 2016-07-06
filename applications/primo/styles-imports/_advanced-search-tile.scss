@@ -41,6 +41,11 @@
     //browse search is part of advanced search
     &.EXLAdvancedBrowseRibbon {
 
+      input#search_field {
+        width: 92%;
+        padding-left: 0.5em;
+      }
+
       .EXLBrowseFieldRibbon {
         max-width: 80em;
         margin: 0 auto;
@@ -177,6 +182,10 @@
 
         input.submit {
           margin: 0;
+        }
+
+        input#search_field {
+          width: 90%;
         }
 
         .EXLBrowseFieldRibbon {

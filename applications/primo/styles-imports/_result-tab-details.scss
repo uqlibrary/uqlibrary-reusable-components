@@ -86,3 +86,20 @@
     display: none !important;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .EXLResultTabContainer {
+    div#exlidResult-1-TabHeader {
+      background-image: none; // remove shading from area
+      height: 0;
+      min-height: 0;
+    }
+  }
+
+  #exlidResult0-TabContainer-detailsTab {
+    .EXLDetailsContent {
+      margin-top: 0;
+    }
+  }
+
+}
