@@ -85,7 +85,7 @@
 
   fieldset {
     float: left;
-    width: 40em;
+    width: 31em;
     background-color: transparent;
     margin-top: -1em;
     padding-left: 0;
@@ -96,11 +96,11 @@
 
 @media screen and (max-width: 740px) {
   #exlidHeaderSearchLimits {
+    display:block;
     fieldset {
       width: 85vw;
     }
   }
-
 
   #exlidHeaderSystemFeedback {
     display: block;

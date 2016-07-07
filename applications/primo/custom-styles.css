@@ -236,14 +236,16 @@ body {
     font-size: 14.4px; }
   #exlidHeaderSearchLimits fieldset {
     float: left;
-    width: 40em;
+    width: 31em;
     background-color: transparent;
     margin-top: -1em;
     padding-left: 0; }
 
 @media screen and (max-width: 740px) {
-  #exlidHeaderSearchLimits fieldset {
-    width: 85vw; }
+  #exlidHeaderSearchLimits {
+    display: block; }
+    #exlidHeaderSearchLimits fieldset {
+      width: 85vw; }
 
   #exlidHeaderSystemFeedback {
     display: block; }
@@ -845,8 +847,6 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   #exlidSearchTile {
     width: 98%;
     margin: auto; }
-    #exlidSearchTile .EXLSearchFieldRibbonFormFields {
-      width: 68% !important; }
     #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
       width: 94%; }
     #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink,
@@ -869,10 +869,7 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     width: 95vw; }
 
   #exlidHeaderSearchLimits {
-    display: block;
-    float: none;
-    clear: both;
-    width: 92vw;
+    width: 90vw;
     padding: 0; }
 
   .EXLFacetTile {
