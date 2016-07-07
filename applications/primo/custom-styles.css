@@ -280,9 +280,10 @@ body {
   #exlidAdvancedSearchRibbon > fieldset {
     min-width: 80em; } }
 #exlidAdvancedSearchTile {
-  border-color: #fff;
+  border-color: transparent;
   background-image: none;
-  background: none; }
+  background: none;
+  display: inline-block; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon {
     max-width: 80em;
     margin: 0 auto; }
