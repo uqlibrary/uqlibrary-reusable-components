@@ -241,7 +241,7 @@ body {
     margin-top: -1em;
     padding-left: 0; }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 740px) {
   #exlidHeaderSearchLimits fieldset {
     width: 85vw; }
 
@@ -355,7 +355,7 @@ body {
         background: none;
         border-bottom: 1px solid #000; }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 740px) {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
     float: none;
     clear: both;
@@ -838,7 +838,7 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 #exlidSearchBanner {
   display: none; }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 740px) {
   #exlidHeaderSystemFeedback {
     display: block; }
 
@@ -846,7 +846,7 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     width: 98%;
     margin: auto; }
     #exlidSearchTile .EXLSearchFieldRibbonFormFields {
-      width: 73% !important; }
+      width: 68% !important; }
     #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
       width: 94%; }
     #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink,
