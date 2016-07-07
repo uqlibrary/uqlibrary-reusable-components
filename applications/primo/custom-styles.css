@@ -243,7 +243,9 @@ body {
 
 @media screen and (max-width: 740px) {
   #exlidHeaderSearchLimits {
-    display: block; }
+    display: block;
+    width: 86vw;
+    padding: 0; }
     #exlidHeaderSearchLimits fieldset {
       width: 85vw; }
 
@@ -867,10 +869,6 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 
   #exlidSearchRibbon {
     width: 95vw; }
-
-  #exlidHeaderSearchLimits {
-    width: 90vw;
-    padding: 0; }
 
   .EXLFacetTile {
     display: none; }
