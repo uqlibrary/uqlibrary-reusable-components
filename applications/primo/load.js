@@ -24,7 +24,7 @@ function loadReusableComponents() {
 
   hideNavigationBarToMobile = function () {
     //_updateNav.apply(this, arguments);
-  }
+  };
 
   //first element of the original document
   var firstElement = document.body.children[0];
