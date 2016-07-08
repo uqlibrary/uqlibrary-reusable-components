@@ -186,7 +186,7 @@ function listenToChangesinSearchRibbon () {
   });
 
   // configuration of the observer:
-  var config = { attributes: true, childList: true, characterData: true }
+  var config = { attributes: true, childList: true, characterData: true };
 
   // pass in the target node, as well as the observer options
   observer.observe(target, config);
