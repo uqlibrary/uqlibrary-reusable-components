@@ -75,7 +75,7 @@
 
   /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
   width: 55em;
-  padding-left: 1em;
+  padding-left: 1.7em;
   margin-left: auto;
   margin-right: auto;
 
@@ -98,7 +98,9 @@
   #exlidHeaderSearchLimits {
     display: inline-block;
     width: 86vw;
-    padding: 0;
+    margin-top: 0px;
+    position: relative;
+    left: 3.5vw;
     fieldset {
       width: 85vw;
     }
