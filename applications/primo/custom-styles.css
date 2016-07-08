@@ -843,6 +843,10 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 #exlidSearchBanner {
   display: none; }
 
+/* REMOVE MY ACCOUNT > "Personal Settings" and "Edit Details" Link */
+.EXLMyAccountEditLink {
+  display: none; }
+
 @media screen and (max-width: 740px) {
   #exlidHeaderSystemFeedback {
     display: block; }
@@ -852,9 +856,6 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     margin: auto; }
     #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
       width: 94%; }
-    #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink,
-    #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
-      display: none !important; }
 
   uql-connect-footer {
     display: inline-block; }
