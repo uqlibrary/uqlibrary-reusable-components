@@ -243,7 +243,7 @@ body {
 
 @media screen and (max-width: 740px) {
   #exlidHeaderSearchLimits {
-    display: block;
+    display: inline-block;
     width: 86vw;
     padding: 0; }
     #exlidHeaderSearchLimits fieldset {
