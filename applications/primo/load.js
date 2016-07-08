@@ -20,6 +20,12 @@ function loadReusableComponents() {
 
   listenToChangesinSearchRibbon();
 
+  var _updateNav = hideNavigationBarToMobile;
+
+  hideNavigationBarToMobile = function () {
+    //_updateNav.apply(this, arguments);
+  }
+
   //first element of the original document
   var firstElement = document.body.children[0];
 
@@ -175,18 +181,18 @@ function listenToLoginStatusChanges() {
   });
 }
 
-function listenToChangesinSearchRibbon () {
-  var target = document.querySelector('#exlidSearchRibbon');
+function listenToChangesinSearchRibbon() {
+  var target = document.querySelector('.EXLSearchFieldRibbon');
 
   // create an observer instance
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      console.log(mutation.type);
+      console.log(mutation);
     });
   });
 
   // configuration of the observer:
-  var config = { attributes: true, childList: true, characterData: true };
+  var config = { childList: true };
 
   // pass in the target node, as well as the observer options
   observer.observe(target, config);
