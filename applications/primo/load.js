@@ -18,6 +18,7 @@ function loadReusableComponents() {
 
   listenToLoginStatusChanges();
 
+  listenToChangesinSearchRibbon();
 
   //first element of the original document
   var firstElement = document.body.children[0];
@@ -42,10 +43,17 @@ function loadReusableComponents() {
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
 
+
+  var refineResuls = $('#EXLFacetsMobile');
+  if(refineResuls){
+    $('#exlidHeaderSearchLimits').after(refineResuls);
+  }
+
   window.addEventListener('WebComponentsReady', function () {
     // when polymer is ready - configure elements
     header.showLoginButton = false;
     header.showAppsButton = true;
+
   });
 
   displayPublicationDates();
@@ -165,6 +173,23 @@ function listenToLoginStatusChanges() {
   $('#exlidSignOut').on('fadeIn',function(){
     location.reload();
   });
+}
+
+function listenToChangesinSearchRibbon () {
+  var target = document.querySelector('#exlidSearchRibbon');
+
+  // create an observer instance
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      console.log(mutation.type);
+    });
+  });
+
+  // configuration of the observer:
+  var config = { attributes: true, childList: true, characterData: true }
+
+  // pass in the target node, as well as the observer options
+  observer.observe(target, config);
 }
 
 ready(loadReusableComponents);
