@@ -247,7 +247,7 @@ body {
     width: 86vw;
     margin-top: 0px;
     position: relative;
-    left: 3.5vw; }
+    left: 1.5vw; }
     #exlidHeaderSearchLimits fieldset {
       width: 85vw; }
 
@@ -863,7 +863,15 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
     display: inline-block; }
 
   .sub-footer-container {
-    display: inherit; } }
+    display: inherit; }
+
+  #EXLFacetsMobile {
+    margin: 0px 0px 3px 2em; }
+    #EXLFacetsMobile select {
+      height: 30px;
+      border: 1px solid #dadada;
+      border-radius: 4px;
+      width: 92%; } }
 @media screen and (max-width: 990px) {
   body {
     overflow-x: hidden;

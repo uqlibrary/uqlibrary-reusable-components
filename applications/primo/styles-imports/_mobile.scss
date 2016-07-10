@@ -18,4 +18,14 @@
   .sub-footer-container {
     display: inherit;
   }
+
+  #EXLFacetsMobile {
+    margin: 0px 0px 3px 2em;
+    select {
+      height: 30px;
+      border: 1px solid #dadada;
+      border-radius: 4px;
+      width: 92%;
+    }
+  }
 }
