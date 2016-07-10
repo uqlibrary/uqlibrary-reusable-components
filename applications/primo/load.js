@@ -18,13 +18,7 @@ function loadReusableComponents() {
 
   listenToLoginStatusChanges();
 
-  listenToChangesinSearchRibbon();
-
-  var _updateNav = hideNavigationBarToMobile;
-
-  hideNavigationBarToMobile = function () {
-    //_updateNav.apply(this, arguments);
-  };
+  moveRefineResultDropdown();
 
   //first element of the original document
   var firstElement = document.body.children[0];
@@ -48,12 +42,6 @@ function loadReusableComponents() {
   // insert footer before body-tag
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
-
-
-  var refineResuls = $('#EXLFacetsMobile');
-  if(refineResuls){
-    $('#exlidHeaderSearchLimits').after(refineResuls);
-  }
 
   window.addEventListener('WebComponentsReady', function () {
     // when polymer is ready - configure elements
@@ -181,13 +169,23 @@ function listenToLoginStatusChanges() {
   });
 }
 
-function listenToChangesinSearchRibbon() {
+// for mobile only
+function moveRefineResultDropdown() {
   var target = document.querySelector('.EXLSearchFieldRibbon');
 
   // create an observer instance
   var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      console.log(mutation);
+      var nodeList = mutation.addedNodes;
+      if (nodeList.length > 0) {
+        for(var i = 0; i < nodeList.length; i++){
+          var node = nodeList[i];
+          if (node.id === 'EXLFacetsMobile'){
+            $('#exlidHeaderSearchLimits').after(node);
+
+          }
+        }
+      }
     });
   });
 
