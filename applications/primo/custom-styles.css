@@ -229,21 +229,27 @@ body {
   margin-top: 1em;
   /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
   width: 55em;
-  padding-left: 1em;
+  padding-left: 1.7em;
   margin-left: auto;
   margin-right: auto; }
   #exlidHeaderSearchLimits select {
     font-size: 14.4px; }
   #exlidHeaderSearchLimits fieldset {
     float: left;
-    width: 40em;
+    width: 31em;
     background-color: transparent;
     margin-top: -1em;
     padding-left: 0; }
 
-@media screen and (max-width: 500px) {
-  #exlidHeaderSearchLimits fieldset {
-    width: 85vw; }
+@media screen and (max-width: 740px) {
+  #exlidHeaderSearchLimits {
+    display: inline-block;
+    width: 86vw;
+    margin-top: 0px;
+    position: relative;
+    left: 1.5vw; }
+    #exlidHeaderSearchLimits fieldset {
+      width: 85vw; }
 
   #exlidHeaderSystemFeedback {
     display: block; }
@@ -257,7 +263,8 @@ body {
 
   .EXLSearchFieldRibbonFormFields {
     display: inline-block;
-    width: calc(100% - 90px) !important; }
+    width: calc(100% - 90px) !important;
+    height: 100%; }
 
   .EXLSearchFieldRibbonFormSearchFor {
     width: 88% !important;
@@ -266,7 +273,8 @@ body {
   .EXLSearchFieldRibbonFormSubmitSearch {
     position: relative;
     float: right;
-    width: 85px !important; }
+    width: 85px !important;
+    margin-top: 0px !important; }
 
   .EXLSearchFieldRibbonAdvancedSearchLink {
     margin-right: 1em; } }
@@ -274,9 +282,10 @@ body {
   #exlidAdvancedSearchRibbon > fieldset {
     min-width: 80em; } }
 #exlidAdvancedSearchTile {
-  border-color: #fff;
+  border-color: transparent;
   background-image: none;
-  background: none; }
+  background: none;
+  display: inline-block; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon {
     max-width: 80em;
     margin: 0 auto; }
@@ -353,7 +362,7 @@ body {
         background: none;
         border-bottom: 1px solid #000; }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 740px) {
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormLinks {
     float: none;
     clear: both;
@@ -371,7 +380,7 @@ body {
     overflow: hidden; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon input,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon select {
-    width: 78vw;
+    width: 81vw;
     margin: 5px auto; }
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLSearchFieldRibbonFormSubmitSearch,
   #exlidAdvancedSearchTile #exlidAdvancedSearchRibbon .EXLAdvancedSearchClearSelection {
@@ -836,26 +845,33 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 #exlidSearchBanner {
   display: none; }
 
-@media screen and (max-width: 500px) {
+/* REMOVE MY ACCOUNT > "Personal Settings" and "Edit Details" Link */
+.EXLMyAccountEditLink {
+  display: none; }
+
+@media screen and (max-width: 740px) {
   #exlidHeaderSystemFeedback {
     display: block; }
 
   #exlidSearchTile {
     width: 98%;
     margin: auto; }
-    #exlidSearchTile .EXLSearchFieldRibbonFormFields {
-      width: 73% !important; }
     #exlidSearchTile .EXLSearchFieldRibbonFormSearchFor {
       width: 94%; }
-    #exlidSearchTile .EXLSearchFieldRibbonAdvancedSearchLink,
-    #exlidSearchTile .EXLSearchFieldRibbonBrowseSearchLink {
-      display: none !important; }
 
   uql-connect-footer {
     display: inline-block; }
 
   .sub-footer-container {
-    display: inherit; } }
+    display: inherit; }
+
+  #EXLFacetsMobile {
+    margin: 0px 0px 3px 2em; }
+    #EXLFacetsMobile select {
+      height: 30px;
+      border: 1px solid #dadada;
+      border-radius: 4px;
+      width: 92%; } }
 @media screen and (max-width: 990px) {
   body {
     overflow-x: hidden;
@@ -865,13 +881,6 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
 
   #exlidSearchRibbon {
     width: 95vw; }
-
-  #exlidHeaderSearchLimits {
-    display: block;
-    float: none;
-    clear: both;
-    width: 92vw;
-    padding: 0; }
 
   .EXLFacetTile {
     display: none; }

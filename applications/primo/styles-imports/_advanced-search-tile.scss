@@ -1,10 +1,10 @@
 // advanced search
 #exlidAdvancedSearchTile {
 
-  border-color: #fff;
+  border-color: transparent;
   background-image: none;
   background: none;
-
+  display: inline-block;
 
   #exlidAdvancedSearchRibbon {
 
@@ -105,7 +105,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 740px) {
 
   #exlidAdvancedSearchTile {
     #exlidAdvancedSearchRibbon {
@@ -136,7 +136,7 @@
       //keywords filter
       input,
       select {
-        width: 78vw;
+        width: 81vw;
         margin: 5px auto;
       }
 

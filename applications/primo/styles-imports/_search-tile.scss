@@ -75,7 +75,7 @@
 
   /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
   width: 55em;
-  padding-left: 1em;
+  padding-left: 1.7em;
   margin-left: auto;
   margin-right: auto;
 
@@ -85,7 +85,7 @@
 
   fieldset {
     float: left;
-    width: 40em;
+    width: 31em;
     background-color: transparent;
     margin-top: -1em;
     padding-left: 0;
@@ -94,13 +94,17 @@
 
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 740px) {
   #exlidHeaderSearchLimits {
+    display: inline-block;
+    width: 86vw;
+    margin-top: 0px;
+    position: relative;
+    left: 1.5vw;
     fieldset {
       width: 85vw;
     }
   }
-
 
   #exlidHeaderSystemFeedback {
     display: block;
@@ -120,7 +124,8 @@
 
   .EXLSearchFieldRibbonFormFields {
     display: inline-block;
-    width: calc(100% - 90px) !important
+    width: calc(100% - 90px) !important;
+    height: 100%;
   }
 
   .EXLSearchFieldRibbonFormSearchFor {
@@ -132,6 +137,7 @@
     position: relative;
     float: right;
     width: 85px !important;
+    margin-top: 0px !important;
   }
 
   .EXLSearchFieldRibbonAdvancedSearchLink {
