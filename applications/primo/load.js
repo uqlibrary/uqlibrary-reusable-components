@@ -173,27 +173,29 @@ function listenToLoginStatusChanges() {
 function moveRefineResultDropdown() {
   var target = document.querySelector('.EXLSearchFieldRibbon');
 
-  // create an observer instance
-  var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      var nodeList = mutation.addedNodes;
-      if (nodeList.length > 0) {
-        for(var i = 0; i < nodeList.length; i++){
-          var node = nodeList[i];
-          if (node.id === 'EXLFacetsMobile'){
-            $('#exlidHeaderSearchLimits').after(node);
+  if (target) {
+    // create an observer instance
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        var nodeList = mutation.addedNodes;
+        if (nodeList.length > 0) {
+          for (var i = 0; i < nodeList.length; i++) {
+            var node = nodeList[i];
+            if (node.id === 'EXLFacetsMobile') {
+              $('#exlidHeaderSearchLimits').after(node);
 
+            }
           }
         }
-      }
+      });
     });
-  });
 
-  // configuration of the observer:
-  var config = { childList: true };
+    // configuration of the observer:
+    var config = {childList: true};
 
-  // pass in the target node, as well as the observer options
-  observer.observe(target, config);
+    // pass in the target node, as well as the observer options
+    observer.observe(target, config);
+  }
 }
 
 ready(loadReusableComponents);
