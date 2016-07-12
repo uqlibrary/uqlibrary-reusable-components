@@ -27,12 +27,16 @@ uql-connect-footer
 
   position: relative;
 }
-uq-minimal-header {
-  height: 79pt;
+@media (min-width: 1048px) {
+  uq-minimal-header {
+    height: 79pt;
+  }
 }
-uql-connect-footer .contacts {
+
+uql-connect-footer .sub-footer-container .sub-footer-content .contacts {
   min-height: 0;
 }
+
 .app {
   padding: 1.5em 1.5em 0;
   width: 100%;
