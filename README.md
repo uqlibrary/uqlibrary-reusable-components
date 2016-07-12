@@ -125,7 +125,7 @@ Include the following:
 Primo includes static_html/footer.html on every page which loads all UQL styling and JavaScript. 
 footer.html is uploaded to Primo Back Office via File Uploader to 61UQ view (production).
 
-Master branch is deployed and can be chanegs can be seen on [61UQ_DEV view] (http://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV)
+Master branch is deployed and changes can be seen on [61UQ_DEV view] (http://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV)
 
 
 Primo static_html/footer.html to include following:
