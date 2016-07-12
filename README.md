@@ -84,7 +84,32 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
         <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libanswers/custom-styles.css" />
-        
+     
+#### ACDB (https://www.library.uq.edu.au/acdba.html)
+common1.inc has a reusable function called "reusable_copyright_header", its to be used to display UQ header and footer on the copyright pages.
+
+     function reusable_copyright_header() {
+     $header = <<<PAGE_HEADER
+     
+     <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
+     <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+     <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+     <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+     
+     <script src="//assets.library.uq.edu.au/master/reusable-components/acdb/load.js" async></script>
+     <link rel="stylesheet" href="//assets.library.uq.edu.au/master/reusable-components/acdb/custom-styles.css" />
+     
+     PAGE_HEADER;
+     
+     echo $header;
+     }
+     
+then in the php file, e.g. acdb.php, call the following php function:
+
+     
+        reusable_copyright_header();
+     
+
 #### UQ Drupal (https://web.library.uq.edu.au)
 
 UQ ITS is managing UQ Drupal library's CMS (web.library.uq.edu.au). Any components to be used in UQ Drupal require registration within UQ Drupal.
