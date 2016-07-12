@@ -123,7 +123,9 @@ Include the following:
         
 #### PRIMO (https://search.library.uq.edu.au)
 Primo includes static_html/footer.html on every page which loads all UQL styling and JavaScript. 
-footer.html is uploaded to Primo Back Office via File Uploader to 61UQ view.
+footer.html is uploaded to Primo Back Office via File Uploader to 61UQ view (production).
+
+Master branch is deployed and can be chanegs can be seen on [61UQ_DEV view] (http://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV)
 
 
 Primo static_html/footer.html to include following:
@@ -150,6 +152,7 @@ More details [Primo CSS customisation](https://knowledge.exlibrisgroup.com/Primo
 and [Debugging CSS/JS in Primo] (https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Debugging_CSS_and_JavaScript)                
 
 Styling for Alma iframes:
+
 1. Login to https://uq.alma.exlibrisgroup.com/SAML
 2. Go to Alma > Administration > General Configuration > General Configuration Menu
 3. Select Delivery System Skins
@@ -160,6 +163,7 @@ Styling for Alma iframes:
 8. Upload the zip file and Save
 
 Then Go To Primo Back Office:
+
 1. Go to Advanced Configuration > Mapping Tables
 2. Select "Delivery" for subsystem
 3. Select "Templates" and click on Edit
@@ -167,6 +171,7 @@ Then Go To Primo Back Office:
 5. If they dont, append the text and click Save and Deploy.
 
 On the search result page, confirm the settings have been applied correctly:
+
 1. Check the iframe src, it shall have "&req.skin=uqskin" appended
 2. Check in the header section, it shall load the mashup.css from the uqskin:
 
