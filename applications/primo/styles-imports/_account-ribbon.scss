@@ -30,10 +30,9 @@
       }
     }
 
-    /* there is some chrome specific markup which is adding a final list item with an empty select
-     * we need to hide this abberant item, as the drop down shows, without hiding the last item when this LI isnt injected
-     * approach: hide any select that is the child of a last item
-    */
+    // there is some chrome specific markup which is adding a final list item with an empty select
+    // we need to hide this abberant item, as the drop down shows, without hiding the last item when this LI isnt injected
+    // approach: hide any select that is the child of a last item
     li:last-child select  {
       display: none;
     }
@@ -53,13 +52,19 @@
         background-image: none;
       }
     }
+
+    // extraneous png appearing
+    li#exlidUserName span.EXLUserAreaStart {
+      background-image: none;
+      width: 0;
+    }
   }
   #exlidSavedSearches,
   #exlidMyAccount {
-    padding-top: 1px; /* spacing to fit eshelf_on_small icon */
+    padding-top: 1px; // spacing to fit eshelf_on_small icon
   }
   li span.EXLUserNameDisplay {
-    padding-left: 0; /* left align username with eshelf_on_small icon */
+    padding-left: 0; // left align username with eshelf_on_small icon
   }
 
 }
