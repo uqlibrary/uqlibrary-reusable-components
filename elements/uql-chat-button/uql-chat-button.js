@@ -73,20 +73,20 @@
         }
       }
     },
+    ready: function () {
+      var self = this;
 
+      this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function (e) {
+        self._handleChatStatusResponse(e);
+      });
+
+      this.$.chatStatusApi.get();
+    },
     /**  Processes successful chat status api response
      * @param {Object} API call response
      * */
     _handleChatStatusResponse: function(response) {
-      this.isChatOnline = response.detail.data.online;
-      this._setupChatTooltip();
-    },
-
-    /**  Processes error chat status api response
-     * @param {Object} API call response
-     * */
-    _handleChatStatusError: function(response) {
-      this.isChatOnline = false;
+      this.isChatOnline = response.detail.online;
       this._setupChatTooltip();
     },
 

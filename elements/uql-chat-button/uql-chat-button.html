@@ -46,14 +46,7 @@ Example:
 
   </style>
   <template>
-
-    <byutv-jsonp
-            auto
-            url="{{chatStatusUrl}}"
-            params="{{timestamp}}"
-            on-response="_handleChatStatusResponse"
-            on-error="_handleChatStatusError"
-            debounce-duration="300"></byutv-jsonp>
+    <uqlibrary-api-chat-status id="chatStatusApi"></uqlibrary-api-chat-status>
 
     <paper-button class="button-colored-theme" on-tap="openChat" id="chatButton">
       <iron-icon icon="communication:forum" aria-label="UQ Library chat"></iron-icon>
