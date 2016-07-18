@@ -60,3 +60,14 @@ uql-connect-footer
     }
   }
 }
+
+#copyright_notice {
+  uql-connect-footer .sub-footer-container .sub-footer-content .contacts {
+    min-height: 0;
+  }
+  @media (min-width: 1048px) {
+    uq-minimal-header {
+      height: 79pt;
+    }
+  }
+}
