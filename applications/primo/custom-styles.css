@@ -714,9 +714,9 @@ div.EXLFacetActionsV2 {
   .EXLRefinementRibbonWithExclude span.EXLRemoveRefinement {
     border: 1px solid #969696; }
     .EXLRefinementRibbonWithExclude span.EXLRemoveRefinement a strong {
-      background-image: url(../images/icon_clear_search.png);
+      background-image: url(//search.library.uq.edu.au/primo_library/libweb/images/icon_clear_search.png);
       background-repeat: no-repeat;
-      background-position-x: right;
+      background-position: right center;
       padding-right: 20px;
       margin-right: 2px; }
     .EXLRefinementRibbonWithExclude span.EXLRemoveRefinement a img {
@@ -771,7 +771,7 @@ div.EXLFacetActionsV2 {
     border-bottom: 1px solid #E1E1E1; }
   body.EXLFullView div.EXLTabContent {
     border: 1px solid #8FB9D0;
-    botder-top: none; }
+    border-top: none; }
   body.EXLFullView div.EXLDetailsTabContent iframe {
     width: 100%; } }
 .EXLTabBrowseContent div.caroufredsel_wrapper {
