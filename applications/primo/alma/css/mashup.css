@@ -71,11 +71,12 @@ When extracted from the zip, all classes will be commented out.
 body {
 	background-color: #ffffff;
 	color: #32322f;
-	margin: 0px;
+	margin: 0;
 	padding: 0 0 0 0.6em;
 	font-family: Arial, verdana;
 	font-size: 80%;
 	height: 100%;
+	-webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
 }
 
 /*a:link,a:visited {
@@ -209,8 +210,8 @@ body {
 
 ul.filterResults {
 	width: 100%;
-	margin: 0em;
-	padding: 0em;
+	margin: 0;
+	padding: 0;
 	background-color: #f6f6f6;
 	display: none;
 }
@@ -491,7 +492,7 @@ ul.filterResults {
 	white-space: normal;
 	width: auto;
 	font-family: arial;
-	letter-spacing: 0px;
+	letter-spacing: 0;
 }
 
 /*.submitAsNoLink,.typeC .formDiv input.submitAsNoLink {
@@ -952,7 +953,7 @@ Classes bellow are used to define the look and feel of the date & time component
 /*left: -4px; */ /*must have*/
 /* width: 200px;*/ /*must have*/
 /* height: 200px; *//*must have*/
-}
+/*}*/
 /* Component containers
 ----------------------------------*/
 /*.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
