@@ -103,46 +103,42 @@ body {
 
 #exlidUserAreaTile {
   padding-top: 0.5em; }
-  #exlidUserAreaTile #exlidUserAreaRibbon {
-    /* there is some chrome specific markup which is adding a final list item with an empty select
-     * we need to hide this abberant item, as the drop down shows, without hiding the last item when this LI isnt injected
-     * approach: hide any select that is the child of a last item
-    */ }
-    #exlidUserAreaTile #exlidUserAreaRibbon li {
+  #exlidUserAreaTile #exlidUserAreaRibbon li {
+    background-image: none; }
+    #exlidUserAreaTile #exlidUserAreaRibbon li a:link, #exlidUserAreaTile #exlidUserAreaRibbon li a:visited {
+      text-decoration: underline;
+      color: #2377CB; }
+  #exlidUserAreaTile #exlidUserAreaRibbon li.EXLLastItem:before {
+    content: ""; }
+  #exlidUserAreaTile #exlidUserAreaRibbon li.EXLLastItem:after {
+    content: ""; }
+  #exlidUserAreaTile #exlidUserAreaRibbon .EXLLastItem :before {
+    content: "("; }
+  #exlidUserAreaTile #exlidUserAreaRibbon .EXLLastItem :after {
+    content: ")"; }
+  #exlidUserAreaTile #exlidUserAreaRibbon li:last-child select {
+    display: none; }
+  #exlidUserAreaTile #exlidUserAreaRibbon #exlidMyShelf {
+    clear: left;
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-top: 1px;
+    padding-left: 21px;
+    /* 20px image + a little space */
+    min-height: 16px; }
+    #exlidUserAreaTile #exlidUserAreaRibbon #exlidMyShelf span {
+      width: 0;
+      margin: 0;
       background-image: none; }
-      #exlidUserAreaTile #exlidUserAreaRibbon li a:link, #exlidUserAreaTile #exlidUserAreaRibbon li a:visited {
-        text-decoration: underline;
-        color: #2377CB; }
-    #exlidUserAreaTile #exlidUserAreaRibbon li.EXLLastItem:before {
-      content: ""; }
-    #exlidUserAreaTile #exlidUserAreaRibbon li.EXLLastItem:after {
-      content: ""; }
-    #exlidUserAreaTile #exlidUserAreaRibbon .EXLLastItem :before {
-      content: "("; }
-    #exlidUserAreaTile #exlidUserAreaRibbon .EXLLastItem :after {
-      content: ")"; }
-    #exlidUserAreaTile #exlidUserAreaRibbon li:last-child select {
-      display: none; }
-    #exlidUserAreaTile #exlidUserAreaRibbon #exlidMyShelf {
-      clear: left;
-      background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
-      background-repeat: no-repeat;
-      background-position: left top;
-      padding-top: 1px;
-      padding-left: 21px;
-      /* 20px image + a little space */
-      min-height: 16px; }
-      #exlidUserAreaTile #exlidUserAreaRibbon #exlidMyShelf span {
-        width: 0;
-        margin: 0;
-        background-image: none; }
+  #exlidUserAreaTile #exlidUserAreaRibbon li#exlidUserName span.EXLUserAreaStart {
+    background-image: none;
+    width: 0; }
   #exlidUserAreaTile #exlidSavedSearches,
   #exlidUserAreaTile #exlidMyAccount {
-    padding-top: 1px;
-    /* spacing to fit eshelf_on_small icon */ }
+    padding-top: 1px; }
   #exlidUserAreaTile li span.EXLUserNameDisplay {
-    padding-left: 0;
-    /* left align username with eshelf_on_small icon */ }
+    padding-left: 0; }
 
 @media screen and (max-width: 500px) {
   #exlidUserAreaTile #exlidUserAreaRibbon #exlidMyShelf {
@@ -159,7 +155,13 @@ body {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    height: auto; }
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    left: 0;
+    width: 100%;
+    padding: 10px 0; }
     #exlidHeaderSystemFeedback #alert-container #alert-text-container {
       text-align: left;
       padding: 0 5px;
@@ -167,14 +169,42 @@ body {
       color: #fff !important;
       background-image: none;
       margin-top: auto;
-      margin-bottom: auto; }
+      margin-bottom: auto;
+      vertical-align: middle;
+      fill: currentcolor;
+      stroke: none;
+      height: 24px; }
       #exlidHeaderSystemFeedback #alert-container #alert-text-container a, #exlidHeaderSystemFeedback #alert-container #alert-text-container a:link, #exlidHeaderSystemFeedback #alert-container #alert-text-container a:visited {
         color: #fff !important;
         text-decoration: underline; }
 
 #alert-icon-container {
+  background-color: white;
   top: 0;
-  margin: auto 0.3em auto 0.3em; }
+  height: 1em;
+  overflow: hidden;
+  border: none;
+  border-radius: 0.5em;
+  box-shadow: #999 0 1px 1px;
+  font-size: 1.4em;
+  color: transparent;
+  margin: auto 0.3em auto 0.3em;
+  padding-right: 1em;
+  position: relative; }
+
+#alert-icon-container:after {
+  font-style: italic;
+  font-weight: bold;
+  content: "i";
+  display: block;
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Times New Roman", "Garamond", serif;
+  font-size: 0.65em;
+  color: #64b10b; }
 
 #exlidSearchTile {
   border: none;
@@ -669,16 +699,28 @@ div.EXLFacetActionsV2 {
   line-height: .75;
   display: inline-block; }
 
-.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList {
-  /* make certain options in the save/share selector disappear */
-  /* remove the icons on each Send/Share selector item */ }
-  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToEasyBib,
-  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToRefWorks,
-  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToDelicious,
-  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToFacebook {
-    display: none !important; }
-  .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToIcon {
-    display: none !important; }
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToEasyBib,
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToRefWorks,
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToDelicious,
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToFacebook {
+  display: none !important; }
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList .EXLButtonSendToIcon {
+  display: none !important; }
+
+.EXLRefinementRibbonWithExclude {
+  background-color: #CCC; }
+  .EXLRefinementRibbonWithExclude span.EXLRefinementsListTitle {
+    font-weight: bold; }
+  .EXLRefinementRibbonWithExclude span.EXLRemoveRefinement {
+    border: 1px solid #969696; }
+    .EXLRefinementRibbonWithExclude span.EXLRemoveRefinement a strong {
+      background-image: url(../images/icon_clear_search.png);
+      background-repeat: no-repeat;
+      background-position-x: right;
+      padding-right: 20px;
+      margin-right: 2px; }
+    .EXLRefinementRibbonWithExclude span.EXLRemoveRefinement a img {
+      display: none; }
 
 @media screen and (max-width: 500px) {
   .EXLResultTabContainer div#exlidResult-1-TabHeader {
@@ -720,6 +762,18 @@ div.EXLFacetActionsV2 {
 #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderButtons li {
   font-weight: bold; }
 
+@media screen and (max-width: 500px) {
+  #exlidResultsContainer.EXLResultsContainer .EXLTabHeader div.EXLTabHeaderContent {
+    width: 55%; }
+
+  body.EXLFullView div.EXLResultTabContainer div.EXLTabHeader {
+    border: 1px solid #8FB9D0;
+    border-bottom: 1px solid #E1E1E1; }
+  body.EXLFullView div.EXLTabContent {
+    border: 1px solid #8FB9D0;
+    botder-top: none; }
+  body.EXLFullView div.EXLDetailsTabContent iframe {
+    width: 100%; } }
 .EXLTabBrowseContent div.caroufredsel_wrapper {
   width: auto !important; }
 
