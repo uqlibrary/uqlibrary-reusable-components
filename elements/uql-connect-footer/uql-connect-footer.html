@@ -17,7 +17,7 @@
         position: relative;
       }
 
-      a {
+      a, a:link, a:visited {
         color: var(--sub-footer-text-color);
         text-decoration: none;
       }
@@ -26,8 +26,10 @@
         text-decoration: underline;
       }
 
-      .social a {
-        color:#fff;
+      .social a,
+      .social a:link,
+      .social a:visited  {
+        color: var(--text-color-inverse);
         font-weight: 400;
       }
 

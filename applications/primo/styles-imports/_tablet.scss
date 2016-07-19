@@ -1,0 +1,52 @@
+@media screen and (max-width: 990px) {
+
+  body {
+    overflow-x:hidden;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select:none;
+    min-width:200px;
+  }
+
+  #exlidSearchRibbon {
+    width: 95vw;
+  }
+
+  .EXLFacetTile {
+    display:none;
+  }
+
+  .EXLResultsContainer {
+    width: auto;
+    height: auto;
+    padding-left: 0em;
+    padding-right: 0em;
+    padding-top: 1em;
+    margin-top: auto;
+    overflow: hidden;
+    margin-bottom: 1em;
+
+    .EXLResultsTile {
+      width: 100%;
+      float: none;
+      border: none;
+      padding: 0em;
+      background-color: #FFFFFF;
+      margin: 0em;
+      margin-bottom: 2em
+    }
+  }
+
+  //#exlidSearchRibbon {
+  //  width: 95vw;
+  //}
+
+  #resultsTileNoId {
+    max-width: 95vw;
+    width: 95%;
+    float: none;
+    clear: both;
+    display: block;
+    margin: 0;
+  }
+
+}

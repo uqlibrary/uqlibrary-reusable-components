@@ -1,0 +1,84 @@
+.EXLResultTabContainer div.EXLTabHeader {
+  min-height: 32px;
+  background-color: transparent;
+  background-image: none;
+  border-top: 1px solid #8FB9D0;
+}
+
+.EXLTabsRibbon {
+  border: none;
+
+  div {
+    ul {
+      margin-bottom: -1px;
+    }
+    li.EXLResultTab{
+      padding-top: 0.8em;
+      padding-bottom: 1em;
+      background-color: #f1f1f1;
+    }
+    li.EXLResultSelectedTab {
+      background-color: #FFF;
+      background-image: none;
+      margin-left: 0;
+      margin-right: 2px;
+      border-bottom: 1px solid #FFF;
+
+      a {
+        color: #32322F!important;
+      }
+    }
+
+    li.EXLResultFirstTab {
+      padding-left: 0.8em;
+    }
+  }
+}
+
+.EXLTabsRibbonClosed div li.EXLResultFirstTab {
+  padding-left: 0.8em;
+}
+
+.EXLTabHeader {
+  div.EXLTabHeaderButtons li {
+    background-image: none;
+    border: none;
+    padding-top: 0.3em;
+
+    span {
+      background-image: none;
+    }
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  #resultsListNoId {
+
+    #exlidResult0-TabsList {
+      margin-left: 0; // overwrite auto value which was pushing the tabs to the right
+
+      li.EXLResultTab {
+        -webkit-border-radius: 0; // remove curved corners
+        padding: .8em .8em 1em; // spacing on tab same for desktop and mobile
+        font-size: 1em; // match font size with non-mobile view
+        height: 15px; // match height of tab with non-mobile view
+      }
+
+      li.EXLResultSelectedTab {
+        border: 1px solid #8fb9d0; // make tabs look like desktop tabs
+        border-bottom-width: 0;
+
+      }
+
+      #exlidResult0-LocationsTab {
+        display: none;
+      }
+    }
+
+    .EXLTabsRibbon {
+      border-bottom-width: 0; // remove stray line appearing through tabs
+    }
+
+  }
+}

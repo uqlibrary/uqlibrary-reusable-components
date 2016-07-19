@@ -1,0 +1,105 @@
+/*-- Style item details tab as "table" --*/
+
+/* Fix result list jumping issue */
+.EXLDetailsTabContent div.EXLDetailsContent{
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
+
+/* Make sure labels align with associated data */
+.EXLDetailsTabContent div.EXLDetailsContent li {
+  clear: both;
+}
+
+/* Float labels left, set width to 8em and align text right */
+.EXLDetailsTabContent div.EXLDetailsContent li > strong {
+  display: block;
+  float: left;
+  width: 8em;
+  margin-right: 1em;
+  text-align: right;
+  line-height: 1.5;
+}
+
+/* Position contents 9em to the left, leaving 1em of space between the labels and their associated data */
+.EXLDetailsTabContent div.EXLDetailsContent ul li div.EXLLinkedFieldTitle,
+.EXLDetailsTabContent div.EXLDetailsContent li .EXLDetailsDisplayVal,
+.EXLDetailsTabContent div.EXLDetailsContent li .EXLLinkedField {
+  display: block;
+  margin-left: 9em;
+  line-height: 1.5;
+}
+
+/* Hide semicolons between items in author, genre, MESH headings, related materials, and subject sections by making all text invisible */
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Related"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Subject"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] {
+  visibility: hidden;
+  line-height: 0;
+}
+
+/* Show labels and links in author, genre, MESH headings, related materials, and subject sections */
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Related"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Subject"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] strong,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Related"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Subject"] a,
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] a {
+  visibility: visible;
+  line-height: 1.5;
+}
+
+/* Hide line breaks between items */
+.EXLDetailsTabContent div.EXLDetailsContent li br {
+  display: none;
+}
+
+/* Set line break height in description field to create space between paragraphs */
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Description"] br {
+  line-height: .75;
+  display: inline-block;
+}
+
+
+.EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList {
+  /* make certain options in the save/share selector disappear */
+  .EXLButtonSendToEasyBib ,
+  .EXLButtonSendToRefWorks ,
+  .EXLButtonSendToDelicious ,
+  .EXLButtonSendToFacebook {
+    display: none !important;
+  }
+  /* remove the icons on each Send/Share selector item */
+  .EXLButtonSendToIcon {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .EXLResultTabContainer {
+    div#exlidResult-1-TabHeader {
+      background-image: none; // remove shading from area
+      height: 0;
+      min-height: 0;
+    }
+  }
+
+  #exlidResult0-TabContainer-detailsTab {
+    .EXLDetailsContent {
+      margin-top: 0;
+    }
+  }
+
+}

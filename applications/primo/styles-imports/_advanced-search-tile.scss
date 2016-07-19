@@ -1,0 +1,214 @@
+// advanced search
+#exlidAdvancedSearchTile {
+
+  border-color: transparent;
+  background-image: none;
+  background: none;
+  display: inline-block;
+
+  #exlidAdvancedSearchRibbon {
+
+    max-width: 80em;
+    margin: 0 auto;
+
+    div.EXLSearchFieldRibbonFormSubmitSearch {
+      margin-top: 0.5em;
+      border: none;
+    }
+
+    input.submit {
+      @include uql-button(#fff, $accent-color);
+    }
+
+    input.submit.EXLAdvancedSearchClearSelection {
+      @include uql-button(#fff, $secondary-color);
+    }
+
+    .EXLSearchFieldRibbonFormLinks {
+      font-size: 16px;
+      padding-top: 13px;
+    }
+
+    //hide search tabs
+    .EXLSearchTabsContainer {
+      display: none;
+    }
+
+    .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
+      border: none;
+    }
+
+    //browse search is part of advanced search
+    &.EXLAdvancedBrowseRibbon {
+
+      input#search_field {
+        width: 92%;
+        padding-left: 0.5em;
+      }
+
+      .EXLBrowseFieldRibbon {
+        max-width: 80em;
+        margin: 0 auto;
+
+        border: none;
+        background: none;
+      }
+
+      //browse container
+      .EXLSearchFieldRibbonFormFields {
+        float: none;
+        clear: both;
+      }
+
+      //browse combobox
+      .EXLSearchFieldRibbonFormSelectedBrowse {
+        float: none;
+        clear: both;
+        display: inline-block;
+      }
+
+      //browse text box
+      .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
+        float: none;
+        clear: both;
+        display: inline-block;
+
+        background-color: #f2f2f2;
+        border-radius: 3px;
+        border: none;
+        padding: 4px 0 0 4px;
+        height: 36px;
+        margin-left: 5px;
+
+        input {
+          background: none;
+          border-bottom: 1px solid #000;
+        }
+
+      }
+
+
+      //.EXLSearchFieldRibbonFormSelectedBrowse .EXLSearchFieldRibbonFormSelectedCollectionLabel {
+      //  display: block;
+      //}
+      //
+      //input#search_field {
+      //  line-height: 1.5em;
+      //  padding: 0;
+      //}
+      //
+      //.EXLSearchFieldRibbonFormSearchFor {
+      //  margin-top: 10px;
+      //}
+
+    }
+  }
+}
+
+@media screen and (max-width: 740px) {
+
+  #exlidAdvancedSearchTile {
+    #exlidAdvancedSearchRibbon {
+
+      //simple search link - centered
+      .EXLSearchFieldRibbonFormLinks {
+        float: none;
+        clear: both;
+        display: block;
+        width: 80vw;
+        text-align: center;
+        text-indent: 0;
+      }
+
+      fieldset {
+        margin: 0 auto;
+        width: 80vw;
+      }
+
+      //outer search container
+      .EXLSearchFieldRibbon.EXLSearchFieldRibbonPreFilters {
+        padding: 0;
+        margin: 0 auto;
+        width: 81vw;
+        overflow: hidden;
+      }
+
+      //keywords filter
+      input,
+      select {
+        width: 81vw;
+        margin: 5px auto;
+      }
+
+      //search buttons
+      .EXLSearchFieldRibbonFormSubmitSearch,
+      .EXLAdvancedSearchClearSelection {
+        float: none !important;
+        display: block !important;
+        clear: both !important;
+        margin-bottom: 10px;
+      }
+
+      //publishing filter
+      .EXLSearchFieldRibbonFormFieldsGroup1,
+      .EXLSearchFieldRibbonFormFieldsGroup2 {
+        padding: 0px;
+        border: none;
+        width: 80vw;
+
+        label {
+          width: 80vw;
+          margin: 0px;
+        }
+      }
+
+      .EXLAdvancedSearchFormRow,
+      .EXLAdvancedSearchFormDateRangeRow,
+      .EXLAdvancedSearchFormDateRangeRow {
+        label {
+          display: block;
+          float: none;
+          width: 80vw;
+          padding: 5px 0;
+        }
+
+        fieldset span.EXLAdvancedSearchFormRowInlineInput {
+          display: block;
+        }
+      }
+
+      //browser
+      &.EXLAdvancedBrowseRibbon {
+
+        input.submit {
+          margin: 0;
+        }
+
+        input#search_field {
+          width: 90%;
+        }
+
+        .EXLBrowseFieldRibbon {
+          padding: 0;
+          width: 80vw;
+        }
+
+        .EXLSearchFieldRibbonFormSelectedBrowse {
+          width: 80vw;
+          margin: 0;
+        }
+
+        .EXLSearchFieldRibbonFormSelectedCollectionLabel {
+          display: block;
+        }
+
+        .EXLSearchFieldRibbonFormBrowseSearchFor.EXLSearchFieldRibbonFormSearchFor {
+          width: 80vw !important;
+          margin: 10px 0;
+        }
+
+      }
+
+    }
+  }
+}

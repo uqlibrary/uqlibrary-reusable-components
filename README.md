@@ -23,6 +23,12 @@ Project requires the following major dependencies:
 - gulp, a Node.js-based build tool.
 - bower, a Node.js-based package manager used to install front-end packages (like Polymer).
 
+#### Viewing the Demo 
+
+The demo page is available [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
+
+(Swap out alternate branch names for 'master' in this url to test other branches).
+
 #### Installing Dependencies 
 
 With Node.js installed, run the following one liner from the root of the repo:
@@ -61,12 +67,16 @@ include this code in Custom JS/CSS Code in LibGuides configuration
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
         <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/custom-styles.css" />
+<<<<<<< HEAD
+       
+=======
         
+>>>>>>> master
 customisation of groups shall be done the same way as custom-styles, example:how-to-find-group.css
 
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/how-to-find-group.css" />
         
-#### LibAnswers
+#### LibAnswers (http://answers.library.uq.edu.au)
 
 test group (uses master branch): http://answers.library.uq.edu.au/test
 
@@ -78,23 +88,35 @@ include this code in Custom JS/CSS Code in LinAnswers configuration
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
         <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libanswers/custom-styles.css" />
-        
-#### UQL Drupal (libwww)
 
-include this code in Omega's html.tpl.php 
-        <html manifest="//assets.library.uq.edu.au/master/reusable-components/libwww/reusable-components.appcache">
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
-        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+#### UQ Drupal (https://web.library.uq.edu.au)
+
+UQ ITS is managing UQ Drupal library's CMS (web.library.uq.edu.au). Any components to be used in UQ Drupal require registration within UQ Drupal.
+
+        <html manifest="//assets.library.uq.edu.au/reusable-components/libwww/reusable-components.appcache">
+
+        <script type="text/javascript" src="//www.library.uq.edu.au/js/ims.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/libwww/load.js"></script>
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-        
-        <script src="//assets.library.uq.edu.au/reusable-components/libwww/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css" />
+                
+        
 
 reusable-components.appcache is a manifest file which contains a list of files that can be cached by a browser. Application cache file has a version number which signals to a browser that cached files were updated. Version is updated automatically at deployment time. 
 
-#### UQLAPP
-frontend/app/index.html includes following:
+#### UQLAPP, FBS, Training, Contacts, Exams, ACDB
+
+Used in files:
+- UQLAPP: frontend/app/index.html
+- FBS: public/lib/Template.class.php
+- Training: calendarfunctions.php
+- Contacts: contacts/librarians/index.html
+- Exams: help.html, search.html and eep.inc.php
+- ACDB (https://www.library.uq.edu.au/acdba.html) : /usr/local/apache/uqlapi/auth/common1.inc (reusable_copyright_header function)
+
+Include the following:
 
         <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
@@ -104,8 +126,20 @@ frontend/app/index.html includes following:
         <script src="//assets.library.uq.edu.au/reusable-components/uqlapp/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/uqlapp/custom-styles.css" />
         
-#### PRIMO
-Primo files to include following:
+##### ACDB (https://www.library.uq.edu.au/acdba.html)
+
+then in the /var/www/www.library.uq.edu.au/public_html/get-reusable.php file, call the following php function:
+
+                reusable_copyright_header();
+
+#### PRIMO (https://search.library.uq.edu.au)
+Primo includes static_html/footer.html on every page which loads all UQL styling and JavaScript. 
+footer.html is uploaded to Primo Back Office via File Uploader to 61UQ view (production).
+
+Master branch is deployed and changes can be seen on [61UQ_DEV view] (http://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV)
+
+
+Primo static_html/footer.html to include following:
 
         <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
@@ -114,7 +148,45 @@ Primo files to include following:
         
         <script src="//assets.library.uq.edu.au/reusable-components/primo/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/primo/custom-styles.css" />
-                
+        
+Primo styling for Primo iframes.
+When custom-styles.css is finalised, it has to be uploaded to Primo to apply styles to Primo iframes (not Alma iframes).
+
+In Primo Back Office:
+
+1. Upload custom-styles.css to 61UQ view via Deploy & Utilities -> File Uploader
+2. In FE & Delivery -> Views List edit 61UQ view, Save & Continue all the way through, and Deploy.
+
+To test your new CSS has been applied go to a Primo page and add attribute &wroDevMode=true to query string. This will stop CSS concat tool from merging all CSS files on server side.
+More details [Primo CSS customisation](https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Customizing_the_Default_CSS_File)
+, [File Uploader Tool](https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Back_Office_Guide/Primo_Utilities/The_File_Uploader_Tool)
+and [Debugging CSS/JS in Primo] (https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Debugging_CSS_and_JavaScript)                
+
+Styling for Alma iframes:
+
+1. Login to https://uq.alma.exlibrisgroup.com/SAML
+2. Go to Alma > Administration > General Configuration > General Configuration Menu
+3. Select Delivery System Skins
+4. Select "uqskin" and click on Action->Edit
+5. Download the branding_skin.zip
+6. Unzip the file and uncomment and edit css class in the mashup.css as required
+7. Rezip the file (remember to remove all the system hidden folders and files e.g. .Dstore)
+8. Upload the zip file and Save
+
+Then Go To Primo Back Office:
+
+1. Go to Advanced Configuration > Mapping Tables
+2. Select "Delivery" for subsystem
+3. Select "Templates" and click on Edit
+4. Look for "Almagetit" and "Almaviewit" and make sure they have "&req.skin=uqskin" appended
+5. If they dont, append the text and click Save and Deploy.
+
+On the search result page, confirm the settings have been applied correctly:
+
+1. Check the iframe src, it shall have "&req.skin=uqskin" appended
+2. Check in the header section, it shall load the mashup.css from the uqskin:
+
+        <link href="/view/branding_skin/css/mashup.css?skinName=uqskin&version=June2016&skinVersion=1466583814&customerId=3130&institutionId=3131" rel="stylesheet" type="text/css">
 
 #### Shared (uqlais, ezproxy static pages)
 https://github.com/uqlibrary/UQLAIS/blob/master/templates/header.tpl.html includes following:

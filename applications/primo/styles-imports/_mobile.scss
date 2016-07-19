@@ -1,0 +1,31 @@
+@media screen and (max-width: 740px) {
+  // display login reminder bar in mobile screens
+  #exlidHeaderSystemFeedback {
+    display: block;
+  }
+  #exlidSearchTile {
+    width: 98%;
+    margin: auto;
+
+    .EXLSearchFieldRibbonFormSearchFor {
+      width: 94%;
+    }
+  }
+
+  uql-connect-footer {
+    display: inline-block;
+  }
+  .sub-footer-container {
+    display: inherit;
+  }
+
+  #EXLFacetsMobile {
+    margin: 0px 0px 3px 2em;
+    select {
+      height: 30px;
+      border: 1px solid #dadada;
+      border-radius: 4px;
+      width: 92%;
+    }
+  }
+}

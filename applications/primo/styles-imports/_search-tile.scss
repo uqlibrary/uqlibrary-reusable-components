@@ -1,0 +1,155 @@
+// #exlidSearchTile - simple search
+#exlidSearchTile {
+  border: none;
+  background-image: none;
+  height: auto;
+  width: 100%;
+  font-size: 1em;
+  padding-top: 40px;
+
+  // hide scope from simple search box
+  .EXLSearchTabsContainer {
+    display: none !important;
+  }
+
+  .EXLSearchFieldRibbonFormSearchFor {
+    border-bottom: 1px solid #333;
+  }
+
+  .EXLSearchFieldRibbonFormFields {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    padding: 4px 0 0 4px;
+    width: 90%;
+    height: 36px;
+  }
+
+  #exlidSearchRibbon {
+
+    margin: auto;
+    float: none;
+
+    fieldset {
+      float: none;
+    }
+
+    input#search_field {
+      background: #f2f2f2;
+      padding: 2px;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    div.EXLSearchFieldRibbon {
+      border: 0;
+      height: auto;
+    }
+  }
+
+  .EXLSearchFieldRibbonAdvancedSearchLink {
+    float: right;
+    width: 7em;
+    margin-right: 3.9em;
+    margin-left: 0.4em;
+  }
+
+  .EXLSearchFieldRibbonBrowseSearchLink {
+    float: right;
+    width: auto;
+    display: inline !important; /* back to default */
+    clear: none;
+  }
+}
+
+#exlidHeaderSearchLimits {
+  /* match the uql look and feel */
+  background-color: #fff;
+
+  /* remove border to visually integrate into uql search area */
+  border-bottom-width: 0;
+
+  /* move up from the default position */
+  margin-top: 1em;
+
+  /* match the horizontal layout of #exlidSearchRibbon, as defined in http://uq-edu-primo.hosted.exlibrisgroup.com/primo_library/libweb/wro/primo_library_wro_61UQ_DEV_en_US.css */
+  width: 55em;
+  padding-left: 1.7em;
+  margin-left: auto;
+  margin-right: auto;
+
+  select {
+    font-size: 14.4px;
+  }
+
+  fieldset {
+    float: left;
+    width: 31em;
+    background-color: transparent;
+    margin-top: -1em;
+    padding-left: 0;
+  }
+}
+
+
+
+@media screen and (max-width: 740px) {
+  #exlidHeaderSearchLimits {
+    display: inline-block;
+    width: 86vw;
+    margin-top: 0px;
+    position: relative;
+    left: 1.5vw;
+    fieldset {
+      width: 85vw;
+    }
+  }
+
+  #exlidHeaderSystemFeedback {
+    display: block;
+  }
+
+  #exlidSearchRibbon {
+    fieldset {
+      width: 93%;
+      margin: auto;
+    }
+
+    div.EXLSearchFieldRibbon {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  .EXLSearchFieldRibbonFormFields {
+    display: inline-block;
+    width: calc(100% - 90px) !important;
+    height: 100%;
+  }
+
+  .EXLSearchFieldRibbonFormSearchFor {
+    width: 88% !important;
+    height: 85%;
+  }
+
+  .EXLSearchFieldRibbonFormSubmitSearch {
+    position: relative;
+    float: right;
+    width: 85px !important;
+    margin-top: 0px !important;
+  }
+
+  .EXLSearchFieldRibbonAdvancedSearchLink {
+    margin-right: 1em;
+  }
+
+}
+
+@media screen and (min-width: 1707px) {
+  // Advanced Search right column drops below left column in wide screen
+  // (there are fieldsets nested below this, so only hit the immediate child)
+  #exlidAdvancedSearchRibbon > fieldset {
+    min-width: 80em;
+  }
+}

@@ -1,0 +1,12 @@
+.browse-help-text {
+  max-width: 80em;
+  margin: 20px auto;
+  font-size: 80%;
+}
+
+@media screen and (max-width: 500px) {
+  .browse-help-text {
+    padding: 0 6px;
+  }
+}
+

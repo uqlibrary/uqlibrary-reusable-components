@@ -1,4 +1,3 @@
-
 {
   "heading": "UQ Library menu",
   "items": [
@@ -100,16 +99,13 @@
       "href": "https://web.library.uq.edu.au/research-tools-techniques",
       "items": [
         {
+          "label": "UQ Library Search",
+          "subtext": "What it is & how to use it",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/uq-library-search"
+        },
+        {
           "label": "Databases",
           "href": "https://app.library.uq.edu.au/#/gateways/database?browse=&alpha=&title=&sub="
-        },
-        {
-          "label": "Journals & newspapers",
-          "href": "https://app.library.uq.edu.au/#/journals"
-        },
-        {
-          "label": "Catalogue",
-          "href": "https://library.uq.edu.au/search~S7/X"
         },
         {
           "label": "UQ eSpace",
@@ -119,25 +115,21 @@
         {
           "label": "Research by subject",
           "subtext": "Law, medicine, management ...",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/research-subject",
-          "right": "right"
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/research-subject"
         },
         {
           "label": "Search techniques",
           "subtext": "Find quality information",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/search-techniques",
-          "right": "right"
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/search-techniques"
         },
         {
           "label": "Referencing",
           "subtext": "Endnote, style guides, plagiarism",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing",
-          "right": "right"
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing"
         },
         {
           "label": "Off-campus access",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access",
-          "right": "right"
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access"
         }
       ]
     },
@@ -169,7 +161,7 @@
       "items": [
         {
           "label": "View & renew your loans",
-          "href": "https://www.library.uq.edu.au/uqlais/iiiss/top"
+          "href": "http://search.library.uq.edu.au/primo_library/libweb/action/login.do?loginFn=signin&vid=61UQ&targetURL=http%3a%2f%2fsearch.library.uq.edu.au%2fprimo_library%2flibweb%2faction%2fmyAccountMenu.do%3fvid%3d61UQ"
         },
         {
           "label": "How to borrow",
@@ -183,7 +175,7 @@
         },
         {
           "label": "How to request",
-          "subtext": "Items on loan or not at UQ",
+          "subtext": "On loan, off-campus, or not at UQ",
           "href": "https://web.library.uq.edu.au/borrowing-requesting/how-request",
           "right": "right"
         },

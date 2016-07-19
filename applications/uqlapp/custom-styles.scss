@@ -1,4 +1,4 @@
-@import "../../bower_components/uqlibrary-styles/skeleton";
+@import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
 html,
 body {
@@ -37,4 +37,37 @@ uql-connect-footer
 .uql-journals,
 .uql-gateways {
   padding-top: 0;
+}
+
+#exams {
+  li.uql-global-links {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  uql-connect-footer .contacts {
+    min-height: 1px !important;
+  }
+
+  .page {
+   min-height: calc(100vh - 520px);
+
+    .content {
+      margin: 20px auto;
+      width: 800px;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+  }
+}
+
+#copyright_notice {
+  uql-connect-footer .sub-footer-container .sub-footer-content .contacts {
+    min-height: 0;
+  }
+  @media (min-width: 1048px) {
+    uq-minimal-header {
+      height: 79pt;
+    }
+  }
 }

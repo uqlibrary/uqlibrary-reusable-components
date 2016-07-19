@@ -22,12 +22,24 @@ Example:
                 min-width: 65px;
                 z-index: auto;
                 display: block;
-
+                @apply(--layout-vertical);
                 @apply(--uql-callout-button);
+            }
+
+            .dropdown-content {
+                width: 260px;
             }
 
             .callout-container {
                 position: relative;
+            }
+
+            uqlibrary-iron-dropdown {
+                left: inherit !important;
+                margin: 40px 0 !important;
+                max-width: none !important;
+                max-height: none !important;
+                overflow: hidden !important;
             }
 
             /** Margin is required because pages has a ".main" class that sets a massive margin... */
@@ -52,7 +64,7 @@ Example:
             </paper-button>
 
             <!-- Dropdown -->
-            <uqlibrary-iron-dropdown id="dropdown" vertical-offset="32" horizontal-align="right" position-absolute="true">
+            <uqlibrary-iron-dropdown id="dropdown" vertical-offset="10" horizontal-align="right" position-absolute="true">
                 <div class="dropdown-content">
                     <uqlibrary-callout
                             id="callout"

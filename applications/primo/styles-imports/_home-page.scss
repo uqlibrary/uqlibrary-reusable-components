@@ -1,0 +1,9 @@
+#exlidHomeContainer {
+  height: calc(100vh/3);
+}
+
+/* hide 'bX Hot Article' block */
+#resultsHeaderNoId .EXLCustomLayoutTile:first-child {
+  display: none;
+}
+

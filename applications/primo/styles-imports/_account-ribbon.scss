@@ -1,0 +1,82 @@
+#exlidUserAreaTile {
+  padding-top: 0.5em;
+
+  #exlidUserAreaRibbon {
+    li span.EXLMyShelfStarSelected {
+      //background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/folder-special.png);
+    }
+
+    li {
+      background-image: none;
+      a:link, a:visited {
+        text-decoration: underline;
+        color: $accent-color;
+      }
+    }
+    // remove this line after we updated the css in primo backoffice
+    li.EXLLastItem:before {
+      content: "";
+    }
+    li.EXLLastItem:after {
+      content: "";
+    }
+
+    .EXLLastItem {
+      :before {
+        content: "(";
+      }
+      :after {
+        content: ")";
+      }
+    }
+
+    // there is some chrome specific markup which is adding a final list item with an empty select
+    // we need to hide this abberant item, as the drop down shows, without hiding the last item when this LI isnt injected
+    // approach: hide any select that is the child of a last item
+    li:last-child select  {
+      display: none;
+    }
+
+  #exlidMyShelf {
+    clear: left;
+    background-image: url(//assets.library.uq.edu.au/master/reusable-components/resources/images/eshelf_on_small.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-top: 1px;
+    padding-left: 21px; /* 20px image + a little space */
+    min-height: 16px;
+
+      span {
+        width: 0;
+        margin: 0;
+        background-image: none;
+      }
+    }
+
+    // extraneous png appearing
+    li#exlidUserName span.EXLUserAreaStart {
+      background-image: none;
+      width: 0;
+    }
+  }
+  #exlidSavedSearches,
+  #exlidMyAccount {
+    padding-top: 1px; // spacing to fit eshelf_on_small icon
+  }
+  li span.EXLUserNameDisplay {
+    padding-left: 0; // left align username with eshelf_on_small icon
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  #exlidUserAreaTile {
+    #exlidUserAreaRibbon {
+      #exlidMyShelf {
+        display: list-item;
+        padding-left: 16px !important;
+        background-position-y: 7px;
+      }
+    }
+  }
+}

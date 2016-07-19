@@ -29,6 +29,8 @@ else
   export S3BucketSubDir=${dest}
   export InvalidationPath=/${dest}
 fi
+echo "Compile css"
+gulp styles
 
 echo "Check file syntax"
 gulp syntax
