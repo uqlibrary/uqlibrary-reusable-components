@@ -69,10 +69,6 @@ uql-connect-footer {
     width: 100%;
     height: 67px;
     background-color: #fff; } }
-html {
-  -webkit-text-size-adjust: 100%;
-  /* Prevent font scaling in landscape while allowing user zoom */ }
-
 html,
 body {
   height: 100%;
@@ -908,6 +904,10 @@ body.EXLFullView div.EXLResultsFooter div.EXLBackToResults, body.EXLFullView div
   display: none; }
 
 @media screen and (max-width: 740px) {
+  body {
+    -webkit-text-size-adjust: 100%;
+    /* Prevent font scaling in landscape while allowing user zoom */ }
+
   #exlidHeaderSystemFeedback {
     display: block; }
 

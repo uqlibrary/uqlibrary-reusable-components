@@ -48,10 +48,6 @@
 
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
-html {
-  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
-}
-
 html,
 body {
   height: 100%;
