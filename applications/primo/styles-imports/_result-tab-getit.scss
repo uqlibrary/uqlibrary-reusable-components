@@ -38,3 +38,27 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+
+  #exlidResultsContainer.EXLResultsContainer .EXLTabHeader {
+    div.EXLTabHeaderContent {
+      width: 55%;
+    }
+  }
+
+  body.EXLFullView {
+    div.EXLResultTabContainer div.EXLTabHeader {
+        border: 1px solid #8FB9D0;
+        border-bottom: 1px solid #E1E1E1;
+    }
+
+    div.EXLTabContent {
+      border: 1px solid #8FB9D0;
+      border-top: none;
+    }
+
+    div.EXLDetailsTabContent iframe {
+      width: 100%;
+    }
+  }
+}

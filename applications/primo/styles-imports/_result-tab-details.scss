@@ -74,18 +74,42 @@
 
 
 .EXLTabHeaderButtons ol.EXLTabHeaderButtonSendToList {
-  /* make certain options in the save/share selector disappear */
+  // make certain options in the save/share selector disappear
   .EXLButtonSendToEasyBib ,
   .EXLButtonSendToRefWorks ,
   .EXLButtonSendToDelicious ,
   .EXLButtonSendToFacebook {
     display: none !important;
   }
-  /* remove the icons on each Send/Share selector item */
+  // remove the icons on each Send/Share selector item
   .EXLButtonSendToIcon {
     display: none !important;
   }
 }
+
+// make the facet removal options more obvious
+.EXLRefinementRibbonWithExclude {
+  background-color: #CCC;
+
+  span.EXLRefinementsListTitle {
+    font-weight: bold;
+  }
+
+  span.EXLRemoveRefinement {
+    border: 1px solid #969696;
+    a strong {
+      background-image: url(//search.library.uq.edu.au/primo_library/libweb/images/icon_clear_search.png);
+      background-repeat: no-repeat;
+      background-position: right center;
+      padding-right: 20px;
+      margin-right: 2px;
+    }
+    a img { // use icon_clear_search in place of icon_remove for emphasis
+      display: none;
+    }
+  }
+}
+
 
 @media screen and (max-width: 500px) {
   .EXLResultTabContainer {
