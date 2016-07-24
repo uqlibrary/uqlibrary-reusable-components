@@ -56,8 +56,10 @@ function loadReusableComponents() {
 function displayPublicationDates() {
   // Use the Primo supplied function to preload the start and end dates in the Publication Date facet
   // function found in http://search.library.uq.edu.au/primo_library/libweb/wro/primo_library_web.js
-  onTBChange('start');
-  onTBChange('end');
+  if (typeof onTBChange === 'function' && document.getElementById('startdate') && document.getElementById('enddate')) { // this function doesnt appear on every primo page
+    onTBChange('start');
+    onTBChange('end');
+  }
 }
 
 function loadUQFavicon() {

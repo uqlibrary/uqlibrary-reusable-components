@@ -175,3 +175,7 @@ pre.sourcecode {
 	margin: 0 0 20px;
 }
 
+/* pushing hold not-required-after calendar up a little per PT #126009929 */
+#ui-datepicker-div {
+	top: 2px !important;
+}
