@@ -63,7 +63,7 @@ Polymer({
    */
   checkURL: function () {
     var valid = false;
-    var doi = /\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
+    var doi = /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
 
     var dest = this.$.url.value;
     dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
