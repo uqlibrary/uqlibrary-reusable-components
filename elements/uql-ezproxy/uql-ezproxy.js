@@ -41,7 +41,8 @@ Polymer({
    */
   showUrl: function () {
     if (this.checkURL()) {
-      this.$.ga.addEvent('ShowUrl', this.target);
+      var dest = this.getURL();
+      this.$.ga.addEvent('ShowUrl', dest);
       this.panelToggle();
     }
   },
@@ -51,10 +52,39 @@ Polymer({
    */
   goProxie: function () {
     if (this.checkURL()) {
-      this.$.ga.addEvent('GoProxy', this.target);
-      var win = window.open(this.target, '_blank');
+      var dest = this.getURL();
+      this.$.ga.addEvent('GoProxy', dest);
+      var win = window.open(dest);
       win.focus();
     }
+  },
+
+  /*
+   * set the regexp for url matching
+   */
+  getregexp: function() {
+    return /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
+  },
+
+  /*
+   * create the landing url
+   */
+  getURL: function() {
+    var doi = this.getregexp();
+
+    var dest = this.$.url.value;
+    dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
+    dest = dest.replace('http://dx.doi.org/', '');
+
+    var result = "";
+    if (this.checkURL()) {
+      result = 'http://ezproxy.library.uq.edu.au/login?url=';
+      if (doi.test(dest)) {
+        result += 'http://dx.doi.org/';
+      }
+      result += dest;
+    }
+    return result;
   },
 
   /*
@@ -63,7 +93,7 @@ Polymer({
    */
   checkURL: function () {
     var valid = false;
-    var doi = /\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
+    var doi = this.getregexp();
 
     var dest = this.$.url.value;
     dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
@@ -87,13 +117,7 @@ Polymer({
     }
 
     this.$.urlContainer.invalid = !valid;
-    if (valid) {
-      this.target = 'http://ezproxy.library.uq.edu.au/login?url=';
-      if (doi.test(dest)) {
-        this.target += 'http://dx.doi.org/';
-      }
-      this.target += dest;
-    }
+
     return valid;
   },
 
