@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UQL Menu demo</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js" async></script>
+  <link rel="import" href="../elements.html" async>
+  <script src="../../applications/libwww/load.js"></script>
+  <script src="../../resources/preloader.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="../../applications/libwww/custom-styles.css">
+  <link rel="stylesheet" type="text/css" href="../../applications/libwww/hours-weekly.css">
+
+  <style>
+    .page {
+      margin: 0px 50px;
+      position: relative;
+    }
+
+    #hours {
+      width: 100%;
+      height: 800px;
+      border-width: none;
+      border-style: none;
+
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <iframe id="hours"
+          src="../../applications/libwww/hours-weekly.html"></iframe>
+
+
+</div>
+
+<script>
+  document.cookie="UQLMockData=enabled";
+</script>
+</body>
+</html>
