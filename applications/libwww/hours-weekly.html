@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="//api3.libcal.com/js/hours_grid.js?002"></script>
-<script>
-  $(function(){
-    var week0 = new $.LibCalWeeklyGrid( $("#s-lc-whw0"), { iid: 3633, lid: 0,  weeks: 4 });
-  });
-</script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
+  <script>
+    /*
+     * parameters:
+     * lid
+     *   - the libcal unique id for the library (libraries and service points (departments) both have lids - we only want to show full libraries here)
+     *   - eg 3823 is (currently) Architecture & Music Library
+     *   - a non existant lid gives 'dashed' data, set to an 01
+     *   - set value = 0 for all locations
+     *   - if not provided, defaults to 0 (all libraries)
+     *  numweeks
+     *  - the number of weeks to be displayed in the widget
+     *  - a numweeks that is more than some arbitrary large number (eg 200) is reset to 4
+     *  - if not provided, defaults to 4
+     */
+    if (typeof(numweeks ) === 'undefined') { numweeks = 4; }
+    if (typeof(lid) === 'undefined') { lid = 0; }
+
+    $(function(){
+      var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: 3633, lid: lid,  weeks: numweeks });
+    });
+  </script>
+
   <link rel="stylesheet" type="text/css" href="custom-styles.css">
   <link rel="stylesheet" type="text/css" href="libcal-styles.scss">
 </head>
 <body>
-<div id="s-lc-whw0"></div>
+<div id="s-lc-whw"></div>
 </body>
 </html>
