@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
+  <script>
+    function getSearchParameters() {
+      var prmstr = window.location.search.substr(1);
+      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+    }
+
+    function transformToAssocArray( prmstr ) {
+      var params = {};
+      var prmarr = prmstr.split("&");
+      for ( var i = 0; i < prmarr.length; i++) {
+        var tmparr = prmarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+      }
+      return params;
+    }
+
+    var params = getSearchParameters();
+    // 0 defaults to all libraries
+    if (params.lid === undefined) {
+      params.lid = 0;
+    }
+  </script>
+  <!--
+        call as eg hours-weekly-bylocation.html?lid=3823
+        eg 3823 is Architecture & Music Library
+        set to 0 for all locations
+        note: a non existant lid gives 'dashed' data, set to jan 01
+  -->
+  <script>
+    $(function(){
+      var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: 3633, lid: params.lid,  weeks: 4 });
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="custom-styles.css">
+  <link rel="stylesheet" type="text/css" href="libcal-styles.scss">
+</head>
+<body>
+<div id="s-lc-whw"></div>
+</body>
+</html>
