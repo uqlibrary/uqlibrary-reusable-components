@@ -7,10 +7,12 @@
 /*
  * parameters:
  * lid
+ *   - the libcal unique id for the library (libraries and service points (departments) both have lids - we only want to show full libraries here)
  *   - eg 3823 is (currently) Architecture & Music Library
  *   - a non existant lid gives 'dashed' data, set to jan 01
  *   - set to 0 for all locations
  *  numweeks
+ *  - the number of weeks to be displayed in the widget
  *  - a numweeks that is more than some arbitrary large number (eg 200) is reset to 4
  */
     if (typeof(numweeks ) === 'undefined') { numweeks = 4; }
