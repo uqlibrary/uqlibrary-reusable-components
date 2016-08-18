@@ -4,36 +4,20 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
   <script>
-    function getSearchParameters() {
-      var prmstr = window.location.search.substr(1);
-      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
-    }
-
-    function transformToAssocArray( prmstr ) {
-      var params = {};
-      var prmarr = prmstr.split("&");
-      for ( var i = 0; i < prmarr.length; i++) {
-        var tmparr = prmarr[i].split("=");
-        params[tmparr[0]] = tmparr[1];
-      }
-      return params;
-    }
-
-    var params = getSearchParameters();
-    // 0 defaults to all libraries
-    if (params.lid === undefined) {
-      params.lid = 0;
-    }
+    if (lid === undefined) { lid = 0; }
+    if (numweeks === undefined) { numweeks = 4; }
   </script>
   <!--
-        call as eg hours-weekly-bylocation.html?lid=3823
+        call as eg hours-weekly-bylocation.html
         eg 3823 is Architecture & Music Library
         set to 0 for all locations
-        note: a non existant lid gives 'dashed' data, set to jan 01
+        notes:
+        - a non existant lid gives 'dashed' data, set to jan 01
+        - a numweeks that is more than some arbitrary large number (eg 200) is reset to 4
   -->
   <script>
     $(function(){
-      var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: 3633, lid: params.lid,  weeks: 4 });
+      var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: 3633, lid: lid,  weeks: numweeks });
     });
   </script>
   <link rel="stylesheet" type="text/css" href="custom-styles.css">
