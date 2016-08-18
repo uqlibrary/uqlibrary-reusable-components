@@ -4,18 +4,18 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
   <script>
-    if (lid === undefined) { lid = 0; }
-    if (numweeks === undefined) { numweeks = 4; }
-  </script>
-  <!--
-        call as eg hours-weekly-bylocation.html
-        eg 3823 is Architecture & Music Library
-        set to 0 for all locations
-        notes:
-        - a non existant lid gives 'dashed' data, set to jan 01
-        - a numweeks that is more than some arbitrary large number (eg 200) is reset to 4
-  -->
-  <script>
+/*
+ * parameters:
+ * lid
+ *   - eg 3823 is (currently) Architecture & Music Library
+ *   - a non existant lid gives 'dashed' data, set to jan 01
+ *   - set to 0 for all locations
+ *  numweeks
+ *  - a numweeks that is more than some arbitrary large number (eg 200) is reset to 4
+ */
+    if (typeof(numweeks ) === 'undefined') { numweeks = 4; }
+    if (typeof(lid) === 'undefined') { lid = 0; }
+
     $(function(){
       var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: 3633, lid: lid,  weeks: numweeks });
     });
