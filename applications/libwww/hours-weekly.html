@@ -1,7 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<template>
+  <link rel="stylesheet" type="text/css" href="custom-styles.css">
+  <div id="s-lc-whw"></div>
+</template>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
   <script>
     /*
@@ -11,24 +13,19 @@
      *   - eg 3823 is (currently) Architecture & Music Library
      *   - a non existant lid gives 'dashed' data, set to an 01
      *   - set value = 0 for all locations
-     *   - if not provided, defaults to 0 (all libraries)
+     *   - if not provided, we default to 0 (ie all libraries)
      *  numweeks
      *  - the number of weeks to be displayed in the widget
-     *  - a numweeks that is more than some arbitrary large number (eg 200) is reset to 4
-     *  - if not provided, defaults to 4
+     *  - a numweeks that is more than some arbitrary large number (eg 200) libcal resets it reset to 4
+     *  - if not provided, we default to 4
      */
-    if (typeof(numweeks ) === 'undefined') { numweeks = 4; }
-    if (typeof(lid) === 'undefined') { lid = 0; }
+    if (typeof(numweeks ) === 'undefined') { var numweeks = 4; }
+    if (typeof(lid) === 'undefined') { var lid = 0; }
 
     $(function(){
-      const LibcalUQID = 3633;
-      var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: LibcalUQID, lid: lid,  weeks: numweeks });
+      const LibCalUQID = 3633;
+      var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: LibCalUQID, lid: lid,  weeks: numweeks });
     });
   </script>
 
-  <link rel="stylesheet" type="text/css" href="custom-styles.css">
-</head>
-<body>
-<div id="s-lc-whw"></div>
-</body>
-</html>
+
