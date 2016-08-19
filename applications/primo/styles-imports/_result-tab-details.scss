@@ -127,20 +127,20 @@
   }
 }
 
-@media screen and (min-width: 700px) {
+
   
-  .EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] {
-    display: inline-block;
-    
-    strong {
-      display: inline-block;
-      float: none;
-      margin-right: 0.7em;
-    }
-    
-    a:first-of-type {
-      display: inline-block;
-      margin-left: 0px;
-    }
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] {
+  display: inline-block !important;
+  
+  strong {
+    display: inline-block !important;
+    float: none !important;
+    margin-right: 0.7em;
+  }
+  
+  a:first-of-type {
+    display: inline-block !important;
+    margin-left: 0px;
   }
 }
+
