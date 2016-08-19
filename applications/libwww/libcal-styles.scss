@@ -1,3 +1,10 @@
+// hide table caption supplied by libcal
+caption {
+  display: none;
+}
+
+
+// default libcal styles
 .s-lc-whw thead {
   background-color: #F5F5F5;
 }
