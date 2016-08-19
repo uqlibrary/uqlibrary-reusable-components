@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- this includes the import in the header and then vars are defined in the body along with a simple id-ed div -->
 <html>
 <head>
   <title>UQL Menu demo</title>
@@ -11,6 +12,9 @@
   <script src="../../resources/preloader.js"></script>
 
   <link rel="stylesheet" type="text/css" href="../../applications/libwww/custom-styles.css">
+
+  <!-- import of template into head -->
+  <link rel="import" href="//assets.library.uq.edu.au/master/reusable-components/libwww/hours-weekly-template.html" async>
 
   <style>
     .page {
@@ -25,12 +29,12 @@
   <p>before cal block</p>
 
 
+  <!-- variables defined and a simple div call -->
   <script>
     var lid = 3825;
     var numweeks = 4;
   </script>
-  <link rel="import" href="//assets.library.uq.edu.au/master/reusable-components/libwww/hours-weekly-template.html"
-        async>
+  <div id="s-lc-whw"></div>
 
   <p>after cal block</p>
 </div>
