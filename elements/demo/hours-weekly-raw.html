@@ -1,0 +1,13 @@
+<script>
+  var lid = 3825;
+  var numweeks = 4;
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//api3.libcal.com/js/hours_grid.js?002"></script>
+<div id="s-lc-whw"></div>
+<script>
+  $(function(){
+    const LibCalUQID = 3633;
+    var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: LibCalUQID, lid: lid,  weeks: numweeks });
+  });
+</script>
