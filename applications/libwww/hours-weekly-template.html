@@ -1,0 +1,29 @@
+<template>
+  <link rel="stylesheet" type="text/css" href="//assets.library.uq.edu.au/master/reusable-components/libwww/libcal-styles.css">
+  <div id="s-lc-whw"></div>
+</template>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//api3.libcal.com/js/hours_grid.js?002"></script>
+<script>
+  /*
+   * parameters:
+   * lid
+   *   - the libcal-provided unique id for the library (libraries and service points (departments) both have lids - we only want to show full libraries here)
+   *   - eg 3823 is (currently) Architecture & Music Library
+   *   - a non existant lid gives 'dashed' data, set to a jan-1
+   *   - set value = 0 to view all libraries
+   *   - if not provided, we default to 0 (ie all libraries)
+   *  numweeks
+   *  - the number of weeks to be displayed in the widget
+   *  - a value that is more than some arbitrary large number (eg 200) is reset at libcal to 4
+   *  - if not provided, we default to 4
+   */
+  if (typeof(numweeks) === 'undefined') { var numweeks = 4; }
+  if (typeof(lid) === 'undefined') { var lid = 0; }
+
+  $(function(){
+    const LibCalUQID = 3633;
+    var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: LibCalUQID, lid: lid,  weeks: numweeks });
+  });
+</script>
