@@ -31,7 +31,8 @@
 }
 
 /* Hide semicolons between items in author, genre, MESH headings, related materials, and subject sections by making all text invisible */
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"],
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"]
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Other"],
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"],
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"],
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"],
@@ -40,25 +41,12 @@
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] {
   visibility: hidden;
   line-height: 0;
-}
-
-/* Show labels and links in author, genre, MESH headings, related materials, and subject sections */
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] strong,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"] strong,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"] strong,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"] strong,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Related"] strong,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Subject"] strong,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] strong,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] a,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"] a,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"] a,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="MESH"] a,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Related"] a,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Subject"] a,
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Local subject"] a {
-  visibility: visible;
-  line-height: 1.5;
+  
+  /* Show labels and links in author, genre, MESH headings, related materials, and subject sections */
+  strong, a {
+    visibility: visible;
+    line-height: 1.5;
+  }
 }
 
 /* Hide line breaks between items */
@@ -123,24 +111,6 @@
   #exlidResult0-TabContainer-detailsTab {
     .EXLDetailsContent {
       margin-top: 0;
-    }
-  }
-}
-
-@media screen and (min-width: 700px) {
-  
-  .EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] {
-    display: inline-block;
-
-    strong {
-      display: inline-block;
-      float: none;
-      margin-right: 0.7em;
-    }
-
-    a:first-of-type {
-      display: inline-block;
-      margin-left: 0px;
     }
   }
 }
