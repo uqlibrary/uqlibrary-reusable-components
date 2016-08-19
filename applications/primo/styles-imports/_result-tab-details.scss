@@ -31,7 +31,7 @@
 }
 
 /* Hide semicolons between items in author, genre, MESH headings, related materials, and subject sections by making all text invisible */
-.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"]
+.EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"],
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="Other"],
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="Genre"],
 .EXLDetailsTabContent div.EXLDetailsContent li[id^="Includes"],
