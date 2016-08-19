@@ -1,11 +1,9 @@
-<template>
-  <link rel="stylesheet" type="text/css" href="//assets.library.uq.edu.au/master/reusable-components/libwww/libcal-styles.css">
-  <div id="s-lc-whw"></div>
-</template>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="//api3.libcal.com/js/hours_grid.js?002"></script>
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
+  <script>
     /*
      * parameters:
      * lid
@@ -27,3 +25,10 @@
       var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: LibCalUQID, lid: lid,  weeks: numweeks });
     });
 </script>
+
+  <link rel="stylesheet" type="text/css" href="custom-styles.css">
+</head>
+<body>
+<div id="s-lc-whw"></div>
+</body>
+</html>
