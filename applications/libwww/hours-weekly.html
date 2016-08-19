@@ -21,7 +21,8 @@
     if (typeof(lid) === 'undefined') { lid = 0; }
 
     $(function(){
-      var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: 3633, lid: lid,  weeks: numweeks });
+      const LibcalUQID = 3633;
+      var week = new $.LibCalWeeklyGrid( $("#s-lc-whw"), { iid: LibcalUQID, lid: lid,  weeks: numweeks });
     });
   </script>
 

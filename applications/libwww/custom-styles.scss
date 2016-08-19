@@ -6,7 +6,7 @@ uql-menu div#scrim {
 
 /* let admin menu overlap UQ Library header */
 html body.logged-in.admin-menu {
-  margin-top: 0px !important;
+  margin-top: 0 !important;
 }
 
 body.ia-enabled {
@@ -96,4 +96,4 @@ body > div.navigation {
 }
 
 // includes
-@import "styles-imports/libcal-styles";
+@import "styles-imports/libcal";
