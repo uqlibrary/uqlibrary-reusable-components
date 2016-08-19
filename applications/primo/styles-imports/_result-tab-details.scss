@@ -125,5 +125,22 @@
       margin-top: 0;
     }
   }
+}
 
+@media screen and (min-width: 700px) {
+  
+  .EXLDetailsTabContent div.EXLDetailsContent li[id^="Author"] {
+    display: inline-block;
+    
+    strong {
+      display: inline-block;
+      float: none;
+      margin-right: 0.7em;
+    }
+    
+    a:first-of-type {
+      display: inline-block;
+      margin-left: 0px;
+    }
+  }
 }
