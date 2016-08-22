@@ -3,7 +3,7 @@
   <div id="s-lc-whw"></div>
 </template>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//library.stage.drupal.uq.edu.au/sites/all/modules/contrib/jquery_update/replace/jquery/2.1/jquery.min.js?v=2.1.4"></script>
 <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
 <script>
   /*
@@ -19,8 +19,21 @@
    *  - a value that is more than some arbitrary large number (eg 200) is reset at libcal to 4
    *  - if not provided, we default to 4
    */
-  if (typeof(numweeks) === 'undefined') { var numweeks = 4; }
-  if (typeof(lid) === 'undefined') { var lid = 0; }
+  function getparameters(paramName) {
+    var result = "Not found",
+            tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+      tmp = items[index].split("=");
+      if (tmp[0] === paramName) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+  }
+  var numweeks = getparameters('numweeks');
+  if (numweeks === 'Not found') { numweeks = 4; }
+
+  var lid = getparameters('lid');
+  if (lid === 'Not found') { lid = 0; }
 
   $(function(){
     const LibCalUQID = 3633;
