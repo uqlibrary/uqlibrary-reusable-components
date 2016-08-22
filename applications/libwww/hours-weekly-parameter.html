@@ -18,21 +18,21 @@
      *  - if not provided, we default to 4
      */
 
-    function getparameters(uri) {
+    function getparameters(paramName) {
       var result = "Not found",
               tmp = [];
       var items = location.search.substr(1).split("&");
       for (var index = 0; index < items.length; index++) {
         tmp = items[index].split("=");
-        if (tmp[0] === uri) result = decodeURIComponent(tmp[1]);
+        if (tmp[0] === paramName) result = decodeURIComponent(tmp[1]);
       }
       return result;
     }
     var numweeks = getparameters('numweeks');
-    if (typeof(numweeks) === 'Not found') { numweeks = 4; }
+    if (numweeks === 'Not found') { numweeks = 4; }
 
     var lid = getparameters('lid');
-    if (typeof(lid) === 'Not found') { lid = 0; }
+    if (lid === 'Not found') { lid = 0; }
 
     $(function(){
       const LibCalUQID = 3633;
