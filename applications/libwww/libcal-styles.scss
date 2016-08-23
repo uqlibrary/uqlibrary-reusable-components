@@ -1,14 +1,34 @@
 // hide table caption supplied by libcal
-caption {
-  display: none;
+#libcal-hours-block {
+  caption {
+    display: none;
+  }
+
+  tbody td,
+  thead th {
+    text-align: center;
+  }
+
+  tbody td.s-lc-whw-locname,
+  tbody td.s-lc-whw-sublocname {
+    text-align: left;
+  }
+
+  thead th.s-lc-whw-bh {
+    text-align: right;
+  }
+
 }
 
-
+/*
+// remove libcal provided styles
 .s-lc-whw-head-date {
   color: #000;
 }
 
+
 // default libcal styles
+
 .s-lc-whw thead {
   background-color: #F5F5F5;
 }
@@ -46,8 +66,10 @@ caption {
 .s-lc-whw-footnote td:hover {
   background-color: #fff !important;
 }
+*/
 
 /* Below styles can be removed if you are already using Bootstap v3 in host page */
+/*
 .s-lc-whw-cont {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
@@ -132,3 +154,4 @@ caption {
     white-space: nowrap;
   }
 }
+*/
