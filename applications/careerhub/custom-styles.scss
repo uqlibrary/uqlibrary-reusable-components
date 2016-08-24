@@ -2,6 +2,11 @@
   margin: 0;
 }
 
+// the include process wraps our components in a paragraph element
+#textWidget_preHeader p {
+  margin: 0;
+}
+
 #foot {
   border-top-width: 0;
   padding-top: 0;
