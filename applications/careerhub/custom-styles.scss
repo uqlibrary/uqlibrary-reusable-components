@@ -28,7 +28,50 @@
   min-height: calc(100vh - 550px);
 }
 
-// hide the careerhub header menu
-#links {
+
+#user_info, // hide the careerhub user welcome
+#links  // hide the careerhub header menu
+{
   display: none;
+}
+
+
+// these will only be needed if we dont get a blank default theme
+#head {
+  background-color: #fff;
+  border-bottom-width: 0;
+  padding-top: 3.5rem;
+}
+
+#sitename {
+  // match h2 in library theme
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.25;
+  a {
+    color: #000 !important;
+
+    :hover {
+      text-decoration: none;
+      cursor: default;
+    }
+  }
+}
+
+#main {
+  a {
+    text-decoration: inherit;
+    font-size: inherit;
+  }
+
+  .sidebar {
+    background-color: #fff;
+    border-width: 0;
+    font-size: inherit;
+
+    h3 {
+      color: #000;
+      border-bottom-width: 0;
+    }
+  }
 }
