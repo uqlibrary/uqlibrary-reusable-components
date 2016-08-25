@@ -105,6 +105,13 @@
     font-size: 16px;
     line-height: 1.5;
   }
+  .nubbin {
+    // this class controls the positioning of the little 'edit' nubbin
+    // the changes to the layout to match uq meant it could not be moused over
+    // pull back in on top of the top left corner of the text
+    // only admins will see this
+    left: 0;
+  }
 }
 
 .event_booking_stat {
