@@ -54,10 +54,8 @@
     a {
       color: #000 !important;
 
-      :hover {
-        text-decoration: none;
-        cursor: default;
-      }
+      text-decoration: none;
+      cursor: default;
     }
   }
 
@@ -105,4 +103,8 @@
     line-height: 24px;
     font-size: 16px;
   }
+}
+
+.event_booking_stat {
+  width: auto;
 }
