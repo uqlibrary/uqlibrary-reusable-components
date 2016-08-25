@@ -41,26 +41,31 @@
   background-color: #fff;
   border-bottom-width: 0;
   padding-top: 3.5rem;
-}
 
-#sitename {
-  // match h2 in library theme
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.25;
-  a {
-    color: #000 !important;
+  .inner {
+    margin: 0;
+  }
 
-    :hover {
-      text-decoration: none;
-      cursor: default;
+  #sitename {
+    // match h2 in library theme
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.25;
+    a {
+      color: #000 !important;
+
+      :hover {
+        text-decoration: none;
+        cursor: default;
+      }
     }
   }
+
 }
 
 #main {
   a {
-    text-decoration: inherit;
+    text-decoration: underline;
     font-size: inherit;
   }
 
@@ -72,6 +77,32 @@
     h3 {
       color: #000;
       border-bottom-width: 0;
+      line-height: 1.25;
+      font-size: 1.3em;
     }
+  }
+
+  #columns { // table!!
+    border-width:0;
+    width: inherit;
+
+    th, td {
+      border-width:0;
+    }
+
+    td#center {
+      padding: 0;
+    }
+    // undo the styles that apply to this id in library.
+    #content {
+      max-width: inherit;
+      width: auto;
+      margin: 0;
+      min-height: auto;
+    }
+  }
+  li, p {
+    line-height: 24px;
+    font-size: 16px;
   }
 }
