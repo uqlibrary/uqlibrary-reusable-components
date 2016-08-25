@@ -62,15 +62,15 @@
 }
 
 #main {
-  a {
-    text-decoration: underline;
-    font-size: inherit;
-  }
 
   .sidebar {
     background-color: #fff;
     border-width: 0;
     font-size: inherit;
+
+    a {
+      text-decoration: underline;
+    }
 
     h3 {
       color: #000;
