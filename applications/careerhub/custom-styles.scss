@@ -1,23 +1,25 @@
-#textWidget_preHeader {
-  margin: 0;
-}
-// the include process wraps our components in a paragraph element
-#textWidget_preHeader p {
-  margin: 0;
+@import "../../bower_components/uqlibrary-styles/skeleton.scss";
+
+$drupal-border-highlight: #2377cb;
+
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
 }
 
-// these styles make the footer the full width of the page
-#foot {
-  border-top-width: 0;
-  padding-top: 0;
-  padding-bottom: 0;
+* {
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
 }
-#foot .inner {
-  width: auto;
-}
-#textWidget_footer {
+
+#textWidget_preHeader {
   margin: 0;
+  p { // the include process wraps our components in a paragraph element
+    margin: 0;
+  }
 }
+
 
 
 // as per #content on library.
@@ -36,7 +38,6 @@
 }
 
 
-// these will only be needed if we dont get a blank default theme
 #head {
   background-color: #fff;
   border-bottom-width: 0;
@@ -47,11 +48,26 @@
     margin: 0;
   }
 
+  h1 {
+    // match h3 in drupal
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-top: 0;
+  }
+
   #sitename {
-    // match h2 in library theme
+    // match h2 in drupal theme
     font-size: 2rem;
     font-weight: 500;
     line-height: 1.25;
+
+    // make case match uql usage - first character uppercase, all other letters lower case
+    text-transform: lowercase;
+    ::first-letter {
+      text-transform: uppercase;
+    }
+
     a {
       color: #000 !important;
 
@@ -78,15 +94,16 @@
     }
 
     a {
-      color: #2377cb;
+      color: var(--accent-color);
       line-height: 1.25;
     }
   }
 
   #columns { // table!!
     border-width:0;
-    width: inherit;
+    width: 100%;
     min-height: 25em; // when there is only one item, the content block is too short
+    margin: 0;
 
     th, td {
       border-width:0;
@@ -94,18 +111,41 @@
 
     td#center {
       padding: 0;
-      width: 65%;
+      width: 67%;
 
-      div {
-        font-size: 16px; // override blessed table styling
+      .event_summary p,
+      .event_details p {
+        margin: 0;
       }
     }
-    // undo the styles that apply to this id in library.
+    // undo the styles that apply to this global id in library.uq.edu.au
     #content {
       max-width: initial;
       width: auto;
       margin: 0;
       min-height: initial;
+
+      .event_type {
+        display: none;
+      }
+
+      .event_date ,
+      .event_time {
+        font-weight: normal;
+      }
+
+      .event_booking {
+        border-top-width: 0;
+        h2 {
+          display: none;
+        }
+        .event_booking_stat.first,
+        .event_booking_stat {
+          border-width: 0; // removed dotted borders
+          padding-left: 0;
+          float: none;
+        }
+      }
     }
 
   }
@@ -134,7 +174,7 @@
   width: auto;
 }
 
-// match with uql style alert-notice
+// match with uql style alert-notice in uqlibrary-styles/app-theme.html
 #message {
   padding: 10px;
   color: var(--notice-text-color);
@@ -147,6 +187,25 @@
     padding-top: 1rem;
   }
 
+  /* careerhub have a 1-row table for layout, with a nav column on the right. the following makes it act normally
+   * technique: https://css-tricks.com/responsive-data-tables/
+   */
+  table#columns {
+    display: block;
+    thead,
+    tbody,
+    tr,
+    th {
+      display: block;
+    }
+    td {
+      /* Behave  like a "row" */
+      display: block;
+      border: none;
+      position: relative;
+    }
+  }
+
 }
 
 
@@ -154,7 +213,7 @@
   .sidebar .body {
     li {
       list-style: none;
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 1px solid var(--paper-grey-100); // #f5f5f5;
       padding: 0.8rem 0;
       transition: ease border, padding 0.15s;
       transition-delay: 0.15s;
@@ -168,12 +227,11 @@
 
       }
       :hover {
-        border-left: 3px solid #2377cb;
+        border-left: 3px solid $drupal-border-highlight; // #2377cb;
         padding-left: 0.5rem;
       }
       .caption {
         padding-left: 0.8rem;
-        display: block;
       }
       br {
         display: none;
@@ -181,3 +239,4 @@
     }
   }
 }
+
