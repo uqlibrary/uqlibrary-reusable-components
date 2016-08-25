@@ -40,6 +40,7 @@
 #head {
   background-color: #fff;
   border-bottom-width: 0;
+  border-top-width: 0;
   padding-top: 3.5rem;
 
   .inner {
@@ -70,6 +71,7 @@
 
     a {
       text-decoration: underline;
+      line-height: 1.25;
     }
 
     h3 {
@@ -100,11 +102,33 @@
     }
   }
   li, p {
-    line-height: 24px;
     font-size: 16px;
+    line-height: 1.5;
   }
 }
 
 .event_booking_stat {
   width: auto;
 }
+
+// careerhub have a 1-row table for layout, with a nav column on the right. make it act normally
+<!--[if !IE]><!-->
+@media only screen and (max-width: 700px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  td {
+    /* Behave  like a "row" */
+    position: relative;
+    padding-left: 50%;
+  }
+
+  #main {
+
+    p, li {
+      font-size: 3em;
+    }
+  }
+
+}
+<!--<![endif]-->
