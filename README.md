@@ -199,6 +199,26 @@ https://github.com/uqlibrary/UQLAIS/blob/master/templates/header.tpl.html includ
         <script src="//assets.library.uq.edu.au/reusable-components/shared/load-minimal.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/shared/common-minimal-styles.css" />
 
+#### Careerhub (https://www.careerhub.uq.edu.au/)
+
+A third party product that we are theming to match the general library theme.
+
+Current area is the [Library Staff Development workgroup portal](https://careerhub.uq.edu.au/workgroups/library-staff-development/events/). We are theming this by putting our polymer reusable elements in the top of the body of the page via a GUI editor.
+
+This editing process in the careerhub GUI interface does not return all the html lines that were supplied when editing, so we are confuguring these lines in [applications/careerhub/top-block-text.html](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/careerhub/top-block-text.html)
+
+Method to edit the theme:
+
+- Decide what changes are needed and update in top-block-text.html (linked above)
+- Visit the theme edit page [current link](https://www.careerhub.uq.edu.au/Admin/SubSites/Layout.aspx?id=14) or login > left hand menu, click on Work Groups > centre block, click on name of Work Group > right hand menu, click on Work group settings > middle area, click on Layout
+- Click on the word '(text)' in the header of the example-layout (if this isnt available, drag the 'text' item from
+the layout options into the header field, then click)
+- Click on the angle bracket icon ('<>') - a very short area will load with white markup on a black background
+- Select the current markup and delete
+- Paste in the markup from top-block-text.html (link above)
+- Click OK
+- Reload the workgroup portal page to confirm (the change should be instant)
+
 ### Forcing IMS logins
 
 Embed the following if you want to force an IMS login for on campus workstations, as they will be unable to access the assets.library.uq.edu.au domain:
