@@ -1,0 +1,23 @@
+#libcal-hours-block {
+
+  // hide table caption supplied by libcal
+  caption {
+    display: none;
+  }
+
+  // align the table cells
+  tbody td,
+  thead th {
+    text-align: center;
+  }
+
+  tbody td.s-lc-whw-locname,
+  tbody td.s-lc-whw-sublocname {
+    text-align: left;
+  }
+
+  thead th.s-lc-whw-bh {
+    text-align: right;
+  }
+
+}
