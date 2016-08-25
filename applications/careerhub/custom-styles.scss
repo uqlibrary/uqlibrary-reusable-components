@@ -69,16 +69,22 @@
     border-width: 0;
     font-size: inherit;
 
-    a {
-      text-decoration: underline;
-      line-height: 1.25;
-    }
-
+    // 'upcoming events' header
     h3 {
       color: #000;
       border-bottom-width: 0;
       line-height: 1.25;
       font-size: 1.3em;
+    }
+
+    a {
+      color: #2377cb;
+      line-height: 1.25;
+    }
+    // the date on the link to each upcoming event
+    .caption {
+      color: #000;
+      font-style: inherit;
     }
   }
 
@@ -92,30 +98,40 @@
 
     td#center {
       padding: 0;
+      width: 65%;
     }
     // undo the styles that apply to this id in library.
     #content {
-      max-width: inherit;
+      max-width: initial;
       width: auto;
       margin: 0;
-      min-height: auto;
+      min-height: initial;
     }
   }
   li, p {
     font-size: 16px;
     line-height: 1.5;
   }
-  .nubbin {
-    // this class controls the positioning of the little 'edit' nubbin
-    // the changes to the layout to match uq meant it could not be moused over
-    // pull back in on top of the top left corner of the text
-    // only admins will see this
-    left: 0;
-  }
+}
+
+.nubbin {
+  // this class controls the positioning of the little 'edit' nubbin
+  // the changes to the layout to match uq meant it could not be moused over
+  // pull back in on top of the top left corner of the text on mouseover
+  // only admins will see this
+  left: 0;
 }
 
 .event_booking_stat {
   width: auto;
+}
+
+// match with uql style alert-notice
+#message {
+  padding: 10px;
+  color: var(--notice-text-color);
+  background-color: var(--notice-background-color);
+  border: 1px solid var(--notice-border-color);
 }
 
 @media only screen and (max-width: 700px) {
@@ -126,3 +142,22 @@
 }
 
 
+@media only screen and (min-width: 64.063em) {
+  .sidebar .body {
+    li a {
+      transition: ease border, padding 0.15s;
+      transition-delay: 0.15s;
+
+      display: block;
+      border-bottom: 1px solid #f5f5f5;
+      text-decoration: none;
+      padding: 0.8rem 0;
+      width: 100%;
+      position: relative;
+    }
+    li a:hover {
+      border-left: 3px solid #2377cb;
+      padding-left: 0.5rem;
+    }
+  }
+}
