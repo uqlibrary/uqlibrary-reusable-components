@@ -81,16 +81,12 @@
       color: #2377cb;
       line-height: 1.25;
     }
-    // the date on the link to each upcoming event
-    .caption {
-      color: #000;
-      font-style: inherit;
-    }
   }
 
   #columns { // table!!
     border-width:0;
     width: inherit;
+    min-height: 25em; // when there is only one item, the content block is too short
 
     th, td {
       border-width:0;
@@ -99,6 +95,10 @@
     td#center {
       padding: 0;
       width: 65%;
+
+      div {
+        font-size: 16px; // override blessed table styling
+      }
     }
     // undo the styles that apply to this id in library.
     #content {
@@ -107,12 +107,20 @@
       margin: 0;
       min-height: initial;
     }
+
   }
   li, p {
     font-size: 16px;
     line-height: 1.5;
   }
 }
+
+// various subfields have a 'caption' class name - restyle to match uql
+.caption {
+  color: #000;
+  font-style: inherit;
+}
+
 
 .nubbin {
   // this class controls the positioning of the little 'edit' nubbin
@@ -144,20 +152,32 @@
 
 @media only screen and (min-width: 64.063em) {
   .sidebar .body {
-    li a {
+    li {
+      list-style: none;
+      border-bottom: 1px solid #f5f5f5;
+      padding: 0.8rem 0;
       transition: ease border, padding 0.15s;
       transition-delay: 0.15s;
+      a {
 
-      display: block;
-      border-bottom: 1px solid #f5f5f5;
-      text-decoration: none;
-      padding: 0.8rem 0;
-      width: 100%;
-      position: relative;
-    }
-    li a:hover {
-      border-left: 3px solid #2377cb;
-      padding-left: 0.5rem;
+        display: block;
+        padding: 0;
+        text-decoration: none;
+        width: 100%;
+        position: relative;
+
+      }
+      :hover {
+        border-left: 3px solid #2377cb;
+        padding-left: 0.5rem;
+      }
+      .caption {
+        padding-left: 0.8rem;
+        display: block;
+      }
+      br {
+        display: none;
+      }
     }
   }
 }
