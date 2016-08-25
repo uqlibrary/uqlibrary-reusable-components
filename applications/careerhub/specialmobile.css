@@ -2,11 +2,16 @@
     /* careerhub have a 1-row table for layout, with a nav column on the right. the following makes it act normally
      * technique: https://css-tricks.com/responsive-data-tables/
      */
-    table, thead, tbody, th, td, tr {
-        display: block;
+    table#columns,
+    table#columns thead,
+    table#columns tbody,
+    table#columns tr,
+    table#columns th {
+        display: block !important;
     }
-    td {
+    table#columns td {
         /* Behave  like a "row" */
+        display: block !important;
         border: none;
         position: relative;
     }
