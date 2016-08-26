@@ -85,26 +85,27 @@ body {
   /* careerhub have a 1-row table for layout, with a nav column on the right. the following makes it act normally
    * technique: https://css-tricks.com/responsive-data-tables/
    */
-  table#columns {
-    display: block;
-    thead,
-    tbody,
-    tr,
-    th {
+  #main {
+    table#columns {
       display: block;
-    }
-    td {
-      /* Behave  like a "row" */
-      display: block;
-      border: none;
-      position: relative;
-    }
+      thead,
+      tbody,
+      tr,
+      th {
+        display: block;
+      }
+      td {
+        /* Behave  like a "row" */
+        display: block;
+        border: none;
+        position: relative;
+      }
 
-    td#right,
-    td#center {
-      width: 100%; // override desktop width
+      td#right,
+      td#center {
+        width: 100%; // override desktop width
+      }
+
     }
   }
-
 }
-
