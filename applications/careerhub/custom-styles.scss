@@ -37,14 +37,17 @@ h1, h3 {
   font-weight: 400
 }
 
-a {
-  background-color: #fff;
-  color: $accent-color;
+#container #main {
+  a {
+    background-color: #fff;
+    color: $accent-color;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+  a:visited {
+    background-color: #fff;
+    color: $accent-color;
+  }
 }
-a:hover, a:focus {
-  text-decoration: underline;
-}
-#main a:visited {
-  background-color: #fff;
-  color: $accent-color;
-}
+
