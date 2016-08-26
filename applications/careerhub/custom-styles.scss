@@ -36,3 +36,15 @@ h1, h3 {
   font-size: 1.75rem;
   font-weight: 400
 }
+
+a {
+  background-color: #fff;
+  color: $accent-color;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+#main a:visited {
+  background-color: #fff;
+  color: $accent-color;
+}
