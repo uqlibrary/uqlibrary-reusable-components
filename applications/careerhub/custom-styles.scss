@@ -16,15 +16,6 @@
 }
 
 
-.nubbin {
-  // this class controls the positioning of the little 'edit' nubbin
-  // the changes to the layout to match uq meant it could not be moused over
-  // pull back inside the block so it can be moused over
-  // only admins will see this
-  left: inherit;
-  right: 10px;
-}
-
 h1,
 h2, #sitename,
 h3, h4, h5, h6 {

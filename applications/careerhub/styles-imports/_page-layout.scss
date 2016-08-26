@@ -98,7 +98,11 @@ body {
       display: block;
       border: none;
       position: relative;
-      width: 100%;
+    }
+
+    td#right,
+    td#center {
+      width: 100%; // override desktop width
     }
   }
 
