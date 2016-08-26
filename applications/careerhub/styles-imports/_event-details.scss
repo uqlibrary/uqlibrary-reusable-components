@@ -1,0 +1,123 @@
+#main {
+
+  #columns { // table!!
+    #content {
+      .event_type {
+        display: none;
+      }
+
+      .event_title {
+        margin-top: 0.3rem;
+      }
+
+      div strong {
+        // item headers
+        font-size: 1.25em;
+        font-weight: 500;
+        color: #000;
+      }
+
+      // space how the event details relate vertically
+      div.event_venue,
+      div.event_summary,
+      div.event_details {
+        margin: 11px 0 0 0
+      }
+
+      div.event_venue strong {
+        display: block;
+        margin-bottom: -27px;
+      }
+
+      div.event_details p,
+      div.event_summary p {
+        margin-top: -4px;
+      }
+
+      div.event_booking_stat .num {
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin: 8px 0 0 0
+      }
+      div.event_booking_stat .desc {
+        font-size: 1em;
+      }
+
+      .event_date {
+        margin-top: 0.8rem;
+        font-weight: normal;
+        font-size: inherit;
+      }
+      .event_time {
+        font-weight: normal;
+      }
+
+      .event_booking {
+        border-top-width: 0;
+        h2 {
+          display: none;
+        }
+        .event_booking_stat.first,
+        .event_booking_stat {
+          border-width: 0; // removed dotted borders
+          float: none;
+          margin: 11px 0 0 0;
+          padding: 0;
+        }
+
+        form {
+          margin-top: 8px;
+        }
+
+        input[type="submit"] {
+          border-style: solid;
+          border-width: 0px;
+          cursor: pointer;
+          font-weight: normal;
+          line-height: normal;
+          margin: 0 0 20px;
+          margin: 0 0 1.25rem;
+          position: relative;
+          text-decoration: none;
+          text-align: center;
+          -webkit-appearance: none;
+          -webkit-border-radius: 0;
+          display: inline-block;
+          padding-top: 16px;
+          padding-top: 1rem;
+          padding-right: 32px;
+          padding-right: 2rem;
+          padding-bottom: 17px;
+          padding-bottom: 1.0625rem;
+          padding-left: 32px;
+          padding-left: 2rem;
+          font-size: 16px;
+          font-size: 1rem;
+          background-color: $accent-color;
+          border-color: transparent;
+          color: #fff;
+          transition: background-color 300ms ease-out;
+        }
+
+      }
+
+      #message {
+        padding: 10px;
+      }
+      #message.flash {
+        color: #000;
+        background-color: $accent-color-lighter;
+      }
+
+    }
+
+  }
+
+}
+
+.event_booking_stat {
+  width: auto;
+}
+
+
+

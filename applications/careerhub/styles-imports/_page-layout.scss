@@ -1,0 +1,105 @@
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+* {
+  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
+}
+
+// from drupal https://web.library.uq.edu.au/sites/all/themes/custom/uq_standard/css/styles.css?obeqkh
+html, body {
+  font-size: 16px
+}
+
+body {
+  background: #fff;
+  color: #222;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 24px;
+  position: relative;
+  cursor: auto
+}
+
+
+
+#textWidget_preHeader {
+  margin: 0;
+  p { // the include process wraps our components in a paragraph element
+    margin: 0;
+  }
+}
+
+
+
+// to match layout of #content on library.uq.edu.au
+#container {
+  max-width: 1170px;
+  width: calc(100% - 32px);
+  margin: 0 auto 8px;
+  min-height: calc(100vh - 550px);
+}
+
+#main {
+
+  #columns { // table!!
+    border-width: 0;
+    width: 100%;
+    min-height: 25em; // when there is only one item, the content block is too short
+    margin: 0;
+
+    th, td {
+      border-width: 0;
+    }
+
+    td#center {
+      padding: 0;
+      width: 67%;
+
+      .event_summary p,
+      .event_details p {
+        margin: 0;
+      }
+    }
+
+    #content {
+      // undo the styles that apply to this global id in library.uq.edu.au
+      max-width: initial;
+      width: auto;
+      margin: 0;
+      min-height: initial;
+
+    }
+
+  }
+
+}
+
+@media only screen and (max-width: 700px) {
+  /* careerhub have a 1-row table for layout, with a nav column on the right. the following makes it act normally
+   * technique: https://css-tricks.com/responsive-data-tables/
+   */
+  table#columns {
+    display: block;
+    thead,
+    tbody,
+    tr,
+    th {
+      display: block;
+    }
+    td {
+      /* Behave  like a "row" */
+      display: block;
+      border: none;
+      position: relative;
+    }
+  }
+
+}
+
