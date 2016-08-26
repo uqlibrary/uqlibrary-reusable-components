@@ -25,13 +25,14 @@
           }
 
           // make the date display above the title
+          position: relative;
           a { // name of event
             display: block;
-            padding-top: 2em;
+            padding-top: 1em;
           }
           .caption { // timestamp
-            display: block;
-            margin-top: -3em;
+            position: absolute;
+            top: 0;
           }
           padding: .8rem 0 2rem 0;
         }
@@ -59,4 +60,11 @@
       line-height: 1.5;
     }
   }
+}
+
+@media only screen and (max-width: 700px) {
+  .caption { // timestamp
+    margin-top:-4em;
+  }
+
 }
