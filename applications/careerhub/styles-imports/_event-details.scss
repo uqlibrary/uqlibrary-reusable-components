@@ -83,7 +83,10 @@
           -webkit-border-radius: 0;
           display: inline-block;
           padding-top: 16px 32px 17px 32px;
-          padding-top: 1rem 2rem 1.0625rem 2rem;
+          padding-top: 1rem;
+          padding-right: 2rem;
+          padding-bottom: 1.0625rem;
+          padding-left: 2rem;
           font-size: 16px;
           font-size: 1rem;
           background-color: $accent-color;

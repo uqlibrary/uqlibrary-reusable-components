@@ -12,6 +12,8 @@
         border-bottom-width: 0;
         line-height: 1.25;
         font-size: 1.3em;
+        background-color: #fff;
+        color: #222;
       }
 
       .body { // block of upcoming events links
@@ -45,6 +47,7 @@
       }
 
       a {
+        background-color: #fff;
         color: $accent-color;
         line-height: 1.25;
       }
