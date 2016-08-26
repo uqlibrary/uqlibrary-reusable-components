@@ -80,25 +80,6 @@ body {
 
 #main {
 
-  .sidebar {
-    background-color: #fff;
-    border-width: 0;
-    font-size: inherit;
-
-    // 'upcoming events' header
-    h3 {
-      color: #000;
-      border-bottom-width: 0;
-      line-height: 1.25;
-      font-size: 1.3em;
-    }
-
-    a {
-      color: $accent-color;
-      line-height: 1.25;
-    }
-  }
-
   #columns { // table!!
     border-width:0;
     width: 100%;
@@ -184,14 +165,18 @@ body {
         .event_booking_stat {
           border-width: 0; // removed dotted borders
           float: none;
-          margin: 8px 0 0 0;
+          margin: 11px 0 0 0;
           padding: 0;
         }
+
+        form {
+          margin-top:8px;
+        }
+
         input[type="submit"] {
           border-style: solid;
           border-width: 0px;
           cursor: pointer;
-          font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
           font-weight: normal;
           line-height: normal;
           margin: 0 0 20px;
@@ -218,11 +203,73 @@ body {
           transition: background-color 300ms ease-out;
         }
 
+        #message {
+          padding: 10px;
+        }
+        #message.flash {
+          color: #000;
+          background-color: $accent-color-lighter;
+        }
+
+
       }
 
     }
 
   }
+
+  .sidebar { //right hand nav bar of table
+    background-color: #fff;
+    border-width: 0;
+    font-size: inherit;
+
+    .body { // block of upcoming events links
+      li {
+        list-style: none;
+        border-bottom: 1px solid $footer-background-color;
+//        padding: 0.8rem 0;
+
+        a {
+//          display: block;
+//          padding: 0;
+//          text-decoration: none;
+//          width: 100%;
+//          position: relative;
+        }
+        br {
+          display: none;
+        }
+
+        // attempt to make the date display above the title
+        a { // name of event
+          display: block;
+          padding-top: 2em;
+        }
+        .caption { // timestamp
+          display: block;
+          margin-top: -3em;
+        }
+        padding: .8rem 0 2rem 0;
+      }
+    }
+
+    // 'upcoming events' header
+    h3 {
+      color: #000;
+      border-bottom-width: 0;
+      line-height: 1.25;
+      font-size: 1.3em;
+    }
+
+    a {
+      color: $accent-color;
+      line-height: 1.25;
+    }
+    a:hover, a:focus {
+      text-decoration: underline;
+    }
+  }
+
   li, p {
     font-size: 16px;
     line-height: 1.5;
@@ -249,13 +296,6 @@ body {
 }
 
 // match with uql style alert-notice in uqlibrary-styles/app-theme.html
-#message {
-  padding: 10px;
-  color: #000;
-  background-color: $accent-color-lighter;
-  border: 1px solid $accent-color-lighter;
-}
-
 @media only screen and (max-width: 700px) {
   #head {
     padding-top: 1rem;
@@ -283,27 +323,6 @@ body {
 }
 
 
-@media only screen and (min-width: 64.063em) {
-  .sidebar .body {
-    li {
-      list-style: none;
-      border-bottom: 1px solid $footer-background-color;
-      padding: 0.8rem 0;
-      a {
-
-        display: block;
-        padding: 0;
-        text-decoration: none;
-        width: 100%;
-        position: relative;
-
-      }
-      br {
-        display: none;
-      }
-    }
-  }
-}
 
 // from drupal https://web.library.uq.edu.au/sites/all/themes/custom/uq_standard/css/styles.css?obeqkh
 html, body {
