@@ -4,18 +4,18 @@
 
     .sidebar { //right hand nav bar of table
       background-color: #fff;
+      color: #222;
       border-width: 0;
       font-size: inherit;
 
+      h3 {
+        border-bottom-width: 0;
+        line-height: 1.25;
+        font-size: 1.3em;
+      }
+
       .body { // block of upcoming events links
         // 'upcoming events' header
-        h3 {
-          color: #000;
-          border-bottom-width: 0;
-          line-height: 1.25;
-          font-size: 1.3em;
-        }
-
         ul {
           margin: 0;
           padding:0;
