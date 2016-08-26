@@ -1,6 +1,8 @@
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
+// values taken from drupal styles
 $drupal-border-highlight: #2377cb;
+$drupal-nav-border: #f5f5f5;
 
 html,
 body {
@@ -43,6 +45,7 @@ body {
   border-bottom-width: 0;
   border-top-width: 0;
   padding-top: 3.5rem;
+  padding-left:0;
 
   .inner {
     margin: 0;
@@ -129,7 +132,29 @@ body {
         display: none;
       }
 
-      .event_date ,
+      .event_title {
+        margin-top: 0.3rem;
+      }
+
+      div strong {
+        // item headers
+        font-size: 1.2em;
+        font-weight: 500;
+        color: #000;
+      }
+
+      div.event_venue,
+      div.event_summary,
+      div.event_details,
+      div.event_booking_stat .num {
+        margin: 8px 0 0 0
+      }
+
+      .event_date {
+        margin-top:1.2rem;
+        font-weight: normal;
+        font-size: inherit;
+      }
       .event_time {
         font-weight: normal;
       }
@@ -213,7 +238,7 @@ body {
   .sidebar .body {
     li {
       list-style: none;
-      border-bottom: 1px solid var(--paper-grey-100); // #f5f5f5;
+      border-bottom: 1px solid $drupal-nav-border; // #f5f5f5;
       padding: 0.8rem 0;
       transition: ease border, padding 0.15s;
       transition-delay: 0.15s;
@@ -259,7 +284,7 @@ body {
 }
 
 h1,
-h2, #sitename
+h2, #sitename,
 h3, h4, h5, h6 {
 font-weight: 500;
 line-height: 1.25;
