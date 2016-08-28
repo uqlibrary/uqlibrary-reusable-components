@@ -218,7 +218,6 @@ the layout options into the header field, then click)
 Code to include in the GUI editor (keep this up to date as it can't be reviewed reliably in the GUI):
 
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico">
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/master/reusable-components/careerhub/custom-styles.css">
         <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
