@@ -1,0 +1,86 @@
+#site-title a {
+    color: #FFF !important;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: .02em;
+    font-weight: 400;
+    white-space: nowrap
+}
+
+* {
+    font-family: Roboto, Verdana, Arial, Helvetica, sans-serif
+}
+
+.button {
+    font-family: Roboto, Verdana, Arial, Helvetica, sans-serif
+}
+
+#site-title {
+    height: 100px;
+    background-color: #49075e
+}
+
+#site-title img {
+    margin-top: -45px
+}
+
+.column {
+    position: relative;
+    width: 49%
+}
+
+@media screen and (max-width: 900px) {
+    .column {
+        width: 100%
+    }
+
+    .qanzac {
+        margin-top: 30px !important;
+        margin-bottom: 10px
+    }
+
+    #footer-text {
+        background-color: #49075e;
+        height: 230px
+    }
+}
+
+.qanzac {
+    float: right;
+    margin-top: -80px;
+    color: #fff
+}
+
+#qanzac-logo img {
+    width: auto;
+    margin-top: 5px;
+    height: 64px
+}
+
+@media screen and (max-width: 999px) {
+    #qanzac-logo img {
+        height: 50px
+    }
+}
+
+.footer-container {
+    background-color: #49075E;
+    text-decoration: none;
+    line-height: 20px;
+    white-space: nowrap;
+    color: #FFF !important;
+    font-size: 14px;
+    padding: 20px;
+    margin-top: 20px
+}
+
+.footer-container a {
+    color: #FFF !important;
+    text-decoration: none
+}
+
+.footer-container div {
+    color: #d2c1d7
+}
+
