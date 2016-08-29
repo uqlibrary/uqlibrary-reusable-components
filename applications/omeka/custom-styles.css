@@ -1,3 +1,8 @@
+/*
+ * omeka overrides some styles added through the css plugin
+ * eg styles on html header and footer elements are overridden!!!
+ */
+
 #site-title a {
     color: #FFF !important;
     text-decoration: none;
@@ -9,27 +14,71 @@
 }
 
 * {
-    background-color: #fff;
-    color: #222;
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
     line-height: 24px;
 }
 
-body.exhibits a,
-body.exhibits a:link {
+#wrap {
+    background-color: #fff;
+    color: #222;
+}
+
+#wrap a,
+#wrap a:link {
     background-color: inherit;
     color: #2377CB; /* $accent-color */
 }
-body.exhibits a:hover,
-body.exhibits a:focus {
+#wrap a:hover,
+#wrap a:focus {
     text-decoration: underline;
 }
-body.exhibits a:visited {
+#wrap a:visited {
     background-color: inherit;
     color: #2377CB; /* $accent-color */
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    line-height: 1.25;
+    margin-top: 0;
+    margin-bottom: 16px;
+    margin-bottom: 1rem
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    font-weight: inherit !important
+}
+
+h1 {
+    font-size: 32px;
+    font-size: 2rem
+}
+
+h2 {
+    font-size: 28px;
+    font-size: 1.75rem;
+    font-weight: 400
+}
+
+h3 {
+    font-size: 22px;
+    font-size: 1.4rem;
+    font-weight: 400
+}
+
+h4 {
+    font-size: 18px;
+    font-size: 1.15rem
+}
+
+h5 {
+    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 400
+}
+
 
 .button {
     font-family: Roboto, Verdana, Arial, Helvetica, sans-serif
@@ -124,4 +173,14 @@ body.exhibits a:visited {
     padding: 0.8rem 0;
     width: 100%;
     position: relative;
+}
+
+
+#content {
+        width: auto;
+        float: none;
+}
+
+nav#primary-nav {
+    display: none;
 }
