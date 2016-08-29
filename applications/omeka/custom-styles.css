@@ -9,7 +9,26 @@
 }
 
 * {
-    font-family: Roboto, Verdana, Arial, Helvetica, sans-serif
+    background-color: #fff;
+    color: #222;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 24px;
+}
+
+body.exhibits a,
+body.exhibits a:link {
+    background-color: inherit;
+    color: #2377CB; /* $accent-color */
+}
+body.exhibits a:hover,
+body.exhibits a:focus {
+    text-decoration: underline;
+}
+body.exhibits a:visited {
+    background-color: inherit;
+    color: #2377CB; /* $accent-color */
 }
 
 .button {
@@ -84,3 +103,25 @@
     color: #d2c1d7
 }
 
+#content #exhibit-pages ,
+#content #exhibit-pages ul li ,
+#content #exhibit-pages > ul:first-child > li:first-of-type ,
+#content #exhibit-pages > ul > li {
+    list-style: none;
+    background: none;
+    border-width: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#content #exhibit-pages ul li a {
+    transition: ease border, padding 0.15s;
+    transition-delay: 0.15s;
+    display: block;
+    border-bottom: 1px solid #f5f5f5;
+    text-decoration: none;
+    padding: 12px 0;
+    padding: 0.8rem 0;
+    width: 100%;
+    position: relative;
+}
