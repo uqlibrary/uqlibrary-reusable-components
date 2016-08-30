@@ -21,8 +21,12 @@
 
 .qanzac {
   float: right;
-  margin-top: -80px;
+  margin-top: -100px;
   color: #fff
+}
+
+#qanzac-statement {
+  white-space: normal;
 }
 
 #qanzac-logo img {
@@ -31,11 +35,7 @@
   height: 64px
 }
 
-#qanzac-statement {
-  white-space: normal;
-}
-
-@media screen and (max-width: 999px) {
+@media screen and (max-width: 350px) {
   #qanzac-logo img {
     height: 50px
   }
