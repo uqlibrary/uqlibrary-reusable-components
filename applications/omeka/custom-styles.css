@@ -1,41 +1,5 @@
-/*
- * Omeka overrides some styles added through the css plugin
- * Specifically:
- * - any styling of html header and footer elements are removed!!!
- * - any styling of the body element is removed
- * - any property set to a value of 'inherit' is removed
- * - omeka doesnt recognise rem unit values and removes the property - supply a px default
- * - it strips :before attributes
- * - any styling on a child element rewrites the '>' to \3E
- * - the following properties are removed:
- *    - transition
- *    - transition-delay
- *    - max-width
- *    - width
- *    - min-height
-
- * theme configured at:
- * http://uqlibraryonlineexhibitions.omeka.net/admin/exhibits/theme-config/1
- * (click on 'Configure' next to theme dropdown)
-
-
-<script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js"></script>
-<script type="text/javascript" src="//assets.library.uq.edu.au/master/reusable-components/omeka/load.js"></script>
-<script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
-<script type="text/javascript" src="//web.library.uq.edu.au/sites/all/modules/contrib/jquery_update/replace/jquery/2.1/jquery.min.js?v=2.1.4"></script>
-
-
-stripped out
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
-<link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-<link rel="stylesheet" href="//assets.library.uq.edu.au/master/reusable-components/omeka/custom-styles.css">
-
-
-
- */
-
 * {
-    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
     line-height: 24px;
@@ -46,6 +10,26 @@ body {
     color: #222;
 }
 
+header {
+    background-color: #49075e;
+    color: #fff;
+    border-bottom-width: 0;
+}
+
+#site-title {
+    height: 100px;
+    background-color: #49075e;
+    margin-left: 0;
+    padding-left: 16px;
+
+    margin: 0 auto;
+    max-width: 1140px;
+    width: 100%;
+}
+
+#site-title img {
+    margin-top: -45px
+}
 
 #site-title a {
     color: #FFF !important;
@@ -129,17 +113,6 @@ p {
     font-family: Roboto, Verdana, Arial, Helvetica, sans-serif
 }
 
-#site-title {
-    height: 100px;
-    background-color: #49075e;
-    margin-left: 0;
-    padding-left: 16px;
-}
-
-#site-title img {
-    margin-top: -45px
-}
-
 .column {
     position: relative;
     width: 49%
@@ -179,15 +152,24 @@ p {
     }
 }
 
-.footer-container {
+footer {
     background-color: #49075E;
+    color: #fff;
+    text-decoration: none;
+    line-height: 20px;
+    font-size: 14px;
+    padding: 20px;
+    margin: 0;
+    border-top-width: 0;
+}
+
+.footer-container {
     text-decoration: none;
     line-height: 20px;
     white-space: nowrap;
     color: #FFF !important;
     font-size: 14px;
-
-    margin: 20 auto 0 auto;
+    margin: 20px auto 0 auto;
     max-width: 1140px;
     width: 100%;
 }
@@ -242,21 +224,6 @@ p {
 
 .exhibits nav#primary-nav {
     display: none;
-}
-
-footer {
-    background-color: #49075E;
-    color: #d2c1d7;
-    text-decoration: none;
-    line-height: 20px;
-    font-size: 14px;
-    padding: 20px;
-    margin: 0;
-    border-top-width: 0;
-}
-
-header {
-    border-bottom-width: 0;
 }
 
 /* hide empty menu button */
