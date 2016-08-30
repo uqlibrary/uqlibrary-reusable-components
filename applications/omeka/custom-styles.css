@@ -34,6 +34,19 @@ stripped out
 
  */
 
+* {
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 24px;
+}
+
+body {
+    background-color: #fff;
+    color: #222;
+}
+
+
 #site-title a {
     color: #FFF !important;
     text-decoration: none;
@@ -42,13 +55,6 @@ stripped out
     letter-spacing: .02em;
     font-weight: 400;
     white-space: nowrap
-}
-
-* {
-    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    line-height: 24px;
 }
 
 #wrap {
@@ -180,8 +186,10 @@ p {
     white-space: nowrap;
     color: #FFF !important;
     font-size: 14px;
-    padding: 20px;
-    margin-top: 20px
+
+    margin: 20 auto 0 auto;
+    max-width: 1140px;
+    width: 100%;
 }
 
 .footer-container a {
@@ -236,15 +244,17 @@ p {
     display: none;
 }
 
-/* omeka deletes this style :( */
 footer {
-    padding: 0;
+    background-color: #49075E;
+    color: #d2c1d7;
+    text-decoration: none;
+    line-height: 20px;
+    font-size: 14px;
+    padding: 20px;
     margin: 0;
-    background-color: #fff;
     border-top-width: 0;
 }
 
-/* omeka deletes this style :( */
 header {
     border-bottom-width: 0;
 }
