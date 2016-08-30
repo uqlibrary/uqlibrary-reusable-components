@@ -1,0 +1,72 @@
+.column {
+  position: relative;
+  width: 49%
+}
+
+@media screen and (max-width: 900px) {
+  .column {
+    width: 100%
+  }
+
+  .qanzac {
+    margin-top: 30px !important;
+    margin-bottom: 10px
+  }
+
+}
+
+@media screen and (max-width: 900px) {
+  #footer-text {
+    background-color: #49075e;
+    height: 230px
+  }
+}
+
+.qanzac {
+  float: right;
+  margin-top: -80px;
+  color: #fff
+}
+
+#qanzac-logo img {
+  width: auto;
+  margin-top: 5px;
+  height: 64px
+}
+
+@media screen and (max-width: 999px) {
+  #qanzac-logo img {
+    height: 50px
+  }
+}
+
+footer {
+  background-color: #49075E;
+  color: #fff;
+  text-decoration: none;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 20px;
+  margin: 0;
+  border-top-width: 0;
+}
+
+.footer-container {
+  text-decoration: none;
+  line-height: 20px;
+  white-space: nowrap;
+  color: #FFF !important;
+  font-size: 14px;
+  margin: 0 auto;
+  max-width: 1140px;
+  width: 100%;
+}
+
+.footer-container a {
+  color: #FFF !important;
+  text-decoration: none
+}
+
+.footer-container div {
+  color: #d2c1d7
+}
