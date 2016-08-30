@@ -1,6 +1,34 @@
 /*
- * omeka overrides some styles added through the css plugin
- * eg styles on html header and footer elements are overridden!!!
+ * Omeka overrides some styles added through the css plugin
+ * Specifically:
+ * - any styling of html header and footer elements are removed!!!
+ * - any styling of the body element is removed
+ * - any property set to a value of 'inherit' is removed
+ * - omeka doesnt recognise rem unit values and removes the property - supply a px default
+ * - it strips :before attributes
+ * - any styling on a child element rewrites the '>' to \3E
+ * - the following properties are removed:
+ *    - transition
+ *    - transition-delay
+ *    - max-width
+ *    - width
+ *    - min-height
+
+ * theme styled at:
+ * http://uqlibraryonlineexhibitions.omeka.net/admin/exhibits/theme-config/1
+
+
+<script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js"></script>
+<script type="text/javascript" src="//assets.library.uq.edu.au/master/reusable-components/omeka/load.js"></script>
+<script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
+
+stripped out
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
+<link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+<link rel="stylesheet" href="//assets.library.uq.edu.au/master/reusable-components/omeka/custom-styles.css">
+
+
+
  */
 
 #site-title a {
@@ -23,19 +51,26 @@
 #wrap {
     background-color: #fff;
     color: #222;
+    padding-bottom: 32px;
+    padding-bottom: 2rem;
+    /* match width from library.uq.edu.au */
+    max-width: 1170px;
+    width: calc(100% - 32px);
+    margin: 0 auto 8px;
+    min-height: calc(100vh - 550px);
 }
 
 #wrap a,
 #wrap a:link {
-    background-color: inherit;
     color: #2377CB; /* $accent-color */
+    text-decoration: none;
+    border-bottom-width: 0;
 }
 #wrap a:hover,
 #wrap a:focus {
     text-decoration: underline;
 }
 #wrap a:visited {
-    background-color: inherit;
     color: #2377CB; /* $accent-color */
 }
 
@@ -43,17 +78,14 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     line-height: 1.25;
     margin-top: 0;
-    margin-bottom: 16px;
-    margin-bottom: 1rem
-}
-
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    font-weight: inherit !important
+    margin-bottom: 0;
 }
 
 h1 {
     font-size: 32px;
-    font-size: 2rem
+    font-size: 2rem;
+    padding-top: 16px;
+    padding-top: 1rem;
 }
 
 h2 {
@@ -79,6 +111,10 @@ h5 {
     font-weight: 400
 }
 
+p {
+    margin-bottom: 0;
+}
+
 
 .button {
     font-family: Roboto, Verdana, Arial, Helvetica, sans-serif
@@ -86,7 +122,9 @@ h5 {
 
 #site-title {
     height: 100px;
-    background-color: #49075e
+    background-color: #49075e;
+    margin-left: 0;
+    padding-left: 16px;
 }
 
 #site-title img {
@@ -168,19 +206,47 @@ h5 {
     transition-delay: 0.15s;
     display: block;
     border-bottom: 1px solid #f5f5f5;
-    text-decoration: none;
     padding: 12px 0;
     padding: 0.8rem 0;
     width: 100%;
     position: relative;
 }
+#wrap #exhibit-pages ul li.parent:before,
+#wrap #exhibit-pages ul li.current:before {
+    width: auto;
+    position: static;
+    background-color: #fff;
+}
+#content #exhibit-pages ul li.current a {
+    color: #000;
+    font-weight: 400;
+}
 
 
-#content {
+
+.exhibits #content {
         width: auto;
         float: none;
 }
 
-nav#primary-nav {
+.exhibits nav#primary-nav {
+    display: none;
+}
+
+/* omeka deletes this style :( */
+footer {
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    border-top-width: 0;
+}
+
+/* omeka deletes this style :( */
+header {
+    border-bottom-width: 0;
+}
+
+/* hide empty menu button */
+.menu-button {
     display: none;
 }
