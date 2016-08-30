@@ -13,9 +13,6 @@
     margin-bottom: 10px
   }
 
-}
-
-@media screen and (max-width: 900px) {
   #footer-text {
     background-color: #49075e;
     height: 230px
@@ -60,13 +57,13 @@ footer {
   margin: 0 auto;
   max-width: 1140px;
   width: 100%;
-}
 
-.footer-container a {
-  color: #FFF !important;
-  text-decoration: none
-}
+  div {
+    color: #d2c1d7
+  }
+  a {
+    color: #FFF !important;
+    text-decoration: none
+  }
 
-.footer-container div {
-  color: #d2c1d7
 }

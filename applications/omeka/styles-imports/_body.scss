@@ -21,6 +21,13 @@
   a:visited {
     color: #2377CB; /* $accent-color */
   }
+
+  #exhibit-pages ul li.parent:before,
+  #exhibit-pages ul li.current:before {
+    width: auto;
+    position: static;
+    background-color: #fff;
+  }
 }
 
 
@@ -44,12 +51,6 @@
   padding: 0.8rem 0;
   width: 100%;
   position: relative;
-}
-#wrap #exhibit-pages ul li.parent:before,
-#wrap #exhibit-pages ul li.current:before {
-  width: auto;
-  position: static;
-  background-color: #fff;
 }
 #content #exhibit-pages ul li.current a {
   color: #000;
