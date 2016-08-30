@@ -31,6 +31,10 @@
   height: 64px
 }
 
+#qanzac-statement {
+  white-space: normal;
+}
+
 @media screen and (max-width: 999px) {
   #qanzac-logo img {
     height: 50px
@@ -43,7 +47,7 @@ footer {
   text-decoration: none;
   line-height: 20px;
   font-size: 14px;
-  padding: 20px;
+  padding: 0;
   margin: 0;
   border-top-width: 0;
 }

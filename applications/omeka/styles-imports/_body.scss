@@ -67,3 +67,9 @@
 .exhibits nav#primary-nav {
   display: none;
 }
+
+// override default omeka styles
+.exhibit-block > *:first-child, .gallery + p, .exhibit-items + p {
+  margin-top: 16px;
+  margin-top: 1rem;
+}
