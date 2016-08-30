@@ -1,5 +1,4 @@
 function ready(fn) {
-console.log('running ready');
   if (document.readyState != 'loading'){
     fn();
   } else {
@@ -12,6 +11,10 @@ function loadReusableComponents() {
 
   addAppleTouchIcon();
 
+  addCss('//assets.library.uq.edu.au/master/reusable-components/omeka/custom-styles.css');
+
+
+  /*
   //insert elements, even before Polymer is loaded
 
   //first element of the original document
@@ -41,6 +44,7 @@ function loadReusableComponents() {
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
   });
+  */
 }
 
 function loadUQFavicon() {
@@ -80,6 +84,19 @@ function addAppleTouchIcon() {
     document.getElementsByTagName('head')[0].appendChild(iconLink);
   }
 }
+
+function addCss(fileName) {
+
+  var head = document.head
+    , link = document.createElement('link')
+
+  link.type = 'text/css'
+  link.rel = 'stylesheet'
+  link.href = fileName
+
+  head.appendChild(link)
+}
+
 
 
 ready(loadReusableComponents);
