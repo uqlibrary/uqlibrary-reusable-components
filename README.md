@@ -1,6 +1,22 @@
 # uqlibrary-reusable-components
 
-central repository contains:
+## Contents:
+
+* [Getting Started](#getting-started)
+* [Updating IA](#updating-ia)
+* [Applications Customisations](#applications-customisations)
+* [LibGuides](#libguides)
+* [LibAnswers](#libanswers-httpanswerslibraryuqeduau)
+* [UQ Drupal](#uq-drupal-httpsweblibraryuqeduau)
+* [UQLAPP, FBS, Training, Contacts, Exams, ACDB](#uqlapp-fbs-training-contacts-exams-acdb)
+* [PRIMO](#primo-httpssearchlibraryuqeduau)
+* [Shared](#shared-uqlais-ezproxy-static-pages)
+* [Careerhub](#careerhub-httpswwwcareerhubuqeduau)
+* [Omeka](#omeka)
+* [Forcing IMS logins](#forcing-ims-logins)
+* [Elements Development](#elements-development)
+
+The Central Repository contains:
 
 - /elements/ - common elements, eg header/footer
     - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
@@ -223,6 +239,48 @@ Code to include in the GUI editor (keep this up to date as it can't be reviewed 
         <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
         <script src="//assets.library.uq.edu.au/master/reusable-components/careerhub/load.js" async></script>
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+
+#### Omeka
+
+A third party product we are using for online librayr exhibits
+
+[View](https://uqlibraryonlineexhibitions.omeka.net/)
+
+Login details are in vault.
+
+CSS can be updated in the (CSS Plugin)[http://uqlibraryonlineexhibitions.omeka.net/admin/plugins]
+which has major restrictions, eg:
+
+* any styling of html header and footer elements are removed!!!
+* any styling of the body element is removed
+* any property set to a value of 'inherit' is removed
+* omeka doesnt recognise rem unit values and removes the property, so supply a px default
+* the following properties are removed:
+** transition
+** transition-delay
+** max-width
+** width
+** min-height
+* it strips :before attributes
+* any styling on a child element rewrites the '>' to \3E
+ 
+The prefered method is to style [the assets css file](http//assets.library.uq.edu.au/master/reusable-components/omeka/custom-styles.css)
+
+The [load.js](//assets.library.uq.edu.au/master/reusable-components/omeka/load.js) file:
+
+* loads the responsive meta
+* applies the uq favicon
+* applies the uq apple icon
+* attaches the above css file
+
+JS is applied in the footer, which can be edited [on this page](http://uqlibraryonlineexhibitions.omeka.net/admin/exhibits/theme-config/1) (or... click on exhibits in the left hand nav, click 'edit' on the chosen exhibit, scroll down to the theme dropdown, choose the correct theme and click Configure).
+
+Once on that page, scroll down to 'Footer Text', click the 'HTML' icon on the edit area, and update the html for the footer. Maintain the following code block as the correct code:
+
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/master/reusable-components/omeka/load.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
+        <script type="text/javascript" src="//web.library.uq.edu.au/sites/all/modules/contrib/jquery_update/replace/jquery/2.1/jquery.min.js?v=2.1.4"></script>
 
 
 ### Forcing IMS logins
