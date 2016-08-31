@@ -277,9 +277,7 @@ JS is applied in the footer, which can be edited [on this page](http://uqlibrary
 
 Once on that page, scroll down to 'Footer Text', click the 'HTML' icon on the edit area, and update the html for the footer. Maintain the following code block as the correct code:
 
-        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js"></script>
         <script type="text/javascript" src="//assets.library.uq.edu.au/master/reusable-components/omeka/load.js"></script>
-        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
         <script type="text/javascript" src="//web.library.uq.edu.au/sites/all/modules/contrib/jquery_update/replace/jquery/2.1/jquery.min.js?v=2.1.4"></script>
 
 
