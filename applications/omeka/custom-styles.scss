@@ -1,0 +1,60 @@
+@import "styles-imports/header";
+@import "styles-imports/body";
+@import "styles-imports/footer";
+
+* {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 24px;
+}
+
+body {
+    background-color: #fff;
+    color: #222;
+}
+
+
+h1, h1 span,
+h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    line-height: 1.25;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h1, h1 span {
+    font-size: 32px;
+    font-size: 2rem;
+    padding-top: 16px;
+    padding-top: 1rem;
+}
+
+h2 {
+    font-size: 28px;
+    font-size: 1.75rem;
+    font-weight: 400
+}
+
+h3 {
+    font-size: 22px;
+    font-size: 1.4rem;
+    font-weight: 400
+}
+
+h4 {
+    font-size: 18px;
+    font-size: 1.15rem
+}
+
+h5 {
+    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 400
+}
+
+p {
+    margin-bottom: 0;
+}
+
+

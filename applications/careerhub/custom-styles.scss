@@ -1,183 +1,53 @@
-#textWidget_preHeader {
-  margin: 0;
-}
-// the include process wraps our components in a paragraph element
-#textWidget_preHeader p {
-  margin: 0;
-}
+@import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
-// these styles make the footer the full width of the page
-#foot {
-  border-top-width: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-#foot .inner {
-  width: auto;
-}
-#textWidget_footer {
-  margin: 0;
-}
+@import "styles-imports/page-layout";
 
 
-// as per #content on library.
-#container {
-  max-width: 1170px;
-  width: calc(100% - 32px);
-  margin: 0 auto 8px;
-  min-height: calc(100vh - 550px);
-}
+@import "styles-imports/page-header";
 
+@import "styles-imports/event-details";
 
-#user_info, // hide the careerhub user welcome
-#links  // hide the careerhub header menu
-{
-  display: none;
-}
-
-
-// these will only be needed if we dont get a blank default theme
-#head {
-  background-color: #fff;
-  border-bottom-width: 0;
-  border-top-width: 0;
-  padding-top: 3.5rem;
-
-  .inner {
-    margin: 0;
-  }
-
-  #sitename {
-    // match h2 in library theme
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1.25;
-    a {
-      color: #000 !important;
-
-      text-decoration: none;
-      cursor: default;
-    }
-  }
-
-}
-
-#main {
-
-  .sidebar {
-    background-color: #fff;
-    border-width: 0;
-    font-size: inherit;
-
-    // 'upcoming events' header
-    h3 {
-      color: #000;
-      border-bottom-width: 0;
-      line-height: 1.25;
-      font-size: 1.3em;
-    }
-
-    a {
-      color: #2377cb;
-      line-height: 1.25;
-    }
-  }
-
-  #columns { // table!!
-    border-width:0;
-    width: inherit;
-    min-height: 25em; // when there is only one item, the content block is too short
-
-    th, td {
-      border-width:0;
-    }
-
-    td#center {
-      padding: 0;
-      width: 65%;
-
-      div {
-        font-size: 16px; // override blessed table styling
-      }
-    }
-    // undo the styles that apply to this id in library.
-    #content {
-      max-width: initial;
-      width: auto;
-      margin: 0;
-      min-height: initial;
-    }
-
-  }
-  li, p {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-}
+@import "styles-imports/sidebar";
 
 // various subfields have a 'caption' class name - restyle to match uql
 .caption {
-  color: #000;
+  color: #222;
   font-style: inherit;
 }
 
 
-.nubbin {
-  // this class controls the positioning of the little 'edit' nubbin
-  // the changes to the layout to match uq meant it could not be moused over
-  // pull back in on top of the top left corner of the text on mouseover
-  // only admins will see this
-  left: 0;
+h1,
+h2, #sitename,
+h3, h4, h5, h6 {
+font-weight: 500;
+line-height: 1.25;
+margin-top: 0;
+margin-bottom: 16px;
+margin-bottom: 1rem
 }
 
-.event_booking_stat {
-  width: auto;
+h2 {
+  font-size: 32px;
+  font-size: 2rem
 }
 
-// match with uql style alert-notice
-#message {
-  padding: 10px;
-  color: var(--notice-text-color);
-  background-color: var(--notice-background-color);
-  border: 1px solid var(--notice-border-color);
+h1, h3 {
+  font-size: 28px;
+  font-size: 1.75rem;
+  font-weight: 400
 }
 
-@media only screen and (max-width: 700px) {
-  #head {
-    padding-top: 1rem;
+#container #main {
+  a {
+    background-color: #fff;
+    color: $accent-color;
   }
-
-}
-
-
-@media only screen and (min-width: 64.063em) {
-  .sidebar .body {
-    li {
-      list-style: none;
-      border-bottom: 1px solid #f5f5f5;
-      padding: 0.8rem 0;
-      transition: ease border, padding 0.15s;
-      transition-delay: 0.15s;
-      a {
-
-        display: block;
-        padding: 0;
-        text-decoration: none;
-        width: 100%;
-        position: relative;
-
-      }
-      :hover {
-        border-left: 3px solid #2377cb;
-        padding-left: 0.5rem;
-      }
-      .caption {
-        padding-left: 0.8rem;
-        display: block;
-      }
-      br {
-        display: none;
-      }
-    }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+  a:visited {
+    background-color: #fff;
+    color: $accent-color;
   }
 }
+

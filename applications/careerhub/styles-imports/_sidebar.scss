@@ -1,0 +1,60 @@
+#main {
+
+  #columns { // table!!
+
+    .sidebar { //right hand nav bar of table
+      background-color: #fff;
+      color: #222;
+      border-width: 0;
+      font-size: inherit;
+
+      h3 {
+        border-bottom-width: 0;
+        line-height: 1.25;
+        font-size: 1.3em;
+        background-color: #fff;
+        color: #222;
+      }
+
+      .body { // block of upcoming events links
+        // 'upcoming events' header
+        ul {
+          margin: 0;
+          padding:0;
+        }
+        li {
+          list-style: none;
+          border-bottom: 1px solid $footer-background-color;
+
+          br {
+            display: none;
+          }
+
+          // make the date display above the title
+          a { // name of event
+            display: block;
+            padding-top: 1em;
+          }
+          .caption { // timestamp
+            position: absolute;
+            top: 0;
+          }
+          position: relative;
+          padding: .8rem 0 .8rem 0;
+          margin-bottom: 0.5rem;
+
+        }
+      }
+
+      a {
+        line-height: 1.25;
+      }
+    }
+
+    li, p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+}
+
