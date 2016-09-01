@@ -13,8 +13,8 @@ body {
   /* TODO: body width should come from common styles maybe? */
   max-width: 1170px;
   width: calc(100% - 32px);
-  margin: 0 auto 8px auto;
-  min-height: calc(100vh - 550px);
+  margin: 8px auto 8px auto;
+  min-height: calc(100vh - 264px);
 }
 
 paper-card {
