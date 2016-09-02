@@ -50,9 +50,18 @@
       border-width: 0;
     }
 
-    // this qworks while we have blank times for the libraries
+    // this works while we have blank time entries for the actual libraries
     tbody tr.s-lc-whw-loc td {
       display: none;
+    }
+    tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+      display: block;
+      padding-left: 0;
+      margin: 0 auto;
+    }
+    tbody td.s-lc-whw-sublocname {
+      padding-left: 1rem;
+      font-weight: bold;
     }
 
     tbody tr {
@@ -79,13 +88,13 @@
     }
 
     // Label the data
-    td:nth-of-type(1):before { content: "Monday"; }
-    td:nth-of-type(2):before { content: "Tuesday"; }
-    td:nth-of-type(3):before { content: "Wednesday"; }
-    td:nth-of-type(4):before { content: "Thursday"; }
-    td:nth-of-type(5):before { content: "Friday"; }
-    td:nth-of-type(6):before { content: "Saturday"; }
-    td:nth-of-type(7):before { content: "Sunday"; }
+    td:nth-of-type(2):before { content: "Monday"; }
+    td:nth-of-type(3):before { content: "Tuesday"; }
+    td:nth-of-type(4):before { content: "Wednesday"; }
+    td:nth-of-type(5):before { content: "Thursday"; }
+    td:nth-of-type(6):before { content: "Friday"; }
+    td:nth-of-type(7):before { content: "Saturday"; }
+    td:nth-of-type(8):before { content: "Sunday"; }
   }
 
 }
