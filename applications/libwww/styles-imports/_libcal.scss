@@ -35,82 +35,98 @@
 
 // make the table responsive
 @media only screen and (max-width: 760px) {
-  .libcal-hours-block {
+  .section__content { // only make the single-library hour tables responsive
+    .libcal-hours-block {
 
-    table {
-      width: 90%;
-    }
+      table {
+        width: 90%;
+      }
 
-    // Force table to not be like tables anymore
-    table, thead, tbody, th, td, tr {
-      display: block;
-    }
+      // Force table to not be like tables anymore
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
 
-    // Hide table headers (but not display: none;, for accessibility)
-    thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-      border-width: 0;
-    }
+      // Hide table headers (but not display: none;, for accessibility)
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        border-width: 0;
+      }
 
-    // this works while we have blank time entries for the actual libraries
-    tbody tr.s-lc-whw-loc td {
-      display: none;
-    }
-    tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
-      display: block;
-      padding-left: 0;
-      margin: 0 auto;
-      text-align: center;
-    }
-    tbody td.s-lc-whw-sublocname {
-      padding-left: 1rem;
-      font-weight: bold;
-    }
+      // this works while we have blank time entries for the actual libraries
+      tbody tr.s-lc-whw-loc td {
+        display: none;
+      }
+      tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+        display: block;
+        padding-left: 0;
+        margin: 0 auto;
+        text-align: center;
+      }
+      tbody td.s-lc-whw-sublocname {
+        padding-left: 1rem;
+        font-weight: bold;
+      }
 
-    tbody tr {
-      border: 1px solid #ccc;
-    }
+      tbody tr {
+        border: 1px solid #ccc;
+      }
 
-    td {
-      // Behave  like a "row"
-      border: none;
-      border-bottom: 1px solid #eee;
-      position: relative;
-      padding-left: 50%;
-    }
+      td {
+        // Behave  like a "row"
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+      }
 
-    td:before {
-      // Now like a table header
-      position: absolute;
-      // Top/left values mimic padding
-      top: 6px;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-    }
+      td:before {
+        // Now like a table header
+        position: absolute;
+        // Top/left values mimic padding
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+      }
 
-    // Label the data
-    td:nth-of-type(2):before { content: "Monday"; }
-    td:nth-of-type(3):before { content: "Tuesday"; }
-    td:nth-of-type(4):before { content: "Wednesday"; }
-    td:nth-of-type(5):before { content: "Thursday"; }
-    td:nth-of-type(6):before { content: "Friday"; }
-    td:nth-of-type(7):before { content: "Saturday"; }
-    td:nth-of-type(8):before { content: "Sunday"; }
+      // Label the data
+      td:nth-of-type(2):before {
+        content: "Monday";
+      }
+      td:nth-of-type(3):before {
+        content: "Tuesday";
+      }
+      td:nth-of-type(4):before {
+        content: "Wednesday";
+      }
+      td:nth-of-type(5):before {
+        content: "Thursday";
+      }
+      td:nth-of-type(6):before {
+        content: "Friday";
+      }
+      td:nth-of-type(7):before {
+        content: "Saturday";
+      }
+      td:nth-of-type(8):before {
+        content: "Sunday";
+      }
 
-    td.s-lc-whw-today:before {
-      content: "Today";
-      font-weight: bold;
-    }
+      td.s-lc-whw-today:before {
+        content: "Today";
+        font-weight: bold;
+      }
 
-    tr.s-lc-whw-footnote td {
-      text-align: left;
-      padding-left: 1rem;
+      tr.s-lc-whw-footnote td {
+        text-align: left;
+        padding-left: 1rem;
+      }
+
     }
 
   }
-
 }
