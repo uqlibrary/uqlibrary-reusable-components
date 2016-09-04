@@ -1,6 +1,10 @@
 .libcal-hours-block {
   caption {
-    display: none; // hide table caption supplied by libcal
+    // hide table caption supplied by libcal
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+
   }
 
   // align cells more nicely
@@ -35,7 +39,7 @@
 
 // make the table responsive
 @media only screen and (max-width: 760px) {
-  .section__content { // only make the single-library hour tables responsive
+  .contextual-links-region { // only make the single-library hour tables responsive
     .libcal-hours-block {
 
       table {
@@ -57,7 +61,9 @@
 
       // this works while we have blank time entries for the actual libraries
       tbody tr.s-lc-whw-loc td {
-        display: none;
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
       }
       tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
         display: block;
