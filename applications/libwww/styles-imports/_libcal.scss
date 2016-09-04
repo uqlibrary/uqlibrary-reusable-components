@@ -39,7 +39,6 @@
 
 // make the table responsive
 @media only screen and (max-width: 760px) {
-  .contextual-links-region { // only make the single-library hour tables responsive
     .libcal-hours-block {
 
       table {
@@ -134,5 +133,4 @@
 
     }
 
-  }
 }
