@@ -10,7 +10,7 @@
   min-height: calc(100vh - 402px);
   a,
   a:link {
-    color: #2377CB; /* $accent-color */
+    color: $accent-color;
     text-decoration: none;
     border-bottom-width: 0;
   }
@@ -31,52 +31,67 @@
 }
 
 
-#content #exhibit-pages ,
-#content #exhibit-pages ul li ,
-#content #exhibit-pages > ul:first-child > li:first-of-type ,
-#content #exhibit-pages > ul > li {
-  list-style: none;
-  background: none;
-  border-width: 0;
-  padding: 0;
-  margin: 0;
+#content {
+  #exhibit-pages {
+    border-width: 0;
+    padding: 0;
+    margin: 0;
+
+    ul li,
+    & > ul:first-child > li:first-of-type,
+    & > ul > li {
+      list-style: none;
+      background: none;
+      border-width: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul li {
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    ul li a {
+      transition: ease border, padding 0.15s;
+      transition-delay: 0.15s;
+      display: block;
+      border-bottom: 1px solid #f5f5f5;
+      padding: 12px 0;
+      padding: 0.8rem 0;
+      width: 100%;
+      position: relative;
+    }
+    ul li.current a {
+      color: $secondary-color-dark;
+      font-weight: 400;
+    }
+  }
+
+  // override omeka styling
+  & > ul > li.parent:before,
+  & > ul > li.current:before {
+    background-color: inherit;
+    width: 0;
+  }
 }
 
-#content #exhibit-pages ul li a {
-  transition: ease border, padding 0.15s;
-  transition-delay: 0.15s;
-  display: block;
-  border-bottom: 1px solid #f5f5f5;
-  padding: 12px 0;
-  padding: 0.8rem 0;
-  width: 100%;
-  position: relative;
-}
-#content #exhibit-pages ul li.current a {
-  color: $secondary-color-dark;
-  font-weight: 400;
-}
 
+.exhibits {
+  #content {
+    width: auto;
+    float: none;
+  }
 
-
-.exhibits #content {
-  width: auto;
-  float: none;
-}
-
-.exhibits nav#primary-nav {
-  display: none;
+  nav#primary-nav {
+    display: none;
+  }
 }
 
 // override default omeka styles
-.exhibit-block > *:first-child, .gallery + p, .exhibit-items + p {
+.exhibit-block > *:first-child,
+.gallery + p,
+.exhibit-items + p {
   margin-top: 16px;
   margin-top: 1rem;
 }
 
-// override omeka styling
-#exhibit-pages > ul > li.parent:before,
-#exhibit-pages > ul > li.current:before {
-  background-color: inherit;
-  width: 0;
-}
