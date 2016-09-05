@@ -73,6 +73,6 @@ footer {
 }
 
 // hide omeka credit, because it sticks out stupidly
-#footer-text p:first-child {
+#footer-text > p {
   display: none;
 }

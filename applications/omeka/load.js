@@ -42,10 +42,10 @@ function loadReusableComponents() {
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
 
-    header.applicationTitle = 'UQ Library Online Exhibitions';
-    header.applicationTitle.href="http://uqlibraryonlineexhibitions.omeka.net/";
-
     header.showLoginButton = false;
+
+    addExhibitionHeaderLink();
+
 
     });
 
@@ -120,6 +120,16 @@ function addElements() {
   head.appendChild(link);
 }
 
+function addExhibitionHeaderLink() {
+//  header.libraryTitle = ''; // handle with css
+
+  var parentblock = document.querySelector('application-title');
+  var aTag = document.createElement('a');
+  aTag.setAttribute('href',"http://uqlibraryonlineexhibitions.omeka.net/");
+  aTag.innerHTML = "UQ Library Online Exhibitions";
+  parentblock.appendChild(aTag);
+
+}
 
 
 ready(loadReusableComponents);
