@@ -1,6 +1,6 @@
 #thewrap {
-  background-color: #fff;
-  color: #222;
+  background-color: $menu-background-color;
+  color: $secondary-color-dark;
   padding-bottom: 32px;
   padding-bottom: 2rem;
   /* match width from library.uq.edu.au */
@@ -19,14 +19,14 @@
     text-decoration: underline;
   }
   a:visited {
-    color: #2377CB; /* $accent-color */
+    color: $accent-color
   }
 
   #exhibit-pages ul li.parent:before,
   #exhibit-pages ul li.current:before {
     width: auto;
     position: static;
-    background-color: #fff;
+    background-color: $menu-background-color;
   }
 }
 
@@ -53,7 +53,7 @@
   position: relative;
 }
 #content #exhibit-pages ul li.current a {
-  color: #000;
+  color: $secondary-color-dark;
   font-weight: 400;
 }
 

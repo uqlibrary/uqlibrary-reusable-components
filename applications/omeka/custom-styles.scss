@@ -1,17 +1,15 @@
+@import "../../bower_components/uqlibrary-styles/skeleton.scss";
+
 @import "styles-imports/header";
 @import "styles-imports/body";
 @import "styles-imports/footer";
 
-* {
+body {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
-    line-height: 24px;
-}
-
-body {
-    background-color: #fff;
-    color: #222;
+    background-color: $menu-background-color;
+    color: $secondary-color-dark;
 }
 
 
@@ -57,4 +55,7 @@ p {
     margin-bottom: 0;
 }
 
-
+// hide omeka dotted underlines
+a {
+    border-bottom-style: none !important;
+}

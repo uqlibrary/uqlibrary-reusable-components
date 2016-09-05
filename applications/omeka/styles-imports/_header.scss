@@ -1,12 +1,12 @@
 header {
-  background-color: #49075e;
-  color: #fff;
+  background-color: $theme-color;
+  color: $menu-background-color;
   border-bottom-width: 0;
 }
 
 #site-title {
   height: 100px;
-  background-color: #49075e;
+  background-color: $theme-color;
   padding-left: 16px;
   margin: 0 auto;
   max-width: 1140px;
@@ -17,7 +17,7 @@ header {
   }
 
   a {
-    color: #FFF !important;
+    color: $menu-background-color !important;
     text-decoration: none;
     font-size: 20px;
     line-height: 1;

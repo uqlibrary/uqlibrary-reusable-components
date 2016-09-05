@@ -14,7 +14,7 @@
   }
 
   #footer-text {
-    background-color: #49075e;
+    background-color: $theme-color;
     height: 230px
   }
 }
@@ -42,8 +42,8 @@
 }
 
 footer {
-  background-color: #49075E;
-  color: #fff;
+  background-color: $theme-color;
+  color: $menu-background-color;
   text-decoration: none;
   line-height: 20px;
   font-size: 14px;
@@ -56,7 +56,7 @@ footer {
   text-decoration: none;
   line-height: 20px;
   white-space: nowrap;
-  color: #FFF !important;
+  color: $menu-background-color !important;
   font-size: 14px;
   padding: 20px;
   margin: 0 auto;
@@ -64,11 +64,16 @@ footer {
   width: 100%;
 
   div {
-    color: #d2c1d7
+    color: $theme-color-light;
   }
   a {
-    color: #FFF !important;
+    color: $menu-background-color !important;
     text-decoration: none
   }
 
+}
+
+// hide omeka credit, because it sticks out stupidly
+#footer-text > p:first-child {
+  display: none;
 }

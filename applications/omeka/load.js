@@ -9,8 +9,7 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
-// needs jquery2 at least
-//  addAppleTouchIcon();
+  addAppleTouchIcon();
 
   addCss('//assets.library.uq.edu.au/master/reusable-components/omeka/custom-styles.css');
 
@@ -24,7 +23,6 @@ function loadReusableComponents() {
   //first element of the original document
   var firstElement = document.body.children[0];
 
-  //insert alerts before header
   var alerts = document.querySelector('uqlibrary-alerts');
   if (!alerts) {
     //as a back up insert header if it's not defined already
@@ -36,10 +34,6 @@ function loadReusableComponents() {
   var header = document.createElement('uq-minimal-header');
   document.body.insertBefore(header, firstElement);
 
-  // insert sub footer before body-tag
-  var subFooter = document.createElement('uql-connect-footer');
-  document.body.appendChild(subFooter);
-
   // insert footer before body-tag
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
@@ -47,7 +41,13 @@ function loadReusableComponents() {
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
-  });
+
+    header.applicationTitle = 'UQ Library Online Exhibitions';
+    header.applicationTitle.href="http://uqlibraryonlineexhibitions.omeka.net/";
+
+    header.showLoginButton = false;
+
+    });
 
 }
 
@@ -65,7 +65,7 @@ function loadUQFavicon() {
 
 function addAppleTouchIcon() {
   // replace apple-touch-icon
-  var appleTouchIconlink = $('link[rel="apple-touch-icon"]'),
+  var appleTouchIconlink = document.querySelector('link[rel="apple-touch-icon"]'),
     link = document.createElement('link'),
     sizes = ['152x152', '120x120', '76x76'],
     rel = 'apple-touch-icon',
@@ -119,5 +119,7 @@ function addElements() {
 
   head.appendChild(link);
 }
+
+
 
 ready(loadReusableComponents);
