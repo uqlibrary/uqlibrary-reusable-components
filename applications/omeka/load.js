@@ -120,8 +120,4 @@ function addElements() {
   head.appendChild(link);
 }
 
-var thewrap = document.querySelector('#wrap');
-thewrap.id = 'wrapnew';
-
-
 ready(loadReusableComponents);
