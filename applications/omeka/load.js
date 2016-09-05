@@ -16,6 +16,7 @@ function loadReusableComponents() {
 
   addResponsiveMeta();
 
+  addElements();
 
 
   //insert elements, even before Polymer is loaded
@@ -104,6 +105,17 @@ function addCss(fileName) {
   link.type = 'text/css';
   link.rel = 'stylesheet';
   link.href = fileName;
+
+  head.appendChild(link);
+}
+
+function addElements() {
+  var head = document.head,
+    link = document.createElement('link');
+
+  link.rel = 'import';
+  link.href = '//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html';
+  link.async = true;
 
   head.appendChild(link);
 }
