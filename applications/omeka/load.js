@@ -16,7 +16,7 @@ function loadReusableComponents() {
   addResponsiveMeta();
 
 
-  /*
+
   //insert elements, even before Polymer is loaded
 
   //first element of the original document
@@ -46,7 +46,7 @@ function loadReusableComponents() {
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
   });
-  */
+
 }
 
 function loadUQFavicon() {
