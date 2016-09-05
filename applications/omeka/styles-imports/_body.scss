@@ -7,7 +7,7 @@
   max-width: 1170px;
   width: calc(100% - 32px);
   margin: 0 auto 8px;
-  min-height: calc(100vh - 550px);
+  min-height: calc(100vh - 402px);
   a,
   a:link {
     color: #2377CB; /* $accent-color */
@@ -72,4 +72,11 @@
 .exhibit-block > *:first-child, .gallery + p, .exhibit-items + p {
   margin-top: 16px;
   margin-top: 1rem;
+}
+
+// override omeka styling
+#exhibit-pages > ul > li.parent:before,
+#exhibit-pages > ul > li.current:before {
+  background-color: inherit;
+  width: 0;
 }

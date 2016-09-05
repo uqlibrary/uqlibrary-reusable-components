@@ -47,7 +47,7 @@ function loadReusableComponents() {
     addExhibitionHeaderLink();
 
 
-    });
+  });
 
 }
 
@@ -123,10 +123,12 @@ function addElements() {
 function addExhibitionHeaderLink() {
 //  header.libraryTitle = ''; // handle with css
 
-  var parentblock = document.querySelector('application-title');
+  var parentblock = document.querySelector('.application-title');
   var aTag = document.createElement('a');
-  aTag.setAttribute('href',"http://uqlibraryonlineexhibitions.omeka.net/");
-  aTag.innerHTML = "UQ Library Online Exhibitions";
+  var linkText = document.createTextNode("UQ Library Online Exhibitions");
+  aTag.appendChild(linkText);
+  aTag.href = "http://uqlibraryonlineexhibitions.omeka.net/";
+  aTag.title = "UQ Library Online Exhibitions";
   parentblock.appendChild(aTag);
 
 }
