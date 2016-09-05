@@ -9,7 +9,8 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
-  addAppleTouchIcon();
+// needs jquery2 at least
+//  addAppleTouchIcon();
 
   addCss('//assets.library.uq.edu.au/master/reusable-components/omeka/custom-styles.css');
 
@@ -107,6 +108,8 @@ function addCss(fileName) {
   head.appendChild(link);
 }
 
+var thewrap = document.querySelector('wrap');
+thewrap.id = 'wrapnew';
 
 
 ready(loadReusableComponents);
