@@ -20,9 +20,8 @@
 }
 
 .qanzac {
-  float: right;
-  margin-top: -100px;
-  color: #fff
+  color: #fff;
+  text-align: center;
 }
 
 #qanzac-statement {
@@ -74,6 +73,6 @@ footer {
 }
 
 // hide omeka credit, because it sticks out stupidly
-#footer-text > p:first-child {
+#footer-text p:first-child {
   display: none;
 }

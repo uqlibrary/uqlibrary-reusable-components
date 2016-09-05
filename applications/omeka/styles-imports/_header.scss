@@ -1,7 +1,5 @@
 header {
-  background-color: $theme-color;
-  color: $menu-background-color;
-  border-bottom-width: 0;
+  display: none; // not required while we have uqlibrary reusable header
 }
 
 #site-title {
