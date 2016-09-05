@@ -108,7 +108,7 @@ function addCss(fileName) {
   head.appendChild(link);
 }
 
-var thewrap = document.querySelector('wrap');
+var thewrap = document.querySelector('#wrap');
 thewrap.id = 'wrapnew';
 
 
