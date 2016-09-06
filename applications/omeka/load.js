@@ -127,6 +127,12 @@ function addElements() {
   head.appendChild(link);
 }
 
+function AddClassNameToBody(newclassName) {
+  // this can be called in the footer to add a class name to the body so that we can target different themes
+  newclassName = ' '+newclassName;
+  document.body.className+= newclassName;
+
+}
 
 
 ready(loadReusableComponents);
