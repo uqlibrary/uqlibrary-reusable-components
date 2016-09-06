@@ -74,3 +74,9 @@ a {
     border-bottom-style: none !important; // hide omeka dotted underlines
     color: $accent-color; // links are always the same colour
 }
+
+
+.thanksroy paper-button {
+    // askus dropdown has wrong with on this theme
+    min-width: 103px;
+}
