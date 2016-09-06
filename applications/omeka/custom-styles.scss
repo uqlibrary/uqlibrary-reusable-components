@@ -55,7 +55,8 @@ p {
     margin-bottom: 0;
 }
 
-// hide omeka dotted underlines
+
 a {
-    border-bottom-style: none !important;
+    border-bottom-style: none !important; // hide omeka dotted underlines
+    color: $accent-color; // links are always the same colour
 }
