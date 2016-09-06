@@ -82,7 +82,9 @@ footer {
   footer {
     width:100%;
   }
-  #footer-content > p {
+  // hide silly contact links
+  #primary-nav,
+  #footer-content {
     display: none;
   }
 }

@@ -86,13 +86,6 @@
   }
 }
 
-.exhibits.bigtheme {
-   #content {
-    width: 960px;
-    float: none;
-  }
-}
-
 @media only screen and (max-width: 767px) {
   .bigtheme #content {
     width: 300px;
@@ -120,3 +113,16 @@
     padding-bottom: 2rem;
   }
 }
+
+
+
+
+@media only screen and (min-width: 767px) {
+  .exhibits.bigtheme {
+    #content {
+      width: 960px;
+      float: none;
+    }
+  }
+}
+
