@@ -1,4 +1,4 @@
-.libcal-hours-block {
+#libcal-hours-block {
   caption {
     // hide table caption supplied by libcal
     position: absolute;
@@ -46,7 +46,15 @@
 
 // make the table responsive
 @media only screen and (max-width: 760px) {
-    .libcal-hours-block {
+  // all libraries has the library name showing
+  #libcal-hours-block-0.libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+    position: relative;
+    top: auto;
+    left:auto;
+  }
+
+
+  #libcal-hours-block {
 
       table {
         width: 90%;
@@ -63,13 +71,6 @@
         top: -9999px;
         left: -9999px;
         border-width: 0;
-      }
-
-      // all libraries has the library name showing
-      &#libcal-hours-block-0 tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
-        position: relative;
-        top: auto;
-        left:auto;
       }
 
       // this works while we have blank time entries for the actual libraries
