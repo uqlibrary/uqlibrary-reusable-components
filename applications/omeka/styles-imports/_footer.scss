@@ -15,7 +15,7 @@
 
   #footer-text {
     background-color: $theme-color;
-    height: 230px
+    height: auto;
   }
 }
 
@@ -34,9 +34,10 @@
   height: 64px
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 360px) {
   #qanzac-logo img {
-    height: 50px
+    height: auto;
+    width:100%;
   }
 }
 
