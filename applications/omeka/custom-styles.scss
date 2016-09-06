@@ -1,17 +1,29 @@
+@import "../../bower_components/uqlibrary-styles/skeleton.scss";
+
 @import "styles-imports/header";
 @import "styles-imports/body";
 @import "styles-imports/footer";
 
-* {
+// This is specifically styled for the theme Thanks Roy
+// Other themes may need to override some of these themes
+// Call function AddClassNameToBody in the footer to add a classname to the body, eg
+//
+// <script type="text/javascript">// <![CDATA[
+//  AddClassNameToBody('bigtheme');
+// ]]></script>
+//
+// then write specific styles targetting that theme, overwriting Thanks Roy theme
+//
+// current themes with styling:
+// bigtheme
+
+
+body {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
-    line-height: 24px;
-}
-
-body {
-    background-color: #fff;
-    color: #222;
+    background-color: $menu-background-color;
+    color: $secondary-color-dark;
 }
 
 
@@ -58,3 +70,13 @@ p {
 }
 
 
+a {
+    border-bottom-style: none !important; // hide omeka dotted underlines
+    color: $accent-color; // links are always the same colour
+}
+
+
+.thanksroy paper-button {
+    // askus dropdown has wrong with on this theme
+    min-width: 103px;
+}

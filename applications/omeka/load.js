@@ -15,14 +15,14 @@ function loadReusableComponents() {
 
   addResponsiveMeta();
 
+  addElements();
 
-  /*
+
   //insert elements, even before Polymer is loaded
 
   //first element of the original document
   var firstElement = document.body.children[0];
 
-  //insert alerts before header
   var alerts = document.querySelector('uqlibrary-alerts');
   if (!alerts) {
     //as a back up insert header if it's not defined already
@@ -34,10 +34,6 @@ function loadReusableComponents() {
   var header = document.createElement('uq-minimal-header');
   document.body.insertBefore(header, firstElement);
 
-  // insert sub footer before body-tag
-  var subFooter = document.createElement('uql-connect-footer');
-  document.body.appendChild(subFooter);
-
   // insert footer before body-tag
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
@@ -45,8 +41,21 @@ function loadReusableComponents() {
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
+
+    header.showLoginButton = false;
+
+    header.applicationTitle = 'Online Exhibitions';
+
+
   });
-  */
+
+  // insert a block after block exhibit-page-navigation with class mobileclearer that will be styled clear both in mobile
+  var navblock = document.querySelector('#exhibit-page-navigation');
+  var navclearer = document.createElement('div');
+  navclearer.class = 'mobileclearer';
+  navblock.appendChild(navclearer);
+
+
 }
 
 function loadUQFavicon() {
@@ -63,7 +72,7 @@ function loadUQFavicon() {
 
 function addAppleTouchIcon() {
   // replace apple-touch-icon
-  var appleTouchIconlink = $('link[rel="apple-touch-icon"]'),
+  var appleTouchIconlink = document.querySelector('link[rel="apple-touch-icon"]'),
     link = document.createElement('link'),
     sizes = ['152x152', '120x120', '76x76'],
     rel = 'apple-touch-icon',
@@ -107,6 +116,23 @@ function addCss(fileName) {
   head.appendChild(link);
 }
 
+function addElements() {
+  var head = document.head,
+    link = document.createElement('link');
+
+  link.rel = 'import';
+  link.href = '//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html';
+  link.async = true;
+
+  head.appendChild(link);
+}
+
+function AddClassNameToBody(newclassName) {
+  // this can be called in the footer to add a class name to the body so that we can target different themes
+  newclassName = ' '+newclassName;
+  document.body.className+= newclassName;
+
+}
 
 
 ready(loadReusableComponents);

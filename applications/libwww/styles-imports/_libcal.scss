@@ -34,8 +34,15 @@
   tr.s-lc-whw-loc {
     background-color: #fcfcfc;
   }
-}
 
+  tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+    font-weight: 500;
+  }
+
+  tr.s-lc-whw-footnote td {
+    text-align: left;
+  }
+}
 
 // make the table responsive
 @media only screen and (max-width: 760px) {
@@ -58,6 +65,13 @@
         border-width: 0;
       }
 
+      // all libraries has the library name showing
+      &#libcal-hours-block-0 tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+        position: relative;
+        top: auto;
+        left:auto;
+      }
+
       // this works while we have blank time entries for the actual libraries
       tbody tr.s-lc-whw-loc td {
         position: absolute;
@@ -69,6 +83,7 @@
         padding-left: 0;
         margin: 0 auto;
         text-align: center;
+        font-weight:bold;
       }
       tbody td.s-lc-whw-sublocname {
         padding-left: 1rem;

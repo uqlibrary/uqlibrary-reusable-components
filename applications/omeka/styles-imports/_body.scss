@@ -1,16 +1,16 @@
 #wrap {
-  background-color: #fff;
-  color: #222;
+  background-color: $menu-background-color;
+  color: $secondary-color-dark;
   padding-bottom: 32px;
   padding-bottom: 2rem;
   /* match width from library.uq.edu.au */
   max-width: 1170px;
   width: calc(100% - 32px);
   margin: 0 auto 8px;
-  min-height: calc(100vh - 550px);
+  min-height: calc(100vh - 402px);
   a,
   a:link {
-    color: #2377CB; /* $accent-color */
+    color: $accent-color;
     text-decoration: none;
     border-bottom-width: 0;
   }
@@ -19,57 +19,120 @@
     text-decoration: underline;
   }
   a:visited {
-    color: #2377CB; /* $accent-color */
+    color: $accent-color
   }
 
   #exhibit-pages ul li.parent:before,
   #exhibit-pages ul li.current:before {
     width: auto;
     position: static;
-    background-color: #fff;
+    background-color: $menu-background-color;
   }
 }
 
 
-#content #exhibit-pages ,
-#content #exhibit-pages ul li ,
-#content #exhibit-pages > ul:first-child > li:first-of-type ,
-#content #exhibit-pages > ul > li {
-  list-style: none;
-  background: none;
-  border-width: 0;
-  padding: 0;
-  margin: 0;
+#content {
+  #exhibit-pages {
+    border-width: 0;
+    padding: 0;
+    margin: 0;
+
+    h4 {
+      border-width: 0;
+      border-bottom: 1px solid #f5f5f5;
+      margin-left: 0;
+      padding-left: 0;
+      font-weight: 300;
+      font-size: 14px;
+      font-size: 1rem;
+    }
+
+    ul li,
+    & > ul:first-child > li:first-of-type,
+    & > ul > li {
+      list-style: none;
+      background: none;
+      border-width: 0 0 1px 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul li {
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    ul li a {
+      transition: ease border, padding 0.15s;
+      transition-delay: 0.15s;
+      display: block;
+      padding: 12px 0;
+      padding: 0.8rem 0;
+      width: 100%;
+      position: relative;
+    }
+    ul li.current a {
+      color: $accent-color;
+      font-weight: 300;
+    }
+  }
+
+  // override omeka styling
+  & > ul > li.parent:before,
+  & > ul > li.current:before {
+    background-color: inherit;
+    width: 0;
+  }
 }
 
-#content #exhibit-pages ul li a {
-  transition: ease border, padding 0.15s;
-  transition-delay: 0.15s;
-  display: block;
-  border-bottom: 1px solid #f5f5f5;
-  padding: 12px 0;
-  padding: 0.8rem 0;
-  width: 100%;
-  position: relative;
-}
-#content #exhibit-pages ul li.current a {
-  color: #000;
-  font-weight: 400;
+
+.exhibits {
+  #content {
+    width: auto;
+    float: none;
+  }
+
+  nav#primary-nav {
+    display: none;
+  }
 }
 
-
-
-.exhibits #content {
-  width: auto;
-  float: none;
-}
-
-.exhibits nav#primary-nav {
-  display: none;
+@media only screen and (max-width: 767px) {
+  .bigtheme #content {
+    width: 300px;
+  }
 }
 
 // override default omeka styles
-.exhibit-block > *:first-child, .gallery + p, .exhibit-items + p {
+.exhibit-block > *:first-child,
+.gallery + p,
+.exhibit-items + p {
   margin-top: 16px;
   margin-top: 1rem;
 }
+
+#content:focus, #primary:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 600px) {
+  .mobileclearer {
+    clear: both;
+  }
+
+  #exhibit-page-navigation {
+    padding-bottom: 2rem;
+  }
+}
+
+
+
+
+@media only screen and (min-width: 767px) {
+  .exhibits.bigtheme {
+    #content {
+      width: 960px;
+      float: none;
+    }
+  }
+}
+
