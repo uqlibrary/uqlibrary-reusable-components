@@ -97,3 +97,13 @@
 #content:focus, #primary:focus {
   outline: none;
 }
+
+@media screen and (max-width: 600px) {
+  .mobileclearer {
+    clear: both;
+  }
+
+  #exhibit-page-navigation {
+    padding-bottom: 2rem;
+  }
+}
