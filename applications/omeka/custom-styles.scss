@@ -4,6 +4,20 @@
 @import "styles-imports/body";
 @import "styles-imports/footer";
 
+// This is specifically styled for the theme Thanks Roy
+// Other themes may need to override some of these themes
+// Call function AddClassNameToBody in the footer to add a classname to the body, eg
+//
+// <script type="text/javascript">// <![CDATA[
+//  AddClassNameToBody('bigtheme');
+// ]]></script>
+//
+// then write specific styles targetting that theme, overwriting Thanks Roy theme
+//
+// current themes with styling:
+// bigtheme
+
+
 body {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
