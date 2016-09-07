@@ -88,7 +88,7 @@ ol.breadcrumbList {
     display: inline;
     list-style-type: none;
     &:before {
-      content: "\003e";
+      content: "\003e"; // list divider is a greater-than
     }
     &:first-child:before {
       content: "";

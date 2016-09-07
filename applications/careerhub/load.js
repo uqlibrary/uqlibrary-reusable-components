@@ -83,7 +83,10 @@ function addAppleTouchIcon() {
   }
 }
 
-// usage: addBreadcrumbs('#head');
+/*
+ * add breadcrumbs to the top of a careerhub page
+ * example usage: addBreadcrumbs('#head');
+ */
 function addBreadcrumbs(parentElementIdentifier) {
   var parentBlock = document.querySelector(parentElementIdentifier);
   if (typeof(parentBlock) === undefined) {
@@ -129,13 +132,14 @@ function addBreadcrumbs(parentElementIdentifier) {
   anLI.appendChild(childElement);
   breadcrumbList.appendChild(anLI);
 
-  // if is event page, add another breadcrumb, as event title
-  testElement = document.querySelector('.event_title');
+  var theText;
+  // On the careerhub event page, event titles have a class of 'event_title'
+  var testElement = document.querySelector('.event_title');
   if (testElement !== null) {
     // an event class means we are on a detail page
     // display its title as an unlinked breadcrumb
     var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-    var theText = testElement[textProperty];
+    theText = testElement[textProperty];
     anchorText = document.createTextNode(theText);
 
     anLI = document.createElement('li');
@@ -143,7 +147,7 @@ function addBreadcrumbs(parentElementIdentifier) {
     breadcrumbList.appendChild(anLI);
   } else {
     if (window.location.href == urlCareerHubHomePage) {
-      var theText = 'Event List';
+      theText = 'Event List';
       anchorText = document.createTextNode(theText);
 
       anLI = document.createElement('li');
