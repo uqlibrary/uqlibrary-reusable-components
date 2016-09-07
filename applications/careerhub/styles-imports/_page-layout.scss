@@ -75,8 +75,18 @@ body {
       margin: 0;
       min-height: initial;
 
-    }
+      .event_title {
+        background-color: $theme-color-lighter;
+        color: $menu-background-color;
+        padding: 64px 0 16px 24px;
+        padding: 4rem 0 1rem 1.5rem;
+        margin-right: 32px;
+        margin-right: 2rem;
+      }
 
+    }
+    // styling icons
+    // https://github.com/google/material-design-icons/issues/150
   }
 
 }
