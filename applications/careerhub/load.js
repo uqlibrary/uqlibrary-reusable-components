@@ -133,6 +133,7 @@ function addBreadcrumbs(parentElementIdentifier) {
   anLI.appendChild(childElement);
   breadcrumbList.appendChild(anLI);
 
+  // third breadcrumb
   var theLabel;
   // On the careerhub event page, event titles have a class of 'event_title'
   var testElement = document.querySelector('.event_title');
@@ -149,7 +150,7 @@ function addBreadcrumbs(parentElementIdentifier) {
     anLI.appendChild(childElement);
     breadcrumbList.appendChild(anLI);
   } else {
-    if (window.location.href == urlCareerHubHomePage) {
+    if (window.location.href != urlCareerHubHomePage) {
       theLabel = 'Event List';
 
       displayNode = document.createTextNode(theLabel);
