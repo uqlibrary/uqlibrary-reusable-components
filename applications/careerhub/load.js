@@ -9,7 +9,7 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
-  addBreadcrumbs('.page');
+  addBreadcrumbs('#head');
 
   addAppleTouchIcon();
 
