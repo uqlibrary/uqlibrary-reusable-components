@@ -9,7 +9,7 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
-  addBreadcrumbs();
+//  addBreadcrumbs('.page');
 
   addAppleTouchIcon();
 
@@ -83,22 +83,6 @@ function addAppleTouchIcon() {
   }
 }
 
-function addLink(labelText, hrefAddress) {
-  // create anchor, add text, add link
-  var anchorText = document.createTextNode(labelText);
-  if (window.location.href != hrefAddress) {
-    // return an anchor element
-    var anchor = document.createElement('a');
-    anchor.href = hrefAddress;
-    anchor.appendChild(anchorText)
-    return anchor;
-  } else {
-    // return a text node
-    return anchorText;
-  }
-
-}
-
 // usage: addBreadcrumbs('#head');
 function addBreadcrumbs(parentElementIdentifier) {
   var parentBlock = document.querySelector(parentElementIdentifier);
@@ -109,7 +93,7 @@ function addBreadcrumbs(parentElementIdentifier) {
 
   // create ol
   var breadcrumbList = document.createElement('ol');
-  breadcrumbList.class = 'breadcrumbList';
+  breadcrumbList.className = 'breadcrumbList';
 
   // create first breadcrumb entry: home page
   // <paper-icon-button icon="home"></paper-icon-button>
@@ -152,14 +136,21 @@ function addBreadcrumbs(parentElementIdentifier) {
   if (typeof(testElement) !== undefined) {
     // an event class means we are on a detail page
     var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-    var theText = testElement.textContent;
+//    var theText = testElement.textContent;
+var theText = 'test';
+    anchorText = document.createTextNode(theText);
 
     anLI = document.createElement('li');
-    anLI.appendChild(theText);
+    anLI.appendChild(anchorText);
     breadcrumbList.appendChild(anLI);
+  } else {
+    if (true) {
+      // if event details page
+    }
   }
+  // else homepage - no third item
 
-  parentBlock.breadcrumbList(breadcrumbList, parentBlock.firstChild);
+  parentBlock.insertBefore(breadcrumbList, parentBlock.firstChild);
 }
 
 
