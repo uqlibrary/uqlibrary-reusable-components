@@ -9,7 +9,7 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
-//  addBreadcrumbs('.page');
+  addBreadcrumbs('.page');
 
   addAppleTouchIcon();
 
@@ -59,7 +59,7 @@ function loadUQFavicon() {
 
 function addAppleTouchIcon() {
   // replace apple-touch-icon
-  var appleTouchIconlink = ('link[rel="apple-touch-icon"]'),
+  var appleTouchIconlink = $('link[rel="apple-touch-icon"]'),
     link = document.createElement('link'),
     sizes = ['152x152', '120x120', '76x76'],
     rel = 'apple-touch-icon',
@@ -112,43 +112,45 @@ function addBreadcrumbs(parentElementIdentifier) {
 
   // create second breadcrumb entry: careerhub workgroup homepage
   var linktext = 'Library staff development';
-  var theLink = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
+  var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
 
   var childElement;
   var anchorText;
-  if (window.location.href != theLink) {
+  if (window.location.href != urlCareerHubHomePage) {
     childElement = document.createElement('a');
-    childElement.href = theLink;
+    childElement.href = urlCareerHubHomePage;
     anchorText = document.createTextNode(linktext);
     childElement.appendChild(anchorText);
   } else {
-    anchorText = document.createTextNode(linktext);
-    childElement.appendChild(anchorText);
+    childElement = document.createTextNode(linktext);
   }
 
   anLI = document.createElement('li');
   anLI.appendChild(childElement);
   breadcrumbList.appendChild(anLI);
 
-
   // if is event page, add another breadcrumb, as event title
   testElement = document.querySelector('.event_title');
-  if (typeof(testElement) !== undefined) {
+  if (testElement !== null) {
     // an event class means we are on a detail page
+    // display its title as an unlinked breadcrumb
     var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-//    var theText = testElement.textContent;
-var theText = 'test';
+    var theText = testElement[textProperty];
     anchorText = document.createTextNode(theText);
 
     anLI = document.createElement('li');
     anLI.appendChild(anchorText);
     breadcrumbList.appendChild(anLI);
   } else {
-    if (true) {
-      // if event details page
+    if (window.location.href == urlCareerHubHomePage) {
+      var theText = 'Event List';
+      anchorText = document.createTextNode(theText);
+
+      anLI = document.createElement('li');
+      anLI.appendChild(anchorText);
+      breadcrumbList.appendChild(anLI);
     }
   }
-  // else homepage - no third item
 
   parentBlock.insertBefore(breadcrumbList, parentBlock.firstChild);
 }
