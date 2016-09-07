@@ -82,16 +82,32 @@ body {
 }
 
 ol.breadcrumbList {
-  margin-left: -20px;
   li {
-    padding-left: 20px;
     display: inline;
+    padding-right: 5px;
     list-style-type: none;
     &:before {
       content: "\003e"; // list divider is a greater-than
     }
+    &:first-child {
+      padding-right: 0;
+      a {
+        padding-left: 0;
+      }
+    }
     &:first-child:before {
       content: "";
+    }
+    span,
+    a {
+      padding-left: 5px;
+    }
+    paper-icon-button {
+      padding: 0;
+    }
+    iron-icon {
+      width:20px;
+      height: 20px;
     }
   }
 }
