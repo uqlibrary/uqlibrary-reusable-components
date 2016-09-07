@@ -60,6 +60,18 @@
   }
 }
 
+// trying to make the buttons use text labels instead
+button.s-lc-whw-ne,
+button.s-lc-whw-pr {
+  visibility: hidden;
+}
+button.s-lc-whw-ne:after {
+  content: 'Next week';
+}
+button.s-lc-whw-pr:after {
+  content: 'Prev week';
+}
+
 // all libraries has the library name row showing on non-mobile
 #libcal-hours-block-0.libcal-hours-block tbody tr.s-lc-whw-loc td {
   position: relative;
