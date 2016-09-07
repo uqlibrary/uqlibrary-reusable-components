@@ -74,6 +74,25 @@ button.s-lc-whw-pr:after {
 // make the table responsive
 @media only screen and (max-width: 760px) {
 
+  #libcal-hours-block-0 {
+
+    tbody tr.s-lc-whw-loc {
+      td {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      td.s-lc-whw-locname {
+        position: relative;
+        top: auto;
+        left: auto;
+
+      }
+    }
+
+  }
+
+
   .libcal-hours-block ,
   #libcal-hours-block {
 
