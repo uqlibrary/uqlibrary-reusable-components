@@ -6,6 +6,7 @@
 // individual libraries has:
 // <div id="libcal-hours-block"></div>
 
+.libcal-hours-block ,
 #libcal-hours-block {
   caption {
     // hide table caption supplied by libcal
@@ -70,6 +71,7 @@
 // make the table responsive
 @media only screen and (max-width: 760px) {
 
+  .libcal-hours-block ,
   #libcal-hours-block {
 
     table {
