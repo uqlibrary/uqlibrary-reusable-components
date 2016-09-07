@@ -61,8 +61,8 @@
   }
 }
 
-// all libraries has the library name showing
-#libcal-hours-block-0.libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+// all libraries has the library name row showing on non-mobile
+#libcal-hours-block-0.libcal-hours-block tbody tr.s-lc-whw-loc td {
   position: relative;
   top: auto;
   left:auto;
