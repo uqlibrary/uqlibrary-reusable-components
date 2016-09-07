@@ -81,7 +81,17 @@ body {
 
 }
 
+#head {
+  padding-top:0;
+}
+
 ol.breadcrumbList {
+  padding-left: 0;
+  margin: 10px 0 0 0;
+  height: 40px;
+  height: 2.5rem;
+  font-size: 13px;
+  font-size: 0.8rem;
   li {
     display: inline;
     padding-right: 5px;
@@ -90,7 +100,7 @@ ol.breadcrumbList {
       content: "\003e"; // list divider is a greater-than
     }
     &:first-child {
-      padding-right: 0;
+      padding-right: 5px;
       a {
         padding-left: 0;
       }
