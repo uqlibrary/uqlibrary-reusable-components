@@ -1,10 +1,9 @@
-@import "../../bower_components/uqlibrary-styles/skeleton.scss";
-
-// its has written the plugin thusly:
-// all libraries has attributes:
+// ITS has written the plugin thusly:
+// all-libraries has attributes:
 // <div id="libcal-hours-block-0" class="libcal-hours-block"></div>
-// individual libraries has:
+// but individual-libraries has:
 // <div id="libcal-hours-block"></div>
+// targetting appropriately
 
 .libcal-hours-block ,
 #libcal-hours-block {
