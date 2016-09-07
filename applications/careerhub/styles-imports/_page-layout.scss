@@ -85,6 +85,20 @@ body {
       }
 
     }
+
+    .sidebar .upcomingEvents .body {
+      position: relative;
+      a {
+        background-color: #2377CB;
+        color: #fff;
+        padding: 0.8rem;
+        display: block;
+        width: 7rem;
+        text-align: center;
+        position: absolute;
+        right: 0;
+      }
+    }
     // styling icons
     // https://github.com/google/material-design-icons/issues/150
   }
