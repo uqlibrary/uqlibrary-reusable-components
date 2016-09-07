@@ -1,10 +1,9 @@
-@import "../../bower_components/uqlibrary-styles/skeleton.scss";
-
-// its has written the plugin thusly:
-// all libraries has attributes:
+// ITS has written the plugin thusly:
+// all-libraries has attributes:
 // <div id="libcal-hours-block-0" class="libcal-hours-block"></div>
-// individual libraries has:
+// but individual-libraries has:
 // <div id="libcal-hours-block"></div>
+// targetting appropriately
 
 .libcal-hours-block ,
 #libcal-hours-block {
@@ -25,10 +24,6 @@
   tbody td.s-lc-whw-locname,
   tbody td.s-lc-whw-sublocname {
     text-align: left;
-  }
-
-  thead th.s-lc-whw-bh {
-    text-align: right;
   }
 
   // match date area (header row and 'today' column)
@@ -61,8 +56,16 @@
   }
 }
 
-// all libraries has the library name showing
-#libcal-hours-block-0.libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+// make the buttons use text labels instead
+button.s-lc-whw-ne:before {
+  content: 'Next week ';
+}
+button.s-lc-whw-pr:after {
+  content: ' Prev week';
+}
+
+// all libraries has the library name row showing on non-mobile
+#libcal-hours-block-0.libcal-hours-block tbody tr.s-lc-whw-loc td {
   position: relative;
   top: auto;
   left:auto;
@@ -70,6 +73,25 @@
 
 // make the table responsive
 @media only screen and (max-width: 760px) {
+
+  #libcal-hours-block-0.libcal-hours-block {
+
+    tbody tr.s-lc-whw-loc {
+      td {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      td.s-lc-whw-locname {
+        position: relative;
+        top: auto;
+        left: auto;
+
+      }
+    }
+
+  }
+
 
   .libcal-hours-block ,
   #libcal-hours-block {
