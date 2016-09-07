@@ -2,7 +2,7 @@
   background-color: #fff;
   border-bottom-width: 0;
   border-top-width: 0;
-  padding-top: 3.5rem;
+  padding-top: 0;
   padding-left:0;
 
   .inner {
@@ -39,6 +39,44 @@
     }
   }
 
+}
+
+
+ol.breadcrumbList {
+  padding-left: 0;
+  margin: 10px 0 0 0;
+  height: 40px;
+  height: 2.5rem;
+  font-size: 13px;
+  font-size: 0.8rem;
+  li {
+    display: inline;
+    padding-right: 5px;
+    list-style-type: none;
+    &:before {
+      content: "\003e"; // list divider is a greater-than
+    }
+    &:first-child {
+      padding-right: 5px;
+      a {
+        padding-left: 0;
+      }
+    }
+    &:first-child:before {
+      content: "";
+    }
+    span,
+    a {
+      padding-left: 5px;
+    }
+    paper-icon-button {
+      padding: 0;
+    }
+    iron-icon {
+      width:20px;
+      height: 20px;
+    }
+  }
 }
 
 #user_info, // hide the careerhub user welcome
