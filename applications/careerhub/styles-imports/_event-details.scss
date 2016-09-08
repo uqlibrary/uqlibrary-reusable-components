@@ -10,6 +10,14 @@
         display: none;
       }
 
+      div.event * {
+        font-size: 1rem;
+      }
+      div.event h1 {
+        font-size: 28px;
+        font-size: 1.75rem;
+      }
+
       .event_title {
         margin-top: 0.3rem;
         background-color: $theme-color-lighter;
@@ -42,7 +50,14 @@
       div.event_time,
       div.event_venue,
       div.event_details {
-        margin-left: 60px;
+        margin-left: 20px;
+        &:before {
+          margin-left:20px;
+        }
+        span {
+          margin-left:20px;
+
+        }
       }
 
       // styling icons
