@@ -86,22 +86,6 @@ body {
 
     }
 
-    .sidebar .upcomingEvents .body {
-      position: relative;
-      & > a {
-        background-color: $accent-color;
-        color: $menu-background-color;
-        padding: 13px;
-        padding: 0.8rem;
-        display: block;
-        width: 56px;
-        width: 7rem;
-        text-align: center;
-        position: absolute;
-        right: 0;
-        text-transform: uppercase;
-      }
-    }
     // styling icons
     // https://github.com/google/material-design-icons/issues/150
   }

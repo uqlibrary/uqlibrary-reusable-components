@@ -44,6 +44,24 @@
           margin-bottom: 0.5rem;
 
         }
+
+        // more events button at bottom of list
+        position: relative;
+        & > a {
+          position: absolute;
+          right: 0;
+          background-color: $accent-color;
+          color: $menu-background-color;
+          padding: 9px 13px;
+          padding: 0.6rem 0.8rem;
+          display: block;
+          width: 56px;
+          width: 7rem;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration: none;
+        }
+
       }
 
       a {
