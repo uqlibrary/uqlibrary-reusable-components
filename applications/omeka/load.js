@@ -49,12 +49,6 @@ function loadReusableComponents() {
 
   });
 
-  // insert a block after block exhibit-page-navigation with class mobileclearer that will be styled clear both in mobile
-  var navblock = document.querySelector('#exhibit-page-navigation');
-  var navclearer = document.createElement('div');
-  navclearer.class = 'mobileclearer';
-  navblock.appendChild(navclearer);
-
 
 }
 
