@@ -11,7 +11,7 @@ function loadReusableComponents() {
 
   addBreadcrumbs('#head');
 
-  changeLabelOfLink('.sidebar a', 'More events');
+//  changeLabelOfLink('.sidebar a', 'More events');
 
   addAppleTouchIcon();
 
@@ -181,7 +181,7 @@ function addBreadcrumbs(parentElementIdentifier) {
  * @returns {boolean}
  */
 function changeLabelOfLink(elementReference, newLabel) {
-  var theLink = document.querySelector('.sidebar a').firstChild;
+  var theLink = document.querySelector(elementReference).firstChild;
   if (theLink === null) {
     return false;
   }
