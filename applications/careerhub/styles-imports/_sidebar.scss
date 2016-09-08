@@ -3,7 +3,7 @@
   #columns { // table!!
 
     .sidebar { //right hand nav bar of table
-      background-color: #fff;
+      background-color: $footer-background-color;
       color: #222;
       border-width: 0;
       font-size: inherit;
@@ -53,13 +53,14 @@
           background-color: $accent-color;
           color: $menu-background-color;
           padding: 9px 13px;
-          padding: 0.6rem 0.8rem;
+          padding: 0.8rem;
           display: block;
           width: 56px;
           width: 7rem;
           text-align: center;
           text-transform: uppercase;
           text-decoration: none;
+          font-size: 0.8em;
         }
 
       }

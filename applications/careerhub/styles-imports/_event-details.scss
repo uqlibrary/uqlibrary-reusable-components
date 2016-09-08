@@ -1,5 +1,9 @@
 #main {
 
+  // material icons:
+  // calendar:
+  //
+
   #columns { // table!!
     #content {
       .event_type {
@@ -8,6 +12,12 @@
 
       .event_title {
         margin-top: 0.3rem;
+        background-color: $theme-color-lighter;
+        color: $menu-background-color;
+        padding: 96px 0 16px 24px;
+        padding: 6rem 0 1rem 1.5rem;
+        margin-right: 32px;
+        margin-right: 2rem;
       }
 
       div strong {
@@ -17,16 +27,40 @@
         color: #000;
       }
 
-      // space how the event details relate vertically
+      div.event_date,
+      div.event_time,
       div.event_venue,
       div.event_summary,
-      div.event_details {
-        margin: 11px 0 0 0
+      div.event_details,
+      div.event_booking
+      {
+        padding-left: 60px;
+        strong  ,
+        br  {
+          display: none;
+        }
+        &:before {
+          @extend .material-icons;
+          vertical-align: top;
+        }
       }
 
-      div.event_venue strong {
-        display: block;
-        margin-bottom: -27px;
+      // styling icons
+      // https://github.com/google/material-design-icons/issues/150
+      div.event_date:before {
+        content: 'today';
+      }
+      div.event_summary:before {
+        content: 'speaker_notes';
+      }
+      div.event_booking:before {
+        content: 'people';
+      }
+
+
+      div.event_venue {
+        font-weight: 400;
+        font-size: inherit;
       }
 
       div.event_details p,
@@ -44,7 +78,7 @@
       }
 
       .event_date {
-        margin-top: 0.8rem;
+        margin-top: 2rem;
         font-weight: normal;
         font-size: inherit;
       }
