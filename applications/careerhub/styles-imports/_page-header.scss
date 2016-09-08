@@ -5,6 +5,10 @@
   padding-top: 0;
   padding-left:0;
 
+  a {
+    color: inherit; // override careerhub color
+  }
+
   .inner {
     margin: 0;
     width: auto;
@@ -20,10 +24,14 @@
 
   #sitename {
     // match h2 in drupal theme
+    font-size: 16px;
     font-size: 2rem;
     font-weight: 500;
     line-height: 1.25;
-    margin-bottom: 0.2rem;
+    margin-top: 10px;
+    margin-top: 0.6rem;
+    margin-bottom: 16px;
+    margin-bottom: 1rem;
 
     // make case match uql usage - first character uppercase, all other letters lower case
     text-transform: lowercase;
@@ -51,11 +59,11 @@ ol.breadcrumbList {
   font-size: 0.8rem;
   li {
     display: inline;
-    padding-right: 5px;
     list-style-type: none;
     &:before {
       @extend .material-icons;
-      content: "fa-angle-right";
+      content: 'chevron_right';
+      vertical-align: top;
     }
     &:first-child {
       padding-right: 5px;
@@ -66,16 +74,14 @@ ol.breadcrumbList {
     &:first-child:before {
       content: "";
     }
-    span,
-    a {
-      padding-left: 5px;
-    }
     paper-icon-button {
       padding: 0;
+      width:20px;
     }
     iron-icon {
       width:20px;
       height: 20px;
+      margin-top: -3px;
     }
   }
 }
