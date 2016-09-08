@@ -18,8 +18,8 @@
     height: auto;
   }
 
-  ul.uql-global-links {
-    display: none;
+  .footer-list ul.footer-uq-details li {
+    overflow: hidden; // iphone6 & 6s is pushing right
   }
 }
 
