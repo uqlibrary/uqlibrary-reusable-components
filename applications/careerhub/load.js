@@ -11,7 +11,7 @@ function loadReusableComponents() {
 
   addBreadcrumbs('#head');
 
-  changeLabelOfLink('.sidebar > a', 'More events');
+  relabelMoreEventsLink();
 
   addAppleTouchIcon();
 
@@ -173,31 +173,34 @@ function addBreadcrumbs(parentElementIdentifier) {
 }
 
 /**
- * change the text on an achor
- * eg usage: changeLabelOfLink('.sidebar a', 'More events')
- *
- * @param elementReference - the html element that will be changed, eg '.sidebar a'
- * @param newLabel - what the label will become. text string
+ * find the specific link on the page and relabel it
  * @returns {boolean}
  */
-function changeLabelOfLink(elementReference, newLabel) {
-  var theLink = document.querySelector(elementReference);
-  if (theLink === null) {
-    return false;
-  }
+function relabelMoreEventsLink() {
+  // we are doing this because the following line:
+  // document.querySelector(".sidebar > a");
+  // returns null so we cant target the specific link (doesnt like the child selector) :(
 
-  if (!theLink.firstChild) {
-    return false;
-  }
+  var urlEventsPage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development/events';
+  var links = document.querySelectorAll('.sidebar a');
 
-  theLink = theLink.firstChild;
+  var theLink;
+  [].forEach.call(links, function(links) {
+    // do whatever
+    if (urlEventsPage == links.href) {
+      if (!links.firstChild) {
+        return false;
+      }
 
-  if (!theLink.data) {
-    return false;
-  }
+      theLink = links.firstChild;
+      if (!theLink.data) {
+        return false;
+      }
 
-  theLink.data = newLabel;
+      theLink.data = 'More events';
 
+    }
+  });
   return true;
 }
 
