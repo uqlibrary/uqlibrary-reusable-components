@@ -11,7 +11,7 @@ function loadReusableComponents() {
 
   addBreadcrumbs('#head');
 
-//  changeLabelOfLink('.sidebar a', 'More events');
+  changeLabelOfLink('.sidebar > a', 'More events');
 
   addAppleTouchIcon();
 
