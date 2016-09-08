@@ -181,8 +181,18 @@ function addBreadcrumbs(parentElementIdentifier) {
  * @returns {boolean}
  */
 function changeLabelOfLink(elementReference, newLabel) {
-  var theLink = document.querySelector(elementReference).firstChild;
+  var theLink = document.querySelector(elementReference);
   if (theLink === null) {
+    return false;
+  }
+
+  if (!theLink.firstChild) {
+    return false;
+  }
+
+  theLink = theLink.firstChild;
+
+  if (!theLink.data) {
     return false;
   }
 
