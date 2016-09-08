@@ -54,7 +54,7 @@ ol.breadcrumbList {
     padding-right: 5px;
     list-style-type: none;
     &:before {
-      content: "\003e"; // list divider is a greater-than
+      content: "\f105"; // list divider is fa-angle-right
     }
     &:first-child {
       padding-right: 5px;

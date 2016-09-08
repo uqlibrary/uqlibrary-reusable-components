@@ -88,7 +88,7 @@ body {
 
     .sidebar .upcomingEvents .body {
       position: relative;
-      a {
+      & > a {
         background-color: $accent-color;
         color: $menu-background-color;
         padding: 13px;
