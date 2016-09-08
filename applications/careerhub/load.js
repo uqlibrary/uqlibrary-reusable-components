@@ -11,6 +11,8 @@ function loadReusableComponents() {
 
   addBreadcrumbs('#head');
 
+  changeLabelOfLink('.sidebar a', 'More events');
+
   addAppleTouchIcon();
 
   //insert elements, even before Polymer is loaded
@@ -83,14 +85,16 @@ function addAppleTouchIcon() {
   }
 }
 
-/*
+/**
  * add breadcrumbs to the top of a careerhub page
  * example usage: addBreadcrumbs('#head');
+ *
+ * @param parentElementIdentifier
+ * @returns {boolean}
  */
 function addBreadcrumbs(parentElementIdentifier) {
   var parentBlock = document.querySelector(parentElementIdentifier);
   if (parentBlock === null) {
-    console.log('function addBreadcrumbs: element "'+parentElementIdentifier+'" doesnt exist (reusable.../careerhub/load.js)');
     return false;
   }
 
@@ -164,6 +168,27 @@ function addBreadcrumbs(parentElementIdentifier) {
   }
 
   parentBlock.insertBefore(breadcrumbList, parentBlock.firstChild);
+
+  return true;
+}
+
+/**
+ * change the text on an achor
+ * eg usage: changeLabelOfLink('.sidebar a', 'More events')
+ *
+ * @param elementReference - the html element that will be changed, eg '.sidebar a'
+ * @param newLabel - what the label will become. text string
+ * @returns {boolean}
+ */
+function changeLabelOfLink(elementReference, newLabel) {
+  var theLink = document.querySelector('.sidebar a').firstChild;
+  if (theLink === null) {
+    return false;
+  }
+
+  theLink.data = newLabel;
+
+  return true;
 }
 
 
