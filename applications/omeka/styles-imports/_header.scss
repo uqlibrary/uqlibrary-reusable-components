@@ -1,49 +1,7 @@
 header {
   display: none; // not required while we have uqlibrary reusable header
 }
-
-#site-title {
-  height: 100px;
-  background-color: $theme-color;
-  padding-left: 16px;
-  margin: 0 auto;
-  max-width: 1140px;
-  width: 100%;
-
-  img {
-    margin-top: -45px
-  }
-
-  a {
-    color: $menu-background-color !important;
-    text-decoration: none;
-    font-size: 20px;
-    line-height: 1;
-    letter-spacing: .02em;
-    font-weight: 400;
-    white-space: nowrap
-  }
-}
-.button {
-  font-family: Roboto, Verdana, Arial, Helvetica, sans-serif
-}
-
-
-
-/* hide empty menu button */
 .menu-button {
   display: none;
 }
 
-// iphones 5 and 6 are running the 'online exhib' title over the 'uq library' title
-// doesnt happen in android
-@media only screen
-and (min-device-width: 320px)
-and (max-device-width: 667px)
-and (-webkit-min-device-pixel-ratio: 2)
-and (orientation: portrait) {
-
-  .header-container .application-title.uq-minimal-header, {
-    margin-left: 55px;
-  }
-}
