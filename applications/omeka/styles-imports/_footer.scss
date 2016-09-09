@@ -1,9 +1,20 @@
 footer { // footer overridden by uql-minimal-footer
-  display: none;
+  border-top-width: 0;
+  padding-bottom: 0;
+
+  p,
+  nav#bottom-nav {
+    display: none;
+  }
+}
+
+#footer-text {
+    background-color: #49075E;
 }
 
 
-// qanzac applies to the 2016 Qld Govt Anzac logo found on the JD Fryer exhibition, 2016
+
+  // qanzac applies to the 2016 Qld Govt Anzac logo found on the JD Fryer exhibition, 2016
 .qanzac {
   color: $menu-background-color;
   text-align: center;

@@ -1,10 +1,10 @@
 body #wrap {
   background-color: $menu-background-color;
   color: $secondary-color-dark;
-  padding-bottom: 2rem;
+  padding-bottom: 0;
   max-width: 1170px;
   width: calc(100% - 32px);
-  margin: 0 auto 8px;
+  margin: 0 auto;
   min-height: calc(100vh - 402px);
 
   a,
