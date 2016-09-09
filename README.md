@@ -252,7 +252,7 @@ A third party product we are using for online library exhibits
 
 [View](https://uqlibraryonlineexhibitions.omeka.net/)
 
-Login details are in vault.
+Login as admin [here](https://uqlibraryonlineexhibitions.omeka.net/admin/) - user email and password are in Vault.
 
 The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/omeka/custom-styles.scss)
 
