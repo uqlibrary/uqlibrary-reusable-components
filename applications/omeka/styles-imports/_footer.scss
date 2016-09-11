@@ -31,14 +31,17 @@ footer { // footer overridden by uql-minimal-footer
 }
 
 @media screen and (max-width: 700px) {
-  #qanzac-logo img {
-    height: auto;
-    width:100%;
+  #qanzac-logo {
+    padding: 0 10px;
+    img {
+
+      height: auto;
+      width: 100%;
+    }
   }
 }
 @media screen and (max-width: 900px) {
-  .qanzac {
-    margin-top: 30px !important;
-    margin-bottom: 10px
+  #footer-text {
+    height: initial;
   }
 }

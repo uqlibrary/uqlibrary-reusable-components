@@ -1,11 +1,40 @@
-body #wrap {
-  background-color: $menu-background-color;
-  color: $secondary-color-dark;
-  padding-bottom: 0;
+article#content {
   max-width: 1170px;
   width: calc(100% - 32px);
   margin: 0 auto;
-  min-height: calc(100vh - 402px);
+  float: none;
+  display: block;
+  padding-bottom: 0; /* mobile only? */
+
+  h1 {
+    width: auto;
+    float: none;
+    margin-right: 0;
+    display: block;
+  }
+}
+
+// undo omeka madness
+.exhibits.show article#content > h1:first-of-type {
+  width: auto;
+  float: none;
+  margin-right: 0;
+  display: block;
+}
+
+
+body {
+  background-color: $menu-background-color;
+  color: #222;
+  padding-bottom: 0;
+  min-height: calc(100vh - 402px)
+
+  #wrap {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-width: initial;
+  }
 
   a,
   a:link {
@@ -49,6 +78,21 @@ body #wrap {
     h1 {
       padding-right: 30%;
     }
+  }
+
+  /* undo omeka madness */
+  #wrap .full ~ #exhibit-blocks, .full ~ #exhibit-page-navigation {
+    width: initial;
+  }
+
+  #wrap .exhibits.summary #primary,
+  .exhibits.summary #content > h1:first-of-type,
+  #wrap .exhibits.show #content > h1:first-of-type,
+  #exhibit-blocks, #wrap #exhibit-page-navigation {
+    width: initial;
+    float: none;
+    margin-right: 0;
+    display: block;
   }
 }
 
@@ -110,7 +154,6 @@ body #wrap {
 
 @media screen and (max-width: 600px) {
   #content #exhibit-page-navigation {
-    padding-bottom: 2rem;
 
     div {
       text-align: center;

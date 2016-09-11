@@ -21,7 +21,7 @@ body {
   font-weight: 300;
   font-style: normal;
   background-color: $menu-background-color;
-  color: $secondary-color-dark
+  color: $secondary-color-dark;
 }
 
 
@@ -75,6 +75,6 @@ a {
 
 
 .thanksroy paper-button {
-    // askus dropdown has wrong with on this theme
+    // askus dropdown has wrong width on this theme
     min-width: 103px;
 }
