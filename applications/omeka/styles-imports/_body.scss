@@ -4,7 +4,7 @@ article#content {
   margin: 0 auto;
   float: none;
   display: block;
-  padding-bottom: 0; /* mobile only? */
+  padding-bottom: 0;
 
   h1 {
     width: auto;
@@ -25,7 +25,7 @@ article#content {
 
 body {
   background-color: $menu-background-color;
-  color: #222;
+  color: $secondary-color-dark;
   padding-bottom: 0;
   min-height: calc(100vh - 402px);
 
@@ -80,7 +80,7 @@ body {
     }
   }
 
-  /* undo omeka madness */
+  // undo omeka madness
   #wrap .full ~ #exhibit-blocks, .full ~ #exhibit-page-navigation {
     width: initial;
   }

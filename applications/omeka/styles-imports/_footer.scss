@@ -9,7 +9,8 @@ footer { // footer overridden by uql-minimal-footer
 }
 
 #footer-text {
-    background-color: #49075E;
+  background-color: $theme-color;
+  padding-top: 2rem;
 }
 
 
