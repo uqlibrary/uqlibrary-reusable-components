@@ -47,8 +47,6 @@ function loadReusableComponents() {
 
     header.applicationTitle = 'Online Exhibitions';
 
-    addLinkToOnlineExhibHeader();
-
   });
 
 
@@ -124,37 +122,10 @@ function addElements() {
 }
 
 function AddClassNameToBody(newclassName) {
-  // this can be called in the footer to add a class name to the body so that we can target different themes
+  // this can be called in the footer to add a class name to the body so that we can target different themes or exhibits
   newclassName = ' '+newclassName;
   document.body.className+= newclassName;
 
 }
-
-function addLinkToOnlineExhibHeader() {
-  var headerNode = document.querySelector('.application-title');
-  if (headerNode === null) {
-    return false;
-  }
-
-  // get the current label value
-  var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-  var theLabel = headerNode[textProperty];
-
-  // create text node
-  var displayNode = document.createTextNode(theLabel);
-
-  // create anchor, append text node
-  var urlOnlineExhibitionHomepage = 'https://uqlibraryonlineexhibitions.omeka.net';
-  var newLink = document.createElement('a');
-  newLink.href = urlOnlineExhibitionHomepage;
-  newLink.appendChild(displayNode);
-
-  // delete old child, append anchor as new child
-  while (headerNode.firstChild) {
-    headerNode.removeChild(headerNode.firstChild);
-  }
-  headerNode.appendChild(newLink);
-}
-
 
 ready(loadReusableComponents);
