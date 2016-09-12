@@ -18,6 +18,7 @@ function loadReusableComponents() {
   addElements();
 
 
+
   //insert elements, even before Polymer is loaded
 
   //first element of the original document
@@ -46,6 +47,7 @@ function loadReusableComponents() {
 
     header.applicationTitle = 'Online Exhibitions';
 
+    addLinkToOnlineExhibHeader();
 
   });
 
@@ -126,6 +128,32 @@ function AddClassNameToBody(newclassName) {
   newclassName = ' '+newclassName;
   document.body.className+= newclassName;
 
+}
+
+function addLinkToOnlineExhibHeader() {
+  var headerNode = document.querySelector('.application-title');
+  if (headerNode === null) {
+    return false;
+  }
+
+  // get the current label value
+  var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
+  var theLabel = headerNode[textProperty];
+
+  // create text node
+  var displayNode = document.createTextNode(theLabel);
+
+  // create anchor, append text node
+  var urlOnlineExhibitionHomepage = 'https://uqlibraryonlineexhibitions.omeka.net';
+  var newLink = document.createElement('a');
+  newLink.href = urlOnlineExhibitionHomepage;
+  newLink.appendChild(displayNode);
+
+  // delete old child, append anchor as new child
+  while (headerNode.firstChild) {
+    headerNode.removeChild(headerNode.firstChild);
+  }
+  headerNode.appendChild(newLink);
 }
 
 
