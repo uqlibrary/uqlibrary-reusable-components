@@ -1,26 +1,23 @@
-.column {
-  position: relative;
-  width: 49%
-}
+footer { // footer overridden by uql-minimal-footer
+  border-top-width: 0;
+  padding-bottom: 0;
 
-@media screen and (max-width: 900px) {
-  .column {
-    width: 100%
-  }
-
-  .qanzac {
-    margin-top: 30px !important;
-    margin-bottom: 10px
-  }
-
-  #footer-text {
-    background-color: $theme-color;
-    height: auto;
+  p,
+  nav#bottom-nav {
+    display: none;
   }
 }
 
+#footer-text {
+  background-color: $theme-color;
+  padding-top: 2rem;
+}
+
+
+
+  // qanzac applies to the 2016 Qld Govt Anzac logo found on the JD Fryer exhibition, 2016
 .qanzac {
-  color: #fff;
+  color: $menu-background-color;
   text-align: center;
 }
 
@@ -34,57 +31,18 @@
   height: 64px
 }
 
-@media screen and (max-width: 360px) {
-  #qanzac-logo img {
-    height: auto;
-    width:100%;
+@media screen and (max-width: 700px) {
+  #qanzac-logo {
+    padding: 0 10px;
+    img {
+
+      height: auto;
+      width: 100%;
+    }
   }
 }
-
-footer {
-  background-color: $theme-color;
-  color: $menu-background-color;
-  text-decoration: none;
-  line-height: 20px;
-  font-size: 14px;
-  padding: 0;
-  margin: 0;
-  border-top-width: 0;
-}
-
-.footer-container {
-  text-decoration: none;
-  line-height: 20px;
-  white-space: nowrap;
-  color: $menu-background-color !important;
-  font-size: 14px;
-  padding: 20px;
-  margin: 0 auto;
-  max-width: 1140px;
-  width: 100%;
-
-  div {
-    color: $theme-color-light;
-  }
-  a {
-    color: $menu-background-color !important;
-    text-decoration: none
-  }
-
-}
-
-// hide omeka credit, because it sticks out stupidly
-#footer-text > p {
-  display: none;
-}
-
-.bigtheme {
-  footer {
-    width:100%;
-  }
-  // hide silly contact links
-  #primary-nav,
-  #footer-content {
-    display: none;
+@media screen and (max-width: 900px) {
+  footer #footer-text {
+    height: initial;
   }
 }

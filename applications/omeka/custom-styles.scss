@@ -4,71 +4,69 @@
 @import "styles-imports/body";
 @import "styles-imports/footer";
 
-// This is specifically styled for the theme Thanks Roy
-// Other themes may need to override some of these themes
-// Call function AddClassNameToBody in the footer to add a classname to the body, eg
+// Exhibits are supposed to use the Minimalist theme, as UQL styling has been set to override the defaults on that theme
+// if an exhibit requires specific styling, think of a class name specific to the exhibition and
+// call function AddClassNameToBody in the footer to add a classname to the body, eg
 //
 // <script type="text/javascript">// <![CDATA[
-//  AddClassNameToBody('bigtheme');
+//  AddClassNameToBody('leohayesexhib');
 // ]]></script>
 //
-// then write specific styles targetting that theme, overwriting Thanks Roy theme
+// then write specific styles targetting that theme, overwriting Minimalist theme
 //
-// current themes with styling:
-// bigtheme
 
 
 body {
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    background-color: $menu-background-color;
-    color: $secondary-color-dark;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  background-color: $menu-background-color;
+  color: $secondary-color-dark;
 }
 
 
 h1, h1 span,
 h2, h3, h4, h5, h6 {
-    font-weight: 500;
-    line-height: 1.25;
-    margin-top: 0;
-    margin-bottom: 0;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 h1, h1 span {
-    font-size: 32px;
-    font-size: 2rem;
-    padding-top: 16px;
-    padding-top: 1rem;
+  font-size: 32px;
+  font-size: 2rem;
+  padding-top: 16px;
+  padding-top: 1rem;
+  text-transform: none;
 }
 
 h2 {
-    font-size: 28px;
-    font-size: 1.75rem;
-    font-weight: 400
+  font-size: 28px;
+  font-size: 1.75rem;
+  font-weight: 400
 }
 
 h3 {
-    font-size: 22px;
-    font-size: 1.4rem;
-    font-weight: 400
+  font-size: 22px;
+  font-size: 1.4rem;
+  font-weight: 400
 }
 
 h4 {
-    font-size: 18px;
-    font-size: 1.15rem
+  font-size: 18px;
+  font-size: 1.15rem
 }
 
 h5 {
-    font-size: 16px;
-    font-size: 1rem;
-    font-weight: 400
+  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 400
 }
 
 p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
-
 
 a {
     border-bottom-style: none !important; // hide omeka dotted underlines
@@ -77,6 +75,6 @@ a {
 
 
 .thanksroy paper-button {
-    // askus dropdown has wrong with on this theme
+    // askus dropdown has wrong width on this theme
     min-width: 103px;
 }

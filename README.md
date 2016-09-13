@@ -239,10 +239,16 @@ Code to include in the GUI editor (keep this up to date as it can't be reviewed 
 
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="//assets.library.uq.edu.au/master/reusable-components/careerhub/custom-styles.css">
         <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
         <script src="//assets.library.uq.edu.au/master/reusable-components/careerhub/load.js" async></script>
         <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+
+Notes:
+
+* Careerhub have said they will put the meta viewport line in the template. It hasnt appeared yet - if it does, this line can be removed here
+* Material design icons are being used, so the font family is included
 
 #### Omeka
 
@@ -250,7 +256,7 @@ A third party product we are using for online library exhibits
 
 [View](https://uqlibraryonlineexhibitions.omeka.net/)
 
-Login details are in vault.
+Login as admin [here](https://uqlibraryonlineexhibitions.omeka.net/admin/) - user email and password are in Vault.
 
 The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/omeka/custom-styles.scss)
 

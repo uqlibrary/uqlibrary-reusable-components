@@ -18,6 +18,7 @@ function loadReusableComponents() {
   addElements();
 
 
+
   //insert elements, even before Polymer is loaded
 
   //first element of the original document
@@ -46,14 +47,7 @@ function loadReusableComponents() {
 
     header.applicationTitle = 'Online Exhibitions';
 
-
   });
-
-  // insert a block after block exhibit-page-navigation with class mobileclearer that will be styled clear both in mobile
-  var navblock = document.querySelector('#exhibit-page-navigation');
-  var navclearer = document.createElement('div');
-  navclearer.class = 'mobileclearer';
-  navblock.appendChild(navclearer);
 
 
 }
@@ -128,11 +122,10 @@ function addElements() {
 }
 
 function AddClassNameToBody(newclassName) {
-  // this can be called in the footer to add a class name to the body so that we can target different themes
+  // this can be called in the footer to add a class name to the body so that we can target different themes or exhibits
   newclassName = ' '+newclassName;
   document.body.className+= newclassName;
 
 }
-
 
 ready(loadReusableComponents);

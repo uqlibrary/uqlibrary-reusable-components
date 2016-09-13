@@ -3,7 +3,7 @@
   #columns { // table!!
 
     .sidebar { //right hand nav bar of table
-      background-color: #fff;
+      background-color: $menu-background-color;
       color: #222;
       border-width: 0;
       font-size: inherit;
@@ -44,6 +44,25 @@
           margin-bottom: 0.5rem;
 
         }
+
+        // more events button at bottom of list
+        position: relative;
+        & > a {
+          position: absolute;
+          right: 0;
+          background-color: $accent-color;
+          color: $menu-background-color;
+          padding: 13px 8px;
+          padding: 0.8rem 0.5rem;
+          display: block;
+          width: 56px;
+          width: 7rem;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration: none;
+          font-size: 0.8em;
+        }
+
       }
 
       a {

@@ -75,20 +75,14 @@ body {
       margin: 0;
       min-height: initial;
 
+
     }
 
   }
 
 }
 
-ol.breadcrumbList {
-  margin-left: -20px;
-  li {
-    display: inline;
-    list-style-type: none;
-    padding-left: 20px;
-  }
-}
+
 
 @media only screen and (max-width: 700px) {
   /* careerhub have a 1-row table for layout, with a nav column on the right. the following makes it act normally
