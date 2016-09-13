@@ -22,8 +22,8 @@
         margin-top: 0.3rem;
         background-color: $theme-color-lighter;
         color: $menu-background-color;
-        padding: 112px 0 16px 24px;
-        padding: 7rem 0 1rem 1.5rem;
+        padding: 96px 0 16px 24px;
+        padding: 6rem 0 1rem 1.5rem;
         margin-right: 32px;
         margin-right: 2rem;
       }
@@ -40,6 +40,7 @@
       div.event_date {
         margin-top: 48px;
         margin-top: 3rem;
+        font-weight: 300;
       }
 
 
@@ -58,33 +59,59 @@
       }
 
       div.event_time,
-      div.event_details,
-      div.event_booking_stat .desc {
+      div.event_details  {
         margin-left: 60px;
         margin-left: 3.75rem;
       }
 
-      div.event_venue {
-        border-bottom: 1px solid grey;
-        margin-right: 32px;
+
+    div.event_booking_stat {
+      padding-left: 24px;
+      padding-left: 1.5rem;
+    }
+
+      div.event_venue ,
+      div.event_details,
+      div.event_contact_details {
         margin-left: 0;
         padding-left: 60px;
+        padding-left: 3.5rem;
       }
 
+      div.event_venue ,
+      div.event_details,
+      div.event_contact_details,
+      div.event_booking_stat {
+        border-bottom: 1px solid #e5e5e5;
+        margin-right: 32px;
+        margin-right: 2rem;
+        margin-bottom: 24px;
+        margin-bottom: 1.5rem;
+        padding-bottom: 24px;
+        padding-bottom: 1.5rem;
+      }
+
+      div.event_summary p {
+        display: inline;
+        font-weight: bold;
+      }
 
         // styling icons
       // https://github.com/google/material-design-icons/issues/150
-      div.event_start span ,
-      div.event_summary p ,
+      div.event_date .event_start  ,
       div.event_contact_details p,
       div.event_booking_stat .num {
         margin-left: 16px;
         margin-left: 1rem;
       }
 
+      div.event_summary p {
+        margin-left: 12px;
+        margin-left: .75rem;
+      }
+
       div.event_end span ,
-      div.event_venue span ,
-      div.event_details p {
+      div.event_venue span {
         margin-left: 32px;
         margin-left: 2rem;
       }
@@ -92,24 +119,32 @@
       div.event_date,
       div.event_summary,
       div.event_contact_details,
-      div.event_booking_stat .num {
+      div.event_booking_stat.first {
         padding-left: 16px;
         padding-left: 1rem;
-        &:before {
-          @extend .material-icons;
-          vertical-align: top;
-        }
       }
+
+      div.event_date,
+      div.event_summary,
+      div.event_contact_details ,
+    div.event_booking_stat.first {
+      &:before {
+        @extend .material-icons;
+        vertical-align: top;
+        color: #808080;
+      }
+
+    }
       div.event_date:before {
         content: 'today';
       }
       div.event_summary:before {
         content: 'speaker_notes';
       }
-      div.event_contact_details p:before {
+      div.event_contact_details:before {
         content: 'contact_phone';
       }
-      div.event_booking_stat .num:before {
+      div.event_booking_stat.first:before {
         content: 'people';
       }
 
@@ -118,9 +153,10 @@
         .num,
         .desc {
           display: inline;
+          font-weight: 200;
         }
         .desc {
-          padding-left: 2px;
+          margin-left: 0;
         }
       }
 
