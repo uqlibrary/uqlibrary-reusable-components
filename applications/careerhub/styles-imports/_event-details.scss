@@ -22,8 +22,8 @@
         margin-top: 0.3rem;
         background-color: $theme-color-lighter;
         color: $menu-background-color;
-        padding: 96px 0 16px 24px;
-        padding: 6rem 0 1rem 1.5rem;
+        padding: 112px 0 16px 24px;
+        padding: 7rem 0 1rem 1.5rem;
         margin-right: 32px;
         margin-right: 2rem;
       }
@@ -38,7 +38,8 @@
 */
       // put the block spacing on the first item
       div.event_date {
-
+        margin-top: 48px;
+        margin-top: 3rem;
       }
 
 
@@ -49,30 +50,51 @@
       div.event_booking {
         strong,
         br {
-          position: absolute; // TODO
-          top: -9999px;
-          left: -9999px;
+          display: none;
         }
       }
       div.event_contact_details strong {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+        display: none;
       }
 
       div.event_time,
-      div.event_venue,
-      div.event_details {
+      div.event_details,
+      div.event_booking_stat .desc {
         margin-left: 60px;
+        margin-left: 3.75rem;
       }
 
-      // styling icons
+      div.event_venue {
+        border-bottom: 1px solid grey;
+        margin-right: 32px;
+        margin-left: 0;
+        padding-left: 60px;
+      }
+
+
+        // styling icons
       // https://github.com/google/material-design-icons/issues/150
-      div.event_date,
-      div.event_summary p,
-      div.event_contact_details p
+      div.event_start span ,
+      div.event_summary p ,
+      div.event_contact_details p,
       div.event_booking_stat .num {
-        padding-left: 32px;
+        margin-left: 16px;
+        margin-left: 1rem;
+      }
+
+      div.event_end span ,
+      div.event_venue span ,
+      div.event_details p {
+        margin-left: 32px;
+        margin-left: 2rem;
+      }
+
+      div.event_date,
+      div.event_summary,
+      div.event_contact_details,
+      div.event_booking_stat .num {
+        padding-left: 16px;
+        padding-left: 1rem;
         &:before {
           @extend .material-icons;
           vertical-align: top;
@@ -81,7 +103,7 @@
       div.event_date:before {
         content: 'today';
       }
-      div.event_summary p:before {
+      div.event_summary:before {
         content: 'speaker_notes';
       }
       div.event_contact_details p:before {
