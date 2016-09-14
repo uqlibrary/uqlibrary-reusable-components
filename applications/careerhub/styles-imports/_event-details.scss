@@ -6,7 +6,11 @@
         display: none;
       }
 
-      div.event * {
+      .event_booking_stat .num,
+      .event_booking_stat .desc,
+      .event_start ,
+      .event_end {
+        font-size: 16px;
         font-size: 1rem;
       }
       div.event h1 {
@@ -24,14 +28,6 @@
         margin-right: 2rem;
       }
 
-/*
-      div strong {
-        // item headers
-        font-size: 1.25em;
-        font-weight: 500;
-        color: #000;
-      }
-*/
       // put the block spacing on the first item
       div.event_date {
         margin-top: 48px;
@@ -196,26 +192,6 @@
 
 
 
-/*
-      div.event_venue {
-        font-weight: 400;
-        font-size: inherit;
-      }
-
-      div.event_details p,
-      div.event_summary p {
-        margin-top: -4px;
-      }
-
-      .event_date {
-        margin-top: 2rem;
-        font-weight: normal;
-        font-size: inherit;
-      }
-      .event_time {
-        font-weight: normal;
-      }
-*/
       .event_booking {
         border-top-width: 0;
         h2 {

@@ -5,10 +5,6 @@ body {
   font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
 }
 
-* {
-  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
-}
-
 // from drupal https://web.library.uq.edu.au/sites/all/themes/custom/uq_standard/css/styles.css?obeqkh
 html, body {
   font-size: 16px
@@ -85,9 +81,8 @@ body {
 
 
 @media only screen and (max-width: 700px) {
-  /* careerhub have a 1-row table for layout, with a nav column on the right. the following makes it act normally
-   * technique: https://css-tricks.com/responsive-data-tables/
-   */
+  // careerhub have a 1-row table for layout, with a nav column on the right. the following makes it act normally
+  // technique: https://css-tricks.com/responsive-data-tables/
   #main {
     table#columns {
       display: block;
@@ -98,7 +93,7 @@ body {
         display: block;
       }
       td {
-        /* Behave  like a "row" */
+        // Behave  like a "row"
         display: block;
         border: none;
         position: relative;
