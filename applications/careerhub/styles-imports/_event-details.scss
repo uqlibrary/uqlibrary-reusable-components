@@ -49,7 +49,14 @@
       div.event_summary,
       div.event_details,
       div.event_booking {
-        strong,
+        strong {
+          display: none;
+        }
+      }
+      div.event_date,
+      div.event_venue,
+      div.event_summary,
+      div.event_booking {
         br {
           display: none;
         }
@@ -58,14 +65,18 @@
         display: none;
       }
 
-      div.event_time,
       div.event_details  {
         margin-left: 60px;
         margin-left: 3.75rem;
       }
 
+      div.event_time  {
+        margin-left: 52px;
+        margin-left: 3.25rem;
+      }
 
-    div.event_booking_stat {
+
+      div.event_booking_stat {
       padding-left: 24px;
       padding-left: 1.5rem;
     }
@@ -81,7 +92,7 @@
       div.event_venue ,
       div.event_details,
       div.event_contact_details,
-      div.event_booking_stat {
+      div.event_booking_stat:not(.first) {
         border-bottom: 1px solid #e5e5e5;
         margin-right: 32px;
         margin-right: 2rem;
@@ -98,13 +109,29 @@
 
         // styling icons
       // https://github.com/google/material-design-icons/issues/150
-      div.event_date .event_start  ,
-      div.event_contact_details p,
-      div.event_booking_stat .num {
+      div.event_contact_details p {
         margin-left: 16px;
         margin-left: 1rem;
       }
 
+      div.event_booking_stat.first .num {
+        margin-left: 10px;
+        margin-left: 0.625rem;
+      }
+      div.event_booking_stat .num {
+        padding-left: 38px;
+        padding-left: 2.375rem;
+      }
+
+      div.event_contact_details p {
+        padding-left: 24px;
+        padding-left: 1.5rem;
+        margin-top: -24px;
+        margin-top: -1.5rem;
+        margin-bottom: 0;
+      }
+
+      div.event_date .event_start,
       div.event_summary p {
         margin-left: 12px;
         margin-left: .75rem;
@@ -157,6 +184,7 @@
         }
         .desc {
           margin-left: 0;
+          color: inherit;
         }
       }
 
@@ -192,7 +220,12 @@
           border-width: 0; // removed dotted borders
           float: none;
           margin: 11px 0 0 0;
+        }
+        .event_booking_stat {
           padding: 0;
+        }
+        .event_booking_stat.first {
+          padding-left: 1rem;
         }
 
         form {
@@ -221,6 +254,7 @@
           background-color: $accent-color;
           color: #fff;
           transition: background-color 300ms ease-out;
+          text-transform: uppercase;
         }
 
       }
