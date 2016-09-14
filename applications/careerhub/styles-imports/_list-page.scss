@@ -1,0 +1,33 @@
+#container #center ul.event_list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  li {
+    list-style: none;
+    margin-left: 0;
+    padding: 1em;
+    background-color: #ececec;
+    color: inherit;
+
+    span {
+      font-weight: bold;
+    }
+
+    .campus {
+      font-weight: 200;
+    }
+
+  }
+
+  a,
+  a:visited {
+    background-color: #ececec;
+    font-size: 1.75rem;
+  }
+
+}
+
+body.listpage td#right.sidebar {
+  display: none;
+}
+
