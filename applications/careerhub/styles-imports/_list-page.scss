@@ -5,7 +5,10 @@
   li {
     list-style: none;
     margin-left: 0;
-    padding: 1em;
+    margin-bottom: 11px;
+    margin-bottom: 0.7rem;
+    padding: 8px 16px;
+    padding: 0.5em 1em;
     background-color: #ececec;
     color: inherit;
 
@@ -22,6 +25,7 @@
   a,
   a:visited {
     background-color: #ececec;
+    font-size: 28px;
     font-size: 1.75rem;
   }
 
