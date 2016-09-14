@@ -1,9 +1,5 @@
 #main {
 
-  // material icons:
-  // calendar:
-  //
-
   #columns { // table!!
     #content {
       .event_type {
@@ -132,7 +128,11 @@
         margin-bottom: 0;
       }
 
-      div.event_date .event_start,
+      div.event_date .event_start {
+        margin-left: 6px;
+        margin-left: .5rem;
+      }
+
       div.event_summary p {
         margin-left: 12px;
         margin-left: .75rem;
