@@ -164,6 +164,10 @@ function addBreadcrumbs(parentElementIdentifier) {
       anLI = document.createElement('li');
       anLI.appendChild(childElement);
       breadcrumbList.appendChild(anLI);
+
+      // add class to body so we know its the list page
+      newclassName = ' listpage';
+      document.body.className+= newclassName;
     }
   }
 
