@@ -1,6 +1,22 @@
 # uqlibrary-reusable-components
 
-central repository contains:
+## Contents:
+
+* [Getting Started](#getting-started)
+* [Updating IA](#updating-ia)
+* [Applications Customisations](#applications-customisations)
+* [LibGuides](#libguides)
+* [LibAnswers](#libanswers-httpanswerslibraryuqeduau)
+* [UQ Drupal](#uq-drupal-httpsweblibraryuqeduau)
+* [UQLAPP, FBS, Training, Contacts, Exams, ACDB](#uqlapp-fbs-training-contacts-exams-acdb)
+* [PRIMO](#primo-httpssearchlibraryuqeduau)
+* [Shared](#shared-uqlais-ezproxy-static-pages)
+* [Careerhub](#careerhub-httpswwwcareerhubuqeduau)
+* [Omeka](#omeka)
+* [Forcing IMS logins](#forcing-ims-logins)
+* [Elements Development](#elements-development)
+
+The Central Repository contains:
 
 - /elements/ - common elements, eg header/footer
     - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
@@ -198,6 +214,89 @@ https://github.com/uqlibrary/UQLAIS/blob/master/templates/header.tpl.html includ
                 
         <script src="//assets.library.uq.edu.au/reusable-components/shared/load-minimal.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/shared/common-minimal-styles.css" />
+
+#### Careerhub (https://www.careerhub.uq.edu.au/)
+
+A third party product that we are theming to match the general library theme.
+
+Current area is the [Library Staff Development workgroup portal](https://careerhub.uq.edu.au/workgroups/library-staff-development/events/). We are theming this by putting our polymer reusable elements in the top of the body of the page via a GUI editor.
+
+Editing in the careerhub GUI interface does not return all the html lines that were supplied, so start with the code block below - dont try to edit in place in the GUI.
+
+Method to edit the theme:
+
+- Decide what changes are needed and update below
+- Visit the theme edit page [current link](https://www.careerhub.uq.edu.au/Admin/SubSites/Layout.aspx?id=14) or: login > left hand menu, click on Work Groups > centre block, click on name of Work Group > right hand menu, click on Work group settings > middle area, click on Layout
+- Click on the word '(text)' in the header of the example-layout (if this isnt available, drag the 'text' item from
+the layout options into the header field, then click)
+- Click on the angle bracket icon ('<>') - a very short area will load with white markup on a black background. This is the editing area
+- Select the current markup and delete (the GUI does not return everything we provide them)
+- Paste in the markup from below
+- Click OK
+- Reload the workgroup portal page to confirm (the change should be instant)
+
+Code to include in the GUI editor (keep this up to date as it can't be reviewed reliably in the GUI):
+
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
+        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="//assets.library.uq.edu.au/master/reusable-components/careerhub/custom-styles.css">
+        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <script src="//assets.library.uq.edu.au/master/reusable-components/careerhub/load.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
+
+Notes:
+
+* Careerhub have said they will put the meta viewport line in the template. It hasnt appeared yet - if it does, this line can be removed here
+* Material design icons are being used, so the font family is included
+
+#### Omeka
+
+A third party product we are using for online library exhibits
+
+[View](https://uqlibraryonlineexhibitions.omeka.net/)
+
+Login as admin [here](https://uqlibraryonlineexhibitions.omeka.net/admin/) - user email and password are in Vault.
+
+The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/omeka/custom-styles.scss)
+
+CSS can also be updated in the [CSS Plugin](http://uqlibraryonlineexhibitions.omeka.net/admin/plugins)
+which has major restrictions, eg:
+
+* any styling of html header and footer elements are removed!!!
+* any styling of the body element is removed
+* any property set to a value of 'inherit' is removed
+* omeka doesnt recognise rem unit values and removes the property, so supply a px default
+* the following properties are removed:
+** transition
+** transition-delay
+** max-width
+** width
+** min-height
+* it strips :before attributes
+* any styling on a child element rewrites the '>' to \3E
+* doubtless more
+
+The [load.js](//assets.library.uq.edu.au/master/reusable-components/omeka/load.js) file:
+
+* loads the responsive meta
+* applies the uq favicon
+* applies the uq apple icon
+* attaches the above css file
+* loads the reusable components
+
+JS is applied in the footer, which can be edited [on this page](http://uqlibraryonlineexhibitions.omeka.net/admin/exhibits/theme-config/1) (or... click on exhibits in the left hand nav, click 'edit' on the chosen exhibit, scroll down to the theme dropdown, choose the correct theme and click Configure).
+
+Once on that page, scroll down to 'Footer Text', click the 'HTML' icon on the edit area, and update the html for the footer. Maintain the following code block as the correct code:
+
+        <script type="text/javascript" src="//assets.library.uq.edu.au/master/reusable-components/omeka/load.js"></script>
+        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents.js"></script>
+
+If you have a specific theme that needs special styling, add a new class name in by adding these lines to the bottom of the footer, as above. It will add a class to the body element (base it on the theme name) - then you can write css to taregt just this theme (it will affect all exhibits that have had this classname added to the body)
+
+        <script type="text/javascript">// <![CDATA[
+          AddClassNameToBody('bigtheme');
+        ]]></script>  
 
 ### Forcing IMS logins
 

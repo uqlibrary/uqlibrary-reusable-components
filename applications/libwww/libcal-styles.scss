@@ -1,0 +1,33 @@
+.libcal-hours-block {
+  caption {
+    display: none; // hide table caption supplied by libcal
+  }
+
+  // align cells more nicely
+  tbody td,
+  thead th {
+    text-align: center;
+  }
+
+  tbody td.s-lc-whw-locname,
+  tbody td.s-lc-whw-sublocname {
+    text-align: left;
+  }
+
+  thead th.s-lc-whw-bh {
+    text-align: right;
+  }
+
+  // colour column of today
+  td.s-lc-whw-today,
+  th.s-lc-whw-today-h {
+    background-color: #F5F5F5;
+    border-color: #e5e5e5;
+  }
+
+  // colour library name row
+  tr.s-lc-whw-loc {
+    background-color: #fcfcfc;
+  }
+
+}

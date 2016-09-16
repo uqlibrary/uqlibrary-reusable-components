@@ -71,12 +71,12 @@ When extracted from the zip, all classes will be commented out.
 body {
 	background-color: #ffffff;
 	color: #32322f;
-	margin: 0;
+	margin: 0px;
 	padding: 0 0 0 0.6em;
 	font-family: Arial, verdana;
 	font-size: 80%;
 	height: 100%;
-	-webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
+    	-webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
 }
 
 /*a:link,a:visited {
@@ -210,8 +210,8 @@ body {
 
 ul.filterResults {
 	width: 100%;
-	margin: 0;
-	padding: 0;
+	margin: 0em;
+	padding: 0em;
 	background-color: #f6f6f6;
 	display: none;
 }
@@ -337,21 +337,21 @@ ul.filterResults {
 	display: block;
 	line-height: 160%;
 	background: #fa8e51;*/ /* Old browsers */
-/*background: -moz-linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/
-/* FF3.6+ */
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fa8e51),
-    color-stop(100%, #f3742b) );*/ /* Chrome,Safari4+ */
-/*background: -webkit-linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/
-/* Chrome10+,Safari5.1+ */
-/*background: -o-linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/
-/* Opera 11.10+ */
-/*background: -ms-linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/
-/* IE10+ */
-/*background: linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/ /* W3C */
-/*filter: progid:DXImageTransform.Microsoft.gradient(
-                         startColorstr='#fa8e51',
-    endColorstr='#f3742b', GradientType=0 ); *//* IE6-9 */
-/*border: none;*/
+	/*background: -moz-linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/
+	/* FF3.6+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fa8e51),
+		color-stop(100%, #f3742b) );*/ /* Chrome,Safari4+ */
+	/*background: -webkit-linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/
+	/* Chrome10+,Safari5.1+ */
+	/*background: -o-linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/
+	/* Opera 11.10+ */
+	/*background: -ms-linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/
+	/* IE10+ */
+	/*background: linear-gradient(top, #fa8e51 0%, #f3742b 100%);*/ /* W3C */
+	/*filter: progid:DXImageTransform.Microsoft.gradient(
+		                     startColorstr='#fa8e51',
+		endColorstr='#f3742b', GradientType=0 ); *//* IE6-9 */
+	/*border: none;*/
 /*}*/
 
 /*.resetContainer {
@@ -492,7 +492,7 @@ ul.filterResults {
 	white-space: normal;
 	width: auto;
 	font-family: arial;
-	letter-spacing: 0;
+	letter-spacing: 0px;
 }
 
 /*.submitAsNoLink,.typeC .formDiv input.submitAsNoLink {
@@ -807,12 +807,12 @@ Classes bellow are used to define the look and feel of the date & time component
 	z-index:11;
 	text-align:center;
 	width:auto;*/
-/**For IE8**/
-/*width:110px\9;
+	/**For IE8**/
+	/*width:110px\9;
 }*/
 /*.timePopupLarger{*/
-/**For IE8**/
-/*width:160px\9;
+	/**For IE8**/
+	/*width:160px\9;
 }*/
 /*.timePopup .closeButton{
 	width:100%;
@@ -947,13 +947,13 @@ Classes bellow are used to define the look and feel of the date & time component
 /* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
 /*.ui-datepicker-cover {
     position: absolute;*/ /*must have*/
-/* z-index: -1;*/ /*must have*/
-/*filter: mask();*/ /*must have*/
-/*top: -4px;*/ /*must have*/
-/*left: -4px; */ /*must have*/
-/* width: 200px;*/ /*must have*/
-/* height: 200px; *//*must have*/
-/*}*/
+   /* z-index: -1;*/ /*must have*/
+    /*filter: mask();*/ /*must have*/
+    /*top: -4px;*/ /*must have*/
+    /*left: -4px; */ /*must have*/
+   /* width: 200px;*/ /*must have*/
+   /* height: 200px; *//*must have*/
+}
 /* Component containers
 ----------------------------------*/
 /*.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }

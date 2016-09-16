@@ -1,0 +1,48 @@
+footer { // footer overridden by uql-minimal-footer
+  border-top-width: 0;
+  padding-bottom: 0;
+
+  p,
+  nav#bottom-nav {
+    display: none;
+  }
+}
+
+#footer-text {
+  background-color: $theme-color;
+  padding-top: 2rem;
+}
+
+
+
+  // qanzac applies to the 2016 Qld Govt Anzac logo found on the JD Fryer exhibition, 2016
+.qanzac {
+  color: $menu-background-color;
+  text-align: center;
+}
+
+#qanzac-statement {
+  white-space: normal;
+}
+
+#qanzac-logo img {
+  width: auto;
+  margin-top: 5px;
+  height: 64px
+}
+
+@media screen and (max-width: 700px) {
+  #qanzac-logo {
+    padding: 0 10px;
+    img {
+
+      height: auto;
+      width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  footer #footer-text {
+    height: initial;
+  }
+}

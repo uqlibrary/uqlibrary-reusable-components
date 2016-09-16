@@ -1,0 +1,19 @@
+header {
+  display: none; // not required while we have uqlibrary reusable header
+}
+.menu-button {
+  display: none;
+}
+
+// iphones 6 are running the 'online exhib' title over the 'uq library' title
+// doesnt happen in android
+@media only screen
+and (min-device-width: 414px)
+and (max-device-width: 736px)
+and (-webkit-min-device-pixel-ratio: 3)
+and (orientation: portrait) {
+
+  .application-title {
+    margin-left: 55px;
+  }
+}

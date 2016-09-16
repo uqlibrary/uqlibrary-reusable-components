@@ -72,6 +72,22 @@
       });
     });
 
+    test('Check landing URLS', function (done) {
+      flush(function () {
+
+        url.value = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        var expected = "http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html";
+        expect(expected).to.equal(testObj.getURL());
+
+        // an url that contains 'doi' creates a correct link (fixes PT #127779951 )
+        url.value = 'http://www.emeraldinsight.com/doi/full/10.1108/RSR-11-2015-0049';
+        var expected = "http://ezproxy.library.uq.edu.au/login?url=http://www.emeraldinsight.com/doi/full/10.1108/RSR-11-2015-0049";
+        expect(expected).to.equal(testObj.getURL());
+
+        done();
+      });
+    });
+
     test('Test DOI URL entry', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates

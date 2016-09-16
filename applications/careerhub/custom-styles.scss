@@ -1,0 +1,78 @@
+//@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+@import "../../bower_components/uqlibrary-styles/skeleton.scss";
+
+@import "styles-imports/page-layout";
+
+
+@import "styles-imports/page-header";
+
+@import "styles-imports/event-details";
+
+@import "styles-imports/sidebar";
+
+// various subfields have a 'caption' class name - restyle to match uql
+.caption {
+  color: #222;
+  font-style: inherit;
+}
+
+
+h1,
+h2, #sitename,
+h3, h4, h5, h6 {
+font-weight: 500;
+line-height: 1.25;
+margin-top: 0;
+margin-bottom: 16px;
+margin-bottom: 1rem
+}
+
+h2 {
+  font-size: 32px;
+  font-size: 2rem
+}
+
+h1, h3 {
+  font-size: 28px;
+  font-size: 1.75rem;
+  font-weight: 400
+}
+
+#container #main {
+  a {
+    background-color: #fff;
+    color: $accent-color;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+  a:visited {
+    background-color: #fff;
+    color: $accent-color;
+  }
+}
+
+// stolen from https://fonts.googleapis.com/icon?family=Material+Icons for the moment
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5RV6cRhDpPC5P4GCEJpqGoc.woff) format('woff');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

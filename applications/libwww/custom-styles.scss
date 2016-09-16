@@ -1,12 +1,14 @@
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
+@import "styles-imports/libcal";
+
 uql-menu div#scrim {
   z-index: 1000;
 }
 
 /* let admin menu overlap UQ Library header */
 html body.logged-in.admin-menu {
-  margin-top: 0px !important;
+  margin-top: 0 !important;
 }
 
 body.ia-enabled {

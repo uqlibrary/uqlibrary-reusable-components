@@ -1,1 +1,23 @@
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+#content {
+  /* TODO: body width should come from common styles maybe? */
+  max-width: 1170px;
+  width: calc(100% - 32px);
+  margin: 8px auto 8px auto;
+  min-height: calc(100vh - 264px);
+}
+
+paper-card {
+  width: 100%;
+  position: relative;
+}

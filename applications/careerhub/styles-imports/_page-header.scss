@@ -1,0 +1,100 @@
+#head {
+  background-color: #fff;
+  border-bottom-width: 0;
+  border-top-width: 0;
+  padding-top: 0;
+  padding-left:0;
+
+  a {
+    color: inherit; // override careerhub color
+  }
+
+  .inner {
+    margin: 0;
+    width: auto;
+  }
+
+  h1 {
+    // match h3 in drupal
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-top: 0;
+  }
+
+  #sitename {
+    // match h2 in drupal theme
+    font-size: 16px;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-top: 10px;
+    margin-top: 0.6rem;
+    margin-bottom: 16px;
+    margin-bottom: 1rem;
+
+    // make case match uql usage - first character uppercase, all other letters lower case
+    text-transform: lowercase;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+
+    a {
+      color: #000 !important;
+
+      text-decoration: none;
+      cursor: default;
+    }
+  }
+
+}
+
+
+ol.breadcrumbList {
+  padding-left: 0;
+  margin: 10px 0 0 0;
+  height: 40px;
+  height: 2.5rem;
+  font-size: 13px;
+  font-size: 0.8rem;
+  li {
+    display: inline;
+    list-style-type: none;
+    &:before {
+      @extend .material-icons;
+      content: 'chevron_right';
+      vertical-align: top;
+    }
+    &:first-child {
+      padding-right: 5px;
+      a {
+        padding-left: 0;
+      }
+    }
+    &:first-child:before {
+      content: "";
+    }
+    paper-icon-button {
+      padding: 0;
+      width:20px;
+    }
+    iron-icon {
+      width:20px;
+      height: 20px;
+      margin-top: -3px;
+    }
+  }
+}
+
+#user_info, // hide the careerhub user welcome
+#links  // hide the careerhub header menu
+{
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  #head {
+    padding-top: 1rem;
+  }
+}
+
