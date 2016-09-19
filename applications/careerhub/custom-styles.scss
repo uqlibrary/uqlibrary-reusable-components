@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("//fonts.googleapis.com/icon?family=Material+Icons");
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
 @import "styles-imports/page-layout";
@@ -10,13 +10,6 @@
 @import "styles-imports/event-details";
 
 @import "styles-imports/sidebar";
-
-// various subfields have a 'caption' class name - restyle to match uql
-.caption {
-  color: #222;
-  font-style: inherit;
-}
-
 
 h1,
 h2, #sitename,
@@ -60,7 +53,6 @@ body #content div.event_booking_stat.first:before
 , body #content div.event_contact_details:before
 , body #content div.event_date:before
 , body #content div.event_summary:before
-, body .material-icons
 , body ol.breadcrumbList li:before {
   @extend .material-icons;
 }

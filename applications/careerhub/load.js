@@ -13,6 +13,8 @@ function loadReusableComponents() {
 
   relabelMoreEventsLink();
 
+  reformatSidebarDates();
+
   addAppleTouchIcon();
 
   //insert elements, even before Polymer is loaded
@@ -83,6 +85,49 @@ function addAppleTouchIcon() {
     iconLink.href = href.replace('icon.png','icon-' + size + '.png');
     document.getElementsByTagName('head')[0].appendChild(iconLink);
   }
+}
+
+function reformatSidebarDates() {
+  // the date needed reformatting because css cant format 19-Sep-2016 as 19\nSep
+  var listDates = document.querySelectorAll('.upcomingEvents .body li');
+  if (listDates === null) {
+    return false;
+  }
+
+  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var unformattedDate, d, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode;
+  [].forEach.call(listDates, function(listItem) {
+    unformattedDate = listItem.querySelector('span.caption');
+    if (unformattedDate !== null) {
+
+      d = new Date (unformattedDate.firstChild.nodeValue);
+
+      // make day element
+      theDay = d.getDate();
+      displayNode = document.createTextNode(theDay);
+      dayElement = document.createElement('div');
+      dayElement.className = 'day';
+      dayElement.appendChild(displayNode);
+
+      // make month element
+      theMonth = monthNames[d.getMonth()];
+      displayNode = document.createTextNode(theMonth);
+      monthElement = document.createElement('div');
+      monthElement.className = 'month';
+      monthElement.appendChild(displayNode);
+
+      // add to list item
+      dateElement = document.createElement('div');
+      dateElement.className = 'formattedDate';
+      dateElement.appendChild(dayElement);
+      dateElement.appendChild(monthElement);
+
+      childNode = listItem.querySelector('a');
+      listItem.insertBefore(dateElement, childNode);
+    }
+
+  });
+  return true;
 }
 
 /**
@@ -190,7 +235,6 @@ function relabelMoreEventsLink() {
 
   var theLink;
   [].forEach.call(links, function(links) {
-    // do whatever
     if (urlEventsPage == links.href) {
       if (!links.firstChild) {
         return false;

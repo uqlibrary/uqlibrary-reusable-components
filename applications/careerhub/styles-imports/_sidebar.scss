@@ -24,7 +24,8 @@
         }
         li {
           list-style: none;
-          border-bottom: 1px solid $footer-background-color;
+          padding: .8rem 0 .8rem 0;
+          margin-bottom: 0.5rem;
 
           br {
             display: none;
@@ -34,14 +35,38 @@
           a { // name of event
             display: block;
             padding-top: 1em;
+            padding-left: 2.5rem;
+            background-color: $footer-background-color;
+            padding-bottom: 1.6rem;
+            color: #000;
           }
           .caption { // timestamp
-            position: absolute;
-            top: 0;
+            display: none;
           }
-          position: relative;
-          padding: .8rem 0 .8rem 0;
-          margin-bottom: 0.5rem;
+          .formattedDate {
+            width: 2rem;
+            background-color: purple;
+            color: #fff;
+            text-align: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            float: left;
+            padding-bottom: 0.4rem;
+          }
+          .day {
+            font-size: 1.6rem;
+          }
+          .month {
+            text-transform: uppercase;
+            margin-top: -0.5rem;
+          }
+          &:first-child,
+          &:nth-child(2) {
+            background-color: $theme-color;
+          }
+          &:nth-child(3) {
+            background-color: $theme-color-lighter;
+          }
 
         }
 
