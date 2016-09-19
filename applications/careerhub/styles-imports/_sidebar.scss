@@ -17,30 +17,29 @@
       }
 
       .body { // block of upcoming events links
-        // 'upcoming events' header
+
         ul {
           margin: 0;
           padding:0;
         }
         li {
           list-style: none;
-          padding: .8rem 0 .8rem 0;
+          padding: 0;
           margin-bottom: 0.5rem;
 
           br {
             display: none;
           }
 
-          // make the date display above the title
           a { // name of event
             display: block;
-            padding-top: 1em;
-            padding-left: 2.5rem;
+            padding: 16px 0 27px 80px;
+            padding: 1rem 0 1.7rem 5rem;
             background-color: $footer-background-color;
-            padding-bottom: 1.6rem;
             color: #000;
+            font-weight: 400;
           }
-          .caption { // timestamp
+          .caption { // timestamp - rewritten with js for different formatting
             display: none;
           }
           .formattedDate {
@@ -48,8 +47,8 @@
             background-color: purple;
             color: #fff;
             text-align: center;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            padding: 3px 16px 7px 16px;
+            padding: 0.2rem 1rem 0.4rem 1rem;
             float: left;
             padding-bottom: 0.4rem;
           }
@@ -60,11 +59,11 @@
             text-transform: uppercase;
             margin-top: -0.5rem;
           }
-          &:first-child,
-          &:nth-child(2) {
+          &:first-child .formattedDate,
+          &:nth-child(2) .formattedDate {
             background-color: $theme-color;
           }
-          &:nth-child(3) {
+          &:nth-child(3) .formattedDate {
             background-color: $theme-color-lighter;
           }
 
