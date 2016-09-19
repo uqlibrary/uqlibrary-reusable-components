@@ -113,4 +113,10 @@ uql-connect-footer {
     border: 1px solid #ccc;
     padding: 20px; }
 
+#copyright_notice uql-connect-footer .sub-footer-container .sub-footer-content .contacts {
+  min-height: 0; }
+@media (min-width: 1048px) {
+  #copyright_notice uq-minimal-header {
+    height: 79pt; } }
+
 /*# sourceMappingURL=custom-styles.css.map */
