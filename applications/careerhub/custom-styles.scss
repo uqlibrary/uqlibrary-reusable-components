@@ -1,7 +1,4 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-.material-icons {
-  font-family: 'Material Icons' !important;  // edge and IE seem to need this as important
-}
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
 @import "styles-imports/page-layout";
@@ -56,27 +53,14 @@ h1, h3 {
   }
 }
 
-/*
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5RV6cRhDpPC5P4GCEJpqGoc.woff) format('woff');
-}
-
 .material-icons {
-  font-family: 'Material Icons' !important;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'Material Icons' !important;  // edge and IE seem to need this as important
 }
-*/
+body #content div.event_booking_stat.first:before
+, body #content div.event_contact_details:before
+, body #content div.event_date:before
+, body #content div.event_summary:before
+, body .material-icons
+, body ol.breadcrumbList li:before {
+  @extend .material-icons;
+}

@@ -153,7 +153,6 @@
       div.event_contact_details ,
       div.event_booking_stat.first {
         &:before {
-          @extend .material-icons;
           vertical-align: top;
           color: #808080;
         }
