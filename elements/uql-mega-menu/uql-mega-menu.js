@@ -147,7 +147,6 @@
     },
 
     _menuChanged: function(newValue, oldValue) {
-      console.log('menuChanged');
 
       if (newValue !== null && newValue.items) {
         for(var itemIndex = 0; itemIndex < newValue.items.length; itemIndex++) {

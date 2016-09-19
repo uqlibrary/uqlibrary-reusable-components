@@ -62,24 +62,15 @@
         margin-left: 3.75rem;
       }
 
-      div.event_time  {
-        margin-left: 52px;
-        margin-left: 3.25rem;
-      }
-
-
-      div.event_booking_stat {
-      padding-left: 24px;
-      padding-left: 1.5rem;
-    }
-
       div.event_venue ,
+      div.event_time  ,
       div.event_details,
       div.event_contact_details {
+        padding-left: 49px;
+        padding-left: 3.05rem;
         margin-left: 0;
-        padding-left: 60px;
-        padding-left: 3.5rem;
       }
+
 
       div.event_venue ,
       div.event_details,
@@ -107,8 +98,8 @@
       }
 
       div.event_booking_stat.first .num {
-        margin-left: 10px;
-        margin-left: 0.6rem;
+        margin-left: 16px;
+        margin-left: 1rem;
         padding-left: 0;
       }
       div.event_booking_stat .num {
@@ -153,7 +144,6 @@
       div.event_contact_details ,
       div.event_booking_stat.first {
         &:before {
-          @extend .material-icons;
           vertical-align: top;
           color: #808080;
         }
@@ -196,6 +186,12 @@
         border-top-width: 0;
         h2 {
           display: none;
+        }
+        p {
+          // this should only be the line: "Cancellations have closed. You will not be able to cancel your booking if you continue."
+          font-weight: bold;
+          margin-left: 16px;
+          margin-left: 1rem;
         }
         .event_booking_stat.first,
         .event_booking_stat {

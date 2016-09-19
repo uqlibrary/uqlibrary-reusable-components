@@ -61,7 +61,6 @@ ol.breadcrumbList {
     display: inline;
     list-style-type: none;
     &:before {
-      @extend .material-icons;
       content: 'chevron_right';
       vertical-align: top;
     }
