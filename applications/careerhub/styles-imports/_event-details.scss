@@ -197,6 +197,12 @@
         h2 {
           display: none;
         }
+        p {
+          // this should only be the line: "Cancellations have closed. You will not be able to cancel your booking if you continue."
+          font-weight: bold;
+          margin-left: 16px;
+          margin-left: 1rem;
+        }
         .event_booking_stat.first,
         .event_booking_stat {
           border-width: 0; // removed dotted borders

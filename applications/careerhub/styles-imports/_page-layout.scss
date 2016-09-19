@@ -3,11 +3,7 @@ body {
   height: 100%;
   min-height: 100vh;
   font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important;
-}
-
-// from drupal https://web.library.uq.edu.au/sites/all/themes/custom/uq_standard/css/styles.css?obeqkh
-html, body {
-  font-size: 16px
+  font-size: 16px; // from drupal https://web.library.uq.edu.au/sites/all/themes/custom/uq_standard/css/styles.css?obeqkh
 }
 
 body {
@@ -15,7 +11,6 @@ body {
   color: #222;
   padding: 0;
   margin: 0;
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-style: normal;
   line-height: 24px;
