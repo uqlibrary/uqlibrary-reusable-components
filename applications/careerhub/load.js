@@ -100,7 +100,6 @@ function reformatSidebarDates() {
   // actually, msec is NAN
   // is thedate not really a string???
 
-var listDates = document.querySelectorAll('.upcomingEvents .body li');
   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var unformattedDate, d, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode;
   [].forEach.call(listDates, function(listItem) {
@@ -194,7 +193,7 @@ function addBreadcrumbs(parentElementIdentifier) {
   // create second breadcrumb entry: careerhub workgroup homepage
   var linktext = 'Library staff development';
   var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
-  var urlCareerHubListPage = urlCareerHubHomePage + '/events'
+  var urlCareerHubListPage = urlCareerHubHomePage + '/events';
 
   var childElement;
   var displayNode;
