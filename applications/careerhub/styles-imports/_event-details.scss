@@ -75,6 +75,7 @@
       div.event_venue ,
       div.event_details,
       div.event_contact_details,
+      ul.attachments ,
       div.event_booking_stat:not(.first) {
         border-bottom: 1px solid #e5e5e5;
         margin-right: 32px;
@@ -115,6 +116,7 @@
         margin-bottom: 0;
       }
 
+      li.attachment a ,
       div.event_date .event_start {
         margin-left: 6px;
         margin-left: .5rem;
@@ -131,9 +133,17 @@
         margin-left: 2rem;
       }
 
+      ul.attachments,
+      li.attachment {
+        list-style-type: none;
+        margin-left: 0;
+        padding-left: 0;
+      }
+
       div.event_date,
       div.event_summary,
       div.event_contact_details,
+      li.attachment,
       div.event_booking_stat.first {
         padding-left: 16px;
         padding-left: 1rem;
@@ -165,6 +175,9 @@
       }
       div.event_booking_stat.first:before {
         content: 'people';
+      }
+      li.attachment:before {
+        content: 'attachment';
       }
 
       // make the two divs run inline
@@ -222,11 +235,8 @@
           -webkit-appearance: none;
           -webkit-border-radius: 0;
           display: inline-block;
-          padding: 16px 32px 17px 32px;
-          padding-top: 1rem;
-          padding-right: 2rem;
-          padding-bottom: 1.0625rem;
-          padding-left: 2rem;
+          padding: 16px 32px 16px 32px;
+          padding-top: 1rem 2rem 1rem 2rem;
           font-size: 16px;
           font-size: 1rem;
           background-color: $accent-color;
@@ -265,4 +275,22 @@
 }
 
 
-
+// both IE & edge are unable to reach the material design icons
+// we are replacing the breadcrumb icon with a >
+// and ignoring the body icons
+@supports (-ms-accelerator:true) {
+  body ol.breadcrumbList li:before {
+    content: '>';
+    padding: 0 10px;
+  }
+  // extra space is put in where the icons should be - possibly enough for the text name of the icon?
+  body div.event_date {
+    margin-left: -68px;
+  }
+  body div.event_summary {
+    margin-left: -172px;
+  }
+  body div.event_booking_stat.first {
+    margin-left:-73px;
+  }
+}

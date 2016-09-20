@@ -94,16 +94,44 @@ function reformatSidebarDates() {
     return false;
   }
 
+
+
+// nodevalue works in ie and chrome, but ie isnt picking up the d = new Date setting
+  // actually, msec is NAN
+  // is thedate not really a string???
+
+var listDates = document.querySelectorAll('.upcomingEvents .body li');
   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var unformattedDate, d, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode;
   [].forEach.call(listDates, function(listItem) {
     unformattedDate = listItem.querySelector('span.caption');
     if (unformattedDate !== null) {
 
-      d = new Date (unformattedDate.firstChild.nodeValue);
+      if (unformattedDate.firstChild.innerHTML) {
+console.log("using firstChild.innerHTML");
+console.log(unformattedDate.firstChild.innerHTML);
+        thedate = unformattedDate.firstChild.innerHTML;
+      } else {
+        if (unformattedDate.firstChild.nodeValue) {
+console.log("using firstChild.nodeValue");
+          console.log(unformattedDate.firstChild.nodeValue);
+          thedate = unformattedDate.firstChild.nodeValue;
+        } else {
+          if (unformattedDate.firstChild) {
+console.log("using firstChild");
+            console.log(unformattedDate.firstChild);
+            thedate = unformattedDate.firstChild;
+          }
+        }
 
+      }
+console.log("thedate = "+thedate);
+      var msec = Date.parse(thedate);
+      d = new Date(msec);
+console.log("d: "+d);
       // make day element
       theDay = d.getDate();
+//console.log("theDay: "+theDay);
       displayNode = document.createTextNode(theDay);
       dayElement = document.createElement('div');
       dayElement.className = 'day';
@@ -111,6 +139,7 @@ function reformatSidebarDates() {
 
       // make month element
       theMonth = monthNames[d.getMonth()];
+//console.log("theMonth: "+theMonth);
       displayNode = document.createTextNode(theMonth);
       monthElement = document.createElement('div');
       monthElement.className = 'month';
@@ -165,6 +194,7 @@ function addBreadcrumbs(parentElementIdentifier) {
   // create second breadcrumb entry: careerhub workgroup homepage
   var linktext = 'Library staff development';
   var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
+  var urlCareerHubListPage = urlCareerHubHomePage + '/events'
 
   var childElement;
   var displayNode;
@@ -182,13 +212,28 @@ function addBreadcrumbs(parentElementIdentifier) {
   anLI.appendChild(childElement);
   breadcrumbList.appendChild(anLI);
 
-  // third breadcrumb
+
+
   var theLabel;
   // On the careerhub event page, event titles have a class of 'event_title'
   var testElement = document.querySelector('.event_title');
   if (testElement !== null) {
     // an event class means we are on a detail page
-    // display its title as an unlinked breadcrumb
+
+    // third breadcrumb
+    theLabel = 'Event List';
+
+    displayNode = document.createTextNode(theLabel);
+    childElement = document.createElement('a');
+    childElement.href = urlCareerHubListPage;
+    childElement.appendChild(displayNode);
+
+    anLI = document.createElement('li');
+    anLI.appendChild(childElement);
+    breadcrumbList.appendChild(anLI);
+
+    // fourth breadcrumb
+    // display the event's title as an unlinked breadcrumb
     var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
     theLabel = testElement[textProperty];
     displayNode = document.createTextNode(theLabel);
@@ -200,6 +245,7 @@ function addBreadcrumbs(parentElementIdentifier) {
     breadcrumbList.appendChild(anLI);
   } else {
     if (window.location.href != urlCareerHubHomePage) {
+      // third breadcrumb
       theLabel = 'Event List';
 
       displayNode = document.createTextNode(theLabel);
