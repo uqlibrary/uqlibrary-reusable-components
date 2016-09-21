@@ -172,8 +172,7 @@ function addBreadcrumbsEllipsis(parentElementIdentifier) {
     return false;
   }
 
-var parentBlock = document.querySelector('#head');
-  // create ol
+  // create parent div
   var breadcrumbBlock = document.createElement('div');
   breadcrumbBlock.className = 'breadcrumbBlock';
 
@@ -278,20 +277,6 @@ console.log(result);
   return true;
 }
 
-{
-// test
-/*
-  var theLabel = 'H > Library staff development > Event List > Burger urge lunch!';
-  var displayNode = document.createTextNode(theLabel);
-  var pElement = document.createElement('p');
-  pElement.className = 'staffdevhomepage';
-  pElement.appendChild(displayNode);
-  parentBlock.insertBefore(pElement, parentBlock.firstChild);
-
-*/
-
-
-}
 
 /**
  * add breadcrumbs to the top of a careerhub page
@@ -359,15 +344,13 @@ var parentBlock = document.querySelector('#head');
   var theLabel;
   // On the careerhub event page, event titles have a class of 'event_title'
   var testElement = document.querySelector('.event_title');
+
   // third breadcrumb
+  var urlCareerHubListPage = urlCareerHubHomePage + '/events';
+  theLabel = 'Event List';
+  displayNode = document.createTextNode(theLabel);
   if (testElement !== null) {
     // we are on an event page - make this a link
-
-    // third breadcrumb
-    var urlCareerHubListPage = urlCareerHubHomePage + '/events';
-    theLabel = 'Event List';
-
-    displayNode = document.createTextNode(theLabel);
     childElement = document.createElement('a');
     childElement.href = urlCareerHubListPage;
     childElement.appendChild(displayNode);
@@ -378,10 +361,6 @@ var parentBlock = document.querySelector('#head');
 
   } else {
     if (window.location.href != urlCareerHubHomePage) {
-      // third breadcrumb
-      theLabel = 'Event List';
-
-      displayNode = document.createTextNode(theLabel);
       childElement = document.createElement('span');
       childElement.appendChild(displayNode);
 
@@ -400,19 +379,6 @@ var parentBlock = document.querySelector('#head');
   if (testElement !== null) {
     // an event class means we are on a detail page
 
-    // third breadcrumb
-    var urlCareerHubListPage = urlCareerHubHomePage + '/events';
-    theLabel = 'Event List';
-
-    displayNode = document.createTextNode(theLabel);
-    childElement = document.createElement('a');
-    childElement.href = urlCareerHubListPage;
-    childElement.appendChild(displayNode);
-
-    anLI = document.createElement('li');
-    anLI.appendChild(childElement);
-
-    // fourth breadcrumb
     // for desktop, display the event's title as an unlinked breadcrumb
     // for mobile, display 'event details' - some of the titles are long
     anLI = document.createElement('li');
