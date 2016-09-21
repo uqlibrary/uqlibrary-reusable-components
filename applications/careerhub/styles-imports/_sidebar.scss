@@ -77,10 +77,7 @@
         }
 
         // more events button at bottom of list
-        position: relative;
         & > a {
-          position: absolute;
-          right: 0;
           background-color: $accent-color;
           color: $menu-background-color;
           margin-top: 24px;
@@ -110,3 +107,13 @@
   }
 }
 
+@media only screen and (min-width: 700px) {
+  .body {
+    position: relative;
+
+  }
+  .body>a {
+    position: absolute;
+    right: 0;
+  }
+}
