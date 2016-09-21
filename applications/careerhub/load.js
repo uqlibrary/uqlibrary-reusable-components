@@ -291,7 +291,6 @@ function addBreadcrumbs(parentElementIdentifier) {
     return false;
   }
 
-var parentBlock = document.querySelector('#head');
   // create ol
   var breadcrumbList = document.createElement('ol');
   breadcrumbList.className = 'breadcrumbList';
