@@ -126,32 +126,37 @@ console.log("using firstChild");
       }
 console.log("thedate = "+thedate);
       var msec = Date.parse(thedate);
-      d = new Date(msec);
-console.log("d: "+d);
-      // make day element
-      theDay = d.getDate();
+      // if we are unable to get a date, we dont reformat, and apply the older styles
+      if (!isNaN(msec)) {
+        listItem.className = 'reformatted';
+
+        d = new Date(msec);
+        console.log("d: " + d);
+        // make day element
+        theDay = d.getDate();
 //console.log("theDay: "+theDay);
-      displayNode = document.createTextNode(theDay);
-      dayElement = document.createElement('div');
-      dayElement.className = 'day';
-      dayElement.appendChild(displayNode);
+        displayNode = document.createTextNode(theDay);
+        dayElement = document.createElement('div');
+        dayElement.className = 'day';
+        dayElement.appendChild(displayNode);
 
-      // make month element
-      theMonth = monthNames[d.getMonth()];
+        // make month element
+        theMonth = monthNames[d.getMonth()];
 //console.log("theMonth: "+theMonth);
-      displayNode = document.createTextNode(theMonth);
-      monthElement = document.createElement('div');
-      monthElement.className = 'month';
-      monthElement.appendChild(displayNode);
+        displayNode = document.createTextNode(theMonth);
+        monthElement = document.createElement('div');
+        monthElement.className = 'month';
+        monthElement.appendChild(displayNode);
 
-      // add to list item
-      dateElement = document.createElement('div');
-      dateElement.className = 'formattedDate';
-      dateElement.appendChild(dayElement);
-      dateElement.appendChild(monthElement);
+        // add to list item
+        dateElement = document.createElement('div');
+        dateElement.className = 'formattedDate';
+        dateElement.appendChild(dayElement);
+        dateElement.appendChild(monthElement);
 
-      childNode = listItem.querySelector('a');
-      listItem.insertBefore(dateElement, childNode);
+        childNode = listItem.querySelector('a');
+        listItem.insertBefore(dateElement, childNode);
+      }
     }
 
   });

@@ -18,6 +18,10 @@
 
       .body { // block of upcoming events links
 
+        li.reformatted span.caption { // hide the old format date when we have reformatted wwith js
+          display: none;
+        }
+
         ul {
           margin: 0;
           padding:0;
@@ -30,17 +34,20 @@
           br {
             display: none;
           }
-
+          span.caption , // event date
           a { // name of event
             display: block;
-            padding: 16px 0 27px 80px;
-            padding: 1rem 0 1.7rem 5rem;
             background-color: $footer-background-color;
             color: #000;
             font-weight: 400;
           }
-          .caption { // timestamp - rewritten with js for different formatting
-            display: none;
+          span.caption {
+            font-style: normal;
+            padding: 0 0 1.7rem 5rem;
+          }
+          a { // name of event
+            padding: 16px 0 27px 80px;
+            padding: 1rem 0 1.7rem 5rem;
           }
           .formattedDate {
             width: 2rem;
