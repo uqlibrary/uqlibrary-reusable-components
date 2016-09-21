@@ -191,10 +191,6 @@ function addBreadcrumbs(parentElementIdentifier) {
   anLI = document.createElement('li');
   anLI.className = 'staffdevhomepage';
 
-  var displayNode1 = document.createTextNode(linktext1);
-  var childElement1 = document.createElement('span');
-  childElement1.appendChild(displayNode1);
-
   if (window.location.href != urlCareerHubHomePage) {
     childElement = document.createElement('a');
     childElement.href = urlCareerHubHomePage;
@@ -202,10 +198,14 @@ function addBreadcrumbs(parentElementIdentifier) {
     // spans required for css
     childElement = document.createElement('span');
   }
+  var displayNode1 = document.createTextNode(linktext1);
+  var childElement1 = document.createElement('span');
+  childElement1.appendChild(displayNode1);
+  childElement.appendChild(childElement1);
+
   displayNode = document.createTextNode(linktext2);
   childElement.appendChild(displayNode);
 
-  anLI.appendChild(childElement1);
   anLI.appendChild(childElement);
   breadcrumbList.appendChild(anLI);
 
