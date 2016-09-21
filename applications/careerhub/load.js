@@ -276,7 +276,7 @@ function addBreadcrumbs(parentElementIdentifier) {
  * @returns {boolean}
  */
 function relabelMoreEventsLink() {
-  // we are doing this because the following line:
+  // we are using querySelectorAll because the following line:
   // document.querySelector(".sidebar > a");
   // returns null so we cant target the specific link (doesnt like the child selector) :(
 

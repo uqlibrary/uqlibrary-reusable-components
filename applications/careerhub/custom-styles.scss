@@ -22,6 +22,7 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+// end material import copy
 
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
@@ -76,6 +77,7 @@ h1, h3 {
 body #content div.event_booking_stat.first:before
 , body #content div.event_contact_details:before
 , body #content div.event_date:before
+, body #content li.attachment:before
 , body #content div.event_summary:before
 , body ol.breadcrumbList li:before {
   @extend .material-icons;
