@@ -64,7 +64,8 @@ ol.breadcrumbList {
     &:before {
       content: 'chevron_right';
       vertical-align: top;
-      margin-top: -3px
+      margin-top: -3px;
+      line-height: 0.9;
     }
     &:first-child {
       a {
@@ -92,9 +93,36 @@ ol.breadcrumbList {
   display: none;
 }
 
+
 @media only screen and (max-width: 700px) {
   #head {
     padding-top: 1rem;
+  }
+  .nonMobile {
+    // hidden from all users
+    display: none;
+  }
+
+  .staffdevhomepage span {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+  }
+  .staffdevhomepage a::first-letter {
+    text-transform: uppercase;
+  }
+
+  ol.breadcrumbList {
+    // this should only limit excessively long event titles
+    overflow: hidden;
+  }
+
+}
+
+@media only screen and (min-width: 700px) {
+  .mobileOnly {
+    // hidden from all users
+    display: none;
   }
 }
 

@@ -163,6 +163,136 @@ console.log("thedate = "+thedate);
   return true;
 }
 
+function addBreadcrumbsEllipsis(parentElementIdentifier) {
+  // rather than create a nice semantic ordered list, we are creating a single div to hold the breadcrumbs, which
+  // allows the presentation to have a nice left-ellipsis effect
+
+  var parentBlock = document.querySelector(parentElementIdentifier);
+  if (parentBlock === null) {
+    return false;
+  }
+
+var parentBlock = document.querySelector('#head');
+  // create ol
+  var breadcrumbBlock = document.createElement('div');
+  breadcrumbBlock.className = 'breadcrumbBlock';
+
+  // create chevron element to insert multiple times
+  var breadcrumbseparatorNode = document.createTextNode(' > ');
+
+  // create first breadcrumb entry: home page
+  // <paper-icon-button icon="home"></paper-icon-button>
+  var homepageIcon = document.createElement('paper-icon-button');
+  homepageIcon.icon= 'home';
+  var homePageLink = 'https://www.library.uq.edu.au/';
+
+  var anAnchor = document.createElement('a');
+  anAnchor.href = homePageLink;
+  anAnchor.appendChild(homepageIcon);
+
+  var breadcrumbEntry = document.createElement('div');
+  breadcrumbEntry.appendChild(anAnchor);
+
+  breadcrumbBlock.appendChild(breadcrumbEntry);
+  breadcrumbBlock.appendChild(breadcrumbseparatorNode);
+
+
+  // create block to hold ellipse-ible text
+  var ellipsisBlock = document.createElement('div');
+  ellipsisBlock.className = 'breadEllipsis';
+
+  // create second breadcrumb
+  var linktext = 'Library staff development';
+  var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
+  var displayNode;
+  if (window.location.href != urlCareerHubHomePage) {
+    breadcrumbEntry = document.createElement('a');
+    breadcrumbEntry.href = urlCareerHubHomePage;
+  } else {
+    // spans required for css
+    breadcrumbEntry = document.createElement('span');
+  }
+  displayNode = document.createTextNode(linktext);
+  breadcrumbEntry.appendChild(displayNode);
+
+  ellipsisBlock.appendChild(breadcrumbEntry);
+  var result = ellipsisBlock.appendChild(breadcrumbseparatorNode);
+console.log(result);
+  // On the careerhub event page, event titles have a class of 'event_title'
+  var testElement = document.querySelector('.event_title');
+
+  // third breadcrumb
+  var urlCareerHubListPage = urlCareerHubHomePage + '/events';
+  var theLabel = 'Event list';
+  if (testElement !== null) {
+    // we are on an event page - make this a link
+    displayNode = document.createTextNode(theLabel);
+    breadcrumbEntry = document.createElement('a');
+    breadcrumbEntry.href = urlCareerHubListPage;
+    breadcrumbEntry.appendChild(displayNode);
+
+    ellipsisBlock.appendChild(breadcrumbEntry);
+    result = ellipsisBlock.appendChild(breadcrumbseparatorNode);
+console.log(result);
+  } else {
+    if (window.location.href != urlCareerHubHomePage) {
+      displayNode = document.createTextNode(theLabel);
+      breadcrumbEntry = document.createElement('span');
+      breadcrumbEntry.appendChild(displayNode);
+
+      ellipsisBlock.appendChild(breadcrumbEntry);
+      ellipsisBlock.appendChild(breadcrumbseparatorNode);
+
+      // add class to body so we know its the list page
+      newclassName = ' listpage';
+      document.body.className+= newclassName;
+    }
+  }
+
+  // fourth breadcrumb
+  if (testElement !== null) {
+    // an event class means we are on a detail page
+
+    // for desktop, display the event's title as an unlinked breadcrumb
+    // for mobile, display 'event details' - some of the titles are long
+    var firstLabel = 'Event Details';
+    displayNode = document.createTextNode(firstLabel);
+    var childElement = document.createElement('span');
+    childElement.className = 'mobileOnly';
+    childElement.appendChild(displayNode);
+    ellipsisBlock.appendChild(childElement);
+
+    var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
+    var secondLabel = testElement[textProperty];
+    displayNode = document.createTextNode(secondLabel);
+    childElement = document.createElement('span');
+    childElement.className = 'nonMobile';
+    childElement.appendChild(displayNode);
+    ellipsisBlock.appendChild(childElement);
+  }
+
+  breadcrumbBlock.appendChild(ellipsisBlock);
+
+  parentBlock.insertBefore(breadcrumbBlock, parentBlock.firstChild);
+
+  return true;
+}
+
+{
+// test
+/*
+  var theLabel = 'H > Library staff development > Event List > Burger urge lunch!';
+  var displayNode = document.createTextNode(theLabel);
+  var pElement = document.createElement('p');
+  pElement.className = 'staffdevhomepage';
+  pElement.appendChild(displayNode);
+  parentBlock.insertBefore(pElement, parentBlock.firstChild);
+
+*/
+
+
+}
+
 /**
  * add breadcrumbs to the top of a careerhub page
  * example usage: addBreadcrumbs('#head');
@@ -176,6 +306,7 @@ function addBreadcrumbs(parentElementIdentifier) {
     return false;
   }
 
+var parentBlock = document.querySelector('#head');
   // create ol
   var breadcrumbList = document.createElement('ol');
   breadcrumbList.className = 'breadcrumbList';
@@ -196,12 +327,20 @@ function addBreadcrumbs(parentElementIdentifier) {
 
 
   // create second breadcrumb entry: careerhub workgroup homepage
-  var linktext = 'Library staff development';
+  var linktext1 = 'Library ';
+  var linktext2 = 'staff development';
   var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
-  var urlCareerHubListPage = urlCareerHubHomePage + '/events';
 
   var childElement;
   var displayNode;
+
+  anLI = document.createElement('li');
+  anLI.className = 'staffdevhomepage';
+
+  var displayNode1 = document.createTextNode(linktext1);
+  var childElement1 = document.createElement('span');
+  childElement1.appendChild(displayNode1);
+
   if (window.location.href != urlCareerHubHomePage) {
     childElement = document.createElement('a');
     childElement.href = urlCareerHubHomePage;
@@ -209,22 +348,23 @@ function addBreadcrumbs(parentElementIdentifier) {
     // spans required for css
     childElement = document.createElement('span');
   }
-  displayNode = document.createTextNode(linktext);
+  displayNode = document.createTextNode(linktext2);
   childElement.appendChild(displayNode);
 
-  anLI = document.createElement('li');
+  anLI.appendChild(childElement1);
   anLI.appendChild(childElement);
   breadcrumbList.appendChild(anLI);
-
 
 
   var theLabel;
   // On the careerhub event page, event titles have a class of 'event_title'
   var testElement = document.querySelector('.event_title');
+  // third breadcrumb
   if (testElement !== null) {
-    // an event class means we are on a detail page
+    // we are on an event page - make this a link
 
     // third breadcrumb
+    var urlCareerHubListPage = urlCareerHubHomePage + '/events';
     theLabel = 'Event List';
 
     displayNode = document.createTextNode(theLabel);
@@ -236,17 +376,6 @@ function addBreadcrumbs(parentElementIdentifier) {
     anLI.appendChild(childElement);
     breadcrumbList.appendChild(anLI);
 
-    // fourth breadcrumb
-    // display the event's title as an unlinked breadcrumb
-    var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-    theLabel = testElement[textProperty];
-    displayNode = document.createTextNode(theLabel);
-    childElement = document.createElement('span');
-    childElement.appendChild(displayNode);
-
-    anLI = document.createElement('li');
-    anLI.appendChild(childElement);
-    breadcrumbList.appendChild(anLI);
   } else {
     if (window.location.href != urlCareerHubHomePage) {
       // third breadcrumb
@@ -264,6 +393,46 @@ function addBreadcrumbs(parentElementIdentifier) {
       newclassName = ' listpage';
       document.body.className+= newclassName;
     }
+  }
+
+
+  // fourth breadcrumb
+  if (testElement !== null) {
+    // an event class means we are on a detail page
+
+    // third breadcrumb
+    var urlCareerHubListPage = urlCareerHubHomePage + '/events';
+    theLabel = 'Event List';
+
+    displayNode = document.createTextNode(theLabel);
+    childElement = document.createElement('a');
+    childElement.href = urlCareerHubListPage;
+    childElement.appendChild(displayNode);
+
+    anLI = document.createElement('li');
+    anLI.appendChild(childElement);
+
+    // fourth breadcrumb
+    // for desktop, display the event's title as an unlinked breadcrumb
+    // for mobile, display 'event details' - some of the titles are long
+    anLI = document.createElement('li');
+
+    var firstLabel = 'Event Details';
+    displayNode = document.createTextNode(firstLabel);
+    childElement = document.createElement('span');
+    childElement.className = 'mobileOnly';
+    childElement.appendChild(displayNode);
+    anLI.appendChild(childElement);
+
+    var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
+    var secondLabel = testElement[textProperty];
+    displayNode = document.createTextNode(secondLabel);
+    childElement = document.createElement('span');
+    childElement.className = 'nonMobile';
+    childElement.appendChild(displayNode);
+    anLI.appendChild(childElement);
+
+    breadcrumbList.appendChild(anLI);
   }
 
   parentBlock.insertBefore(breadcrumbList, parentBlock.firstChild);
