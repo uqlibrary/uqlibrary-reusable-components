@@ -98,7 +98,7 @@ body > div.navigation {
 }
 
 //Fix for inputs in Polymer cards in a Drupal content area
-div.panel-pane__content paper-card input {
+input.paper-input {
   margin: 0 !important;
   height: 24px !important;
 }
