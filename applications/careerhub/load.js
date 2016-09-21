@@ -94,12 +94,6 @@ function reformatSidebarDates() {
     return false;
   }
 
-
-
-// nodevalue works in ie and chrome, but ie isnt picking up the d = new Date setting
-  // actually, msec is NAN
-  // is thedate not really a string???
-
   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var unformattedDate, d, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode;
   [].forEach.call(listDates, function(listItem) {
@@ -107,34 +101,25 @@ function reformatSidebarDates() {
     if (unformattedDate !== null) {
 
       if (unformattedDate.firstChild.innerHTML) {
-console.log("using firstChild.innerHTML");
-console.log(unformattedDate.firstChild.innerHTML);
         thedate = unformattedDate.firstChild.innerHTML;
       } else {
         if (unformattedDate.firstChild.nodeValue) {
-console.log("using firstChild.nodeValue");
-          console.log(unformattedDate.firstChild.nodeValue);
           thedate = unformattedDate.firstChild.nodeValue;
         } else {
           if (unformattedDate.firstChild) {
-console.log("using firstChild");
-            console.log(unformattedDate.firstChild);
             thedate = unformattedDate.firstChild;
           }
         }
 
       }
-console.log("thedate = "+thedate);
       var msec = Date.parse(thedate);
       // if we are unable to get a date, we dont reformat, and apply the older styles
       if (!isNaN(msec)) {
         listItem.className = 'reformatted';
 
         d = new Date(msec);
-        console.log("d: " + d);
         // make day element
         theDay = d.getDate();
-//console.log("theDay: "+theDay);
         displayNode = document.createTextNode(theDay);
         dayElement = document.createElement('div');
         dayElement.className = 'day';
@@ -142,7 +127,6 @@ console.log("thedate = "+thedate);
 
         // make month element
         theMonth = monthNames[d.getMonth()];
-//console.log("theMonth: "+theMonth);
         displayNode = document.createTextNode(theMonth);
         monthElement = document.createElement('div');
         monthElement.className = 'month';
@@ -160,120 +144,6 @@ console.log("thedate = "+thedate);
     }
 
   });
-  return true;
-}
-
-function addBreadcrumbsEllipsis(parentElementIdentifier) {
-  // rather than create a nice semantic ordered list, we are creating a single div to hold the breadcrumbs, which
-  // allows the presentation to have a nice left-ellipsis effect
-
-  var parentBlock = document.querySelector(parentElementIdentifier);
-  if (parentBlock === null) {
-    return false;
-  }
-
-  // create parent div
-  var breadcrumbBlock = document.createElement('div');
-  breadcrumbBlock.className = 'breadcrumbBlock';
-
-  // create chevron element to insert multiple times
-  var breadcrumbseparatorNode = document.createTextNode(' > ');
-
-  // create first breadcrumb entry: home page
-  // <paper-icon-button icon="home"></paper-icon-button>
-  var homepageIcon = document.createElement('paper-icon-button');
-  homepageIcon.icon= 'home';
-  var homePageLink = 'https://www.library.uq.edu.au/';
-
-  var anAnchor = document.createElement('a');
-  anAnchor.href = homePageLink;
-  anAnchor.appendChild(homepageIcon);
-
-  var breadcrumbEntry = document.createElement('div');
-  breadcrumbEntry.appendChild(anAnchor);
-
-  breadcrumbBlock.appendChild(breadcrumbEntry);
-  breadcrumbBlock.appendChild(breadcrumbseparatorNode);
-
-
-  // create block to hold ellipse-ible text
-  var ellipsisBlock = document.createElement('div');
-  ellipsisBlock.className = 'breadEllipsis';
-
-  // create second breadcrumb
-  var linktext = 'Library staff development';
-  var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
-  var displayNode;
-  if (window.location.href != urlCareerHubHomePage) {
-    breadcrumbEntry = document.createElement('a');
-    breadcrumbEntry.href = urlCareerHubHomePage;
-  } else {
-    // spans required for css
-    breadcrumbEntry = document.createElement('span');
-  }
-  displayNode = document.createTextNode(linktext);
-  breadcrumbEntry.appendChild(displayNode);
-
-  ellipsisBlock.appendChild(breadcrumbEntry);
-  var result = ellipsisBlock.appendChild(breadcrumbseparatorNode);
-console.log(result);
-  // On the careerhub event page, event titles have a class of 'event_title'
-  var testElement = document.querySelector('.event_title');
-
-  // third breadcrumb
-  var urlCareerHubListPage = urlCareerHubHomePage + '/events';
-  var theLabel = 'Event list';
-  if (testElement !== null) {
-    // we are on an event page - make this a link
-    displayNode = document.createTextNode(theLabel);
-    breadcrumbEntry = document.createElement('a');
-    breadcrumbEntry.href = urlCareerHubListPage;
-    breadcrumbEntry.appendChild(displayNode);
-
-    ellipsisBlock.appendChild(breadcrumbEntry);
-    result = ellipsisBlock.appendChild(breadcrumbseparatorNode);
-console.log(result);
-  } else {
-    if (window.location.href != urlCareerHubHomePage) {
-      displayNode = document.createTextNode(theLabel);
-      breadcrumbEntry = document.createElement('span');
-      breadcrumbEntry.appendChild(displayNode);
-
-      ellipsisBlock.appendChild(breadcrumbEntry);
-      ellipsisBlock.appendChild(breadcrumbseparatorNode);
-
-      // add class to body so we know its the list page
-      newclassName = ' listpage';
-      document.body.className+= newclassName;
-    }
-  }
-
-  // fourth breadcrumb
-  if (testElement !== null) {
-    // an event class means we are on a detail page
-
-    // for desktop, display the event's title as an unlinked breadcrumb
-    // for mobile, display 'event details' - some of the titles are long
-    var firstLabel = 'Event Details';
-    displayNode = document.createTextNode(firstLabel);
-    var childElement = document.createElement('span');
-    childElement.className = 'mobileOnly';
-    childElement.appendChild(displayNode);
-    ellipsisBlock.appendChild(childElement);
-
-    var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-    var secondLabel = testElement[textProperty];
-    displayNode = document.createTextNode(secondLabel);
-    childElement = document.createElement('span');
-    childElement.className = 'nonMobile';
-    childElement.appendChild(displayNode);
-    ellipsisBlock.appendChild(childElement);
-  }
-
-  breadcrumbBlock.appendChild(ellipsisBlock);
-
-  parentBlock.insertBefore(breadcrumbBlock, parentBlock.firstChild);
-
   return true;
 }
 
