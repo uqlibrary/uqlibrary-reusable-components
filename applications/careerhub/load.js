@@ -151,6 +151,30 @@ function reformatSidebarDates() {
   return true;
 }
 
+/**
+ * sadly, the careerhub homepage runs from multiple urls, so a little function to check for it
+ * @returns {boolean}
+ */
+function isHomePage() {
+  listUrlsHome =[
+    "https://www.careerhub.uq.edu.au/workgroups/library-staff-development/",
+    "https://www.careerhub.uq.edu.au/workgroups/library-staff-development",
+    "https://careerhub.uq.edu.au/workgroups/library-staff-development/",
+    "https://careerhub.uq.edu.au/workgroups/library-staff-development",
+    "https://www.studenthub.uq.edu.au/workgroups/library-staff-development/",
+    "https://www.studenthub.uq.edu.au/workgroups/library-staff-development",
+    "https://studenthub.uq.edu.au/workgroups/library-staff-development/",
+    "https://studenthub.uq.edu.au/workgroups/library-staff-development"
+  ];
+  var result = false;
+  [].forEach.call(listUrlsHome, function(anUrl) {
+    if (window.location.href == anUrl) {
+      result = true;
+    }
+  });
+  return result;
+}
+
 
 /**
  * add breadcrumbs to the top of a careerhub page
@@ -188,7 +212,6 @@ function addBreadcrumbs(parentElementIdentifier) {
   var linktext1 = 'Library ';
   var linktext2 = 'staff development';
   var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
-  var urlCareerHubHomePageSansWWW = urlCareerHubHomePage.replace("www.", "");
 
   var childElement;
   var displayNode;
@@ -196,7 +219,7 @@ function addBreadcrumbs(parentElementIdentifier) {
   anLI = document.createElement('li');
   anLI.className = 'staffdevhomepage';
 
-  if (window.location.href != urlCareerHubHomePage && window.location.href != urlCareerHubHomePageSansWWW) {
+  if (!isHomePage()) {
     childElement = document.createElement('a');
     childElement.href = urlCareerHubHomePage;
   } else {
@@ -234,7 +257,7 @@ function addBreadcrumbs(parentElementIdentifier) {
     breadcrumbList.appendChild(anLI);
 
   } else {
-    if (window.location.href != urlCareerHubHomePage && window.location.href != urlCareerHubHomePageSansWWW) {
+    if (!isHomePage()) {
       childElement = document.createElement('span');
       childElement.appendChild(displayNode);
 
