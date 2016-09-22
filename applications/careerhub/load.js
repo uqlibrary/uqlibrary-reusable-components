@@ -102,6 +102,7 @@ function reformatSidebarDates() {
     unformattedDate = listItem.querySelector('span.caption');
     if (unformattedDate !== null) {
 
+      thedate = "";
       if (unformattedDate.firstChild.innerHTML) {
         thedate = unformattedDate.firstChild.innerHTML;
       } else {
@@ -114,6 +115,7 @@ function reformatSidebarDates() {
         }
 
       }
+      thedate = thedate.replace("-", "/").replace("-", "/");
       var msec = Date.parse(thedate);
       // if we are unable to get a date, we dont reformat, and apply the older styles
       if (!isNaN(msec)) {
