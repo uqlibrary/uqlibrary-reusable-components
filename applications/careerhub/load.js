@@ -188,6 +188,7 @@ function addBreadcrumbs(parentElementIdentifier) {
   var linktext1 = 'Library ';
   var linktext2 = 'staff development';
   var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
+  var urlCareerHubHomePageSansWWW = urlCareerHubHomePage.replace("www.", "");
 
   var childElement;
   var displayNode;
@@ -195,7 +196,7 @@ function addBreadcrumbs(parentElementIdentifier) {
   anLI = document.createElement('li');
   anLI.className = 'staffdevhomepage';
 
-  if (window.location.href != urlCareerHubHomePage) {
+  if (window.location.href != urlCareerHubHomePage && window.location.href != urlCareerHubHomePageSansWWW) {
     childElement = document.createElement('a');
     childElement.href = urlCareerHubHomePage;
   } else {
@@ -233,7 +234,7 @@ function addBreadcrumbs(parentElementIdentifier) {
     breadcrumbList.appendChild(anLI);
 
   } else {
-    if (window.location.href != urlCareerHubHomePage) {
+    if (window.location.href != urlCareerHubHomePage && window.location.href != urlCareerHubHomePageSansWWW) {
       childElement = document.createElement('span');
       childElement.appendChild(displayNode);
 
