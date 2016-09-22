@@ -103,11 +103,13 @@ ol.breadcrumbList {
     display: none;
   }
 
-  .staffdevhomepage span {
+  .staffdevhomepage a span ,
+  .staffdevhomepage span span {
     position: absolute !important;
     top: -9999px !important;
     left: -9999px !important;
   }
+  .staffdevhomepage span::first-letter {
   .staffdevhomepage a::first-letter {
     text-transform: uppercase;
   }
