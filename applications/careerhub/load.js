@@ -9,13 +9,15 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
+  addAppleTouchIcon();
+
   addBreadcrumbs('#head');
 
   relabelMoreEventsLink();
 
   reformatSidebarDates();
 
-  addAppleTouchIcon();
+  reformatSummaryElement();
 
   //insert elements, even before Polymer is loaded
 
@@ -304,6 +306,29 @@ function relabelMoreEventsLink() {
     }
   });
   return true;
+}
+
+function reformatSummaryElement() {
+  // the summary p element wraps all the way back to the left, under the icon
+  // child it into a div (display: inline) and we can use the left margin to stop that
+  var parentBlock = document.querySelector('.event_summary');
+  if (parentBlock === null) {
+    return false;
+  }
+
+  var existingParagraph = document.querySelector('.event_summary p');
+  if (existingParagraph === null) {
+    return false;
+  }
+
+  var newDiv = document.createElement('div');
+  newDiv.className = 'uqlsummary';
+  parentBlock.appendChild(newDiv);
+
+  var fragment = document.createDocumentFragment();
+  fragment.appendChild(existingParagraph);
+  newDiv.appendChild(fragment);
+
 }
 
 

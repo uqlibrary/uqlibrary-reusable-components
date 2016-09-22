@@ -42,7 +42,9 @@
       div.event_details,
       div.event_booking {
         strong {
-          display: none;
+          position: absolute !important;
+          top: -9999px !important;
+          left: -9999px !important;
         }
       }
       div.event_date,
@@ -122,9 +124,14 @@
         margin-left: .7rem;
       }
 
-      div.event_summary p {
+      div.event_summary div.uqlsummary {
         margin-left: 12px;
         margin-left: .75rem;
+        display: inline;
+      }
+      div.uqlsummary p {
+        margin-left: 2.6rem;
+        margin-top: -1.5rem;
       }
 
       div.event_end span ,
