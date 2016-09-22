@@ -47,6 +47,7 @@ function loadReusableComponents() {
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
+    header.showLoginButton = false;
   });
 
 }
@@ -96,8 +97,8 @@ function reformatSidebarDates() {
     return false;
   }
 
-  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var unformattedDate, d, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode;
+  var listDates = document.querySelectorAll('.upcomingEvents .body li');
+  var unformattedDate, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode, datebits;
   [].forEach.call(listDates, function(listItem) {
     unformattedDate = listItem.querySelector('span.caption');
     if (unformattedDate !== null) {
@@ -115,22 +116,18 @@ function reformatSidebarDates() {
         }
 
       }
-      thedate = thedate.replace("-", "/").replace("-", "/");  //makes parse cross-browser
-      var msec = Date.parse(thedate);
-      // if we are unable to get a date, we dont reformat, and apply the older styles
-      if (!isNaN(msec)) {
-        listItem.className = 'reformatted';
+      datebits = thedate.split("-");
+      if (datebits.length > 2 && datebits[0] !== null && datebits[1] !== null) {
 
-        d = new Date(msec);
         // make day element
-        theDay = d.getDate();
+        theDay = datebits[0];
         displayNode = document.createTextNode(theDay);
         dayElement = document.createElement('div');
         dayElement.className = 'day';
         dayElement.appendChild(displayNode);
 
         // make month element
-        theMonth = monthNames[d.getMonth()];
+        theMonth = datebits[1];
         displayNode = document.createTextNode(theMonth);
         monthElement = document.createElement('div');
         monthElement.className = 'month';

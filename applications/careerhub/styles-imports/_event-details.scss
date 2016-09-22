@@ -310,13 +310,10 @@
     margin-top: -8px;
   }
   // extra space is put in where the icons should be - possibly enough for the text name of the icon?
-  body div.event_date {
-    margin-left: -100px;
+  body #main #columns #content div.event_date {
+    margin-left: -96px;
   }
-  body div.event_summary {
-    margin-left: -295px;
-  }
-  body .event_booking div.event_booking_stat.first {
-    margin-left:-128px;
+  body #main #columns #content .event_booking div.event_booking_stat.first .num {
+    margin-left:-108px;
   }
 }
