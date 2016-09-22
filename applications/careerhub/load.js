@@ -211,7 +211,7 @@ function addBreadcrumbs(parentElementIdentifier) {
   // create second breadcrumb entry: careerhub workgroup homepage
   var linktext1 = 'Library ';
   var linktext2 = 'staff development';
-  var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
+  var urlCareerHubHomePage = "https://"+window.location.hostname+"/workgroups/library-staff-development";
 
   var childElement;
   var displayNode;
