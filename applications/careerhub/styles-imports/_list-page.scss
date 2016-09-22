@@ -36,6 +36,7 @@
 }
 
 body.listpage table#columns td#right.sidebar {
+  // the listpage doesnt need the duplication of the sidebar
   display: none;
 }
 
