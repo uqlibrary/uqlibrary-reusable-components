@@ -218,7 +218,7 @@ function addBreadcrumbs(parentElementIdentifier) {
 
   // third breadcrumb
   var urlCareerHubListPage = urlCareerHubHomePage + '/events';
-  theLabel = 'Event List';
+  theLabel = 'Event list';
   displayNode = document.createTextNode(theLabel);
   if (testElement !== null) {
     // we are on an event page - make this a link
@@ -254,7 +254,7 @@ function addBreadcrumbs(parentElementIdentifier) {
     // for mobile, display 'event details' - some of the titles are long
     anLI = document.createElement('li');
 
-    var firstLabel = 'Event Details';
+    var firstLabel = 'Event details';
     displayNode = document.createTextNode(firstLabel);
     childElement = document.createElement('span');
     childElement.className = 'mobileOnly';
