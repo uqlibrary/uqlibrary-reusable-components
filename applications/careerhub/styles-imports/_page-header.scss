@@ -109,7 +109,7 @@ ol.breadcrumbList {
     top: -9999px !important;
     left: -9999px !important;
   }
-  .staffdevhomepage span::first-letter {
+  .staffdevhomepage span::first-letter ,
   .staffdevhomepage a::first-letter {
     text-transform: uppercase;
   }
