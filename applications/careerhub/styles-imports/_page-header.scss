@@ -95,6 +95,11 @@ ol.breadcrumbList {
 
 
 @media only screen and (max-width: 700px) {
+  #main #columns #content h1.event_title {
+    margin-right: 0;
+    padding-right: 24px;
+    padding-right: 1.5rem;
+  }
   #head {
     padding-top: 1rem;
   }
@@ -109,10 +114,11 @@ ol.breadcrumbList {
     top: -9999px !important;
     left: -9999px !important;
   }
-  .staffdevhomepage span::first-letter ,
-  .staffdevhomepage a::first-letter {
-    text-transform: uppercase;
+  .staffdevhomepage span,
+  .staffdevhomepage a {
+    text-transform: capitalize;
   }
+
 
   ol.breadcrumbList {
     // this should only limit excessively long event titles

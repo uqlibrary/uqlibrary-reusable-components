@@ -125,13 +125,14 @@
       }
 
       div.event_summary div.uqlsummary {
-        margin-left: 12px;
-        margin-left: .75rem;
-        display: inline;
+        margin-left: 40px;
+        margin-left: 2.5rem;
+        margin-top: -24px;
+        margin-top: -1.5rem;
       }
       div.uqlsummary p {
-        margin-left: 2.6rem;
-        margin-top: -1.5rem;
+        margin-left: 0;
+        display: inline;
       }
 
       div.event_end span ,
@@ -279,6 +280,23 @@
   // only admins will see this
   left: inherit;
   right: 10px;
+}
+
+@media only screen and (max-width: 700px) {
+  #main {
+
+    #columns { // table!!
+      #content {
+        div.event_venue,
+        div.event_details,
+        div.event_contact_details,
+        ul.attachments,
+        div.event_booking_stat:not(.first) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
 }
 
 
