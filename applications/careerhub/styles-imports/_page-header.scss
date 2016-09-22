@@ -93,6 +93,11 @@ ol.breadcrumbList {
   display: none;
 }
 
+ol.breadcrumbList {
+  // this should only limit excessively long event titles
+  overflow: hidden;
+}
+
 
 @media only screen and (max-width: 700px) {
   #main #columns #content h1.event_title {
@@ -119,11 +124,6 @@ ol.breadcrumbList {
     text-transform: capitalize;
   }
 
-
-  ol.breadcrumbList {
-    // this should only limit excessively long event titles
-    overflow: hidden;
-  }
 
 }
 
