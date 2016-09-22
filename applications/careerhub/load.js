@@ -97,7 +97,6 @@ function reformatSidebarDates() {
     return false;
   }
 
-  var listDates = document.querySelectorAll('.upcomingEvents .body li');
   var unformattedDate, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode, datebits;
   [].forEach.call(listDates, function(listItem) {
     unformattedDate = listItem.querySelector('span.caption');
