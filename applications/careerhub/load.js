@@ -117,6 +117,7 @@ function reformatSidebarDates() {
       }
       datebits = thedate.split("-");
       if (datebits.length > 2 && datebits[0] !== null && datebits[1] !== null) {
+        listItem.className = 'reformatted';
 
         // make day element
         theDay = datebits[0];
