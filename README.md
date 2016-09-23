@@ -346,4 +346,25 @@ Distribution package on S3 looks like this:
     
 Subdirectory [branch_name] only exists for non-production branches, eg master/uat .
 
+### Testing
+
+e2e testing is now available, in the first case to check Omeka (see above) is still working correctly.
+
+#### Local testing
+
+* install selenium server
+
+Run Selenium server. Selenium is required to run tests locally Selenium Installer
+
+  `java -jar selenium-server-standalone-{VERSION}.jar`
+  
+or `brew install selenium-server-standalone` then `selenium-server -p 4444`
+
+* run tests
+
+`$ cd bin`
+
+`$ nightwatch`
+
+
 
