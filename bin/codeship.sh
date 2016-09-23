@@ -5,7 +5,7 @@ set -e
 
 echo "Install prerequisites gulp/bower/packages"
 
-npm install -g gulp bower
+npm install -g gulp bower nightwatch
 
 npm install
 bower install
@@ -125,6 +125,21 @@ gulp invalidate --path ${InvalidationPath}
 echo "Clean up AWS configuration..."
 rm -f ${awsconfig}
 
-#echo "Run nightwatch tests"
-#cd bin/
-#nightwatch
+echo "Run nightwatch tests"
+cd bin/
+
+echo "local..."
+nightwatch nightwatch.json
+
+echo "saucelab..."
+if [ ${CI_BRANCH} == "production" ]; then
+  nwconfigtemp="template.nightwatch-saucelabs.json"
+  nwconfig="nightwatch-saucelabs.json"
+
+  cp $nwconfigtemp $nwconfig
+
+  sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
+  sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
+
+  nightwatch nightwatch-saucelabs.json
+fi
