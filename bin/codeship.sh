@@ -125,6 +125,6 @@ gulp invalidate --path ${InvalidationPath}
 echo "Clean up AWS configuration..."
 rm -f ${awsconfig}
 
-echo "Run nightwatch tests"
-cd bin/
-nightwatch
+#echo "Run nightwatch tests"
+#cd bin/
+#nightwatch
