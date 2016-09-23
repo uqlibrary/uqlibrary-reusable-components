@@ -303,7 +303,9 @@
 // both IE & edge are unable to reach the material design icons
 // we are replacing the breadcrumb icon with a >
 // and ignoring the body icons
-@supports (-ms-ime-align:auto) {
+@supports (-ms-text-combine-horizontal:none) // ie11
+or (-ms-ime-align:auto) // edge
+{
   body ol.breadcrumbList li:before {
     content: '>';
     padding: 0 10px;
