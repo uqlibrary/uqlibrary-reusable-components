@@ -37,6 +37,7 @@
     "jsonlint": "^1.6.2",
     "lint": "^1.1.2",
     "merge-stream": "^0.1.7",
+    "nightwatch": "^0.9.8",
     "opn": "^1.0.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
