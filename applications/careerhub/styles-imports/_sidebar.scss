@@ -46,8 +46,12 @@
             padding: 0 0 1.7rem 5rem;
           }
           a { // name of event
-            padding: 16px 0 27px 80px;
-            padding: 1rem 0 1.7rem 5rem;
+            padding: 16px 0 27px 16px;
+            padding: 1rem 0 1.7rem 1rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
           }
           .formattedDate {
             width: 2rem;

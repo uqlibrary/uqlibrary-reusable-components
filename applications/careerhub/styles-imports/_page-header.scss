@@ -96,6 +96,9 @@ ol.breadcrumbList {
 ol.breadcrumbList {
   // this should only limit excessively long event titles
   overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
 }
 
 
