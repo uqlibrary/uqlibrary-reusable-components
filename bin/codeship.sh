@@ -131,8 +131,8 @@ cd bin/
 echo "local..."
 nightwatch nightwatch.json
 
-echo "saucelab..."
 if [ ${CI_BRANCH} == "production" ]; then
+  echo "saucelab..."
   nwconfigtemp="template.nightwatch-saucelabs.json"
   nwconfig="nightwatch-saucelabs.json"
 
