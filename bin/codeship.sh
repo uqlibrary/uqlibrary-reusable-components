@@ -133,8 +133,9 @@ nightwatch nightwatch.json
 
 if [ ${CI_BRANCH} == "production" ]; then
   echo "saucelab..."
+
   nwconfigtemp="template.nightwatch-saucelabs.json"
-  nwconfig="nightwatch-saucelabs.json"
+  nwconfig="nightwatch.conf.js"
 
   cp $nwconfigtemp $nwconfig
 
@@ -142,4 +143,6 @@ if [ ${CI_BRANCH} == "production" ]; then
   sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
   nightwatch nightwatch-saucelabs.json
+
+  rm $nwconfig
 fi
