@@ -125,6 +125,9 @@ gulp invalidate --path ${InvalidationPath}
 echo "Clean up AWS configuration..."
 rm -f ${awsconfig}
 
+echo "install selenium"
+curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/selenium_server.sh | bash -s
+
 echo "Run nightwatch tests"
 cd bin/
 
