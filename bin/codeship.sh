@@ -129,20 +129,19 @@ echo "Run nightwatch tests"
 cd bin/
 
 echo "local..."
-nightwatch nightwatch.json
+nightwatch -c nightwatch.json # firefox default
+nightwatch -c nightwatch.json --env chrome
 
 if [ ${CI_BRANCH} == "production" ]; then
   echo "saucelab..."
 
   nwconfigtemp="template.nightwatch-saucelabs.json"
-  nwconfig="nightwatch.conf.js" # conf.js overrides nightwatch.json
+  nwconfig="nightwatch-saucelabs.json"
 
   cp $nwconfigtemp $nwconfig
 
   sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
   sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
-  nightwatch
-
-  rm $nwconfig
+  nightwatch -c nightwatch-saucelabs.json
 fi

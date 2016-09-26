@@ -322,8 +322,8 @@ All common styles, colours, or mix-ins are located in /elements/common-styles.ht
  - run /bin/generate-gh-pages.sh from this new empty directory
  - script will update gh-pages branch of the project
  - check gh-pages were updated successfully
-    - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
-    - full documentation [here] (http://uqlibrary.github.io/uqlibrary-reusable-components)
+    - view full demo [here](http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
+    - full documentation [here](http://uqlibrary.github.io/uqlibrary-reusable-components)
 
 Codeship will deploy changes automatically by running deployment task /bin/codeship.sh:
 - installs all dependencies
@@ -361,6 +361,8 @@ Run Selenium server. Selenium is required to run tests locally Selenium Installe
 or `brew install selenium-server-standalone` then `selenium-server -p 4444`
 
 * run tests
+
+To run the Chrome tests locally you will need to [download the WebDriver](https://sites.google.com/a/chromium.org/chromedriver/) and put the location in your Path.
 
 `$ cd bin`
 
