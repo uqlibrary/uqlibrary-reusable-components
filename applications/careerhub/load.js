@@ -153,23 +153,8 @@ function reformatSidebarDates() {
  * @returns {boolean}
  */
 function isHomePage() {
-  listUrlsHome =[
-    "https://www.careerhub.uq.edu.au/workgroups/library-staff-development/",
-    "https://www.careerhub.uq.edu.au/workgroups/library-staff-development",
-    "https://careerhub.uq.edu.au/workgroups/library-staff-development/",
-    "https://careerhub.uq.edu.au/workgroups/library-staff-development",
-    "https://www.studenthub.uq.edu.au/workgroups/library-staff-development/",
-    "https://www.studenthub.uq.edu.au/workgroups/library-staff-development",
-    "https://studenthub.uq.edu.au/workgroups/library-staff-development/",
-    "https://studenthub.uq.edu.au/workgroups/library-staff-development"
-  ];
-  var result = false;
-  [].forEach.call(listUrlsHome, function(anUrl) {
-    if (window.location.href == anUrl) {
-      result = true;
-    }
-  });
-  return result;
+  var regexp = /https?:\/\/((www\.)?(careerhub|studenthub)\.uq\.edu\.au)\/workgroups\/library-staff-development\/?$/;
+  return regexp.test(window.location.href);
 }
 
 
