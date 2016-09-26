@@ -147,4 +147,5 @@ if [ ${CI_BRANCH} == "production" ]; then
   sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
   nightwatch -c nightwatch-saucelabs.json
+  nightwatch -c nightwatch-saucelabs.json --env ie11
 fi
