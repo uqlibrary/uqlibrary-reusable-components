@@ -32,6 +32,8 @@ module.exports = {
       .assert.elementPresent('uq-minimal-footer .footer-legal-details a'
       , 'Emergency Phone footer component is present')
       .assert.containsText('uq-minimal-footer .footer-legal-details .h6', 'Emergency')
+      .assert.elementPresent('.sidebar .body > a', 'sidebar More Events button is present')
+      .assert.containsText('.sidebar .body > a', 'More events')
       .end();
   }
 };
