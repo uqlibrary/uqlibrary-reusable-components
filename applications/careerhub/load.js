@@ -162,8 +162,6 @@ function isHomePage() {
   return regexp.test(window.location.href);
 }
 
-
-
 /**
  * add breadcrumbs to the top of a Studenthub page
  * example usage: addBreadcrumbs('#head');
