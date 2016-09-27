@@ -1,3 +1,6 @@
+var urlStudentHubHomePage = "https://"+window.location.hostname+"/workgroups/library-staff-development";
+// note: function isHomePage also hard codes this path
+
 function ready(fn) {
   if (document.readyState != 'loading'){
     fn();
@@ -97,59 +100,61 @@ function reformatSidebarDates() {
     return false;
   }
 
-  var unformattedDate, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode, datebits;
-  [].forEach.call(listDates, function(listItem) {
-    unformattedDate = listItem.querySelector('span.caption');
-    if (unformattedDate !== null) {
+  var unformattedDate, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode, datebits, ii;
+  if (0 < listDates.length) {
+    for (ii = 0; ii < listDates.length; ii++) {
+      unformattedDate = listDates[ii].querySelector('span.caption');
+      if (unformattedDate !== null) {
 
-      var thedate = "";
-      if (unformattedDate.firstChild.innerHTML) {
-        thedate = unformattedDate.firstChild.innerHTML;
-      } else {
-        if (unformattedDate.firstChild.nodeValue) {
-          thedate = unformattedDate.firstChild.nodeValue;
+        var thedate = "";
+        if (unformattedDate.firstChild.innerHTML) {
+          thedate = unformattedDate.firstChild.innerHTML;
         } else {
-          if (unformattedDate.firstChild) {
-            thedate = unformattedDate.firstChild;
+          if (unformattedDate.firstChild.nodeValue) {
+            thedate = unformattedDate.firstChild.nodeValue;
+          } else {
+            if (unformattedDate.firstChild) {
+              thedate = unformattedDate.firstChild;
+            }
           }
+
         }
+        datebits = thedate.split("-");
+        if (datebits.length > 2 && datebits[0] !== null && datebits[1] !== null) {
+          listDates[ii].className = 'reformatted';
 
+          // make day element
+          theDay = datebits[0];
+          displayNode = document.createTextNode(theDay);
+          dayElement = document.createElement('div');
+          dayElement.className = 'day';
+          dayElement.appendChild(displayNode);
+
+          // make month element
+          theMonth = datebits[1];
+          displayNode = document.createTextNode(theMonth);
+          monthElement = document.createElement('div');
+          monthElement.className = 'month';
+          monthElement.appendChild(displayNode);
+
+          // add to list item
+          dateElement = document.createElement('div');
+          dateElement.className = 'formattedDate';
+          dateElement.appendChild(dayElement);
+          dateElement.appendChild(monthElement);
+
+          childNode = listDates[ii].querySelector('a');
+          listDates[ii].insertBefore(dateElement, childNode);
+        }
       }
-      datebits = thedate.split("-");
-      if (datebits.length > 2 && datebits[0] !== null && datebits[1] !== null) {
-        listItem.className = 'reformatted';
 
-        // make day element
-        theDay = datebits[0];
-        displayNode = document.createTextNode(theDay);
-        dayElement = document.createElement('div');
-        dayElement.className = 'day';
-        dayElement.appendChild(displayNode);
-
-        // make month element
-        theMonth = datebits[1];
-        displayNode = document.createTextNode(theMonth);
-        monthElement = document.createElement('div');
-        monthElement.className = 'month';
-        monthElement.appendChild(displayNode);
-
-        // add to list item
-        dateElement = document.createElement('div');
-        dateElement.className = 'formattedDate';
-        dateElement.appendChild(dayElement);
-        dateElement.appendChild(monthElement);
-
-        childNode = listItem.querySelector('a');
-        listItem.insertBefore(dateElement, childNode);
-      }
     }
-
-  });
+  }
   return true;
 }
 
 /**
- * sadly, the careerhub homepage runs from multiple urls, so a little function to check for it
+ * sadly, the Studenthub homepage runs from multiple urls, so a little function to check for it
  * @returns {boolean}
  */
 function isHomePage() {
@@ -158,8 +163,9 @@ function isHomePage() {
 }
 
 
+
 /**
- * add breadcrumbs to the top of a careerhub page
+ * add breadcrumbs to the top of a Studenthub page
  * example usage: addBreadcrumbs('#head');
  *
  * @param parentElementIdentifier
@@ -190,10 +196,9 @@ function addBreadcrumbs(parentElementIdentifier) {
   breadcrumbList.appendChild(anLI);
 
 
-  // create second breadcrumb entry: careerhub workgroup homepage
+  // create second breadcrumb entry: Studenthub workgroup homepage
   var linktext1 = 'Library ';
   var linktext2 = 'staff development';
-  var urlCareerHubHomePage = "https://"+window.location.hostname+"/workgroups/library-staff-development";
 
   var childElement;
   var displayNode;
@@ -201,12 +206,12 @@ function addBreadcrumbs(parentElementIdentifier) {
   anLI = document.createElement('li');
   anLI.className = 'staffdevhomepage';
 
-  if (!isHomePage()) {
-    childElement = document.createElement('a');
-    childElement.href = urlCareerHubHomePage;
-  } else {
+  if (isHomePage()) {
     // spans required for css
     childElement = document.createElement('span');
+  } else {
+    childElement = document.createElement('a');
+    childElement.href = urlStudentHubHomePage;
   }
   var displayNode1 = document.createTextNode(linktext1);
   var childElement1 = document.createElement('span');
@@ -220,18 +225,16 @@ function addBreadcrumbs(parentElementIdentifier) {
   breadcrumbList.appendChild(anLI);
 
 
-  var theLabel;
-  // On the careerhub event page, event titles have a class of 'event_title'
+  // On the Studenthub event page, event titles have a class of 'event_title'
   var testElement = document.querySelector('.event_title');
 
   // third breadcrumb
-  var urlCareerHubListPage = urlCareerHubHomePage + '/events';
-  theLabel = 'Event list';
+  var theLabel = 'Event list';
   displayNode = document.createTextNode(theLabel);
   if (testElement !== null) {
     // we are on an event page - make this a link
     childElement = document.createElement('a');
-    childElement.href = urlCareerHubListPage;
+    childElement.href = urlStudentHubHomePage + '/events';
     childElement.appendChild(displayNode);
 
     anLI = document.createElement('li');
@@ -262,16 +265,16 @@ function addBreadcrumbs(parentElementIdentifier) {
     // for mobile, display 'event details' - some of the titles are long
     anLI = document.createElement('li');
 
-    var firstLabel = 'Event details';
-    displayNode = document.createTextNode(firstLabel);
+    var mobileLabel = 'Event details';
+    displayNode = document.createTextNode(mobileLabel);
     childElement = document.createElement('span');
     childElement.className = 'mobileOnly';
     childElement.appendChild(displayNode);
     anLI.appendChild(childElement);
 
     var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-    var secondLabel = testElement[textProperty];
-    displayNode = document.createTextNode(secondLabel);
+    var nonMobileLabel = testElement[textProperty];
+    displayNode = document.createTextNode(nonMobileLabel);
     childElement = document.createElement('span');
     childElement.className = 'nonMobile';
     childElement.appendChild(displayNode);
@@ -294,25 +297,32 @@ function relabelMoreEventsLink() {
   // document.querySelector(".sidebar > a");
   // returns null so we cant target the specific link (doesnt like the child selector) :(
 
-  var urlEventsPage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development/events';
+  var newLabel = 'More events';
+
+  var urlEventsPage = urlStudentHubHomePage+'/events';
   var links = document.querySelectorAll('.sidebar a');
+  if (links === null) {
+    return false;
+  }
 
-  var theLink;
-  [].forEach.call(links, function(links) {
-    if (urlEventsPage == links.href) {
-      if (!links.firstChild) {
-        return false;
+  var theLink, ii;
+  if (0 < links.length) {
+    for (ii = 0; ii < links.length; ii++) {
+      if (urlEventsPage == links[ii].href) {
+        if (!links[ii].firstChild) {
+          return false;
+        }
+
+        theLink = links[ii].firstChild;
+        if (theLink === null || !theLink.data) {
+          return false;
+        }
+
+        theLink.data = newLabel;
+
       }
-
-      theLink = links.firstChild;
-      if (!theLink.data) {
-        return false;
-      }
-
-      theLink.data = 'More events';
-
     }
-  });
+  }
   return true;
 }
 
@@ -330,10 +340,16 @@ function reformatSummaryElement() {
   }
 
   var newDiv = document.createElement('div');
+  if (newDiv === null) {
+    return false;
+  }
   newDiv.className = 'uqlsummary';
   parentBlock.appendChild(newDiv);
 
   var fragment = document.createDocumentFragment();
+  if (fragment === null) {
+    return false;
+  }
   fragment.appendChild(existingParagraph);
   newDiv.appendChild(fragment);
 
