@@ -3,6 +3,7 @@ module.exports = {
   'check uqlibraryonlineexhibitions.omeka.net is correctly calling reusable elements (if tests fail they may no longer be using omeka)' : function (client) {
     client
       .url('http://uqlibraryonlineexhibitions.omeka.net/exhibits/show/jd-fryer-student-and-soldier')
+      .pause(20000) // allow saucelabs to get the page loaded
       .waitForElementVisible('uql-askus-button', 10000)
       .assert.elementPresent('uq-minimal-header', 'uq header component is present')
       .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
@@ -21,6 +22,7 @@ module.exports = {
   'check https://www.studenthub.uq.edu.au/workgroups/library-staff-development is correctly calling reusable elements' : function (client) {
     client
       .url('https://www.studenthub.uq.edu.au/workgroups/library-staff-development')
+      .pause(20000) // allow saucelabs to get the page loaded
       .waitForElementVisible('uql-askus-button', 10000)
       .assert.elementPresent('uq-minimal-header', 'uq header component is present')
       .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
