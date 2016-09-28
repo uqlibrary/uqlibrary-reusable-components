@@ -135,7 +135,12 @@ echo "local..."
 nightwatch -c nightwatch.json # firefox default
 nightwatch -c nightwatch.json --env chrome
 
-if [ ${CI_BRANCH} == "production" ]; then
+case "$branch" in
+"master")
+# nothing special
+;;
+*)
+# everything else
   echo "saucelab..."
 
   nwconfigtemp="template.nightwatch-saucelabs.json"
@@ -148,4 +153,5 @@ if [ ${CI_BRANCH} == "production" ]; then
 
   nightwatch -c nightwatch-saucelabs.json
   nightwatch -c nightwatch-saucelabs.json --env ie11
-fi
+;;
+esac
