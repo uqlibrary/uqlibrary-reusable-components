@@ -239,11 +239,11 @@ Code to include in the GUI editor (keep this up to date as it can't be reviewed 
 
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
         <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
+        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
+        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>    
+        <script src="//assets.library.uq.edu.au/master/reusable-components/careerhub/load.js" async></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="//assets.library.uq.edu.au/master/reusable-components/careerhub/custom-styles.css">
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <script src="//assets.library.uq.edu.au/master/reusable-components/careerhub/load.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
 
 Notes:
 
@@ -349,5 +349,26 @@ Distribution package on S3 looks like this:
     - elements.vulcanized.js
     
 Subdirectory [branch_name] only exists for non-production branches, eg master/uat .
+
+### Testing
+
+e2e testing is now available, in the first case to check Omeka (see above) is still working correctly.
+
+#### Local testing
+
+* install selenium server
+
+Run Selenium server. Selenium is required to run tests locally Selenium Installer
+
+  `java -jar selenium-server-standalone-{VERSION}.jar`
+  
+or `brew install selenium-server-standalone` then `selenium-server -p 4444`
+
+* run tests
+
+`$ cd bin`
+
+`$ nightwatch`
+
 
 

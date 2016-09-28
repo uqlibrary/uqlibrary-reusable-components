@@ -1,3 +1,6 @@
+var urlStudentHubHomePage = "https://"+window.location.hostname+"/workgroups/library-staff-development";
+// note: function isHomePage also hard codes this path
+
 function ready(fn) {
   if (document.readyState != 'loading'){
     fn();
@@ -9,13 +12,15 @@ function ready(fn) {
 function loadReusableComponents() {
   loadUQFavicon();
 
+  addAppleTouchIcon();
+
   addBreadcrumbs('#head');
 
   relabelMoreEventsLink();
 
   reformatSidebarDates();
 
-  addAppleTouchIcon();
+  reformatSummaryElement();
 
   //insert elements, even before Polymer is loaded
 
@@ -45,6 +50,7 @@ function loadReusableComponents() {
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
+    header.showLoginButton = false;
   });
 
 }
@@ -94,77 +100,70 @@ function reformatSidebarDates() {
     return false;
   }
 
+  var unformattedDate, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode, datebits, ii;
+  if (0 < listDates.length) {
+    for (ii = 0; ii < listDates.length; ii++) {
+      unformattedDate = listDates[ii].querySelector('span.caption');
+      if (unformattedDate !== null) {
 
-
-// nodevalue works in ie and chrome, but ie isnt picking up the d = new Date setting
-  // actually, msec is NAN
-  // is thedate not really a string???
-
-  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var unformattedDate, d, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode;
-  [].forEach.call(listDates, function(listItem) {
-    unformattedDate = listItem.querySelector('span.caption');
-    if (unformattedDate !== null) {
-
-      if (unformattedDate.firstChild.innerHTML) {
-console.log("using firstChild.innerHTML");
-console.log(unformattedDate.firstChild.innerHTML);
-        thedate = unformattedDate.firstChild.innerHTML;
-      } else {
-        if (unformattedDate.firstChild.nodeValue) {
-console.log("using firstChild.nodeValue");
-          console.log(unformattedDate.firstChild.nodeValue);
-          thedate = unformattedDate.firstChild.nodeValue;
+        var thedate = "";
+        if (unformattedDate.firstChild.innerHTML) {
+          thedate = unformattedDate.firstChild.innerHTML;
         } else {
-          if (unformattedDate.firstChild) {
-console.log("using firstChild");
-            console.log(unformattedDate.firstChild);
-            thedate = unformattedDate.firstChild;
+          if (unformattedDate.firstChild.nodeValue) {
+            thedate = unformattedDate.firstChild.nodeValue;
+          } else {
+            if (unformattedDate.firstChild) {
+              thedate = unformattedDate.firstChild;
+            }
           }
+
         }
+        datebits = thedate.split("-");
+        if (datebits.length > 2 && datebits[0] !== null && datebits[1] !== null) {
+          listDates[ii].className = 'reformatted';
 
+          // make day element
+          theDay = datebits[0];
+          displayNode = document.createTextNode(theDay);
+          dayElement = document.createElement('div');
+          dayElement.className = 'day';
+          dayElement.appendChild(displayNode);
+
+          // make month element
+          theMonth = datebits[1];
+          displayNode = document.createTextNode(theMonth);
+          monthElement = document.createElement('div');
+          monthElement.className = 'month';
+          monthElement.appendChild(displayNode);
+
+          // add to list item
+          dateElement = document.createElement('div');
+          dateElement.className = 'formattedDate';
+          dateElement.appendChild(dayElement);
+          dateElement.appendChild(monthElement);
+
+          childNode = listDates[ii].querySelector('a');
+          listDates[ii].insertBefore(dateElement, childNode);
+        }
       }
-console.log("thedate = "+thedate);
-      var msec = Date.parse(thedate);
-      // if we are unable to get a date, we dont reformat, and apply the older styles
-      if (!isNaN(msec)) {
-        listItem.className = 'reformatted';
 
-        d = new Date(msec);
-        console.log("d: " + d);
-        // make day element
-        theDay = d.getDate();
-//console.log("theDay: "+theDay);
-        displayNode = document.createTextNode(theDay);
-        dayElement = document.createElement('div');
-        dayElement.className = 'day';
-        dayElement.appendChild(displayNode);
-
-        // make month element
-        theMonth = monthNames[d.getMonth()];
-//console.log("theMonth: "+theMonth);
-        displayNode = document.createTextNode(theMonth);
-        monthElement = document.createElement('div');
-        monthElement.className = 'month';
-        monthElement.appendChild(displayNode);
-
-        // add to list item
-        dateElement = document.createElement('div');
-        dateElement.className = 'formattedDate';
-        dateElement.appendChild(dayElement);
-        dateElement.appendChild(monthElement);
-
-        childNode = listItem.querySelector('a');
-        listItem.insertBefore(dateElement, childNode);
-      }
     }
-
-  });
+  }
   return true;
 }
 
 /**
- * add breadcrumbs to the top of a careerhub page
+ * sadly, the Studenthub homepage runs from multiple urls, so a little function to check for it
+ * @returns {boolean}
+ */
+function isHomePage() {
+  var regexp = /https?:\/\/((www\.)?(careerhub|studenthub)\.uq\.edu\.au)\/workgroups\/library-staff-development\/?$/;
+  return regexp.test(window.location.href);
+}
+
+/**
+ * add breadcrumbs to the top of a Studenthub page
  * example usage: addBreadcrumbs('#head');
  *
  * @param parentElementIdentifier
@@ -195,64 +194,53 @@ function addBreadcrumbs(parentElementIdentifier) {
   breadcrumbList.appendChild(anLI);
 
 
-  // create second breadcrumb entry: careerhub workgroup homepage
-  var linktext = 'Library staff development';
-  var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
-  var urlCareerHubListPage = urlCareerHubHomePage + '/events';
+  // create second breadcrumb entry: Studenthub workgroup homepage
+  var linktext1 = 'Library ';
+  var linktext2 = 'staff development';
 
   var childElement;
   var displayNode;
-  if (window.location.href != urlCareerHubHomePage) {
-    childElement = document.createElement('a');
-    childElement.href = urlCareerHubHomePage;
-  } else {
-    // spans required for css
-    childElement = document.createElement('span');
-  }
-  displayNode = document.createTextNode(linktext);
-  childElement.appendChild(displayNode);
 
   anLI = document.createElement('li');
+  anLI.className = 'staffdevhomepage';
+
+  if (isHomePage()) {
+    // spans required for css
+    childElement = document.createElement('span');
+  } else {
+    childElement = document.createElement('a');
+    childElement.href = urlStudentHubHomePage;
+  }
+  var displayNode1 = document.createTextNode(linktext1);
+  var childElement1 = document.createElement('span');
+  childElement1.appendChild(displayNode1);
+  childElement.appendChild(childElement1);
+
+  displayNode = document.createTextNode(linktext2);
+  childElement.appendChild(displayNode);
+
   anLI.appendChild(childElement);
   breadcrumbList.appendChild(anLI);
 
 
-
-  var theLabel;
-  // On the careerhub event page, event titles have a class of 'event_title'
+  // On the Studenthub event page, event titles have a class of 'event_title'
   var testElement = document.querySelector('.event_title');
+
+  // third breadcrumb
+  var theLabel = 'Event list';
+  displayNode = document.createTextNode(theLabel);
   if (testElement !== null) {
-    // an event class means we are on a detail page
-
-    // third breadcrumb
-    theLabel = 'Event List';
-
-    displayNode = document.createTextNode(theLabel);
+    // we are on an event page - make this a link
     childElement = document.createElement('a');
-    childElement.href = urlCareerHubListPage;
+    childElement.href = urlStudentHubHomePage + '/events';
     childElement.appendChild(displayNode);
 
     anLI = document.createElement('li');
     anLI.appendChild(childElement);
     breadcrumbList.appendChild(anLI);
 
-    // fourth breadcrumb
-    // display the event's title as an unlinked breadcrumb
-    var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-    theLabel = testElement[textProperty];
-    displayNode = document.createTextNode(theLabel);
-    childElement = document.createElement('span');
-    childElement.appendChild(displayNode);
-
-    anLI = document.createElement('li');
-    anLI.appendChild(childElement);
-    breadcrumbList.appendChild(anLI);
   } else {
-    if (window.location.href != urlCareerHubHomePage) {
-      // third breadcrumb
-      theLabel = 'Event List';
-
-      displayNode = document.createTextNode(theLabel);
+    if (!isHomePage()) {
       childElement = document.createElement('span');
       childElement.appendChild(displayNode);
 
@@ -264,6 +252,33 @@ function addBreadcrumbs(parentElementIdentifier) {
       newclassName = ' listpage';
       document.body.className+= newclassName;
     }
+  }
+
+
+  // fourth breadcrumb
+  if (testElement !== null) {
+    // an event class means we are on a detail page
+
+    // for desktop, display the event's title as an unlinked breadcrumb
+    // for mobile, display 'event details' - some of the titles are long
+    anLI = document.createElement('li');
+
+    var mobileLabel = 'Event details';
+    displayNode = document.createTextNode(mobileLabel);
+    childElement = document.createElement('span');
+    childElement.className = 'mobileOnly';
+    childElement.appendChild(displayNode);
+    anLI.appendChild(childElement);
+
+    var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
+    var nonMobileLabel = testElement[textProperty];
+    displayNode = document.createTextNode(nonMobileLabel);
+    childElement = document.createElement('span');
+    childElement.className = 'nonMobile';
+    childElement.appendChild(displayNode);
+    anLI.appendChild(childElement);
+
+    breadcrumbList.appendChild(anLI);
   }
 
   parentBlock.insertBefore(breadcrumbList, parentBlock.firstChild);
@@ -280,26 +295,62 @@ function relabelMoreEventsLink() {
   // document.querySelector(".sidebar > a");
   // returns null so we cant target the specific link (doesnt like the child selector) :(
 
-  var urlEventsPage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development/events';
+  var newLabel = 'More events';
+
+  var urlEventsPage = urlStudentHubHomePage+'/events';
   var links = document.querySelectorAll('.sidebar a');
+  if (links === null) {
+    return false;
+  }
 
-  var theLink;
-  [].forEach.call(links, function(links) {
-    if (urlEventsPage == links.href) {
-      if (!links.firstChild) {
-        return false;
+  var theLink, ii;
+  if (0 < links.length) {
+    for (ii = 0; ii < links.length; ii++) {
+      if (urlEventsPage == links[ii].href) {
+        if (!links[ii].firstChild) {
+          return false;
+        }
+
+        theLink = links[ii].firstChild;
+        if (theLink === null || !theLink.data) {
+          return false;
+        }
+
+        theLink.data = newLabel;
+
       }
-
-      theLink = links.firstChild;
-      if (!theLink.data) {
-        return false;
-      }
-
-      theLink.data = 'More events';
-
     }
-  });
+  }
   return true;
+}
+
+function reformatSummaryElement() {
+  // the summary p element wraps all the way back to the left, under the icon
+  // child it into a div (display: inline) and we can use the left margin to stop that
+  var parentBlock = document.querySelector('.event_summary');
+  if (parentBlock === null) {
+    return false;
+  }
+
+  var existingParagraph = document.querySelector('.event_summary p');
+  if (existingParagraph === null) {
+    return false;
+  }
+
+  var newDiv = document.createElement('div');
+  if (newDiv === null) {
+    return false;
+  }
+  newDiv.className = 'uqlsummary';
+  parentBlock.appendChild(newDiv);
+
+  var fragment = document.createDocumentFragment();
+  if (fragment === null) {
+    return false;
+  }
+  fragment.appendChild(existingParagraph);
+  newDiv.appendChild(fragment);
+
 }
 
 
