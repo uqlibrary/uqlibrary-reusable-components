@@ -1,505 +1,66 @@
-#preloader {
-  display: block; }
-  #preloader .header {
-    width: 100%;
-    height: 64px;
-    color: #FFF;
-    background-color: #49075E;
-    line-height: 64px;
-    padding-left: 10px;
-    font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif';
-    font-size: 20px; }
-  #preloader .preloader-card {
-    margin: 16px auto;
-    background-color: #FFF;
-    border-radius: 2px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }
-  #preloader .preloader-card p {
-    font-family: 'helvetica', 'times new roman', 'sans-serif';
-    color: #595959; }
-  #preloader .preloader-card h2 {
-    line-break: auto;
-    white-space: normal;
-    font-size: 1.8em;
-    color: #757575;
-    font-weight: 400;
-    line-height: 1.1em; }
-  #preloader #preloader-loading {
-    text-align: center;
-    text-transform: uppercase;
-    padding: 40px;
-    display: none; }
-  #preloader #preloader-unsupported {
-    padding: 20px 40px 40px 40px;
-    display: none; }
+/*
+Error: body #content div.event_booking_stat.first:before
+        can't extend: invalid selector
+        on line 83 of custom-styles.scss
 
-body {
-  margin: 0px;
-  padding: 0px; }
+78: , body #content div.event_contact_details:before
+79: , body #content div.event_date:before
+80: , body #content li.attachment:before
+81: , body #content div.event_summary:before
+82: , body ol.breadcrumbList li:before {
+83:   @extend .material-icons;
+84: }
 
-uq-minimal-header {
-  height: 100px;
-  display: block;
-  background-color: #49075E;
-  width: 100%; }
-
-uq-minimal-footer {
-  display: block;
-  width: 100%;
-  background-color: #49075E;
-  min-height: 140px; }
-
-uql-connect-footer {
-  display: block;
-  width: 100%;
-  background-color: #e5e5e5;
-  min-height: 240px; }
-
-@media all and (max-width: 1047px) {
-  uq-minimal-header {
-    height: 66px; } }
-@media all and (min-width: 1048px) {
-  uql-menu {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
-    display: block;
-    width: 100%;
-    height: 67px;
-    background-color: #fff; } }
-html,
-body {
-  height: 100%;
-  min-height: 100vh;
-  font-family: 'Roboto', 'helvetica', 'times new roman', 'sans-serif' !important; }
-
-html, body {
-  font-size: 16px; }
-
-body {
-  background: #fff;
-  color: #222;
-  padding: 0;
-  margin: 0;
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  font-style: normal;
-  line-height: 24px;
-  position: relative;
-  cursor: auto; }
-
-#textWidget_preHeader {
-  margin: 0; }
-  #textWidget_preHeader p {
-    margin: 0; }
-
-#container {
-  max-width: 1170px;
-  width: calc(100% - 32px);
-  margin: 0 auto 8px;
-  min-height: calc(100vh - 550px); }
-
-#main #columns {
-  border-width: 0;
-  width: 100%;
-  min-height: 25em;
-  margin: 0; }
-  #main #columns th, #main #columns td {
-    border-width: 0; }
-  #main #columns td#center {
-    padding: 0;
-    width: 67%; }
-    #main #columns td#center .event_summary p,
-    #main #columns td#center .event_details p {
-      margin: 0; }
-  #main #columns #content {
-    max-width: initial;
-    width: auto;
-    margin: 0;
-    min-height: initial; }
-
-@media only screen and (max-width: 700px) {
-  #main table#columns {
-    display: block; }
-    #main table#columns thead,
-    #main table#columns tbody,
-    #main table#columns tr,
-    #main table#columns th {
-      display: block; }
-    #main table#columns td {
-      display: block;
-      border: none;
-      position: relative; }
-    #main table#columns td#right,
-    #main table#columns td#center {
-      width: 100%; } }
-#container #center ul.event_list {
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0; }
-  #container #center ul.event_list li {
-    list-style: none;
-    margin-left: 0;
-    margin-bottom: 11px;
-    margin-bottom: 0.7rem;
-    padding: 8px 16px;
-    padding: 0.5em 1em;
-    background-color: #ececec;
-    color: inherit; }
-    #container #center ul.event_list li span {
-      font-weight: bold; }
-    #container #center ul.event_list li .campus {
-      font-weight: 200; }
-  #container #center ul.event_list a,
-  #container #center ul.event_list a:visited {
-    background-color: #ececec;
-    font-size: 28px;
-    font-size: 1.75rem; }
-
-body.listpage td#right.sidebar {
-  display: none; }
-
-#head {
-  background-color: #fff;
-  border-bottom-width: 0;
-  border-top-width: 0;
-  padding-top: 0;
-  padding-left: 0; }
-  #head a {
-    color: inherit; }
-  #head .inner {
-    margin: 0;
-    width: auto; }
-  #head h1 {
-    font-size: 1.75rem;
-    font-weight: 400;
-    line-height: 1.25;
-    margin-top: 0; }
-  #head #sitename {
-    font-size: 16px;
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1.25;
-    margin-top: 10px;
-    margin-top: 0.6rem;
-    margin-bottom: 16px;
-    margin-bottom: 1rem;
-    text-transform: lowercase; }
-    #head #sitename::first-letter {
-      text-transform: uppercase; }
-    #head #sitename a {
-      color: #000 !important;
-      text-decoration: none;
-      cursor: default; }
-
-ol.breadcrumbList {
-  padding-left: 0;
-  margin: 10px 0 0 0;
-  height: 40px;
-  height: 2.5rem;
-  font-size: 13px;
-  font-size: 0.8rem; }
-  ol.breadcrumbList li {
-    display: inline;
-    list-style-type: none; }
-    ol.breadcrumbList li:before {
-      content: 'chevron_right';
-      vertical-align: top; }
-    ol.breadcrumbList li:first-child a {
-      padding-left: 0; }
-    ol.breadcrumbList li:first-child:before {
-      content: ""; }
-    ol.breadcrumbList li paper-icon-button {
-      padding: 0;
-      width: 20px; }
-    ol.breadcrumbList li iron-icon {
-      width: 20px;
-      height: 20px;
-      margin-top: -3px; }
-
-#user_info,
-#links {
-  display: none; }
-
-@media only screen and (max-width: 700px) {
-  #head {
-    padding-top: 1rem; } }
-#main #columns #content .event_type {
-  display: none; }
-#main #columns #content .event_booking_stat .num,
-#main #columns #content .event_booking_stat .desc,
-#main #columns #content .event_start,
-#main #columns #content .event_end {
-  font-size: 16px;
-  font-size: 1rem; }
-#main #columns #content div.event h1 {
-  font-size: 28px;
-  font-size: 1.75rem; }
-#main #columns #content .event_title {
-  margin-top: 0.3rem;
-  background-color: #6B0C8A;
-  color: #fff;
-  padding: 96px 0 16px 24px;
-  padding: 6rem 0 1rem 1.5rem;
-  margin-right: 32px;
-  margin-right: 2rem; }
-#main #columns #content div.event_date {
-  margin-top: 48px;
-  margin-top: 3rem;
-  font-weight: 300; }
-#main #columns #content div.event_date strong,
-#main #columns #content div.event_venue strong,
-#main #columns #content div.event_summary strong,
-#main #columns #content div.event_details strong,
-#main #columns #content div.event_booking strong {
-  display: none; }
-#main #columns #content div.event_date br,
-#main #columns #content div.event_venue br,
-#main #columns #content div.event_summary br,
-#main #columns #content div.event_booking br {
-  display: none; }
-#main #columns #content div.event_contact_details strong {
-  display: none; }
-#main #columns #content div.event_details {
-  margin-left: 60px;
-  margin-left: 3.75rem; }
-#main #columns #content div.event_time {
-  margin-left: 52px;
-  margin-left: 3.25rem; }
-#main #columns #content div.event_booking_stat {
-  padding-left: 24px;
-  padding-left: 1.5rem; }
-#main #columns #content div.event_venue,
-#main #columns #content div.event_details,
-#main #columns #content div.event_contact_details {
-  margin-left: 0;
-  padding-left: 60px;
-  padding-left: 3.5rem; }
-#main #columns #content div.event_venue,
-#main #columns #content div.event_details,
-#main #columns #content div.event_contact_details,
-#main #columns #content div.event_booking_stat:not(.first) {
-  border-bottom: 1px solid #e5e5e5;
-  margin-right: 32px;
-  margin-right: 2rem;
-  margin-bottom: 24px;
-  margin-bottom: 1.5rem;
-  padding-bottom: 24px;
-  padding-bottom: 1.5rem; }
-#main #columns #content div.event_summary p {
-  display: inline;
-  font-weight: bold; }
-#main #columns #content div.event_contact_details p {
-  margin-left: 16px;
-  margin-left: 1rem; }
-#main #columns #content div.event_booking_stat.first .num {
-  margin-left: 10px;
-  margin-left: 0.6rem;
-  padding-left: 0; }
-#main #columns #content div.event_booking_stat .num {
-  padding-left: 52.8px;
-  padding-left: 3.3rem; }
-#main #columns #content div.event_contact_details p {
-  padding-left: 24px;
-  padding-left: 1.5rem;
-  margin-top: -24px;
-  margin-top: -1.5rem;
-  margin-bottom: 0; }
-#main #columns #content div.event_date .event_start {
-  margin-left: 6px;
-  margin-left: .5rem; }
-#main #columns #content div.event_summary p {
-  margin-left: 12px;
-  margin-left: .75rem; }
-#main #columns #content div.event_end span,
-#main #columns #content div.event_venue span {
-  margin-left: 32px;
-  margin-left: 2rem; }
-#main #columns #content div.event_date,
-#main #columns #content div.event_summary,
-#main #columns #content div.event_contact_details,
-#main #columns #content div.event_booking_stat.first {
-  padding-left: 16px;
-  padding-left: 1rem; }
-#main #columns #content div.event_date:before,
-#main #columns #content div.event_summary:before,
-#main #columns #content div.event_contact_details:before,
-#main #columns #content div.event_booking_stat.first:before {
-  vertical-align: top;
-  color: #808080; }
-#main #columns #content div.event_venue {
-  margin-top: 0; }
-#main #columns #content div.event_date:before {
-  content: 'today'; }
-#main #columns #content div.event_summary:before {
-  content: 'speaker_notes'; }
-#main #columns #content div.event_contact_details:before {
-  content: 'contact_phone'; }
-#main #columns #content div.event_booking_stat.first:before {
-  content: 'people'; }
-#main #columns #content div.event_booking_stat .num,
-#main #columns #content div.event_booking_stat .desc {
-  display: inline;
-  font-weight: 200; }
-#main #columns #content div.event_booking_stat .desc {
-  margin-left: 0;
-  color: inherit; }
-#main #columns #content .event_booking {
-  border-top-width: 0; }
-  #main #columns #content .event_booking h2 {
-    display: none; }
-  #main #columns #content .event_booking .event_booking_stat.first,
-  #main #columns #content .event_booking .event_booking_stat {
-    border-width: 0;
-    float: none;
-    margin: 11px 0 0 0; }
-  #main #columns #content .event_booking .event_booking_stat {
-    padding: 0; }
-  #main #columns #content .event_booking .event_booking_stat.first {
-    padding-left: 1rem; }
-  #main #columns #content .event_booking form {
-    margin-top: 8px; }
-  #main #columns #content .event_booking input[type="submit"] {
-    border: 0 solid transparent;
-    cursor: pointer;
-    font-weight: normal;
-    line-height: normal;
-    margin: 0 0 20px;
-    margin: 0 0 1.25rem;
-    position: relative;
-    text-decoration: none;
-    text-align: center;
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
-    display: inline-block;
-    padding: 16px 32px 17px 32px;
-    padding-top: 1rem;
-    padding-right: 2rem;
-    padding-bottom: 1.0625rem;
-    padding-left: 2rem;
-    font-size: 16px;
-    font-size: 1rem;
-    background-color: #2377CB;
-    color: #fff;
-    transition: background-color 300ms ease-out;
-    text-transform: uppercase; }
-#main #columns #content #message {
-  padding: 10px; }
-#main #columns #content #message.flash {
-  color: #000;
-  background-color: #D9EEFF; }
-
-.event_booking_stat {
-  width: auto; }
-
-.nubbin {
-  left: inherit;
-  right: 10px; }
-
-#main #columns .sidebar {
-  background-color: #fff;
-  color: #222;
-  border-width: 0;
-  font-size: inherit; }
-  #main #columns .sidebar h3 {
-    border-bottom-width: 0;
-    line-height: 1.25;
-    font-size: 1.3em;
-    background-color: #fff;
-    color: #222; }
-  #main #columns .sidebar .body {
-    position: relative; }
-    #main #columns .sidebar .body ul {
-      margin: 0;
-      padding: 0; }
-    #main #columns .sidebar .body li {
-      list-style: none;
-      border-bottom: 1px solid #e5e5e5;
-      position: relative;
-      padding: .8rem 0 .8rem 0;
-      margin-bottom: 0.5rem; }
-      #main #columns .sidebar .body li br {
-        display: none; }
-      #main #columns .sidebar .body li a {
-        display: block;
-        padding-top: 1em; }
-      #main #columns .sidebar .body li .caption {
-        position: absolute;
-        top: 0; }
-    #main #columns .sidebar .body > a {
-      position: absolute;
-      right: 0;
-      background-color: #2377CB;
-      color: #fff;
-      padding: 13px 8px;
-      padding: 0.8rem 0.5rem;
-      display: block;
-      width: 56px;
-      width: 7rem;
-      text-align: center;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-size: 0.8em; }
-  #main #columns .sidebar a {
-    line-height: 1.25; }
-#main #columns li, #main #columns p {
-  font-size: 16px;
-  line-height: 1.5; }
-
-.caption {
-  color: #222;
-  font-style: inherit; }
-
-h1,
-h2, #sitename,
-h3, h4, h5, h6 {
-  font-weight: 500;
-  line-height: 1.25;
-  margin-top: 0;
-  margin-bottom: 16px;
-  margin-bottom: 1rem; }
-
-h2 {
-  font-size: 32px;
-  font-size: 2rem; }
-
-h1, h3 {
-  font-size: 28px;
-  font-size: 1.75rem;
-  font-weight: 400; }
-
-#container #main a {
-  background-color: #fff;
-  color: #2377CB; }
-#container #main a:hover, #container #main a:focus {
-  text-decoration: underline; }
-#container #main a:visited {
-  background-color: #fff;
-  color: #2377CB; }
-
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: local("Material Icons"), local("MaterialIcons-Regular"), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5RV6cRhDpPC5P4GCEJpqGoc.woff) format("woff"); }
-.material-icons, ol.breadcrumbList li:before, #main #columns #content div.event_date:before,
-#main #columns #content div.event_summary:before,
-#main #columns #content div.event_contact_details:before,
-#main #columns #content div.event_booking_stat.first:before {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased; }
-
-/*# sourceMappingURL=custom-styles.css.map */
+Backtrace:
+custom-styles.scss:83
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/selector/comma_sequence.rb:116:in `block (2 levels) in populate_extends'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/selector/comma_sequence.rb:114:in `each'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/selector/comma_sequence.rb:114:in `block in populate_extends'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/selector/comma_sequence.rb:101:in `each'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/selector/comma_sequence.rb:101:in `populate_extends'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:126:in `visit_extend'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:23:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:43:in `block in visit_children_without_parent'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:43:in `map'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:43:in `visit_children_without_parent'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:32:in `block in visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:54:in `with_parent'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:31:in `visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:196:in `visit_rule'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:23:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:43:in `block in visit_children_without_parent'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:43:in `map'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:43:in `visit_children_without_parent'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:32:in `block in visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:54:in `with_parent'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:31:in `visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:65:in `visit_root'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:23:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/base.rb:24:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/visitors/cssize.rb:6:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/root_node.rb:38:in `css_tree'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/engine.rb:295:in `render_with_sourcemap'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:209:in `each'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin.rb:82:in `update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/exec/sass_scss.rb:361:in `watch_or_update'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/exec/base.rb:52:in `parse'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/exec/base.rb:19:in `parse!'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: body #content div.event_booking_stat.first:before\A         can't extend: invalid selector\A         on line 83 of custom-styles.scss\A \A 78: , body #content div.event_contact_details:before\A 79: , body #content div.event_date:before\A 80: , body #content li.attachment:before\A 81: , body #content div.event_summary:before\A 82: , body ol.breadcrumbList li:before {\A 83:   @extend .material-icons;\A 84: }"; }

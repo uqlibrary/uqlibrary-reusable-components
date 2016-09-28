@@ -33,7 +33,7 @@
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#1.0.5",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search#v1.0.6",
     "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.2.4",
-    "uqlibrary-training": "uqlibrary/uqlibrary-training#careerhub"
+    "uqlibrary-training": "uqlibrary/uqlibrary-training#master"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",

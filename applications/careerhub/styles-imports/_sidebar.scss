@@ -46,12 +46,16 @@
             padding: 0 0 1.7rem 5rem;
           }
           a { // name of event
-            padding: 16px 0 27px 80px;
-            padding: 1rem 0 1.7rem 5rem;
+            padding: 16px 0 27px 16px;
+            padding: 1rem 0 1.7rem 1rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
+
           .formattedDate {
             width: 2rem;
-            background-color: purple;
+            background-color: lighten($theme-color, 30%);
             color: #fff;
             text-align: center;
             padding: 3px 16px 7px 16px;
@@ -66,12 +70,14 @@
             text-transform: uppercase;
             margin-top: -0.5rem;
           }
-          &:first-child .formattedDate,
-          &:nth-child(2) .formattedDate {
+          &:first-child .formattedDate {
             background-color: $theme-color;
           }
+          &:nth-child(2) .formattedDate {
+            background-color:  lighten($theme-color, 10%);
+          }
           &:nth-child(3) .formattedDate {
-            background-color: $theme-color-lighter;
+            background-color:  lighten($theme-color, 20%);
           }
 
         }
