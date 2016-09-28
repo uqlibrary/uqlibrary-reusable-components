@@ -3,7 +3,7 @@ module.exports = {
   'check uqlibraryonlineexhibitions.omeka.net is correctly calling reusable elements (if tests fail they may no longer be using omeka)' : function (client) {
     client
       .url('http://uqlibraryonlineexhibitions.omeka.net/exhibits/show/jd-fryer-student-and-soldier')
-      .waitForElementVisible('uql-global-links', 10000)
+      .waitForElementVisible('uql-askus-button', 10000)
       .assert.elementPresent('uq-minimal-header', 'uq header component is present')
       .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
       .assert.containsText('.library-title a', 'UQ Library')
@@ -18,10 +18,10 @@ module.exports = {
       .end();
   },
 
-  'check https://www.careerhub.uq.edu.au/workgroups/library-staff-development is correctly calling reusable elements' : function (client) {
+  'check https://www.studenthub.uq.edu.au/workgroups/library-staff-development is correctly calling reusable elements' : function (client) {
     client
-      .url('https://www.careerhub.uq.edu.au/workgroups/library-staff-development')
-      .waitForElementVisible('uql-global-links', 10000)
+      .url('https://www.studenthub.uq.edu.au/workgroups/library-staff-development')
+      .waitForElementVisible('uql-askus-button', 10000)
       .assert.elementPresent('uq-minimal-header', 'uq header component is present')
       .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
       .assert.containsText('.library-title a', 'UQ Library')
