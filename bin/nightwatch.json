@@ -22,6 +22,7 @@
       "selenium_port"  : 4444,
       "selenium_host"  : "localhost",
       "silent": true,
+      "screenResolution": "1280x960",
       "screenshots" : {
         "enabled" : false,
         "path" : ""
@@ -29,7 +30,8 @@
       "desiredCapabilities": {
         "browserName": "firefox",
         "javascriptEnabled": true,
-        "acceptSslCerts": true
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
       }
     },
     "chrome": {
@@ -37,9 +39,7 @@
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
-        "chromeOptions" : {
-          "args" : ["start-fullscreen", "--no-sandbox"]
-        }
+        "screenResolution": "1280x960"
       }
     }
   }
