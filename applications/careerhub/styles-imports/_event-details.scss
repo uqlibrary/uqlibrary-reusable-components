@@ -89,8 +89,10 @@
       }
 
       div.event_summary p {
-        display: inline;
+        display: block;
         font-weight: bold;
+        margin-left: 2.5rem;
+        margin-top: -1.5rem;
       }
 
         // styling icons

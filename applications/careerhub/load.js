@@ -10,17 +10,16 @@ function ready(fn) {
 }
 
 function loadReusableComponents() {
-  loadUQFavicon();
-
-  addAppleTouchIcon();
+  // loadUQFavicon();
+  // addAppleTouchIcon();
 
   addBreadcrumbs('#head');
 
-  relabelMoreEventsLink();
+  updateEventsLinkText();
 
   reformatSidebarDates();
 
-  reformatSummaryElement();
+  // reformatSummaryElement();
 
   //insert elements, even before Polymer is loaded
 
@@ -53,44 +52,6 @@ function loadReusableComponents() {
     header.showLoginButton = false;
   });
 
-}
-
-function loadUQFavicon() {
-  var link = document.createElement('link'),
-    href = '//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico';
-  link.type = 'image/x-icon';
-  link.rel = 'shortcut icon';
-  link.href = href;
-  document.getElementsByTagName('head')[0].appendChild(link);
-  link.rel = 'icon'; //for IE
-  document.getElementsByTagName('head')[0].appendChild(link);
-
-}
-
-function addAppleTouchIcon() {
-  // replace apple-touch-icon
-  var appleTouchIconlink = $('link[rel="apple-touch-icon"]'),
-    link = document.createElement('link'),
-    sizes = ['152x152', '120x120', '76x76'],
-    rel = 'apple-touch-icon',
-    href = '//assets.library.uq.edu.au/master/reusable-components/resources/images/apple-touch-icon.png';
-
-  if (appleTouchIconlink) {
-    appleTouchIconlink.attr('href', href);
-  } else {
-    link.rel = rel;
-    link.href = href;
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
-
-  for (var i = 0; i < sizes.length; i++) {
-    var size = sizes[i],
-      iconLink = document.createElement('link');
-    iconLink.rel = rel;
-    iconLink.sizes = size;
-    iconLink.href = href.replace('icon.png','icon-' + size + '.png');
-    document.getElementsByTagName('head')[0].appendChild(iconLink);
-  }
 }
 
 function reformatSidebarDates() {
@@ -288,40 +249,13 @@ function addBreadcrumbs(parentElementIdentifier) {
 
 /**
  * find the specific link on the page and relabel it
- * @returns {boolean}
  */
-function relabelMoreEventsLink() {
-  // we are using querySelectorAll because the following line:
-  // document.querySelector(".sidebar > a");
-  // returns null so we cant target the specific link (doesnt like the child selector) :(
-
-  var newLabel = 'More events';
-
-  var urlEventsPage = urlStudentHubHomePage+'/events';
-  var links = document.querySelectorAll('.sidebar a');
-  if (links === null) {
-    return false;
+function updateEventsLinkText() {
+  //select a link to more events from the sidebar (upcoming events)
+  var moreEventsLink = document.querySelector('.sidebar .body a[href$="/events"]');
+  if (moreEventsLink !== null) {
+    moreEventsLink.innerHTML = "More events";
   }
-
-  var theLink, ii;
-  if (0 < links.length) {
-    for (ii = 0; ii < links.length; ii++) {
-      if (urlEventsPage == links[ii].href) {
-        if (!links[ii].firstChild) {
-          return false;
-        }
-
-        theLink = links[ii].firstChild;
-        if (theLink === null || !theLink.data) {
-          return false;
-        }
-
-        theLink.data = newLabel;
-
-      }
-    }
-  }
-  return true;
 }
 
 function reformatSummaryElement() {
