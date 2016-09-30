@@ -57,7 +57,7 @@ function loadReusableComponents() {
 
 function loadUQFavicon() {
   var link = document.createElement('link'),
-    href = '//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico';
+      href = '//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico';
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
   link.href = href;
@@ -288,40 +288,12 @@ function addBreadcrumbs(parentElementIdentifier) {
 
 /**
  * find the specific link on the page and relabel it
- * @returns {boolean}
  */
 function relabelMoreEventsLink() {
-  // we are using querySelectorAll because the following line:
-  // document.querySelector(".sidebar > a");
-  // returns null so we cant target the specific link (doesnt like the child selector) :(
-
-  var newLabel = 'More events';
-
-  var urlEventsPage = urlStudentHubHomePage+'/events';
-  var links = document.querySelectorAll('.sidebar a');
-  if (links === null) {
-    return false;
+  var moreEventsLink = document.querySelector('.sidebar .body a[href$="/events"]');
+  if (typeof(moreEventsLink) !== null) {
+    moreEventsLink.innerHTML = "More events";
   }
-
-  var theLink, ii;
-  if (0 < links.length) {
-    for (ii = 0; ii < links.length; ii++) {
-      if (urlEventsPage == links[ii].href) {
-        if (!links[ii].firstChild) {
-          return false;
-        }
-
-        theLink = links[ii].firstChild;
-        if (theLink === null || !theLink.data) {
-          return false;
-        }
-
-        theLink.data = newLabel;
-
-      }
-    }
-  }
-  return true;
 }
 
 function reformatSummaryElement() {
