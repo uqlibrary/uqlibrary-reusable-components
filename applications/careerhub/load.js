@@ -1,3 +1,6 @@
+var urlStudentHubHomePage = "https://"+window.location.hostname+"/workgroups/library-staff-development";
+// note: function isHomePage also hard codes this path
+
 function ready(fn) {
   if (document.readyState != 'loading'){
     fn();
@@ -7,15 +10,14 @@ function ready(fn) {
 }
 
 function loadReusableComponents() {
-  loadUQFavicon();
+  // loadUQFavicon();
+  // addAppleTouchIcon();
 
   addBreadcrumbs('#head');
 
-  relabelMoreEventsLink();
+  updateEventsLinkText();
 
   reformatSidebarDates();
-
-  addAppleTouchIcon();
 
   //insert elements, even before Polymer is loaded
 
@@ -45,126 +47,66 @@ function loadReusableComponents() {
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
+    header.showLoginButton = false;
   });
 
-}
-
-function loadUQFavicon() {
-  var link = document.createElement('link'),
-    href = '//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico';
-  link.type = 'image/x-icon';
-  link.rel = 'shortcut icon';
-  link.href = href;
-  document.getElementsByTagName('head')[0].appendChild(link);
-  link.rel = 'icon'; //for IE
-  document.getElementsByTagName('head')[0].appendChild(link);
-
-}
-
-function addAppleTouchIcon() {
-  // replace apple-touch-icon
-  var appleTouchIconlink = $('link[rel="apple-touch-icon"]'),
-    link = document.createElement('link'),
-    sizes = ['152x152', '120x120', '76x76'],
-    rel = 'apple-touch-icon',
-    href = '//assets.library.uq.edu.au/master/reusable-components/resources/images/apple-touch-icon.png';
-
-  if (appleTouchIconlink) {
-    appleTouchIconlink.attr('href', href);
-  } else {
-    link.rel = rel;
-    link.href = href;
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
-
-  for (var i = 0; i < sizes.length; i++) {
-    var size = sizes[i],
-      iconLink = document.createElement('link');
-    iconLink.rel = rel;
-    iconLink.sizes = size;
-    iconLink.href = href.replace('icon.png','icon-' + size + '.png');
-    document.getElementsByTagName('head')[0].appendChild(iconLink);
-  }
-}
-
-function reformatSidebarDates() {
-  // the date needed reformatting because css cant format 19-Sep-2016 as 19\nSep
-  var listDates = document.querySelectorAll('.upcomingEvents .body li');
-  if (listDates === null) {
-    return false;
-  }
-
-
-
-// nodevalue works in ie and chrome, but ie isnt picking up the d = new Date setting
-  // actually, msec is NAN
-  // is thedate not really a string???
-
-  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var unformattedDate, d, theDay, displayNode, dayElement, theMonth, monthElement, dateElement, childNode;
-  [].forEach.call(listDates, function(listItem) {
-    unformattedDate = listItem.querySelector('span.caption');
-    if (unformattedDate !== null) {
-
-      if (unformattedDate.firstChild.innerHTML) {
-console.log("using firstChild.innerHTML");
-console.log(unformattedDate.firstChild.innerHTML);
-        thedate = unformattedDate.firstChild.innerHTML;
-      } else {
-        if (unformattedDate.firstChild.nodeValue) {
-console.log("using firstChild.nodeValue");
-          console.log(unformattedDate.firstChild.nodeValue);
-          thedate = unformattedDate.firstChild.nodeValue;
-        } else {
-          if (unformattedDate.firstChild) {
-console.log("using firstChild");
-            console.log(unformattedDate.firstChild);
-            thedate = unformattedDate.firstChild;
-          }
-        }
-
-      }
-console.log("thedate = "+thedate);
-      var msec = Date.parse(thedate);
-      // if we are unable to get a date, we dont reformat, and apply the older styles
-      if (!isNaN(msec)) {
-        listItem.className = 'reformatted';
-
-        d = new Date(msec);
-        console.log("d: " + d);
-        // make day element
-        theDay = d.getDate();
-//console.log("theDay: "+theDay);
-        displayNode = document.createTextNode(theDay);
-        dayElement = document.createElement('div');
-        dayElement.className = 'day';
-        dayElement.appendChild(displayNode);
-
-        // make month element
-        theMonth = monthNames[d.getMonth()];
-//console.log("theMonth: "+theMonth);
-        displayNode = document.createTextNode(theMonth);
-        monthElement = document.createElement('div');
-        monthElement.className = 'month';
-        monthElement.appendChild(displayNode);
-
-        // add to list item
-        dateElement = document.createElement('div');
-        dateElement.className = 'formattedDate';
-        dateElement.appendChild(dayElement);
-        dateElement.appendChild(monthElement);
-
-        childNode = listItem.querySelector('a');
-        listItem.insertBefore(dateElement, childNode);
-      }
-    }
-
-  });
-  return true;
 }
 
 /**
- * add breadcrumbs to the top of a careerhub page
+ * Reformat date from DD-MMM-YYYY to styled elements
+ */
+function reformatSidebarDates() {
+  var upcomingEvents = document.querySelectorAll('.upcomingEvents .body li');
+
+  if (!upcomingEvents.length) {
+    return;
+  }
+
+  for (var eventIndex = 0; eventIndex < upcomingEvents.length; eventIndex++) {
+    var originalDate = upcomingEvents[eventIndex].querySelector('span.caption').innerHTML.replace(/(\s|\n)+/g, '');
+    if (originalDate) {
+
+      var dateBits = originalDate.split("-");
+
+      if (dateBits.length > 2) {
+
+        //hide original date display
+        upcomingEvents[eventIndex].querySelector('span.caption').className += ' hide';
+
+        //create day element
+        var dayElement = document.createElement('div');
+        dayElement.className = 'day';
+        dayElement.appendChild(document.createTextNode(dateBits[0]));
+
+        //create month element
+        var monthElement = document.createElement('div');
+        monthElement.className = 'month';
+        monthElement.appendChild(document.createTextNode(dateBits[1]));
+
+        //add to event list item
+        dateElement = document.createElement('div');
+        dateElement.className = 'formatted-date';
+        dateElement.appendChild(dayElement);
+        dateElement.appendChild(monthElement);
+
+        var eventLink = upcomingEvents[eventIndex].querySelector('a');
+        upcomingEvents[eventIndex].insertBefore(dateElement, eventLink);
+      }
+    }
+  }
+}
+
+/**
+ * sadly, the Studenthub homepage runs from multiple urls, so a little function to check for it
+ * @returns {boolean}
+ */
+function isHomePage() {
+  var regexp = /https?:\/\/((www\.)?(careerhub|studenthub)\.uq\.edu\.au)\/workgroups\/library-staff-development\/?$/;
+  return regexp.test(window.location.href);
+}
+
+/**
+ * add breadcrumbs to the top of a Studenthub page
  * example usage: addBreadcrumbs('#head');
  *
  * @param parentElementIdentifier
@@ -195,64 +137,53 @@ function addBreadcrumbs(parentElementIdentifier) {
   breadcrumbList.appendChild(anLI);
 
 
-  // create second breadcrumb entry: careerhub workgroup homepage
-  var linktext = 'Library staff development';
-  var urlCareerHubHomePage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development';
-  var urlCareerHubListPage = urlCareerHubHomePage + '/events';
+  // create second breadcrumb entry: Studenthub workgroup homepage
+  var linktext1 = 'Library ';
+  var linktext2 = 'staff development';
 
   var childElement;
   var displayNode;
-  if (window.location.href != urlCareerHubHomePage) {
-    childElement = document.createElement('a');
-    childElement.href = urlCareerHubHomePage;
-  } else {
-    // spans required for css
-    childElement = document.createElement('span');
-  }
-  displayNode = document.createTextNode(linktext);
-  childElement.appendChild(displayNode);
 
   anLI = document.createElement('li');
+  anLI.className = 'staffdevhomepage';
+
+  if (isHomePage()) {
+    // spans required for css
+    childElement = document.createElement('span');
+  } else {
+    childElement = document.createElement('a');
+    childElement.href = urlStudentHubHomePage;
+  }
+  var displayNode1 = document.createTextNode(linktext1);
+  var childElement1 = document.createElement('span');
+  childElement1.appendChild(displayNode1);
+  childElement.appendChild(childElement1);
+
+  displayNode = document.createTextNode(linktext2);
+  childElement.appendChild(displayNode);
+
   anLI.appendChild(childElement);
   breadcrumbList.appendChild(anLI);
 
 
-
-  var theLabel;
-  // On the careerhub event page, event titles have a class of 'event_title'
+  // On the Studenthub event page, event titles have a class of 'event_title'
   var testElement = document.querySelector('.event_title');
+
+  // third breadcrumb
+  var theLabel = 'Event list';
+  displayNode = document.createTextNode(theLabel);
   if (testElement !== null) {
-    // an event class means we are on a detail page
-
-    // third breadcrumb
-    theLabel = 'Event List';
-
-    displayNode = document.createTextNode(theLabel);
+    // we are on an event page - make this a link
     childElement = document.createElement('a');
-    childElement.href = urlCareerHubListPage;
+    childElement.href = urlStudentHubHomePage + '/events';
     childElement.appendChild(displayNode);
 
     anLI = document.createElement('li');
     anLI.appendChild(childElement);
     breadcrumbList.appendChild(anLI);
 
-    // fourth breadcrumb
-    // display the event's title as an unlinked breadcrumb
-    var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
-    theLabel = testElement[textProperty];
-    displayNode = document.createTextNode(theLabel);
-    childElement = document.createElement('span');
-    childElement.appendChild(displayNode);
-
-    anLI = document.createElement('li');
-    anLI.appendChild(childElement);
-    breadcrumbList.appendChild(anLI);
   } else {
-    if (window.location.href != urlCareerHubHomePage) {
-      // third breadcrumb
-      theLabel = 'Event List';
-
-      displayNode = document.createTextNode(theLabel);
+    if (!isHomePage()) {
       childElement = document.createElement('span');
       childElement.appendChild(displayNode);
 
@@ -266,6 +197,33 @@ function addBreadcrumbs(parentElementIdentifier) {
     }
   }
 
+
+  // fourth breadcrumb
+  if (testElement !== null) {
+    // an event class means we are on a detail page
+
+    // for desktop, display the event's title as an unlinked breadcrumb
+    // for mobile, display 'event details' - some of the titles are long
+    anLI = document.createElement('li');
+
+    var mobileLabel = 'Event details';
+    displayNode = document.createTextNode(mobileLabel);
+    childElement = document.createElement('span');
+    childElement.className = 'mobileOnly';
+    childElement.appendChild(displayNode);
+    anLI.appendChild(childElement);
+
+    var textProperty = 'textContent' in document ? 'textContent' : 'innerText';
+    var nonMobileLabel = testElement[textProperty];
+    displayNode = document.createTextNode(nonMobileLabel);
+    childElement = document.createElement('span');
+    childElement.className = 'nonMobile';
+    childElement.appendChild(displayNode);
+    anLI.appendChild(childElement);
+
+    breadcrumbList.appendChild(anLI);
+  }
+
   parentBlock.insertBefore(breadcrumbList, parentBlock.firstChild);
 
   return true;
@@ -273,34 +231,13 @@ function addBreadcrumbs(parentElementIdentifier) {
 
 /**
  * find the specific link on the page and relabel it
- * @returns {boolean}
  */
-function relabelMoreEventsLink() {
-  // we are using querySelectorAll because the following line:
-  // document.querySelector(".sidebar > a");
-  // returns null so we cant target the specific link (doesnt like the child selector) :(
-
-  var urlEventsPage = 'https://www.careerhub.uq.edu.au/workgroups/library-staff-development/events';
-  var links = document.querySelectorAll('.sidebar a');
-
-  var theLink;
-  [].forEach.call(links, function(links) {
-    if (urlEventsPage == links.href) {
-      if (!links.firstChild) {
-        return false;
-      }
-
-      theLink = links.firstChild;
-      if (!theLink.data) {
-        return false;
-      }
-
-      theLink.data = 'More events';
-
-    }
-  });
-  return true;
+function updateEventsLinkText() {
+  //select a link to more events from the sidebar (upcoming events)
+  var moreEventsLink = document.querySelector('.sidebar .body a[href$="/events"]');
+  if (moreEventsLink !== null) {
+    moreEventsLink.innerHTML = "More events";
+  }
 }
-
 
 ready(loadReusableComponents);

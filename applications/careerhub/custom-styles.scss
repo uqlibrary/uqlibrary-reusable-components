@@ -82,3 +82,7 @@ body #content div.event_booking_stat.first:before
 , body ol.breadcrumbList li:before {
   @extend .material-icons;
 }
+
+.hide {
+  display: none !important;
+}

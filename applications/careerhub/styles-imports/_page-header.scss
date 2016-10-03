@@ -64,7 +64,8 @@ ol.breadcrumbList {
     &:before {
       content: 'chevron_right';
       vertical-align: top;
-      margin-top: -3px
+      margin-top: -3px;
+      line-height: 0.9;
     }
     &:first-child {
       a {
@@ -76,7 +77,7 @@ ol.breadcrumbList {
     }
     paper-icon-button {
       padding: 0;
-      width:20px;
+      width: 20px;
     }
     iron-icon {
       width:20px;
@@ -92,9 +93,47 @@ ol.breadcrumbList {
   display: none;
 }
 
+ol.breadcrumbList {
+  // this should only limit excessively long event titles
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+}
+
+
 @media only screen and (max-width: 700px) {
+  #main #columns #content h1.event_title {
+    margin-right: 0;
+    padding-right: 24px;
+    padding-right: 1.5rem;
+  }
   #head {
     padding-top: 1rem;
+  }
+  .nonMobile {
+    // hidden from all users
+    display: none;
+  }
+
+  .staffdevhomepage a span ,
+  .staffdevhomepage span span {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+  }
+  .staffdevhomepage span,
+  .staffdevhomepage a {
+    text-transform: capitalize;
+  }
+
+
+}
+
+@media only screen and (min-width: 700px) {
+  .mobileOnly {
+    // hidden from all users
+    display: none;
   }
 }
 

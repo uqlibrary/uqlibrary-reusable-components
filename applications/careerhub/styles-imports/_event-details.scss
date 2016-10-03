@@ -42,7 +42,9 @@
       div.event_details,
       div.event_booking {
         strong {
-          display: none;
+          position: absolute !important;
+          top: -9999px !important;
+          left: -9999px !important;
         }
       }
       div.event_date,
@@ -66,8 +68,8 @@
       div.event_time  ,
       div.event_details,
       div.event_contact_details {
-        padding-left: 49px;
-        padding-left: 3.05rem;
+        padding-left: 56px;
+        padding-left: 3.5rem;
         margin-left: 0;
       }
 
@@ -87,8 +89,10 @@
       }
 
       div.event_summary p {
-        display: inline;
+        display: block;
         font-weight: bold;
+        margin-left: 2.5rem;
+        margin-top: -1.5rem;
       }
 
         // styling icons
@@ -99,13 +103,13 @@
       }
 
       div.event_booking_stat.first .num {
-        margin-left: 16px;
-        margin-left: 1rem;
+        margin-left: 11px;
+        margin-left: 0.7rem;
         padding-left: 0;
       }
       div.event_booking_stat .num {
-        padding-left: 52.8px;
-        padding-left: 3.3rem;
+        padding-left: 56px;
+        padding-left: 3.5rem;
       }
 
       div.event_contact_details p {
@@ -118,13 +122,8 @@
 
       li.attachment a ,
       div.event_date .event_start {
-        margin-left: 6px;
-        margin-left: .5rem;
-      }
-
-      div.event_summary p {
-        margin-left: 12px;
-        margin-left: .75rem;
+        margin-left: 11px;
+        margin-left: .7rem;
       }
 
       div.event_end span ,
@@ -274,23 +273,40 @@
   right: 10px;
 }
 
+@media only screen and (max-width: 700px) {
+  #main {
+
+    #columns { // table!!
+      #content {
+        div.event_venue,
+        div.event_details,
+        div.event_contact_details,
+        ul.attachments,
+        div.event_booking_stat:not(.first) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
 
 // both IE & edge are unable to reach the material design icons
 // we are replacing the breadcrumb icon with a >
 // and ignoring the body icons
-@supports (-ms-ime-align:auto) {
+@supports (-ms-text-combine-horizontal:none) // ie11
+or (-ms-ime-align:auto) // edge
+{
   body ol.breadcrumbList li:before {
     content: '>';
     padding: 0 10px;
+    margin-top: -8px;
   }
   // extra space is put in where the icons should be - possibly enough for the text name of the icon?
-  body div.event_date {
-    margin-left: -68px;
+  body #main #columns #content div.event_date {
+    margin-left: -96px;
   }
-  body div.event_summary {
-    margin-left: -172px;
-  }
-  body div.event_booking_stat.first {
-    margin-left:-73px;
+  body #main #columns #content .event_booking div.event_booking_stat.first .num {
+    margin-left:-108px;
   }
 }

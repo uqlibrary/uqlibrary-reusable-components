@@ -97,6 +97,7 @@ body {
       td#right,
       td#center {
         width: 100%; // override desktop width
+        max-width: none;
       }
 
     }

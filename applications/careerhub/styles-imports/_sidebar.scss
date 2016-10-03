@@ -7,6 +7,7 @@
       color: #222;
       border-width: 0;
       font-size: inherit;
+      max-width: 350px;
 
       h3 {
         border-bottom-width: 0;
@@ -46,12 +47,16 @@
             padding: 0 0 1.7rem 5rem;
           }
           a { // name of event
-            padding: 16px 0 27px 80px;
-            padding: 1rem 0 1.7rem 5rem;
+            padding: 16px 0 27px 16px;
+            padding: 1rem 0 1.7rem 1rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
-          .formattedDate {
+
+          .formatted-date {
             width: 2rem;
-            background-color: purple;
+            background-color: lighten($theme-color, 30%);
             color: #fff;
             text-align: center;
             padding: 3px 16px 7px 16px;
@@ -66,12 +71,14 @@
             text-transform: uppercase;
             margin-top: -0.5rem;
           }
-          &:first-child .formattedDate,
-          &:nth-child(2) .formattedDate {
+          &:first-child .formatted-date {
             background-color: $theme-color;
           }
-          &:nth-child(3) .formattedDate {
-            background-color: $theme-color-lighter;
+          &:nth-child(2) .formatted-date {
+            background-color:  lighten($theme-color, 10%);
+          }
+          &:nth-child(3) .formatted-date {
+            background-color:  lighten($theme-color, 20%);
           }
 
         }
@@ -82,15 +89,15 @@
           color: $menu-background-color;
           margin-top: 24px;
           margin-top: 1.5rem;
-          padding: 13px 8px;
-          padding: 0.8rem 0.5rem;
+          padding: 16px 32px;
+          padding: 1rem 2rem;
           display: block;
-          width: 56px;
-          width: 7rem;
+          white-space: nowrap;
           text-align: center;
           text-transform: uppercase;
           text-decoration: none;
-          font-size: 0.8rem;
+          font-size: 16px;
+          font-size: 1rem;
         }
 
       }
@@ -117,3 +124,4 @@
     right: 0;
   }
 }
+
