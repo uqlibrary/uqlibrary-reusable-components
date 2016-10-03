@@ -7,10 +7,6 @@
   src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
 }
 
-.hide {
-  display: none;
-}
-
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -85,4 +81,8 @@ body #content div.event_booking_stat.first:before
 , body #content div.event_summary:before
 , body ol.breadcrumbList li:before {
   @extend .material-icons;
+}
+
+.hide {
+  display: none;
 }
