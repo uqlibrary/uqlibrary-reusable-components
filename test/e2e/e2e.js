@@ -6,8 +6,8 @@ module.exports = {
       .resizeWindow(1280, 800)
       .pause(20000) // allow saucelabs to get the page loaded
       .waitForElementVisible('h1', 10000)
+//.saveScreenshot('screenshots/e2ejs.png')
       .assert.elementPresent('uq-minimal-header', 'uq header component is present')
-      .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
       .assert.containsText('.library-title a', 'UQ Library')
       .assert.containsText('.application-title', 'Online Exhibitions')
       .assert.elementPresent('uql-askus-button', 'uql askus component is present')
@@ -17,6 +17,7 @@ module.exports = {
       .assert.elementPresent('uq-minimal-footer .footer-legal-details a'
                             , 'Emergency Phone footer component is present')
       .assert.containsText('uq-minimal-footer .footer-legal-details .h6', 'Emergency')
+      .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
       .end();
   },
 

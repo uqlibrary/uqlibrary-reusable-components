@@ -14,7 +14,7 @@
 
   "test_settings" : {
     "default" : {
-      "launch_url" : "http://dev-app.library.uq.edu.au:5001",
+      "launch_url" : "http://www.library.uq.edu.au",
       "silent": true,
       "selenium_host": "ondemand.saucelabs.com",
       "selenium_port": 80,
