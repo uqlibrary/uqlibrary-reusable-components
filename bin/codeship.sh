@@ -131,8 +131,10 @@ curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/sel
 echo "Run nightwatch tests"
 cd bin/
 
-echo "local..."
-nightwatch -c nightwatch.json # firefox default
+echo "local firefox test..."
+nightwatch -c nightwatch.json
+
+echo "local chrome test..."
 nightwatch -c nightwatch.json --env chrome
 
 case "$branch" in
@@ -140,8 +142,8 @@ case "$branch" in
 # nothing special
 ;;
 *)
-# everything else
-  echo "saucelab..."
+# all other branches
+  echo "saucelabs..."
 
   nwconfigtemp="template.nightwatch-saucelabs.json"
   nwconfig="nightwatch-saucelabs.json"
@@ -151,7 +153,10 @@ case "$branch" in
   sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
   sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
+  echo "chrome on saucelabs"
   nightwatch -c nightwatch-saucelabs.json
-  nightwatch -c nightwatch-saucelabs.json --env ie11
+
+  echo "edge on saucelabs"
+  nightwatch -c nightwatch-saucelabs.json --env edge
 ;;
 esac

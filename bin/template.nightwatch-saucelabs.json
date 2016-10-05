@@ -27,11 +27,11 @@
         "screenResolution": "1280x960"
       }
     },
-    "ie11" : {
+    "edge" : {
       "desiredCapabilities": {
-        "browserName": "internet explorer",
+        "browserName": "microsoftedge",
         "platform": "Windows 10",
-        "version": "11.0",
+        "version": "47.0",
         "screenResolution": "1280x960"
       }
     }
