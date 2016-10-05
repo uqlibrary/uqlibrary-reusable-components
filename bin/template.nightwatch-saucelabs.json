@@ -20,10 +20,12 @@
       "selenium_port": 80,
       "username": "${SAUCE_USERNAME}",
       "access_key": "${SAUCE_ACCESS_KEY}",
+
       "desiredCapabilities": {
         "browserName": "chrome",
         "platform": "Windows 10",
         "version": "48",
+        "acceptSslCerts": true,
         "screenResolution": "1280x960"
       }
     },
@@ -32,6 +34,37 @@
         "browserName": "microsoftedge",
         "platform": "Windows 10",
         "version": "47.0",
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "chrome @ mac": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "platform": "OS X 10.11",
+        "version": "53.0",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "firefox": {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "platform": "OS X 10.11",
+        "version": "49.0",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "safari": {
+      "desiredCapabilities": {
+        "browserName": "safari",
+        "platform": "OS X 10.11",
+        "version": "9.0",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
         "screenResolution": "1280x960"
       }
     }

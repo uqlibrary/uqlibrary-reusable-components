@@ -4,7 +4,7 @@ module.exports = {
     client
       .url('http://uqlibraryonlineexhibitions.omeka.net/exhibits/show/jd-fryer-student-and-soldier')
       .resizeWindow(1280, 800)
-      .pause(20000) // allow saucelabs to get the page loaded
+      .pause(40000) // allow saucelabs to get the page loaded
       .waitForElementVisible('h1', 10000)
 //.saveScreenshot('screenshots/e2ejs.png')
       .assert.elementPresent('uq-minimal-header', 'uq header component is present')
