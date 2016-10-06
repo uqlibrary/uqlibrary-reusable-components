@@ -16,7 +16,7 @@ module.exports = {
       .assert.elementPresent('.header-container', 'uq .header-container component is present')
       .assert.elementPresent('.header-content', 'uq .header-content component is present')
       .assert.elementPresent('.header-title', 'uq .header-title component is present')
-      .assert.elementPresent('uql-menu-button', 'uq uql-menu-button component is present')
+// mobile only      .assert.elementPresent('uql-menu-button', 'uq uql-menu-button component is present')
 
       .assert.containsText('.library-title a', 'UQ Library')
       .assert.containsText('.application-title', 'Online Exhibitions')
