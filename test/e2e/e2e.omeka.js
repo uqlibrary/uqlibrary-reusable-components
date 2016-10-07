@@ -1,16 +1,16 @@
-var uqlAssertions = require("../common/uqlAssertions.js");
-var theurl = 'http://uqlibraryonlineexhibitions.omeka.net/exhibits/show/jd-fryer-student-and-soldier';
+var minimalUql = require("../e2e/e2e.minimal.js");
+var urlTest = 'http://uqlibraryonlineexhibitions.omeka.net/exhibits/show/jd-fryer-student-and-soldier';
 
 module.exports = {
-  '@tags': ['omeka'],
+  '@tags': ['e2etest', 'omeka'],
 
-  'check uqlibraryonlineexhibitions.omeka.net is correctly calling reusable elements (if tests fail they may no longer be using omeka)' : function (client) {
+  'Test reusable components are applied to Omeka' : function (client) {
     // common uql checks
-    uqlAssertions.commonChecks(client, theurl);
+    minimalUql.commonChecks(client, urlTest);
 
     // omeka specific checks
     client
-      .url(theurl)
+      .url(urlTest)
       .assert.containsText('.application-title', 'Online Exhibitions')
       .end();
 

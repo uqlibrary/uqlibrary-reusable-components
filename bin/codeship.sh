@@ -154,22 +154,22 @@ case "$branch" in
   sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
   echo "chrome on windows on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json
+  nightwatch -c nightwatch-saucelabs.json --tag e2etest
 
   echo "firefox on windows on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows
+  nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows --tag e2etest
 
 #not currently working see https://support.saucelabs.com/customer/en/portal/private/cases/43779
 #  echo "edge on saucelabs"
-#  nightwatch -c nightwatch-saucelabs.json --env edge
+#  nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
 
   echo "chrome on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac
+  nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
 
   echo "firefox on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac
+  nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac --tag e2etest
 
   echo "safari on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env safari-on-mac
+  nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
 ;;
 esac
