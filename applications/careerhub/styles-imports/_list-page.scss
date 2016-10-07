@@ -9,7 +9,7 @@
     margin-bottom: 0.7rem;
     padding: 8px 16px;
     padding: 0.5em 1em;
-    background-color: #ececec;
+    background-color: $secondary-color-light;
     color: inherit;
 
     span {
@@ -19,23 +19,23 @@
     .campus {
       font-weight: 200;
     }
-
   }
 
   a,
   a:visited {
-    background-color: #ececec;
+    background-color: $secondary-color-light;
     font-size: 28px;
     font-size: 1.75rem;
   }
 
   .caption {
-    color: #222;
+    color: $secondary-color-dark;
     font-style: inherit;
   }
 }
 
 body.listpage table#columns td#right.sidebar {
+  // listpage is added in by load.js
   // the listpage doesnt need the duplication of the sidebar
   display: none;
 }

@@ -24,7 +24,7 @@
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
     "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
     "validator-js": "~4.2.0",
-    "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.3.3",
+    "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.3.5",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.2",
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.5",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#v1.1.0",
@@ -33,7 +33,7 @@
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#1.0.5",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search#v1.0.6",
     "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.2.4",
-    "uqlibrary-training": "uqlibrary/uqlibrary-training#master"
+    "uqlibrary-training": "uqlibrary/uqlibrary-training#v1.0.5"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
@@ -44,6 +44,6 @@
   "resolutions": {
     "uqlibrary-styles": "v1.1.0",
     "uqlibrary-ga": "v1.0.5",
-    "uqlibrary-api": "v1.3.3"
+    "uqlibrary-api": "v1.3.5"
   }
 }

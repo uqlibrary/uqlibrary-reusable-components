@@ -16,7 +16,7 @@
       /** Value of redirect URL */
       redirectUrl: {
         type: String,
-        value: "https://www.library.uq.edu.au/mylibrary"
+        value: "https://www..library.uq.edu.au/mylibrary"
       }
     },
 

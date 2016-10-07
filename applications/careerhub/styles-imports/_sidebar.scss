@@ -7,6 +7,7 @@
       color: #222;
       border-width: 0;
       font-size: inherit;
+      max-width: 350px;
 
       h3 {
         border-bottom-width: 0;
@@ -53,7 +54,7 @@
             white-space: nowrap;
           }
 
-          .formattedDate {
+          .formatted-date {
             width: 2rem;
             background-color: lighten($theme-color, 30%);
             color: #fff;
@@ -70,13 +71,13 @@
             text-transform: uppercase;
             margin-top: -0.5rem;
           }
-          &:first-child .formattedDate {
+          &:first-child .formatted-date {
             background-color: $theme-color;
           }
-          &:nth-child(2) .formattedDate {
+          &:nth-child(2) .formatted-date {
             background-color:  lighten($theme-color, 10%);
           }
-          &:nth-child(3) .formattedDate {
+          &:nth-child(3) .formatted-date {
             background-color:  lighten($theme-color, 20%);
           }
 
@@ -123,3 +124,4 @@
     right: 0;
   }
 }
+
