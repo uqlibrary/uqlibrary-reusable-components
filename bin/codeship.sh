@@ -153,10 +153,20 @@ case "$branch" in
   sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
   sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
-  echo "chrome on saucelabs"
+  echo "chrome on windows on saucelabs"
   nightwatch -c nightwatch-saucelabs.json
 
-  echo "edge on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env edge
+#not currently working
+#  echo "edge on saucelabs"
+#  nightwatch -c nightwatch-saucelabs.json --env edge
+
+  echo "chrome on mac on saucelabs"
+  nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac
+
+  echo "firefox on mac on saucelabs"
+  nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac
+
+  echo "safari on mac on saucelabs"
+  nightwatch -c nightwatch-saucelabs.json --env safari-on-mac
 ;;
 esac

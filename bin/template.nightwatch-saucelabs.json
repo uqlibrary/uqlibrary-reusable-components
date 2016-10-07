@@ -29,26 +29,7 @@
         "screenResolution": "1280x960"
       }
     },
-    "edge" : {
-      "desiredCapabilities": {
-        "browserName": "microsoftedge",
-        "platform": "Windows 10",
-        "version": "47.0",
-        "acceptSslCerts": true,
-        "screenResolution": "1280x960"
-      }
-    },
-    "chrome @ mac": {
-      "desiredCapabilities": {
-        "browserName": "chrome",
-        "platform": "OS X 10.11",
-        "version": "53.0",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true,
-        "screenResolution": "1280x960"
-      }
-    },
-    "firefox": {
+    "firefox-on-windows": {
       "desiredCapabilities": {
         "browserName": "firefox",
         "platform": "OS X 10.11",
@@ -58,7 +39,43 @@
         "screenResolution": "1280x960"
       }
     },
-    "safari": {
+    "ie11-not-working-on-saucelabs" : {
+      "desiredCapabilities": {
+        "browserName": "internet explorer",
+        "platform": "Windows 10",
+        "version": "11.0"
+      }
+    },
+    "edge-not-working-on-saucelabs" : {
+      "desiredCapabilities": {
+        "browserName": "MicrosoftEdge",
+        "platform": "Windows 10",
+        "version": "13.10586",
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "chrome-on-mac": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "platform": "OS X 10.11",
+        "version": "53.0",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "firefox-on-mac": {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "platform": "OS X 10.11",
+        "version": "49.0",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "safari-on-mac": {
       "desiredCapabilities": {
         "browserName": "safari",
         "platform": "OS X 10.11",

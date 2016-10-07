@@ -1,27 +1,22 @@
+var uqlAssertions = require("../common/uqlAssertions.js");
+var theurl = 'https://www.studenthub.uq.edu.au/workgroups/library-staff-development';
+
 module.exports = {
+  '@tags': ['studenthub'],
 
   'check https://www.studenthub.uq.edu.au/workgroups/library-staff-development is correctly calling reusable elements' : function (client) {
+    // common uql checks
+    uqlAssertions.commonChecks(client, theurl);
+
+    // studenthub specific checks
     client
-      .url('https://www.studenthub.uq.edu.au/workgroups/library-staff-development')
-      .resizeWindow(1280, 800)
-      .pause(20000) // allow saucelabs to get the page loaded
-      .waitForElementVisible('#sitename a', 10000)
-
-      .assert.elementPresent('uq-minimal-header', 'uq header component is present')
-      .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
-      .assert.containsText('.library-title a', 'UQ Library')
-      .assert.elementPresent('uql-askus-button', 'uql askus component is present')
-      .assert.elementPresent('uq-minimal-footer', 'uq footer component is present')
-      .assert.elementPresent('uq-minimal-footer uql-global-links', 'uq global links footer component is present')
-      .assert.containsText('uq-minimal-footer .footer-uq-details li', 'Authorised by:')
-      .assert.elementPresent('uq-minimal-footer .footer-legal-details a'
-      , 'Emergency Phone footer component is present')
-      .assert.containsText('uq-minimal-footer .footer-legal-details .h6', 'Emergency')
-
+      .url(theurl)
       .assert.elementPresent('.sidebar .body > a', 'sidebar More Events button is present')
       .assert.containsText('.sidebar .body > a', 'MORE EVENTS')
       .end();
+
   }
+
 
 
 };
