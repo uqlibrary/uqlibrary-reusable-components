@@ -29,8 +29,6 @@
       },
       "desiredCapabilities": {
         "browserName": "firefox",
-        "platform": "Windows 10",
-        "version": "49.0",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "screenResolution": "1280x960"
