@@ -352,8 +352,6 @@ Subdirectory [branch_name] only exists for non-production branches, eg master/ua
 
 ### Testing
 
-e2e testing is now available, in the first case to check Omeka (see above) is still working correctly.
-
 #### Local testing
 
 * install selenium server
@@ -371,6 +369,21 @@ To run the Chrome tests locally you will need to [download the WebDriver](https:
 `$ cd bin`
 
 `$ nightwatch`
+
+Sample test commands:
+
+`$ nightwatch -c nightwatch.json` #  run default test
+
+`$ nightwatch -c nightwatch.json  --tag omeka` #  run omeka specific tests (tag defined in test/e2e/e2e.omeka.js )
+
+`$ nightwatch -c nightwatch.json --env safari-on-mac` #  run test on safari browser (name must match object name in nightwatch.json)
+
+
+
+
+
+
+
 
 
 
