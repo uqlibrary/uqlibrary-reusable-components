@@ -1,4 +1,4 @@
-var minimalUql = require("../e2e/e2e.minimal.js");
+var minimalUql = require("./e2e.minimal.js");
 var urlTest = 'http://uqlibraryonlineexhibitions.omeka.net/exhibits/show/jd-fryer-student-and-soldier';
 
 module.exports = {

@@ -125,6 +125,7 @@ gulp invalidate --path ${InvalidationPath}
 echo "Clean up AWS configuration..."
 rm -f ${awsconfig}
 
+#### cut from here to split into codeship-testing
 echo "install selenium"
 curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/selenium_server.sh | bash -s
 
@@ -132,10 +133,10 @@ echo "Run nightwatch tests"
 cd bin/
 
 echo "local firefox on windows test..."
-nightwatch -c nightwatch.json
+nightwatch -c nightwatch.json --tag e2etest
 
 echo "local chrome on windows test..."
-nightwatch -c nightwatch.json --env chrome
+nightwatch -c nightwatch.json --env chrome --tag e2etest
 
 case "$branch" in
 "master")

@@ -1,4 +1,4 @@
-var minimalUql = require("../e2e/e2e.minimal.js");
+var minimalUql = require("./e2e.minimal.js");
 var urlTest = 'https://www.studenthub.uq.edu.au/workgroups/library-staff-development';
 
 module.exports = {
