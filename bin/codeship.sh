@@ -135,16 +135,7 @@ echo "local firefox on windows test..."
 nightwatch -c nightwatch.json
 
 echo "local chrome on windows test..."
-nightwatch -c nightwatch.json --env chrome-on-windows
-
-echo "local chrome on mac test..."
-nightwatch -c nightwatch.json --env chrome-on-mac
-
-echo "local firefox on mac test..."
-nightwatch -c nightwatch.json --env firefox-on-mac
-
-echo "local safari on mac test..."
-nightwatch -c nightwatch.json --env safari-on-mac
+nightwatch -c nightwatch.json --env chrome
 
 case "$branch" in
 "master")
