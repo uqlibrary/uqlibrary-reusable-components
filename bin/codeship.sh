@@ -131,15 +131,24 @@ curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/sel
 echo "Run nightwatch tests"
 cd bin/
 
-echo "local firefox test..."
+echo "local firefox on windows test..."
 nightwatch -c nightwatch.json
 
-echo "local chrome test..."
-nightwatch -c nightwatch.json --env chrome
+echo "local chrome on windows test..."
+nightwatch -c nightwatch.json --env chrome-on-windows
+
+echo "local chrome on mac test..."
+nightwatch -c nightwatch.json --env chrome-on-mac
+
+echo "local firefox on mac test..."
+nightwatch -c nightwatch.json --env firefox-on-mac
+
+echo "local safari on mac test..."
+nightwatch -c nightwatch.json --env safari-on-mac
 
 case "$branch" in
 "master")
-# nothing special
+# no saucelabs for master
 ;;
 *)
 # all other branches
@@ -156,7 +165,10 @@ case "$branch" in
   echo "chrome on windows on saucelabs"
   nightwatch -c nightwatch-saucelabs.json
 
-#not currently working
+  echo "firefox on windows on saucelabs"
+  nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows
+
+#not currently working see https://support.saucelabs.com/customer/en/portal/private/cases/43779
 #  echo "edge on saucelabs"
 #  nightwatch -c nightwatch-saucelabs.json --env edge
 

@@ -29,14 +29,48 @@
       },
       "desiredCapabilities": {
         "browserName": "firefox",
+        "platform": "Windows 10",
+        "version": "49.0",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "screenResolution": "1280x960"
       }
     },
-    "chrome": {
+    "chrome-on-windows": {
       "desiredCapabilities": {
         "browserName": "chrome",
+        "platform": "Windows 10",
+        "version": "53.0",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "chrome-on-mac": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "platform": "OS X 10.11",
+        "version": "53.0",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "firefox-on-mac": {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "platform": "OS X 10.11",
+        "version": "49.0",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
+    },
+    "safari-on-mac": {
+      "desiredCapabilities": {
+        "browserName": "safari",
+        "platform": "OS X 10.11",
+        "version": "9.0",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "screenResolution": "1280x960"
