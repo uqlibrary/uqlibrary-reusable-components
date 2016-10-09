@@ -32,7 +32,7 @@
     "firefox-on-windows": {
       "desiredCapabilities": {
         "browserName": "firefox",
-        "platform": "OS X 10.11",
+        "platform": "Windows 10",
         "version": "49.0",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
