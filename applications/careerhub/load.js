@@ -236,7 +236,7 @@ function updateEventsLinkText() {
   //select a link to more events from the sidebar (upcoming events)
   var moreEventsLink = document.querySelector('.sidebar .body a[href$="/events"]');
   if (moreEventsLink !== null) {
-    moreEventsLink.innerHTML = "More events";
+    moreEventsLink.innerHTML = "MORE EVENTS";
   }
 }
 
