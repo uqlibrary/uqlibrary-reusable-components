@@ -1,59 +1,63 @@
 #!/usr/bin/env bash
 
-echo "install selenium"
-curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/selenium_server.sh | bash -s
-
 if [ -z $CI_BRANCH ]; then
   branch=$(git rev-parse --abbrev-ref HEAD)
 else
   branch=$CI_BRANCH
 fi
 
-echo "Run nightwatch tests"
-cd bin/
-
-echo "local firefox on windows test..."
-nightwatch -c nightwatch.json
-
-echo "local chrome on windows test..."
-nightwatch -c nightwatch.json --env chrome
-
 case "$branch" in
 "master")
-# no saucelabs for master
+
+  case "$PIPE_NUM" in
+  "1")
+    echo "local firefox on windows test..."
+    nightwatch -c nightwatch.json
+
+    echo "local chrome on windows test..."
+    nightwatch -c nightwatch.json --env chrome
+  ;;
+  esac
 ;;
-#production)
+
 nightwatch)
-# saucelabs only on production branch
-  echo "saucelabs..."
+#production)
+  case "$PIPE_NUM" in
+  "1")
+    echo "local firefox on windows test..."
+    nightwatch -c nightwatch.json
 
-  nwconfigtemp="template.nightwatch-saucelabs.json"
-  nwconfig="nightwatch-saucelabs.json"
+    echo "local chrome on windows test..."
+    nightwatch -c nightwatch.json --env chrome
 
-  cp $nwconfigtemp $nwconfig
+  ;;
+  "2")
+    # saucelabs only on production branch
+    echo "saucelabs..."
 
-  sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
-  sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
+    echo "chrome on windows on saucelabs"
+    nightwatch -c nightwatch-saucelabs.json --tag e2etest
 
-  echo "chrome on windows on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --tag e2etest
-
-  echo "firefox on windows on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows --tag e2etest
+    echo "firefox on windows on saucelabs"
+    nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows --tag e2etest
 
 #not currently working see https://support.saucelabs.com/customer/en/portal/private/cases/43779
-#  echo "edge on saucelabs"
-#  nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
+#    echo "edge on saucelabs"
+#    nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
 
-  echo "chrome on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
+    echo "chrome on mac on saucelabs"
+    nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
 
-  echo "firefox on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac --tag e2etest
+    echo "firefox on mac on saucelabs"
+    nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac --tag e2etest
 
-  echo "safari on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
+    echo "safari on mac on saucelabs"
+    nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
+  ;;
+  esac
 ;;
+
 *)
+# all other branches are untested
 ;;
 esac
