@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Run nightwatch tests"
+cd bin/
+
 if [ -z $CI_BRANCH ]; then
   branch=$(git rev-parse --abbrev-ref HEAD)
 else
@@ -34,6 +37,14 @@ nightwatch)
   "2")
     # saucelabs only on production branch
     echo "saucelabs..."
+
+    nwconfigtemp="template.nightwatch-saucelabs.json"
+    nwconfig="nightwatch-saucelabs.json"
+
+    cp $nwconfigtemp $nwconfig
+
+    sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
+    sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
     echo "chrome on windows on saucelabs"
     nightwatch -c nightwatch-saucelabs.json --tag e2etest
