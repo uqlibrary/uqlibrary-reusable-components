@@ -123,4 +123,4 @@ echo "Clean up AWS configuration..."
 rm -f ${awsconfig}
 
 echo "Run external tests after deployment"
-./codeship-testing.sh
+./bin/codeship-testing.sh
