@@ -4,14 +4,11 @@
 set -e
 
 echo "Install prerequisites gulp/bower/packages"
-
-npm install -g gulp bower nightwatch
-
+npm install -g gulp bower
 npm install
 bower install
 
 echo "Deploying branch: ${CI_BRANCH}"
-
 branch=${CI_BRANCH}
 src=$(git rev-parse --show-toplevel)
 base=$(basename ${src})
