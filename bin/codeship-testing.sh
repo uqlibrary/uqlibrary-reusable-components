@@ -15,10 +15,10 @@ case "$branch" in
   case "$PIPE_NUM" in
   "1")
     echo "local firefox on windows test..."
-    nightwatch -c nightwatch.json
+    nightwatch -c nightwatch.json --tag e2etest
 
     echo "local chrome on windows test..."
-    nightwatch -c nightwatch.json --env chrome
+    nightwatch -c nightwatch.json --env chrome --tag e2etest
   ;;
   esac
 ;;
@@ -28,10 +28,10 @@ nightwatch)
   case "$PIPE_NUM" in
   "1")
     echo "local firefox on windows test..."
-    nightwatch -c nightwatch.json
+    nightwatch -c nightwatch.json --tag e2etest
 
     echo "local chrome on windows test..."
-    nightwatch -c nightwatch.json --env chrome
+    nightwatch -c nightwatch.json --env chrome --tag e2etest
 
   ;;
   "2")
