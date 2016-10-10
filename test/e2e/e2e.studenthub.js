@@ -12,8 +12,7 @@ module.exports = {
     client
       .url(urlTest)
       .assert.elementPresent('.sidebar .body > a', 'sidebar More Events button is present')
-      .assert.containsText('.sidebar .body > a', 'MORE EVENTS') // works in all other browsers
-//      .assert.containsText('.sidebar .body > a', 'More events') //works in edge
+      .assert.containsText('.sidebar .body > a', 'MORE EVENTS')
       .end();
 
   }

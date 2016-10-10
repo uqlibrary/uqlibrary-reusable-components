@@ -22,6 +22,7 @@ else
   branch=$CI_BRANCH
 fi
 
+
 case "$branch" in
 "master")
 
@@ -72,6 +73,6 @@ nightwatch)
 ;;
 
 *)
-# all other branches are untested
+# other branches don't test external components
 ;;
 esac
