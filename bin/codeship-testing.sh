@@ -59,8 +59,8 @@ nightwatch)
   nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows --tag e2etest
 
 # note: edge and ie11 require avoidProxy true set to true in the .json file per https://support.saucelabs.com/customer/en/portal/private/cases/43779
-#    echo "edge on saucelabs"
-#    nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
+  echo "edge on saucelabs"
+  nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
 
   echo "chrome on mac on saucelabs"
   nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
