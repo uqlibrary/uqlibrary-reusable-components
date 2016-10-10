@@ -58,7 +58,7 @@ nightwatch)
   echo "firefox on windows on saucelabs"
   nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows --tag e2etest
 
-#not currently working see https://support.saucelabs.com/customer/en/portal/private/cases/43779
+# note: edge and ie11 require avoidProxy true set to true in the .json file per https://support.saucelabs.com/customer/en/portal/private/cases/43779
 #    echo "edge on saucelabs"
 #    nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
 

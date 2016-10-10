@@ -236,6 +236,7 @@ function updateEventsLinkText() {
   //select a link to more events from the sidebar (upcoming events)
   var moreEventsLink = document.querySelector('.sidebar .body a[href$="/events"]');
   if (moreEventsLink !== null) {
+    // this has to be in all caps to make the nightwatch tests pass - Edge browser doesnt recognise a css transform
     moreEventsLink.innerHTML = "MORE EVENTS";
   }
 }
