@@ -22,17 +22,8 @@ else
   branch=$CI_BRANCH
 fi
 
-
+# tests are written for production only
 case "$branch" in
-"master")
-
-  echo "local firefox on windows test..."
-  nightwatch -c nightwatch.json --tag e2etest
-
-  echo "local chrome on windows test..."
-  nightwatch -c nightwatch.json --env chrome --tag e2etest
-;;
-
 "production")
   echo "local firefox on windows test..."
   nightwatch -c nightwatch.json --tag e2etest
