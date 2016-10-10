@@ -39,20 +39,24 @@
         "screenResolution": "1280x960"
       }
     },
-    "ie11-not-working-on-saucelabs" : {
+    "ie11" : {
       "desiredCapabilities": {
         "browserName": "internet explorer",
         "platform": "Windows 10",
-        "version": "11.0"
+        "version": "11.0",
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960",
+        "avoidProxy": true
       }
     },
-    "edge-not-working-on-saucelabs" : {
+    "edge" : {
       "desiredCapabilities": {
         "browserName": "MicrosoftEdge",
         "platform": "Windows 10",
         "version": "13.10586",
         "acceptSslCerts": true,
-        "screenResolution": "1280x960"
+        "screenResolution": "1280x960",
+        "avoidProxy": true
       }
     },
     "chrome-on-mac": {
