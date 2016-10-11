@@ -68,15 +68,27 @@ Polymer({
     return /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
   },
 
-  /*
+  /**
+   * remove extraneous bits from the web address
+   * @param dest
+   * @returns {*}
+   */
+  cleanupURL: function(dest) {
+    dest = dest.trim();
+    dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
+    dest = dest.replace('http://dx.doi.org/', '');
+
+    return dest;
+  },
+
+  /**
    * create the landing url
+   * @returns {string}
    */
   getURL: function() {
     var doi = this.Doi_Id_Regexp();
 
-    var dest = this.$.url.value;
-    dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
-    dest = dest.replace('http://dx.doi.org/', '');
+    var dest = this.cleanupURL(this.$.url.value);
 
     var result = "";
     if (this.checkURL()) {
@@ -97,10 +109,7 @@ Polymer({
     var valid = false;
     var doi = this.Doi_Id_Regexp();
 
-    var dest = this.$.url.value;
-    dest = dest.trim();
-    dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
-    dest = dest.replace('http://dx.doi.org/', '');
+    var dest = this.cleanupURL(this.$.url.value);
 
     if (dest.length <= 0) {
       this.$.errorMsg.textContent = "Please enter a URL";
