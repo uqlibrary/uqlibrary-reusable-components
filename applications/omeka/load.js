@@ -11,7 +11,7 @@ function loadReusableComponents() {
 
   addAppleTouchIcon();
 
-  addCss('//assets.library.uq.edu.au/master/reusable-components/omeka/custom-styles.css');
+  addCss('//assets.library.uq.edu.au/reusable-components/omeka/custom-styles.css');
 
   addResponsiveMeta();
 
@@ -54,7 +54,7 @@ function loadReusableComponents() {
 
 function loadUQFavicon() {
   var link = document.createElement('link'),
-    href = '//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico';
+    href = '//assets.library.uq.edu.au/reusable-components/resources/favicon.ico';
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
   link.href = href;
@@ -70,7 +70,7 @@ function addAppleTouchIcon() {
     link = document.createElement('link'),
     sizes = ['152x152', '120x120', '76x76'],
     rel = 'apple-touch-icon',
-    href = '//assets.library.uq.edu.au/master/reusable-components/resources/images/apple-touch-icon.png';
+    href = '//assets.library.uq.edu.au/reusable-components/resources/images/apple-touch-icon.png';
 
   if (appleTouchIconlink) {
     appleTouchIconlink.attr('href', href);
