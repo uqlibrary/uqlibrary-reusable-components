@@ -98,6 +98,7 @@ Polymer({
     var doi = this.Doi_Id_Regexp();
 
     var dest = this.$.url.value;
+    dest = dest.trim();
     dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
     dest = dest.replace('http://dx.doi.org/', '');
 
