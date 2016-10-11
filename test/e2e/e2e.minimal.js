@@ -3,6 +3,7 @@ module.exports = {
   commonChecks: function (browser, urlTest) {
     browser
       .url(urlTest)
+      .pause(10000) // allow time for the page to load minimal components
       .assert.elementPresent('uq-minimal-header', 'uq header component is present')
       .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
       .assert.containsText('.library-title a', 'UQ Library')
