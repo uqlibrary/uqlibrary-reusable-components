@@ -62,7 +62,7 @@ Polymer({
   /*
    * set the regexp for url matching
    */
-  getregexp: function() {
+  IPAddressStartingwith10Regexp: function() {
     return /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
   },
 
@@ -70,7 +70,7 @@ Polymer({
    * create the landing url
    */
   getURL: function() {
-    var doi = this.getregexp();
+    var doi = this.IPAddressStartingwith10Regexp();
 
     var dest = this.$.url.value;
     dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
@@ -93,7 +93,7 @@ Polymer({
    */
   checkURL: function () {
     var valid = false;
-    var doi = this.getregexp();
+    var doi = this.IPAddressStartingwith10Regexp();
 
     var dest = this.$.url.value;
     dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
@@ -109,13 +109,10 @@ Polymer({
       } else {
         this.$.errorMsg.textContent = "Invalid URL.";
       }
-    } else if (dest.indexOf('ezproxy.library.uq.edu.au') >= 0) {
-      this.$.errorMsg.textContent = "The domain ezproxy.library.uq.edu.au cannot be used in your URL";
     } else {
       this.$.errorMsg.textContent = "";
       valid = true;
     }
-
     this.$.urlContainer.invalid = !valid;
 
     return valid;
