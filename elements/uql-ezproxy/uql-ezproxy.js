@@ -62,7 +62,9 @@ Polymer({
   /*
    * set the regexp for url matching
    */
-  IPAddressStartingwith10Regexp: function() {
+  Doi_Id_Regexp: function() {
+    // DOI numbers have formats like: doi:10.10.1038/nphys1170
+    // per http://www.doi.org/demos.html
     return /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
   },
 
@@ -70,7 +72,7 @@ Polymer({
    * create the landing url
    */
   getURL: function() {
-    var doi = this.IPAddressStartingwith10Regexp();
+    var doi = this.Doi_Id_Regexp();
 
     var dest = this.$.url.value;
     dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
@@ -93,7 +95,7 @@ Polymer({
    */
   checkURL: function () {
     var valid = false;
-    var doi = this.IPAddressStartingwith10Regexp();
+    var doi = this.Doi_Id_Regexp();
 
     var dest = this.$.url.value;
     dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
