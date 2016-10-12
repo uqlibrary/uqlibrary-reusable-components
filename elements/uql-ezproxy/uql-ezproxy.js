@@ -76,6 +76,12 @@ Polymer({
   cleanupURL: function(dest) {
     dest = dest.trim();
     dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
+
+    var ezproxyUrlRegexp = /(([A-Za-z]*:(?:\/\/)?)(.)+(.ezproxy.library.uq.edu.au))(.*)?/;
+    if (ezproxyUrlRegexp.test(dest))  {
+      dest = dest.replace('.ezproxy.library.uq.edu.au', '');
+    }
+
     dest = dest.replace('http://dx.doi.org/', '');
 
     return dest;
