@@ -1,4 +1,16 @@
 Polymer({
+  /**
+   * An url is provided that the user wants an ezyproxy url of
+   * eg http://www.sciencedirect.com/science/article/pii/S1744388116300159
+   * the eventual landing url will be
+   * http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159
+   * However!
+   * @dcallan says that this can fail sometimes in the ezproxy portal
+   * so the url we build has the form:
+   * http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159
+   * for passing to the portal
+   */
+
 
   is: 'uql-ezproxy',
 
