@@ -10,7 +10,6 @@ module.exports = {
 
     // studenthub specific checks
     client
-      .url(urlTest)
       .assert.elementPresent('.sidebar .body > a', 'sidebar More Events button is present')
       .assert.containsText('.sidebar .body > a', 'MORE EVENTS')
       .end();

@@ -10,7 +10,6 @@ module.exports = {
 
     // omeka specific checks
     client
-      .url(urlTest)
       .assert.containsText('.application-title', 'Online Exhibitions')
       .end();
 
