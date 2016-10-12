@@ -144,7 +144,6 @@ Polymer({
     this.copyStatus = "";
     if(this.hide) {
       this.$.url.value = "";
-      this.target = "";
       this.$.urlContainer.invalid = false;
       this.$.url.focus();
     } else {
