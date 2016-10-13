@@ -198,6 +198,12 @@ Polymer({
   grabUrl: function() {
     var successful;
 
+    if (!document.execCommand) {
+      this.copyStatus = 'Unable to copy URL';
+      this.$.copyNotification.open();
+      return false;
+    }
+
     //Show the hidden textfield with the URL, and select it
     this.querySelector("#outputUrl").style.display = "block";
     this.$.outputUrl.querySelector("#textarea").select();
