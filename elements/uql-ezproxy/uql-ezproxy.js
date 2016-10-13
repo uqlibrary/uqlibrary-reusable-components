@@ -196,12 +196,16 @@ Polymer({
    * Only available for Firefox 41+, Chrome 43+, Opera 29+, IE 10+
    */
   grabUrl: function() {
-    var successful;
+    var copySuccess = {
+      success : false,
+      message: ''
+    };
 
     if (!document.execCommand) {
-      this.copyStatus = 'Unable to copy URL';
+      copySuccess.message = 'Copy function not available in this web browser';
+      this.copyStatus = copySuccess.message;
       this.$.copyNotification.open();
-      return false;
+      return copySuccess;
     }
 
     //Show the hidden textfield with the URL, and select it
@@ -209,18 +213,19 @@ Polymer({
     this.$.outputUrl.querySelector("#textarea").select();
 
     try {
-      successful = document.execCommand('copy');
-      this.copyStatus = (successful ? 'URL copied successfully' : 'Unable to copy URL');
+      copySuccess.success = document.execCommand('copy');
+      copySuccess.message = (copySuccess.success ? 'URL copied successfully' : 'Unable to copy URL');
 
     } catch (err) {
-      this.copyStatus = 'Unable to copy URL';
+      copySuccess.message = 'Unable to copy URL';
 
     } finally {
       //Hide the textfield
       this.querySelector("#outputUrl").style.display = "none";
+      this.copyStatus = copySuccess.message;
       this.$.copyNotification.open();
 
-      return successful;
+      return copySuccess;
     }
   },
 
