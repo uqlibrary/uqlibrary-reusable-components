@@ -60,12 +60,13 @@ Polymer({
    * Based on the widget mode, the submit method will display the ezproxy link or will open the URL in a new windows/tab
    * @private
    */
-  _submit: function (type) {
-    var cleanedUrl = this.cleanupURL(this.$.url.value);
+  _submit: function () {
+    var cleanedUrl;
     if (this.createLink) {
+      cleanedUrl = this.cleanupURL(this.$.url.value);
       this.showUrl(cleanedUrl);
     } else {
-      this.goProxie(cleanedUrl);
+      this.goProxie(this.$.url.value);
     }
   },
 
@@ -87,6 +88,7 @@ Polymer({
    * @param cleanedUrl
    */
   goProxie: function (cleanedUrl) {
+    var cleanedUrl = this.cleanupURL(this.$.url.value);
     var check = this.checkURL(cleanedUrl);
     if (check.valid) {
       var dest = this.getURL(cleanedUrl);
