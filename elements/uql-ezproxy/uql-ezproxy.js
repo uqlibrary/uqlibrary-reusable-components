@@ -162,6 +162,7 @@ Polymer({
       this.querySelector("#textarea").value = this.getURL();
       this.querySelector("#newURL").innerHTML = this.getURL();
       this.querySelector("#outputUrl").style.display = "none";
+
       this.$.testLinkButton.focus();
     }
   },
