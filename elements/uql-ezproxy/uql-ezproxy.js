@@ -9,6 +9,11 @@ Polymer({
    * so the url we build has the form:
    * http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159
    * for passing to the portal
+   *
+   * Note:
+   * Final landing urls for https urls have a special format.
+   * but!
+   * ezproxy will handle it - we do not need to do anything special for https urls here
    */
 
 
@@ -23,7 +28,18 @@ Polymer({
       type: Object,
       value: false,
       observer: "_createLinkChanged"
+    },
+
+    /*
+     * set the regexp for DOI url matching
+     * DOI numbers have formats like: doi:10.10.1038/nphys1170
+     * per http://www.doi.org/demos.html
+     */
+    doi_Id_Regexp: {
+      type: RegExp,
+      value: /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/
     }
+
   },
 
   /*
@@ -52,8 +68,9 @@ Polymer({
    * Display ezproxy link
    */
   showUrl: function () {
-    if (this.checkURL()) {
-      var dest = this.getURL();
+    var check = this.checkURL(this.cleanupURL(this.$.url.value));
+    if (check.valid) {
+      var dest = this.getURL(this.cleanupURL(this.$.url.value));
       this.$.ga.addEvent('ShowUrl', dest);
       this.panelToggle();
     }
@@ -63,21 +80,13 @@ Polymer({
    * Open ezproxy link in a new window/tab
    */
   goProxie: function () {
-    if (this.checkURL()) {
-      var dest = this.getURL();
+    var check = this.checkURL(this.cleanupURL(this.$.url.value));
+    if (check.valid) {
+      var dest = this.getURL(this.cleanupURL(this.$.url.value));
       this.$.ga.addEvent('GoProxy', dest);
       var win = window.open(dest);
       win.focus();
     }
-  },
-
-  /*
-   * set the regexp for url matching
-   */
-  Doi_Id_Regexp: function() {
-    // DOI numbers have formats like: doi:10.10.1038/nphys1170
-    // per http://www.doi.org/demos.html
-    return /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
   },
 
   /**
@@ -101,17 +110,17 @@ Polymer({
 
   /**
    * create the landing url
+   * @param dest
    * @returns {string}
    */
-  getURL: function() {
-    var doi = this.Doi_Id_Regexp();
-
-    var dest = this.cleanupURL(this.$.url.value);
-
+  getURL: function(dest) {
     var result = "";
-    if (this.checkURL()) {
+
+    var check = this.checkURL(this.cleanupURL(dest));
+
+    if (check.valid) {
       result = 'http://ezproxy.library.uq.edu.au/login?url=';
-      if (doi.test(dest)) {
+      if (this.doi_Id_Regexp.test(dest)) {
         result += 'http://dx.doi.org/';
       }
       result += dest;
@@ -119,33 +128,35 @@ Polymer({
     return result;
   },
 
-  /*
+  /**
    * Verify if users URL request is a valid link
-   * @return {Boolean}
+   * @param dest
+   * @returns {boolean}
    */
-  checkURL: function () {
-    var valid = false;
-    var doi = this.Doi_Id_Regexp();
-
-    var dest = this.cleanupURL(this.$.url.value);
+  checkURL: function (dest) {
+    var validation = {
+      valid : false,
+      message: ''
+    };
 
     if (dest.length <= 0) {
-      this.$.errorMsg.textContent = "Please enter a URL";
-    } else if(doi.test(dest)) {
-      valid = true;
+      validation.message = "Please enter a URL";
+    } else if(this.doi_Id_Regexp.test(dest)) {
+      validation.valid = true;
     } else if (!validator.isURL(dest, {require_protocol: true})) {
       if (dest.substring(0, 4).toLowerCase() !== 'http') {
-        this.$.errorMsg.textContent = "Invalid URL. Please add the protocol ie: http://, https://";
+        validation.message = "Invalid URL. Please add the protocol ie: http://, https://";
       } else {
-        this.$.errorMsg.textContent = "Invalid URL.";
+        validation.message = "Invalid URL.";
       }
     } else {
-      this.$.errorMsg.textContent = "";
-      valid = true;
+      validation.valid = true;
     }
-    this.$.urlContainer.invalid = !valid;
+    this.$.errorMsg.textContent = validation.message;
 
-    return valid;
+    this.$.urlContainer.invalid = !validation.valid;
+
+    return validation;
   },
 
   /*

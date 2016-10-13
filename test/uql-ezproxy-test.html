@@ -54,19 +54,24 @@
       flush(function () {
         var url = testObj.querySelector('#url');
         // Test empty urls
-        assert.isFalse(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isFalse(check.valid);
 
         // Test urls including the proxy domain
         url.value = 'http://ezproxy.library.uq.edu.au/login?url=nature.com';
-        assert.isFalse(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isFalse(check.valid);
 
         // Test urls with no protocol
         url.value = 'nature.com';
-        assert.isFalse(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isFalse(check.valid);
 
         // Test correct urls
         url.value = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
-        assert.isTrue(testObj.checkURL());
+
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         done();
       });
@@ -78,12 +83,12 @@
 
         url.value = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
         expected = "http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html";
-        expect(expected).to.equal(testObj.getURL());
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
 
         // an url that contains 'doi' creates a correct link (fixes PT #127779951 )
         url.value = 'http://www.emeraldinsight.com/doi/full/10.1108/RSR-11-2015-0049';
         expected = "http://ezproxy.library.uq.edu.au/login?url=http://www.emeraldinsight.com/doi/full/10.1108/RSR-11-2015-0049";
-        expect(expected).to.equal(testObj.getURL());
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
 
         done();
       });
@@ -97,87 +102,164 @@
 
         // Test urls including the proxy domain
         url.value = '10.3390/insects3020402';
-        assert.isTrue(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         done();
       });
     });
 
-    test('ezproxy.library.uq.edu.au in prefix of url not body', function (done) {
+    test('correct ezproxy url is created for a regular url', function (done) {
       flush(function () {
         var url = testObj.querySelector('#url');
         var cleanedUpUrl, expected;
 
-        // check a regular url is unchanged
         url.value = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
         cleanedUpUrl = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
         expect(cleanedUpUrl).to.equal(testObj.cleanupURL(url.value));
 
-        assert.isTrue(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-        expect(expected).to.equal(testObj.getURL(url.value));
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
 
-        // check a regular url with ezproxy in the hostname is rewritten
+        done();
+      });
+    });
+
+    test('correct ezproxy url is created for a regular url with ezproxy in the hostname', function (done) {
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var cleanedUpUrl, expected;
+
         url.value = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
         cleanedUpUrl = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
         expect(cleanedUpUrl).to.equal(testObj.cleanupURL(url.value));
 
-        assert.isTrue(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-        expect(expected).to.equal(testObj.getURL(url.value));
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
 
-        // check a doi url with ezproxy in the hostname is rewritten
+        done();
+      });
+    });
+
+    test('correct ezproxy url is created for a doi url with ezproxy in the hostname', function (done) {
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var cleanedUpUrl, expected;
+
         url.value = 'http://dx.doi.org.ezproxy.library.uq.edu.au/10.1016/j.ctcp.2016.03.008';
         cleanedUpUrl = "10.1016/j.ctcp.2016.03.008";
         expect(cleanedUpUrl).to.equal(testObj.cleanupURL(url.value));
 
-        assert.isTrue(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-        expect(expected).to.equal(testObj.getURL(url.value));
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
+
+        done();
+      });
+    });
+
+    test('correct ezproxy url is created for a pre-pended url', function (done) {
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var cleanedUpUrl, expected;
 
         // check a pre-pended url is de-prepended (it will be put back on in the following stage
         url.value = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
         cleanedUpUrl = "http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html";
         expect(cleanedUpUrl).to.equal(testObj.cleanupURL(url.value));
 
-        assert.isTrue(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
-        expect(expected).to.equal(testObj.getURL(url.value));
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
 
-        // check a valid doi is not changed
+        done();
+      });
+    });
+
+    test('correct ezproxy url is created for a valid doi', function (done) {
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var cleanedUpUrl, expected;
+
         url.value = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
         cleanedUpUrl = "10.1016/j.ctcp.2016.03.008";
         expect(cleanedUpUrl).to.equal(testObj.cleanupURL(url.value));
 
-        assert.isTrue(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-        expect(expected).to.equal(testObj.getURL(url.value));
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
+
+        done();
+      });
+    });
+
+    test('correct ezproxy url is created for a raw doi', function (done) {
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var cleanedUpUrl, expected;
 
         // check a raw doi is correct
         url.value = '10.1016/j.ctcp.2016.03.008';
         cleanedUpUrl = "10.1016/j.ctcp.2016.03.008";
         expect(cleanedUpUrl).to.equal(testObj.cleanupURL(url.value));
 
-        assert.isTrue(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-        expect(expected).to.equal(testObj.getURL(url.value));
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
 
+        done();
+      });
+    });
+
+    test('correct ezproxy url is created for a long link', function (done) {
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var cleanedUpUrl, expected;
 
         // check a long url
         url.value = 'http://www.jstor.org.ezproxy.library.uq.edu.au/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
         cleanedUpUrl = 'http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
         expect(cleanedUpUrl).to.equal(testObj.cleanupURL(url.value));
 
-        assert.isTrue(testObj.checkURL());
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
 
         expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
-        expect(expected).to.equal(testObj.getURL(url.value));
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
+
+        done();
+      });
+    });
+
+    test('correct ezproxy url is created for a https url', function (done) {
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var cleanedUpUrl, expected, check;
+
+        // check a long url
+        url.value = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        cleanedUpUrl = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expect(cleanedUpUrl).to.equal(testObj.cleanupURL(url.value));
+
+        check = testObj.checkURL(testObj.cleanupURL(url.value));
+        assert.isTrue(check.valid);
+
+        expected = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
 
         done();
       });
