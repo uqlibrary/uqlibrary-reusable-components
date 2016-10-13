@@ -35,54 +35,61 @@ Polymer({
      * DOI numbers have formats like: doi:10.10.1038/nphys1170
      * per http://www.doi.org/demos.html
      */
-    doi_Id_Regexp: {
+    doiRegexp: {
       type: RegExp,
       value: /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/
     }
 
   },
 
-  /*
+  /**
    * Set button label according to the widget mode
+   * @param newValue
+   * @param oldValue
+   * @private
    */
   _createLinkChanged: function(newValue, oldValue) {
     if(this.createLink) {
-      this.buttonLabelValue='Create Link';
+      this.buttonLabelValue='Create Link'; // used on link generator widget mode
     } else {
-      this.buttonLabelValue='Go';
+      this.buttonLabelValue='Go'; // used on link visit widget mode
     }
   },
 
-  /*
+  /**
    * Based on the widget mode, the submit method will display the ezproxy link or will open the URL in a new windows/tab
+   * @private
    */
-  _submit: function () {
+  _submit: function (type) {
+    var cleanedUrl = this.cleanupURL(this.$.url.value);
     if (this.createLink) {
-      this.showUrl();
+      this.showUrl(cleanedUrl);
     } else {
-      this.goProxie();
+      this.goProxie(cleanedUrl);
     }
   },
 
-  /*
+  /**
    * Display ezproxy link
+   * @param cleanedUrl
    */
-  showUrl: function () {
-    var check = this.checkURL(this.cleanupURL(this.$.url.value));
+  showUrl: function (cleanedUrl) {
+    var check = this.checkURL(cleanedUrl);
     if (check.valid) {
-      var dest = this.getURL(this.cleanupURL(this.$.url.value));
+      var dest = this.getURL(cleanedUrl);
       this.$.ga.addEvent('ShowUrl', dest);
       this.panelToggle();
     }
   },
 
-  /*
+  /**
    * Open ezproxy link in a new window/tab
+   * @param cleanedUrl
    */
-  goProxie: function () {
-    var check = this.checkURL(this.cleanupURL(this.$.url.value));
+  goProxie: function (cleanedUrl) {
+    var check = this.checkURL(cleanedUrl);
     if (check.valid) {
-      var dest = this.getURL(this.cleanupURL(this.$.url.value));
+      var dest = this.getURL(cleanedUrl);
       this.$.ga.addEvent('GoProxy', dest);
       var win = window.open(dest);
       win.focus();
@@ -116,11 +123,11 @@ Polymer({
   getURL: function(dest) {
     var result = "";
 
-    var check = this.checkURL(this.cleanupURL(dest));
+    var check = this.checkURL(dest);
 
     if (check.valid) {
       result = 'http://ezproxy.library.uq.edu.au/login?url=';
-      if (this.doi_Id_Regexp.test(dest)) {
+      if (this.doiRegexp.test(dest)) {
         result += 'http://dx.doi.org/';
       }
       result += dest;
@@ -141,7 +148,7 @@ Polymer({
 
     if (dest.length <= 0) {
       validation.message = "Please enter a URL";
-    } else if(this.doi_Id_Regexp.test(dest)) {
+    } else if(this.doiRegexp.test(dest)) {
       validation.valid = true;
     } else if (!validator.isURL(dest, {require_protocol: true})) {
       if (dest.substring(0, 4).toLowerCase() !== 'http') {
@@ -170,8 +177,9 @@ Polymer({
       this.$.urlContainer.invalid = false;
       this.$.url.focus();
     } else {
-      this.querySelector("#textarea").value = this.getURL(this.cleanupURL(this.$.url.value));
-      this.querySelector("#outputUrlDisplay").innerHTML = this.getURL(this.cleanupURL(this.$.url.value));
+      var cleanedUrl = this.cleanupURL(this.$.url.value);
+      this.querySelector("#textarea").value = this.getURL(cleanedUrl);
+      this.querySelector("#outputUrlDisplay").innerHTML = this.getURL(cleanedUrl);
       this.querySelector("#outputUrl").style.display = "none";
       this.$.testLinkButton.focus();
     }
