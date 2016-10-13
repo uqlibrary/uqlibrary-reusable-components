@@ -170,8 +170,8 @@ Polymer({
       this.$.urlContainer.invalid = false;
       this.$.url.focus();
     } else {
-      this.querySelector("#textarea").value = this.getURL();
-      this.querySelector("#outputUrlDisplay").innerHTML = this.getURL();
+      this.querySelector("#textarea").value = this.getURL(this.cleanupURL(this.$.url.value));
+      this.querySelector("#outputUrlDisplay").innerHTML = this.getURL(this.cleanupURL(this.$.url.value));
       this.querySelector("#outputUrl").style.display = "none";
       this.$.testLinkButton.focus();
     }
