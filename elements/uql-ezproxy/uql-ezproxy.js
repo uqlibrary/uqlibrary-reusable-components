@@ -66,7 +66,7 @@ Polymer({
       cleanedUrl = this.cleanupURL(this.$.url.value);
       this.showUrl(cleanedUrl);
     } else {
-      this.goProxie(this.$.url.value);
+      this.goProxie();
     }
   },
 
@@ -85,9 +85,8 @@ Polymer({
 
   /**
    * Open ezproxy link in a new window/tab
-   * @param cleanedUrl
    */
-  goProxie: function (cleanedUrl) {
+  goProxie: function () {
     var cleanedUrl = this.cleanupURL(this.$.url.value);
     var check = this.checkURL(cleanedUrl);
     if (check.valid) {
