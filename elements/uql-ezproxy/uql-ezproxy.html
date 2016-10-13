@@ -18,8 +18,9 @@
       @apply(--layout-horizontal);
     }
 
-    #newURL {
-      border-bottom: 1px solid rgb(33,33,33);
+    #outputUrlDisplay {
+      border-bottom: 1px solid var(--paper-input-container-color);
+      @apply(--paper-input-container);
       padding-bottom: 3px;
       font-size: 16px;
       word-break: break-all;
@@ -38,10 +39,6 @@
     .buttons-container {
       text-align: right;
       margin-top: 16px;
-    }
-
-    textarea#textarea {
-      text-overflow: ellipsis;
     }
 
     @media all and (max-width: 600px) {
@@ -83,7 +80,7 @@
 
         <paper-textarea id="outputUrl" readonly="true" value="[[target]]"></paper-textarea>
 
-        <div id="newURL" class="iron-autogrow-textarea"></div>
+        <div id="outputUrlDisplay" class="iron-autogrow-textarea"></div>
 
         <div class="buttons-container">
           <paper-button id="testLinkButton" class="button-colored-secondary" on-click="goProxie">Test link</paper-button>

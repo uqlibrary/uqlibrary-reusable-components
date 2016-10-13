@@ -160,9 +160,8 @@ Polymer({
       this.$.url.focus();
     } else {
       this.querySelector("#textarea").value = this.getURL();
-      this.querySelector("#newURL").innerHTML = this.getURL();
+      this.querySelector("#outputUrlDisplay").innerHTML = this.getURL();
       this.querySelector("#outputUrl").style.display = "none";
-
       this.$.testLinkButton.focus();
     }
   },
@@ -172,6 +171,8 @@ Polymer({
    * Only available for Firefox 41+, Chrome 43+, Opera 29+, IE 10+
    */
   grabUrl: function() {
+    //Show the hidden textfield with the URL, and select it
+    this.querySelector("#outputUrl").style.display = "block";
     this.$.outputUrl.querySelector("#textarea").select();
 
     try {
@@ -180,7 +181,8 @@ Polymer({
     } catch (err) {
       this.copyStatus = 'Unable to copy URL';
     }
-
+    //Hide the textfield
+    this.querySelector("#outputUrl").style.display = "none";
     this.$.copyNotification.open();
   },
 
