@@ -75,9 +75,11 @@ Polymer({
    * @param cleanedUrl
    */
   showUrl: function (cleanedUrl) {
-    var check = this.checkURL(cleanedUrl);
+    var check, dest;
+
+    check = this.checkURL(cleanedUrl);
     if (check.valid) {
-      var dest = this.getURL(cleanedUrl);
+      dest = this.getURL(cleanedUrl);
       this.$.ga.addEvent('ShowUrl', dest);
       this.panelToggle();
     }
@@ -138,7 +140,7 @@ Polymer({
 
   /**
    * Verify if users URL request is a valid link
-   * @param dest
+   * @param dest - the URl to be checked
    * @returns {boolean}
    */
   checkURL: function (dest) {
@@ -171,6 +173,8 @@ Polymer({
    * Show ezproxy link panel or Hide and clean its values
    */
   panelToggle: function() {
+    var cleanedUrl, finalUrl;
+
     this.hide=!this.hide;
     this.copyStatus = "";
     if(this.hide) {
@@ -178,9 +182,10 @@ Polymer({
       this.$.urlContainer.invalid = false;
       this.$.url.focus();
     } else {
-      var cleanedUrl = this.cleanupURL(this.$.url.value);
-      this.querySelector("#textarea").value = this.getURL(cleanedUrl);
-      this.querySelector("#outputUrlDisplay").innerHTML = this.getURL(cleanedUrl);
+      cleanedUrl = this.cleanupURL(this.$.url.value);
+      finalUrl = this.getURL(cleanedUrl);
+      this.querySelector("#textarea").value = finalUrl;
+      this.querySelector("#outputUrlDisplay").innerHTML = finalUrl;
       this.querySelector("#outputUrl").style.display = "none";
       this.$.testLinkButton.focus();
     }
@@ -191,19 +196,26 @@ Polymer({
    * Only available for Firefox 41+, Chrome 43+, Opera 29+, IE 10+
    */
   grabUrl: function() {
+    var successful;
+
     //Show the hidden textfield with the URL, and select it
     this.querySelector("#outputUrl").style.display = "block";
     this.$.outputUrl.querySelector("#textarea").select();
 
     try {
-      var successful = document.execCommand('copy');
+      successful = document.execCommand('copy');
       this.copyStatus = (successful ? 'URL copied successfully' : 'Unable to copy URL');
+
     } catch (err) {
       this.copyStatus = 'Unable to copy URL';
+
+    } finally {
+      //Hide the textfield
+      this.querySelector("#outputUrl").style.display = "none";
+      this.$.copyNotification.open();
+
+      return successful;
     }
-    //Hide the textfield
-    this.querySelector("#outputUrl").style.display = "none";
-    this.$.copyNotification.open();
   },
 
   /*

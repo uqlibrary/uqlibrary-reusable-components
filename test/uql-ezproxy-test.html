@@ -264,6 +264,23 @@
         done();
       });
     });
+
+    test('ezproxy copy works', function (done) {
+      flush(function () {
+        var url = testObj.querySelector('#url');
+        var expected;
+
+        url.value = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+
+        expected = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expect(expected).to.equal(testObj.getURL(testObj.cleanupURL(url.value)));
+
+        expected = true;
+        expect(expected).to.equal(testObj.grabUrl());
+
+        done();
+      });
+    });
   });
 </script>
 </body>
