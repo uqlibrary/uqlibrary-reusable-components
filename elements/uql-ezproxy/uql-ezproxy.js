@@ -80,7 +80,7 @@ Polymer({
           valid: true,
           invalid: false,
           message: ''
-        }
+        };
       }
     }
 
@@ -92,7 +92,7 @@ Polymer({
    */
   inputUrlKeypress: function(e) {
     if (this.createLink) {
-      this.displayUrl(e)
+      this.displayUrl(e);
     } else {
       this.navigateToEzproxy(e);
     }
