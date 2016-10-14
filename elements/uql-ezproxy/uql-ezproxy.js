@@ -42,6 +42,14 @@ Polymer({
     },
 
     /**
+     * url to be passed to ezproxy
+     */
+    inputUrl: {
+      type: String,
+      value: ''
+    },
+
+    /**
      * the final ezproy-ed url, created from the input url
      */
     outputUrl: {
@@ -63,61 +71,71 @@ Polymer({
     showInputPanel: {
       type: Boolean,
       value: true
+    },
+
+    inputValidator : {
+      type: Object,
+      value: function() {
+        return {
+          valid: true,
+          invalid: false,
+          message: ''
+        }
+      }
     }
 
+  },
+
+  /**
+   * handle 'enter key' on input field
+   * @param e
+   */
+  inputUrlKeypress: function(e) {
+    if (this.createLink) {
+      this.displayUrl(e)
+    } else {
+      this.navigateToEzproxy(e);
+    }
   },
 
   /**
    * display the ezproxy link
-   * @private
+   * @param e
    */
   displayUrl: function(e) {
-    var cleanedUrl, check;
-
-    cleanedUrl = this.cleanupUrl(this.$.inputUrlTextfield.value);
-    check = this.checkUrl(cleanedUrl);
-
+    var cleanedUrl = this.cleanupUrl(this.inputUrl);
+    this.inputValidator = this.checkUrl(cleanedUrl);
     this.outputUrl = this.getUrl(cleanedUrl);
 
-    if (check.valid) {
+    if (this.inputValidator.valid) {
       this.$.ga.addEvent('ShowUrl', this.outputUrl);
-      this.panelToggle();
-    } else {
-      this.$.errorMsg.textContent = check.message;
+
+      //show output url panel
+      this.showInputPanel = false;
+      this.$.testLinkButton.focus();
     }
-
-    this.$.urlContainer.invalid = !check.valid;
-
-
   },
 
   /**
    * Open ezproxy link in a new window/tab
+   * @param e
    */
   navigateToEzproxy: function (e) {
-    var cleanedUrl, check, win;
-
-    cleanedUrl = this.cleanupUrl(this.$.inputUrlTextfield.value);
-    check = this.checkUrl(cleanedUrl);
-
+    var cleanedUrl = this.cleanupUrl(this.inputUrl);
+    this.inputValidator = this.checkUrl(cleanedUrl);
     this.outputUrl = this.getUrl(cleanedUrl);
 
-    if (check.valid) {
-
+    if (this.inputValidator.valid) {
       this.$.ga.addEvent('GoProxy', this.outputUrl);
-      win = window.open(this.outputUrl);
+      var win = window.open(this.outputUrl);
       win.focus();
-    } else {
-      this.$.errorMsg.textContent = check.message;
     }
-
-    this.$.urlContainer.invalid = !check.valid;
   },
 
   /**
    * remove extraneous bits from the web address
    * @param dest
-   * @returns {*}
+   * @returns {String}
    */
   cleanupUrl: function(dest) {
     dest = dest.trim();
@@ -160,7 +178,7 @@ Polymer({
   /**
    * Verify if users URL request is a valid link
    * @param dest - the URl to be checked
-   * @returns {boolean}
+   * @returns {Object}
    */
   checkUrl: function (dest) {
     var validation = {
@@ -182,25 +200,21 @@ Polymer({
       validation.valid = true;
     }
 
+    //paper-input-container invalid property doesn't apply ! operator
+    validation.invalid = !validation.valid;
     return validation;
   },
 
-  /*
-   * Show ezproxy link panel or Hide and clean its values
+  /**
+   * resets url input field
+   * @param e
    */
-  panelToggle: function() {
-    var cleanedUrl, finalUrl;
-
-    this.showInputPanel = !this.showInputPanel;
+  resetInput: function(e) {
+    this.showInputPanel = true;
     this.copyStatus = '';
-    if(this.showInputPanel) {
-      this.$.urlContainer.invalid = false;
-      this.$.inputUrlTextfield.value = '';
-      this.$.inputUrlTextfield.focus();
-      this.outputUrl = '';
-    } else {
-      this.$.testLinkButton.focus();
-    }
+    this.$.inputUrlTextfield.focus();
+    this.outputUrl = '';
+    this.inputUrl = '';
   },
 
   /*
@@ -234,9 +248,9 @@ Polymer({
       //Hide the textfield
       this.copyStatus = copySuccess.message;
       this.$.copyNotification.open();
-
-      return copySuccess;
     }
+
+    return copySuccess;
   },
 
   /**
