@@ -32,6 +32,7 @@ Polymer({
 
     /*
      * set the regexp for DOI url matching
+     * DOI = Digital Object Identifier
      * DOI numbers have formats like: doi:10.10.1038/nphys1170
      * per http://www.doi.org/demos.html
      */
@@ -61,42 +62,45 @@ Polymer({
    * @private
    */
   _submit: function () {
-    var cleanedUrl;
-    if (this.createLink) {
-      cleanedUrl = this.cleanupURL(this.$.url.value);
-      this.showUrl(cleanedUrl);
+    var cleanedUrl, check, finalDest;
+
+    cleanedUrl = this.cleanupUrl(this.$.url.value);
+    check = this.checkUrl(cleanedUrl);
+
+    finalDest = this.getUrl(cleanedUrl);
+
+    if (check.valid) {
+      if (this.createLink) {
+        this.showUrl(finalDest);
+      } else {
+        this.goProxie(finalDest);
+      }
     } else {
-      this.goProxie();
+      this.$.errorMsg.textContent = check.message;
     }
+    this.$.urlContainer.invalid = !check.valid;
+
+
   },
 
   /**
    * Display ezproxy link
-   * @param cleanedUrl
+   * @param dest
    */
-  showUrl: function (cleanedUrl) {
-    var check, dest;
-
-    check = this.checkURL(cleanedUrl);
-    if (check.valid) {
-      dest = this.getURL(cleanedUrl);
-      this.$.ga.addEvent('ShowUrl', dest);
-      this.panelToggle();
-    }
+  showUrl: function (dest) {
+    this.$.ga.addEvent('ShowUrl', dest);
+    this.panelToggle();
   },
 
   /**
    * Open ezproxy link in a new window/tab
    */
-  goProxie: function () {
-    var cleanedUrl = this.cleanupURL(this.$.url.value);
-    var check = this.checkURL(cleanedUrl);
-    if (check.valid) {
-      var dest = this.getURL(cleanedUrl);
-      this.$.ga.addEvent('GoProxy', dest);
-      var win = window.open(dest);
-      win.focus();
-    }
+  goProxie: function (dest) {
+    var win;
+
+    this.$.ga.addEvent('GoProxy', dest);
+    win = window.open(dest);
+    win.focus();
   },
 
   /**
@@ -104,38 +108,41 @@ Polymer({
    * @param dest
    * @returns {*}
    */
-  cleanupURL: function(dest) {
+  cleanupUrl: function(dest) {
     dest = dest.trim();
-    dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
+
+    var ezpRegexp = /https?:\/\/(www.)?ezproxy.library.uq.edu.au\/login\?url\=/i;
+    dest = dest.replace(ezpRegexp, '');
 
     var ezproxyUrlRegexp = /(([A-Za-z]*:(?:\/\/)?)(.)+(.ezproxy.library.uq.edu.au))(.*)?/;
     if (ezproxyUrlRegexp.test(dest))  {
       dest = dest.replace('.ezproxy.library.uq.edu.au', '');
     }
 
-    dest = dest.replace('http://dx.doi.org/', '');
+    var doiRegexp = /https?:\/\/dx.doi.org\//i;
+    dest = dest.replace(doiRegexp, '');
 
     return dest;
   },
 
   /**
    * create the landing url
-   * @param dest
+   * @param cleanedUrl
    * @returns {string}
    */
-  getURL: function(dest) {
-    var result = "";
+  getUrl: function(cleanedUrl) {
+    var dest, check;
 
-    var check = this.checkURL(dest);
-
+    dest = "";
+    check = this.checkUrl(cleanedUrl);
     if (check.valid) {
-      result = 'http://ezproxy.library.uq.edu.au/login?url=';
-      if (this.doiRegexp.test(dest)) {
-        result += 'http://dx.doi.org/';
+      dest = 'http://ezproxy.library.uq.edu.au/login?url=';
+      if (this.doiRegexp.test(cleanedUrl)) {
+        dest += 'http://dx.doi.org/';
       }
-      result += dest;
+      dest += cleanedUrl;
     }
-    return result;
+    return dest;
   },
 
   /**
@@ -143,7 +150,7 @@ Polymer({
    * @param dest - the URl to be checked
    * @returns {boolean}
    */
-  checkURL: function (dest) {
+  checkUrl: function (dest) {
     var validation = {
       valid : false,
       message: ''
@@ -162,9 +169,6 @@ Polymer({
     } else {
       validation.valid = true;
     }
-    this.$.errorMsg.textContent = validation.message;
-
-    this.$.urlContainer.invalid = !validation.valid;
 
     return validation;
   },
@@ -182,8 +186,8 @@ Polymer({
       this.$.urlContainer.invalid = false;
       this.$.url.focus();
     } else {
-      cleanedUrl = this.cleanupURL(this.$.url.value);
-      finalUrl = this.getURL(cleanedUrl);
+      cleanedUrl = this.cleanupUrl(this.$.url.value);
+      finalUrl = this.getUrl(cleanedUrl);
       this.querySelector("#textarea").value = finalUrl;
       this.querySelector("#outputUrlDisplay").innerHTML = finalUrl;
       this.querySelector("#outputUrl").style.display = "none";
@@ -195,7 +199,7 @@ Polymer({
    * Copy URL to Clipboard (same as ctrl+a / ctrl+c)
    * Only available for Firefox 41+, Chrome 43+, Opera 29+, IE 10+
    */
-  grabUrl: function() {
+  copyUrl: function() {
     var copySuccess = {
       success : false,
       message: ''
