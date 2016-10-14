@@ -100,7 +100,7 @@ Polymer({
     cleanedUrl = this.cleanupUrl(this.$.inputUrlTextfield.value);
     check = this.checkUrl(cleanedUrl);
 
-    this.outputUrl = this.getUrl(cleanedUrl);;
+    this.outputUrl = this.getUrl(cleanedUrl);
 
     if (check.valid) {
 
