@@ -21,8 +21,8 @@ Polymer({
 
   properties: {
     /**
-     * Set the Widget mode to Display ezproxy-ed url link (true) or open the url in a new window/tab (false). Default:
-     * false
+     * Set the component mode to display ezproxy-ed url link (true) or open the url in a new window/tab (false).
+     * Default: false
      * @type {Boolean}
      */
     createLink: {

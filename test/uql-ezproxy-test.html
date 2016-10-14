@@ -48,242 +48,250 @@
       });
     });
 
-    test('if cleanupUrl function removes spaces', function (done) {
+    suite('cleanupUrl method unit tests', function () {
 
-      var input = '  http://www.google.com  ';
-      var output = 'http://www.google.com';
-      expect(output).to.equal(testObj.cleanupUrl(input));
-      done();
+      test('if cleanupUrl function removes spaces', function (done) {
+
+        var input = '  http://www.google.com  ';
+        var output = 'http://www.google.com';
+        expect(output).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl function removes prepended ezproxy', function (done) {
+
+        var input = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        var output = '10.1016/j.ctcp.2016.03.008';
+        expect(output).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl function removes prepended https ezproxy', function (done) {
+
+        var input = 'https://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        var output = '10.1016/j.ctcp.2016.03.008';
+        expect(output).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl function removes ezproxy from hostname', function (done) {
+
+        var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
+        var output = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expect(output).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl function removes DOI prepended', function (done) {
+
+        var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        var output = '10.1016/j.ctcp.2016.03.008';
+        expect(output).to.equal(testObj.cleanupUrl(input));
+
+        done();
+      });
+
+      test('if cleanupUrl function removes https DOI prepended', function (done) {
+
+        var input = 'https://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        var output = '10.1016/j.ctcp.2016.03.008';
+        expect(output).to.equal(testObj.cleanupUrl(input));
+
+        done();
+      });
+
+      test('if cleanupUrl function leaves valid urls untouched', function (done) {
+
+        var input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        var output = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expect(output).to.equal(testObj.cleanupUrl(input));
+
+        done();
+      });
+
+      test('if cleanupUrl handles a regular url with ezproxy in the hostname', function (done) {
+        var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
+        var expected = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
+        expect(expected).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl handles a doi url with ezproxy in the hostname', function (done) {
+        var input = 'http://dx.doi.org.ezproxy.library.uq.edu.au/10.1016/j.ctcp.2016.03.008';
+        var expected = "10.1016/j.ctcp.2016.03.008";
+        expect(expected).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl handles a pre-pended url', function (done) {
+        // check a pre-pended url is de-prepended (it will be put back on in the following stage)
+        var input = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        var expected = "http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html";
+        expect(expected).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl handles a valid doi', function (done) {
+        var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        var expected = "10.1016/j.ctcp.2016.03.008";
+        expect(expected).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl handles a raw doi', function (done) {
+        // check a raw doi is correct
+        var input = '10.1016/j.ctcp.2016.03.008';
+        var expected = "10.1016/j.ctcp.2016.03.008";
+        expect(expected).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl handles a long link', function (done) {
+        // check a long url
+        var input = 'http://www.jstor.org.ezproxy.library.uq.edu.au/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
+        var expected = 'http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
+        expect(expected).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if cleanupUrl handles a https url', function (done) {
+        var input = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        var expected = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expect(expected).to.equal(testObj.cleanupUrl(input));
+
+        done();
+      });
     });
 
-    test('if cleanupUrl function removes prepended ezproxy', function (done) {
+    suite('checkUrl method unit tests', function () {
 
-      var input = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-      var output = '10.1016/j.ctcp.2016.03.008';
-      expect(output).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl function removes prepended https ezproxy', function (done) {
-
-      var input = 'https://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-      var output = '10.1016/j.ctcp.2016.03.008';
-      expect(output).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl function removes ezproxy from hostname', function (done) {
-
-      var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
-      var output = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      expect(output).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl function removes DOI prepended', function (done) {
-
-      var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-      var output = '10.1016/j.ctcp.2016.03.008';
-      expect(output).to.equal(testObj.cleanupUrl(input));
-
-      done();
-    });
-
-    test('if cleanupUrl function removes https DOI prepended', function (done) {
-
-      var input = 'https://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-      var output = '10.1016/j.ctcp.2016.03.008';
-      expect(output).to.equal(testObj.cleanupUrl(input));
-
-      done();
-    });
-
-    test('if cleanupUrl function leaves valid urls untouched', function (done) {
-
-      var input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      var output = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      expect(output).to.equal(testObj.cleanupUrl(input));
-
-      done();
-    });
-
-    test('if cleanupUrl handles a regular url with ezproxy in the hostname', function (done) {
-      var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
-      var expected = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
-      expect(expected).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl handles a doi url with ezproxy in the hostname', function (done) {
-      var input = 'http://dx.doi.org.ezproxy.library.uq.edu.au/10.1016/j.ctcp.2016.03.008';
-      var expected = "10.1016/j.ctcp.2016.03.008";
-      expect(expected).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl handles a pre-pended url', function (done) {
-      // check a pre-pended url is de-prepended (it will be put back on in the following stage)
-      var input = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
-      var expected = "http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html";
-      expect(expected).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl handles a valid doi', function (done) {
-      var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-      var expected = "10.1016/j.ctcp.2016.03.008";
-      expect(expected).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl handles a raw doi', function (done) {
-      // check a raw doi is correct
-      var input = '10.1016/j.ctcp.2016.03.008';
-      var expected = "10.1016/j.ctcp.2016.03.008";
-      expect(expected).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl handles a long link', function (done) {
-      // check a long url
-      var input = 'http://www.jstor.org.ezproxy.library.uq.edu.au/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
-      var expected =  'http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
-      expect(expected).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if cleanupUrl handles a https url', function (done) {
-      var input = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      var expected = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      expect(expected).to.equal(testObj.cleanupUrl(input));
-
-      done();
-    });
-
-    test('if checkUrl fails an empty url', function (done) {
+      test('if checkUrl fails an empty url', function (done) {
         // Test empty urls
-      var input = '';
-      var check = testObj.checkUrl(input);
-      assert.isFalse(check.valid);
+        var input = '';
+        var check = testObj.checkUrl(input);
+        assert.isFalse(check.valid);
 
-      done();
+        done();
+      });
+
+      test('if checkUrl fails an incomplete url', function (done) {
+        // Test urls with no protocol
+        var input = 'nature.com';
+        var check = testObj.checkUrl(testObj.cleanupUrl(input));
+        assert.isFalse(check.valid);
+        done();
+      });
+
+      test('if checkUrl passes a valid url', function (done) {
+        // Test correct urls
+        var input = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        var check = testObj.checkUrl(testObj.cleanupUrl(input));
+        assert.isTrue(check.valid);
+
+        var input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        var expected = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
+        expect(expected).to.equal(testObj.cleanupUrl(input));
+        done();
+      });
+
+      test('if checkUrl correctly recognises a DOI url', function (done) {
+        var input = '10.1016/j.ctcp.2016.03.008';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkUrl fails an url that doesnt start with http', function (done) {
+        var input = 'xttp://somewhere.com';
+        var check = testObj.checkUrl(input);
+        assert.isFalse(check.valid);
+        done();
+      });
+
+      test('if checkUrl fails an url with a different protocol', function (done) {
+        var input = 'ftp://somewhere.com';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkUrl fails a string that isnt an url', function (done) {
+        var input = 'the quick brown fox';
+        var check = testObj.checkUrl(input);
+        assert.isFalse(check.valid);
+        done();
+      });
+
+      test('if checkUrl returns true for a regular url', function (done) {
+        var input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkUrl returns true for regular url with ezproxy in the hostname', function (done) {
+        var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkurl returns true for a doi url with ezproxy in the hostname', function (done) {
+        var input = 'http://dx.doi.org.ezproxy.library.uq.edu.au/10.1016/j.ctcp.2016.03.008';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkurl returns true for a pre-pended url', function (done) {
+        var input = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkUrl handles a simple pre-pended url', function (done) {
+
+        // Test urls including the proxy domain
+        var input = 'http://ezproxy.library.uq.edu.au/login?url=nature.com';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkurl returns true for a valid doi', function (done) {
+        var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkurl returns true for a raw doi', function (done) {
+        var input = '10.1016/j.ctcp.2016.03.008';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkurl returns true for a long link', function (done) {
+        var input = 'http://www.jstor.org.ezproxy.library.uq.edu.au/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+        done();
+      });
+
+      test('if checkurl returns true for a https url', function (done) {
+        var input = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        var check = testObj.checkUrl(input);
+        assert.isTrue(check.valid);
+
+        done();
+      });
     });
 
-    test('if checkUrl fails an incomplete url', function (done) {
-      // Test urls with no protocol
-      var input = 'nature.com';
-      var check = testObj.checkUrl(testObj.cleanupUrl(input));
-      assert.isFalse(check.valid);
-      done();
-    });
+    suite('getUrl method unit tests', function () {
 
-    test('if checkUrl passes a valid url', function (done) {
-      // Test correct urls
-      var input = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
-      var check = testObj.checkUrl(testObj.cleanupUrl(input));
-      assert.isTrue(check.valid);
-
-      var input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      var expected = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
-      expect(expected).to.equal(testObj.cleanupUrl(input));
-      done();
-    });
-
-    test('if checkUrl correctly recognises a DOI url', function (done) {
-      var input = '10.1016/j.ctcp.2016.03.008';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkUrl fails an url that doesnt start with http', function (done) {
-      var input = 'xttp://somewhere.com';
-      var check = testObj.checkUrl(input);
-      assert.isFalse(check.valid);
-      done();
-    });
-
-    test('if checkUrl fails an url with a different protocol', function (done) {
-      var input = 'ftp://somewhere.com';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkUrl fails a string that isnt an url', function (done) {
-      var input = 'the quick brown fox';
-      var check = testObj.checkUrl(input);
-      assert.isFalse(check.valid);
-      done();
-    });
-
-    test('if checkUrl returns true for a regular url', function (done) {
-      var input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkUrl returns true for regular url with ezproxy in the hostname', function (done) {
-      var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkurl returns true for a doi url with ezproxy in the hostname', function (done) {
-      var input = 'http://dx.doi.org.ezproxy.library.uq.edu.au/10.1016/j.ctcp.2016.03.008';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkurl returns true for a pre-pended url', function (done) {
-      var input = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkUrl handles a simple pre-pended url', function (done) {
-
-      // Test urls including the proxy domain
-      var input = 'http://ezproxy.library.uq.edu.au/login?url=nature.com';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkurl returns true for a valid doi', function (done) {
-      var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkurl returns true for a raw doi', function (done) {
-      var input = '10.1016/j.ctcp.2016.03.008';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkurl returns true for a long link', function (done) {
-      var input = 'http://www.jstor.org.ezproxy.library.uq.edu.au/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-      done();
-    });
-
-    test('if checkurl returns true for a https url', function (done) {
-      var input = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      var check = testObj.checkUrl(input);
-      assert.isTrue(check.valid);
-
-      done();
-    });
-
-    test('Check some valid landing URLS', function (done) {
+      test('some valid landing URLS', function (done) {
 
         var input = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
         var expected = "http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html";
@@ -299,62 +307,63 @@
         expect(expected).to.equal(testObj.getUrl(input));
 
         done();
-    });
+      });
 
-    test('if correct ezproxy url is created for regular url with ezproxy in the hostname', function (done) {
-      var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
-      var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-      expect(expected).to.equal(testObj.getUrl(testObj.cleanupUrl(input)));
-
-      done();
-    });
-
-    test('if correct ezproxy url is created for a doi url with ezproxy in the hostname', function (done) {
-      var input = 'http://dx.doi.org.ezproxy.library.uq.edu.au/10.1016/j.ctcp.2016.03.008';
-      var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+      test('if correct ezproxy url is created for regular url with ezproxy in the hostname', function (done) {
+        var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159';
         expect(expected).to.equal(testObj.getUrl(testObj.cleanupUrl(input)));
 
         done();
-    });
+      });
 
-    test('if correct ezproxy url is created for a pre-pended url', function (done) {
-      var input = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
-      var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+      test('if correct ezproxy url is created for a doi url with ezproxy in the hostname', function (done) {
+        var input = 'http://dx.doi.org.ezproxy.library.uq.edu.au/10.1016/j.ctcp.2016.03.008';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
         expect(expected).to.equal(testObj.getUrl(testObj.cleanupUrl(input)));
 
         done();
-    });
+      });
 
-    test('if correct ezproxy url is created for a valid doi', function (done) {
-      var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-      var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+      test('if correct ezproxy url is created for a pre-pended url', function (done) {
+        var input = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        expect(expected).to.equal(testObj.getUrl(testObj.cleanupUrl(input)));
+
+        done();
+      });
+
+      test('if correct ezproxy url is created for a valid doi', function (done) {
+        var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
         expect(expected).to.equal(testObj.getUrl(input));
 
         done();
-    });
+      });
 
-    test('if correct ezproxy url is created for a raw doi', function (done) {
-      var input = '10.1016/j.ctcp.2016.03.008';
-      var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+      test('if correct ezproxy url is created for a raw doi', function (done) {
+        var input = '10.1016/j.ctcp.2016.03.008';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
         expect(expected).to.equal(testObj.getUrl(input));
 
         done();
-    });
+      });
 
-    test('if correct ezproxy url is created for a long link', function (done) {
-      var input = 'http://www.jstor.org.ezproxy.library.uq.edu.au/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
-      var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
+      test('if correct ezproxy url is created for a long link', function (done) {
+        var input = 'http://www.jstor.org.ezproxy.library.uq.edu.au/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
         expect(expected).to.equal(testObj.getUrl(testObj.cleanupUrl(input)));
 
         done();
-    });
+      });
 
-    test('if correct ezproxy url is created for a https url', function (done) {
+      test('if correct ezproxy url is created for a https url', function (done) {
         var input = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
         var expected = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
         expect(expected).to.equal(testObj.getUrl(input));
 
         done();
+      });
     });
 
 /*
