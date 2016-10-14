@@ -21,13 +21,13 @@ Polymer({
 
   properties: {
     /**
-     * Set the Widget mode to Display target link (true) or open the url in a new window/tab (false). Default: false
+     * Set the Widget mode to Display ezproxy-ed url link (true) or open the url in a new window/tab (false). Default:
+     * false
      * @type {Boolean}
      */
     createLink: {
       type: Object,
-      value: false,
-      observer: "_createLinkChanged"
+      value: false
     },
 
     /*
@@ -38,69 +38,80 @@ Polymer({
      */
     doiRegexp: {
       type: RegExp,
-      value: /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/
+      value: /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!['&\'])\S)+)\b/
+    },
+
+    /**
+     * the final ezproy-ed url, created from the input url
+     */
+    outputUrl: {
+      type: String,
+      value: ''
+    },
+
+    /**
+     * the status of the copy action, used in paper toast
+     */
+    copyStatus: {
+      type: String,
+      value: ''
+    },
+
+    /**
+     * toggle status of input data panel
+     */
+    showInputPanel: {
+      type: Boolean,
+      value: true
     }
 
   },
 
   /**
-   * Set button label according to the widget mode
-   * @param newValue
-   * @param oldValue
+   * display the ezproxy link
    * @private
    */
-  _createLinkChanged: function(newValue, oldValue) {
-    if(this.createLink) {
-      this.buttonLabelValue='Create Link'; // used on link generator widget mode
-    } else {
-      this.buttonLabelValue='Go'; // used on link visit widget mode
-    }
-  },
+  displayUrl: function(e) {
+    var cleanedUrl, check;
 
-  /**
-   * Based on the widget mode, the submit method will display the ezproxy link or will open the URL in a new windows/tab
-   * @private
-   */
-  _submit: function () {
-    var cleanedUrl, check, finalDest;
-
-    cleanedUrl = this.cleanupUrl(this.$.url.value);
+    cleanedUrl = this.cleanupUrl(this.$.inputUrlTextfield.value);
     check = this.checkUrl(cleanedUrl);
 
-    finalDest = this.getUrl(cleanedUrl);
+    this.outputUrl = this.getUrl(cleanedUrl);
 
     if (check.valid) {
-      if (this.createLink) {
-        this.showUrl(finalDest);
-      } else {
-        this.goProxie(finalDest);
-      }
+      this.$.ga.addEvent('ShowUrl', this.outputUrl);
+      this.panelToggle();
     } else {
       this.$.errorMsg.textContent = check.message;
     }
+
     this.$.urlContainer.invalid = !check.valid;
 
 
   },
 
   /**
-   * Display ezproxy link
-   * @param dest
-   */
-  showUrl: function (dest) {
-    this.$.ga.addEvent('ShowUrl', dest);
-    this.panelToggle();
-  },
-
-  /**
    * Open ezproxy link in a new window/tab
    */
-  goProxie: function (dest) {
-    var win;
+  navigateToEzproxy: function (e) {
+    var cleanedUrl, check, win;
 
-    this.$.ga.addEvent('GoProxy', dest);
-    win = window.open(dest);
-    win.focus();
+    cleanedUrl = this.cleanupUrl(this.$.inputUrlTextfield.value);
+    check = this.checkUrl(cleanedUrl);
+
+    this.outputUrl = this.getUrl(cleanedUrl);;
+
+    if (check.valid) {
+
+      this.$.ga.addEvent('GoProxy', this.outputUrl);
+      win = window.open(this.outputUrl);
+      win.focus();
+    } else {
+      this.$.errorMsg.textContent = check.message;
+    }
+
+    this.$.urlContainer.invalid = !check.valid;
   },
 
   /**
@@ -133,7 +144,7 @@ Polymer({
   getUrl: function(cleanedUrl) {
     var dest, check;
 
-    dest = "";
+    dest = '';
     check = this.checkUrl(cleanedUrl);
     if (check.valid) {
       dest = 'http://ezproxy.library.uq.edu.au/login?url=';
@@ -141,6 +152,7 @@ Polymer({
         dest += 'http://dx.doi.org/';
       }
       dest += cleanedUrl;
+
     }
     return dest;
   },
@@ -157,14 +169,14 @@ Polymer({
     };
 
     if (dest.length <= 0) {
-      validation.message = "Please enter a URL";
+      validation.message = 'Please enter a URL';
     } else if(this.doiRegexp.test(dest)) {
       validation.valid = true;
     } else if (!validator.isURL(dest, {require_protocol: true})) {
       if (dest.substring(0, 4).toLowerCase() !== 'http') {
-        validation.message = "Invalid URL. Please add the protocol ie: http://, https://";
+        validation.message = 'Invalid URL. Please add the protocol ie: http://, https://';
       } else {
-        validation.message = "Invalid URL.";
+        validation.message = 'Invalid URL.';
       }
     } else {
       validation.valid = true;
@@ -179,18 +191,14 @@ Polymer({
   panelToggle: function() {
     var cleanedUrl, finalUrl;
 
-    this.hide=!this.hide;
-    this.copyStatus = "";
-    if(this.hide) {
-      this.$.url.value = "";
+    this.showInputPanel = !this.showInputPanel;
+    this.copyStatus = '';
+    if(this.showInputPanel) {
       this.$.urlContainer.invalid = false;
-      this.$.url.focus();
+      this.$.inputUrlTextfield.value = '';
+      this.$.inputUrlTextfield.focus();
+      this.outputUrl = '';
     } else {
-      cleanedUrl = this.cleanupUrl(this.$.url.value);
-      finalUrl = this.getUrl(cleanedUrl);
-      this.querySelector("#textarea").value = finalUrl;
-      this.querySelector("#outputUrlDisplay").innerHTML = finalUrl;
-      this.querySelector("#outputUrl").style.display = "none";
       this.$.testLinkButton.focus();
     }
   },
@@ -213,8 +221,7 @@ Polymer({
     }
 
     //Show the hidden textfield with the URL, and select it
-    this.querySelector("#outputUrl").style.display = "block";
-    this.$.outputUrl.querySelector("#textarea").select();
+    this.$.outputUrlTextarea.querySelector('#textarea').select();
 
     try {
       copySuccess.success = document.execCommand('copy');
@@ -225,7 +232,6 @@ Polymer({
 
     } finally {
       //Hide the textfield
-      this.querySelector("#outputUrl").style.display = "none";
       this.copyStatus = copySuccess.message;
       this.$.copyNotification.open();
 
@@ -233,11 +239,10 @@ Polymer({
     }
   },
 
-  /*
-   * Display widget primary panel
+  /**
+   * ready function
    */
   ready: function() {
-    this.hide = true;
   }
 
 });
