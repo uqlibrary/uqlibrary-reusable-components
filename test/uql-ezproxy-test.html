@@ -344,6 +344,35 @@
 
     });
 
+    suite('integration tests', function () {
+      test('correct fields are set when Go panel used', function (done) {
+        var localObject;
+
+        testObj.createLink = true;
+
+        localObject = testObj.querySelector('#goButton');
+        expect(localObject).to.be.visible;
+
+        localObject = testObj.querySelector('#createLinkButton');
+        expect(localObject).not.to.be.visible;
+
+        done();
+      });
+
+      test('correct fields are set when Create Link panel used', function (done) {
+        testObj.createLink = false;
+
+        localObject = testObj.querySelector('#goButton');
+        expect(localObject).not.to.be.visible;
+
+        localObject = testObj.querySelector('#createLinkButton');
+        expect(localObject).to.be.visible;
+
+        done();
+      });
+
+    });
+
 /*
     test('ezproxy copy works', function (done) {
       flush(function () {

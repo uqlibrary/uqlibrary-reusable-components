@@ -63,8 +63,8 @@
         </div>
 
         <div class="buttons-container self-center">
-          <paper-button hidden$="[[createLink]]" on-click="navigateToEzproxy" class="button-colored-accent">Go</paper-button>
-          <paper-button hidden$="[[!createLink]]" on-click="displayUrl" class="button-colored-accent">Create link</paper-button>
+          <paper-button id="goButton" hidden$="[[createLink]]" on-click="navigateToEzproxy" class="button-colored-accent">Go</paper-button>
+          <paper-button id="createLinkButton" hidden$="[[!createLink]]" on-click="displayUrl" class="button-colored-accent">Create link</paper-button>
         </div>
 
       </div>
