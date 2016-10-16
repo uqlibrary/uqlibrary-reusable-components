@@ -184,12 +184,14 @@
 
       test('if checkUrl passes a valid url', function (done) {
         // Test correct urls
-        var input = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
-        var check = testObj.checkUrl(testObj.cleanupUrl(input));
+        var input, expected, check;
+
+        input = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        check = testObj.checkUrl(testObj.cleanupUrl(input));
         assert.isTrue(check.valid);
 
-        var input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-        var expected = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
+        input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expected = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
         expect(expected).to.equal(testObj.cleanupUrl(input));
         done();
       });
