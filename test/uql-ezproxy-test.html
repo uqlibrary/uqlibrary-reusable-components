@@ -31,6 +31,8 @@
       document.cookie="UQLMockData=enabled";
     });
 
+//    a11ySuite('basic');
+
     test('Input field and Submit button should be visible', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
@@ -210,7 +212,7 @@
         done();
       });
 
-      test('if checkUrl fails an url with a different protocol', function (done) {
+      test('if checkUrl passes an url with a different protocol', function (done) {
         var input = 'ftp://somewhere.com';
         var check = testObj.checkUrl(input);
         assert.isTrue(check.valid);
@@ -281,6 +283,40 @@
         done();
       });
 
+      test('if correct ezproxy url is created for a valid doi', function (done) {
+        var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        expect(expected).to.equal(testObj.getUrl(input));
+
+        done();
+      });
+
+      test('if correct ezproxy url is created for a raw doi', function (done) {
+        var input = '10.1016/j.ctcp.2016.03.008';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
+        expect(expected).to.equal(testObj.getUrl(input));
+
+        done();
+      });
+
+      test('if correct ezproxy url is created for a long link', function (done) {
+        var input = 'http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
+        expect(expected).to.equal(testObj.getUrl(input));
+
+        done();
+      });
+
+      test('if correct ezproxy url is created for a https url', function (done) {
+        var input = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        var expected = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expect(expected).to.equal(testObj.getUrl(input));
+
+        done();
+      });
+    });
+
+    suite('test geturl works for urls with ezproxy already there', function () {
       test('if correct ezproxy url is created for regular url with ezproxy in the hostname', function (done) {
         var input = 'http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159';
         var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159';
@@ -305,37 +341,7 @@
         done();
       });
 
-      test('if correct ezproxy url is created for a valid doi', function (done) {
-        var input = 'http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-        expect(expected).to.equal(testObj.getUrl(input));
 
-        done();
-      });
-
-      test('if correct ezproxy url is created for a raw doi', function (done) {
-        var input = '10.1016/j.ctcp.2016.03.008';
-        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://dx.doi.org/10.1016/j.ctcp.2016.03.008';
-        expect(expected).to.equal(testObj.getUrl(input));
-
-        done();
-      });
-
-      test('if correct ezproxy url is created for a long link', function (done) {
-        var input = 'http://www.jstor.org.ezproxy.library.uq.edu.au/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
-        var expected = 'http://ezproxy.library.uq.edu.au/login?url=http://www.jstor.org/stable/23345258?Search=yes&resultItemClick=true&searchText=reality&searchText=tv&searchUri=%2Faction%2FdoBasicSearch%3FQuery%3Dreality%2Btv%26amp%3Bacc%3Don%26amp%3Bwc%3Don%26amp%3Bfc%3Doff%26amp%3Bgroup%3Dnone&seq=1#page_scan_tab_contents';
-        expect(expected).to.equal(testObj.getUrl(testObj.cleanupUrl(input)));
-
-        done();
-      });
-
-      test('if correct ezproxy url is created for a https url', function (done) {
-        var input = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
-        var expected = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
-        expect(expected).to.equal(testObj.getUrl(input));
-
-        done();
-      });
     });
 
 /*
