@@ -160,11 +160,10 @@ Polymer({
    * @returns {string}
    */
   getUrl: function(cleanedUrl) {
-    var dest, check;
+    var dest;
 
     dest = '';
-    check = this.checkUrl(cleanedUrl);
-    if (check.valid) {
+    if (this.inputValidator.valid) {
       dest = 'http://ezproxy.library.uq.edu.au/login?url=';
       if (this.doiRegexp.test(cleanedUrl)) {
         dest += 'http://dx.doi.org/';
