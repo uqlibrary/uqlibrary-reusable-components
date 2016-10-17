@@ -33,6 +33,8 @@
 
 //    a11ySuite('basic');
 
+/*
+// these fields dont exist anymore - functionality fixed in Integration Tests at bottom
     test('Input field and Submit button should be visible', function (done) {
       // Data bindings will stamp out new DOM asynchronously
       // so wait to check for updates
@@ -49,7 +51,7 @@
         done();
       });
     });
-
+*/
     suite('cleanupUrl method unit tests', function () {
 
       test('if cleanupUrl function removes spaces', function (done) {
@@ -345,31 +347,37 @@
     });
 
     suite('integration tests', function () {
-      test('correct fields are set when Go panel used', function (done) {
-        var localObject;
+      test('correct fields are set when Create Link component mode (ie display ezproxy-ed url) used', function (done) {
+        var buttonObject;
 
         testObj.createLink = true;
 
-        localObject = testObj.querySelector('#goButton');
-        expect(localObject).to.be.visible;
+        buttonObject = testObj.querySelector('#displayLinkButton');
+        expect(buttonObject.attributes).to.not.have.ownProperty('hidden');
 
-        localObject = testObj.querySelector('#createLinkButton');
-        expect(localObject).not.to.be.visible;
+        buttonObject = testObj.querySelector('#gotoLinkButton');
+        expect(buttonObject.attributes).to.have.ownProperty('hidden');
+
+        // this correctly fails!
+        // expect(buttonObject.attributes).to.not.have.ownProperty('hidden');
 
         done();
       });
 
-      test('correct fields are set when Create Link panel used', function (done) {
+      test('correct fields are set when Go component mode (ie open the url in a new window) used', function (done) {
+        var buttonObject;
+
         testObj.createLink = false;
 
-        localObject = testObj.querySelector('#goButton');
-        expect(localObject).not.to.be.visible;
+        buttonObject = testObj.querySelector('#gotoLinkButton');
+        expect(buttonObject.attributes).to.not.have.ownProperty('hidden');
 
-        localObject = testObj.querySelector('#createLinkButton');
-        expect(localObject).to.be.visible;
+        buttonObject = testObj.querySelector('#displayLinkButton');
+        expect(buttonObject.attributes).to.have.ownProperty('hidden');
 
         done();
       });
+
 
     });
 
