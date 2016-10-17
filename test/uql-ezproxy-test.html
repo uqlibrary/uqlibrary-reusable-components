@@ -214,6 +214,14 @@
         done();
       });
 
+      test('if checkUrl fails an invalid url', function (done) {
+        var input = 'http://some where.com';
+        var check = testObj.checkUrl(input);
+        assert.isFalse(check.valid);
+        done();
+      });
+
+
       test('if checkUrl passes an url with a different protocol', function (done) {
         var input = 'ftp://somewhere.com';
         var check = testObj.checkUrl(input);
@@ -346,6 +354,46 @@
 
     });
 
+    suite('Interface tests', function () {
+      // elements are correctly labelled
+      test('check test link buttons is correctly labelled', function(done) {
+        var button, expected;
+        button = testObj.querySelector('#testLinkButton');
+        expected = 'Test link';
+        expect(button.textContent).to.equal(expected);
+
+        done();
+      });
+
+      test('check reset buttons is correctly labelled', function(done) {
+        var button, expected;
+        button = testObj.querySelector('#resetButton');
+        expected = 'Create new link';
+        expect(button.textContent).to.equal(expected);
+
+        done();
+      });
+
+      test('check go buttons is correctly labelled', function(done) {
+        var button, expected;
+        button = testObj.querySelector('#gotoLinkButton');
+        expected = 'Go';
+        expect(button.textContent).to.equal(expected);
+
+        done();
+      });
+
+      test('check copy link buttons is correctly labelled', function(done) {
+        var button, expected;
+        button = testObj.querySelector('#copyLinkButton');
+        expected = 'Copy link';
+        expect(button.textContent).to.equal(expected);
+
+        done();
+      });
+
+    });
+
     suite('integration tests', function () {
       test('correct fields are set when Create Link component mode (ie display ezproxy-ed url) used', function (done) {
         var buttonObject;
@@ -354,6 +402,7 @@
 
         buttonObject = testObj.querySelector('#displayLinkButton');
         expect(buttonObject.attributes).to.not.have.ownProperty('hidden');
+
 
         buttonObject = testObj.querySelector('#gotoLinkButton');
         expect(buttonObject.attributes).to.have.ownProperty('hidden');
@@ -364,7 +413,7 @@
         done();
       });
 
-      test('correct fields are set when Go component mode (ie open the url in a new window) used', function (done) {
+      test('correct fields are set when Create Link component mode NOT used (ie open the url in a new window)', function (done) {
         var buttonObject;
 
         testObj.createLink = false;
@@ -375,6 +424,22 @@
         buttonObject = testObj.querySelector('#displayLinkButton');
         expect(buttonObject.attributes).to.have.ownProperty('hidden');
 
+        done();
+      });
+
+      test('blank error displayed when no url provided', function (done) {
+        var expected = 'Please enter a URL';
+
+        var buttonObject = testObj.querySelector('#gotoLinkButton');
+        buttonObject.click();
+
+        var errorMsg = testObj.querySelector('#errorMsg');
+        var actual = errorMsg.textContent;
+        actual = actual.trim();
+        expect(actual).to.equal(expected);
+
+//        var x = 1;
+        //       expect(1).to.equal(x);
         done();
       });
 
