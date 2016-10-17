@@ -438,11 +438,33 @@
         actual = actual.trim();
         expect(actual).to.equal(expected);
 
-//        var x = 1;
-        //       expect(1).to.equal(x);
         done();
       });
+/*
+      test('protocol error displayed when url with bad protocol inserted', function (done) {
+        var invalidUrl = 'xttp://somewhere.com';
+        var expected = 'Invalid URL. Please add the protocol ie: http://, https://';
 
+//        var textField = testObj.querySelector('#inputUrlTextfield');
+//        textField.value = invalidUrl;
+
+//        testObj.$.inputUrlTextfield = invalidUrl;
+
+        testObj.inputUrlTextfield = invalidUrl;
+
+        testObj.createLink = false;
+
+        var buttonObject = testObj.querySelector('#gotoLinkButton');
+        buttonObject.click();
+
+        var errorMsg = testObj.querySelector('#errorMsg');
+        var actual = errorMsg.textContent;
+        actual = actual.trim();
+        expect(actual).to.equal(expected);
+
+        done();
+      });
+*/
 
     });
 
