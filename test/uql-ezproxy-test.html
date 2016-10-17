@@ -33,25 +33,6 @@
 
 //    a11ySuite('basic');
 
-/*
-// these fields dont exist anymore - functionality fixed in Integration Tests at bottom
-    test('Input field and Submit button should be visible', function (done) {
-      // Data bindings will stamp out new DOM asynchronously
-      // so wait to check for updates
-      flush(function () {
-        var url = testObj.querySelector('#url');
-        var proxie = testObj.querySelector('#proxie');
-
-        console.log(url);
-        console.log(proxie);
-
-        expect(url).to.be.visible;
-        expect(proxie).to.be.visible;
-
-        done();
-      });
-    });
-*/
     suite('cleanupUrl method unit tests', function () {
 
       test('if cleanupUrl function removes spaces', function (done) {
@@ -276,9 +257,10 @@
     suite('getUrl method unit tests', function () {
 
       test('some simple valid landing URLS', function (done) {
+        var input, expected;
 
-        var input = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
-        var expected = "http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html";
+        input = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
+        expected = "http://ezproxy.library.uq.edu.au/login?url=http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html";
         expect(expected).to.equal(testObj.getUrl(input));
 
         // an url that contains 'doi' creates a correct link (fixes PT #127779951 )
@@ -356,7 +338,7 @@
 
     suite('Interface tests', function () {
       // elements are correctly labelled
-      test('check test link buttons is correctly labelled', function(done) {
+      test('check test link button is correctly labelled', function(done) {
         var button, expected;
         button = testObj.querySelector('#testLinkButton');
         expected = 'Test link';
@@ -365,7 +347,7 @@
         done();
       });
 
-      test('check reset buttons is correctly labelled', function(done) {
+      test('check reset button is correctly labelled', function(done) {
         var button, expected;
         button = testObj.querySelector('#resetButton');
         expected = 'Create new link';
@@ -374,7 +356,7 @@
         done();
       });
 
-      test('check go buttons is correctly labelled', function(done) {
+      test('check go button is correctly labelled', function(done) {
         var button, expected;
         button = testObj.querySelector('#gotoLinkButton');
         expected = 'Go';
@@ -383,7 +365,7 @@
         done();
       });
 
-      test('check copy link buttons is correctly labelled', function(done) {
+      test('check copy link button is correctly labelled', function(done) {
         var button, expected;
         button = testObj.querySelector('#copyLinkButton');
         expected = 'Copy link';
@@ -395,20 +377,18 @@
     });
 
     suite('integration tests', function () {
-      test('correct fields are set when Create Link component mode (ie display ezproxy-ed url) used', function (done) {
-        var buttonObject;
+      test('blank error displayed when no url provided', function (done) {
+        var expected, buttonObject, errorMsg, actual;
 
-        testObj.createLink = true;
-
-        buttonObject = testObj.querySelector('#displayLinkButton');
-        expect(buttonObject.attributes).to.not.have.ownProperty('hidden');
-
+        expected = 'Please enter a URL';
 
         buttonObject = testObj.querySelector('#gotoLinkButton');
-        expect(buttonObject.attributes).to.have.ownProperty('hidden');
+        buttonObject.click();
 
-        // this correctly fails!
-        // expect(buttonObject.attributes).to.not.have.ownProperty('hidden');
+        errorMsg = testObj.querySelector('#errorMsg');
+        actual = errorMsg.textContent;
+        actual = actual.trim();
+        expect(actual).to.equal(expected);
 
         done();
       });
@@ -427,68 +407,164 @@
         done();
       });
 
-      test('blank error displayed when no url provided', function (done) {
-        var expected = 'Please enter a URL';
+      test('correct fields are set when Create Link component mode used (ie display ezproxy-ed url for copy and test)',
+              function (done) {
+                var buttonObject;
 
-        var buttonObject = testObj.querySelector('#gotoLinkButton');
-        buttonObject.click();
+                testObj.createLink = true;
 
-        var errorMsg = testObj.querySelector('#errorMsg');
-        var actual = errorMsg.textContent;
-        actual = actual.trim();
-        expect(actual).to.equal(expected);
+                buttonObject = testObj.querySelector('#displayLinkButton');
+                expect(buttonObject.attributes).to.not.have.ownProperty('hidden');
 
-        done();
-      });
-/*
+                buttonObject = testObj.querySelector('#gotoLinkButton');
+                expect(buttonObject.attributes).to.have.ownProperty('hidden');
+
+                // this correctly fails!
+                // expect(buttonObject.attributes).to.not.have.ownProperty('hidden');
+
+                done();
+              });
+
       test('protocol error displayed when url with bad protocol inserted', function (done) {
-        var invalidUrl = 'xttp://somewhere.com';
-        var expected = 'Invalid URL. Please add the protocol ie: http://, https://';
+        var invalidUrl, expectedError, buttonObject, errorMsg, actualError;
 
-//        var textField = testObj.querySelector('#inputUrlTextfield');
-//        textField.value = invalidUrl;
-
-//        testObj.$.inputUrlTextfield = invalidUrl;
-
-        testObj.inputUrlTextfield = invalidUrl;
+        invalidUrl = 'xttp://somewhere.com';
+        expectedError = 'Invalid URL. Please add the protocol ie: http://, https://';
 
         testObj.createLink = false;
+        testObj.inputUrl = invalidUrl;
 
-        var buttonObject = testObj.querySelector('#gotoLinkButton');
+        buttonObject = testObj.querySelector('#gotoLinkButton');
         buttonObject.click();
 
-        var errorMsg = testObj.querySelector('#errorMsg');
-        var actual = errorMsg.textContent;
-        actual = actual.trim();
-        expect(actual).to.equal(expected);
+        errorMsg = testObj.querySelector('#errorMsg');
+        actualError = errorMsg.textContent;
+        actualError = actualError.trim();
+        expect(actualError).to.equal(expectedError);
+
+        done();
+
+      });
+
+      test('general error displayed when invalid url inserted', function (done) {
+        var invalidUrl, expectedError, buttonObject, errorMsg, actualError;
+
+        invalidUrl = 'http://some where.com';
+        expectedError = 'Invalid URL.';
+
+        testObj.createLink = false;
+        testObj.inputUrl = invalidUrl;
+
+        buttonObject = testObj.querySelector('#gotoLinkButton');
+        buttonObject.click();
+
+        errorMsg = testObj.querySelector('#errorMsg');
+        actualError = errorMsg.textContent;
+        actualError = actualError.trim();
+        expect(expectedError).to.equal(actualError);
 
         done();
       });
-*/
 
-    });
+      test('correct field values when a valid url is requested', function (done) {
+        var testUrl, expectedUrl, expectedError, buttonObject, testItem, actualUrl, errorMsg, actualError;
+
+        testUrl = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expectedUrl = 'http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expectedError = '';
+
+        testObj.createLink = true;
+        testObj.inputUrl = testUrl;
+
+        buttonObject = testObj.querySelector('#displayLinkButton');
+        buttonObject.click();
+
+        testItem = testObj.querySelector('#outputUrlTextarea');
+        actualUrl = testItem.textContent;
+        actualUrl = actualUrl.trim();
+        expect(actualUrl).to.equal(expectedUrl);
+
+        expect(testObj.inputValidator.valid).to.equal(true);
+        expect(testObj.inputValidator.invalid).to.equal(false);
+        expect(testObj.inputValidator.message).to.equal('');
+
+        errorMsg = testObj.querySelector('#errorMsg');
+        actualError = errorMsg.textContent;
+        actualError = actualError.trim();
+        expect(expectedError).to.equal(actualError);
+
+        done();
+      });
+
+      test('reset clears current fields', function (done) {
+        var buttonObject, sampleUrl, testItem;
+
+        testObj.createLink = true;
+
+        sampleUrl = 'http://somewhere.com';
+        testObj.inputUrl = sampleUrl;
+
+        // click Create link button
+        buttonObject = testObj.querySelector('#displayLinkButton');
+        buttonObject.click();
+        // testing the result of this button click is not the point of this test
+
+        // click reset button
+        buttonObject = testObj.querySelector('#resetButton');
+        buttonObject.click();
+
+        // input field should be blank
+        testItem = testObj.querySelector('#inputUrlTextfield');
+        expect(testItem.value).to.equal('');
+
+        // container holding reset, copy and test buttons should be hidden
+        testItem = testObj.querySelector('.output-container');
+        expect(testItem).to.not.be.null;
+        expect(testItem.attributes).to.have.ownProperty('hidden');
+
+        // display link button should be visible
+        testItem = testObj.querySelector('#displayLinkButton');
+        expect(testItem.attributes).to.not.have.ownProperty('hidden');
+
+        // go link button should be hidden
+        testItem = testObj.querySelector('#gotoLinkButton');
+        expect(testItem.attributes).to.have.ownProperty('hidden');
+
+        done();
+      });
 
 /*
-    test('ezproxy copy works', function (done) {
-      flush(function () {
-        var url = testObj.querySelector('#url');
-        var expected, expectedStatus, expectedMessage, copySuccess;
+      test('ezproxy copy works', function (done) {
+        var sampleUrl, expectedUrl, expectedCopyMessage, buttonObject;
 
-        input = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+        expectedCopyMessage = 'URL copied successfully';
 
-        expected = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
-        expect(expected).to.equal(testObj.getUrl(testObj.cleanupUrl(input)));
+        sampleUrl = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+expectedUrl = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
 
-        expectedStatus = true;
-        expectedMessage = 'URL copied successfully';
-        copySuccess = testObj.copyUrl();
-        expect(expectedMessage).to.equal(copySuccess.message);
-        expect(expectedStatus).to.equal(copySuccess.success);
+        testObj.createLink = true;
+        testObj.inputUrl = sampleUrl;
+
+        //click the display button
+        buttonObject = testObj.querySelector('#displayLinkButton');
+        buttonObject.click();
+
+var testItem = testObj.querySelector('#outputUrlTextarea');
+var actualUrl = testItem.textContent;
+actualUrl = actualUrl.trim();
+expect(actualUrl).to.equal(expectedUrl);
+
+        // click Copy link button
+        buttonObject = testObj.querySelector('#copyLinkButton');
+        buttonObject.click();
+console.log(buttonObject);
+        expect(expectedCopyMessage).to.equal(testObj.copyStatus);
 
         done();
       });
-    });
 */
+    });
+
   });
 </script>
 </body>
