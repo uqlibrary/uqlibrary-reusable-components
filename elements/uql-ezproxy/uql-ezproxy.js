@@ -241,7 +241,7 @@ Polymer({
       copySuccess.message = (copySuccess.success ? 'URL copied successfully' : 'Unable to copy URL');
 
     } catch (err) {
-      copySuccess.message = 'Unable to copy URL';
+      copySuccess.message = 'An error occurred while copying the URL';
 
     } finally {
       //Hide the textfield

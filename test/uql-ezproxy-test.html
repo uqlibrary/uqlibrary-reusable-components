@@ -535,12 +535,17 @@
 
 /*
       test('ezproxy copy works', function (done) {
+ // test doesnt pass in any browser, the command: document.execCommand always returns false :(
+ // error returned in firefox:
+ // document.execCommand('cut'/'copy') was denied because it was not called from inside a short running user-generated event handler.
+ // document.execCommand can only come from user-initiated event handlers
+ // so this test cant be automated with current browser implementations
         var sampleUrl, expectedUrl, expectedCopyMessage, buttonObject;
 
         expectedCopyMessage = 'URL copied successfully';
 
         sampleUrl = 'https://www.sciencedirect.com/science/article/pii/S1744388116300159';
-expectedUrl = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
+//expectedUrl = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedirect.com/science/article/pii/S1744388116300159';
 
         testObj.createLink = true;
         testObj.inputUrl = sampleUrl;
@@ -549,15 +554,14 @@ expectedUrl = 'http://ezproxy.library.uq.edu.au/login?url=https://www.sciencedir
         buttonObject = testObj.querySelector('#displayLinkButton');
         buttonObject.click();
 
-var testItem = testObj.querySelector('#outputUrlTextarea');
-var actualUrl = testItem.textContent;
-actualUrl = actualUrl.trim();
-expect(actualUrl).to.equal(expectedUrl);
+//var testItem = testObj.querySelector('#outputUrlTextarea');
+//var actualUrl = testItem.textContent;
+//actualUrl = actualUrl.trim();
+//expect(actualUrl).to.equal(expectedUrl);
 
         // click Copy link button
         buttonObject = testObj.querySelector('#copyLinkButton');
         buttonObject.click();
-console.log(buttonObject);
         expect(expectedCopyMessage).to.equal(testObj.copyStatus);
 
         done();
