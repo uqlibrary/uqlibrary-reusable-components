@@ -53,29 +53,30 @@
   <template>
     <uqlibrary-ga id="ga" app-name="EzProxy"></uqlibrary-ga>
     <paper-card elevation="1">
-      <div hidden$="{{!hide}}" class="input-container">
+      <div hidden$="[[!showInputPanel]]" class="input-container">
         <div class="flex">
-          <paper-input-container id="urlContainer" label="URL Address">
-            <iron-a11y-keys id="a11y" target="[[url]]" keys="enter" on-keys-pressed="_submit"></iron-a11y-keys>
-            <input is="iron-input" id="url" type="URL" placeholder="DOI or URL" required>
-            <paper-input-error id="errorMsg"></paper-input-error>
+          <paper-input-container id="urlContainer" label="URL Address" invalid="[[inputValidator.invalid]]">
+            <iron-a11y-keys id="a11y" target="[[inputUrlTextfield]]" keys="enter" on-keys-pressed="inputUrlKeypress"></iron-a11y-keys>
+            <input is="iron-input" id="inputUrlTextfield" type="URL" placeholder="DOI or URL" required value="{{inputUrl::input}}">
+            <paper-input-error id="errorMsg">[[inputValidator.message]]</paper-input-error>
           </paper-input-container>
         </div>
 
         <div class="buttons-container self-center">
-          <paper-button on-click="_submit" class="button-colored-accent">{{buttonLabelValue}}</paper-button>
+          <paper-button id="gotoLinkButton" hidden$="[[createLink]]" on-click="navigateToEzproxy" class="button-colored-accent">Go</paper-button>
+          <paper-button id="displayLinkButton" hidden$="[[!createLink]]" on-click="displayUrl" class="button-colored-accent">Create link</paper-button>
         </div>
 
       </div>
 
-      <div hidden$="{{hide}}" class="output-container">
+      <div hidden$="[[showInputPanel]]" class="output-container">
 
-        <paper-textarea id="outputUrl" readonly="true" value="[[target]]"></paper-textarea>
+        <paper-textarea id="outputUrlTextarea" readonly="true" value="[[outputUrl]]"></paper-textarea>
 
         <div class="buttons-container">
-          <paper-button id="testLinkButton" class="button-colored-secondary" on-click="goProxie">Test link</paper-button>
-          <paper-button id="copyLinkButton" class="button-colored-secondary" on-click="grabUrl">Copy link</paper-button>
-          <paper-button id="resetButton" class="button-colored-accent" on-click="panelToggle">Create new link</paper-button>
+          <paper-button id="testLinkButton" class="button-colored-secondary" on-click="navigateToEzproxy">Test link</paper-button>
+          <paper-button id="copyLinkButton" class="button-colored-secondary" on-click="copyUrl">Copy link</paper-button>
+          <paper-button id="resetButton" class="button-colored-accent" on-click="resetInput">Create new link</paper-button>
         </div>
 
       </div>

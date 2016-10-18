@@ -1,164 +1,261 @@
 Polymer({
+  /**
+   * An url is provided that the user wants an ezyproxy url of
+   * eg http://www.sciencedirect.com/science/article/pii/S1744388116300159
+   * the eventual landing url will be
+   * http://www.sciencedirect.com.ezproxy.library.uq.edu.au/science/article/pii/S1744388116300159
+   * However!
+   * @dcallan says that this can fail sometimes in the ezproxy portal
+   * so the url we build has the form:
+   * http://ezproxy.library.uq.edu.au/login?url=http://www.sciencedirect.com/science/article/pii/S1744388116300159
+   * for passing to the portal
+   *
+   * Note:
+   * Final landing urls for https urls have a special format.
+   * but!
+   * ezproxy will handle it - we do not need to do anything special for https urls here
+   */
+
 
   is: 'uql-ezproxy',
 
   properties: {
     /**
-     * Set the Widget mode to Display target link (true) or open the url in a new window/tab (false). Default: false
+     * Set the component mode to display ezproxy-ed url link (true) or open the url in a new window/tab (false).
+     * Default: false
      * @type {Boolean}
      */
     createLink: {
       type: Object,
-      value: false,
-      observer: "_createLinkChanged"
+      value: false
+    },
+
+    /*
+     * set the regexp for DOI url matching
+     * DOI = Digital Object Identifier
+     * DOI numbers have formats like: doi:10.10.1038/nphys1170
+     * per http://www.doi.org/demos.html
+     */
+    doiRegexp: {
+      type: RegExp,
+      value: /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!['&\'])\S)+)\b/
+    },
+
+    /**
+     * url to be passed to ezproxy
+     */
+    inputUrl: {
+      type: String,
+      value: ''
+    },
+
+    /**
+     * the final ezproy-ed url, created from the input url
+     */
+    outputUrl: {
+      type: String,
+      value: ''
+    },
+
+    /**
+     * the status of the copy action, used in paper toast
+     */
+    copyStatus: {
+      type: String,
+      value: ''
+    },
+
+    /**
+     * toggle status of input data panel
+     */
+    showInputPanel: {
+      type: Boolean,
+      value: true
+    },
+
+    inputValidator : {
+      type: Object,
+      value: function() {
+        return {
+          valid: true,
+          invalid: false,
+          message: ''
+        };
+      }
     }
+
   },
 
-  /*
-   * Set button label according to the widget mode
+  /**
+   * handle 'enter key' on input field
+   * @param e
    */
-  _createLinkChanged: function(newValue, oldValue) {
-    if(this.createLink) {
-      this.buttonLabelValue='Create Link';
-    } else {
-      this.buttonLabelValue='Go';
-    }
-  },
-
-  /*
-   * Based on the widget mode, the submit method will display the ezproxy link or will open the URL in a new windows/tab
-   */
-  _submit: function () {
+  inputUrlKeypress: function(e) {
     if (this.createLink) {
-      this.showUrl();
+      this.displayUrl(e);
     } else {
-      this.goProxie();
+      this.navigateToEzproxy(e);
     }
   },
 
-  /*
-   * Display ezproxy link
+  /**
+   * display the ezproxy link
+   * @param e
    */
-  showUrl: function () {
-    if (this.checkURL()) {
-      var dest = this.getURL();
-      this.$.ga.addEvent('ShowUrl', dest);
-      this.panelToggle();
+  displayUrl: function(e) {
+    var cleanedUrl = this.cleanupUrl(this.inputUrl);
+    this.inputValidator = this.checkUrl(cleanedUrl);
+    this.outputUrl = this.getUrl(cleanedUrl);
+
+    if (this.inputValidator.valid) {
+      this.$.ga.addEvent('ShowUrl', this.outputUrl);
+
+      //show output url panel
+      this.showInputPanel = false;
+      this.$.testLinkButton.focus();
     }
   },
 
-  /*
+  /**
    * Open ezproxy link in a new window/tab
+   * @param e
    */
-  goProxie: function () {
-    if (this.checkURL()) {
-      var dest = this.getURL();
-      this.$.ga.addEvent('GoProxy', dest);
-      var win = window.open(dest);
+  navigateToEzproxy: function (e) {
+    var cleanedUrl = this.cleanupUrl(this.inputUrl);
+    this.inputValidator = this.checkUrl(cleanedUrl);
+    this.outputUrl = this.getUrl(cleanedUrl);
+
+    if (this.inputValidator.valid) {
+      this.$.ga.addEvent('GoProxy', this.outputUrl);
+      var win = window.open(this.outputUrl);
       win.focus();
     }
   },
 
-  /*
-   * set the regexp for url matching
+  /**
+   * remove extraneous bits from the web address
+   * @param dest
+   * @returns {String}
    */
-  getregexp: function() {
-    return /^\b(10[.][0-9]{3,}(?:[.][0-9]+)*\/(?:(?!["&\'])\S)+)\b/;
-  },
+  cleanupUrl: function(dest) {
+    dest = dest.trim();
 
-  /*
-   * create the landing url
-   */
-  getURL: function() {
-    var doi = this.getregexp();
+    var ezpRegexp = /https?:\/\/(www.)?ezproxy.library.uq.edu.au\/login\?url\=/i;
+    dest = dest.replace(ezpRegexp, '');
 
-    var dest = this.$.url.value;
-    dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
-    dest = dest.replace('http://dx.doi.org/', '');
-
-    var result = "";
-    if (this.checkURL()) {
-      result = 'http://ezproxy.library.uq.edu.au/login?url=';
-      if (doi.test(dest)) {
-        result += 'http://dx.doi.org/';
-      }
-      result += dest;
+    var ezproxyUrlRegexp = /(([A-Za-z]*:(?:\/\/)?)(.)+(.ezproxy.library.uq.edu.au))(.*)?/;
+    if (ezproxyUrlRegexp.test(dest))  {
+      dest = dest.replace('.ezproxy.library.uq.edu.au', '');
     }
-    return result;
+
+    var doiRegexp = /https?:\/\/dx.doi.org\//i;
+    dest = dest.replace(doiRegexp, '');
+
+    return dest;
   },
 
-  /*
-   * Verify if users URL request is a valid link
-   * @return {Boolean}
+  /**
+   * create the landing url
+   * @param cleanedUrl
+   * @returns {string}
    */
-  checkURL: function () {
-    var valid = false;
-    var doi = this.getregexp();
+  getUrl: function(cleanedUrl) {
+    var dest;
 
-    var dest = this.$.url.value;
-    dest = dest.replace('http://ezproxy.library.uq.edu.au/login?url=', '');
-    dest = dest.replace('http://dx.doi.org/', '');
+    dest = '';
+    if (this.inputValidator.valid) {
+      dest = 'http://ezproxy.library.uq.edu.au/login?url=';
+      if (this.doiRegexp.test(cleanedUrl)) {
+        dest += 'http://dx.doi.org/';
+      }
+      dest += cleanedUrl;
+
+    }
+    return dest;
+  },
+
+  /**
+   * Verify if users URL request is a valid link
+   * @param dest - the URl to be checked
+   * @returns {Object}
+   */
+  checkUrl: function (dest) {
+    var validation = {
+      valid : false,
+      message: ''
+    };
 
     if (dest.length <= 0) {
-      this.$.errorMsg.textContent = "Please enter a URL";
-    } else if(doi.test(dest)) {
-      valid = true;
+      validation.message = 'Please enter a URL';
+    } else if(this.doiRegexp.test(dest)) {
+      validation.valid = true;
     } else if (!validator.isURL(dest, {require_protocol: true})) {
       if (dest.substring(0, 4).toLowerCase() !== 'http') {
-        this.$.errorMsg.textContent = "Invalid URL. Please add the protocol ie: http://, https://";
+        validation.message = 'Invalid URL. Please add the protocol ie: http://, https://';
       } else {
-        this.$.errorMsg.textContent = "Invalid URL.";
+        validation.message = 'Invalid URL.';
       }
-    } else if (dest.indexOf('ezproxy.library.uq.edu.au') >= 0) {
-      this.$.errorMsg.textContent = "The domain ezproxy.library.uq.edu.au cannot be used in your URL";
     } else {
-      this.$.errorMsg.textContent = "";
-      valid = true;
+      validation.valid = true;
     }
 
-    this.$.urlContainer.invalid = !valid;
-
-    return valid;
+    //paper-input-container invalid property doesn't apply ! operator
+    validation.invalid = !validation.valid;
+    return validation;
   },
 
-  /*
-   * Show ezproxy link panel or Hide and clean its values
+  /**
+   * resets url input field
+   * @param e
    */
-  panelToggle: function() {
-    this.hide=!this.hide;
-    this.copyStatus = "";
-    if(this.hide) {
-      this.$.url.value = "";
-      this.target = "";
-      this.$.urlContainer.invalid = false;
-      this.$.url.focus();
-    } else {
-      this.$.testLinkButton.focus();
-    }
+  resetInput: function(e) {
+    this.showInputPanel = true;
+    this.copyStatus = '';
+    this.$.inputUrlTextfield.focus();
+    this.outputUrl = '';
+    this.inputUrl = '';
   },
 
   /*
    * Copy URL to Clipboard (same as ctrl+a / ctrl+c)
    * Only available for Firefox 41+, Chrome 43+, Opera 29+, IE 10+
    */
-  grabUrl: function() {
-    this.$.outputUrl.querySelector("#textarea").select();
+  copyUrl: function() {
+    var copySuccess = {
+      success : false,
+      message: ''
+    };
 
-    try {
-      var successful = document.execCommand('copy');
-      this.copyStatus = (successful ? 'URL copied successfully' : 'Unable to copy URL');
-    } catch (err) {
-      this.copyStatus = 'Unable to copy URL';
+    if (!document.execCommand) {
+      copySuccess.message = 'Copy function not available in this web browser';
+      this.copyStatus = copySuccess.message;
+      this.$.copyNotification.open();
+      return copySuccess;
     }
 
-    this.$.copyNotification.open();
+    //Show the hidden textfield with the URL, and select it
+    this.$.outputUrlTextarea.querySelector('#textarea').select();
+
+    try {
+      copySuccess.success = document.execCommand('copy');
+      copySuccess.message = (copySuccess.success ? 'URL copied successfully' : 'Unable to copy URL');
+
+    } catch (err) {
+      copySuccess.message = 'An error occurred while copying the URL';
+
+    } finally {
+      //Hide the textfield
+      this.copyStatus = copySuccess.message;
+      this.$.copyNotification.open();
+    }
+
+    return copySuccess;
   },
 
-  /*
-   * Display widget primary panel
+  /**
+   * ready function
    */
   ready: function() {
-    this.hide = true;
   }
 
 });
