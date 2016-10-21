@@ -1,12 +1,11 @@
 # version 0 from https://github.com/Microsoft/generator-docker
 # version 0.1 drawing from https://github.com/uqlibrary/fez/blob/master/.docker/development/docker-compose.yml
-version: '2'
-
 primoTest:
   build: ./../development/tests/primo/
   ports:
     - "3000:3000"
 
+# stolen from fez
 selenium:
   image: selenium/standalone-chrome-debug:2.53.1
   environment:
@@ -16,3 +15,13 @@ selenium:
   ports:
     - "4445:4444"
     - "5901:5900"
+
+
+
+# per https://github.com/nightwatchjs/nightwatch/wiki/Chrome-Setup
+# nightwatch.json require a no-sandbox option for running in chrome in docker
+
+
+# more ideas
+# https://github.com/tildedave/docker-nightwatch-xvfb
+# https://github.com/mycargus/docker-grid-nightwatch/blob/master/docker-compose.yml
