@@ -1,0 +1,18 @@
+# version 0 from https://github.com/Microsoft/generator-docker
+# version 0.1 drawing from https://github.com/uqlibrary/fez/blob/master/.docker/development/docker-compose.yml
+version: '2'
+
+primoTest:
+  build: ./../development/tests/primo/
+  ports:
+    - "3000:3000"
+
+selenium:
+  image: selenium/standalone-chrome-debug:2.53.1
+  environment:
+    - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+  links:
+    - fez:dev-fez.library.uq.edu.au
+  ports:
+    - "4445:4444"
+    - "5901:5900"
