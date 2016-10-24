@@ -1,27 +1,59 @@
-# version 0 from https://github.com/Microsoft/generator-docker
-# version 0.1 drawing from https://github.com/uqlibrary/fez/blob/master/.docker/development/docker-compose.yml
-primoTest:
-  build: ./../development/tests/primo/
-  ports:
-    - "3000:3000"
+# from https://github.com/mycargus/docker-grid-nightwatch/blob/master/docker-compose.yml
+version: '2'
+services:
 
-# stolen from fez
-selenium:
-  image: selenium/standalone-chrome-debug:2.53.1
-  environment:
-    - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
-  links:
-    - fez:dev-fez.library.uq.edu.au
-  ports:
-    - "4445:4444"
-    - "5901:5900"
+  hub:
+#    image: selenium/standalone-chrome-debug:2.53.1
+#    image: selenium/standalone-chrome # chrome, below, "Selenium node with Chrome installed, needs to be connected to a Selenium Grid Hub"
+    image: selenium/hub
+    environment:
+#      HUB_PORT_4444_TCP_PORT: 4444 # using ports: instead puts a port number on the hub
+      VIRTUAL_HOST: selenium.hub.docker
+#      VIRTUAL_HOST: 127.0.0.1
+#      - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+    ports:
+      - "4444:4444"
+#      - "4445:4444"
+#      - "5901:5900"
 
+  chrome:
+    image: selenium/node-chrome:latest
+    environment:
+      VIRTUAL_HOST: node.chrome.docker
+#      HUB_PORT_4444_TCP_ADDR: selenium.hub.docker
+      HUB_PORT_4444_TCP_ADDR: 172.20.0.2
+      HUB_PORT_4444_TCP_PORT: 4444
+      # this is where it looks because we get "Couldn't register this node: The hub is down or not responding: <this value>"
+    links:
+      - hub
 
+  nightwatch:
+    build: ./tests # location of Dockerfile
+    environment:
+      NODE_ENV: test
+    volumes:
+      - .:/usr/src/app
+    links:
+      - hub
+#    entrypoint: nightwatch -c tests/primo/nightwatch.json --tag primo --env chrome
+# moved to Dockerfile CMD
 
+# only one browser required, firefox removed
+
+#original attempt at selenium
+#  hub:
+#    image: selenium/hub:latest
+#    environment:
+#      VIRTUAL_HOST: selenium.hub.docker
+#    ports:
+#      - 4444:4444
+
+# notes:
 # per https://github.com/nightwatchjs/nightwatch/wiki/Chrome-Setup
 # nightwatch.json require a no-sandbox option for running in chrome in docker
 
+# need env for chrome
+# https://github.com/SeleniumHQ/docker-selenium/issues/133
 
 # more ideas
 # https://github.com/tildedave/docker-nightwatch-xvfb
-# https://github.com/mycargus/docker-grid-nightwatch/blob/master/docker-compose.yml
