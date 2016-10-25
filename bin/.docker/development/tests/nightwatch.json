@@ -1,5 +1,5 @@
 {
-  "src_folders" : ["tests/primo/"],
+  "src_folders" : ["tests/"],
   "output_folder" : "reports",
   "custom_commands_path" : "",
   "custom_assertions_path" : "",
@@ -10,7 +10,7 @@
     "start_process" : false,
     "server_path" : "",
     "log_path" : "",
-    "host" : "127.0.0.1",
+    "host" : "hub",
     "port" : 4444,
     "cli_args" : {
       "webdriver.chrome.driver" : ""
@@ -18,9 +18,9 @@
   },
   "test_settings" : {
     "default" : {
-      "launch_url" : "http://127.0.0.1",
+      "launch_url" : "hub",
       "selenium_port"  : 4444,
-      "selenium_host"  : "127.0.0.1",
+      "selenium_host"  : "hub",
       "silent": true,
       "screenResolution": "1280x960",
       "screenshots" : {
