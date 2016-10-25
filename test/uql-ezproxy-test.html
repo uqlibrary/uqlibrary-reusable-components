@@ -169,15 +169,12 @@
 
       test('if checkUrl passes a valid url', function (done) {
         // Test correct urls
-        var input, expected, check;
+        var input, check;
 
         input = 'http://www.nature.com/nature/journal/vaop/ncurrent/full/nature16057.html';
         check = testObj.checkUrl(input);
         assert.isTrue(check.valid);
 
-        input = 'http://www.sciencedirect.com/science/article/pii/S1744388116300159';
-        expected = "http://www.sciencedirect.com/science/article/pii/S1744388116300159";
-        expect(expected).to.equal(input);
         done();
       });
 
