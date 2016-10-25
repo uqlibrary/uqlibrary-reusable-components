@@ -39,10 +39,7 @@
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
-        "screenResolution": "1280x960",
-        "chromeOptions" : {
-          "args" : ["--no-sandbox"]
-        }
+        "screenResolution": "1280x960"
       }
     }
   }
