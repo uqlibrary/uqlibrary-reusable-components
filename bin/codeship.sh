@@ -3,6 +3,9 @@
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
 set -e
 
+echo "Switch to Java 8 for Selenium 3 to work properly"
+jdk_switcher use oraclejdk8
+
 echo "Install prerequisites gulp/bower/packages"
 npm install -g gulp bower
 npm install
