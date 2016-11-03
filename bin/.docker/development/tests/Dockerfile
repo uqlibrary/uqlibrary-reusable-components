@@ -14,50 +14,42 @@ RUN groupadd -r docker && useradd -r -g docker docker
 RUN chown -R docker:docker $APP_HOME
 USER docker
 
-# wait 30 seconds to be sure that chrome has started
-# then, endlessly loop on:
-#  - run nightwatch
-
-#  - parse the file in reports/primo for:
-#     errors="0" failures="0"
-#  - success if found, failure if not
-#  - call dashboard appropriately (TBD)
-
-#  - sleep and wait for the next run
-
-# set up the environment for the Cachet dashboard
-RUN apikey="4gXCp64TRek9IpKOArCC"
-RUN dashboardHostname="http://cattle1.library.uq.edu.au:8081"
-RUN dashboardElementName="Primo"
-RUN dashboardGetIdUrl="$dashboardHostname/api/v1/components?name=$dashboardElementName"
-
-RUN re='^[0-9]+$'
-RUN statusCodeSuccess=1
-RUN statusCodeFailure=4
-
 CMD sleep 30 && \
-    dashboardPrimoId=$(curl -H "Content-Type: application/json;" -H 'X-Cachet-Token: "$apikey"' -s '"$dashboardGetIdUrl" | python -c 'import sys, json; obj=json.load(sys.stdin); print obj["data"][0]["id"]') && \
+    # chrome seems to need at least 20 seconds to start up
+
+    # set up the environment for the Cachet dashboard
+    apikey="4gXCp64TRek9IpKOArCC" && \
+    dashboardHostname="http://cattle1.library.uq.edu.au:8081" && \
+    dashboardElementName="Primo" && \
+
+    statusCodeSuccess=1 && \
+    statusCodeFailure=4 && \
+    integerRegex='^[0-9]+$' && \
+
+    dashboardGetIdUrl="$dashboardHostname/api/v1/components?name=$dashboardElementName" && \
+
     # per https://docs.cachethq.io/docs/update-a-component
-    dashboardPrimoUpdateUrl="$dashboardHostname/api/v1/components/$dashboardPrimoId" && \
-echo "dashboardPrimoUpdateUrl=$dashboardPrimoUpdateUrl" && \
+# curl -H "Content-Type: application/json;" -H 'X-Cachet-Token: 4gXCp64TRek9IpKOArCC' -s http://cattle1.library.uq.edu.au:8081/api/v1/components?name=Primo | python -c 'import sys, json; obj=json.load(sys.stdin); print obj["data"][0]["id"]'
+    dashboardPrimoId=$(curl -H "Content-Type: application/json;" -H 'X-Cachet-Token: "$apikey"' -s "$dashboardGetIdUrl" | python -c 'import sys, json; obj=json.load(sys.stdin); print obj["data"][0]["id"]') && \
 
     # check the primo id is integer
-    #if !$dashboardPrimoId =~ $re ; then; \
 # is there a better way to handle an error?
-    #   echo "error: Dashboard did not return an id for Primo" >&2; exit 1 \
-    #fi && \
+    if !$dashboardPrimoId =~ $integerRegex; then echo "error: Dashboard did not return an id for Primo" >&2; exit 1; fi && \
 
-    while :; do ; \
-      nightwatch -c tests/nightwatch.json --tag primo --env chrome; \
+    dashboardPrimoUpdateUrl="$dashboardHostname/api/v1/components/$dashboardPrimoId" && \
 
-      if find $APP_HOME/reports/primo -name "CHROME*" -exec grep --quiet 'errors="0" failures="0"' {} +;  \
-      then \
+    while :; \
+          do nightwatch -c tests/nightwatch.json --tag primo --env chrome; \
+
+#      if [find $APP_HOME/reports/primo -name "CHROME*" -exec grep --quiet 'errors="0" failures="0"' {} +]  \
+#      then \
           # online - send success to dashboard
-          $(curl -X PUT -H "X-Cachet-Token: $apikey" -d "{ status: $statusCodeSuccess }" "$dashboardPrimoUpdateUrl") \
-      else \
+#          $statusCode=$statusCodeSuccess; \
+#      else \
           # offline - send failure to dashboard
-          $(curl -X PUT -H "X-Cachet-Token: $apikey" -d "{ status: $statusCodeFailure }" "$dashboardPrimoUpdateUrl") \
-      fi; \
+#          $statusCode=$statusCodeFailure; \
+#      fi; \
+#      $(curl -X PUT -H "X-Cachet-Token: $apikey" -d "{ status: $statusCode }" "$dashboardPrimoUpdateUrl") \
 
       sleep 1; \
     done;
