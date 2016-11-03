@@ -7,7 +7,7 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 COPY . $APP_HOME
-RUN npm install -g nightwatch --ignore-scripts --unsafe-perm --loglevel info
+RUN npm install -g nightwatch python curl --ignore-scripts --unsafe-perm --loglevel info
 
 RUN groupadd -r docker && useradd -r -g docker docker
 
@@ -25,23 +25,47 @@ USER docker
 
 #  - sleep and wait for the next run
 
+# set up the environment for the Cachet dashboard
+RUN apikey="4gXCp64TRek9IpKOArCC"
+RUN dashboardHostname="http://cattle1.library.uq.edu.au:8081"
+RUN dashboardElementName="Primo"
+RUN dashboardGetIdUrl="$dashboardHostname/api/v1/components?name=$dashboardElementName"
+
+RUN re='^[0-9]+$'
+RUN statusCodeSuccess=1
+RUN statusCodeFailure=4
+
 CMD sleep 30 && \
-    while :; \
-      do nightwatch -c tests/nightwatch.json --tag primo --env chrome; \
+    dashboardPrimoId=$(curl -H "Content-Type: application/json;" -H 'X-Cachet-Token: "$apikey"' -s '"$dashboardGetIdUrl" | python -c 'import sys, json; obj=json.load(sys.stdin); print obj["data"][0]["id"]') && \
+    # per https://docs.cachethq.io/docs/update-a-component
+    dashboardPrimoUpdateUrl="$dashboardHostname/api/v1/components/$dashboardPrimoId" && \
+echo "dashboardPrimoUpdateUrl=$dashboardPrimoUpdateUrl" && \
+
+    # check the primo id is integer
+    #if !$dashboardPrimoId =~ $re ; then; \
+# is there a better way to handle an error?
+    #   echo "error: Dashboard did not return an id for Primo" >&2; exit 1 \
+    #fi && \
+
+    while :; do ; \
+      nightwatch -c tests/nightwatch.json --tag primo --env chrome; \
 
       if find $APP_HOME/reports/primo -name "CHROME*" -exec grep --quiet 'errors="0" failures="0"' {} +;  \
       then \
-echo "send success to dashboard"; \
+          # online - send success to dashboard
+          $(curl -X PUT -H "X-Cachet-Token: $apikey" -d "{ status: $statusCodeSuccess }" "$dashboardPrimoUpdateUrl") \
       else \
-echo "send failure to dashboard"; \
+          # offline - send failure to dashboard
+          $(curl -X PUT -H "X-Cachet-Token: $apikey" -d "{ status: $statusCodeFailure }" "$dashboardPrimoUpdateUrl") \
       fi; \
 
       sleep 1; \
     done;
 
-# build instructions:
+# sample build instructions:
 # cd /Users/uqldegro/github/uqlibrary-reusable-components/uqlibrary-reusable-components/bin/.docker/development/tests
-# docker build -t uqlibrary/nightwatch-test:latest  .
+# docker build -t uqlibrary/nightwatch-test:latest .
+# (note there is a period at the end)
 
 # to run, simply:
 # docker-compose up
@@ -50,3 +74,6 @@ echo "send failure to dashboard"; \
 # use Ctrl-C
 # and remember to clean up with:
 # docker-compose rm
+
+# to get into ssh session:
+# docker run -it -v /Users/uqldegro/github/uqlibrary-reusable-components/uqlibrary-reusable-components/bin/.docker/development:/usr/src/app node:latest bash

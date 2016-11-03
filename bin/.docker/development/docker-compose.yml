@@ -12,9 +12,7 @@ services:
       VIRTUAL_HOST: node.chrome.docker
       HUB_PORT_4444_TCP_ADDR: hub
       HUB_PORT_4444_TCP_PORT: 4444
-#    links:
-#      - hub
-# superfluous?
+# there is commonly an initial "Connect to hub:4444 [hub/172.20.0.3] failed: Connection refused" - it picks it up on the second attempt
 
   nightwatch:
     image: uqlibrary/nightwatch-test
