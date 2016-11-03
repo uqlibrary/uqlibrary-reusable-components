@@ -14,9 +14,7 @@ RUN groupadd -r docker && useradd -r -g docker docker
 RUN chown -R docker:docker $APP_HOME
 USER docker
 
-CMD sleep 30 && \
-    # chrome seems to need at least 20 seconds to start up
-
+CMD \
     # set up the environment for the Cachet dashboard
     apikey="4gXCp64TRek9IpKOArCC" && \
     dashboardHostname="http://cattle1.library.uq.edu.au:8081" && \
@@ -26,30 +24,46 @@ CMD sleep 30 && \
     statusCodeFailure=4 && \
     integerRegex='^[0-9]+$' && \
 
+    # per https://docs.cachethq.io/docs/update-a-component
     dashboardGetIdUrl="$dashboardHostname/api/v1/components?name=$dashboardElementName" && \
 
-    # per https://docs.cachethq.io/docs/update-a-component
-# curl -H "Content-Type: application/json;" -H 'X-Cachet-Token: 4gXCp64TRek9IpKOArCC' -s http://cattle1.library.uq.edu.au:8081/api/v1/components?name=Primo | python -c 'import sys, json; obj=json.load(sys.stdin); print obj["data"][0]["id"]'
-    dashboardPrimoId=$(curl -H "Content-Type: application/json;" -H 'X-Cachet-Token: "$apikey"' -s "$dashboardGetIdUrl" | python -c 'import sys, json; obj=json.load(sys.stdin); print obj["data"][0]["id"]') && \
+    dashboardPrimoId=$(curl -s -H "Content-Type: application/json;" -H 'X-Cachet-Token: "$apikey"' "$dashboardGetIdUrl" | python -c 'import sys, json; obj=json.load(sys.stdin); print obj["data"][0]["id"]') && \
+
+    if [[ ! "$dashboardPrimoId" =~ ^[0-9]+$ ]] ; then echo "error"; fi && \
+
 
     # check the primo id is integer
-# is there a better way to handle an error?
-    if !$dashboardPrimoId =~ $integerRegex; then echo "error: Dashboard did not return an id for Primo" >&2; exit 1; fi && \
+#    if [!0 < $dashboardPrimoId ]; then \
+    #if [[ ! $dashboardPrimoId =~ $integerRegex ]] ; \
+    #then \
+# is there a better way to respond to an error?
+    #    echo "error: Dashboard did not return an integer id for Primo" >&2; \
+    #    exit 1; \
+    #fi && \
 
     dashboardPrimoUpdateUrl="$dashboardHostname/api/v1/components/$dashboardPrimoId" && \
 
-    while :; \
-          do nightwatch -c tests/nightwatch.json --tag primo --env chrome; \
+    # chrome seems to need at least 20 seconds to start up before we can first use it with nigthwatch
+    sleep 25 && \
 
-#      if [find $APP_HOME/reports/primo -name "CHROME*" -exec grep --quiet 'errors="0" failures="0"' {} +]  \
-#      then \
+    while :; \
+
+      # run the tests to see is primo is up
+      do nightwatch -c tests/nightwatch.json --tag primo --env chrome; \
+
+      if find $APP_HOME/reports/primo -name "CHROME*" -exec grep --quiet 'errors="0" failures="0"' {} +;  \
+      then \
           # online - send success to dashboard
-#          $statusCode=$statusCodeSuccess; \
-#      else \
+          statusCode="$statusCodeSuccess"; \
+echo "send success to dashboard"; \
+      else \
           # offline - send failure to dashboard
-#          $statusCode=$statusCodeFailure; \
-#      fi; \
-#      $(curl -X PUT -H "X-Cachet-Token: $apikey" -d "{ status: $statusCode }" "$dashboardPrimoUpdateUrl") \
+          statusCode="$statusCodeFailure"; \
+echo "send failure to dashboard"; \
+      fi; \
+
+# awaiting cachet install bug with rancher to be fixed
+      result=$(curl -s -X PUT -H 'X-Cachet-Token: "$apikey"' -d '{ status: "$statusCode" }' "$dashboardPrimoUpdateUrl") \
 
       sleep 1; \
     done;
