@@ -26,6 +26,10 @@ var gaConfig = {
   domain : 'library.uq.edu.au'
 }
 
+var gtmConfig = {
+  id: 'GTM-PX9H7R'
+}
+
 // inject preloader.html code into html pages
 gulp.task('inject-preloader', function() {
 
@@ -59,11 +63,13 @@ gulp.task('inject-ga-values', function() {
   var gaIdEx = new RegExp("<GA-TRACKING-ID>", "g");
   var gaUrlEx = new RegExp("<GA-WEBSITE-URL>", "g");
   var gaDomainEx = new RegExp("<GA-COOKIE-DOMAIN>", "g");
+  var gtmIdEx = new RegExp("<GTM-CONTAINER-ID>", "g");
 
   return gulp.src(config.elements + '/elements*.js')
       .pipe(replace({patterns: [{ match: gaIdEx, replacement: gaConfig.id}], usePrefix: false}))
       .pipe(replace({patterns: [{ match: gaUrlEx, replacement: gaConfig.url}], usePrefix: false}))
       .pipe(replace({patterns: [{ match: gaDomainEx, replacement: gaConfig.domain}], usePrefix: false}))
+      .pipe(replace({patterns: [{ match: gtmIdEx, replacement: gtmConfig.id}], usePrefix: false}))
       .pipe(gulp.dest(config.elements))
       .pipe($.size({title: 'inject-ga-values'}));
 });
