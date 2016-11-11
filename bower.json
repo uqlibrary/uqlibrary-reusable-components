@@ -36,8 +36,7 @@
     "uqlibrary-training": "uqlibrary/uqlibrary-training#v1.0.6"
   },
   "devDependencies": {
-    "test-fixture": "PolymerElements/test-fixture#^1.0.0",
-    "web-component-tester": "*"
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0"
   },
   "main": "elements/uq-minimal-header.html",
   "ignore": [],
