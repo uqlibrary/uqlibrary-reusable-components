@@ -20,8 +20,7 @@
 
 
 
-      <rn:condition logged_in="true">
-        <rn:condition_else />
+      <rn:condition logged_in="false">
         <h2>Your details</h2>
         <rn:widget path="input/FormInput" name="Contact.Emails.PRIMARY.Address" required="true" label_input="#rn:msg:EMAIL_ADDR_LBL#"/>
         <rn:widget path="input/FormInput" name="Contact.first_name" required="false" label_input="First name"/>
