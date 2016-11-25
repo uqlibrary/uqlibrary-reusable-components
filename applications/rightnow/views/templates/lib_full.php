@@ -35,7 +35,7 @@
 
 </head>
 
-<body class="yui-skin-sam yui3-skin-sam">
+<body class="yui-skin-sam yui3-skin-sam library">
 <div id="rn_Container" >
   <div id="rn_SkipNav"><a href="#rn_MainContent">#rn:msg:SKIP_NAVIGATION_CMD#</a></div>
 
@@ -103,8 +103,8 @@
       <rn:condition hide_on_pages="utils/help_search">
         <div id="rn_NavigationBar" role="navigation">
           <ul class="globaltabs">
-            <li class="globaltabs-title"><rn:widget path="navigation/NavigationTab" label_tab="Search library answers" link="/app/library/answers/lib-answers" pages="uqola_support, library/answers/list, library/answers/detail, library/answers/intent, ask_confirm, library/lts_contact"/></li>
-            <li class="globaltabs-title"><rn:widget path="navigation/NavigationTab" label_tab="Ask a question" link="/app/library/lts_contact" pages="ask, ask_confirm"/></li>
+            <li class="globaltabs-title"><rn:widget path="navigation/NavigationTab" label_tab="Search library answers" link="/app/library/answers" pages="uqola_support, library/answers/list, library/answers/detail, library/answers/intent, ask_confirm, library/lts_contact"/></li>
+            <li class="globaltabs-title"><rn:widget path="navigation/NavigationTab" label_tab="Ask a question" link="/app/library/contact" pages="ask, ask_confirm"/></li>
             <li class="globaltabs-title"><rn:widget path="navigation/NavigationTab" label_tab="Chat" link="/app/chat/chat_launch_lib" pages="ask, ask_confirm"/></li>
 
             <rn:condition logged_in="true">
