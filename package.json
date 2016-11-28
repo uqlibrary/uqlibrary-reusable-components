@@ -44,7 +44,7 @@
     "sinon": "^1.17.6",
     "validation": "0.0.1",
     "vulcanize": ">= 1.4.2",
-    "web-component-tester": "^5.0.0",
+    "web-component-tester": "^4.3.5",
     "yargs": "~3.30.0"
   },
   "engines": {

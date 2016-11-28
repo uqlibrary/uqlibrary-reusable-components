@@ -47,6 +47,8 @@ set +e
 result=`diff elements/elements.html elements/elements.vulcanized.html`
 set -e
 
+ls -la elements/el*
+
 if [ -z "${result}" ]; then
     echo "Improperly vulcanized file"
     echo "This happens sporadically, rebuilding should fix"
