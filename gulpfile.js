@@ -16,6 +16,7 @@ var argv = require('yargs').argv;
 var del = require('del');
 var runSequence = require('run-sequence');
 var merge = require('merge-stream');
+var gutil = require('gulp-util');
 
 var path = require('path');
 var fs = require('fs');
@@ -149,6 +150,34 @@ gulp.task('syntax', [
   'jshint',
   'jsonlint'
 ]);
+
+
+gulp.task('test:vulcanize', ['tests_call_vulcanized_elements'], function() {
+});
+
+
+gulp.task('tests_call_vulcanized_elements', function() {
+
+  var testFileRegEx = new RegExp('<link rel="import" href="../elements/(.*)/(.*).html">', "g");
+  var vulcanizedLinkElement = '<link rel="import" href="../elements.vulcanized.html.html">';
+
+  gulp.src(['test/uql-apps-button.html'
+            , 'test/uql-askus-button.html'
+            , 'test/uql-connect-footer-test.html'
+            , 'test/uql-drawer-panel-test.html'
+            , 'test/uql-ezproxy-test.html'
+            , 'test/uql-global-links-test.html'
+            , 'test/uql-ia-button-test.html'
+            , 'test/uql-login-button-test.html'
+            , 'test/uql-mega-menu-test.html'
+            , 'test/uql-menu-test.html'
+            , 'test/uql-search-button-test.html'
+          ])
+  .pipe(replace(testFileRegEx, vulcanizedLinkElement));
+
+
+
+});
 
 // display a list of available tasks
 gulp.task('help', taskList);

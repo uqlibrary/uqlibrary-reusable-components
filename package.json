@@ -2,7 +2,7 @@
   "name": "uqlibrary-reusable-components",
   "version": "0.0.1",
   "private": true,
-  "dependencies": {
+  "devDependencies": {
     "del": "^2.2.0",
     "glob": "^5.0.6",
     "gulp": "^3.8.5",
