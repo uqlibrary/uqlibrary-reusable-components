@@ -8,7 +8,7 @@ npm install -g gulp bower
 npm install
 bower install
 
-echo "Deploying branch: ${CI_BRANCH}"
+echo "Building branch: ${CI_BRANCH}"
 branch=${CI_BRANCH}
 src=$(git rev-parse --show-toplevel)
 base=$(basename ${src})
@@ -18,14 +18,6 @@ pwd
 cd ../${base}
 pwd
 
-# use codeship branch environment variable to push to branch name dir unless it's 'production' branch (or master for now)
-if [ ${CI_BRANCH} != "production" ]; then
-  export S3BucketSubDir=/${CI_BRANCH}/${dest}
-  export InvalidationPath=/${CI_BRANCH}/${dest}
-else
-  export S3BucketSubDir=${dest}
-  export InvalidationPath=/${dest}
-fi
 echo "Compile css"
 gulp styles
 
@@ -37,6 +29,9 @@ gulp inject-browser-update
 
 echo "Vulcanizing elements"
 gulp vulcanize
+
+ls -la elements/elements.vulcanized.*
+grep minimal-header -A 5 -B 5  elements/elements.vulcanized.html
 
 echo "Update GA Values"
 gulp inject-ga-values
@@ -96,6 +91,15 @@ sed -i -e "s#<VERSION>#${version}#g" ${appcache}
 
 echo "Run tests"
 gulp test
+
+# use codeship branch environment variable to push to branch name dir unless it's 'production' branch (or master for now)
+if [ ${CI_BRANCH} != "production" ]; then
+  export S3BucketSubDir=/${CI_BRANCH}/${dest}
+  export InvalidationPath=/${CI_BRANCH}/${dest}
+else
+  export S3BucketSubDir=${dest}
+  export InvalidationPath=/${dest}
+fi
 
 echo "Deploying to S3 bucket sub-dir: ${S3BucketSubDir}"
 echo "Prepare AWS configuration..."
