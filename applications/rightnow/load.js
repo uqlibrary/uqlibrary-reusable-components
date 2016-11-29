@@ -26,7 +26,7 @@ function loadReusableComponents() {
 
   // insert mega menus after minimal header
   var megamenu = document.createElement('uql-menu');
-  document.body.insertAfter(megamenu, header);
+  document.body.insertBefore(megamenu, firstElement);
 
   // insert sub footer before body-tag
   var subFooter = document.createElement('uql-connect-footer');
