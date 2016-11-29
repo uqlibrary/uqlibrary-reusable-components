@@ -174,40 +174,46 @@ body.library {
 #rn_PageContent {
   padding-top: 16px;
 }
-#rn_Body .rn_AnswerList {
-  width: 69%;
-}
-#rn_Body #rn_SearchControls {
-  padding-top: 16px;
+#rn_Body {
+  .rn_AnswerList {
+    width: 69%;
+  }
+  #rn_SearchControls {
+    padding-top: 16px;
+  }
 }
 .rn_AskQuestion {
   padding-top: 1px;
   padding-left: 70%;
 }
-#uq_AskQuestionContent h2 {
-  font-size: 16px;
-  margin: 0;
-  line-height: normal;
-  color: #333;
-  background-color: inherit;
-  padding: 16px;
-  border-bottom: 1px solid #ccc;
+#uq_AskQuestionContent {
+  h2 {
+    font-size: 16px;
+    margin: 0;
+    line-height: normal;
+    color: #333;
+    background-color: inherit;
+    padding: 16px;
+    border-bottom: 1px solid #ccc;
+  }
+  ul {
+    padding: 16px;
+  }
+  .rn_NavigationTab a {
+    padding: 0;
+    font-weight: normal;
+  }
 }
-#uq_AskQuestionContent ul {
-  padding: 16px;
-}
-.rn_AskQuestion ul,
-.rn_AskQuestion ul li {
-  list-style: none;
-  padding: 0 0 16px 0;
-  margin : 0;
-}
-#uq_AskQuestionContent .rn_NavigationTab a {
-  padding: 0;
-  font-weight: normal;
-}
-.rn_AskQuestion ul li.hasIcon > span:first-child {
-  padding-right: 7px;
+.rn_AskQuestion {
+  ul,
+  ul li {
+    list-style: none;
+    padding: 0 0 16px 0;
+    margin: 0;
+  }
+  ul li.hasIcon > span:first-child {
+    padding-right: 7px;
+  }
 }
 .rn_Hours,
 .rn_HoursPrefix {
@@ -221,25 +227,27 @@ div.rn_CurrentTime {
 }
 
 // style the chat online/offline link
-.rn_ConditionalChatLink div a {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  background-color: #007E9E;
-  color: #FFFFFF;
-}
-.rn_ConditionalChatLink div span {
-  font-weight: bold;
-  display: block;
-  color: red;
-  background-color: inherit;
+.rn_ConditionalChatLink div {
+  a {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #007E9E;
+    color: #FFFFFF;
+  }
+  span {
+    font-weight: bold;
+    display: block;
+    color: red;
+    background-color: inherit;
+  }
 }
 
 // login/out link
