@@ -30,9 +30,6 @@ gulp inject-browser-update
 echo "Vulcanizing elements"
 gulp vulcanize
 
-ls -la elements/elements.vulcanized.*
-grep minimal-header -A 5 -B 5  elements/elements.vulcanized.html
-
 echo "Update GA Values"
 gulp inject-ga-values
 
