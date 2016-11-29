@@ -42,7 +42,7 @@ function loadReusableComponents() {
 
     header.showLoginButton = false;
 
-    header.applicationTitle = 'UQ Library FAQ Answers';
+    header.libraryTitle = 'UQ Library FAQ Answers';
 
   });
 }

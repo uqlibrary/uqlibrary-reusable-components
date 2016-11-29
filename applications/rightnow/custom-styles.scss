@@ -143,3 +143,151 @@ a:active {
   border-radius: 0 0 2px 2px;
 }
 
+// some tabs came in with a border and padding
+.paper-tab-0 {
+  padding: 0;
+}
+
+// vertically align the tabs as normal
+div#tabsContent {
+  padding-top: 16px;
+}
+
+// rightnow styling
+body.library {
+  background-color: #fff;
+  color: inherit;
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#rn_PageTitle,
+#rn_PageContent,
+#uq_AskQuestionContent {
+  background-color: #fff;
+  color: inherit;
+  border-radius: 2px;
+  border-width: 1px;
+  border-style: solid;
+  margin: 10px 0px 20px 0px;
+  border-color: #ccc;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);
+}
+#rn_PageContent {
+  padding-top: 16px;
+}
+#rn_Body .rn_AnswerList {
+  width: 69%;
+}
+#rn_Body #rn_SearchControls {
+  padding-top: 16px;
+}
+.rn_AskQuestion {
+  padding-top: 1px;
+  padding-left: 70%;
+}
+#uq_AskQuestionContent h2 {
+  font-size: 16px;
+  margin: 0;
+  line-height: normal;
+  color: #333;
+  background-color: inherit;
+  padding: 16px;
+  border-bottom: 1px solid #ccc;
+}
+#uq_AskQuestionContent ul {
+  padding: 16px;
+}
+.rn_AskQuestion ul,
+.rn_AskQuestion ul li {
+  list-style: none;
+  padding: 0 0 16px 0;
+  margin : 0;
+}
+#uq_AskQuestionContent .rn_NavigationTab a {
+  padding: 0;
+  font-weight: normal;
+}
+.rn_AskQuestion ul li.hasIcon > span:first-child {
+  padding-right: 7px;
+}
+.rn_Hours,
+.rn_HoursPrefix {
+  font-size: 0.9rem;
+}
+ul .rn_ChatHours .rn_HoursBlock {
+  margin-top: 0;
+}
+div.rn_CurrentTime {
+  display: none;
+}
+
+// style the chat online/offline link
+.rn_ConditionalChatLink div a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #007E9E;
+  color: #FFFFFF;
+}
+.rn_ConditionalChatLink div span {
+  font-weight: bold;
+  display: block;
+  color: red;
+  background-color: inherit;
+}
+
+// login/out link
+#rn_LoginStatus {
+  float: right;
+  margin-left: 20px;
+  padding-top: 20px;
+}
+.crmpersonaldetails {
+  float: right;
+  padding-top: 40px;
+}
+
+ol.breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: 20px;
+  margin-left: 0;
+  list-style: none;
+  display: block;
+}
+ol.breadcrumb > li {
+  display: inline-block;
+}
+.breadcrumb > li + li:before {
+  padding: 0 5px;
+  color: #ccc;
+  content: "/\00a0";
+}
+.breadcrumb-home iron-icon {
+  height: 24px;
+  margin-top: -3px;
+}
+
+div.breadcrumbs,
+#rn_Container,
+.lib_pagetop {
+  background-color: #f2f2f2;
+  color: inherit;
+}
+.lib_pagetop {
+}
+div.breadcrumbs {
+  padding-bottom: 16px;
+  padding-bottom: 1rem;
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+
+}
+.breadcrumb-trail a {
+  color: #676767;
+}
