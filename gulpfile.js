@@ -121,6 +121,7 @@ gulp.task('vulcanize', ['vulcanize:clean_bower', 'vulcanize:clean', 'vulcanize:c
         onlySplit: false
       })) // Separate JS into its own file for CSP compliance and reduce html parser load.
       .pipe($.if('*.js',replace({patterns: [{ match: regEx, replacement: menuJson + ';'}], usePrefix: false}))) //replace menu-json with value from resources/uql-menu.json
+      .pipe($.if('*.js',$.uglify({preserveComments: 'some'}))) // Minify js output
       .pipe($.if('*.html', $.minifyHtml({quotes: true, empty: true, spare: true}))) // Minify html output
       .pipe(gulp.dest(config.elements))
       .pipe($.size({title: 'vulcanize'}));

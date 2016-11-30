@@ -39,18 +39,18 @@ done
 case "$PIPE_NUM" in
 "1")
   # "Unit testing" on codeship
-  echo "local unit testing"
+  echo "WCT: local unit testing..."
   gulp test
 
   if [ ${CI_BRANCH} == "production" ]; then
-    echo "remote unit testing"
+    echo "WCT: remote unit testing..."
     gulp test:remote
   fi
 
 ;;
 "2")
   # "Lint checking"
-  echo "Check file syntax"
+  echo "Check file syntax..."
   gulp syntax
 
 ;;
