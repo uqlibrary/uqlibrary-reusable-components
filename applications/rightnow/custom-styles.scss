@@ -153,6 +153,11 @@ div#tabsContent {
   padding-top: 16px;
 }
 
+// apply 'current marker' border to contact tab
+paper-tab:nth-child(8) div.tab-content {
+  border-bottom: 2px solid #666;
+}
+
 // rightnow styling
 body.library {
   background-color: #fff;

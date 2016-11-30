@@ -12,7 +12,7 @@
   <div id="rn_Navigation" class="small-12 large-12 columns breadcrumbs">
     <ol class="breadcrumb breadcrumb-trail">
       <li class="breadcrumb breadcrumb-0 breadcrumb-home"><a href="https://www.library.uq.edu.au/" title="Home"><span class="show-for-sr">Home</span> <iron-icon aria-hidden="true" icon="home"></iron-icon></a></li>
-      <li class="breadcrumb breadcrumb-1"><a href="/app/library/answers">Library FAQs</a></li>
+      <li class="breadcrumb breadcrumb-1"><a href="/app/library/lib_answers">Library FAQs</a></li>
     </ol>
 
   </div>
@@ -24,7 +24,7 @@
     <div id="rn_MainColumn" role="main">
       <a id="rn_MainContent"></a>
       <rn:widget path="knowledgebase/RssIcon"/>
-      <rn:container report_id="106196">
+      <rn:container report_id="106195">
         <div id="rn_PageTitle" class="rn_AnswerList">
           <div id="rn_SearchControls">
             <h1 class="rn_ScreenReaderOnly">#rn:msg:SEARCH_CMD#</h1>
@@ -44,8 +44,11 @@
           <div class="rn_Padding">
             <h2 class="rn_ScreenReaderOnly">#rn:msg:SEARCH_RESULTS_CMD#</h2>
             <rn:widget path="reports/ResultInfo"/>
+            <!--
+            related links
             <rn:widget path="knowledgebase/TopicWords"/>
-            <rn:widget path="reports/Multiline"/>
+             -->
+            <rn:widget path="reports/Multiline" />
             <rn:widget path="reports/Paginator"/>
           </div>
         </div>

@@ -30,149 +30,161 @@
   <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
   <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
   <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-  <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
-  <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libanswers/custom-styles.css" />
+  <script src="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/load.js" async></script>
+  <link rel="stylesheet" href="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/custom-styles.css" />
 
   <style type="text/css">
-    body.library {
+    body.library #rn_Container {
       background-color: #fff;
-      color: inherit;
-      font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+      color: #000;
     }
-    #rn_PageTitle,
-    #rn_PageContent,
-    #uq_AskQuestionContent {
-      background-color: #fff;
-      color: inherit;
-      border-radius: 2px;
-      border-width: 1px;
-      border-style: solid;
-      margin: 10px 0px 20px 0px;
-      border-color: #ccc;
-      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);
+
+    body.library #rn_Container .columns {
+      height: 0;
     }
-    #rn_PageContent {
-      padding-top: 16px;
+
+    .libcal-hours-block caption,
+    .libcal-hours-block tbody tr.s-lc-whw-loc td {
+      position: absolute;
+      top: -9999px;
+      left: -9999px
     }
-    #rn_Body .rn_AnswerList {
-      width: 69%;
+
+    .libcal-hours-block tbody td,
+    .libcal-hours-block thead th {
+      text-align: center
     }
-    #rn_Body #rn_SearchControls {
-      padding-top: 16px;
+
+    .libcal-hours-block tbody td.s-lc-whw-locname,
+    .libcal-hours-block tbody td.s-lc-whw-sublocname,
+    .libcal-hours-block tr.s-lc-whw-footnote td {
+      text-align: left
     }
-    .rn_AskQuestion {
-      padding-top: 1px;
-      padding-left: 70%;
+
+    .libcal-hours-block td.s-lc-whw-today,
+    .libcal-hours-block th.s-lc-whw-today-h,
+    .libcal-hours-block thead tr th {
+      background-color: #F5F5F5;
+      border-color: #e5e5e5
     }
-    #uq_AskQuestionContent h2 {
-      font-size: 16px;
-      margin: 0;
-      line-height: normal;
-      color: #333;
-      background-color: inherit;
-      padding: 16px;
-      border-bottom: 1px solid #ccc;
+
+    .libcal-hours-block tr.s-lc-whw-loc {
+      background-color: #fcfcfc
     }
-    #uq_AskQuestionContent ul {
-      padding: 16px;
+
+    .libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+      font-weight: 500
     }
-    .rn_AskQuestion ul,
-    .rn_AskQuestion ul li {
-      list-style: none;
-      padding: 0 0 16px 0;
-      margin : 0;
+
+    .libcal-hours-block .s-lc-whw-bh {
+      min-width: 21rem
     }
-    #uq_AskQuestionContent .rn_NavigationTab a {
-      padding: 0;
-      font-weight: normal;
+
+    /* use mobile view for rightnow column insert */
+    .libcal-hours-block table {
+      width: 90%
     }
-    .rn_AskQuestion ul li.hasIcon > span:first-child {
-      padding-right: 7px;
+    .libcal-hours-block table,
+    .libcal-hours-block tbody,
+    .libcal-hours-block td,
+    .libcal-hours-block th,
+    .libcal-hours-block thead,
+    .libcal-hours-block tr {
+      display: block
     }
-    .rn_Hours,
-    .rn_HoursPrefix {
-      font-size: 0.9rem;
+    .libcal-hours-block thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+      border-width: 0
     }
-    ul .rn_ChatHours .rn_HoursBlock {
-      margin-top: 0;
+    .libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+      display: block;
+      padding-left: 0;
+      margin: 0 auto;
+      text-align: center;
+      font-weight: 700
     }
-    div.rn_CurrentTime {
+    .libcal-hours-block tbody td.s-lc-whw-sublocname {
+      padding-left: 1rem;
+      font-weight: 700
+    }
+    .libcal-hours-block tbody tr {
+      border: 1px solid #ccc
+    }
+    .libcal-hours-block td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%
+    }
+    .libcal-hours-block td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap
+    }
+
+    .libcal-hours-block td {
+      height: 32px;
+      height: 2rem;
+    }
+
+    /* hide service point name */
+    .libcal-hours-block td:nth-of-type(1) {
       display: none;
     }
 
-    /* style the chat online/offline link */
-    .rn_ConditionalChatLink div a {
-      display: inline-block;
-      padding: 6px 12px;
-      margin-bottom: 0;
+    .libcal-hours-block td:nth-of-type(2):before {
+      content: "Monday"
+    }
+    .libcal-hours-block td:nth-of-type(3):before {
+      content: "Tuesday"
+    }
+    .libcal-hours-block td:nth-of-type(4):before {
+      content: "Wednesday"
+    }
+    .libcal-hours-block td:nth-of-type(5):before {
+      content: "Thursday"
+    }
+    .libcal-hours-block td:nth-of-type(6):before {
+      content: "Friday"
+    }
+    .libcal-hours-block td:nth-of-type(7):before {
+      content: "Saturday"
+    }
+    .libcal-hours-block td:nth-of-type(8):before {
+      content: "Sunday"
+    }
+    .libcal-hours-block td.s-lc-whw-today:before {
+      content: "Today";
+      font-weight: 700
+    }
+    .libcal-hours-block tr.s-lc-whw-footnote td {
+      text-align: left;
+      padding-left: 1rem
+    }
+
+    h3 {
+      font-size: 16px;
+      font-size: 1rem;
+    }
+    .libcal-hours-block h3 {
       text-align: center;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-image: none;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      background-color: #007E9E;
-      color: #FFFFFF;
-    }
-    .rn_ConditionalChatLink div span {
-      font-weight: bold;
-      display: block;
-      color: red;
-      background-color: inherit;
     }
 
-    /* login/out link */
-    #rn_LoginStatus {
-      float: right;
-      margin-left: 20px;
-      padding-top: 20px;
+    /* get the mega menu layout right */
+    .paper-tab-0:not(.iron-selected) > .tab-content.paper-tab {
+      border-width: 0;
+      box-shadow: 0 0 #fff;
     }
-    .crmpersonaldetails {
-      float: right;
-      padding-top: 40px;
+    .lib_pagetop.small-12.large-12.columns {
+      margin-top: 3px;
     }
 
-    ol.breadcrumb {
-      padding: 8px 15px;
-      margin-bottom: 20px;
-      margin-left: 0;
-      list-style: none;
-      display: block;
-    }
-    ol.breadcrumb > li {
-      display: inline-block;
-    }
-    .breadcrumb > li + li:before {
-      padding: 0 5px;
-      color: #ccc;
-      content: "/\00a0";
-    }
-    .breadcrumb-home iron-icon {
-      height: 24px;
-      margin-top: -3px;
-    }
-
-    div.breadcrumbs,
-    #rn_Container,
-    .lib_pagetop {
-      background-color: #f2f2f2;
-      color: inherit;
-    }
-    .lib_pagetop {
-    }
-    div.breadcrumbs {
-      padding-bottom: 16px;
-      padding-bottom: 1rem;
-      margin-bottom: 24px;
-      margin-bottom: 1.5rem;
-
-    }
-    .breadcrumb-trail a {
-      color: #676767;
-    }
   </style>
-
 
 </head>
 
@@ -220,7 +232,7 @@
     <h2>AskUs contacts </h2>
     <ul>
       <li>
-        <rn:widget path="chat/ConditionalChatLink" open_in_new_window="true" chat_login_page_height="500" chat_login_page_width="500" />
+        <rn:widget path="chat/ConditionalChatLink"/>
       </li>
       <li class="hasIcon">
         <span><a aria-hidden="true"><iron-icon icon="search"></iron-icon></a></span>
@@ -242,7 +254,24 @@
         <a href="http://www.library.uq.edu.au/contact-us">More ways to contact us</a>
       </li>
       <li>
+        <!--
         <rn:widget path="chat/ChatHours"/>
+        -->
+        <p style="font-size: 10px; font-style: italic">dummy library - update with id for chat</p>
+        <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
+        <div class="libcal-hours-block">
+          <h3>Chat opening hours</h3>
+          <div id="libcal-hours-block"></div>
+        </div>
+        <script>
+          $(function(){
+            const LibCalUQID = 3633;
+            const LibCalIdChatServicePoint = 3823;
+            var week3823 = new $.LibCalWeeklyGrid( $("#libcal-hours-block"), { iid: LibCalUQID, lid: LibCalIdChatServicePoint,  weeks: 1 });
+
+          });
+        </script>
+
       </li>
     </ul>
   </div>

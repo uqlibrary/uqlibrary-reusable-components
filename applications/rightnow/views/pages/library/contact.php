@@ -12,7 +12,7 @@
   <div id="rn_Navigation" class="small-12 large-12 columns breadcrumbs">
     <ol class="breadcrumb breadcrumb-trail">
       <li class="breadcrumb breadcrumb-0 breadcrumb-home"><a href="https://www.library.uq.edu.au/" title="Home"><span class="show-for-sr">Home</span> <iron-icon aria-hidden="true" icon="home"></iron-icon></a></li>
-      <li class="breadcrumb breadcrumb-1"><a href="/app/library/answers">Library FAQs</a></li>
+      <li class="breadcrumb breadcrumb-1"><a href="/app/library/lib_answers">Library FAQs</a></li>
     </ol>
 
   </div>
@@ -46,12 +46,10 @@
 
 
 
-          <rn:condition logged_in="false">
-            <h2>Your details</h2>
-            <rn:widget path="input/FormInput" name="Contact.Emails.PRIMARY.Address" required="true" label_input="#rn:msg:EMAIL_ADDR_LBL#"/>
-            <rn:widget path="input/FormInput" name="Contact.first_name" required="false" label_input="First name"/>
-            <rn:widget path="input/FormInput" name="Contact.last_name" required="false" initial_focus="false" label_input="Last name"/>
-          </rn:condition>
+          <h2>Your details</h2>
+          <rn:widget path="input/FormInput" name="Contact.Emails.PRIMARY.Address" required="true" label_input="#rn:msg:EMAIL_ADDR_LBL#"/>
+          <rn:widget path="input/FormInput" name="Contact.first_name" required="false" label_input="First name"/>
+          <rn:widget path="input/FormInput" name="Contact.last_name" required="false" initial_focus="false" label_input="Last name"/>
 
 
           <rn:widget path="input/FormSubmit" label_button="#rn:msg:CONTINUE_ELLIPSIS_CMD#" on_success_url="/app/ask_confirm" error_location="rn_ErrorLocation"/>
@@ -63,3 +61,6 @@
         </form>
       </div>
     </div>
+
+
+
