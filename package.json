@@ -37,7 +37,7 @@
     "jsonlint": "^1.6.2",
     "lint": "^1.1.2",
     "merge-stream": "^0.1.7",
-    "nightwatch": "^0.9.8",
+    "nightwatch": "^0.9.9",
     "opn": "^1.0.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
@@ -47,6 +47,7 @@
     "yargs": "~3.30.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "npm": ">=3",
+    "node": "^6.2.2"
   }
 }
