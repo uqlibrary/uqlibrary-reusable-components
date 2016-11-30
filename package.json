@@ -31,7 +31,7 @@
     "gulp-sass": "^2.2.0",
     "gulp-useref": "^1.1.2",
     "gulp-util": "^3.0.5",
-    "gulp-vulcanize": "^6.0.0",
+    "gulp-vulcanize": "^6.1.0",
     "jshint-stylish": "^2.0.0",
     "json": "9.0.3",
     "jsonlint": "^1.6.2",
@@ -42,12 +42,12 @@
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "validation": "0.0.1",
-    "vulcanize": ">= 1.4.2",
+    "vulcanize": "v1.14.12",
     "web-component-tester": "^4.3.5",
     "yargs": "~3.30.0"
   },
   "engines": {
     "npm": ">=3",
-    "node": "6.2.2"
+    "node": "v6.2.2"
   }
 }
