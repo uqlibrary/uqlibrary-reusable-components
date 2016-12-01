@@ -1,23 +1,6 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
 set -e
-
-echo "Switch to Java 8 for Selenium 3 to work properly"
-jdk_switcher use oraclejdk8
-
-echo "Install prerequisites gulp/bower/packages"
-npm install -g gulp bower nightwatch
-npm install
-bower install
-
-chmod a+x -R bin/*
-
-echo "install selenium"
-curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/selenium_server.sh | bash -s
-
-echo "Run nightwatch tests"
-cd bin/
 
 if [ -z $CI_BRANCH ]; then
   branch=$(git rev-parse --abbrev-ref HEAD)
@@ -25,47 +8,54 @@ else
   branch=$CI_BRANCH
 fi
 
-# tests are written for production only
-case "$branch" in
-"production")
-  echo "local firefox on windows test..."
-  nightwatch -c nightwatch.json --tag e2etest
+echo "Vulcanizing elements..."
+gulp vulcanize
 
-  echo "local chrome on windows test..."
-  nightwatch -c nightwatch.json --env chrome --tag e2etest
+# If these files are the same, it means an error in vulcanizing
+echo "Checking vulcanization was performed correctly..."
+set +e
+result=`diff elements/elements.html elements/elements.vulcanized.html`
+set -e
 
-  # saucelabs only on production branch
-  echo "saucelabs..."
+if [ -z "${result}" ]; then
+    echo "Improperly vulcanized file"
+    echo "This happens sporadically, rebuilding should fix"
+    exit 1;
+fi
 
-  nwconfigtemp="template.nightwatch-saucelabs.json"
-  nwconfig="nightwatch-saucelabs.json"
+if ! [ -f elements/elements.vulcanized.js ]; then
+    echo "Improperly vulcanized file - missing vulcanized.js"
+    exit 1;
+fi
 
-  cp $nwconfigtemp $nwconfig
+echo "Updating tests cases to use vulcanized version of elements..."
+files=( test/uql* )
+for file in "${files[@]}"; do
+  file2=${file#test/}
+  element=${file2%.html}
+  sed -i -e "s#${element}/${file2}#elements.vulcanized.html#g" ${file}
+done
 
-  sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
-  sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
+case "$PIPE_NUM" in
+"1")
+  # "Unit testing" on codeship
+  echo "WCT: local unit testing..."
+  gulp test
 
-  echo "chrome on windows on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --tag e2etest
+  if [ ${CI_BRANCH} == "production" ]; then
+    echo "WCT: remote unit testing..."
+    gulp test:remote
+  fi
 
-  echo "firefox on windows on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows --tag e2etest
-
-# note: edge and ie11 require avoidProxy set to true in the .json file per https://support.saucelabs.com/customer/en/portal/private/cases/43779
-  echo "edge on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
-
-  echo "chrome on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
-
-  echo "firefox on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac --tag e2etest
-
-  echo "safari on mac on saucelabs"
-  nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
 ;;
+"2")
+  # "Lint checking"
+  echo "Check file syntax..."
+  gulp syntax
 
-*)
-# other branches don't test external components
+;;
+"3")
+  # "Nightwatch on saucelabs" on codeship - placeholder
+  # tests are run after deployment codeship-prod-testing.sh
 ;;
 esac

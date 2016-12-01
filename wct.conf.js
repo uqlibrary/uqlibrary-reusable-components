@@ -11,6 +11,11 @@ var ret = {
         'firefox',
         'chrome'
       ]
+    },
+    sauce: {
+      browsers: [
+        'OSX 10.11/safari@10.0'
+      ]
     }
   }
 };
