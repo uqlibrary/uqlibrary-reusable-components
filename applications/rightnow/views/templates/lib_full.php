@@ -3,6 +3,7 @@
 <rn:meta javascript_module="standard"/>
 <head>
   <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>UQ Library FAQ Answers</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <!--[if lt IE 9]><script src="/euf/core/static/html5.js"></script><![endif]-->
@@ -32,159 +33,6 @@
   <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
   <script src="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/load.js" async></script>
   <link rel="stylesheet" href="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/custom-styles.css" />
-
-  <style type="text/css">
-    body.library #rn_Container {
-      background-color: #fff;
-      color: #000;
-    }
-
-    body.library #rn_Container .columns {
-      height: 0;
-    }
-
-    .libcal-hours-block caption,
-    .libcal-hours-block tbody tr.s-lc-whw-loc td {
-      position: absolute;
-      top: -9999px;
-      left: -9999px
-    }
-
-    .libcal-hours-block tbody td,
-    .libcal-hours-block thead th {
-      text-align: center
-    }
-
-    .libcal-hours-block tbody td.s-lc-whw-locname,
-    .libcal-hours-block tbody td.s-lc-whw-sublocname,
-    .libcal-hours-block tr.s-lc-whw-footnote td {
-      text-align: left
-    }
-
-    .libcal-hours-block td.s-lc-whw-today,
-    .libcal-hours-block th.s-lc-whw-today-h,
-    .libcal-hours-block thead tr th {
-      background-color: #F5F5F5;
-      border-color: #e5e5e5
-    }
-
-    .libcal-hours-block tr.s-lc-whw-loc {
-      background-color: #fcfcfc
-    }
-
-    .libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
-      font-weight: 500
-    }
-
-    .libcal-hours-block .s-lc-whw-bh {
-      min-width: 21rem
-    }
-
-    /* use mobile view for rightnow column insert */
-    .libcal-hours-block table {
-      width: 90%
-    }
-    .libcal-hours-block table,
-    .libcal-hours-block tbody,
-    .libcal-hours-block td,
-    .libcal-hours-block th,
-    .libcal-hours-block thead,
-    .libcal-hours-block tr {
-      display: block
-    }
-    .libcal-hours-block thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-      border-width: 0
-    }
-    .libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
-      display: block;
-      padding-left: 0;
-      margin: 0 auto;
-      text-align: center;
-      font-weight: 700
-    }
-    .libcal-hours-block tbody td.s-lc-whw-sublocname {
-      padding-left: 1rem;
-      font-weight: 700
-    }
-    .libcal-hours-block tbody tr {
-      border: 1px solid #ccc
-    }
-    .libcal-hours-block td {
-      border: none;
-      border-bottom: 1px solid #eee;
-      position: relative;
-      padding-left: 50%
-    }
-    .libcal-hours-block td:before {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap
-    }
-
-    .libcal-hours-block td {
-      height: 32px;
-      height: 2rem;
-    }
-
-    /* hide service point name */
-    .libcal-hours-block td:nth-of-type(1) {
-      display: none;
-    }
-
-    .libcal-hours-block td:nth-of-type(2):before {
-      content: "Monday"
-    }
-    .libcal-hours-block td:nth-of-type(3):before {
-      content: "Tuesday"
-    }
-    .libcal-hours-block td:nth-of-type(4):before {
-      content: "Wednesday"
-    }
-    .libcal-hours-block td:nth-of-type(5):before {
-      content: "Thursday"
-    }
-    .libcal-hours-block td:nth-of-type(6):before {
-      content: "Friday"
-    }
-    .libcal-hours-block td:nth-of-type(7):before {
-      content: "Saturday"
-    }
-    .libcal-hours-block td:nth-of-type(8):before {
-      content: "Sunday"
-    }
-    .libcal-hours-block td.s-lc-whw-today:before {
-      content: "Today";
-      font-weight: 700
-    }
-    .libcal-hours-block tr.s-lc-whw-footnote td {
-      text-align: left;
-      padding-left: 1rem
-    }
-
-    h3 {
-      font-size: 16px;
-      font-size: 1rem;
-    }
-    .libcal-hours-block h3 {
-      text-align: center;
-    }
-
-    /* get the mega menu layout right */
-    .paper-tab-0:not(.iron-selected) > .tab-content.paper-tab {
-      border-width: 0;
-      box-shadow: 0 0 #fff;
-    }
-    .lib_pagetop.small-12.large-12.columns {
-      margin-top: 3px;
-    }
-
-  </style>
 
 </head>
 
@@ -231,12 +79,48 @@
   <div id="uq_AskQuestionContent">
     <h2>AskUs contacts </h2>
     <ul>
+
       <li>
-        <rn:widget path="chat/ConditionalChatLink"/>
+        <rn:widget path="chat/ConditionalChatLink" chat_login_page="/app/chat/chat_launch_lib" instance_id="ss_widget" p="45" label_unavailable_busy_template="All our operators are busy - please wait"
+                   label_unavailable_hours="Chat is currently closed."
+        />
       </li>
+
+      <?php /* ?>
+<li>
+<script type="text/javascript" src="https://uqcurrent--tst1.widget.custhelp.com/euf/rightnow/RightNow.Client.js"></script>
+<script type="text/javascript">
+RightNow.Client.Controller.addComponent(
+                                        {
+                                        chat_login_page: "/app/chat/chat_launch_lib",
+                                        container_element_id: "myChatLinkContainer",
+                                        info_element_id: "myChatLinkInfo",
+                                        label_default: "Live Chat",
+                                        label_available_immediately_template: "Live Chat",
+                                        label_unavailable_busy_template: "All our operators are busy.",
+                                        label_unavailable_hours: "Chat is currently closed.",
+                                        link_element_id: "myChatLink",
+                                        p: "45",
+                                        instance_id: "sccl_2",
+                                        module: "ConditionalChatLink",
+                                        type: 7
+                                        },
+                                        "https://uqcurrent--tst1.widget.custhelp.com/ci/ws/get"
+                                        );
+</script>
+<div id="myChatLinkContainer">
+<div id="myChatLink">
+<div id="myChatLinkInfo">
+</div>
+</div>
+</div>
+</li>
+<?php */ ?>
+
+
       <li class="hasIcon">
         <span><a aria-hidden="true"><iron-icon icon="search"></iron-icon></a></span>
-        <rn:widget path="navigation/NavigationTab" label_tab="Search Library FAQs" link="/app/library/answers" pages="uqola_support, library/answers/list, library/answers/detail, library/answers/intent, ask_confirm, library/lts_contact"/>
+        <rn:widget path="navigation/NavigationTab" label_tab="Search Library FAQs" link="/app/library/lib_answers" pages="uqola_support, library/answers/list, library/answers/detail, library/answers/intent, ask_confirm, library/lts_contact"/>
       </li>
       <li class="hasIcon">
         <span><a aria-hidden="true" href="tel:61733464312"><iron-icon icon="communication:call"></iron-icon></a></span>
@@ -254,9 +138,13 @@
         <a href="http://www.library.uq.edu.au/contact-us">More ways to contact us</a>
       </li>
       <li>
-        <!--
-        <rn:widget path="chat/ChatHours"/>
-        -->
+
+        <div>----- CRM opening hours widget</div>
+
+        <rn:widget path="chat/ChatHours" label_chat_hours="Chat opening hours" />
+
+        <div>----- libcal opening hours widget</div>
+
         <p style="font-size: 10px; font-style: italic">dummy library - update with id for chat</p>
         <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
         <div class="libcal-hours-block">
@@ -267,7 +155,7 @@
           $(function(){
             const LibCalUQID = 3633;
             const LibCalIdChatServicePoint = 3823;
-            var week3823 = new $.LibCalWeeklyGrid( $("#libcal-hours-block"), { iid: LibCalUQID, lid: LibCalIdChatServicePoint,  weeks: 1 });
+            var theWeeks = new $.LibCalWeeklyGrid( $("#libcal-hours-block"), { iid: LibCalUQID, lid: LibCalIdChatServicePoint,  weeks: 1 });
 
           });
         </script>

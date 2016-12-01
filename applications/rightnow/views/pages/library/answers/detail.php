@@ -5,6 +5,26 @@
   .rn_PreviousAnswers ul > li {
     margin-left: 1rem;
   }
+
+  .rn_KeywordText label {
+    display: block
+  }
+  .rn_KeywordText input {
+    width: 90%;
+  }
+  h1.page__title {
+    font-size: 2rem;
+  }
+  h1.page__title .rn_FieldDisplay.rn_Output ,
+  h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue ,
+  .rn_AnswerList .rn_FieldDisplay.rn_Output ,
+  .rn_AnswerList .rn_FieldDisplay.rn_Output .rn_DataValue {
+    margin-left: 0;
+  }
+  h3 {
+    font-weight: bold;
+    margin-top: 1rem;
+  }
 </style>
 
 <div class="row">
@@ -39,7 +59,7 @@
 
 
       <div id="rn_PageContent" class="rn_AnswerList">
-        <h2 style="font-size:16px; margin-left:-5px;" ><rn:widget path="output/DataDisplay" name="answers.summary" label="" highlight="false" /></h2>
+        <h2><rn:widget path="output/DataDisplay" name="answers.summary" label="" highlight="false" /></h2>
         <div id="page-answer-text"style="margin-left:-5px;"  >
           <rn:widget path="output/DataDisplay" name="answers.solution" label="" highlight="false" />
         </div>
@@ -75,9 +95,12 @@
               <form action="/ci/no_script/search" method="post" onSubmit="return false">
                 <rn:container report_id="106195">
                   <div class="rn_UQKeyword">
-                    <h3>Search again?</h3>
-                    <rn:widget path="search/KeywordText" label="" placeholder="Type what you are looking for ...." />
+                    <h2>Search again?</h2>
+
+                    <rn:widget path="search/KeywordText" label=" " placeholder="Type what you are looking for ...." />
                   </div>
+
+
                   <div class="rn_UQProdCatFilter">
                     <h3>Search by category</h3>
                     <rn:widget path="search/ProductCategorySearchFilter" filter_type="products"  />

@@ -164,6 +164,11 @@ body.library {
   color: inherit;
   font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+body.library #rn_Container .columns {
+  height: 0;
+}
+
+
 #rn_PageTitle,
 #rn_PageContent,
 #uq_AskQuestionContent {
@@ -267,7 +272,7 @@ div.rn_CurrentTime {
 }
 
 ol.breadcrumb {
-  padding: 8px 15px;
+  padding: 0 15px 8px 15px;
   margin-bottom: 20px;
   margin-left: 0;
   list-style: none;
@@ -303,4 +308,171 @@ div.breadcrumbs {
 }
 .breadcrumb-trail a {
   color: #676767;
+}
+
+body.library #rn_Container {
+  background-color: #fff;
+  color: #000;
+}
+
+.breadcrumbs ol.breadcrumb-trail ,
+.breadcrumbs ol.breadcrumb-trail li:first-child {
+  padding-left: 0;
+}
+ol.breadcrumb li a {
+  font-weight: 300;
+}
+
+
+
+
+// styling libcal widget output
+.libcal-hours-block caption,
+.libcal-hours-block tbody tr.s-lc-whw-loc td {
+  position: absolute;
+  top: -9999px;
+  left: -9999px
+}
+
+
+.libcal-hours-block tbody td,
+.libcal-hours-block thead th {
+  text-align: center
+}
+
+.libcal-hours-block tbody td.s-lc-whw-locname,
+.libcal-hours-block tbody td.s-lc-whw-sublocname,
+.libcal-hours-block tr.s-lc-whw-footnote td {
+  text-align: left
+}
+
+.libcal-hours-block td.s-lc-whw-today,
+.libcal-hours-block th.s-lc-whw-today-h,
+.libcal-hours-block thead tr th {
+  background-color: #F5F5F5;
+  border-color: #e5e5e5
+}
+
+.libcal-hours-block tr.s-lc-whw-loc {
+  background-color: #fcfcfc
+}
+
+.libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+  font-weight: 500
+}
+
+.libcal-hours-block .s-lc-whw-bh {
+  min-width: 21rem
+}
+
+.libcal-hours-block table {
+  width: 100%;
+}
+
+.libcal-hours-block table,
+.libcal-hours-block tbody,
+.libcal-hours-block td,
+.libcal-hours-block th,
+.libcal-hours-block thead,
+.libcal-hours-block tr {
+  display: block
+}
+.libcal-hours-block thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  border-width: 0
+}
+.libcal-hours-block tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
+  display: block;
+  padding-left: 0;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 700
+}
+.libcal-hours-block tbody td.s-lc-whw-sublocname {
+  padding-left: 1rem;
+  font-weight: 700
+}
+.libcal-hours-block tbody tr {
+  border: 1px solid #ccc
+}
+.libcal-hours-block td {
+  border: none;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 50%
+}
+.libcal-hours-block td:before {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 45%;
+  padding-right: 10px;
+  white-space: nowrap
+}
+
+.libcal-hours-block td {
+  height: 32px;
+  height: 2rem;
+}
+
+/* hide service point name */
+.libcal-hours-block td:nth-of-type(1) {
+  display: none;
+}
+
+.libcal-hours-block td:nth-of-type(2):before {
+  content: "Monday"
+}
+.libcal-hours-block td:nth-of-type(3):before {
+  content: "Tuesday"
+}
+.libcal-hours-block td:nth-of-type(4):before {
+  content: "Wednesday"
+}
+.libcal-hours-block td:nth-of-type(5):before {
+  content: "Thursday"
+}
+.libcal-hours-block td:nth-of-type(6):before {
+  content: "Friday"
+}
+.libcal-hours-block td:nth-of-type(7):before {
+  content: "Saturday"
+}
+.libcal-hours-block td:nth-of-type(8):before {
+  content: "Sunday"
+}
+.libcal-hours-block td.s-lc-whw-today:before {
+  content: "Today";
+  font-weight: 700
+}
+.libcal-hours-block tr.s-lc-whw-footnote td {
+  text-align: left;
+  padding-left: 1rem
+}
+
+h3 {
+  font-size: 16px;
+  font-size: 1rem;
+}
+.libcal-hours-block h3 {
+  text-align: center;
+}
+
+/* get the mega menu layout right */
+.paper-tab-0:not(.iron-selected) > .tab-content.paper-tab {
+  border-width: 0;
+  box-shadow: 0 0 #fff;
+}
+.lib_pagetop.small-12.large-12.columns {
+  margin-top: 3px;
+}
+
+.panel-pane__content {
+  padding-top: 2em;
+}
+#rn_Navigation {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

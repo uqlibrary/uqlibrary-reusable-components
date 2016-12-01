@@ -26,12 +26,12 @@
     <div id="rn_MainColumn" role="main">
       <a id="rn_MainContent"></a>
       <rn:widget path="knowledgebase/RssIcon"/>
-      <div class="s-la-public-header-description">The AskUs team will respond to your enquiry within one business day.</div>
       <!-- remove after dev phase -->
       <p>(Note: this submits to the actual Rightnow interface, so prefix any trials with 'test')</p>
       <!-- /remove after dev phase -->
     </div>
     <div id="rn_PageContent" class="rn_AnswerList">
+      <div class="s-la-public-header-description">The AskUs team will respond to your enquiry within one business day.</div>
       <div class="rn_Padding">
         <form id="rn_QuestionSubmit" method="post" action="/ci/ajaxRequest/sendForm">
           <div id="rn_ErrorLocation"></div>
