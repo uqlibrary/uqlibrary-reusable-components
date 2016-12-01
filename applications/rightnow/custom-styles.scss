@@ -165,7 +165,7 @@ body.library {
   font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 body.library #rn_Container .columns {
-  height: 0;
+
 }
 
 
@@ -423,25 +423,25 @@ ol.breadcrumb li a {
 }
 
 .libcal-hours-block td:nth-of-type(2):before {
-  content: "Monday"
+  content: "Sunday"
 }
 .libcal-hours-block td:nth-of-type(3):before {
-  content: "Tuesday"
+  content: "Monday"
 }
 .libcal-hours-block td:nth-of-type(4):before {
-  content: "Wednesday"
+  content: "Tuesday"
 }
 .libcal-hours-block td:nth-of-type(5):before {
-  content: "Thursday"
+  content: "Wednesday"
 }
 .libcal-hours-block td:nth-of-type(6):before {
-  content: "Friday"
+  content: "Thursday"
 }
 .libcal-hours-block td:nth-of-type(7):before {
-  content: "Saturday"
+  content: "Friday"
 }
 .libcal-hours-block td:nth-of-type(8):before {
-  content: "Sunday"
+  content: "Saturday"
 }
 .libcal-hours-block td.s-lc-whw-today:before {
   content: "Today";
