@@ -71,23 +71,51 @@
     background-image: none;
   }
 
+  div#rn_PageTitle {
+    background-color:#49075E;
+    padding-left:20px;
+  }
+
+  div#rn_PageTitle h1 {
+    color: #fff;
+    font-weight:normal;
+    font-size: 2.083em;
+  }
+  div.lib_chatlaunch_header {
+    padding:15px 0 0 0;
+    color:#313131;
+    font-size: 1.222em;
+  }
+  div.lib_chatlaunch_header .rn_ChatLaunchFormHeader.welcometext {
+    font-weight:normal;
+  }
+  hr {
+    margin: 25px 0px;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #E9E9E9;
+  }
+  .productcategoryinput {
+    display:none
+  }
+
 </style>
 <div id="rn_PageContent" class="rn_Live">
   <div class="rn_Padding" >
-    <div id="rn_PageTitle" style="background-color:#49075E;padding-left:20px;" class="rn_livehelp">
-      <h1 style="color: #ffffff;font-weight:normal; font-size: 2.083em;">#rn:msg:LIVE_HELP_HDG#</h1>
+    <div id="rn_PageTitle" class="rn_livehelp">
+      <h1>#rn:msg:LIVE_HELP_HDG#</h1>
     </div>
     <rn:condition chat_available="true">
       <div id="rn_ChatLaunchFormDiv" class="rn_ChatForm">
-        <div style="padding:15px 0 0 0; color:#313131; font-size: 1.222em;">
-          <span class="rn_ChatLaunchFormHeader">Welcome, </span><span class="rn_ChatLaunchFormHeader" style="font-weight:normal;">#rn:msg:CHAT_MEMBER_OUR_SUPPORT_TEAM_LBL#</span>
+        <div class="lib_chatlaunch_header">
+          <span class="rn_ChatLaunchFormHeader">Welcome, </span><span class="rn_ChatLaunchFormHeader welcometext">#rn:msg:CHAT_MEMBER_OUR_SUPPORT_TEAM_LBL#</span>
         </div>
-        <hr style="margin: 25px 0px; border-width: 1px 0 0 0; border-style: solid; border-color: #E9E9E9;" />
+        <hr />
         <form id="rn_ChatLaunchForm" method="post" action="/app/chat/chat_landing">
           <!--Added by TM to stop people bypassing chat login-->
           <input type="hidden" name="chat_valid" value="1" />
           <!--end-->
-          <div style="display:none">
+          <div class="productcategoryinput">
             <rn:widget path="input/ProductCategoryInput" data_type="product" default_value="45" required="true">
           </div>
           <div id="rn_ErrorLocation"></div>
