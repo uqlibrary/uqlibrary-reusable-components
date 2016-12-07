@@ -5,6 +5,7 @@
     <!-- PAGE TITLE -->
     <div class="panel-pane__content">
       <h1 class="page__title">Contact form</h1>
+      <p>The AskUs team will respond to your enquiry within one business day.</p>
     </div>
   </div>
 
@@ -12,7 +13,7 @@
   <div id="rn_Navigation" class="small-12 large-12 columns breadcrumbs">
     <ol class="breadcrumb breadcrumb-trail">
       <li class="breadcrumb breadcrumb-0 breadcrumb-home"><a href="https://www.library.uq.edu.au/" title="Home"><span class="show-for-sr">Home</span> <iron-icon aria-hidden="true" icon="home"></iron-icon></a></li>
-      <li class="breadcrumb breadcrumb-1"><a href="/app/library/lib_answers">Library FAQs</a></li>
+      <li class="breadcrumb breadcrumb-1"><a href="/app/library/lib_answers">Contact us</a></li>
     </ol>
 
   </div>
@@ -26,12 +27,8 @@
     <div id="rn_MainColumn" role="main">
       <a id="rn_MainContent"></a>
       <rn:widget path="knowledgebase/RssIcon"/>
-      <!-- remove after dev phase -->
-      <p>(Note: this submits to the actual Rightnow interface, so prefix any trials with 'test')</p>
-      <!-- /remove after dev phase -->
     </div>
     <div id="rn_PageContent" class="rn_AnswerList">
-      <div class="s-la-public-header-description">The AskUs team will respond to your enquiry within one business day.</div>
       <div class="rn_Padding">
         <form id="rn_QuestionSubmit" method="post" action="/ci/ajaxRequest/sendForm">
           <div id="rn_ErrorLocation"></div>

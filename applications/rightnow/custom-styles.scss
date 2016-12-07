@@ -476,3 +476,80 @@ h3 {
   margin-bottom: 0;
   padding-bottom: 0;
 }
+
+body.library #rn_Container .row .columns {
+  height: auto;
+  background-color: #f2f2f2;
+  margin-top: 0;
+}
+
+
+.libcal-hours-block table tr:nth-of-type(3) {
+  display: none;
+}
+.libcal-hours-block td:before {
+  margin-top: -6px;
+}
+
+.rn_PreviousAnswers ul ,
+.rn_PreviousAnswers ul > li {
+  margin-left: 1rem;
+}
+
+.rn_TextInput.rn_Input label,
+.rn_KeywordText label {
+  font-size: 16px;
+  font-size: 1rem;
+  display: block;
+  padding-left: 0;
+  color: #2377cb;
+}
+
+.rn_KeywordText input {
+  width: 90%;
+  font-size: 16px;
+  font-size: 1rem;
+  padding: 8px;
+  padding: 0.5rem;
+}
+h1.page__title {
+  /*font-size: 2rem;*/
+}
+h1.page__title .rn_FieldDisplay.rn_Output ,
+h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue ,
+.rn_AnswerList .rn_FieldDisplay.rn_Output ,
+.rn_AnswerList .rn_FieldDisplay.rn_Output .rn_DataValue {
+  margin-left: 0;
+}
+h3 {
+  font-weight: bold;
+  margin-top: 16px;
+  margin-top: 1rem;
+}
+.rn_AnswerList p,
+.rn_AnswerList li {
+  font-weight: 300;
+}
+#navigation-icons {
+  padding-bottom: 16px;
+  padding-bottom: 1rem;
+}
+.panel-pane__content .rn_FieldDisplay {
+  margin-left: 0;
+  font-weight: 300;
+}
+.panel-pane__content h1 {
+  font-weight: 800;
+}
+
+a {
+  color: #2377cb;
+}
+.search-tips {
+  padding-top: 16px;
+  padding-top: 1rem;
+}
+.rn_AnswerList #rn_SearchControls .rn_SearchButton {
+  padding-left: 0;
+}
+

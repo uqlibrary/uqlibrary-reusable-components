@@ -26,13 +26,39 @@
   <link rel="icon" href="images/favicon.png" type="image/png"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <!-- ?= $this->render('views.library.partials-polymer') ? -->
   <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/master/reusable-components/resources/favicon.ico">
   <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
   <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
   <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
   <script src="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/load.js" async></script>
   <link rel="stylesheet" href="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/custom-styles.css" />
+
+  <style type="text/css">
+    /* which widget are we using? */
+    li.conditionalWidget .rn_ConditionalChatLink div span {
+      /* message */
+      font-weight: normal;
+    }
+    li.conditionalWidget .rn_ConditionalChatLink div a {
+      /* button */
+      background-color: #337ab7;
+      color: #fff;
+    }
+
+    li.syndicatedWidget .rn_ConditionalChatLink div span {
+      color: #fff;
+      background-color: #337ab7;
+      padding: 10px;
+      font-weight: normal;
+      border-radius: 4px;
+      display: inline;
+    }
+    li.syndicatedWidget .rn_ConditionalChatLink div a {
+      background-color: #337ab7;
+      color: #fff;
+    }
+
+  </style>
 
 </head>
 
@@ -44,27 +70,6 @@
   <div class="row">
     <div class="small-12 large-12 columns">
 
-      <!-- LOGGED IN USER DETAILS -->
-      <noscript><h2>#rn:msg:SCRIPTING_ENABLED_SITE_MSG#</h2></noscript>
-      <div id="rn_LoginStatus">
-        <rn:condition logged_in="true">
-          <div class="LoggedInName">
-            #rn:msg:WELCOME_BACK_LBL#,
-            <strong>
-              <rn:field name="contacts.full_name"/>
-            </strong>
-            <div style="display: inline;">
-              <rn:field name="contacts.organization_name"/>
-            </div>
-          </div>
-          <rn:widget path="login/LogoutLink2" />
-          <rn:condition_else/>
-          <rn:condition is_spider="false">
-            <rn:widget path="login/LogoutLink2" />
-          </rn:condition>
-        </rn:condition>
-      </div>
-      <!-- LOGGED IN USER DETAILS -->
     </div>
   </div>
 </div>
@@ -78,44 +83,31 @@
 <div class="rn_AskQuestion">
   <div id="uq_AskQuestionContent">
     <h2>AskUs contacts </h2>
+
     <ul>
 
-      <li>
-        <rn:widget path="chat/ConditionalChatLink" chat_login_page="/app/chat/chat_launch_lib" instance_id="ss_widget" p="45" label_unavailable_busy_template="All our operators are busy - please wait"
-                   label_unavailable_hours="Chat is currently closed."
-        />
-      </li>
-
       <?php /* ?>
-<li>
-<script type="text/javascript" src="https://uqcurrent--tst1.widget.custhelp.com/euf/rightnow/RightNow.Client.js"></script>
-<script type="text/javascript">
-RightNow.Client.Controller.addComponent(
-                                        {
-                                        chat_login_page: "/app/chat/chat_launch_lib",
-                                        container_element_id: "myChatLinkContainer",
-                                        info_element_id: "myChatLinkInfo",
-                                        label_default: "Live Chat",
-                                        label_available_immediately_template: "Live Chat",
-                                        label_unavailable_busy_template: "All our operators are busy.",
-                                        label_unavailable_hours: "Chat is currently closed.",
-                                        link_element_id: "myChatLink",
-                                        p: "45",
-                                        instance_id: "sccl_2",
-                                        module: "ConditionalChatLink",
-                                        type: 7
-                                        },
-                                        "https://uqcurrent--tst1.widget.custhelp.com/ci/ws/get"
-                                        );
-</script>
-<div id="myChatLinkContainer">
-<div id="myChatLink">
-<div id="myChatLinkInfo">
-</div>
-</div>
-</div>
+<li class="conditionalWidget">
+<rn:widget path="chat/ConditionalChatLink" chat_login_page="/app/chat/chat_launch_lib"
+label_available_immediately_template="Chat - online now (immediately)"
+label_available_with_wait_template="Chat - online now (wait)"
+    label_unavailable_busy_template="Chat - online now (busy)"
+    label_unavailable_hours="Chat is offline"
+label_default="Chat - online now (default)"
+/>
 </li>
+<!-- label_unavailable_busy_template="All our staff are busy helping people - please wait."
+label_unavailable_hours="Chat is currently closed" -->
 <?php */ ?>
+
+      <li class="syndicatedWidget">
+        <div id="myChatLinkContainer">
+          <div id="myChatLink">
+            <div id="myChatLinkInfo">
+            </div>
+          </div>
+        </div>
+      </li>
 
 
       <li class="hasIcon">
@@ -141,20 +133,19 @@ RightNow.Client.Controller.addComponent(
 
         <div>----- CRM opening hours widget</div>
 
-        <rn:widget path="chat/ChatHours" label_chat_hours="Chat opening hours" />
+        <rn:widget path="chat/ChatHours" label_chat_hours="Chat & phone opening hours" />
 
         <div>----- libcal opening hours widget</div>
 
-        <p style="font-size: 10px; font-style: italic">dummy library - update with id for chat</p>
         <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
         <div class="libcal-hours-block">
-          <h3>Chat opening hours</h3>
+          <h3>Chat & phone opening hours</h3>
           <div id="libcal-hours-block"></div>
         </div>
         <script>
           $(function(){
             const LibCalUQID = 3633;
-            const LibCalIdChatServicePoint = 3823;
+            const LibCalIdChatServicePoint = 4986;
             var theWeeks = new $.LibCalWeeklyGrid( $("#libcal-hours-block"), { iid: LibCalUQID, lid: LibCalIdChatServicePoint,  weeks: 1 });
 
           });
@@ -175,5 +166,31 @@ RightNow.Client.Controller.addComponent(
 
 
 </div>
+
+
+<!-- syndicatedWidget -->
+<?php /* */ ?>
+<script type="text/javascript" src="https://uqcurrent.widget.custhelp.com/euf/rightnow/RightNow.Client.js"></script>
+<script type="text/javascript">
+  RightNow.Client.Controller.addComponent(
+    {
+      chat_login_page: "/app/chat/chat_launch_lib",
+      container_element_id: "myChatLinkContainer",
+      info_element_id: "myChatLinkInfo",
+      label_default: "Chat - online now (default)",
+      label_available_immediately_template: "Chat - online now (available)",
+      label_unavailable_busy_template: "Chat is busy",
+      label_unavailable_hours: "Chat is offline",
+      link_element_id: "myChatLink",
+      p: "45",
+      instance_id: "sccl_2",
+      module: "ConditionalChatLink",
+      type: 7
+    },
+    "https://uqcurrent.widget.custhelp.com/ci/ws/get"
+  );
+</script>
+<?php /* */ ?>
+
 </body>
 </html>

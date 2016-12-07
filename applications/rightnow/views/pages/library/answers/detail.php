@@ -1,39 +1,13 @@
 <rn:meta title="#rn:php:SEO::getDynamicTitle('answer', getUrlParm('a_id'))#" template="lib_full.php" answer_details="true" clickstream="answer_view"/>
 
-<style type="text/css">
-  .rn_PreviousAnswers ul ,
-  .rn_PreviousAnswers ul > li {
-    margin-left: 1rem;
-  }
-
-  .rn_KeywordText label {
-    display: block
-  }
-  .rn_KeywordText input {
-    width: 90%;
-  }
-  h1.page__title {
-    font-size: 2rem;
-  }
-  h1.page__title .rn_FieldDisplay.rn_Output ,
-  h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue ,
-  .rn_AnswerList .rn_FieldDisplay.rn_Output ,
-  .rn_AnswerList .rn_FieldDisplay.rn_Output .rn_DataValue {
-    margin-left: 0;
-  }
-  h3 {
-    font-weight: bold;
-    margin-top: 1rem;
-  }
-</style>
-
 <div class="row">
   <div class="lib_pagetop small-12 large-12 columns">
     <!-- PAGE TITLE -->
     <div class="panel-pane__content">
-      <h1 class="page__title">
+      <h1 class="page__title summary">
         <rn:widget path="output/DataDisplay" name="answers.summary" label="" highlight="false" />
       </h1>
+      <rn:widget path="output/DataDisplay" name="answers.description" left_justify="true" label="" highlight="false" label_no_results="xxx" />
     </div>
   </div>
 
@@ -41,7 +15,8 @@
   <div id="rn_Navigation" class="small-12 large-12 columns breadcrumbs">
     <ol class="breadcrumb breadcrumb-trail">
       <li class="breadcrumb breadcrumb-0 breadcrumb-home"><a href="https://www.library.uq.edu.au/" title="Home"><span class="show-for-sr">Home</span> <iron-icon aria-hidden="true" icon="home"></iron-icon></a></li>
-      <li class="breadcrumb breadcrumb-1"><a href="/app/library/lib_answers">Library FAQs</a></li>
+      <li class="breadcrumb breadcrumb-1"><a href="/app/library/lib_answers">Contact us</a></li>
+      <li class="breadcrumb breadcrumb-2">Frequently asked questions</li>
     </ol>
 
   </div>
@@ -59,7 +34,6 @@
 
 
       <div id="rn_PageContent" class="rn_AnswerList">
-        <h2><rn:widget path="output/DataDisplay" name="answers.summary" label="" highlight="false" /></h2>
         <div id="page-answer-text"style="margin-left:-5px;"  >
           <rn:widget path="output/DataDisplay" name="answers.solution" label="" highlight="false" />
         </div>
@@ -95,16 +69,17 @@
               <form action="/ci/no_script/search" method="post" onSubmit="return false">
                 <rn:container report_id="106195">
                   <div class="rn_UQKeyword">
-                    <h2>Search again?</h2>
+                    <!-- <h2>Search again?</h2> -->
 
                     <rn:widget path="search/KeywordText" label=" " placeholder="Type what you are looking for ...." />
                   </div>
 
-
-                  <div class="rn_UQProdCatFilter">
-                    <h3>Search by category</h3>
-                    <rn:widget path="search/ProductCategorySearchFilter" filter_type="products"  />
-                  </div>
+                  <?php /*
+<div class="rn_UQProdCatFilter">
+<h3>Search by category</h3>
+<rn:widget path="search/ProductCategorySearchFilter" filter_type="products"  />
+</div>
+ */ ?>
 
                   <div class="search-tips"><a href="/app/utils/help_search" onclick="window.open(this.href,'Tips','resizable=0,top=200,left=300,location=0,status=0,width=800,height=555,scrollbars=0,menubars=0');YAHOO.util.Event.preventDefault(event);">#rn:msg:SEARCH_TIPS_LBL#</a>
                     <rn:widget path="search/SearchButton" report_page_url="/app/answers/list" report_id="106195"/>
