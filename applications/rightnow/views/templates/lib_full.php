@@ -33,50 +33,6 @@
   <script src="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/load.js" async></script>
   <link rel="stylesheet" href="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/custom-styles.css" />
 
-  <style type="text/css">
-    /* which widget are we using? */
-    li.conditionalWidget .rn_ConditionalChatLink div span {
-      /* message */
-      font-weight: normal;
-    }
-    li.conditionalWidget .rn_ConditionalChatLink div a {
-      /* button */
-      background-color: #337ab7;
-      color: #fff;
-    }
-
-    li.syndicatedWidget .rn_ConditionalChatLink div span {
-      color: #fff;
-      background-color: #337ab7;
-      padding: 10px;
-      font-weight: normal;
-      border-radius: 4px;
-      display: inline;
-    }
-    li.syndicatedWidget .rn_ConditionalChatLink div a {
-      background-color: #337ab7;
-      color: #fff;
-    }
-
-    .libcal-hours-block tbody td,
-    .libcal-hours-block thead th {
-      text-align: initial;
-    }
-    .libcal-hours-block h3 {
-      text-align: initial;
-    }
-
-    .rn_AnswerList .rn_FieldDisplay.rn_Output ul ,
-    .rn_AnswerList .rn_FieldDisplay.rn_Output ul li {
-      margin-left: 10px;
-    }
-
-    .rn_KeywordText label, .rn_TextInput.rn_Input label {
-      color: #000;
-    }
-
-  </style>
-
 </head>
 
 <body class="yui-skin-sam yui3-skin-sam library">
@@ -106,15 +62,13 @@
       <?php /* ?>
 <li class="conditionalWidget">
 <rn:widget path="chat/ConditionalChatLink" chat_login_page="/app/chat/chat_launch_lib"
-label_available_immediately_template="Chat - online now (immediately)"
-label_available_with_wait_template="Chat - online now (wait)"
-    label_unavailable_busy_template="Chat - online now (busy)"
+label_available_immediately_template="Chat - online now"
+label_available_with_wait_template="Chat - online now"
+    label_unavailable_busy_template="Chat is offline"
     label_unavailable_hours="Chat is offline"
-label_default="Chat - online now (default)"
+label_default="Chat - online now"
 />
 </li>
-<!-- label_unavailable_busy_template="All our staff are busy helping people - please wait."
-label_unavailable_hours="Chat is currently closed" -->
 <?php */ ?>
 
       <li class="syndicatedWidget">
@@ -148,11 +102,9 @@ label_unavailable_hours="Chat is currently closed" -->
       </li>
       <li>
 
-        <div>----- CRM opening hours widget</div>
-
-        <rn:widget path="chat/ChatHours" label_chat_hours="Chat & phone opening hours" />
-
-        <div>----- libcal opening hours widget</div>
+        <?php /*
+<rn:widget path="chat/ChatHours" label_chat_hours="Chat & phone opening hours" />
+ */ ?>
 
         <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
         <div class="libcal-hours-block">
@@ -170,6 +122,7 @@ label_unavailable_hours="Chat is currently closed" -->
 
       </li>
     </ul>
+
   </div>
   <!-- LIBRARY SIDEBAR -->
 
@@ -194,9 +147,9 @@ label_unavailable_hours="Chat is currently closed" -->
       chat_login_page: "/app/chat/chat_launch_lib",
       container_element_id: "myChatLinkContainer",
       info_element_id: "myChatLinkInfo",
-      label_default: "Chat - online now (default)",
-      label_available_immediately_template: "Chat - online now (available)",
-      label_unavailable_busy_template: "Chat is busy",
+      label_default: "Chat - online now",
+      label_available_immediately_template: "Chat - online now",
+      label_unavailable_busy_template: "Chat is offline",
       label_unavailable_hours: "Chat is offline",
       link_element_id: "myChatLink",
       p: "45",

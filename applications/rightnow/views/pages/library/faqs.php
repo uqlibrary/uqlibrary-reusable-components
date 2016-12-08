@@ -32,11 +32,11 @@
               <div class="rn_SearchInput">
                 <!-- commented out SA 29/06/2015 -->
                 <!--<rn:widget path="search/AdvancedSearchDialog"/>-->
-                <rn:widget path="search/KeywordText" label_text="#rn:msg:FIND_THE_ANSWER_TO_YOUR_QUESTION_CMD#" initial_focus="true"/>
+                <rn:widget path="search/KeywordText" label_text="#rn:msg:FIND_THE_ANSWER_TO_YOUR_QUESTION_CMD#" initial_focus="true" />
               </div>
-              <rn:widget path="search/SearchButton"/>
+              <rn:widget path="search/SearchButton" />
             </form>
-            <rn:widget path="search/DisplaySearchFilters"/>
+            <rn:widget path="search/DisplaySearchFilters" />
           </div>
         </div>
 
@@ -48,8 +48,8 @@
             related links
             <rn:widget path="knowledgebase/TopicWords"/>
              -->
-            <rn:widget path="reports/Multiline" report_id="107075" highlight="false" perpage="10"/>
-            <rn:widget path="reports/Paginator"/>
+            <rn:widget path="reports/Multiline" highlight="false" perpage="10"/>
+            <rn:widget path="reports/Paginator" />
           </div>
         </div>
       </rn:container>
