@@ -58,6 +58,23 @@
       color: #fff;
     }
 
+    .libcal-hours-block tbody td,
+    .libcal-hours-block thead th {
+      text-align: initial;
+    }
+    .libcal-hours-block h3 {
+      text-align: initial;
+    }
+
+    .rn_AnswerList .rn_FieldDisplay.rn_Output ul ,
+    .rn_AnswerList .rn_FieldDisplay.rn_Output ul li {
+      margin-left: 10px;
+    }
+
+    .rn_KeywordText label, .rn_TextInput.rn_Input label {
+      color: #000;
+    }
+
   </style>
 
 </head>
@@ -112,7 +129,7 @@ label_unavailable_hours="Chat is currently closed" -->
 
       <li class="hasIcon">
         <span><a aria-hidden="true"><iron-icon icon="search"></iron-icon></a></span>
-        <rn:widget path="navigation/NavigationTab" label_tab="Search Library FAQs" link="/app/library/lib_answers" pages="uqola_support, library/answers/list, library/answers/detail, library/answers/intent, ask_confirm, library/lts_contact"/>
+        <rn:widget path="navigation/NavigationTab" label_tab="Search Library FAQs" link="/app/library/faqs" pages="uqola_support, library/answers/list, library/answers/detail, library/answers/intent, ask_confirm, library/lts_contact"/>
       </li>
       <li class="hasIcon">
         <span><a aria-hidden="true" href="tel:61733464312"><iron-icon icon="communication:call"></iron-icon></a></span>
@@ -139,7 +156,7 @@ label_unavailable_hours="Chat is currently closed" -->
 
         <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
         <div class="libcal-hours-block">
-          <h3>Chat & phone opening hours</h3>
+          <h3>Chat & phone hours this week</h3>
           <div id="libcal-hours-block"></div>
         </div>
         <script>

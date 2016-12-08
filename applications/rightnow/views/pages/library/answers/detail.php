@@ -15,7 +15,7 @@
   <div id="rn_Navigation" class="small-12 large-12 columns breadcrumbs">
     <ol class="breadcrumb breadcrumb-trail">
       <li class="breadcrumb breadcrumb-0 breadcrumb-home"><a href="https://www.library.uq.edu.au/" title="Home"><span class="show-for-sr">Home</span> <iron-icon aria-hidden="true" icon="home"></iron-icon></a></li>
-      <li class="breadcrumb breadcrumb-1"><a href="/app/library/lib_answers">Contact us</a></li>
+      <li class="breadcrumb breadcrumb-1"><a href="/app/library/faqs">Contact us</a></li>
       <li class="breadcrumb breadcrumb-2">Frequently asked questions</li>
     </ol>
 

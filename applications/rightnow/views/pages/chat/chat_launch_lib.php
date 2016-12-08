@@ -181,7 +181,7 @@
 
 
         <p>Sorry, AskUs Chat is currently unavailable.</p>
-        <p>You can <a href="/app/library/lib_answers">check our FAQs</a> or <a href="/app/library/contact">ask a question</a> anytime using our contact form.</p>
+        <p>You can <a href="/app/library/faqs">check our FAQs</a> or <a href="/app/library/contact">ask a question</a> anytime using our contact form.</p>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/rightnow/reusable-components/rightnow/custom-styles.css" />
         <script src="//code.jquery.com/jquery-1.12.2.min.js"></script>
         <script src="//api3.libcal.com/js/hours_grid.js?002"></script>
