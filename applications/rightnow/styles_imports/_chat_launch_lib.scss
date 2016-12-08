@@ -1,0 +1,69 @@
+// styles only applied to the popup chat box
+body.lib_chatlaunch {
+    background-image: none;
+    background-color: #F5F5F5;
+    overflow: hidden;
+
+    div#rn_ChatLaunchFormDiv {
+        background-image: none;
+    }
+
+    div#rn_PageTitle {
+        background-color: #49075E;
+        padding-left: 20px;
+
+        h1 {
+            color: #fff;
+            font-weight: normal;
+            font-size: 2.083em;
+        }
+    }
+
+    div.lib_chatlaunch_header {
+        padding: 15px 0 0 0;
+        color: #313131;
+        font-size: 1.222em;
+
+        .rn_ChatLaunchFormHeader.welcometext {
+            font-weight: normal;
+        }
+    }
+
+    hr {
+        margin: 25px 0px;
+        border-width: 1px 0 0 0;
+        border-style: solid;
+        border-color: #E9E9E9;
+    }
+
+    .productcategoryinput {
+        display: none
+    }
+
+    .subline {
+        display: block;
+        font-weight: normal;
+        margin: 4px 0;
+    }
+
+    .rn_Required {
+        display: none;
+    }
+
+    p,
+    li {
+        font-size: 16px;
+        font-size: 1rem;
+    }
+
+    .libcal-hours-block.chatunavailable {
+        max-width: 400px;
+        max-width: 25rem;
+    }
+
+    .moreways {
+        padding-top: 16px;
+        padding-top: 1rem;
+    }
+
+}
