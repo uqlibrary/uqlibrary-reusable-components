@@ -433,3 +433,26 @@ a {
   padding-left: 0;
 }
 
+
+li.conditionalWidget .rn_ConditionalChatLink div span { // message
+  font-weight: normal;
+}
+li.conditionalWidget .rn_ConditionalChatLink div a { // button
+  background-color: #337ab7;
+  color: #fff;
+}
+
+li.syndicatedWidget .rn_ConditionalChatLink div span {
+  color: #fff;
+  background-color: #337ab7;
+  padding: 0;
+  font-weight: normal;
+  border-radius: 4px;
+  display: inline;
+}
+li.syndicatedWidget .rn_ConditionalChatLink div a {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 10px;
+}
+
