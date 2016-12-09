@@ -119,7 +119,7 @@ gulp.task('copy:aws', function () {
       .pipe(gulp.dest(config.applications + '/bower_components/uqlibrary-api/mock'));
 
   var jsonData = gulp.src([config.dependencies + '/uqlibrary-api/data/contacts.json'])
-      .pipe(gulp.dest(config.applications + 'bower_components/uqlibrary-api/data'));
+      .pipe(gulp.dest(config.applications + 'bower_components/uqlibrary-api/data/*'));
 
   return merge(vulcanized, dependencies, resources, demo, mock_data, vulcanized2elements, jsonData)
       .pipe($.size({title: 'copy'}));
