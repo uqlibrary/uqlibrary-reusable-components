@@ -403,8 +403,10 @@ h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue ,
 .rn_AnswerList .rn_FieldDisplay.rn_Output .rn_DataValue {
   margin-left: 0;
 }
+.rn_AnswerList .rn_FieldDisplay.rn_Output ol ,
+.rn_AnswerList .rn_FieldDisplay.rn_Output ol > li ,
 .rn_AnswerList .rn_FieldDisplay.rn_Output ul ,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ul li {
+.rn_AnswerList .rn_FieldDisplay.rn_Output ul > li {
   margin-left: 10px;
 }
 
@@ -412,6 +414,8 @@ h3 {
   font-weight: bold;
   margin-top: 16px;
   margin-top: 1rem;
+}
+.rn_AnswerList p {
 }
 .rn_AnswerList p,
 .rn_AnswerList li {
