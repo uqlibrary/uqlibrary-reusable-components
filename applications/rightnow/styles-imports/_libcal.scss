@@ -91,25 +91,25 @@
   }
 
   td:nth-of-type(2):before {
-    content: "Sunday"
-  }
-  td:nth-of-type(3):before {
     content: "Monday"
   }
-  td:nth-of-type(4):before {
+  td:nth-of-type(3):before {
     content: "Tuesday"
   }
-  td:nth-of-type(5):before {
+  td:nth-of-type(4):before {
     content: "Wednesday"
   }
-  td:nth-of-type(6):before {
+  td:nth-of-type(5):before {
     content: "Thursday"
   }
-  td:nth-of-type(7):before {
+  td:nth-of-type(6):before {
     content: "Friday"
   }
-  td:nth-of-type(8):before {
+  td:nth-of-type(7):before {
     content: "Saturday"
+  }
+  td:nth-of-type(8):before {
+    content: "Sunday"
   }
   td.s-lc-whw-today:before {
     content: "Today";
