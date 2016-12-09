@@ -468,3 +468,10 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
 .rn_Paginator a:hover {
   background-color: #0e62eb
 }
+
+
+// hide yucky links
+#back-icon ,
+.rn_EmailAnswerLink {
+  display: none;
+}
