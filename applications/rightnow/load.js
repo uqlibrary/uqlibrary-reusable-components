@@ -42,8 +42,6 @@ function loadReusableComponents() {
 
     header.showLoginButton = false;
 
-    header.libraryTitle = 'UQ Library FAQ Answers';
-
   });
 }
 
