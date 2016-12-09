@@ -152,10 +152,6 @@ gulp.task('syntax', [
 ]);
 
 
-gulp.task('test:vulcanize', ['tests_call_vulcanized_elements'], function() {
-});
-
-
 // display a list of available tasks
 gulp.task('help', taskList);
 
