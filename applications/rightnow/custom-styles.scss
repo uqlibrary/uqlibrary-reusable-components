@@ -3,12 +3,6 @@
 @import "styles-imports/chat_launch_lib";
 @import "styles-imports/libcal";
 
-* {
-   margin: 0;
-   padding: 0;
-   border-radius: 2px;
- }
-
 html,
 body {
   height: 100%;
@@ -22,21 +16,15 @@ body {
   background: #fafafa;
 }
 
-a {
-  color: #007e9e;
-}
-
-a:hover {
-  color: #006880;
-}
-
-a:active {
-  color: #00576b;
+a ,
+  a:hover ,
+  a:active {
+  color: $accent-color;
 }
 
 .btn-primary,
 .btn-default {
-  background-color: #007e9e;
+  background-color: $accent-color;
   background-image: none;
   border: none;
   border-radius: 2px;
@@ -45,7 +33,7 @@ a:active {
 
 .btn-primary:hover,
 .btn-default:hover {
-  background-color: #006880;
+  background-color: $accent-color;
   background-image: none;
   border: none;
   color: white;
@@ -55,7 +43,7 @@ a:active {
 .btn-primary:focus,
 .btn-default:active,
 .btn-default:focus {
-  background-color: #00576b;
+  background-color: $accent-color;
   background-image: none;
   border: none;
   color: white;
@@ -63,8 +51,9 @@ a:active {
 
 .uq-header {
   border-radius: 0;
-  background-color: #49075e;
+  background-color: $theme-color;
   height: 60px;
+  height: 3.75rem;
   margin-bottom: 0;
   border: none;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
@@ -74,9 +63,11 @@ a:active {
 
 .uq-footer {
   border-radius: 0;
-  background-color: #49075e;
+  background-color: $theme-color;
   padding-top: 16px;
+  padding-top: 1rem;
   font-size: 12px;
+  font-size: 0.75rem;
   height: auto;
   color: white;
   margin: 0;
@@ -88,6 +79,7 @@ a:active {
 
 .uq-line {
   height: 62px;
+  height: 3.8rem;
   margin: -2px -15px;
 }
 
@@ -101,6 +93,7 @@ a:active {
 .uq-header-logo {
   float: left;
   height: 40px;
+  height: 2.5rem;
   margin-top: 10px;
   padding-right: 15px;
 }
@@ -115,6 +108,7 @@ a:active {
   float: left;
   color: #fff;
   font-size: 24px;
+  font-size: 1.5rem;
   margin-top: 14px;
   margin-left: 15px;
   -webkit-font-smoothing: antialiased;
@@ -138,7 +132,7 @@ a:active {
 }
 
 .tab-content {
-  background-color: #ffffff;
+  background-color: $menu-background-color;
   padding: 5px 16px 16px 16px;
   margin-top: -8px;
   border: 1px solid #ccc;
@@ -154,6 +148,7 @@ a:active {
 // vertically align the tabs as normal
 div#tabsContent {
   padding-top: 16px;
+  padding-top: 1rem;
 }
 
 // apply 'current marker' border to contact tab
@@ -178,10 +173,8 @@ body.library #rn_Container .columns {
   background-color: #fff;
   color: inherit;
   border-radius: 2px;
-  border-width: 1px;
-  border-style: solid;
-  margin: 10px 0px 20px 0px;
-  border-color: #ccc;
+  border: 1px solid #ccc;
+  margin: 10px 0 20px 0;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);
 }
 #rn_PageContent {
@@ -193,6 +186,7 @@ body.library #rn_Container .columns {
   }
   #rn_SearchControls {
     padding-top: 16px;
+    padding-top: 1rem;
   }
 }
 .rn_AskQuestion {
@@ -202,15 +196,18 @@ body.library #rn_Container .columns {
 #uq_AskQuestionContent {
   h2 {
     font-size: 16px;
+    font-size: 1rem;
     margin: 0;
     line-height: normal;
     color: #333;
     background-color: inherit;
     padding: 16px;
+    padding: 1rem;
     border-bottom: 1px solid #ccc;
   }
   ul {
     padding: 16px;
+    padding: 1rem;
   }
   .rn_NavigationTab a {
     padding: 0;
@@ -222,6 +219,7 @@ body.library #rn_Container .columns {
   ul li {
     list-style: none;
     padding: 0 0 16px 0;
+    padding: 0 0 1rem 0;
     margin: 0;
   }
   ul li.hasIcon > span:first-child {
@@ -230,6 +228,7 @@ body.library #rn_Container .columns {
 }
 .rn_Hours,
 .rn_HoursPrefix {
+  font-size: 14px;
   font-size: 0.9rem;
 }
 ul .rn_ChatHours .rn_HoursBlock {
@@ -244,6 +243,7 @@ div.rn_CurrentTime {
   a { // button
     display: inline-block;
     padding: 6px 12px;
+    padding: 0.4rem 0.75rem;
     margin-bottom: 0;
     text-align: center;
     white-space: nowrap;
@@ -252,7 +252,7 @@ div.rn_CurrentTime {
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
-    background-color: #337ab7;
+    background-color: $accent-color-light;
     color: #fff;
   }
   span { // message
@@ -269,16 +269,20 @@ div.rn_CurrentTime {
 #rn_LoginStatus {
   float: right;
   margin-left: 20px;
+  margin-left: 1.25rem;
   padding-top: 20px;
+  padding-top: 1.25rem;
 }
 .crmpersonaldetails {
   float: right;
   padding-top: 40px;
+  padding-top: 2.5rem;
 }
 
 ol.breadcrumb {
   padding: 0 15px 8px 15px;
   margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   margin-left: 0;
   list-style: none;
   display: block;
@@ -293,13 +297,14 @@ ol.breadcrumb > li {
 }
 .breadcrumb-home iron-icon {
   height: 24px;
+  height: 1.5rem;
   margin-top: -3px;
 }
 
 div.breadcrumbs,
 #rn_Container,
 .lib_pagetop {
-  background-color: #f2f2f2;
+  background-color: $secondary-color-lig;
   color: inherit;
 }
 .lib_pagetop .rn_FieldDisplay .rn_DataValue.rn_LeftJustify {
@@ -359,22 +364,16 @@ h3 {
 
 body.library #rn_Container .row .columns {
   height: auto;
-  background-color: #f2f2f2;
+  background-color: $secondary-color-light;
   margin-top: 0;
 }
 
-
-.libcal-hours-block table tr:nth-of-type(3) {
-  display: none;
-}
-.libcal-hours-block td:before {
-  margin-top: -6px;
-}
 
 .rn_RelatedAnswers ul,
 .rn_RelatedAnswers ul>li ,
 .rn_PreviousAnswers ul ,
 .rn_PreviousAnswers ul > li {
+  margin-left: 16px;
   margin-left: 1rem;
 }
 
@@ -408,6 +407,7 @@ h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue ,
 .rn_AnswerList .rn_FieldDisplay.rn_Output ul ,
 .rn_AnswerList .rn_FieldDisplay.rn_Output ul > li {
   margin-left: 10px;
+  margin-left: 0.625rem;
 }
 
 h3 {
@@ -416,8 +416,10 @@ h3 {
   margin-top: 1rem;
 }
 .rn_AnswerList p {
-  margin-bottom: 1rem;
+  margin-top: 16px;
   margin-top: 1rem;
+  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 .rn_AnswerList p,
 .rn_AnswerList li {
@@ -436,7 +438,7 @@ h3 {
 }
 
 a {
-  color: #2377cb;
+  color: $accent-color;
 }
 .search-tips {
   padding-top: 16px;
@@ -448,25 +450,27 @@ a {
 
 
 li.syndicatedWidget .rn_ConditionalChatLink #myChatLink #myChatLinkInfo span {
+  background-color: $accent-color-light;
   color: #fff;
-  background-color: #337ab7;
   padding: 0;
   font-weight: normal;
   border-radius: 4px;
   display: inline;
   padding: 10px;
+  padding: .625rem;
 }
 li.syndicatedWidget .rn_ConditionalChatLink div a {
-  background-color: #337ab7;
+  background-color: $accent-color-light;
   color: #fff;
   padding: 10px;
+  padding: .625rem;
 }
 
 .rn_Paginator a {
-  color: #0e62eb
+  color: $accent-color
 }
 .rn_Paginator a:hover {
-  background-color: #0e62eb
+  background-color: $accent-color
 }
 
 
