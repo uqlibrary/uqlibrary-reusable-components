@@ -1,7 +1,7 @@
 // styles only applied to the popup chat box
 body.lib_chatlanding {
     #rn_ChatDialogHeaderContainer {
-        background-color: #49075E;
+        background-color: $theme-color;
         color: #fff;
 
         h1 {
@@ -13,7 +13,7 @@ body.lib_chatlanding {
 
 body.lib_chatlaunch {
     background-image: none;
-    background-color: #F5F5F5;
+    background-color: $secondary-color-light;
     overflow: hidden;
 
     div#rn_ChatLaunchFormDiv {
@@ -21,7 +21,7 @@ body.lib_chatlaunch {
     }
 
     div#rn_PageTitle {
-        background-color: #49075E;
+        background-color: $theme-color;
         padding-left: 20px;
 
         h1 {
@@ -33,7 +33,7 @@ body.lib_chatlaunch {
 
     div.lib_chatlaunch_header {
         padding: 15px 0 0 0;
-        color: #313131;
+        color: $secondary-color-dark;
         font-size: 1.222em;
 
         .rn_ChatLaunchFormHeader.welcometext {
@@ -42,10 +42,10 @@ body.lib_chatlaunch {
     }
 
     hr {
-        margin: 25px 0px;
+        margin: 25px 0;
         border-width: 1px 0 0 0;
         border-style: solid;
-        border-color: #E9E9E9;
+        border-color: $secondary-color-light;
     }
 
     .productcategoryinput {
@@ -78,4 +78,31 @@ body.lib_chatlaunch {
         padding-top: 1rem;
     }
 
+}
+
+
+
+
+// chat popups - natively they look awful!
+// first draft
+div#rnDialog1_c.yui3-widget.yui3-panel.yui3-widget-positioned.yui3-widget-stacked.yui3-widget-modal.yui3-panel-focused {
+    background-color: #fff;
+    color: inherit;
+    border: 1px solid #000;
+    left: 5%;
+    padding: 8px;
+    padding: 0.5rem;
+}
+
+#rn_Container input[type="submit"],
+.rn_Dialog button,
+.rn_Dialog input[type="submit"],
+.rn_CreateAccountInfo button,
+.rn_AnswerFeedback2 button,
+.rn_Notification_Actions button,
+.rn_ProdCatNotificationManager button,
+.rn_ChatLaunchButton button {
+    width: 160px;
+    width: 10rem;
+    float: left
 }
