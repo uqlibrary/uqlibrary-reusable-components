@@ -68,8 +68,14 @@
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
-    padding-left: 50%
+    padding-left: 50%;
+    height: 32px;
+    height: 2rem;
+    margin-top: 12px;
+    margin-top: 0.75rem;
   }
+
+
   td:before {
     position: absolute;
     top: 6px;
@@ -78,11 +84,6 @@
     padding-right: 10px;
     white-space: nowrap;
     margin-top: -6px;
-  }
-
-  td {
-    height: 32px;
-    height: 2rem;
   }
 
   /* hide service point name */
