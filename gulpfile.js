@@ -106,10 +106,11 @@ gulp.task('vulcanize:clean_bower', function() {
 // vulcanizes and splits html/js, replaces menu-json with value from resources/uql-menu.json, min html/js 'vulcanize:clean_bower'
 gulp.task('vulcanize', ['vulcanize:clean_bower', 'vulcanize:clean', 'vulcanize:copy'], function() {
 
+  // optimisation to avoid constant calls to the api
   var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
   var regEx = new RegExp("menuJsonFileData;", "g");
 
-  var contactsJson=fs.readFileSync("applications/bower_components/uqlibrary-api/data/contacts.json", "utf8");
+  var contactsJson=fs.readFileSync("./bower_components/uqlibrary-api/data/contacts.json", "utf8");
   var contactsRegEx = new RegExp("contactsJsonFileData;", "g");
 
   return gulp.src(config.elements + '/elements.vulcanized.html')

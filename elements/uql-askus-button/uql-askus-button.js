@@ -15,7 +15,7 @@
       var contactsJsonFileData = null;
       var contactsJson = contactsJsonFileData;
       if (contactsJson !== null) {
-        return contactsJson;
+        this.$.callout.calloutItems =  contactsJson;
       }
       else {
         this.autoLoad = true;
