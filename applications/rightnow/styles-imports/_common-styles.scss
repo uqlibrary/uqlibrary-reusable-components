@@ -1,0 +1,583 @@
+// from uqlibrary-styles app-theme.html
+:root {
+  --max-width: 1140px;
+  --font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  --body-font-size: 14px;
+  --body-line-height: 24px;
+
+  --text-color: #000;
+  --header-text-color: #656565;
+  --paper-input-container-color: #656565;
+  --text-color-inverse: #FFF;
+  --focus-outline-color: #288BED;
+  --body-color: #fafafa;
+
+  /*UQ theme colours*/
+  --theme-color: #49075E;
+  --theme-color-dark: #370546;
+  --theme-color-lighter: #6B0C8A;
+  --theme-color-light: #d2c1d7;
+
+  --accent-color: #0e62eb;
+  --accent-color-light: #71A3F7;
+  --accent-color-lighter: #D9EEFF;
+  --accent-color-dark: #005EA5;
+
+  --secondary-color: #595959;
+  --secondary-color-light: #f2f2f2;
+  --secondary-color-dark: #333;
+
+  --error-color: #FF3A11;
+  --available-color: #437708;
+  --unavailable-color: #ce4627;
+
+  --alert-text-color: #D32F2F;
+  --alert-background-color: #FFEBEE;
+  --alert-border-color: #D32F2F;
+
+  --notice-text-color: #31708f;
+  --notice-background-color: #d9edf7;
+  --notice-border-color: #bce8f1;
+
+  /* tool bar */
+  --paper-toolbar-background: var(--theme-color);
+
+  /* sub-footer colours */
+  --sub-footer-background-color: #e5e5e5;
+  --sub-footer-text-color: #333;
+  --text-color-inverse: #fff;
+  --button-action-color: #2377CB;
+  --social-button-hover-background-color: #999;
+  --button-action-hover-color: #005ea5;
+
+  /* Menu colours */
+  --menu-background-color: #fff;
+  --menu-open-background-color: #f2f2f2;
+  --menu-hover-background-color: #e5e5e5;
+  --menu-selected-bar-color: #595959;
+  --menu-text-color: #222;
+  --menu-sub-text-color: #3F3F3F;
+  --menu-border-color: #ccc;
+  --border-color: #e8e8e8;
+
+  --paper-tabs-selection-bar-color: var(--menu-selected-bar-color);
+  --paper-tabs-ink-color: var(--menu-selected-bar-color);
+  --paper-tab-ink: var(--menu-selected-bar-color);
+
+  --paper-tab-content: {
+    font-weight: 400 !important;
+    opacity: 1 !important;
+  };
+
+  --uq-box-shadow: {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+  }
+
+  /* Menu mix in */
+  --menu-item: {
+    color: var(--menu-text-color);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 300;
+
+    height: 48px;
+    line-height: 24px;
+    min-height: 48px;
+    text-decoration: none;
+    overflow: hidden;
+
+    padding: 2px 16px;
+  }
+
+  /* Tooltip styles */
+  --paper-tooltip: {
+    background-color: var(--menu-open-background-color);
+    color: #666;
+    font-size: 13px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    opacity: 0.99;
+  }
+
+  --paper-tooltip-pointer: {
+    border-bottom: 8px solid var(--menu-open-background-color);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    content: '';
+    position: absolute;
+    top: -7px;
+    right: 50%;
+  }
+
+  --paper-scroll-header-container: {
+    background-color: var(--body-color);
+  }
+
+  --paper-input-container-underline-focus: {
+    background: var(--theme-color);
+  }
+
+  --paper-input-container-label-floating: {
+    color: var(--theme-color) !important;
+  }
+
+  /** UQ Library app scaffolding **/
+
+  // gulp styles doesnt like this for some reason - segment fault
+//  --uql-app-host: {
+//    font-family: var(--font-family);
+//    font-size: var(--body-font-size);
+//    @apply(--layout-vertical);
+//    @apply(--layout-fit);
+//  }
+
+  /** Default value for custom iron-icon-svg heights **/
+  --icon-height: 24px;
+
+}
+
+// a copy of uqlibrary-styles/common-styles.html
+.loading {
+  moz-transition: opacity ease-in 0.2s;
+  -o-transition: opacity ease-in 0.2s;
+  -webkit-transition: opacity ease-in 0.2s;
+  -webkit-transition-delay: 0.2s;
+  transition: opacity ease-in 0.2s;
+}
+
+.loading[unresolved] {
+  opacity: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.inverse {
+  color: var(--text-color-inverse) !important;
+}
+
+.error {
+  color: var(--error-color) !important;
+}
+
+h1 {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: 2em;
+  line-height: 1.1em;
+  text-overflow: ellipsis;
+  color: var(--header-text-color);
+}
+
+paper-toolbar h1 {
+  color: var(--text-color-inverse);
+}
+
+h2 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1.8em;
+  line-height: 1.1em;
+  text-overflow: ellipsis;
+  color: var(--header-text-color);
+}
+
+h3 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1.6em;
+  line-height: 1.1em;
+  text-overflow: ellipsis;
+  color: var(--header-text-color);
+}
+
+h4 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1.4em;
+  line-height: 1.1em;
+  text-overflow: ellipsis;
+  color: var(--header-text-color);
+}
+
+h5 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1.2em;
+  line-height: 1.1em;
+  text-overflow: ellipsis;
+  color: var(--header-text-color);
+}
+
+h6 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1em;
+  line-height: 1.1em;
+  text-overflow: ellipsis;
+  color: var(--header-text-color);
+}
+
+.headline {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1.5em;
+  line-height: 1.1em;
+  color: var(--text-color);
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1.4em;
+  line-height: 1.1em;
+  white-space: normal;
+  color: var(--text-color);
+}
+
+.subhead {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1.1em;
+  line-height: 1.1em;
+  white-space: normal;
+  color: var(--text-color);
+}
+
+.body2 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1em;
+  white-space: normal;
+  color: var(--text-color);
+}
+
+p, .body1 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1em;
+  white-space: normal;
+  color: var(--text-color);
+}
+
+.caption {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 0.85em;
+  white-space: normal;
+  color: var(--text-color);
+}
+
+a {
+  font-family: var(--font-family);
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.button {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1em;
+  line-height: 1.1em;
+  white-space: normal;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.button-small {
+  font-family: var(--font-family);
+  font-weight: normal;
+  font-size: 1em;
+  white-space: normal;
+  text-transform: uppercase;
+  color: var(--text-color);
+  padding: 0.8em;
+}
+
+.button-colored-theme,
+.button-colored-theme a {
+  color: var(--text-color-inverse);
+  background-color: var(--theme-color);
+}
+
+.button-colored-theme:hover,
+.button-colored-theme:hover a,
+.button-colored-theme:hover a:hover {
+  background-color: var(--theme-color-lighter);
+  text-decoration: none;
+}
+
+.button-colored-theme.inverse,
+.button-colored-theme.inverse a {
+  color: var(--theme-color);
+  background: var(--text-color-inverse);
+}
+
+.button-colored-theme.inverse iron-icon,
+.button-colored-theme.inverse .button-small {
+  color: var(--theme-color);
+}
+
+.button-colored-theme.inverse:hover,
+.button-colored-theme.inverse:hover a,
+.button-colored-theme.inverse:hover a:hover {
+  background-color: var(--theme-color-light);
+}
+
+.button-theme,
+.button-theme a {
+  color: var(--theme-color);
+}
+
+.button-theme:hover,
+.button-theme:hover a,
+.button-theme:hover a:hover {
+  background-color: var(--theme-color-light);
+  text-decoration: none;
+}
+
+.button-colored-accent,
+.button-colored-accent a {
+  color: var(--text-color-inverse);
+  background-color: var(--accent-color);
+}
+
+.button-colored-accent:hover,
+.button-colored-accent:hover a,
+.button-colored-accent:hover a:hover {
+  background-color: var(--accent-color-light);
+  text-decoration: none;
+}
+
+.button-colored-accent.inverse,
+.button-colored-accent.inverse a {
+  color: var(--accent-color);
+  background: var(--text-color-inverse);
+}
+
+.button-colored-accent.inverse iron-icon,
+.button-colored-accent.inverse .button-small {
+  color: var(--accent-color);
+}
+
+.button-colored-accent.inverse:hover,
+.button-colored-accent.inverse:hover a,
+.button-colored-accent.inverse:hover a:hover {
+  background-color: var(--accent-color-lighter);
+}
+
+.button-accent,
+.button-accent a {
+  color: var(--accent-color);
+}
+
+.button-accent:hover,
+.button-accent:hover a,
+.button-accent:hover a:hover {
+  background-color: var(--accent-color-lighter);
+  text-decoration: none;
+}
+
+.button-colored-secondary,
+.button-colored-secondary a{
+  color: var(--text-color-inverse);
+  background-color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.button-colored-secondary:hover,
+.button-colored-secondary:hover a,
+.button-colored-secondary:hover a:hover {
+  background-color: var(--secondary-color-dark);
+  text-decoration: none;
+}
+
+.button-colored-secondary.inverse,
+.button-colored-secondary.inverse a {
+  color: var(--secondary-color);
+  background: var(--text-color-inverse);
+}
+
+.button-colored-secondary.inverse iron-icon,
+.button-colored-secondary.inverse .button-small{
+  color: var(--secondary-color);
+}
+
+.button-colored-secondary.inverse:hover,
+.button-colored-secondary.inverse:hover a,
+.button-colored-secondary.inverse:hover a:hover {
+  background-color: var(--secondary-color-light);
+}
+
+.button-secondary,
+.button-secondary a{
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.button-secondary:hover,
+.button-secondary:hover a,
+.button-secondary:hover a:hover {
+  background-color: var(--secondary-color-light);
+  text-decoration: none;
+}
+
+.button-secondary:focus,
+.button-colored-secondary:focus,
+.button-accent:focus,
+.button-colored-accent:focus,
+.button-theme:focus,
+.button-colored-theme:focus {
+  outline: var(--focus-outline-color) auto 5px;
+  font-weight: 400;
+}
+
+paper-button,
+paper-button div {
+  text-align: center;
+}
+
+paper-item.header {
+  display: block;
+  text-align: center;
+  line-height: 30px;
+  min-height: 30px;
+  background-color: var(--accent-color);
+  color: #FFF;
+  font-size: 1.2em;
+  cursor: default;
+  padding: 5px;
+}
+
+paper-item:last-of-type {
+  border-bottom: none !important;
+}
+
+paper-item iron-icon {
+  padding-right: 6px;
+  color: #999 !important;
+}
+
+paper-progress {
+  width: 100%;
+  --paper-progress-height: 1.14em;
+  --paper-progress-active-color: var(--available-color);
+}
+
+paper-tab[focused] {
+  background-color: var(--menu-hover-background-color);
+}
+
+paper-button > a {
+  width: 100%;
+  display: block;
+}
+
+.title.uqlibrary-app-title {
+  margin-left: 0;
+  color: #FFF;
+  line-height: 1.2em;
+}
+
+.uqlibrary-app-footer {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  background-color: #FFF;
+  border-top: 1px solid var(--border-color);
+  color: #000;
+}
+
+.uqlibrary-app-footer.right {
+  @apply(--layout-horizontal-reverse);
+}
+
+paper-toolbar .app-title {
+  color: #FFF;
+}
+
+.skip-navigation {
+  position: absolute;
+  z-index: 99999999999;
+  left: -200px;
+  top: -200px;
+  width: 200px;
+
+  margin: 5px;
+  background-color: #000;
+  color: #FFF;
+}
+
+.skip-navigation:focus {
+  outline: #288BED auto 5px;
+  outline-offset: -4px;
+}
+
+/* styling for hours, computers, training */
+paper-item .linked-item {
+  @apply(--layout-flex-2);
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+/* compact styles for hours, computers, training */
+paper-item.compact {
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1em;
+  min-height: 30px;
+  padding: 0 8px;
+}
+
+paper-item.compact.header {
+  font-size: 1.2em;
+  padding: 5px;
+}
+
+.uqlibrary-icon-247 {
+  color: var(--available-color);
+  width: calc(var(--icon-height) * 1.54);
+  height: var(--icon-height);
+}
+
+@media all and (max-width: 320px) {
+  paper-item.compact {
+    font-size: 0.75em;
+  }
+}
+@media all and (max-width: 400px) {
+  paper-item.compact {
+    font-size: 0.9em;
+  }
+}
+
+@media all and (max-width: 260px) {
+  paper-item.compact.detail-item {
+    @apply(--layout-vertical);
+    min-height: 50px;
+    line-height: 1em;
+    margin: 6px 0;
+  }
+}
+/* end compact styles */
+
+
+@media all and (max-width: 700px) {
+  .icon-button-title {
+    display: none;
+  }
+
+  .button-header {
+    min-width: auto;
+    margin: 2px;
+    padding: 0.5em;
+  }
+}

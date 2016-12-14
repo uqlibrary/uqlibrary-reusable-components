@@ -13,13 +13,6 @@
     text-align: left
   }
 
-  td.s-lc-whw-today,
-  th.s-lc-whw-today-h,
-  thead tr th {
-    background-color: #F5F5F5;
-    border-color: #e5e5e5
-  }
-
   tr.s-lc-whw-loc {
     background-color: #fcfcfc
   }
@@ -62,7 +55,7 @@
     font-weight: 700
   }
   tbody tr {
-    border: 1px solid #ccc
+ //   border: 1px solid #ccc
   }
   td {
     border: none;
@@ -134,3 +127,26 @@
 
 
 }
+
+.pane--outline {
+  border: 2px solid #eee;
+  padding: 28px;
+  padding: 1.8rem;
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+}
+.pane__title {
+  color: #49075e;
+  font-size: 20px;
+  font-size: 1.275rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/*
+#libcal-hours-block table ,
+#libcal-hours-block tbody ,
+#libcal-hours-block tr {
+  border-width: 0;
+}
+*/
