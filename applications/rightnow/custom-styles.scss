@@ -148,6 +148,12 @@ a ,
   padding: 0;
 }
 
+.page__header {
+  background-color: #f2f2f2;
+  color: #222;
+}
+
+
 // vertically align the tabs as normal
 div#tabsContent {
   padding-top: 16px;
@@ -202,6 +208,14 @@ body.library #rn_Container .columns {
   #rn_SearchControls {
     padding-top: 16px;
     padding-top: 1rem;
+  }
+
+  .rn_Multiline .rn_Element1 a,
+  .rn_Multiline .rn_Element1 a:link,
+  .rn_Multiline .rn_Element1 a:active {
+    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 300;
   }
 }
 .rn_AskQuestion {
@@ -373,6 +387,7 @@ h3 {
 #rn_Navigation {
   margin-bottom: 0;
   padding-bottom: 0;
+  padding-left: 0;
 }
 
 body.library #rn_Container .row .columns {
