@@ -381,6 +381,11 @@ body.library #rn_Container .row .columns {
 }
 
 
+.rn_RelatedAnswers h2,
+.rn_PreviousAnswers h2 {
+  border-top:  1px solid $secondary-color-light;
+}
+
 .rn_AnswerList .rn_FieldDisplay.rn_Output ol,
 .rn_AnswerList .rn_FieldDisplay.rn_Output ul,
 .rn_RelatedAnswers ol,
