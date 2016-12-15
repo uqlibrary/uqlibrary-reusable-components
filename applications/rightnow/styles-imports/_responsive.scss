@@ -1,0 +1,40 @@
+@media screen and (max-width: 740px) {
+
+  body.library #rn_PageTitle.rn_AnswerList,
+  body.library #rn_PageContent.rn_AnswerList,
+  body.library #rn_Body .rn_AnswerList
+  {
+    width: 100%;
+    float: none;
+  }
+
+  body.library div.rn_AskQuestion {
+    width: 100%;
+    padding-left: 0;
+    clear: both;
+  }
+
+  body .rn_AnswerList .rn_FieldDisplay.rn_Output ul,
+  body .rn_PreviousAnswers ul,
+  body .rn_RelatedAnswers ul,
+  body .rn_AnswerList .rn_FieldDisplay.rn_Output ol {
+    margin-left: 16px;
+    margin-left: 1rem;
+    padding-left: 0;
+  }
+//  body .rn_AnswerList .rn_FieldDisplay.rn_Output ol {
+//    margin-left: 24px;
+//    margin-left: 1.5rem;
+//    padding-left: 0;
+//  }
+
+
+
+
+
+  // the popup dialogs
+  div#rnDialog1_c.yui3-widget.yui3-panel.yui3-widget-positioned.yui3-widget-stacked.yui3-widget-modal.yui3-panel-focused {
+    width: 80%;
+    left: 0;
+  }
+}
