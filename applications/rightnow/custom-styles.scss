@@ -1,8 +1,8 @@
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
-@import "styles-imports/chat_launch_lib";
+@import "styles-imports/chat";
 @import "styles-imports/libcal";
-@import "styles-imports/library_responsive";
+@import "styles-imports/responsive";
 
 html,
 body {
@@ -11,10 +11,8 @@ body {
 
 body {
   font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: 400;
   padding-left: 0;
   padding-right: 0;
-  background: #fafafa;
 }
 
 a ,
@@ -91,47 +89,8 @@ a ,
   margin: 0;
 }
 
-.uq-header-logo {
-  float: left;
-  height: 40px;
-  height: 2.5rem;
-  margin-top: 10px;
-  padding-right: 15px;
-}
 
-.uq-header-logo:hover,
-.uq-header-logo:focus,
-.uq-header-logo:active {
-  -webkit-filter: drop-shadow(0 0 1px #aaa);
-}
-
-.uq-library-header-logo {
-  float: left;
-  color: #fff;
-  font-size: 24px;
-  font-size: 1.5rem;
-  margin-top: 14px;
-  margin-left: 15px;
-  -webkit-font-smoothing: antialiased;
-}
-
-.uq-library-header-logo:hover,
-.uq-library-header-logo:active,
-.uq-library-header-logo:focus {
-  color: #fff;
-  text-decoration: none;
-  -webkit-filter: drop-shadow(0 0 1px #aaa);
-}
-
-.uq-library-header-logo:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-.uq-header .navbar-header {
-  float: none;
-}
-
+// local formatting of the mega menu
 .tab-content {
   background-color: $menu-background-color;
   padding: 5px 16px 16px 16px;
@@ -145,6 +104,12 @@ a ,
 .paper-tab-0 {
   padding: 0;
 }
+
+.page__header {
+  background-color: $secondary-color-light;
+  color: $secondary-color-dark;
+}
+
 
 // vertically align the tabs as normal
 div#tabsContent {
@@ -173,58 +138,104 @@ body.library #rn_Container .columns {
 #uq_AskQuestionContent {
   background-color: #fff;
   color: inherit;
-  border-radius: 2px;
-  border: 1px solid #ccc;
   margin: 10px 0 20px 0;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);
 }
 #rn_PageContent {
   padding-top: 16px;
 }
 #rn_Body {
   .rn_AnswerList {
-    width: 69%;
+    width: 66.66667%;
+    border-radius: 0;
+    border-width: 0;
+    box-shadow: none;
+    margin-top: 0;
+    padding-top: 0;
+
+    // the answer last update dates have a green background by default.
+    .rn_Element2 {
+      display: none; // late decision to hide it; leave in the formatting for ease if they are re-displayed
+
+      background-color: #fff;
+      color: #000;
+    }
+    .rn_Element2:before {
+      content: " (";
+    }
+    .rn_Element2:after {
+      content: ")";
+    }
   }
   #rn_SearchControls {
     padding-top: 16px;
     padding-top: 1rem;
   }
-}
-.rn_AskQuestion {
-  padding-top: 1px;
-  padding-left: 70%;
+
+  .rn_Multiline {
+    .rn_Element1 a,
+    .rn_Element1 a:link,
+    .rn_Element1 a:active {
+      font-size: 16px;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .rn_Content ul {
+      margin-top: 0;
+    }
+
+    .rn_Content li {
+      border-bottom: 1px solid $secondary-color-light;
+    }
+  }
 }
 #uq_AskQuestionContent {
+  ul {
+    padding: 16px;
+    padding: 1rem;
+  }
+  .menu li a,
+  .rn_NavigationTab a {
+    padding: 0;
+    font-weight: 300;
+  }
+}
+.lib_sidebar {
+  padding-top: 1px;
+  padding-left: 69%;
+
   h2 {
     font-size: 16px;
     font-size: 1rem;
     margin: 0;
     line-height: normal;
-    color: #333;
+    color: $secondary-color-dark;
     background-color: inherit;
-    padding: 16px;
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
   }
-  ul {
-    padding: 16px;
-    padding: 1rem;
+
+  h3 {
+    font-weight: bold;
+    font-size: 16px;
+    font-size: 1rem;
   }
-  .rn_NavigationTab a {
-    padding: 0;
-    font-weight: normal;
-  }
-}
-.rn_AskQuestion {
   ul,
   ul li {
     list-style: none;
-    padding: 0 0 16px 0;
-    padding: 0 0 1rem 0;
     margin: 0;
+    padding: 12px 0;
+    padding: 0.8rem 0;
   }
+
+  ul > li {
+    border-bottom: 1px solid $secondary-color-light;
+  }
+
   ul li.hasIcon > span:first-child {
     padding-right: 7px;
+  }
+
+  li.hours {
+    border-bottom-width: 0;
   }
 }
 .rn_Hours,
@@ -308,8 +319,8 @@ div.breadcrumbs,
   background-color: $secondary-color-light;
   color: inherit;
 }
-.lib_pagetop .rn_FieldDisplay .rn_DataValue.rn_LeftJustify {
-
+.subtitle {
+  margin-top: 4px;
 }
 
 
@@ -333,19 +344,18 @@ body.library #rn_Container {
 .breadcrumbs ol.breadcrumb-trail li:first-child {
   padding-left: 0;
 }
-ol.breadcrumb li a {
-  font-weight: 300;
+
+
+
+
+.rn_AnswerList h3 {
+  font-size: 26px;
+  font-size: 1.65rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 1rem;
 }
 
-
-
-
-// styling libcal widget output
-
-h3 {
-  font-size: 16px;
-  font-size: 1rem;
-}
 /* get the mega menu layout right */
 .paper-tab-0:not(.iron-selected) > .tab-content.paper-tab {
   border-width: 0;
@@ -361,6 +371,7 @@ h3 {
 #rn_Navigation {
   margin-bottom: 0;
   padding-bottom: 0;
+  padding-left: 0;
 }
 
 body.library #rn_Container .row .columns {
@@ -370,12 +381,29 @@ body.library #rn_Container .row .columns {
 }
 
 
+.rn_RelatedAnswers h2,
+.rn_PreviousAnswers h2 {
+  border-top:  1px solid $secondary-color-light;
+}
+
+.rn_AnswerList .rn_FieldDisplay.rn_Output ol,
+.rn_AnswerList .rn_FieldDisplay.rn_Output ul,
+.rn_RelatedAnswers ol,
 .rn_RelatedAnswers ul,
-.rn_RelatedAnswers ul>li ,
-.rn_PreviousAnswers ul ,
-.rn_PreviousAnswers ul > li {
-  margin-left: 16px;
-  margin-left: 1rem;
+.rn_PreviousAnswers ol ,
+.rn_PreviousAnswers ul {
+  margin-left: 40px;
+  margin-left: 2.5rem;
+  padding-left: 0;
+}
+.rn_RelatedAnswers ul > li ,
+.rn_RelatedAnswers ol > li ,
+.rn_PreviousAnswers ol > li ,
+.rn_PreviousAnswers ul > li ,
+.rn_AnswerList .rn_FieldDisplay.rn_Output ol > li ,
+.rn_AnswerList .rn_FieldDisplay.rn_Output ul > li {
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .rn_TextInput.rn_Input label,
@@ -394,6 +422,12 @@ body.library #rn_Container .row .columns {
   padding: 8px;
   padding: 0.5rem;
 }
+
+
+.page__header {
+  background-color: $secondary-color-light;
+  color: $secondary-color-dark;
+}
 h1.page__title {
   margin-bottom: 0;
 }
@@ -402,29 +436,24 @@ h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue ,
 .rn_AnswerList .rn_FieldDisplay.rn_Output ,
 .rn_AnswerList .rn_FieldDisplay.rn_Output .rn_DataValue {
   margin-left: 0;
+  color: $secondary-color-dark;
+  background-color: inherit;
 }
-.rn_AnswerList .rn_FieldDisplay.rn_Output ol ,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ol > li ,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ul ,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ul > li {
-  margin-left: 10px;
-  margin-left: 0.625rem;
+h1.page__title .rn_FieldDisplay.rn_Output ,
+h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue {
+  font-size: 43.2px;
+  font-size: 2.7rem;
+  line-height: 1.25;
+  font-weight: 500;
 }
 
-h3 {
-  font-weight: bold;
-  margin-top: 16px;
-  margin-top: 1rem;
-}
+
+
 .rn_AnswerList p {
   margin-top: 16px;
   margin-top: 1rem;
   margin-bottom: 16px;
   margin-bottom: 1rem;
-}
-.rn_AnswerList p,
-.rn_AnswerList li {
-  font-weight: 300;
 }
 #navigation-icons {
   padding-bottom: 16px;
@@ -432,10 +461,9 @@ h3 {
 }
 .panel-pane__content .rn_FieldDisplay {
   margin-left: 0;
-  font-weight: 300;
 }
 .panel-pane__content h1 {
-  font-weight: 800;
+//  font-weight: 800;
 }
 
 a {
@@ -444,9 +472,6 @@ a {
 .search-tips {
   padding-top: 16px;
   padding-top: 1rem;
-}
-.rn_AnswerList #rn_SearchControls .rn_SearchButton {
-  padding-left: 0;
 }
 
 
@@ -479,4 +504,54 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
 #back-icon ,
 .rn_EmailAnswerLink {
   display: none;
+}
+
+// style search & search tip buttons on details.php
+.rn_AnswerList #rn_SearchControls .rn_SearchButton input {
+  border-radius: 0;
+  background-color: $accent-color;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+.button-colored-accent .rn_SearchButton input {
+  font-size: 16px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: $accent-color;
+  border-radius: 0;
+}
+
+
+.lib_searchTip {
+  margin: 0;
+  clear: both;
+}
+.lib_searchTip .button-colored-secondary a {
+  color: $secondary-color;
+  width: 160px;
+  width: 10rem;
+  height: 2.875rem;
+  height: 46px;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.lib_searchTip .button-colored-secondary a:hover {
+  background-color: $secondary-color-light;
+}
+
+.button-colored-accent input {
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.rn_FormSubmit input {
+  background-color: $accent-color;
+  color: #fff;
+  width: 160px;
+  width: 10rem;
+  border-radius: 0;
 }
