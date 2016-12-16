@@ -35,3 +35,20 @@
     }
   }
 }
+
+// overwrite crm styles that are hitting our mega menu in the hamburger
+#drawerPanelMenu .label {
+  display: block;
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  line-height: 24px;
+  margin-bottom: 0;
+  position: static;
+  text-align: start;
+  text-decoration: none;
+  white-space: normal;
+  padding: inherit;
+  font-size: 14px;
+  background-color:transparent;
+  color: #222;
+}
