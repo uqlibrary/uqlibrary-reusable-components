@@ -25,8 +25,8 @@ function loadReusableComponents() {
   document.body.insertBefore(header, firstElement);
 
   // insert mega menus after minimal header
-  var megamenu = document.createElement('uql-menu');
-  document.body.insertBefore(megamenu, firstElement);
+  var menu = document.createElement('uql-menu');
+  document.body.insertBefore(menu, firstElement);
 
   // insert sub footer before body-tag
   var subFooter = document.createElement('uql-connect-footer');
@@ -41,8 +41,12 @@ function loadReusableComponents() {
     // when polymer is ready - configure elements
 
     header.showLoginButton = false;
-
+    //display hamburger button on mobile view
     header.showMenuButton = true;
+    
+    header.addEventListener("menu-clicked", function(event) {
+      menu.toggleMenu();
+    });
 
   });
 }
