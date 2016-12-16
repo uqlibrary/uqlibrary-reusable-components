@@ -12,10 +12,6 @@
     text-align: left
   }
 
-  tr.s-lc-whw-loc {
-    background-color: #fcfcfc
-  }
-
   tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
     font-weight: 500
   }
@@ -53,12 +49,9 @@
     padding-left: 1rem;
     font-weight: 700
   }
-  tbody tr {
- //   border: 1px solid #ccc
-  }
   td {
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $secondary-color-light;
     position: relative;
     padding-left: 50%;
     height: 32px;
@@ -74,6 +67,7 @@
     left: 6px;
     width: 45%;
     padding-right: 10px;
+    padding-right: 0.625rem;
     white-space: nowrap;
     margin-top: -6px;
   }
@@ -109,7 +103,8 @@
   }
   tr.s-lc-whw-footnote td {
     text-align: left;
-    padding-left: 1rem
+    padding-left: 16px;
+    padding-left: 1rem;
   }
 
   td.s-lc-whw-today {
@@ -119,36 +114,13 @@
   tbody tr:first-child {
     border-width: 0;
   }
-
-  // hides second phone department
-  // redundant - dept removed
-//  table tr:nth-of-type(3) {
-//    display: none;
-//  }
-
-
-
 }
 
 .pane--outline {
-  border: 2px solid #eee;
+  border: 2px solid $secondary-color-light;
   padding: 28px;
   padding: 1.8rem;
   margin-bottom: 24px;
   margin-bottom: 1.5rem;
 }
-.pane__title {
-  color: #49075e;
-  font-size: 20px;
-  font-size: 1.275rem;
-  font-weight: 400;
-  margin: 0;
-}
 
-/*
-#libcal-hours-block table ,
-#libcal-hours-block tbody ,
-#libcal-hours-block tr {
-  border-width: 0;
-}
-*/

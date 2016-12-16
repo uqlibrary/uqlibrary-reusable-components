@@ -22,19 +22,16 @@
     margin-left: 1rem;
     padding-left: 0;
   }
-//  body .rn_AnswerList .rn_FieldDisplay.rn_Output ol {
-//    margin-left: 24px;
-//    margin-left: 1.5rem;
-//    padding-left: 0;
-//  }
-
-
-
-
 
   // the popup dialogs
   div#rnDialog1_c.yui3-widget.yui3-panel.yui3-widget-positioned.yui3-widget-stacked.yui3-widget-modal.yui3-panel-focused {
     width: 80%;
     left: 0;
+  }
+
+  body.lib_chatlaunch {
+    input {
+      width: 90%;
+    }
   }
 }

@@ -4,6 +4,10 @@
 @import "styles-imports/libcal";
 @import "styles-imports/responsive";
 
+// from drupal
+$breadcrumb-text-color: #676767;
+$breadcrumb-divider-color: #ccc;
+
 html,
 body {
   height: 100%;
@@ -95,7 +99,7 @@ a ,
   background-color: $menu-background-color;
   padding: 5px 16px 16px 16px;
   margin-top: -8px;
-  border: 1px solid #ccc;
+  border: 1px solid $breadcrumb-divider-color;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 2px 2px;
 }
@@ -149,7 +153,8 @@ body.library #rn_Container .columns {
     border-radius: 0;
     border-width: 0;
     box-shadow: none;
-    margin-top: 0;
+    margin-top: 26px;
+    margin-top: 1.625rem;
     padding-top: 0;
 
     // the answer last update dates have a green background by default.
@@ -217,6 +222,8 @@ body.library #rn_Container .columns {
     font-weight: bold;
     font-size: 16px;
     font-size: 1rem;
+    color: $theme-color;
+    margin: 0;
   }
   ul,
   ul li {
@@ -271,7 +278,7 @@ div.rn_CurrentTime {
     display: block;
     background-color: inherit;
     font-weight: normal;
-    color: #676767;
+    color: $secondary-color;
     background-color: inherit;
   }
 }
@@ -304,7 +311,7 @@ ol.breadcrumb > li {
 }
 .breadcrumb > li + li:before {
   padding: 0 5px;
-  color: #ccc;
+  color: $breadcrumb-divider-color;
   content: "/\00a0";
 }
 .breadcrumb-home iron-icon {
@@ -319,8 +326,10 @@ div.breadcrumbs,
   background-color: $secondary-color-light;
   color: inherit;
 }
-.subtitle {
-  margin-top: 4px;
+.subtitle .rn_DataValue,
+.subtitle p {
+  margin: 4px 0 0 0;
+  margin: 0.25rem 0 0 0;
 }
 
 
@@ -332,7 +341,7 @@ div.breadcrumbs {
 
 }
 .breadcrumb-trail a {
-  color: #676767;
+  color: $breadcrumb-text-color;
 }
 
 body.library #rn_Container {
@@ -386,33 +395,41 @@ body.library #rn_Container .row .columns {
   border-top:  1px solid $secondary-color-light;
 }
 
-.rn_AnswerList .rn_FieldDisplay.rn_Output ol,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ul,
+#rn_PageContent.rn_AnswerList ol,
+#rn_PageContent.rn_AnswerList ul,
 .rn_RelatedAnswers ol,
 .rn_RelatedAnswers ul,
 .rn_PreviousAnswers ol ,
 .rn_PreviousAnswers ul {
-  margin-left: 40px;
-  margin-left: 2.5rem;
+  margin-left: 20px;
+  margin-left: 1.25rem;
   padding-left: 0;
 }
 .rn_RelatedAnswers ul > li ,
 .rn_RelatedAnswers ol > li ,
 .rn_PreviousAnswers ol > li ,
 .rn_PreviousAnswers ul > li ,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ol > li ,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ul > li {
+#rn_PageContent.rn_AnswerList ol > li ,
+#rn_PageContent.rn_AnswerList ul > li {
   margin-left: 0;
   padding-left: 0;
 }
 
-.rn_TextInput.rn_Input label,
-.rn_KeywordText label {
+.rn_TextInput.rn_Input label {
   font-size: 16px;
   font-size: 1rem;
   display: block;
   padding-left: 0;
   color: #000;
+}
+
+.rn_KeywordText label {
+  font-size: 18px;
+  font-size: 1.125rem;
+  display: block;
+  padding-left: 0;
+  color: #000;
+  font-weight: 500;
 }
 
 .rn_KeywordText input {
@@ -439,12 +456,11 @@ h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue ,
   color: $secondary-color-dark;
   background-color: inherit;
 }
-h1.page__title .rn_FieldDisplay.rn_Output ,
-h1.page__title .rn_FieldDisplay.rn_Output .rn_DataValue {
-  font-size: 43.2px;
-  font-size: 2.7rem;
+h1.page__title * {
+  font-size: 39.008px;
+  font-size: 2.438rem;
   line-height: 1.25;
-  font-weight: 500;
+  font-weight: normal;
 }
 
 
@@ -533,14 +549,17 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
   color: $secondary-color;
   width: 160px;
   width: 10rem;
-  height: 2.875rem;
   height: 46px;
+  height: 2.875rem;
   padding: 10px;
+  padding: 0.625rem;
   text-align: center;
   text-transform: uppercase;
+  font-weight: normal;
 }
 .lib_searchTip .button-colored-secondary a:hover {
   background-color: $secondary-color-light;
+  text-decoration: none;
 }
 
 .button-colored-accent input {

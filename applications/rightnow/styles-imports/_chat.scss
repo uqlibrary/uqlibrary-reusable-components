@@ -1,5 +1,11 @@
 // styles only applied to the popup chat box
 body.lib_chatlanding {
+    background-image: none;
+
+    #rn_PageContent {
+        padding-top: 0;
+    }
+
     #rn_ChatDialogHeaderContainer {
         background-color: $theme-color;
         color: #fff;
@@ -20,8 +26,10 @@ body.lib_chatlaunch {
     background-color: $secondary-color-light;
     overflow: hidden;
 
-    div#rn_ChatLaunchFormDiv {
-        background-image: none;
+    #rn_PageContent,
+    #rn_PageTitle {
+        padding-top: 0;
+        margin-bottom:0;
     }
 
     div#rn_PageTitle {
@@ -81,6 +89,68 @@ body.lib_chatlaunch {
         padding-top: 16px;
         padding-top: 1rem;
     }
+
+
+
+    // taken from chat_launch_lib
+    .rn_GridTextInput.rn_TextInput {
+        width: 37.5%;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+    .rn_Padding {
+        padding:0;
+    }
+
+    #rn_PageContent {
+        margin:0;
+        overflow: visible;
+    }
+
+    div#rn_ChatLaunchFormDiv {
+        background-image: none;
+        padding: 0 16px 16px 16px;
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        width: 95%;
+        padding-left: 8px;
+        padding-left: 0.5rem;
+
+        height: 48px;
+        height: 3rem;
+        margin-bottom: 24px;
+        margin-bottom: 1.5rem;
+        font-size: 19.2px;
+        font-size: 1.2rem;
+    }
+    .rn_TextInput .rn_Label {
+        display: block;
+        margin-bottom: 11px;
+    }
+
+    input[type="submit"], button {
+        background-color: $accent-color;
+        color: #fff;
+        width: 240px;
+        width: 15rem;
+        font-size: 16px;
+        font-size: 1rem;
+
+        background-image: none;
+        height: 48px;
+        height: 3rem;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+        -webkit-box-shadow: 0px 0px 0px;
+        border: solid 1px $accent-color;
+        text-shadow: none;
+
+    }
+
 
 }
 
