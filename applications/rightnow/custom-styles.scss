@@ -222,6 +222,8 @@ body.library #rn_Container .columns {
     font-weight: bold;
     font-size: 16px;
     font-size: 1rem;
+    color: $theme-color;
+    margin: 0;
   }
   ul,
   ul li {
@@ -393,33 +395,41 @@ body.library #rn_Container .row .columns {
   border-top:  1px solid $secondary-color-light;
 }
 
-.rn_AnswerList .rn_FieldDisplay.rn_Output ol,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ul,
+#rn_PageContent.rn_AnswerList ol,
+#rn_PageContent.rn_AnswerList ul,
 .rn_RelatedAnswers ol,
 .rn_RelatedAnswers ul,
 .rn_PreviousAnswers ol ,
 .rn_PreviousAnswers ul {
-  margin-left: 40px;
-  margin-left: 2.5rem;
+  margin-left: 20px;
+  margin-left: 1.25rem;
   padding-left: 0;
 }
 .rn_RelatedAnswers ul > li ,
 .rn_RelatedAnswers ol > li ,
 .rn_PreviousAnswers ol > li ,
 .rn_PreviousAnswers ul > li ,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ol > li ,
-.rn_AnswerList .rn_FieldDisplay.rn_Output ul > li {
+#rn_PageContent.rn_AnswerList ol > li ,
+#rn_PageContent.rn_AnswerList ul > li {
   margin-left: 0;
   padding-left: 0;
 }
 
-.rn_TextInput.rn_Input label,
-.rn_KeywordText label {
+.rn_TextInput.rn_Input label {
   font-size: 16px;
   font-size: 1rem;
   display: block;
   padding-left: 0;
   color: #000;
+}
+
+.rn_KeywordText label {
+  font-size: 18px;
+  font-size: 1.125rem;
+  display: block;
+  padding-left: 0;
+  color: #000;
+  font-weight: 500;
 }
 
 .rn_KeywordText input {

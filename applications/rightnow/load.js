@@ -42,6 +42,8 @@ function loadReusableComponents() {
 
     header.showLoginButton = false;
 
+    header.showMenuButton = true;
+
   });
 }
 
