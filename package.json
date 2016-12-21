@@ -36,15 +36,15 @@
     "json": "9.0.3",
     "jsonlint": "^1.6.2",
     "lint": "^1.1.2",
-    "merge-stream": "^0.1.7",
+    "merge-stream": "^1.0.1",
     "nightwatch": "^0.9.9",
-    "opn": "^1.0.0",
+    "opn": "^4.0.2",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "validation": "0.0.1",
-    "vulcanize": "v1.14.12",
-    "web-component-tester": "^4.3.5",
-    "yargs": "~3.30.0"
+    "vulcanize": "v1.15.1",
+    "web-component-tester": "^5.0.0",
+    "yargs": "~6.5.0"
   },
   "engines": {
     "npm": ">=3",
