@@ -15,7 +15,7 @@
         value: "Site Search"
       },
 
-      /** Value of redirect URL */
+      /** Value of redirect URL updated Dec 2016 */
       redirectUrl: {
         type: String,
         value: "http://www.uq.edu.au/search/?q=%20&as_sitesearch=library.uq.edu.au&cx=002364636408787706430:l-epmqjtgfs"
