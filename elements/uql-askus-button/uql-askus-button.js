@@ -9,19 +9,28 @@
       'uqlibrary-callout-button-opened': '_calloutOpened',
       'uqlibrary-callout-summary-clicked': '_linkClicked'
     },
-    attached: function () {
-      //DO NOT REMOVE!!
-      //this will be replaced with gulp task to avoid an api call for a static json file
-      var contactsJsonFileData = null;
-      var contactsJson = contactsJsonFileData;
-      if (contactsJson !== null) {
-        this.$.callout.calloutItems =  contactsJson;
-      }
-      else {
-        this.autoLoad = true;
-        return null;
-      }
-    },
+      attached: function () {
+          //DO NOT REMOVE!!
+          //this will be replaced with gulp task to avoid an api call for a static json file
+
+          var self = this;
+          var contactsJsonFileData = null;
+          var contactsJson = contactsJsonFileData;
+
+          if (contactsJson !== null) {
+              self.$.callout.calloutItems = contactsJson;
+          } else {
+              // Set up a listener to wait till the contacts have been loaded from the API, then push them to the callout
+              this.$.contactsApi.addEventListener('uqlibrary-api-contacts-loaded', function(e) {
+                  self.$.callout.calloutItems = {
+                      "items": e.detail.items,
+                      "summary": e.detail.summary
+                  };
+              });
+              // Fire the API to get the contacts
+              this.$.contactsApi.get();
+          }
+      },
 		/**
      * Called when a link is clicked in the uqlibrary-callout
      * @param e
