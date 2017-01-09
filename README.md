@@ -92,19 +92,6 @@ customisation of groups shall be done the same way as custom-styles, example:how
 
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/how-to-find-group.css" />
         
-#### LibAnswers (http://answers.library.uq.edu.au)
-
-test group (uses master branch): http://answers.library.uq.edu.au/test
-
-include this code in Custom JS/CSS Code in LinAnswers configuration
-
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico">
-        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-        <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libanswers/custom-styles.css" />
-
 #### UQ Drupal (https://web.library.uq.edu.au)
 
 UQ ITS is managing UQ Drupal library's CMS (web.library.uq.edu.au). Any components to be used in UQ Drupal require registration within UQ Drupal.
