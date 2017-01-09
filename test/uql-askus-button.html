@@ -55,10 +55,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 button.click();
 
                 expect(calloutButton.$.dropdown.opened).to.be.equal(true);
+                expect(calloutButton.$.dropdown.opened).to.be.equal(true);
 
                 done();
             });
         });
+
+
+        test('Test to see if the Ask Us button dropdown is populated', function (done) {
+            // Data bindings will stamp out new DOM asynchronously
+            // so wait to check for updates
+            flush(function () {
+
+                var calloutButton = element.$.callout;
+                expect(calloutButton.querySelector('paper-button.button-callout').length).to.not.be.null;
+                done();
+            });
+        });
+
+
+
+
+
+
+
+
     });
 </script>
 
