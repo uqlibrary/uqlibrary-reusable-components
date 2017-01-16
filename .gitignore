@@ -14,12 +14,15 @@ tmp
 .sass-cache
 /elements/elements.vulcanized.*
 
-/applications/careerhub/custom-styles.css
-/applications/libapps/libanswers/custom-styles.css
-/applications/libapps/libguides/custom-styles.css
-/applications/libwww/custom-styles.css
-/applications/omeka/custom-styles.css
-/applications/primo/custom-styles.css
-/applications/rightnow/custom-styles.css
-/applications/shared/common-minimal-styles.css
-/applications/uqlapp/custom-styles.css
+applications/careerhub/custom-styles.css
+applications/libapps/libanswers/custom-styles.css
+applications/libapps/libguides/custom-styles.css
+applications/libwww/custom-styles.css
+applications/omeka/custom-styles.css
+applications/primo/custom-styles.css
+applications/rightnow/custom-styles.css
+applications/uqlapp/custom-styles.css
+applications/shared/common-minimal-styles.css
+
+*/custom-styles.css
+*/common-minimal-styles.css

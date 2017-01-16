@@ -2,16 +2,125 @@
 body.lib_chatlanding {
     background-image: none;
 
+// start of taken directly from page
+
+    html, head, body {
+        background-color: #F5F5F5;
+    }
+
+    #rn_PageContent {
+        margin:0;
+        overflow: visible;
+    }
+
+    .rn_Padding{
+        padding: 0;
+    }
+
+    .rn_ChatEngagementStatus {
+        background-color:#F5F5F5;
+        padding: 14.5px 0 0 10px;
+        height: 26.5px;
+    }
+
+    .rn_ChatSendButton{
+        margin: 0;
+        float:none;
+    }
+
+    .rn_ChatAgentStatus{
+        background:none;
+        border:none;
+        padding-left: 0;
+        padding-bottom: 10px;
+    }
+    #rn_ChatDialogContainer {
+        background-color:#F5F5F5;
+        border: none;
+    }
+
+    .rn_ChatTranscript {
+        background-color: #F5F5F5;
+        border: none;
+    }
+
+    .rn_ChatPostMessage textarea {
+        width: 358px;
+        float: left;
+        padding: 8px 8px 0 8px;
+        padding: 0.5rem 0.5rem 0 0.5rem;
+        height: 33.6px;
+        height: 2.1rem;
+    }
+
+
+    input[type="submit"], button {
+        width:60px;
+        background-color: #3A7DDA;
+        background-image: none;
+        height: 44px;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+        -webkit-box-shadow: 0px 0px 0px;
+        border: solid 1px #3A7DDA;
+        font-size: 1.222em;
+        text-shadow: none;
+        margin:0;
+
+    }
+
+
+
+    /* MERGE BELOW */
+    .rn_ChatTranscript {
+        background-color: #F1F1F1;
+        overflow: auto;
+        /*height: auto;*/
+        min-height:30em;
+    }
+
+    .rn_MessagePost {
+        color: #4E4E4E;
+        padding:10px;
+        display:block;
+        font-family: roboto, helvetica;
+        background-color: white;
+    }
+
+    .rn_ChatTranscript .rn_MessagePost {
+        display:block;
+        clear:both;
+        border-top: 10px #F1F1F1 solid;
+        border-bottom: 2px #632381 solid;
+    }
+
+    .rn_UserTextPrefix {
+        color: #0D67B3 !important;
+        font-weight: bold;
+        /*float:right; */
+    }
+
+    .rn_AgentTextPrefix {
+        color: #632381 !important;
+        font-weight: bold;
+
+    }
+// end from page
     #rn_PageContent {
         padding-top: 0;
     }
 
     #rn_ChatDialogHeaderContainer {
-        background-color: $theme-color;
-        color: #fff;
+        // the importants can be removed when then inline style has been removed from rightnow markup files
+        background-color: #fff !important;
+        color: $theme-color !important;
+        padding-left: 20px;
+        height: 50px;
 
         h1 {
-
+            font-weight:normal;
+            font-size: 2.083em;
         }
     }
 
@@ -22,8 +131,12 @@ body.lib_chatlanding {
 
 
 body.lib_chatlaunch {
+    // this is a total hack - rightnow inserts a p tag at the top of the page, which leaves
+    // whitespace at the top. If we set the body background to the theme color, the p will take the color
+    // of that - then we override the color further down
+    background-color: $theme-color;
+
     background-image: none;
-    background-color: $secondary-color-light;
     overflow: hidden;
 
     #rn_PageContent,
@@ -131,17 +244,14 @@ body.lib_chatlaunch {
         margin-bottom: 11px;
     }
 
-    input[type="submit"], button {
+    input[type="submit"]
+    , button {
         background-color: $accent-color;
         color: #fff;
-        width: 240px;
-        width: 15rem;
         font-size: 16px;
         font-size: 1rem;
 
         background-image: none;
-        height: 48px;
-        height: 3rem;
         -moz-border-radius: 0;
         -webkit-border-radius: 0;
         -moz-box-shadow: 0px 0px 0px rgba(0,0,0,0);
@@ -150,9 +260,23 @@ body.lib_chatlaunch {
         text-shadow: none;
 
     }
+    form input[type="submit"]
+    , form button {
+        width: 240px;
+        width: 15rem;
+
+        height: 48px;
+        height: 3rem;
+
+    }
+    .yui3-widget-hd {
+        padding-bottom: 0.6rem;
+    }
 
 
 }
+
+
 
 
 
