@@ -39,11 +39,6 @@ body.lib_chatlanding {
         border: none;
     }
 
-    .rn_ChatTranscript {
-        background-color: #F5F5F5;
-        border: none;
-    }
-
     .rn_ChatPostMessage textarea {
         width: 358px;
         float: left;
@@ -72,12 +67,20 @@ body.lib_chatlanding {
 
 
 
-    /* MERGE BELOW */
     .rn_ChatTranscript {
-        background-color: #F1F1F1;
+        background-color: #F5F5F5;
+        border: none;
         overflow: auto;
-        /*height: auto;*/
-        min-height:30em;
+        min-height:348px;
+        min-height:21.75rem;
+
+        .rn_MessagePost {
+          display:block;
+          clear:both;
+          border-top: 10px #F1F1F1 solid;
+          border-bottom: 2px #632381 solid;
+        }
+
     }
 
     .rn_MessagePost {
@@ -86,13 +89,6 @@ body.lib_chatlanding {
         display:block;
         font-family: roboto, helvetica;
         background-color: white;
-    }
-
-    .rn_ChatTranscript .rn_MessagePost {
-        display:block;
-        clear:both;
-        border-top: 10px #F1F1F1 solid;
-        border-bottom: 2px #632381 solid;
     }
 
     .rn_UserTextPrefix {
@@ -125,15 +121,15 @@ body.lib_chatlanding {
     }
 
     #rn_ChatDialogHeaderButtonContainer {
-        margin-right: 30px;
+        margin-right: 40px;
     }
 }
 
 
 body.lib_chatlaunch {
-    // this is a total hack - rightnow inserts a p tag at the top of the page, which leaves
+    // bg-c hack - rightnow inserts a p tag at the top of the page, which leaves
     // whitespace at the top. If we set the body background to the theme color, the p will take the color
-    // of that - then we override the color further down
+    // of that - then we override the color further down. Nothing else removes it. :(
     background-color: $theme-color;
 
     background-image: none;
