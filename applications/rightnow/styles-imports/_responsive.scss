@@ -36,6 +36,26 @@
   }
 }
 
+// between mobile and full width screen is an evil sweet spot that the ipad falls into:
+// the libcal block writes all over itself without special handling at this specific width
+@media only screen
+and (min-width : 741px)
+and (max-width : 937px) {
+  .libcal-hours-block td {
+    margin-top: .75rem;
+    height: 51px;
+    height: 3.2rem;
+  }
+  span.s-lc-closed ,
+  span.s-lc-time {
+    display: block;
+    padding-top: 24px;
+    padding-top: 1.5rem;
+    margin-left: -32px;
+    margin-left: -4rem;
+  }
+}
+
 // overwrite crm styles that are hitting our mega menu in the hamburger
 #drawerPanelMenu .label {
   display: block;
