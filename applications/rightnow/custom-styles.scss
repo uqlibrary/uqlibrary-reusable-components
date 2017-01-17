@@ -574,3 +574,8 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
   width: 10rem;
   border-radius: 0;
 }
+
+// the polymer element is getting a top of 116px. Weird.
+.uql-mega-menu-0 iron-dropdown.uql-mega-menu {
+  top: 100px !important;
+}
