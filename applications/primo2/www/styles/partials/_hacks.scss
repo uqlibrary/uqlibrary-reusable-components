@@ -1,0 +1,18 @@
+// these are temporary hacks.
+// Use them only to get around version problems
+// they should all be removed asap
+
+// usage: i.e  hack-a-tag-unclickable
+
+.hack {
+	
+	// this hack, applied to the parent of a collection of links, makes links (<a> tags) unclickable and makes them seem as regular text. This was applied on links in the details section in full view, whereby clicking on a link triggered the advanced search, but on mobile the advanced search is diabled.
+	&-a-tag-unclickable {
+		a {
+			@extend .prm-text;
+			pointer-events: none;
+			line-height: inherit;
+			font-size: inherit;
+		}
+	}
+}

@@ -1,0 +1,196 @@
+prm-main-menu[menu-type="full"] {
+    color: $white;
+    font-size: 1.1em;
+
+    .md-button {
+        font-size: inherit;
+    }
+
+    .close-button {
+        position: fixed;
+        right: 1em;
+        top: .5em;
+        z-index: 1;
+        color: inherit;
+        transform: scale(0) rotate(-90deg);
+        transition: $swift-ease-out;
+        @include setSize(76px);
+
+        .__xs & {
+            top: .25em;
+            right: .25em;
+            @include setSize(66px);
+        }
+
+        md-dialog._md-transition-in & {
+            transform: scale(1) rotate(0deg);
+        }
+        
+        &:hover, &:focus {
+            color: inherit;
+        }
+        md-icon {
+            @include setSize(56px);
+            .__xs & {
+                @include setSize(46px);
+            }
+        }
+    }
+
+    .overlay-menu-content {
+        > div {
+            min-width: 100%;            
+             max-width: 800px; 
+            .__gt-sm & {
+                min-width: 70%;
+            }
+        }
+    }
+
+    
+    .custom-links-container {
+          
+        width: 100%;    
+        .__xs & {
+            @extend .padded-container-small;
+        }
+        .__gt-sm & {
+            margin-top: 6em;
+        }
+    }
+
+    prm-change-lang {
+        md-select-value {
+            position: relative;
+            top: -3px;
+            font-size: .95em;
+        }
+    }
+
+    prm-authentication {
+        .md-button {
+            + .md-button {
+                margin-top: 1em;
+            }            
+        }
+    }
+
+    .settings-container {
+        text-transform: uppercase;
+        transition: $swift-ease-out;        
+
+        .__gt-xs & {
+            position: absolute;
+            top: 0; 
+            @extend .margin-bottom-large;
+
+            + md-divider {
+                margin-top: 5em;
+            }           
+        }
+
+        .__sm & {
+            left: 0;            
+            margin: 0.5em 0 0 1.5em;
+        }
+
+        .__gt-sm & {
+            right: 0;
+            margin: .25em 5em 0 0;
+           + md-divider {
+                display: none;
+            }
+        }
+
+        md-input-container {
+            margin: 0;
+        }
+        md-divider  {
+            margin: 0 .5em;
+            // margin-top: 5em;
+        }        
+
+        &.ng-enter {
+            transform: translateY(-100px);            
+            &.ng-enter-active {
+                transform: translateY(0);            
+            }
+        }
+    }
+
+    .md-button,
+    .overlay-menu-item {
+        padding: .5em;  
+        &:hover,&:focus, &.md-focused , md-select:focus{
+            @extend .hoverable-over-dark;
+        }
+    }
+
+
+    md-divider {
+        margin: 0em 1em 2em 1em;
+        @include bgColor(white);
+        opacity: .3;
+
+        .__xs & {
+            margin: .5em 1.5em;
+        }
+    }
+
+    md-card {
+        position: relative;
+        cursor: pointer;        
+        transform-origin: 0 50%;
+        border-radius: $radius;
+        align-self: stretch;
+        &:hover,&:focus {
+            @extend .hoverable-over-dark;
+        }
+
+        .__gt-sm & {
+            text-align: center;
+            transform-origin: 50%;
+        }
+        .md-headline {
+            @extend .prm-links.prm-alt-link.prm-hue1;
+            @extend .spaced-text;
+            @extend .bold-text;
+            text-transform: uppercase;
+            font-size: 1.3em;
+        }   
+
+        .md-ripple-container {
+            border-radius: $radius;
+        }
+        &.ng-enter {
+          transform: scale3d(.5,.5, 1);
+            transition: transform .6s $easeOutExpo, opacity .2s;
+          opacity: 0;
+          &.ng-enter-active {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+        &.ng-enter-stagger {
+          transition-delay: .03s;
+        }
+    }
+    md-card-title{
+        padding-top: 16px;
+        .__xs & {
+            padding: .5em 1em ;
+        }
+        
+        md-card-title-text:only-child {
+            .md-subhead {
+                padding-top: .35em;
+                font-size: inherit;
+                .__xs & {
+                    padding-top: .35em;
+                }
+            }
+        }
+    }
+}
+
+

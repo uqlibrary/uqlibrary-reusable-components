@@ -1,0 +1,493 @@
+@keyframes animationFrames{
+  0% {
+    transform:  translate(0px,0px)  scale3d(.5,.5,1);
+  }
+  15% {
+    transform:  translate(0px,-25px)  scale3d(.5,.5,1);
+  }
+  30% {
+    transform:  translate(0px,0px) ;
+  }
+  45% {
+    transform:  translate(0px,-15px) ;
+  }
+  60% {
+    transform:  translate(0px,0px)  ;
+  }
+  75% {
+    transform:  translate(0px,-5px)  ;
+  }
+  100% {
+    transform:  translate(0px,0px)  scale3d(1,1,1);
+  }
+}
+
+@keyframes pulsateYellowBG {
+    0% { background-color: $highlightYellow;}
+    50% { background-color: desaturate(darken($highlightYellow, 15%), 10%);}
+    100% { background-color: $highlightYellow; }
+}
+@keyframes pulsateYellowColor {
+    0% { color: $highlightYellow;}
+    50% { color: desaturate(darken($highlightYellow, 15%), 10%);}
+    100% { color: $highlightYellow; }
+}
+
+
+.animate-fade-in-out {
+  transition: $swift-ease-out;
+  &.ng-hide-add {
+    opacity: 0;
+  }
+  &.ng-hide-remove {
+    opacity: 1;
+    &.ng-hide-remove-active {
+      opacity: 0;
+    }
+  }
+  &.ng-hide {
+    opacity: 0;
+  }
+}
+
+
+.animate-if-fade-in-out {      
+  transition: $swift-ease-out;
+  &.ng-enter {
+    opacity: 0;
+    &.ng-enter-active {
+      opacity: 1;
+    }
+  }
+  &.ng-leave {
+    transition-duration: .15s;
+    opacity: 1;
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
+}
+
+.animate-scale {
+  opacity: 1;
+  transform: scale3d(1,1,1);
+  &.ng-hide-add {
+    transition: $swift-ease-out;
+    transition-duration: .3s;
+    &.ng-hide-add-active {
+    
+    }
+  }
+  &.ng-hide-remove {
+    transition: $swift-ease-in;
+    transition-duration: .2s;
+    &.ng-hide-remove-active {
+    
+    }
+  }
+  &.ng-hide {
+    opacity: 0;
+    transform: scale3d(.5,.5,1);
+  }
+}
+
+.animate-enter-leave-scale {   
+  transform-origin: 50%;
+  &.ng-enter {
+    transform: scale3d(.85,.85,1);
+    opacity: 0;
+    transition: $swift-ease-out;
+    transition-duration: .5s;
+    &.ng-enter-active {
+      transform: scale3d(1,1,1);
+      opacity: 1;
+    }
+  }
+  &.ng-leave {
+    transform: scale3d(1,1,1);
+    opacity: 1;
+    transition: $swift-ease-in;
+    transition-duration: .2s;
+    &.ng-leave-active {
+      opacity: 0;
+      transform: scale3d(.8,.8,1);
+    }
+  }
+  &.ng-enter-stagger  {
+    transition-delay: .1s;
+  }
+}
+
+.animate-enter-leave-scale-bounce {    
+  transform-origin: 50% 50%;
+  &.ng-enter {
+    transition: $swift-ease-out;
+    transform: scale3d(0,0,1) translateX(-30px);
+    opacity: 0;
+    &.ng-enter-active {
+      transform: scale3d(1,1,1) translateX(0);
+      opacity: 1;
+    }
+  }
+  &.ng-leave {
+    transition: $swift-ease-out;
+    transition-duration: .2s;
+    transform: scale3d(1,1,1) translateX(0);
+    opacity: 1;
+    &.ng-leave-active {
+      opacity: 0;
+      transform: scale3d(0,0,1) translateX(-30px);
+    }
+  }
+  &.staggered {
+    &.ng-enter-stagger  {
+      transition-delay: .05s;
+    }
+  }
+  
+}
+
+.animate-enter-leave-scale-max-height {  
+  transform-origin: 50% 0;
+  max-height: 200em;
+  &.ng-enter {
+    transform: scale3d(.8,.8,1);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity .3s ease, max-height .3s .05s ease, transform .5s $swift-ease-out-timing-function;
+    &.ng-enter-active {
+      transform: scale3d(1,1,1);
+      opacity: 1;
+      max-height: 30em;
+    }
+  }  
+  &.ng-leave-active {    
+    transition: opacity .2s .15s ease, max-height .3s $swift-ease-out-timing-function, transform .3s .15s $swift-ease-in-timing-function;
+    transform: scale3d(1,1,1);
+    opacity: 1;
+    max-height: 30em;
+    overflow: hidden;
+    &.ng-leave-active {
+      opacity: 0;
+      transform: scale3d(.5,.5,1);
+      max-height: 0;
+    }
+    
+  }
+  
+}
+
+.animate-max-height {  
+  max-height: 30em;  
+  transition: max-height 1s $easeOutQuint;
+  &.ng-enter {
+    overflow: hidden;
+    max-height: 0;    
+    transition: max-height 1s $easeOutQuint;
+    transition-delay: 1s;
+    &.ng-enter-active {    
+      max-height: 30em;
+    }
+  }
+  &.ng-leave {
+    overflow: hidden;
+    max-height: 30em;
+    &.ng-leave-active {
+       max-height: 0;
+    }
+  }
+}
+
+.animate-max-height-variable {    
+  max-height: none;   
+  &.ng-hide-add {    
+    max-height: 1000em; 
+    overflow: hidden;
+    opacity: 1; 
+    transition-duration: .4s;
+    transition: all .2s $easeOutExpo;
+    &.ng-hide-add-active {
+      max-height: 0;
+      opacity: 0;
+    }
+  }
+  &.ng-hide-remove {    
+    overflow: hidden;
+    max-height: 1000em;
+    transition-duration: .3s;
+    transition: $swift-ease-in;
+    &.ng-hide-remove-active {    
+    }
+  }
+  &.ng-hide {
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+.animate-max-height-small {  
+  &.ng-enter {
+    overflow: hidden;
+    max-height: 0;    
+    transition: max-height .3s 0s $easeOutQuint;
+    // transition-delay: 1s;
+    &.ng-enter-active {    
+      max-height: 5em;
+    }
+  }
+  &.ng-leave {
+    overflow: hidden;
+    max-height: 7em;
+    transition: max-height .3s 0s $easeOutQuint;
+    &.ng-leave-active {
+       max-height: 0;
+    }
+  }
+}
+
+.selectable-child {   
+    transform: scale3d(1,1,1);
+    opacity: 1;   
+    transition: $swift-ease-out;
+    transition-duration: .3s;
+    width: 32px;
+    &.ng-enter {
+      width: 0;
+      transition: .2s $easeOutBack;
+       opacity: 0;
+       transform: scale3d(0,0,1);
+      &.ng-enter-active {
+        transform: scale3d(1,1,1);
+        opacity: 1;
+        width: 32px;
+      }
+    }
+    &.ng-leave-active {
+      transform: scale3d(1,1,1);
+      opacity: 1;
+      width: 32px;
+      &.ng-leave-active {
+        opacity: 0;
+        width: 0;
+        transform: scale3d(.3,.3,1);
+      }
+    }
+  }
+
+  .animate-popover {
+    transform-origin: 25% 0%;
+    opacity: 1;
+    transform: scale3d(1,1,1) translateX(-30%);
+    clip-path: circle(80% at 50% 50%);
+    &.ng-hide-add {
+      transition: transform .4s $swift-ease-out-timing-function, opacity .2s ease, clip-path .6s $swift-ease-out-timing-function, -webkit-clip-path .6s $swift-ease-out-timing-function;
+    }
+    &.ng-hide-remove {
+      transition: transform .4s .5s  $swift-ease-out-timing-function, opacity .3s .5s ease, clip-path .4s .5s $swift-ease-out-timing-function, -webkit-clip-path .4s .5s $swift-ease-out-timing-function;
+    }
+    &.ng-hide {
+      clip-path: circle(10% at 50% 0%);
+      opacity: 0;
+      transition-delay: 0s;
+      transform: scale3d(.9,.9,1) translateX(-30%);
+    }
+  }
+
+  .animate-form-inputs {
+    md-input-container {
+      opacity: 1;
+      max-height: 80px;
+      overflow: visible;
+      
+      // transition-duration: 1s;
+      &.ng-hide-add {
+        transition: $swift-ease-out;
+        transition-duration: .3s;
+        overflow: hidden;
+        &.ng-hide-add-active {
+        
+        }
+      }
+      &.ng-hide-remove {
+        transition: $swift-ease-in;
+        transition-duration: .2s;
+        overflow: hidden;
+        &.ng-hide-remove-active {
+        
+        }
+      }
+      &.ng-hide {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+      }
+    }
+  }
+  
+
+  .animate-form-inputs2 {
+    md-dialog-content {
+      overflow: hidden;
+    }
+    md-input-container {
+      opacity: 1;
+      max-height: 80px;
+      overflow: hidden;
+      
+      &.ng-hide-add {
+        transition: $swift-ease-out;  
+        transition-duration: .7s;      
+        transition-delay: .25s;        
+        transform: translateY(0);
+        &.ng-hide-add-active {
+          transform: translateY(-100%);
+        }
+      }
+      &.ng-hide-remove {
+        transition: $swift-ease-in;
+        transition-duration: .6s;
+        &.ng-hide-remove-active {
+        
+        }
+      }
+      &.ng-hide {
+        opacity: 0;
+        max-height: 0;
+        padding: 0;
+        transform: translateY(100%);
+      }
+    }
+  }
+
+  .animate-chip {
+    transform-origin: 0 75%;
+    &.ng-enter {
+      opacity: 0;
+      overflow: hidden;
+      max-height: 0; 
+      transform: scale3d(0,0,1);
+      transition: $swift-ease-out;
+      &.ng-enter-active {
+        max-height: 3em; 
+        opacity: 1;
+        transform: scale3d(1,1,1);
+      }
+    }
+    &.ng-leave {
+      opacity: 1;
+      max-height: 3em; 
+      transform: scale3d(1,1,1);
+      transition: $swift-ease-out;
+      &.ng-leave-active {
+        opacity: 0;
+        max-height: 0; 
+        transform: scale3d(0,0,1);
+      
+      }
+    }
+  }
+
+  .animate-chip-section {
+    transform-origin: 0 50%;
+    &.ng-enter {
+      opacity: 0;
+      overflow: hidden;
+      max-height: 0; 
+      transform: scale3d(0,0,1);
+      transition: $swift-ease-out;
+      // transition: max-height .3s 0s $easeOutQuint;
+      &.ng-enter-active {
+        opacity: 1;
+        max-height: 7em; 
+        transform: scale3d(1,1,1);
+      }
+    }
+    &.ng-leave {
+      opacity: 1;
+      overflow: hidden;
+      max-height: 7em;
+      transform: scale3d(1,1,1);
+      transition: $swift-ease-out;
+      &.ng-leave-active {
+        opacity: 0;
+        max-height: 0;
+        transform: scale3d(0,0,1);
+      
+      }
+    }
+  }
+
+  .animate-horizontal-swap {
+    // transition-duration: 1s;
+    &.ng-enter {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity .3s ease, transform .5s $swift-ease-out-timing-function;
+      &.ng-enter-active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    &.ng-leave {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity .2s ease, transform .2s $swift-ease-in-timing-function;
+      &.ng-leave-active {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+    }
+  }
+
+  .animate-opacity-and-scale {
+    &.ng-enter {
+      opacity: 0;
+      transform: scale3d(0,0,1);
+      transition: opacity .3s ease, transform .4s $swift-ease-out-timing-function;
+      &.ng-enter-active {
+        opacity: 1;
+        transform: scale3d(1,1,1);
+      }      
+    }
+    &.ng-leave {
+      opacity: 1;
+      transform: scale3d(1,1,1);
+      transition: opacity .2s ease, transform .3s $swift-ease-out-timing-function;
+
+      &.ng-leave-active {
+        opacity: 0;      
+        transform: scale3d(0,0,1);
+      
+      }
+    }
+    &.ng-enter-stagger,
+    &.ng-leave-stagger  {
+      transition-delay: .015s;
+    }
+  }
+
+
+.animate-search-bar {    
+  transition: max-height .3s $swift-ease-in-timing-function, opacity .5s ease;
+  &.ng-hide-add {
+    overflow: hidden;
+    max-height: 20em;  
+    opacity: 1;
+    transition: max-height .4s $swift-ease-out-timing-function, opacity .8s ease;
+  }
+  &.ng-hide-remove {
+    overflow: hidden;
+    max-height: 0; 
+    opacity: 0;
+    &.ng-hide-remove-active {
+      max-height: 20em;
+      opacity: 1;
+    }
+  }
+  &.ng-hide {
+    max-height: 0;
+    opacity: 0;
+  }
+}

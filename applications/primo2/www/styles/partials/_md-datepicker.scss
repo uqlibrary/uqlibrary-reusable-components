@@ -1,0 +1,27 @@
+.dates-range-picker {
+	md-datepicker {
+
+	}
+	.md-datepicker-button {
+		display: none;
+	}
+	.md-datepicker-input-container {
+		margin-left: 0;
+		border: none;
+	}
+	.md-datepicker-input {
+		min-width: 75px;
+		line-height: 22px;
+	}
+	.md-datepicker-triangle-button {
+		top: 4px;
+	}
+}
+
+.md-datepicker-calendar-pane {
+	background-color: white;
+}
+
+.md-calendar-date-disabled {
+	color: rgba(0,0,0,0.435);
+}

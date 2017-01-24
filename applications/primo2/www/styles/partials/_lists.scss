@@ -1,0 +1,30 @@
+// ordered lists
+ol {
+    margin: 0;
+    padding-left: 1.5em;
+    line-height: 1.6em;
+    li {
+        padding-left: .5em;
+
+        &:before {
+            color: red;
+        }
+    }
+}
+
+// custom numbers list:
+.numbered-list {
+    counter-reset: prmNumbers;
+    padding-left: 1em;
+    .item {
+        list-style: none;
+        &:before {
+            padding-left: 0;
+            content: counter(prmNumbers);
+            counter-increment: prmNumbers;
+            margin-right: .5em;
+            font-style: italic;
+            @extend .weak-text;
+        }
+    }
+}

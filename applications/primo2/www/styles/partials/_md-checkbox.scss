@@ -1,0 +1,48 @@
+md-checkbox {
+	margin-bottom: 0;
+	.md-icon,
+	._md-icon{
+		opacity: .3;
+		border-color: $dark;
+		border-width: 1px;
+	}
+	&:hover {
+	// &.md-checked:hover {
+		.md-icon,
+		._md-icon {
+			opacity: .7;
+		}
+	}
+	&.md-checked {
+		.md-icon, 
+		._md-icon {
+			opacity: 1;
+			@extend .prm-secondary-bg.prm-hue2;
+		}
+		&:hover {
+			.md-icon, 
+			._md-icon {
+				opacity: 1;
+			}
+		}
+		.md-container,
+		._md-container {
+			color: $white;
+		}
+	}	
+	&.has-small-text {
+		.md-container,
+		._md-container {
+			top: 4px;
+			transform: none;
+		}
+	}
+	.presentable-disabled-inputs & {
+		&[disabled] {
+			.md-label,
+			._md-label {
+				color: $dark;
+			}
+		}
+	}
+}

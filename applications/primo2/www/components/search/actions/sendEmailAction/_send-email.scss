@@ -1,0 +1,12 @@
+/* starting sendEmail */
+
+prm-send-email {
+    .form-focus {
+        > div {
+            .__xs & {
+                padding: 0;
+            }        
+        }
+    }
+    
+}

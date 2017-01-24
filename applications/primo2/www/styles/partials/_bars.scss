@@ -1,0 +1,85 @@
+prm-alert-bar {
+	> div {
+		&.ng-enter {
+			opacity: 0;
+			transition: max-height .4s .3s $easeOutQuint, opacity .3s .3s ease, transform .4s .3s $easeOutQuint;
+			overflow: hidden;
+			max-height: 0;
+			transform: scale(0);
+			&.ng-enter-active {
+				opacity: 1;
+				max-height: 70px;
+				transform: scale(1);
+			}
+		}
+		&.ng-leave {
+			opacity: 1;
+			overflow: hidden;
+			transition: max-height .5s $easeInOutQuint, opacity .4s ease, transform .5s $easeInQuint;
+			max-height: 60px;
+			transform: scale(1);
+			&.ng-leave-active {
+				opacity: 0;
+				max-height: 0;
+				transform: scale(0);
+			}
+		}
+	}
+	.dismiss-alert-button {
+		.__xs & {
+			min-width: 40px;
+		}
+	}
+}
+
+.bar {
+	padding: 0.5em 1em;
+	border: 1px solid;
+	height: $defaultBarHeight;
+	min-height: $defaultBarHeight;
+	border-radius: $radius;
+	.__xs & {
+		height: auto;
+	}
+
+	&.large-bar {
+		min-height: 100px;
+	}
+	.bar-text {
+		@extend .margin-right-small;
+		[dir="rtl"] & {
+			@extend .margin-left-small;
+		}
+
+	}
+	md-divider {
+		height: 1.5em;
+		margin-right: .5em;
+		margin-left: .5em;
+		border-color: transparentize($dark, .8);
+	}
+	&.filter-bar {
+		@extend .prm-background.prm-hue6;
+		@extend .prm-background-border.prm-hue3;
+	}
+	
+	&.alert-bar {
+		@extend .prm-alert;
+		@extend .prm-alert-bg;
+		@extend .prm-alert-border;
+		
+	}
+	&.success-bar {
+		background-color: desaturate(lighten($success, 30%), 5%);
+		border-color: lighten($success, 20%);
+		color: darken($success, 30%)
+	}
+	&.error-bar {
+		background-color: desaturate(lighten($red, 30%), 5%);
+		border-color: lighten($red, 25%);
+		color: darken($red, 10%);
+		border-width: 0;
+	}
+}
+
+

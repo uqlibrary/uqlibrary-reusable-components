@@ -1,0 +1,52 @@
+/* starting virtualBrowse */
+
+prm-virtual-browse {
+	position: relative;
+	width: 100%;
+	display: block;
+	.md-virtual-repeat-container {
+		background-color: transparent;
+		height: 240px;
+		width: auto;
+		margin-right: 48px;
+		margin-left: 48px;
+	}
+	[md-virtual-repeat] {	
+		  box-sizing: border-box;
+		  display: inline-block;
+		  // height: 100%;
+		  width: 110px;
+		  margin: .5em;
+	}
+
+	.md-virtual-repeat-scroller {
+		height: calc(100% + 20px);
+	}
+
+	.md-virtual-repeat-offsetter {
+		display: flex;
+		ul {
+			margin: 0;
+		}
+	}
+	.container-nav-controls {
+		.nav-control {
+			position: absolute;
+			top: 0;
+			margin: 0;
+			height: 100%;
+			width: 48px;
+			min-width: 48px;
+			max-width: 48px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			&.nav-left {
+				left: 0;
+			}
+			&.nav-right {
+				right: 0;
+			}
+		}
+	}
+}

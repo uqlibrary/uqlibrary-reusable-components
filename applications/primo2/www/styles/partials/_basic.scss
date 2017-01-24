@@ -1,0 +1,47 @@
+
+html, body {
+    @extend .prm-background;    
+
+    @include ie-only {
+        // IE overrides here
+    }
+}
+
+body {        
+    font-family: $serif;
+    font-size: $defaultFontSize;
+    // overflow-x: hidden;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+a, button {
+    .fa,
+    .icon,
+    .glyphicon {
+        margin-right: 8px;
+    }
+}
+
+:focus {
+  outline: -webkit-focus-ring-color auto 0;
+}
+
+::selection {
+    background: $highlight;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.bold {
+  font-weight: $bold;
+}
+
+mark {
+    background-color: transparent;
+    color: inherit;
+    @extend .text-highlight;
+}

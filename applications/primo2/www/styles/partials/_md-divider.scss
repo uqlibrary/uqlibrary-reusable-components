@@ -1,0 +1,15 @@
+md-divider {
+	&.transparent-divider {
+		opacity: 0;
+	}
+	&.skewed-divider {
+		transform: rotate(15deg)
+	}
+}
+.skewed-divider {
+	content: "";
+    height: 1em;
+    width: 1px;
+    background-color: #d0d0d0;
+    transform: rotate(15deg);	
+}

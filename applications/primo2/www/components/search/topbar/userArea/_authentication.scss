@@ -1,0 +1,14 @@
+/* starting authentication */
+prm-authentication {
+	// style the sign in button to look like a link
+	.md-button {
+		.bar & {
+            @extend .button-as-link;
+		}
+        [dir="rtl"] & {
+            md-icon {
+                transform: rotate(180deg) scaleY(-1);
+            }
+        }
+	}
+}

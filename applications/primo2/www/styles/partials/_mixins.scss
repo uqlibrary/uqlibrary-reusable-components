@@ -1,0 +1,148 @@
+// MIXINS
+
+// Import hand-picked angular material mixins
+@import 'mixins/material-mixins';
+
+// mixin to enable using mixin at root or nested
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+// input placeholder styling
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content};
+  &:-moz-placeholder           {@content};
+  &::-moz-placeholder          {@content};
+  &:-ms-input-placeholder      {@content};
+}
+
+// set element size
+// pass a value to set it's size
+@mixin setSize($iconSize) {
+	height: $iconSize;
+	width: $iconSize;
+	min-height: $iconSize;
+	min-width: $iconSize;
+}
+
+// set color, and hover color by passing a color or variable
+// usage: @include buttonBgColor($colorName);
+@mixin bgColor($baseColor) {
+
+    color: $baseColor;
+
+    &:hover,
+    &:focus,
+    &.hovered,
+    &.md-focused,
+    &._md-focused {
+        &:not([disabled]) {
+            @if $baseColor == white or $baseColor == #fff or $baseColor == $white {
+                color: $baseColor;
+                background-color: transparentize($baseColor, .92);
+             } @else {
+                color: darken(saturate($baseColor, 15%), 10%);
+                background-color: transparentize($baseColor, .9);
+             }
+        }
+    }
+}
+
+// remove transitions for IE
+// usage: @include ie-exceptions { ...css rules... }
+@mixin ie-exceptions {
+    /* IE exceptions (remove transitions and animation) */
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      animation: none !important;
+      transition: none !important;
+      transition-duration: 0ms !important;
+      transition-delay: 0ms !important;
+      box-shadow: none !important;
+      @content;
+    }
+}
+// usage: @include ie-only {...css rules...}
+@mixin ie-only {
+    /* IE exceptions (remove transitions and animation) */
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      @content;
+    }
+}
+
+// multi line elipsis
+// usage eg.: @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);  
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount; 
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }
+}
+
+// breakpoints mixins
+// use ONLY whn the MediaQueries service from Angular MAterial is not sufficient (i.e, when it's not refreshing soon enough)
+$__xs:  599px;
+$__xs-portrait: 479px;
+
+@mixin __xs{
+  /* literal update of the css on viewport change */
+  @media screen and (max-width: $__xs) {
+    @content;
+  }
+}
+@mixin __xs-portrait {
+  /* literal update of the css on viewport change */
+  @media screen and (max-width: $__xs-portrait) {
+    @content;
+  }
+}
+@mixin __gt-xs {
+  /* literal update of the css on viewport change */
+  @media screen and (min-width: ($__xs + 1)) {
+    @content;
+  }
+}
+
+
+// @mixin inline-pill-outline($color) {
+//     padding: .35em .75em;
+// 	border-radius: 1.2em;
+// 	box-shadow: inset 0 0 0 1px $color;
+// 	background-color: 
+// }
+// @mixin placeholder {
+//   @include optional-at-root('::-webkit-input-placeholder') {
+//     @content;
+//   }
+
+//   @include optional-at-root(':-moz-placeholder') {
+//     @content;
+//   }
+
+//   @include optional-at-root('::-moz-placeholder') {
+//     @content;
+//   }
+
+//   @include optional-at-root(':-ms-input-placeholder') {
+//     @content;
+//   }
+// }

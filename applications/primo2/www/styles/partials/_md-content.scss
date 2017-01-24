@@ -1,0 +1,12 @@
+md-content,
+md-content.md-primoExplore-theme {
+	background-color: transparent;
+	box-shadow: 0 0 0 0 $yellow;
+	// transition: $swift-ease-out;
+	&.editable {
+		box-shadow: 0 0 0 3px $yellow;
+	}
+	&.opaque-content {
+		background-color: $white;
+	}
+}

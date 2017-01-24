@@ -1,0 +1,353 @@
+md-tabs  {
+
+	md-tabs-wrapper {
+
+		prm-icon {
+			display: flex;
+		}
+
+		md-tabs-canvas {
+			md-pagination-wrapper {
+                .__gt-xs & {
+                    display: flex;
+                    flex-direction: row;
+                    // justify-content: space-between;
+                    width: 100% !important;
+                }
+				md-tab-item:not([disabled]) {
+					color: transparentize($dark, .3);
+                    min-width: 4em;
+					&.md-active,
+					&.md-focused {
+						@extend .prm-primary-color;
+
+					}
+					&.md-focused {
+						@extend .prm-background.prm-hue9;
+					}
+					prm-icon {
+						// margin-left: .35em;
+					}
+					md-icon {
+						@include setSize(18px);
+					}
+
+				}
+			}
+		}
+	}
+
+	&.hide-tabs-arrows {
+
+		md-tabs-wrapper,
+		md-tabs-canvas {
+			margin: 0;
+		}
+
+		md-next-button,
+		md-prev-button {
+			display: none;
+		}
+
+
+	}
+
+	md-ink-bar {
+		@extend .prm-secondary-bg.prm-hue1;
+	}
+}
+> md-tabs-wrapper{
+	.hidden-tabs & {
+		display: none;
+	}
+	.default-tabs & {
+		background-color: transparent;        
+	}
+    .default-tabs[md-border-bottom] & {
+        @extend .prm-background.prm-hue1;
+        background-color: transparent !important; 
+    }
+}
+md-tab-content {
+	transition: transform .4s $swift-ease-out-timing-function;
+
+	.static-tabs & {
+		padding: 1em;
+		.__xs &{
+			padding: 0;
+		}
+	}
+
+	h2 {
+		margin-top: 0;
+	}
+	.tab-content-header {
+
+		.__xs &{
+			padding: .5em;
+			margin-bottom: 0;
+		}
+		
+		@extend .margin-bottom-medium;
+
+		md-input-container {
+			margin: 0;
+			md-select-value {
+				.md-text {
+					@extend .prm-primary-color;
+				}
+			}
+		}
+
+		prm-icon {
+			// display: inline-flex;
+		}
+
+	}
+
+	.header-title {
+		md-input-container {
+			margin-left: 1em;
+		}
+	}
+
+	.tab-header {
+		margin-bottom: .5em;
+	}
+
+	.tab-header-actions {
+		md-divider {
+			margin: 0 .5em;
+		}
+		.md-button {
+			margin: 0;
+		}
+
+	}
+
+}
+md-tab-item,
+md-tab-item:not([disabled]) {
+
+	.icon-tabs & {
+		md-icon {
+			width: 24px;
+			height: 24px;
+			margin: 0;
+		}
+		.button-text {
+			font-size: .75em;
+			font-weight: 400;
+			letter-spacing: 0.05em;
+		}
+	}
+}
+
+md-tabs {
+	&.has-dummy-tab {
+		md-tab-item {
+			&:first-child {
+				display: none;
+			}
+		}
+	}
+}
+
+md-ink-bar {
+	.has-dummy-tab & {
+		left: -20px;
+	}
+}
+
+.tab-description {
+	max-width: 40em;
+	margin-bottom: 1em;
+}
+.tab-label-count {
+	width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    // opacity: .7;
+    margin-left: .3em;
+    font-size: .85em;
+    font-weight: normal;
+    font-size: 1.2rem;
+
+    &.label-warning {
+    	box-shadow: 0 0 0 1px $red;
+    }
+
+    &.label-notify {
+    }
+}
+
+md-tabs {
+	&.vertical-tabs {
+		display: flex;
+    	flex-direction: row;
+        top: 0;
+
+        .__xs & {
+            flex-direction: column;
+        }
+
+    	md-tabs-wrapper {
+    		position: relative;
+    		flex: 1 0 30%;
+    		height: auto;
+
+            md-tabs-canvas {
+                overflow: visible;
+                height: auto;
+                .__xs & {
+                    height: auto;
+                }
+                
+                md-pagination-wrapper {
+                    width: 100% !important;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    height: auto;
+
+                    .__xs & {
+                        position: relative;
+                        align-items: center;
+                    }
+                }
+            }
+    	}
+        &.tabs-on-left {
+            md-tab-item {
+                text-align: left;
+            }
+        }
+    	md-tabs-content-wrapper {
+    		flex: 1 0 55%;
+    		display: flex;
+    		align-items: center;
+    		justify-content: center;
+    	}    	
+    	
+    	md-ink-bar {
+    		display: none;
+    	}
+    	md-tab-content {
+    	}
+    	md-tab-item {
+    		text-transform: none;
+            padding: .5em;
+            max-width: 100%;
+            line-height: 1.2em;
+            white-space: normal;
+
+    	}
+
+    	&:not(.md-dynamic-height) {
+    		min-height: 120px;
+    	}
+
+    	&[md-align-tabs=bottom] {
+    		padding-bottom: 0;
+    	}
+	}
+}
+// scale animation (instead of slide)
+md-tabs {
+	&.scale-transition {
+		md-tab-content {
+		  display: block;
+		   position: absolute;
+		   top: 0;
+		   left: 0;
+		   right: 0;
+		   bottom: 0;
+		   transform-origin: 50% 0;
+		   transition: transform .6s $easeOutExpo;
+		   overflow: auto;
+		   z-index: 1;
+		   &.md-no-scroll {
+		     bottom: auto;
+		     overflow: hidden;
+		   }
+		   &.ng-leave, &.md-no-transition {
+		     transition: none;
+		   }
+		   &.md-left:not(.md-active) {
+		     transform: translateY(-5%) scale3d(.9,.9,1);
+		     animation: .3s md-tab-content-scale-hide;
+		     opacity: 0;
+		     z-index: -1;
+		     * {
+		       transition: visibility 0s linear;
+		       // transition-delay: $swift-ease-in-out-duration;
+		       transition-delay: .3s;
+		       visibility: hidden;
+		     }
+		   }
+		   &.md-right:not(.md-active) {
+		     transform: translateY(-5%) scale3d(.9,.9,1);
+		     animation: .3s md-tab-content-scale-hide;
+		     opacity: 0;
+		     z-index: -1;
+		     * {
+		       transition: visibility 0s linear;
+		       // transition-delay: $swift-ease-in-out-duration;
+		       transition-delay: .3s;
+		       visibility: hidden;
+		     }
+		   }
+		   > div.ng-leave {
+		     animation: .3s md-tab-content-scale-hide;
+		     z-index: -1;
+		   }
+		}
+	}
+}
+
+
+md-tabs {
+	&.tabs-as-links {
+		md-tab-item,
+		md-tab-item:not([disabled]) {
+			@extend .prm-links;
+			padding: 0;
+		}
+	}
+}
+
+md-tabs {
+	&.tabs-as-app {
+		.back-button {
+			@extend .prm-links;
+			margin-bottom: .5em;
+
+			&.ng-hide-add {
+			  &.ng-hide-add-active {
+			  }
+			}
+
+			&.ng-hide-remove {
+
+				transition: all .4s .2s $swift-ease-out-timing-function;
+				transform: translateX(30px);
+				opacity: 0;
+			  &.ng-hide-remove-active {
+			  	transform: translateX(0);
+			  	opacity: 1;
+			  }
+			}
+		}
+	}
+}
+
+md-tabs {
+	#full-view-item-actions & {
+		md-ink-bar {
+			margin: 0 1em;
+		}
+	}
+}

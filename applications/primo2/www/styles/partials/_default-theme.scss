@@ -1,0 +1,42 @@
+//colors
+
+// $white: white;
+// $almostWhite: #EFEFE7;
+// // $nearlyWhite: #fbfbf8;
+// $lightestGrey: darken($almostWhite, 3%);
+// $blueGrey: #ccc;
+// $midGrey: #53738C;
+// $dark: #333;
+// $darker: #222;
+// $almostBlack: #777;
+// $red: tomato;
+// $links: #5C92BD;
+// $titles: rgb(68, 112, 123);
+// $frbr: #ed9100;
+
+// //$background: $lightestGrey; //redundancy of almostwhite
+// $backgroundHover: darken($background, 5%);
+
+// $highlightYellow: rgb(255, 255, 226);
+// $highlightYellow: #FFFCC4;
+// $highlight: #F7EDA3;
+// $success: #5cb85c;
+// $green: #5cb85c; // redundancy of 'success'
+// $orange: #E0962E;
+
+// // positive (topbar)
+// $positive: #72B4BA;
+// $halfPositive: rgba(91, 139, 155, 1);
+// $faintPositive: rgba(98, 128, 151, 1);
+// $mutePositive: rgba(91, 132, 152, 1);
+
+// $disabled: #aaa;
+// $courseColor: #55909B;
+
+// $primary: #83C3B1;
+// $secondary: #9DBBC2;
+
+
+body {
+	background-color: $background;
+}

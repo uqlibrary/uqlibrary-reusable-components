@@ -1,0 +1,87 @@
+::-ms-clear {
+	display: none;
+}
+
+md-autocomplete {
+	button {
+		&:after {
+			background-color: transparentize($dark, .7)
+		}
+		&:focus {
+			&:after {
+				transform: scale(1);
+    			opacity: 1;
+			}
+		}
+	}
+}
+md-autocomplete-wrap {
+	input {
+		border-top-left-radius: $radius;
+    	border-bottom-left-radius: $radius;
+	}
+}
+.md-autocomplete-suggestions {
+	li {
+		font-size: 1.15em;
+		height: 2.2em;
+		line-height: 2.2em;
+		color: darken($text, 10%);
+		@extend .bold-text;
+	}
+	.highlight {
+		font-weight: $normal;
+		color: lighten($text, 10%);
+	}
+
+	.suggestion-scope {
+		@extend .text-italic;
+		@extend .prm-primary-color;
+		@extend .first-letter-uppercase;
+		font-size: .9em;
+	}
+	md-icon {
+		@include setSize(16px);
+		opacity: .4;
+		margin-right: .2em;
+	}
+}
+
+prm-autocomplete {
+	input {
+		font-size: 1.3em;
+		// @extend .spaced-text;
+	}
+}
+
+// simple search autocomplete results container (virtual repeat container)
+md-virtual-repeat-container#prm-simple-search {
+	max-height: 320px !important;
+	height: auto !important;
+
+	.md-virtual-repeat-scroller {
+		bottom: auto;
+		right: auto;
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	.md-virtual-repeat-offsetter {
+		overflow: hidden;
+		position: relative;
+		right: auto;
+		height: auto;
+		left: auto;
+		top: auto;
+	}
+
+	.md-autocomplete-suggestions {
+		md-divider {
+		border-top-width: 0;
+		height: 1px;
+		opacity: .75;
+
+		@extend .prm-background;
+		}
+	}
+}

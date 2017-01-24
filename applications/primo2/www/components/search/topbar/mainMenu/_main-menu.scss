@@ -1,0 +1,15 @@
+/* starting mainMenu */
+prm-main-menu[menu-type="menu"] {
+	@extend .layout-full-height;
+	.top-nav-bar-links {
+		@extend .layout-full-height;
+	}
+	.md-button {				
+		padding: 0 0.75em;
+		max-width: 12em;
+        font-size: .75em;
+        @extend .spaced-text;
+        @extend .bold-text;
+	}
+
+}

@@ -15,6 +15,7 @@ var argv = require('yargs').argv;
 var merge = require('merge-stream');
 
 var config = {
+  dist: 'dist',
   applications: 'applications',
   elements: 'elements',
   dependencies: 'bower_components',
@@ -100,26 +101,30 @@ gulp.task('publish', ['copy:aws'], function () {
 
 // copy and rename elements.html to elements.vulcanized.html
 gulp.task('copy:aws', function () {
+
+  var apps = gulp.src([config.applications + '/**/*.*', !config.applications + '/**/*.scss'])
+      .pipe(gulp.dest(config.dist + '/applications'));
+
   var vulcanized = gulp.src([config.elements + '/elements.vulcanized.*'])
-      .pipe(gulp.dest(config.applications));
+      .pipe(gulp.dest(config.dist));
 
   var vulcanized2elements = gulp.src([config.elements + '/elements.vulcanized.*'])
-      .pipe(gulp.dest(config.applications + '/elements'));
+      .pipe(gulp.dest(config.dist + '/elements'));
 
   var dependencies = gulp.src([config.dependencies + '/webcomponentsjs/**/webcomponents*.js'])
-      .pipe(gulp.dest(config.applications + '/webcomponentsjs'));
+      .pipe(gulp.dest(config.dist + '/webcomponentsjs'));
 
   var resources = gulp.src([config.resources + '/**/*'])
-      .pipe(gulp.dest(config.applications + '/resources'));
+      .pipe(gulp.dest(config.dist + '/resources'));
 
   var demo = gulp.src([config.demo + '/**/*'])
-      .pipe(gulp.dest(config.applications + '/elements/demo'));
+      .pipe(gulp.dest(config.dist + '/elements/demo'));
 
   var mock_data = gulp.src([config.dependencies + '/uqlibrary-api/mock/**/*'])
-      .pipe(gulp.dest(config.applications + '/bower_components/uqlibrary-api/mock'));
+      .pipe(gulp.dest(config.dist + '/bower_components/uqlibrary-api/mock'));
 
   var jsonData = gulp.src([config.dependencies + '/uqlibrary-api/data/contacts.json'])
-      .pipe(gulp.dest(config.applications + '/bower_components/uqlibrary-api/data'));
+      .pipe(gulp.dest(config.dist + '/bower_components/uqlibrary-api/data'));
 
   return merge(vulcanized, dependencies, resources, demo, mock_data, vulcanized2elements, jsonData)
       .pipe($.size({title: 'copy'}));

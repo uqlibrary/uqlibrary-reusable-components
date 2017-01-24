@@ -1,0 +1,38 @@
+// LINE CLAMP
+// Limiting a block of text to a given number of rows. Adds allipsis at the end of the block
+// useage: <div class="line-clamp-2">text text text text text text text text text </div>
+$maxLines: 5;
+%line-clamp {
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    position: relative;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 !important;
+    &:after {
+        content: '...';
+        text-align: right;
+        bottom: 0;
+        right: 0;
+        width: 1em;
+        display: block;
+        position: absolute;
+        height: calc(1em * 1.2);
+        @extend .prm-background.prm-hue2;
+        @supports (-webkit-line-clamp: 1) {
+            display: none !important;
+        }
+    }
+}
+
+@for $i from 1 through $maxLines {
+    .line-clamp {
+        &-#{$i} {
+            @extend %line-clamp;
+            -webkit-line-clamp: #{$i};
+            max-height: calc(1em * 1.2 * #{$i} + 1px);
+        }
+    }
+}

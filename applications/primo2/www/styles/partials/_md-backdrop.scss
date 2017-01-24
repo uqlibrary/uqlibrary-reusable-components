@@ -1,0 +1,18 @@
+md-backdrop {
+	&.md-opaque {
+		@extend .prm-primary-bg.prm-hue2;
+
+		.backdrop-dark &,
+		.background-dark & {
+			opacity: .85;
+			&.ng-enter {
+				opacity: 0;
+				&.ng-enter-active {
+					opacity: .85;
+				}
+			}
+			
+		}
+	}
+
+}

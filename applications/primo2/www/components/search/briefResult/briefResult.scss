@@ -1,0 +1,78 @@
+$verticalMargin: .25em;
+
+prm-brief-result {
+
+    .item-title{
+        font-size: 1.18em;
+        line-height: 1.2em;
+        color: $titles;
+        max-width: 75%;
+        margin: 7px 0 7px 0;
+        margin: 0;
+        font-weight: $bold;
+        cursor: pointer;   
+
+        [dir="rtl"] & {
+            @extend .text-rtl;
+        }     
+        
+        .__xs & {            
+            max-width: none;
+        }
+        span{ //make sure spans gets the color from here and not from the wrapping link (specificity)
+            color: $titles;
+        }
+    }
+
+    .item-detail {
+        font-weight: $normal;
+        @extend .word-break;
+        
+        [dir="rtl"] & {
+            @extend .text-rtl;
+        }
+
+        > span {            
+            &:last-child {
+                &:after {
+                    content: "";
+                    display: table;
+                    width: 100%;
+                    margin-bottom: $verticalMargin;
+                }
+
+                @include ie-only {
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+
+            @include ie-only { 
+                // float: left;
+            }
+        }
+        span {
+            @extend .word-break;
+        }
+
+        img {
+            max-height: 1.25em;
+            vertical-align: middle;
+            margin-left: .35em;
+            margin-right: .35em;
+        }
+
+        [class^="media-"] {
+            opacity: .85;
+        }
+
+        .media-creator   {
+            opacity: 1;
+            color: $dark;
+            font-size: 1.1em;
+            font-weight: $bold;
+        }
+    }
+    
+}

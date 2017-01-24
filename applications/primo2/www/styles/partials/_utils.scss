@@ -1,0 +1,207 @@
+// Utility and silent classes
+
+// positioning
+%absolute-full-cover, .absolute-full-cover {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+// pseudo elements
+%pseudo-full-cover, .pseudo-full-cover {
+    content: "";
+    @extend %absolute-full-cover;
+}
+
+// accessibility hacks
+%accessible-only, .accessible-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	left: -1000em;
+	overflow: hidden;
+    @include rtl(position, absolute, fixed);
+}
+%accessible-only-focus, .accessible-only-focus {
+	position: static;
+	width: auto;
+	height: auto;
+	margin-left: 1em;
+	left:inherit;
+}
+
+// text
+%text-trim-ellipsis, .text-trim-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	 span {
+	 	max-width: 100%;
+	 	@extend %text-trim-ellipsis;
+	 }
+}
+
+// shading / color
+%darker-bg, .darker-bg {
+	background-color: transparentize($dark, .88);
+}
+
+// shadows
+%default-shadow, .default-shadow {
+	// box-shadow: 0 1px 0 0 darken($bg, 5%),
+	// 			0 5px 5px -3px darken($bg, 5%);
+    box-shadow: 0 1px 0 0 transparentize(black, .97),0 5px 5px -3px transparentize(black, .93);
+	&-on-light {
+
+	}
+	&-on-dark {
+		box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.2);
+	}
+}
+%dialog-shadow, .dialog-shadow {	
+	box-shadow: 0 7px 15px -8px rgba(0,0,0,.1),
+				0 6px 10px -2px rgba(0,0,0,.1),
+				0 5px 24px 4px rgba(0,0,0,.1);	
+}
+
+%toolbar-shadow, .toolbar-shadow {
+	box-shadow: 0 1px 0 0 transparentize($dark, .9),
+				0 1px 5px 0 transparentize($dark, .8);
+	&-top {
+		box-shadow: 0 -1px 0 0 transparentize($dark, .9),
+					0 -1px 5px 0 transparentize($dark, .8);
+	}
+}
+%focused-item-shadow, .focused-item-shadow {
+	box-shadow: 0 0 0 ($paddingSmall + 0.05) $white, 
+				0 0 0 ($paddingSmall + 0.1) desaturate(lighten($midGrey, 30%), 2%), 
+				0 2px 15px 5px rgba(0, 0, 0, .2), 
+				0 -40px 40px -8px transparentize($nearlyWhite, .4), 
+				0 40px 40px -8px transparentize($nearlyWhite, .4);
+	&.without-halo {
+		box-shadow: 0 0 0 .55em #fff,
+					0 0 0 .6em #acbecc,
+					0 2px 15px 5px rgba(0,0,0,.2);
+	}
+}
+
+// backgrounds
+%bg-to-trans, .bg-to-trans {
+	background: linear-gradient(to bottom,  rgba(239,239,231,0) 0%,rgba(239,239,231,0.95) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00efefe7', endColorstr='#f2efefe7',GradientType=0 ); /* IE6-9 */
+}
+%white-to-trans, .white-to-trans {
+	background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );}
+%bg-dotted, .bg-dotted {
+  padding: 2.25em 1.6875em;
+  background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+  background-image: repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+  -webkit-background-size: 3px 3px;
+  -moz-background-size: 3px 3px;
+  background-size: 3px 3px;
+}
+
+// borders
+%bottom-border-light, .bottom-border-light {
+	border-bottom: 1px solid darken($nearlyWhite, 5%);
+}
+%dashed-border, .dashed-border {
+	border: 2px dashed;
+	border-color: inherit;
+}
+%border-left, .border-left {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: inherit;
+}
+
+// forms
+%form-focus, .form-focus {
+	border: 1px solid transparentize($dark, .7);
+	box-shadow: 0 2px 7px 0 transparentize($dark, .88);
+	background-color: white;
+}
+%required-starlet, .required-starlet {
+	content: "*";
+	position: absolute;
+    left: -.5em;
+	margin: auto;
+	height: .75em;
+    top: .2em;
+	font-size: 2em;
+	transition: $swift-ease-out;
+    @extend .prm-warn;
+
+	.md-input-has-value & {
+		transform: translateY(-20px);
+	}
+	
+}
+
+// dividers
+%vertical-divider, .vertical-divider {
+	width: 1px;
+	height: 30px;
+}
+
+// interactions
+%not-clickable, .not-clickable {
+	cursor: default;
+}
+
+// buttons
+// for hover effect over darker backgrounds 
+%hoverable-over-dark, .hoverable-over-dark {
+    @include bgColor(black);
+    color: transparentize($white, .35);
+    &:hover, &:focus {
+        &:not([disabled]) {
+            color: $white;
+        }
+    }
+}
+
+%hoverable-over-light, .hoverable-over-light {
+    @include bgColor(white);
+    color: transparentize(black, .35);
+    &:hover, &:focus {
+        &:not([disabled]) {
+            color: black;
+        }
+    }
+}
+
+%hoverable-over-dark-mixed, .hoverable-over-dark-mixed {
+    @include bgColor(white);
+    color: transparentize($white, .35);
+    &:hover, &:focus {
+        &:not([disabled]) {
+            color: $white;
+        }
+    }
+}
+
+//remove transitions and animation 
+%remove-keyframes-animation {
+    animation: none !important;    
+}
+%remove-transition {
+    transition: none !important;
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
+}
+// remove box- shadows
+%remove-box-shadow {
+    box-shadow: none !important;
+}
+
+
+
+
+

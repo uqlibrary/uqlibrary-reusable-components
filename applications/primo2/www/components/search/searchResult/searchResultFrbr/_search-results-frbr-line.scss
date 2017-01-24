@@ -1,0 +1,30 @@
+
+prm-search-result-frbr-line{
+
+
+  a {
+    > prm-icon:first-child {
+      margin-right: .15em;
+      @extend .prm-notice !optional;;
+
+      md-icon {
+        @include setSize(15px);
+        position: relative;
+        top: -2px;
+      }
+    }
+  }
+
+
+  md-divider {
+    width: 1px;
+    height: 1em;
+    display: inline-block;
+    border-right: 1px solid currentColor !important;
+    transform: rotate(15deg);
+    top: 2px;
+    position: relative;
+    margin-left: .3em;
+    margin-right: .3em;
+  }
+}

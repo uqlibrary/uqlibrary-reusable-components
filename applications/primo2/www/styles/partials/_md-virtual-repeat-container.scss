@@ -1,0 +1,11 @@
+md-virtual-repeat-container {
+	background-color: $autoCompleteBg;
+
+	ul {}
+
+	li {
+		&.selected {
+			background-color: darken($autoCompleteBg, 4%);
+		}
+	}
+}

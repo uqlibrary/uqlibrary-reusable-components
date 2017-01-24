@@ -1,0 +1,205 @@
+/* starting account */
+
+prm-account {
+
+  .error-response {
+    color: tomato;
+  }
+  md-toolbar {
+    .back-button {
+      @extend .offset-to-left;
+      // [dir="rtl"] & {
+      //   @extend 
+      // }
+    }
+  }
+
+  // md-toolbar.account-toolbar,
+  // md-toolbar:not(.md-menu-toolbar).account-toolbar,
+  // md-toolbar.md-primoExplore-theme:not(.md-menu-toolbar).account-toolbar {
+
+  //   + md-toolbar {
+  //     background-color: white !important;
+  //   }
+
+  //   &.default-toolbar {
+  //     background-color: darken($background, 5%);
+  //     color: $dark;
+  //   }
+  //   .md-button {
+  //     color: transparentize($dark, .3);
+  //     md-icon {
+  //       color: transparentize($dark, .3);
+  //     }
+  //     &:hover {
+  //       md-icon {
+  //         color: transparentize($dark, 0);
+  //       }
+  //     }
+  //     &.has-bottom-arrow {
+  //       overflow: visible;
+  //       &:after {
+  //         content: "";
+  //         display: none;
+  //         position: absolute;
+  //         bottom: -8px;
+  //         left: 0;
+  //         right: 0;
+  //         margin: auto;
+  //         width: 0;
+  //         height: 0;
+  //         border-right: 1em solid transparent;
+  //         border-left: 1em solid transparent;
+  //         border-bottom: 0.85em solid #FFFFFF;
+  //         z-index: 10000;
+  //       }
+
+  //       &.arrow-showing {
+  //         &:after {
+  //           display: block;
+  //         }
+  //       }
+  //     }
+  //     &:only-child {
+  //       margin: 0;
+  //     }
+  //   }
+
+  //   .toolbar-divider {
+  //     width: 1px;
+  //     height: 100%;
+  //     background-color: darken($background, 12%);
+  //     margin-left: .5em;
+  //     margin-right: .5em;
+
+  //     + .toolbar-title {
+  //       margin-left: .5em;
+  //       padding-left: 0;
+  //     }
+  //   }
+  //   .toolbar-title {
+  //     font-weight: $light;
+  //     font-size: 1.2em;
+  //     margin-right: .5em;
+  //     padding-left: 1em;
+
+  //     + .toolbar-select-input {
+  //       color: $midGrey;
+  //       font-size: 16px;
+  //       line-height: 1.5em;
+
+  //       .select-input-label {
+  //         align-self: flex-end;
+  //         bottom: 1px;
+  //         position: relative;
+  //         margin-right: 0.1em;
+  //       }
+
+  //       md-select-value {
+  //         color: $midGrey;
+
+  //         .md-select-icon {
+  //           font-size: .8em;
+  //           width: 18px;
+  //         }
+  //       }
+  //     }
+  //   }
+
+  //   .md-toolbar-tools {
+  //     padding: 0 1.5em;
+  //     padding: 0;
+
+  //     .toolbar-select-input {
+  //       padding: 0;
+
+  //       md-select-value {
+  //         border-bottom-color: transparent;
+  //       }
+  //     }
+  //   }
+
+  //   &.citations-toolbar {
+  //     min-height: 0;
+  //     padding-bottom: .7em;
+  //     background-color: transparent;
+  //     .toolbar-section {
+  //       background-color: darken($background, 2%);
+  //       border: 1px solid darken($background, 7%);
+  //       border-radius: $radius;
+  //       &:not(:last-child) {
+  //         margin-right: .5em;
+  //       }
+  //       // width: 60px;
+  //       // border-radius: 0;
+  //       .md-button {
+  //         margin: 0;
+  //         height: 38px;
+  //         line-height: 38px;
+  //         md-icon {
+  //           color: $midGrey;
+  //         }
+  //         &:not(:last-child) {
+  //           // box-shadow: 1px 0 0 0 darken($background, 7%);
+  //         }
+  //         &:hover {
+  //           background-color: lighten($background, 2%);
+  //           background-color: white;
+  //         }
+  //       }
+  //     }
+  //   }
+  //   .pushto-actions {
+  //     button,
+  //     .md-button {
+  //       color: lighten($midGrey, 10%);
+  //       flex: 1;
+  //       flex-direction: column;
+  //       display: flex;
+  //       min-width: 0;
+  //       padding: .5em 0;
+  //       margin: 0;
+  //       .icon {
+  //         font-size: 1.8em;
+  //         margin: 0;
+  //       }
+  //       span {
+  //         line-height: 1em;
+  //         text-transform: none;
+  //       }
+  //     }
+  //   }
+
+  //   .back-button,
+  //   .back-button.md-focused {
+  //     height: 100%;
+  //     margin: 0;
+  //     width: 76px;
+  //     md-icon {
+  //       width: 34px;
+  //       height: 34px;
+  //       border-radius: 0 !important;
+  //       // position: relative;
+  //       // &:first-child {
+  //       // 	margin-left: -5px;
+  //       // }
+  //       // &:last-child {
+  //       // 	margin-left: -10px;
+  //       // }
+  //     }
+  //     + .toolbar-divider {
+  //       margin-left: 0;
+  //     }
+  //   }
+  // }
+
+  // md-content, md-content.md-primoExplore-theme {
+  //   background-color: transparent;
+  //   box-shadow: 0 0 0 0 $yellow;
+  //   transition: $swift-ease-out;
+  //   &.editable {
+  //     box-shadow: 0 0 0 3px $yellow;
+  //   }
+  // }
+
+}

@@ -1,0 +1,50 @@
+dir-pagination-controls {
+    z-index: 1;
+    md-card {
+        margin: 0;
+        margin-top: 1px;
+    }
+    nav {
+        line-height: 1em;
+        .md-button {
+
+            // &:not([disabled]),
+            // &._md-focused:not([disabled])
+            // &.md-focused:not([disabled]),
+            // &.hovered:not([disabled]),
+            // &:focus:not([disabled]),
+            // &:hover:not([disabled]) {
+            //     @extend .prm-links.prm-alt-link;
+            // }
+            
+            &.current-page[disabled="disabled"] {
+                // background-color: $white;
+                color: black !important;
+                font-weight: $heavy;
+                @extend .prm-background;
+
+                &:hover,
+                &:focus {
+                    // background-color: $white;
+                    @extend .prm-background;
+                }
+            }
+            &.md-icon-button {
+                // margin-top: .2em;
+                // margin-bottom: .2em;
+            }
+            &:not(.md-icon-button) {
+                min-width: 48px;
+                min-height: 48px;
+                line-height: 48px;
+                // border-radius: 0;
+            }            
+            
+            &:hover,
+            &:focus {
+                box-shadow: none;
+            }
+            
+        }
+    }
+}

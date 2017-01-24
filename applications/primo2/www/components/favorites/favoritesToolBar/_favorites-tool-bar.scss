@@ -1,0 +1,85 @@
+/* starting favoritesToolBar */
+
+prm-favorites-tool-bar {
+  .favorites-action-list {
+    position: relative;
+    z-index: 11;
+    &.is-stuck {
+      z-index: 11 !important;
+    }
+
+    transform-origin: 50% 50%;
+    &.ng-enter {
+      transition: $swift-ease-out;
+      transform: scale3d(.8,.8,1) translateX(-30px);
+      opacity: 0;
+      &.ng-enter-active {
+        transform: scale3d(1,1,1) translateX(0);
+        opacity: 1;
+      }
+    }
+    &.ng-leave {
+      transition: $swift-ease-out;
+      transition-duration: .2s;
+      transform: scale3d(1,1,1) translateX(0);
+      opacity: 1;
+      &.ng-leave-active {
+        opacity: 0;
+        transform: scale3d(.8,.8,1) translateX(-30px);
+      }
+    }  
+
+  }
+
+  md-toolbar {
+    .__xs & {
+       transform: translateY(0);
+       transition: $swift-ease-out;
+       transition-duration: .3s;   
+       &.is-stuck {      
+         transform: translateY(-60px);
+       transition: $swift-ease-in-out; 
+         opacity: 0;
+         &.is-visible {
+             transform: translateY(0);
+             opacity: 1;
+             transition: $swift-ease-out;
+             transition-duration: .3s;
+         }
+       } 
+    }
+  }
+
+  .toolbar-title {
+    transition: all .4s 0s ease;
+    opacity: 1;
+    .__xs & {
+      position: absolute;
+      height: 100%;
+      display: flex;
+      align-items: center
+    }
+    &.ng-hide {      
+      opacity: 0;
+      transition: all 0s 0s;
+    }    
+  }
+
+  .action-list-content {
+    position: absolute;
+    padding: 0; 
+    z-index: 100;
+
+    > md-content {     
+          overflow: visible;
+    }
+    prm-action-list {
+      background: white; 
+      @extend %focused-item-shadow.without-halo;      
+
+      md-tabs {
+        margin: 0px;
+      }
+    }
+  }
+}

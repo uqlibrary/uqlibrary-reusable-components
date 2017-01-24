@@ -1,0 +1,11 @@
+/* starting skipTo */
+prm-skip-to{
+     .md-button,.md-button:hover,.md-button:visited, a, a:hover, a:visited {
+       @extend .accessible-only;
+     }
+     .md-button:active, .md-button:focus, a:active, a:focus {
+       @extend .accessible-only-focus;
+     }
+
+
+}

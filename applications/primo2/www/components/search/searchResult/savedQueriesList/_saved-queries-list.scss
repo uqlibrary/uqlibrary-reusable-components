@@ -1,0 +1,106 @@
+prm-saved-queries-list {
+    .md-subheader {
+        ._md-subheader-inner{
+            padding: .5em .85em;
+        }
+    }
+
+    .has-checkbox {
+        md-checkbox {
+            position: absolute;
+            top: .95em;
+            left: .8em;
+        }
+    }
+
+    .inline-div {
+        display: inline;
+    }
+
+    .strikethrough {
+        text-decoration: line-through;
+    }
+
+    .clear-row {
+        clear: left;
+    }
+
+    .list-item-count {
+        position: absolute;
+        left: .5em;
+        opacity: .3;
+        font-size: .8em;
+        top: .4em;
+        .has-checkbox & {
+            left: 12px;
+            top: 16px;
+            opacity: .7;
+            width: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .animate-scale {
+        transform-origin: 0 0;
+        &.middle {
+            transform-origin: 0 50%;
+        }
+        &.ng-enter {
+            transition: $swift-ease-out;
+            transition-duration: .3s;
+            transform: scale(.7);
+            opacity: 0;
+
+            @include ie-exceptions;
+
+            &.ng-enter-active {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    }
+
+    .string-block {
+        float: left;
+        position: relative;
+        // + .string-block, + .string-block.clear-row {
+        //   padding-left: 0;
+        // }
+        &:first-child {
+            > span:first-of-type {
+                md-select-value {
+                    .md-text {
+                        display: inline-block;
+                        &:first-letter {
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+        prm-icon {
+            float: left;
+            clear: none;
+            display: inline;
+            // display: none;
+            color: $dark;
+            color: #198A19;
+            // opacity: .7;
+            margin-right: .25em;
+            left: -1.5em;
+        }
+        md-icon {
+            transform: scale(-1, 1);
+            @include setSize(18px);
+        }
+    }
+    
+    
+    .text-ellipsis{
+        max-width: 800px;
+        white-space: nowrap;
+        overflow: hidden;
+    	text-overflow: ellipsis;
+    }
+}

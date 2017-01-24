@@ -1,0 +1,132 @@
+/* starting spinner */
+$accentOnDark: $white;
+$accentOnLight: $midGrey;
+$duration: 1500ms;
+$timing: linear;
+$smallLoader: 30px;
+
+prm-spinner {
+	position: relative;
+	.loader {
+	    position: relative;
+	    width: 30px;
+	    .diamond {
+	        position: absolute;
+	        left: 0;
+	        right: 0;
+	        bottom: 0;
+	        margin: 0 auto;
+	        width: 1.2em;
+	        height: 1.2em;
+	        border-radius: 2px;
+	        transform: translateY(0) rotate(45deg) scale(0);
+	        animation: diamonds $duration $timing infinite;
+	        @for $i from 1 through 4 {
+	          &:nth-child(#{$i}) {
+	            animation-delay: -($duration / 1.5) * $i;
+	          }
+	        }
+	    }
+	}
+
+	.loader-text {
+    	color: $midGrey;
+    }
+	&.default-loader {
+    	.loader {
+	    	height: 80px;
+	    }
+	    .loader-text {
+	    }
+	    .spinner-wrapper {
+	    	
+	    }
+    }
+	&.inline-loader {
+    	display: inline-flex;
+    	min-width: $smallLoader;
+    	height: 20px;
+    	.loader {
+	    	transform: rotate(90deg) scale(0.75) translateY(100%);
+	    	// transform-origin: 50%;
+	    	// width: $smallLoader;
+	    	// margin-right: 10px;
+	    }
+	    .loader-text {
+	    	line-height: .5em;
+	    }
+	    .spinner-wrapper {
+	    	width: 45px;
+	    }
+    }
+
+    &.light-on-dark {
+    	.diamond {
+    		background-color: $accentOnDark;
+    	}
+    }
+    &.dark-on-light {
+		.diamond {
+			background-color: $accentOnLight
+		}
+    }
+    &.half-transparent {
+    	.diamond {
+    		background-color: lighten($accentOnLight, 25%);
+    	}
+    }
+    &.no-text {
+    	.loader-text {
+    		display: none;
+    	}
+    }
+    &.overlay-cover {
+    	top: 0;
+    	bottom: 0;
+    	position: absolute;
+    	left: 0;
+    	right: 0;
+    	z-index: 10;
+
+    	&:after {
+    		content: "";
+    		position: absolute;
+    		top: 0;
+    		bottom: 0;
+    		right: 0;
+    		left: 0;
+    		opacity: .6;
+    		z-index: -1;
+    	}		
+		&.light-on-dark {
+			&:after {
+				@extend .prm-primary-bg;
+			}
+		}
+		&.dark-on-light {
+			&:after {
+				background-color: $white;
+			}
+		}
+
+        .spinner-wrapper {
+            height: 76px;
+        }
+
+    }
+
+}
+
+@keyframes diamonds {
+    50% {
+        transform: translateY(-2em) rotate(45deg) scale(1);
+    }
+    100% {
+        transform: translateY(-4em) rotate(45deg) scale(0);
+    }
+}
+&.bottom-loader{
+	.loader {
+		height: 100px;
+	}
+}

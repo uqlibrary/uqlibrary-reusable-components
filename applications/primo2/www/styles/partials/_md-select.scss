@@ -1,0 +1,44 @@
+md-select,
+md-select:not([disabled]) {
+	&:focus,
+	.md-input-focused & {
+		.md-select-value {
+			@extend	.prm-secondary-border.prm-hue1;
+		}
+	}
+	&[required] {
+		// @extend %required-starlet;
+		input {
+			border-bottom-color: $red;
+
+			&.ng-untouched {
+				+ [ng-messages] {
+					min-height: 0;
+					max-height: 0;
+					overflow: hidden;
+				}
+			}
+		}
+	}	
+}
+
+.md-select-value {
+	border-color:transparent	
+}	
+
+
+md-select-menu,
+md-select-menu.md-primoExplore-theme,
+md-select-menu.md-default-theme {
+	md-content {
+		background-color: $white;
+
+		md-option {
+			&:not([disabled]) {
+				&:focus{
+					background: darken($white, 5%)
+				}
+			}
+		}
+	}
+}

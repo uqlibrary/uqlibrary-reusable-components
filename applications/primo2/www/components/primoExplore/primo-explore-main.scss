@@ -1,0 +1,47 @@
+prm-explore-main {
+  .header {
+    > prm-spinner {
+
+      position: absolute;
+      bottom: -15px;
+      width: 100%;
+      z-index: 14;
+      transform-origin: 50% 50%;
+      height: 30px;
+
+      @include media("screen", "<smallTablet") {
+        bottom: -10px;
+        max-height: 20px;
+      }
+
+      .spinner-wrapper {
+        width: 30px;
+        height: 90px;
+        transform: rotate(90deg) scale(1) translateY(0);
+      }
+
+      &.ng-enter {
+        transform: scale3d(8, 0, 1);
+        transition: $swift-ease-out;
+        transition-duration: .75s;
+
+        @include ie-exceptions;
+
+        &.ng-enter-active {
+          transform: scale3d(1, 1, 1);
+        }
+      }
+
+      &.ng-leave {
+        transform: scale3d(1, 1, 1);
+        transition: $swift-ease-in-out;
+
+        @include ie-exceptions
+
+        &.ng-leave-active {
+          transform: scale3d(8, 0, 1);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+prm-favorites-labels{
+    .md-chips {
+        .md-chip.unlabled {
+            .md-chip-content {
+                @extend .text-italic;
+                strong {
+                    font-weight: $normal !important
+                }
+
+            }
+        }
+        .md-chip:not(.chip-toggled-on), .md-chip.toggleable-chip:not(.chip-toggled-on) {
+            .md-chip-content {
+
+                overflow: hidden;
+                cursor: pointer;
+                padding-left: .35em;
+                padding-right: .35em;
+                border-radius: $radius;
+
+                @include bgColor(lighten($dark, 20%));
+
+            }
+        }
+    }
+}

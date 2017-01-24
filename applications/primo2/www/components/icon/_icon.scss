@@ -1,0 +1,54 @@
+prm-icon {
+	md-icon,
+	md-icon.md-primoExplore-theme {
+		color: inherit !important;
+		transition: $swift-ease-out;
+		svg {
+			color: inherit;
+			path {
+				fill: currentColor;
+			}
+		}
+	}
+	&.h-flipped {
+		md-icon {
+	    	transform: rotate(180deg) scaleY(-1);
+		}
+	}
+	&.rotate-25 {
+		md-icon {
+	    	transform: rotate(25deg);
+		}
+	}
+	&.rotate-180 {
+		md-icon {
+	    	transform: rotate(180deg);
+		}
+	}
+	&.large-icon {
+		
+	}
+	&.giant-icon{
+		margin: 0;
+		md-icon {
+			width: 84px;
+    		height: 84px;
+    		min-width: 84px;
+    		min-height: 84px;
+		}
+	}
+	&.bg-icon {
+		opacity: .2;
+	}
+
+	&[external-link] {
+		.light-on-dark-dialog & {
+			color: inherit;
+		}
+	}
+	&.pin-icon {
+    	md-icon {
+	        transform: rotate3d(0, 0, 1, 25deg);
+	    }
+	}
+}

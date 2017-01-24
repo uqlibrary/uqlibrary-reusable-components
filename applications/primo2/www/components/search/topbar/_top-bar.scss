@@ -1,0 +1,43 @@
+@import 'bookmarkFilter/search-bookmark-filter.scss';
+@import 'logo/logo';
+@import 'mainMenu/main-menu-full';
+@import 'mainMenu/main-menu';
+@import 'userArea/authentication';
+@import 'userArea/user-area';
+
+prm-topbar {
+	height: $defaultBarHeight;
+	position: relative;
+    .top-nav-bar {
+        @extend .prm-primary-bg.prm-hue1;
+        @extend .prm-secondary-color;
+        @extend .layout-full-height;
+    }
+
+    .md-button {
+        @extend .button-over-dark;
+        &:not(.md-icon-button) {
+            @extend .layout-full-height;
+            @extend .zero-margin;
+            border-radius: 0;
+        }
+    }
+
+    prm-logo {
+        z-index: 10;
+        height: 100%;        
+        max-width: 180px;
+        .__xs & {
+            width: 100%;
+                max-width: 140px;
+        }
+    }
+
+    prm-search-bookmark-filter {
+        // margin-right: 20px;
+        @include ie-only {
+            min-width: 52px;
+        }
+    }
+  
+}

@@ -1,0 +1,10 @@
+.status-maybe {
+    @extend .prm-notice !optional;
+}
+//the class must be after status-maybe to avoid that the latter will override definitions of the former
+.status-available {
+    @extend .prm-positive !optional;
+}
+.status-unavailable {
+    @extend .prm-negative !optional;
+}

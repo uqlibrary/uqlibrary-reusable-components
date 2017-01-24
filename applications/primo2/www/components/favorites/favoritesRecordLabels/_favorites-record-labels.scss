@@ -1,0 +1,30 @@
+/* starting favoritesRecordLabels */
+prm-favorites-record-labels {
+  // margin-top: .5em;
+  .media-labels,
+  .media-labels.md-chips {
+
+    .label-item,
+    .label-item.md-chip {
+      height: 2em;
+      line-height: 2em;
+      font-size: .85em;
+      padding: 0 .75em;
+      border-radius: 1em;
+      margin-top: .75em;
+      margin-right: .5em;
+    }
+    .label-item-content {
+
+    }
+    .labels-menu-button {
+        position: relative;
+        top: 4px;
+
+        &.button-with-icon {
+          left: -4px;
+        }
+    }
+    
+  }
+}

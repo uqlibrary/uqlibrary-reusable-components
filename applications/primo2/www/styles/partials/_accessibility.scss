@@ -1,0 +1,14 @@
+.md-button {
+	&.accessible-close {
+		@extend .accessible-only;
+		&:hover,
+		&:visited {
+			@extend %accessible-only;
+		}
+		&:active,
+		&:focus {
+			@extend %accessible-only-focus;
+		}
+
+	}
+}

@@ -1,0 +1,146 @@
+md-card {
+	box-shadow: none;
+	background-color: white;
+
+	&.default-card {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		
+		@extend %default-shadow;
+		@extend .prm-background.prm-hue2;
+
+		md-card-title {
+			padding: 24px 16px 16px 16px;
+			+ md-card-content {
+				padding-top: 0;
+			}
+		}
+
+		md-card-content {
+			padding: 16px;
+		}
+
+		// md-divider {
+		// 	opacity: .1;
+		// }
+	}	
+
+	&.editable {
+		background-color: $white;
+		// box-shadow: inset 0 0 0 0 $yellow;
+		// transition: box-shadow .5s $swift-ease-out-timing-function;
+		&.editable-active {
+			// box-shadow: inset 0 0 0 3px $yellow;
+
+			&.error-warning {
+				// box-shadow: $warningBorder;
+			}
+
+			.card-divider {
+				opacity: 0;
+			}
+		}
+
+	}
+
+	&.card-with-header-actions {
+		position: relative;
+	}
+	&.zero-margin {
+		md-card-content {
+			margin: 0;
+		}
+	}
+
+	&.zero-padding {
+		md-card-content {
+			padding: 0;
+		}
+	}
+
+	&.transparent-card {
+		background-color: transparent;
+	}
+
+	&.medium-card {		
+		max-width: 500px;
+	}
+
+	md-toolbar {
+		.md-toolbar-tools:not(.md-menu-toolbar) {
+			padding: 0 16px;
+			> .md-button:last-child {
+				margin-right: 0;
+			}
+		}
+
+		+ md-card-content {
+			padding-top: 0;
+		}
+	}
+
+
+	md-card-content {
+		padding: 2em 1em;
+	}
+
+	.card-content-block {
+		@extend .prm-background;
+
+		&.border-left {
+			padding-left: 1.5em;
+		}
+	}
+
+	.layout-row > & {
+		&:not(:last-child) {
+		}
+	}
+	
+	.card-header-actions {
+		position: absolute;
+		right: .5em;
+		top: .3em;
+		
+		.md-button {
+			overflow: visible;
+		}
+	}
+
+	.card-divider {
+		width: 100%;
+		height: 1px;
+		margin-top: 1em;
+    	margin-bottom: 1em;
+    	&.margin-bottom-large {
+    		margin-bottom: 2em;
+    	}
+		// margin-bottom: 26px;
+		// margin: 1em 1.5em 2em 1.5em;	
+
+		@extend .prm-background.prm-hue1;
+	}
+
+	md-input-container {
+		
+		// padding-right:1em;
+		// padding-left: 1em;
+		
+		md-select {
+			md-select-value{
+				// border-bottom-color: transparent !important;
+			}
+		}
+	}
+	md-checkbox {
+		padding-left: 2em;
+		&.has-small-text {
+			.md-container {
+				left: 14px;
+			}
+		}
+	}
+	.card-content-section-title {
+		@extend .accessible-only;
+	}
+}

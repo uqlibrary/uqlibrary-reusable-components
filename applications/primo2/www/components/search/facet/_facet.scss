@@ -1,0 +1,212 @@
+prm-facet {
+    width: 100%;
+    [sticky] {
+        position: relative;
+        &.is-stuck {
+            max-height: calc(100% - 3em);
+            overflow: auto;
+            padding-bottom: 3em;
+        }
+    }
+    .__xs &,
+    .__sm &, {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 1;
+        transition: $swift-ease-out;
+        @extend .prm-background;
+    }
+
+    .primo-scrollbar {
+        .__xs &,
+        .__sm &, {
+            overflow: auto;
+            height: 100%;
+            padding-bottom: 7em;
+        }
+    }
+}
+
+.sidebar {
+    padding-left: 0;   
+
+    .__gt-sm & {
+      
+    }
+    .__sm &,
+    .__xs & {
+        @extend .padded-container;
+        @extend .prm-background;
+        position: fixed;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 12;
+        opacity: 1;
+        transform: translateY(0);
+        transition: $swift-ease-out;
+
+        &.ng-hide {
+            opacity: 0;
+            transform: translateY(20%);            
+            &.ng-hide-add {
+                transition: $swift-ease-in;
+                &.ng-hide-add-active {
+                }
+            }
+            &.ng-hide-remove {
+                &.ng-hide-remove-active {
+                }
+            }
+        }
+    }
+    .md-button {
+        transform-origin: 50% 0;
+    }
+    .compensate-padding-left {
+        padding-left: .4em;
+    }
+}
+
+
+.sidebar-header {
+    text-transform: none;
+    font-weight: 600;
+    font-size: 18px;
+    font-size: 1.15rem;
+    color: $dark;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    // margin-right: .5em;
+    @include rtl-prop(margin-right, margin-left, .5em, 0);
+}
+
+.sidebar-section {
+    display: block;
+}
+
+.filtered-facets-section {
+    padding-left: .4em;
+}
+
+.sidebar-inner-wrapper {
+    
+    max-width: 100%;
+    @extend .margin-right-large;
+    @extend .padding-left-medium;
+    
+    .__xs &,
+    .__sm & {
+        padding-top: 2em;
+    }
+}
+
+.section-title {
+    text-transform: none;
+    margin: .75em 0 .25em 0;
+    prm-icon {
+        @extend .link-alt-color;
+    }
+}
+
+.section-title-header {
+    @extend .sidebar-header;
+}
+
+.section-content {
+    .md-chips-wrap {
+        padding-left: .5em;
+    }
+    .md-chips {
+        opacity: 1;
+        transition: max-height .3s $easeOutQuint, opacity .3s ease, z-index 0s .3s;
+        .md-chip {
+            display: flex;
+            clear: left;
+            padding-right: 0;
+            transform-origin: 0 50%;
+            .md-chip-content {
+                max-width:  calc(100% - 2em);
+                overflow: hidden;
+                cursor: pointer;
+                padding-left: .35em;
+                padding-right: .35em;
+                border-radius: $radius;
+
+                @include bgColor(lighten($dark, 20%));
+
+                &:hover,
+                &:focus {
+                    &:not([disabled]) {
+                        color: black
+                    }
+                }
+
+                &.prm-warn {
+                    @include bgColor($red);
+                }
+            }
+            .md-chip-remove-container {                   
+                display: flex;
+                align-items: center;    
+            }
+            strong {
+                // margin-right: .2em;
+                max-width: 100%;
+
+                @include rtl-prop(margin-right, margin-left, .2em, 0);
+            }
+            .button-exclude {
+                md-icon {
+                    @include setSize(20px);
+                    top: -2px;
+                    position: relative;
+                }
+            }
+            .available-facets & {
+                background-color: transparent;
+                .button-exclude {     
+                    z-index: 0;
+                    opacity: 0;
+                    // transform: translate3d(-10px, 0, 0);
+                    transition: transform .3s $easeOutCirc, opacity .2s ease, z-index 0s .3s;
+
+                    @include bgColor($red);
+                    @include rtl(transform, translate3d(-10px, 0, 0), translate3d(10px, 0, 0));
+                }
+
+                .md-chip-remove {
+                    height: $chipTouchHeight;
+                    display: none;
+
+                    &.button-exclude {
+                        display: inline;
+                    }
+                }
+
+                .md-chip-content + .md-chip-remove-container{
+                    .button-exclude:focus {
+                        opacity: 1;
+                        transform: translate3d(0, 0, 0);
+                        transition: transform .3s $easeOutQuint, opacity .2s ease, z-index 0s 0s;
+                    }
+                }
+                &:hover, &:focus , & .md-button:focus, .md-chip-content:focus + .md-chip-remove-container,
+                {
+                    z-index: 1;
+                    .button-exclude {
+                        z-index: 1;                    
+                        opacity: 1;
+                        transform: translate3d(0, 0, 0);
+                        transition: transform .3s $easeOutQuint, opacity .2s ease, z-index 0s 0s;
+                    }
+                }
+
+            }
+        }
+    }    
+}

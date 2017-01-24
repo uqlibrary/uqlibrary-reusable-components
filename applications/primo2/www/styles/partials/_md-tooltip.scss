@@ -1,0 +1,29 @@
+md-tooltip {
+	font-size: .8em;
+	color: $white;	
+	letter-spacing: 0.03em;
+
+	.md-content,
+	._md-content{
+		background-color: transparentize($dark, .25);
+	}
+
+	&.multi-row-tooltip {
+		height: auto ;
+		max-width: 30em;
+		line-height: 1em;
+		font-size: 1em;
+		letter-spacing: 0;
+		._md-content{
+			padding: .5em 1em;
+			height: auto !important;
+			white-space: normal;
+		}
+		h1,h2,h3,h4,h5 {
+			margin:0;
+		}
+		p {
+			margin: 0;
+		}
+	}
+}

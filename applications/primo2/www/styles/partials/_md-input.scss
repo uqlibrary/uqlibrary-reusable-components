@@ -1,0 +1,271 @@
+input {
+	border-style: none;
+	font-family: inherit;
+}
+
+.md-input[type="text"],
+.md-input[type="email"],
+.md-input[type="password"],
+textarea {
+	// border-bottom-color: transparentize($dark, .7);
+	.md-input-focused & { 
+		// border-bottom-color: transparentize($dark, .5);
+	}
+}	
+
+md-input-container {
+	padding-bottom: 0;
+	
+	&.md-required,
+	&.md-input-invalid {
+		&:before {
+			@extend %required-starlet;
+		}
+	}
+
+	label, label:not(.md-no-float):not(._md-container-ignore){
+		font-weight: inherit;
+		color: transparentize($dark, .35);
+		white-space: nowrap;
+		overflow: visible;
+		&.md-required {
+			&:after {
+				display: none;
+			}
+		}
+	}
+	input,
+	textarea,
+	md-select-value,
+	.md-select-value,
+	._md-select-value {
+		border-bottom-color:transparent;
+	}
+
+	// underline animated highlight
+	&:after {
+		position: absolute;
+		bottom: -1px;
+		content:"";		
+		height: 3px;
+		left: 25%;
+		width: 0;
+		opacity: 1;
+		// transition: all .4s $swift-ease-out-timing-function, opacity .2s .3s $swift-ease-out-timing-function;
+		@extend	.prm-secondary-bg.prm-hue1;
+	}
+
+	&.md-input-focused {
+		&:after {
+			width: 100%;					
+			transition: $swift-ease-out;
+			transition-duration: .3s;
+			transform: translateX(-25%);
+		}
+		input {
+			// @extend	.prm-secondary-border.prm-hue1;
+		}
+	}
+	
+	&.md-input-focused,
+	&.md-input-has-value,
+	&.md-input-has-placeholder {
+		label:not(.md-no-float) {
+			opacity: .6;
+			transform: translate3d(0, 6px, 0) scale(0.85);
+		}
+	}
+
+	&.md-input-invalid {
+		@extend .prm-warn;
+		&:after {
+			opacity: 0;
+			@extend .prm-warn-bg;
+		}
+	}
+
+	.md-input-messages-animation {
+		.md-input-message-animation{
+			transition-duration: .1s !important;
+		}
+		&.ng-enter {
+			.md-input-message-animation{
+				transition-duration: .3s !important;
+				transition-timing-function: $swift-ease-out-timing-function !important;
+			}
+		}
+	}
+
+	&.hidden-label {
+		label {
+			visibility: hidden;
+		}
+	}
+
+	&.underlined-input {
+		input,
+		textarea,
+		md-select-value,
+		.md-select-value,
+		._md-select-value {
+			border-bottom-color:transparentize($dark, .75);
+		}
+		&.md-input-invalid {
+			input,
+			md-select-value,
+			.md-select-value,
+			._md-select-value {
+				border-bottom-color: $red;
+			}
+		}
+	}
+	&.label-on-left {
+		display: flex;
+		flex-direction: row;
+		md-select-value {
+			min-height: auto;
+		}
+	}
+
+	&.centered-input {
+		text-align: center;
+		label {
+			transform-origin: center top;
+		}
+		input {
+			text-align: center;
+		}
+		&.md-input-focused,
+		&.md-input-has-value,
+		&.md-input-has-placeholder {
+			label:not(.md-no-float) {
+				transform: translate3d(15px, 6px, 0) scale(0.85);
+			}
+		}
+	}
+
+	&.static-select {
+    	align-items: inherit;
+
+    	label,
+	   	label:not(.md-no-float) {
+	   		transform: translate3d(38px,0,0) scale(1);
+	   		transition: $swift-ease-out;
+	   		opacity: 0;
+	   	}
+
+    	&.md-input-has-value {
+	    	label,
+	    	label:not(.md-no-float) {
+	    		transform: translate3d(0,0,0) scale(1);
+	    		top: 2px;
+			    position: relative;
+			    margin-right: .5em;
+			    opacity: 1;
+
+			    @extend .prm-text;
+	    	}
+	    	
+	    }
+	    md-select {
+    		z-index: 1;
+    	}
+	}
+
+	.md-errors-spacer {
+		min-height: 0;
+		transition: min-height .3s ease;
+
+		@at-root md-input-container.md-input-invalid{
+			min-height: 24px
+		}
+	}
+	
+	.presentable-disabled-inputs & {
+		label {
+			@extend .prm-text;
+		}
+		input[type="text"],
+		input[type="date"] ,
+		input[type="number"],
+		input[type="email"]  {
+
+			&[disabled] {
+				border-bottom-color: transparent;
+				// color: $dark;
+				// background-image: none;
+			}
+		}		
+	}
+
+    [ng-message] {
+      span {
+        color: $red;
+      }
+    }
+	&.has-fixed-message{
+		padding-bottom: 26px;
+
+		[ng-message] {
+			a {
+				@extend .prm-links;
+			}
+		}
+	}
+
+	.marginless-inputs & {
+		padding: 0;
+		margin: 0;
+		margin-top: .5em;
+		margin-bottom: 1em;
+
+		label {
+			position: absolute;				
+		}
+
+		&.md-input-focused,
+		&.md-input-has-value {
+			label:not(.md-no-float) {
+				transform: translate3d(0, 10px, 0) scale(0.8);
+				opacity: 1;
+			}
+		}
+		.md-errors-spacer {
+			min-height: 0;
+		}
+	}
+
+	.light-on-dark-dialog & {
+		label {
+			&:not(.md-no-float):not(._md-container-ignore) {
+				color: $white;
+			}
+		}
+	}
+	
+}
+
+.input-containers-group {
+	margin-bottom: 1.5em;
+	&:last-of-type {
+		margin-bottom:0;
+	}
+	&.layout-padding {
+		md-input-container {
+			padding-left: 0;
+		}
+	}
+    md-input-container {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+}
+
+.input-containers-row {
+	md-input-container {
+		
+	}
+}
+
+
+

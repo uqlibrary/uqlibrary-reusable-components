@@ -1,0 +1,26 @@
+md-progress-linear {
+    &[md-mode=indeterminate] {
+        position: absolute;
+        height: $progressBarHeight;
+        bottom: 0;
+        z-index: 10;
+
+        .md-container {
+            height: $progressBarHeight;
+            top: auto;
+
+            .md-bar {
+                height: $progressBarHeight;
+            }
+        }
+
+        &.header-progress-bar {
+            .md-container {
+                background-color: lighten($midGrey, 5%);
+            }
+            .md-bar {
+                @extend .prm-secondary-bg;
+            }
+        }
+    }
+}

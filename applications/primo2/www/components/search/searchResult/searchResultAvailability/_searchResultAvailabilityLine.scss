@@ -1,0 +1,66 @@
+prm-search-result-availability-line {
+
+  // margin-bottom: .2em;
+  line-height: 1.2em;
+
+  [availability-type] {
+    color: transparentize($dark, .6);
+    flex-shrink: 0;
+    // margin-right: .35em;
+
+    @include rtl-prop(margin-right, margin-left,.35em, 0);
+
+    md-icon {
+      @include setSize(15px);
+      position: relative;
+    }
+  }
+
+  span {
+    white-space: normal;
+    display: inline;
+
+    &:not(.availability-status){
+      [dir="rtl"] & {
+        display: inline-flex;
+      }
+    }
+
+    + span {
+      [dir="rtl"] & {
+        padding-right:  .2em;
+      }
+    }
+  }
+  .availability-status {
+    span {
+      // display: inline-block;
+      &:first-child {
+        + .locations-link:before {
+            content: "\00a0";
+        }
+      }
+    }
+    
+  }
+
+  prm-spinner {
+    position: relative;
+    transition: transform .3s 0s $easeInOutBack;
+    transform: scale(.8);
+    margin-left: .2em;
+    // transform-origin: 0 50%;
+    // left: 2.8em;
+    top: 1px;
+    &.hidden {
+      transform: scale(0);
+    }
+  }
+  prm-brief-result +&  {
+      position: relative;
+      // top: -4px;
+  }
+
+}
+  
+ 

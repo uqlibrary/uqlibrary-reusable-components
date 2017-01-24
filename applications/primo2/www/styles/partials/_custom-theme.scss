@@ -1,0 +1,288 @@
+/* primary color hook */
+/* commenttttt*/
+
+//this file has many color variables definition - that need to be open for customization
+@import "md-button";
+
+// PRIMARY color
+// Example element in the UI: Header background color
+// Usage examples:  @extend .prm-primary-bg
+// 		  			@extend .prm-primary-bg.prm-hue1
+.prm-primary {
+	&-color {
+		color: $primary;
+	}
+	&-bg {
+		color: $white;
+		background-color: $primary;
+		&.prm-hue1 {
+			background-color: $primary-hue1;
+		}
+		&.prm-hue2 {
+			background-color: $primary-hue2;
+		}
+		&.prm-hue3 {
+			background-color: $primary-hue3;
+			&-important{
+				background-color: $primary-hue3!important;
+			}
+		}
+		&.prm-hue4 {
+			background-color: $primary-hue4;
+		}
+	}
+}
+
+.prm-primary-border {
+	border-color: $primary;
+	&.prm-hue1 {
+		border-color: $primary;
+	}
+	&.prm-hue2 {
+		border-color: $primary;
+	}
+}
+
+// SECONDARY color (aka, Accent color)
+// Example element in the UI: Pin buttons
+// Usage examples:  @extend .prm-secondary-color
+// 		  			@extend .prm-secondary-bg.prm-hue1
+.prm-secondary {
+	&-color {
+		color: $secondary;
+		&.prm-hue1 {
+			color: $secondary-hue1;
+		}
+		&.prm-hue2 {
+			color: $secondary-hue2;
+		}
+	}
+	&-bg {
+		background-color: $secondary;
+		&.prm-hue1 {
+			background-color: $secondary-hue1;
+		}
+		&.prm-hue2 {
+			background-color: $secondary-hue2;
+		}
+	}
+	&-border {
+		border-color: $secondary;
+		&.prm-hue1 {
+			border-color: $secondary-hue1;
+		}
+	}
+
+}
+
+// BACKGROUND color
+// Example element in the UI: main content background color
+// Usage examples:  @extend .prm-background.prm-hue1
+// 		  			@extend .prm-background-border.prm-hue1
+.prm-background {
+	background-color: $background;
+	border-color: darken($background, 3%);
+	&.prm-hue1 {
+		background-color: $background-hue1;
+		border-color: darken($background, 8%);
+		background-color: darken($background, 5%);
+	}
+	&.prm-hue2 {
+		background-color: $background-hue2;
+		background-color: lighten($background, 4%);
+	}
+	&.prm-hue3 {
+		background-color: $background-hue3;
+	}
+	&.prm-hue4{
+		background-color: $background-hue4;
+	}
+	&.prm-hue5{
+		background-color: $background-hue5;
+	}
+	&.prm-hue6{
+		background-color: $background-hue6;
+	}
+	&.prm-hue7{
+		background-color: $background-hue7;
+	}
+	&.prm-hue8{
+		background-color: $background-hue8;
+	}
+	&.prm-hue9{
+		background-color: $background-hue9;
+	}
+	&.prm-hue10{
+		background-color: $background-hue10;
+	}
+	&.prm-hue11{
+		background-color: $background-hue11;
+	}
+	&.prm-hue13{
+		background-color: $background-hue13;
+	}
+	&-color{
+		color:$background;
+		&.prm-hue4 {
+			color: $background-hue4;
+		}
+	}
+	&-border {
+		border-color: $background;
+		border-color: darken($background, 3%) !important;
+		&.prm-hue1 {
+			border-color: darken($background-hue1, 3%);
+			border-color: darken($background, 8%) !important;
+		}
+		&.prm-hue2 {
+			border-color: darken($background-hue2, 3%) !important;
+		}
+		&.prm-hue3 {
+			border-color: darken($background, 3%);
+		}
+		&.prm-hue4 {
+			border-color: $background-hue12;
+		}
+	}
+}
+
+// .prm-background {
+// 	background-color: $background;
+// 	border-color: darken($background, 3%);
+// 	&.prm-hue1 {
+// 		background-color: darken($background, 5%);
+// 		border-color: darken($background, 8%)
+// 	}
+// 	&.prm-hue2 {
+// 		background-color: lighten($background, 4%);
+// 	}
+// }
+
+// LINKS color
+// Example element in the UI: Availability status links
+// Usage examples:  @extend .prm-links
+// 		  			@extend .prm-links.prm-links-hover
+// 		  			@extend .prm-links.prm-alt-link
+.prm-links {
+	color: $links;
+	&-important{
+		color: $links !important;
+	}
+	&.prm-links-hover {
+		color: $linksHover;
+	}
+	&.prm-alt-link {
+		color: $secondary-hue1;
+		&.prm-hue1 {
+			color: $linkTitle;
+		}
+	}
+	&-bg{
+		@include bgColor($links);
+		&.prm-hue-1{
+			background-color: transparentize(saturate($links, 85%), .9);
+		}
+	}
+
+	&-background{
+		&.prm-hue-1{
+			background-color: transparentize($links, .9)
+		}
+		&.prm-hue-2{
+			background-color: $links-background-hue1;
+		}
+	}
+	&-hover{
+		&.prm-hue-1{
+			color: $linksHover;
+		}
+		&.prm-hue-2 {
+			color: $linksHover-hue-2;
+		}
+		&.prm-hue-3 {
+			color: $links-background-hue1;
+		}
+	}
+}
+
+// TEXT color
+// Default text color
+// Usage examples:  @extend .prm-secondary-color
+// 		  			@extend .prm-secondary-bg.prm-hue1
+.prm-text {
+	color: $text;
+	&.prm-hue1 { // lighter text
+		color: $text-hue1
+	}
+}
+
+
+// WARNING color
+// Warning or error color
+// Usage examples:  @extend .prm-warn
+//					@extend .prm-warn-bg 	
+.prm-warn {
+	color: $red;
+	&-bg {
+		background-color: $red;
+	}
+}
+
+// ALERT color
+// Used to bring users' attention to messages and alerts
+// Example element in the UI: Background of 'sign in' message below search bar
+// Usage examples:  @extend .prm-alert
+// 					@extend .prm-alert-bg
+// 					@extend .prm-alert-border
+.prm-alert {
+	color: black;
+	&-bg {
+		background-color: $alert;
+	}
+	&-border {
+		border-color: $alert-hue1;
+	}
+}
+
+
+// HIGHLIGHT color
+// Example element in the UI: result item when saved to favorites
+// Usage examples:  @extend .prm-highlight
+.prm-highlight {
+	background-color: $highlight;
+	&.prm-hue1 {
+		background-color: $highlight-hue1;
+	}
+}
+
+// NOTICE color
+// Used to bring attention to a certain status, or secondary actions
+// Example element in the UI: 'clear' button in advanced search
+// Usage examples: @extend .prm-highlight
+.prm-notice {
+	color: $notice;
+}
+
+
+// POSITIVE color
+// Denotes primary actions. Use sparsely.
+// Example element in the UI: 'send' action button in email form
+// Usage examples:  @extend .prm-positive
+.prm-positive {
+	color: $positive;
+}
+
+
+
+.prm-negative {
+	color: $negative;
+}
+
+// BOX SHADOW
+// set box-shadow so will be able to extend color
+// This is set here and not in _mixins so it will be part of the color scheme
+@mixin box-shadow($display,$h-shadow,$v-shadow,$blur,$spread,$color) {
+	box-shadow: $display $h-shadow $v-shadow $blur $spread $color;
+}
+
+/* primary color hook end*/

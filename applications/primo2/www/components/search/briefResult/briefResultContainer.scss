@@ -1,0 +1,466 @@
+$actionButtonSize: 38px;
+$actionButtonMargin: 4px;
+prm-brief-result-container {
+    border-radius: 3px;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    transition: transform .7s $easeOutSwift; //, opacity .3s ease, max-height .5s $easeOutSwift, z-index 0s 0s
+    opacity: 1;
+    @include ie-exceptions {}
+    &:hover,
+    &:focus {
+        .list-item-primary-content:before {
+            opacity: 1;
+        }
+        prm-full-view & {
+            background-color: transparent;
+        }
+    }
+    .item-expanded & {
+        z-index: 11 !important;
+        // transform: translate3d(-10px, -25px, 0);
+        transition: transform .5s $easeOutSwift;
+        @include rtl(transform, translate3d(-10px, -25px, 0), translate3d(10px, -25px, 0));
+        @include ie-exceptions
+    }
+    .list-item-primary-content {
+        padding: $paddingLarge $paddingExtra;
+        z-index: 10;
+        background-color: transparent;
+        position: relative;
+        prm-full-view & {
+            .__xs & {
+                padding: 0;
+            }
+        }
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: $backgroundColor;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0;
+            prm-full-view & {
+                display: none;
+                padding-left: 1em;
+            }
+        }
+        &:hover,
+        &:focus {
+            &:before {
+                opacity: 1;
+            }
+        }
+        &.has-checkbox {
+            @include rtl-prop(padding-left, padding-right, 3em, auto)
+        }
+        md-checkbox {
+            position: absolute;
+            top: 0.95em;
+            @include rtl-prop(left, right, 0.8em, 0);
+        }
+        &:hover,
+        &:focus {
+            prm-full-view & {
+                background-color: transparent;
+                border-color: transparent;
+                box-shadow: none;
+            }
+        }
+    }
+    md-divider,
+    md-divider.md-primoExplore-theme {
+        border-color: $bg;
+        transition: opacity .2s ease;
+        @include ie-exceptions .item-expanded & {
+            opacity: 0;
+        }
+    }
+    .result-item-text {
+        padding-right: 3em;
+
+        [dir="rtl"] & {
+            padding-right: 0;
+            padding-left: 3em;
+        }
+
+        .__xs & {
+            padding-right: 0;
+            margin-top: 0.35em;
+            [dir="rtl"] & {
+                padding-left: 0;
+            }
+        }
+        prm-full-view & {
+            @include rtl-prop(margin-left, margin-right, 2.25em, auto);
+
+            .__xs & {
+                margin-left: 0;
+            }
+        }
+    }
+    .text-selector-spacer{
+        min-width: 1em;
+    }
+    .result-item-image {
+
+        flex: 0 0 60px;
+
+
+        prm-full-view & {
+            margin-right: 0;
+            max-width: 6em;
+            width: 6em;
+            min-width: 6em;
+
+            [dir="rtl"] & {
+                margin-left: 0;
+            }
+        }
+    }
+    .result-item-secondary-content {
+        padding-left: 0;
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: $backgroundColor;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+        }
+    }
+    &.item-bookmarked,
+    &.item-bookmarked:hover {
+        @extend .prm-highlight.prm-hue1;
+    }
+    .media-thumbnail {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        img {
+            box-shadow: none;
+            width: 100%;
+            // max-height:90px;
+        }
+        img[ng-src*="http"] {
+            display: block;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 2px 1px 0 white, -3px 3px 10px -3px rgba(0, 0, 0, 0.3);
+
+            html[dir="rtl"] & {
+                box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 2px 1px 0 white, -3px 3px 10px -3px rgba(0, 0, 0, 0.3);
+            }
+        }
+        prm-full-view & {
+            .dedup-images-holder {
+                > div {
+                    transform: translate(18px, 24px) scale(1.5);
+                    display: block;
+                }
+                img {
+                    width: inherit;
+                    &:first-child {
+                        width: 60px;
+                    }
+                }
+            }
+        }
+    }
+    .media-content-type {
+        z-index: 11;
+        margin-top: -2px;
+        word-break: break-all;
+        @extend .tiny-uppercase-text;
+        @extend .weak-text;
+        prm-search-result-frbr-line {
+            > span {
+                text-transform: lowercase;
+                font-size: .9rem;
+                font-size: 1.25em;
+                font-weight: 400;
+                letter-spacing: 0
+            }
+        }
+    }
+    md-checkbox {
+        .md-icon,
+        ._md-icon {
+            // @extend .prm-background;
+            // border-color: $dark;
+        }
+    }
+}
+
+.list-item-count {
+    position: absolute;
+    left: .5em;
+    opacity: .3;
+    font-size: .8em;
+    top: .4em;
+
+    @include rtl-prop(left, right, .5em, auto);
+
+    .has-checkbox & {
+        left: 1em;
+        top: 1.2em;
+        opacity: .7;
+        width: 20px;
+        display: flex;
+        justify-content: center;
+
+        @include rtl-prop(left, right, 12px, auto);
+    }
+}
+
+.result-item-actions {
+    min-width: 0px;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: $actionButtonMargin;
+    display: flex;
+    align-items: flex-start;
+    transition: transform .3s $easeOutQuint, opacity .2s;
+    transform: translate(2px, 0);
+    @include ie-exceptions 
+
+    .item-expanded & {
+        @include rtl(transform, translate(28px, -8px), translate(-26px, -8px));
+    }
+    html[dir="rtl"] & {
+        right: auto;
+        left: 0;
+    }
+    > .md-button {
+        opacity: .6;
+        &:hover,
+        &:focus {
+            opacity: 1;
+        }
+    }
+    // action buttons
+    .md-icon-button {
+        margin: 0;
+        background-color: transparent;
+        height: $actionButtonSize;
+        // line-height: $actionButtonSize;
+        max-height: $actionButtonSize;
+        min-height: $actionButtonSize;
+        width: $actionButtonSize;
+        min-width: $actionButtonSize;
+        max-width: $actionButtonSize;
+    }
+    .custom-button,
+    .more-options-button {
+        &:hover,
+        &:focus {
+            &:not([disabled]) {
+                background-color: transparent;
+            }
+        }
+    }
+    .custom-button {
+        margin: 0;
+        padding: 0;
+        @extend .prm-primary-color;
+        md-icon {
+            @include setSize(20px);
+        }
+        &.pin-button {
+            md-icon {
+                -webkit-transition: $swift-ease-out;
+                -moz-transition: $swift-ease-out;
+                -ms-transition: $swift-ease-out;
+                -o-transition: $swift-ease-out;
+                transition: $swift-ease-out;
+
+                -webkit-transform: rotate3d(0, 0, 1, -25deg);
+                -moz-transform: rotate3d(0, 0, 1, -25deg);
+                -ms-transform: rotate3d(0, 0, 1, -25deg);
+                -o-transform: rotate3d(0, 0, 1, -25deg);
+                transform: rotate3d(0, 0, 1, -25deg);
+                opacity: 0;
+                @include ie-exceptions;
+            }
+            @extend .prm-secondary-color.prm-hue1;
+            &.pinned {
+
+                &:hover,
+                &:focus {
+                    color: $dark;
+                }
+
+                md-icon {
+                    transform: rotate3d(0, 0, 1, 25deg);
+                    opacity: 1;
+                }
+            }
+        }
+        &.unpin-button {
+            md-icon {
+                -webkit-transition: $swift-ease-out;
+                -moz-transition: $swift-ease-out;
+                -ms-transition: $swift-ease-out;
+                -o-transition: $swift-ease-out;
+                transition: $swift-ease-out;
+                transform: rotate3d(0, 0, 1, 25deg);
+                opacity: 0;
+                @include ie-exceptions;
+            }
+            &.unpinned {
+                md-icon {
+                    transform: rotate3d(0, 0, 1, 0deg);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    // more option button
+    .more-options-button {
+        // margin-left: $actionButtonMargin;
+        width: $briefButtonHeight;
+        position: relative;
+        @extend .prm-primary-color;
+        prm-icon {
+            md-icon {
+                -webkit-transition: $swift-ease-out;
+                -moz-transition: $swift-ease-out;
+                -ms-transition: $swift-ease-out;
+                -o-transition: $swift-ease-out;
+                transition: $swift-ease-out;
+                position: relative;
+                @include ie-exceptions
+            }
+            &.open-icon {
+                md-icon {
+                    transform: rotate3d(0, 0, 1, 0deg);
+                    opacity: 1;
+                    top: -2px;
+                    .item-expanded & {
+                        transform: rotate3d(0, 0, 1, -135deg);
+                        opacity: 0;
+                    }
+                }
+            }
+            &.close-icon {
+                position: absolute;
+                left: -($actionButtonMargin);
+                top: 0;
+                right: 0;
+                md-icon {
+                    @include setSize(32px);
+                    transform: rotate3d(0, 0, 1, 45deg) scale3d(.5, .5, 1) translate3d(4px, 0, 0);
+                    opacity: 0;
+                    transform-origin: 50% 45%;
+                    top: 5px;
+                    .item-expanded & {
+                        transform: rotate3d(0, 0, 1, -90deg) scale3d(1, 1, 1) translate3d(0, 0, 0);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// pin animation
+.pinDummy {
+    position: absolute;
+    z-index: 1000;
+    transition: $swift-ease-in;
+    transition-duration: .5s;
+    background-color: transparent;
+    // background-color: white;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    padding: .5em;
+    opacity: 0;
+    overflow: hidden;
+
+    &:before {
+        content: "";
+        background-color: $red;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left: 0;
+        opacity: 0;
+        z-index: 0;
+        transition: opacity .3s .3s linear;
+    }
+
+    &:after{
+        content: "";
+        background-color: white;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left: 0;
+        opacity: 1;
+        z-index: -1;
+        transition: opacity .2s .5s linear;
+    }
+
+    prm-icon {
+        color: $moreLink;
+        transition: color .4s .1s linear;
+    }
+    md-icon {
+        transform: rotate(20deg);
+    }
+
+    &.animating {
+        animation: flyToFav 1s $swift-ease-out-timing-function forwards;
+        prm-icon {
+            color: white;
+        }
+        md-icon {
+            transition: transform .7s $swift-ease-in-timing-function;
+            transform: rotate(-415deg);
+        }
+        &:before {
+            opacity: 1;
+        }
+        &:after {
+            opacity: 0;
+        }
+    }
+}
+
+
+@keyframes flyToFav {
+    0% {
+        opacity: 0;
+        transform: scale3d(.85, .85, 1);
+        box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    }
+    5%{
+        opacity: 1;
+    }
+    50% {
+        transform: scale3d(1, 1, 1);
+        box-shadow: 0 15px 12px -6px rgba(0,0,0,.15);
+        transition: $swift-ease-out;
+    }
+
+    70% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+
+}

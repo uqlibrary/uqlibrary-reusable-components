@@ -1,0 +1,45 @@
+.links-block {
+    .links-block-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .separated-block-item {
+        &:after {
+            content: "";
+            // position: absolute;
+            height: 1em;
+            width: 1px;
+            // right: -.15em;
+            @extend .prm-background.prm-hue7;
+            transform: rotate(15deg);
+            // position: relative;
+            // right: .2em;
+        }
+        &:last-child:after{
+            display: none;
+        }
+    }
+}
+
+
+.labeled-block {
+    .block-label {
+        flex: 0 0 auto;
+        margin-right: .5em;
+        position: relative;
+        top: 5px;
+    }
+    .block-body {
+        overflow: hidden;
+        max-height: 10em;
+        transition: max-height .8s $swift-ease-in-out-timing-function;
+    }
+
+    &.collapsed {
+        .block-body {
+            max-height: 1.8em;
+            transition: max-height .5s $swift-ease-out-timing-function;
+        }
+    }
+}

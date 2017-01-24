@@ -1,0 +1,52 @@
+/* starting locationItems */
+
+prm-location-items {
+	.tab-content-header {
+		.md-title {
+			font-size: 1.1em;
+		}
+		p, .md-title {			
+			margin-bottom: .35em;
+		}
+	}
+	.summary-brief {
+		max-width:50em;
+	    @extend %text-trim-ellipsis;
+	} 
+
+	md-list {
+		prm-service-button {
+			.md-button,
+			.md-button.button-as-link {
+				padding: .5em .35em;
+				// text-transform: uppercase;
+				// font-size: .85em;
+				// font-weight: 600;
+
+			}
+			+ prm-service-button {
+				&:before {
+					@extend .skewed-divider;		
+				}
+			}
+			
+		}
+
+		md-list-item {
+			._md-secondary-container {
+				.__xs & {
+					margin-bottom: 3em;
+				}
+			}
+			.md-list-item-text {
+				.__xs & {
+					overflow: visible;
+					> div:last-child {
+						position: relative;
+						right: -3em;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,185 @@
+/* starting login */
+
+.login-dialog {
+    color: $dark;
+    min-width: 320px;
+    max-width: 600px;
+    .error-color {
+        color: $red;
+    }
+    .back-button {
+        position: absolute;
+        left: .5em;
+    }
+    .loader-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        @extend .prm-background.prm-hue5;
+        .loader {
+            height: 10%;
+        }
+    }
+    prm-spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    md-dialog-actions,
+    .md-actions {
+        min-height: 60px;
+        // margin-top: .5em;
+    }
+    .dialog-title {
+        margin-bottom: .5em;
+    }
+    .error-warning-message {
+        // padding: 1em;
+        display: block;
+        text-align: center;
+    }
+    md-list,
+    .md-list,
+    .md-list[class$="-line"] {
+        md-list-item,
+        md-list-item > .md-no-style {
+            margin: 0;
+            button,
+            .md-button {
+                padding: 1em;
+                border-radius: $radius;
+            }
+            .md-list-item-text {
+                padding-right: 1em;
+                h3,
+                .list-item-title {
+                    font-weight: $light;
+                    font-size: 1.6em;
+                    @extend .prm-links;
+                    // margin-bottom: 0.5em;
+                }
+                p {
+                    color: inherit;
+                }
+                ul {
+                    list-style: inherit;
+                    padding-left: 1.6em;
+                }
+                li {
+                    line-height: 1.6em;
+                }
+            }
+            [external-link] {
+                opacity: .5;
+                margin-left: .5em;
+                max-height: 29px;
+                md-icon {
+                    @include setSize(1.25em);
+                    position: relative;
+                    top: -.25em;
+                }
+            }
+            ._md-secondary-container,
+            .md-secondary-container {
+                prm-icon {
+                    opacity: .5;
+                    display: inline-block;
+                    transform: translateX(-5px);
+                    transition: $swift-ease-out;
+                }
+            }
+
+            &:hover {
+                ._md-secondary-container,
+                .md-secondary-container {
+                    prm-icon {
+                        opacity: 1;
+                       transform: translateX(5px);
+                    }
+                }
+            }
+        }
+        // button.md-button {
+        //   cursor: pointer;
+        //   &:not([disabled]) {
+        //     &:hover {
+        //       // background-color: $nearlyWhite;
+        //     }
+        //   }
+        // }
+    }
+    .dialog-inputs {}
+    md-input-container,
+    md-input-container.md-input-has-value,
+    md-input-container.md-input-focused,
+    md-input-container.md-input-focused:not(.md-input-invalid) {
+        max-width: 300px;
+        input {
+            font-size: 1.5em;
+        }
+    }
+    .collapsable-container {
+        transition-duration: 0s;
+        // > md-content {
+        //     padding: 1em 2em;
+        // }
+        > .md-button {
+            margin: 0;
+        }
+        md-list {
+            md-list-item {
+                .md-list-item-inner {
+                    @extend .prm-links;
+                    min-height: 1em;
+                    line-height: 1em;
+                }
+            }
+        }
+        p {
+            // padding: 1em;
+            &:last-child {
+                margin: 0;
+            }
+        }
+        md-content {
+            transition-duration: 0s;
+        }
+    }
+}
+
+.login-card {
+    position: relative;
+    max-width: 580px;
+    min-width: 360px;
+    md-card-content {
+        padding: 0;
+    }
+    md-toolbar,
+    md-toolbar:not(.md-menu-toolbar),
+    md-toolbar.md-default-theme:not(.md-menu-toolbar) {
+        background-color: transparent;
+        color: #333;
+    }
+    &.login-dialog md-content {
+        padding: 0;
+    }
+    &.login-dialog md-list {
+        padding: 0;
+    }
+    .login-header {
+        margin-bottom: 2em;
+        max-width: 260px
+    }
+    .login-header img {
+        width: 100%;
+        height: auto;
+    }
+    .login-card .collapsable-container md-content {
+        padding: 1em;
+    }
+}

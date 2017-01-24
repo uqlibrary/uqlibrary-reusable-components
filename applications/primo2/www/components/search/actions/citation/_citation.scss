@@ -1,0 +1,15 @@
+/* starting citation */
+
+prm-citation {
+	.__xs & {
+		md-tabs.vertical-tabs {
+			md-tabs-wrapper,
+			md-tabs-content-wrapper {
+				flex: 0 0 auto !important;
+			}
+		}
+	}
+	.md-tab {
+		min-height:30px;
+	}
+}

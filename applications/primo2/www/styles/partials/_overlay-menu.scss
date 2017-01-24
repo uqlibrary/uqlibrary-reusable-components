@@ -1,0 +1,148 @@
+$linkTitle: #73E9FF;
+
+body {
+	&.links-menu-visible {
+		overflow: hidden;
+	}
+}
+
+.overlay-menu {
+	// font-size: 1.4rem;
+	position: fixed;
+	// z-index: -10;
+	// opacity: 0;
+	z-index: 100;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparentize(darken($midGrey, 12%), .15);
+    color: $white;
+    height: 100%;
+    overflow: scroll;
+    transition: opacity .2s ease, z-index 0s .2s;
+
+    @include media( "screen", "<smallTablet" ){
+    	// font-size: 1.2rem;
+    }
+
+	// .links-menu-visible & {
+	// 	opacity: 1;
+	// 	z-index: 1000;
+	// 	transition: opacity .4s ease, z-index 0s 0s;
+	// }
+
+    // .links-menu-container {
+    // 	max-width: 1300px;
+    // 	align-items: center;
+    // 	margin: auto;
+    // }
+
+    md-content {
+    	background-color: transparent;
+		flex-wrap: wrap;
+		padding-top: 4em;
+		justify-content: center;
+		color: white;
+    }
+
+    // .close-button {
+    // 	position: fixed;
+    // 	opacity: 1;
+    // 	transform: none;
+    // 	top: 1em;
+    // 	right: 2em;
+    // 	left: auto;
+    // 	bottom: auto;
+    // 	width: 50px;
+    // 	height: 50px;
+    // 	z-index: 100;
+    // 	cursor: pointer;
+    // }
+
+	.close-button {
+		opacity: 1;
+		color: white;
+		right: 1em;
+		position: fixed;
+		top: 0;
+		left: auto;
+		transform: none;
+    	cursor: pointer;
+    	width: 80px;
+	 	height: 80px;
+    	margin: 0;
+    	padding: 0;
+    	max-height: none;
+    	max-width: none;
+    	z-index: 1000;
+    	border-radius: 50%;
+    	    min-width: 0;
+    	    min-height: 0;
+
+		md-icon {
+			fill: white;
+			width: 100%;
+			height: 100%;
+		}
+		&:hover,
+		&:active {
+			background-color: transparent;
+		}
+	}
+
+    .link-description {
+	    font-weight: 400;
+	    // font-size: 1.2em;
+	}
+
+	.link-title {
+		color: $linkTitle;
+		margin-top: 0;
+
+		&:after {
+		    content: "\f105";
+		    font-family: fontawesome;
+		    font-size: 1.1em;
+		    font-weight: normal;
+		    position: absolute;
+		    opacity: 0;
+		    transition: transform .3s $easeOutQuint, opacity .3s ease;
+		}
+	}
+
+	.link-tile{
+		cursor: pointer;
+		// opacity: 0;
+		padding: 1em;
+		// width: 28em;
+		border-radius: $radius;
+		// transform: scale3d(.7,.7, 1);
+		transform-origin: 50%;
+		transition: transform .6s $easeOutExpo, opacity .3s;
+
+		&:hover {
+			background-color: transparentize(darken($midGrey, 10%),.3); 
+
+			.link-title {
+				&:after {
+				    opacity: 1;
+				    transform: translate3d($paddingSmall, 0, 0);
+				}
+			}
+		}
+
+		.links-menu-visible & {
+			opacity: 1;
+			transform: scale3d(1, 1, 1);
+		}
+
+		@for $i from 1 through 10 {
+		    &:nth-child( #{$i}) {
+		        transition-delay: #{$i * .03}s;       
+		    }
+		}
+	}
+}
+
+

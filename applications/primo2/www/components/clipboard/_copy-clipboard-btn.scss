@@ -1,0 +1,15 @@
+/* starting copyClipboardBtn */
+
+prm-copy-clipboard-btn {
+	.md-button {
+		transition-duration: 0s !important;
+
+        .__xs & {
+            max-width: calc(100% - 1em);
+
+            prm-icon {
+                display: none;
+            }
+        }
+	}
+}

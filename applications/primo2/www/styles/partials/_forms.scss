@@ -1,0 +1,98 @@
+.service-form {
+	position: relative;
+	
+	md-input-container,
+	.md-input-container-dummy {
+		md-select:not([disabled]) md-select-value,
+		label {
+			color: $dark;
+		}
+	}
+}
+
+.service-form-loader {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparentize($white, .4);
+	z-index: 10;
+	.loader {
+		height: 70px;
+		top: auto;
+		left: auto;
+		transform: none;
+	}
+}
+.service-form-item {
+	position: relative;
+	> prm-icon {
+		// align-self: flex-end;
+		// padding-bottom: 16px;
+		position: absolute;
+		bottom: 16px;
+		// right: 0;
+		left: -24px;
+
+		md-icon {
+			opacity: .3;
+			height: 16px;
+			width: 16px;
+		}
+	}
+}
+
+.service-form-static-panel {
+	@extend .prm-background.prm-hue8;
+	box-shadow: inset -1px 0 0 0 ;
+	@extend .prm-background-color.prm-hue4; //splitted the color to support from box-shadow to allow color customization
+	flex-grow: 1;
+	*{//splitted the color to support from box-shadow to allow color customization
+		color: initial;
+	}
+}
+.service-form-dynamic-panel {
+	flex-grow: 3;
+}
+
+.md-input-container-dummy {
+	position: relative;
+	padding: 2px 2px 26px;
+
+	.md-select-dummy {
+
+	}
+
+	> .md-select-dummy {
+		@extend md-select;
+	}
+
+	.label-dummy {
+		position: relative;
+		top: -2px;
+		transform: translate3d(0,28px,0) scale(1);
+		color: transparentize(black, .45);
+		transform-origin: left top;
+	}
+
+	&.dummy-input-has-value {
+		.label-dummy {
+			transform: translate3d(0, 6px, 0) scale(0.85);
+		}
+	}
+
+	.md-select-value-dummy {
+		border-width: 0;
+	}
+
+	.md-select-icon-dummy {
+		visibility: hidden;
+	}
+
+}	
+
+
+

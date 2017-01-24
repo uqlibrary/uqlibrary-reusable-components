@@ -1,0 +1,14 @@
+.tiles-grid {
+    column-width: 17em;
+    column-gap: 1em;
+
+    .__xs & {
+    	column-width: 20em;
+    }
+}
+
+.tiles-grid-tile {
+    display: inline-block;
+    margin: 0 0 1em 0;
+    width:  100%;
+}

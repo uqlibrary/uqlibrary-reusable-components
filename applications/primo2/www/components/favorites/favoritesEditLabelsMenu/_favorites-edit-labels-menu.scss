@@ -1,0 +1,96 @@
+/* starting favoritesRecordLabels */
+prm-favorites-edit-labels-menu {
+	.labels-menu-button {
+    opacity: .5;
+    margin: 0;
+    margin-top: .35em;
+
+    &:hover {
+      opacity: 1;
+    }
+
+		md-icon {
+		  @include setSize(18px);
+		}
+
+    &.md-button {
+  		
+  		&.md-icon-button {
+        @include setSize(36px);
+     //    height: 2em;
+     //    width: 2em;
+     //    min-height: 2em;         
+     //    padding: .35em; 
+
+  			// prm-icon {
+  			// 	display: flex;
+     //      height: 1.2em;
+     //      width: 1.2em;
+
+     //      prm-favorites-tool-bar & {
+     //        height: 2em;
+     //        width: 2em;
+     //        min-height: 2em;         
+     //        padding: .35em; 
+     //      }
+  			// }
+        
+  		}      
+
+      &.button-with-icon {
+        // text-transform: none;
+        font-size: .8rem;
+        font-weight: $bold;
+        // min-width: 0;
+        // line-height: 1em;
+        // min-height: 0;
+        letter-spacing: 0.03em;
+        // text-transform: uppercase;
+        border-radius: 1.2em;
+        line-height: 28px;
+        min-height: 28px;
+        // padding: .35em .5em;
+
+        prm-favorites-tool-bar & {
+          border-radius: $radius;
+          line-height: 36px;
+          min-height: 36px;
+        }
+
+        md-icon {
+          height: 20px;
+          width: 20px;
+
+          prm-favorites-tool-bar & {
+            height: 24px;
+          width: 24px;
+          }
+        }
+
+        // prm-icon {
+
+        //   prm-favorites-tool-bar & {
+        //     md-icon {
+        //       top: 0;
+        //     }
+        //   }
+          
+        //   + span {
+        //     // line-height: 1.5em
+        //     position: relative;
+        //     top: .1em;
+
+        //     prm-favorites-tool-bar & {
+        //       font-size: .8em;
+        //     }
+        //   }
+        // }
+
+
+        .md-ripple-container {
+          border-radius: 1.2em;
+        }
+      }      
+    }
+  	}
+}

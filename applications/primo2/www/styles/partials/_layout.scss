@@ -1,0 +1,68 @@
+// align
+.align-self {
+	&-stretch {
+		align-self: stretch;
+	}
+	&-start {
+		align-self: flex-start;
+	}
+}
+
+// width and height (alternatives to layout-fill)
+.layout-full {
+	&-width {
+		width: 100%;
+		min-width: 100%;
+	}
+	&-height {
+		height: 100%;
+		min-height: 100%;
+	}
+}
+
+.layout-block {
+	display: block;
+	&-xs {
+		@include __xs {
+			display: block !important;
+		}
+	}
+}
+
+.layout-column {
+	> div {
+		.__xs & {
+			display: block;
+			&.layout-row {
+				display: flex;
+			}
+			&.layout-column {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+	}
+}
+
+// extend Angular Material flex classes
+//  use as such: 
+//  @include  extendMaterialFlex(screenSizeName)
+@mixin extendMaterialFlex($size) {
+  @for $i from 1 through 20 {
+    .flex-#{$size}-#{$i * 5},
+    .layout-row > .flex-#{$size}-#{$i * 5},
+    .layout-#{$size}-row > .flex-#{$size}-#{$i * 5},
+    .layout-column > .flex-#{$size}-#{$i * 5},
+    .layout-#{$size}-column > .flex-#{$size}-#{$i * 5}{
+      flex: 1 1 ($i * 5) * 1%;
+      max-width: ($i * 5) * 1%;
+      max-height: 100%;
+      box-sizing: border-box; 
+    }
+  }
+}
+
+// create an additional flex class 'lgPlus'
+@include  extendMaterialFlex(lgPlus)
+
+

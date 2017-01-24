@@ -1,0 +1,170 @@
+//// HELPERS
+
+// variables
+$directions: top right bottom left;
+$sizes: (
+  small: .5em,
+  medium: 1em,
+  large: 1.5em
+);
+
+// mixin (nested @each) - create classes for each size within each direction 
+@mixin helpers-sizes($property) {
+	@each $name, $value in $sizes {
+		&-#{$name} {
+			#{$property}: #{$value};
+		}
+	}
+  @each $direction in $directions { // get each declared direction variable and create a class
+    &-#{$direction} {
+      @each $name, $value in $sizes { // get each declared size variable and create a class
+        &-#{$name} {
+          #{$property}-#{$direction}: $value; // the value itself
+        }
+      }
+    }
+  }
+}
+
+// mixin - create classes for each direction with chosen property
+@mixin helpers-directions($property) { // pass 'margin' or 'padding' to $property
+	@each $direction in $directions {
+		&-#{$property}-#{$direction} {
+			#{$property}-#{$direction}: 0 !important
+		}
+	}
+}
+
+// display
+.display {
+	&-block {
+		display: block;
+		&-xs {
+			.__xs & {
+				display: block;
+			}
+		}
+		&-sm {
+			.__sm & {
+				display: block;
+			}
+		}
+	}
+}
+.blockify-spans {
+	span {
+		display: inline-block
+	}
+}
+
+// Overflow
+.overflow {
+	&-hidden {
+		overflow: hidden;
+	}
+	&-visible {
+		overflow: visible;
+	}
+}
+
+// Visibility
+.zero-opacity {
+	opacity: 0 !important;
+}
+
+// Shape
+.zero-radius {
+    border-radius: 0 !important;
+}
+
+//  Position
+.relative-position {
+	position: relative;
+}
+.fixed-position {		
+
+	&.fixed-center {
+		position: fixed;
+		top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    margin: auto;
+	}
+	&.fixed-bottom {
+		position: fixed;
+		bottom: 0;
+	    left: 0;
+	    right: 0;
+	    margin: auto;
+	}
+	&.fixed-top {
+		position: fixed;
+		top: 0;
+		left: 0;
+	    right: 0;
+	    margin: auto;
+	}
+	&.fixed-left {
+		position: fixed;
+		top: 0;
+	    bottom: 0;
+	    left: 0;
+	    margin: auto;
+	}
+	&.fixed-right {
+		position: fixed;
+		top: 0;
+	    bottom: 0;
+	    right: 0;
+	    margin: auto;
+	}	
+}
+
+// z-index
+.topmost-index {
+	z-index: 1000;
+}
+
+/* remove element margins & paddings */
+.zero {	
+	&-padding { // no padding
+		padding: 0 !important
+		
+	}
+	@include helpers-directions(padding);
+
+	&-margin { // no margins
+		margin: 0 !important
+	}
+	@include helpers-directions(margin);
+}
+
+/* // margins // */
+.margin {
+  @include helpers-sizes(margin)
+}
+
+/* // paddings // */
+/* uniform padding */
+.padded-container {
+	padding: 1.5em;
+	/* responsive */
+	.__xs &,
+	.__sm & {
+		padding: 1em;
+	}
+
+	&-large {
+		padding: 1.5em;
+	}
+	&-medium {
+		padding: 1em;
+	}
+	&-small {
+		padding: .5em;
+	}
+}
+.padding {
+  @include helpers-sizes(padding)
+}

@@ -1,0 +1,160 @@
+/* starting searchBookmarkFilter */
+prm-search-bookmark-filter{
+  height: 100%;
+  margin-right: .5em;
+
+  .md-button {
+    // @extend .prm-primary-bg.prm-hue2;
+    @extend %darker-bg;
+    @extend .prm-secondary-color;
+  }
+  
+ #back-to-top-button{
+ 	.md-button {
+ 		color: #333;
+ 	}
+ } 
+  
+
+#fixed-buttons-holder{
+    transition-duration: 0s;  
+    position: relative;
+    animation: animateStickyButtonOut .4s $swift-ease-out-timing-function forwards;
+    svg {
+        transition-delay: 0s !important;
+    }
+    &.fixed-to-top {
+        position: fixed;
+        top: 1em;
+        right: 1em;    
+        z-index: 15;        
+        animation: animateStickyButtonIn .7s $swift-ease-out-timing-function forwards;     
+        
+        svg {
+            fill: $dark;
+            transition-duration: .4s;
+            transition-delay: 0s;
+        }
+    }
+    
+}
+@keyframes animateStickyButtonIn {
+    0% {
+        opacity: 0;
+        transform: translateY(45px) ;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes animateStickyButtonOut {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(.7);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+	
+	#back-to-top-button {
+   		
+   		background-color: transparent;
+   		color: #333;
+	}
+	
+
+	
+	
+	.fixed-to-top #favorites-button {
+  color: #333;
+}
+
+	.fixed-to-top #search-button {
+  color: #333;
+}
+    
+#favorites-button {
+    // background-color: darken($midGrey, 5%);
+    background-color: transparentize($dark, .85);
+    z-index: auto !important;
+
+    &:before {
+        content: "";
+        background-color: $red;
+        position: absolute;
+        width: 100%;
+        height: 100%;  
+        border-radius: 50%;
+        top:0;
+        left: 0;
+        opacity: 0;
+        transition: $swift-ease-out;
+        transition-duration: 2s;
+        transition-delay:  .1s;
+             
+    }
+    prm-icon {        
+        svg {
+            transition: $swift-ease-out;
+            transition-duration: 2s;
+            transition-delay: 1s;
+        }   
+    }
+    md-icon {
+        transform: rotate(20deg);
+        transition-duration: 0s;
+        transition-delay: .2s;
+    }   
+    &.animating {
+        animation: favRecieved 1s ease-in-out forwards;
+
+        &:before {
+            transition-delay:  0s;
+            transition-duration: .5s;
+            opacity: 1;
+        } 
+        md-icon {
+            transform: rotate(-340deg);
+            transition: transform .5s .05s $swift-ease-out-timing-function;
+        }           
+        prm-icon {
+            svg {
+                transition-duration: .4s;
+                transition-delay: 0s;
+                fill: white;
+            }
+         }        
+    }   
+}
+
+
+@keyframes favRecieved {
+
+    5% {
+    transform: scale(.9) }
+
+  12% {
+    transform: scale(1.5); }
+
+  23% {
+    transform: scale(.8); }
+
+  38% {
+    transform: scale(1.2); }
+
+    60% {
+    transform: scale(.95); }
+
+    80% {
+    transform: scale(1.05); }
+
+  100% {
+    transform: scale(1);
+    animation-timing-function: $easeOutQuint} 
+}
+
+}
+

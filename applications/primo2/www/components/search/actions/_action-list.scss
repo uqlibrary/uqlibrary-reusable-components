@@ -1,0 +1,163 @@
+@import "citation/citation";
+@import "sendEmailAction/send-email";
+
+/* starting actionList */
+
+prm-action-list, .saved-query-list {
+    md-tabs-canvas,
+    md-pagination-wrapper,
+    md-tabs-canvas {
+        height: 60px;
+    }
+    md-tab-item,
+    .md-tab {        
+        opacity: 1;
+        border-radius: 0;
+        padding: .5em 0;
+        .__xs & {
+            padding: .5em;
+        }
+    }
+     md-tab-item {
+        flex: 1;
+        .__xs & {
+            min-width: 5em;
+        }
+     }
+    md-ink-bar {
+        margin-left: 1.4em;
+        margin-right: 1.4em;
+        .__xs &{
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+    }
+
+    .media-actions,
+    .item-actions{
+        // display: none;
+        position: absolute;
+        // height: 90%;
+        top: 9px;
+        bottom: 0;
+        right: $paddingSmall;
+        // margin: auto;
+        height: 40px;
+        z-index: 11;
+
+        .button-one,
+        .button-two {
+            display: block;
+            margin-bottom: 5px;
+            z-index: 10;
+            opacity: 1;
+            visibility: hidden;
+            transform: scale3d(0, 0, 1);
+            // transition: transform .2s $easeInBack, opacity .3s ease, visibility 0 .4s, z-index 0 .4s;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .item-expanded &,
+            .item-hovered & {
+                z-index: 10;
+                opacity: 1;
+                visibility: visible;
+                transform: scale3d(1, 1, 1);
+                // transition: transform .4s .3s $easeOutBack, opacity .1s .3s ease, visibility 0 0, z-index 0 0;
+            }
+            &:nth-child(1) {
+                .item-expanded &, .item-hovered & {
+                    transition: transform .4s .5s $easeOutBack, opacity .1s .5s ease, visibility 0s 0s, z-index 0s 0s;
+                }
+            }
+            &:nth-child(2) {
+                .item-expanded &, .item-hovered & {
+                    transition: transform .4s .3s $easeOutBack, opacity .1s .3s ease, visibility 0s 0s, z-index 0s 0s;
+                }
+            }
+        }
+        i {
+            margin-right: 5px;
+        }
+        li {
+            margin-right: 0 !important;
+            width: auto !important;
+        }
+    }
+
+    .form-focus {
+        > div {
+            .__xs & {
+                padding: 0;
+            }
+        }
+    }
+}
+
+.send-actions-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0s ease, max-height 0s $easeOutQuint;
+    .send-content-visible & {
+        max-height: 100em;
+        opacity: 1;
+        transition: opacity .2s ease, max-height .3s $easeOutQuint;
+    }
+}
+
+
+.send-actions-content-item {   
+    transform-origin: 50% 0;
+    transition: transform .4s $easeOutQuint;
+
+    .__xs & {
+        margin: 0;
+    }
+
+    prm-brief-result-container & {        
+        margin: 1em 1em 1.5em 1em;
+    }
+
+    prm-full-view & {
+        padding: 1em 0 0 0;
+        margin: 0;
+    }
+
+    > md-content,
+    > md-content.md-primoExplore-theme {
+        padding: 1em;
+        border: 1px solid darken($actionsBackground, 4%);
+        background-color: $actionsBackground;
+
+        .__xs & {
+            padding: 0;
+            border: none;
+            background-color: transparent;  
+        }
+
+        > form {
+            .__xs & {
+                padding: 0;
+            }
+        }
+
+        prm-full-view & {
+            padding: 1.5em;
+
+            .__sm & {
+                padding: .5em;
+            }
+        }
+    }
+}
+
+.send-action-buttons {
+    .button-confirm {
+        margin: 0;
+    }
+}
+
+md-tabs.action-tabs md-tabs-wrapper {
+    border-style: none;
+}

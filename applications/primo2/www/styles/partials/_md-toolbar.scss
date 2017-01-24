@@ -1,0 +1,243 @@
+$defaultToolbarHeight: 60px;
+
+md-toolbar,
+md-toolbar.md-primoExplore-theme,
+md-toolbar:not(.md-menu-toolbar) {
+
+	min-height: $defaultToolbarHeight;
+	.md-toolbar-tools {
+		height: $defaultToolbarHeight;
+		max-height: $defaultToolbarHeight;
+	}
+	&.transparent-toolbar {
+		background-color: transparent;
+		@extend .prm-text;
+	}
+
+	&[sticky] {
+		// transition: $swift-ease-out;
+		// transition-duration: 1s;		
+	}
+
+	&.default-toolbar{
+		@extend .prm-background.prm-hue1;
+		@extend .prm-text;
+
+		.md-button {
+			opacity: .8;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		&.is-stuck {
+			@extend .toolbar-shadow;
+		}
+	}
+
+	&.bottom-fixed-toolbar {
+		z-index: 13;
+		@extend .fixed-position.fixed-bottom;
+		@extend %toolbar-shadow-top;
+	}
+	&.white-toolbar {
+		&.is-stuck {
+			@extend .default-shadow;
+		}
+	}
+	&.dark-toolbar {
+		background-color: $midGrey;
+		color: $white;
+	}
+	+ md-toolbar {
+		background-color: white !important;
+	}
+	.md-button {
+		// color: transparentize($dark, .3);
+		// color: inherit;
+		md-icon {
+			// color: transparentize($dark, .3);
+			color: inherit;
+		}
+		&:hover {
+			md-icon {
+				// color: transparentize($dark, 0);
+			}
+		}
+		&.has-bottom-arrow {
+			overflow: visible;
+			&:after {
+				content: "";
+				display: none;
+				position: absolute;
+				bottom: -12px;
+				left: 0;
+				right: 0;
+				margin: auto;
+				width: 0;
+				height: 0;
+				border-right: 1em solid transparent;
+				border-left: 1em solid transparent;
+				border-bottom: 0.85em solid #FFFFFF;
+				z-index: 10000;
+			}
+
+			&.arrow-showing {
+				&:after {
+					display: block;
+				}
+			}
+		}
+		&:only-child {
+			margin: 0;
+		}
+	}
+
+	.toolbar-divider{
+		width: 1px;
+		height: 100%;
+		@extend .prm-background.prm-hue10;
+		margin-left: .5em;
+		margin-right: .5em;
+		border: none;
+		visibility: hidden;
+
+		&.visible {
+			visibility: visible;
+		}
+
+		+ .toolbar-title {
+			margin-left: .5em;
+			padding-left: 0;
+		}
+	}
+	.toolbar-title {
+		font-weight: $light;
+		font-size: 1.2em;
+		// padding: 0 1em;
+		margin-right: .5em;
+		padding-left: .5em;
+
+		.__xs &{
+			padding-left: 0;
+		}
+
+		+ .toolbar-select-input {
+			color: $midGrey;
+			font-size: 16px;
+			line-height: 1.5em;
+
+			.select-input-label {
+				align-self: flex-end;
+				bottom: 1px;
+				position: relative;
+				margin-right: 0.1em;
+			}
+
+			md-select-value {
+				color: $midGrey;
+
+				.md-select-icon {
+					font-size: .8em;
+					width: 18px;
+				}
+			}
+		}
+	}
+
+	.md-toolbar-tools {
+		// padding: 0 1.5em;
+
+		.toolbar-select-input {
+			padding: 0;
+
+			md-select-value {
+				border-bottom-color: transparent;
+			}
+		}
+	}
+
+	&.citations-toolbar {
+		min-height: 0;
+		padding-bottom: .7em;
+		background-color: transparent;
+		.toolbar-section {
+			@extend .prm-background.prm-hue11;
+			border: 1px solid ;
+			@extend .prm-background-border.prm-hue4;
+			border-radius: $radius;
+			&:not(:last-child) {
+				margin-right: .5em;
+			}
+			// width: 60px;
+			// border-radius: 0;
+			.md-button {
+				margin: 0;
+				height: 38px;
+				line-height: 38px;
+				md-icon {
+					color: $midGrey;
+				}
+				&:not(:last-child) {
+					// box-shadow: 1px 0 0 0 darken($background, 7%);
+				}
+				&:hover {
+					background-color: white;//not open to color scheme changes
+				}
+			}
+		}
+	}
+	.pushto-actions {
+		button,
+		.md-button {
+			color: lighten($midGrey, 10%);
+			flex: 1;
+			flex-direction: column;
+			display: flex;
+			min-width: 0;
+			padding: .5em 0;
+			margin: 0;
+			.icon {
+				font-size: 1.8em;
+				margin: 0;
+			}
+			span {
+				line-height: 1em;
+				text-transform: none;
+			}
+		}
+	}
+
+	.back-button,
+	.back-button.md-focused {
+		height: 100%;
+		margin: 0;
+		width: 76px;
+		min-width: 76px;
+		opacity: .8;
+		&:hover {
+			opacity: 1;
+		}
+		md-icon {
+			width: 34px;
+			height: 34px;
+			border-radius: 0 !important;
+			@include rtl(transform, none,  scale(-1, 1));
+		}
+		+ .toolbar-divider {
+			// margin-left: 0;
+			@include rtl-prop(margin-left, margin-right, 0, initial);
+		}
+
+		&.has-text {
+			width: auto;
+		}
+
+		&.offset-to-left {			
+			@include rtl-prop(margin-left, margin-right, -16px, 0);
+			.__gt-sm & {
+				// margin-left: -70px;
+				@include rtl-prop(margin-left, margin-right, -70px, 0);
+			}
+		}
+	}
+}
