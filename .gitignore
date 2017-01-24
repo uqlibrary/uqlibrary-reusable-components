@@ -5,6 +5,7 @@ bower_components
 .idea
 .tmp
 .DS_Store
+dist
 
 aws.json
 aws.json-e

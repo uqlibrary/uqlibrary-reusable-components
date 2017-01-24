@@ -81,7 +81,7 @@ gulp.task('publish', ['copy:aws'], function () {
     'Cache-Control': 'max-age=315360000, no-transform, public'
   };
 
-  return gulp.src('./' + config.applications + '/**')
+  return gulp.src('./' + config.dist + '/**')
       .pipe($.rename(function (path) {
         path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
       }))
@@ -102,7 +102,9 @@ gulp.task('publish', ['copy:aws'], function () {
 // copy and rename elements.html to elements.vulcanized.html
 gulp.task('copy:aws', function () {
 
-  var apps = gulp.src([config.applications + '/**/*.*', !config.applications + '/**/*.scss'])
+  var apps = gulp.src([config.applications + '/**/*.*',
+    '!' + config.applications + '/**/*.scss',
+    '!' + config.applications + '/**/*.json'])
       .pipe(gulp.dest(config.dist + '/applications'));
 
   var vulcanized = gulp.src([config.elements + '/elements.vulcanized.*'])
