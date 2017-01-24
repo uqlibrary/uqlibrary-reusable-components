@@ -105,7 +105,7 @@ gulp.task('copy:aws', function () {
   var apps = gulp.src([config.applications + '/**/*.*',
     '!' + config.applications + '/**/*.scss',
     '!' + config.applications + '/**/*.json'])
-      .pipe(gulp.dest(config.dist + '/applications'));
+      .pipe(gulp.dest(config.dist));
 
   var vulcanized = gulp.src([config.elements + '/elements.vulcanized.*'])
       .pipe(gulp.dest(config.dist));
