@@ -33,6 +33,11 @@ function loadReusableComponents() {
   // var footer = document.createElement('uq-minimal-footer');
   // document.body.appendChild(footer);
 
+  var app = angular.module('viewCustom', ['angularLoad']);
+  app.component('prmExploreMainBefore', {
+    template: '<uqlibrary-alerts></uqlibrary-alerts><uq-minimal-header></uq-minimal-header>'
+
+  });
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
