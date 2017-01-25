@@ -58,6 +58,12 @@
 @import "www/styles/main";
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
+
+uqlibrary-alerts,
+uq-minimal-header {
+  z-index: 79;
+}
+
 prm-user-area {
   .user-menu-button .user-name {
     color: $accent-color;
