@@ -72,9 +72,9 @@ $primary-hue2: darken($primary, 5%);
 $primary-hue3: darken($primary-hue2, 2%);
 $primary-hue4: darken($primary, 10%);
 
-$secondary: #A9CDD6;
-$secondary-hue1: darken(saturate(adjust-hue($secondary, -6.5946), 9.1452), 26.2745); 
-$secondary-hue2: darken($secondary, 20%);
+$secondary: $primary;
+$secondary-hue1: $primary;
+$secondary-hue2: $primary;
 
 
 $backgroundColor: white;
