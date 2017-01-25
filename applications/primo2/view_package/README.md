@@ -9,6 +9,8 @@ The development package allows you to configure :
 - css
   - no customisation to be done in custom.css
   - all CSS changes to be done in reusable-components/applications/primo2/custom-styles.scss
+  - all global updates (eg fonts, colours, etc) to be updated in Primo's SASS package
+  - SASS package can be downloaded from https://search.library.uq.edu.au/primo-explore/lib/scsss.tar.gz (check for changes after every PrimoUI update)
 
 - images
   - TBA
@@ -18,8 +20,7 @@ The development package allows you to configure :
 
 - JavaScript
   - reusable components are injected by custom.js
-  - TODO: investigate colour theming from [Primo hackathon](http://initiatives.exlibrisgroup.com/2016/12/primo-hackathon-open-discovery-framework-community.html) 
-
+  
 No changes are expected to be done to the package. All updates to be done in reusable-components/applications/primo2/*.(scss|js)
 
 ##Package deployment
@@ -28,6 +29,11 @@ No changes are expected to be done to the package. All updates to be done in reu
 - delete any hidden filese (eg .idea, .git, etc)
 - create a zip, eg 61UQ_DEV.zip
 - upload zip to Promo BO, run deployment
+
+
+##Primo devenvironment
+
+Try setting up local environment following this: https://github.com/ExLibrisGroup/primo-explore-devenv
 
 
 
