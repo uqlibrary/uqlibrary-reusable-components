@@ -25,13 +25,13 @@ function loadReusableComponents() {
 
   // while new PrimoUI has infinite scrolling, do not include footer
 
-  // insert sub footer before body-tag
-  var subFooter = document.createElement('uql-connect-footer');
-  document.body.appendChild(subFooter);
-
-  // insert footer before body-tag
-  var footer = document.createElement('uq-minimal-footer');
-  document.body.appendChild(footer);
+  // // insert sub footer before body-tag
+  // var subFooter = document.createElement('uql-connect-footer');
+  // document.body.appendChild(subFooter);
+  //
+  // // insert footer before body-tag
+  // var footer = document.createElement('uq-minimal-footer');
+  // document.body.appendChild(footer);
 
 
   window.addEventListener('WebComponentsReady', function() {
