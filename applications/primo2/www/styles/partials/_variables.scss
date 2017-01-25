@@ -35,7 +35,7 @@ $almostBlack: #777;
 
 
 
-$titles: rgb(68, 112, 123);
+$titles: #2377CB;
 $frbr: #ed9100;
 $pink: rgb(255, 171, 200);
 
@@ -66,7 +66,7 @@ $alert-hue1: darken(desaturate(adjust-hue($alert, 0.3074), 15.3043), 2.9412);
 $disabled: #aaa;
 $courseColor: #55909B;
 
-$primary: #53738C;
+$primary: #2377CB;
 $primary-hue1: darken($primary, 3%);
 $primary-hue2: darken($primary, 5%);
 $primary-hue3: darken($primary-hue2, 2%);
@@ -125,8 +125,7 @@ $snippets:#999;
 
 
 $links: #2377CB;
-
-$links-background-hue1: transparentize($links, 1);
+$links-background-hue1: transparent;
 
 
 
@@ -135,7 +134,7 @@ $links-hue-1: darken(saturate($links, 5%), 5%);
 $links-hue-5: darken(saturate($links, 20%), 20%);
 $linksHover: darken(saturate($links, 20%), 20%);
 $linksHover-hue-2: transparentize($linksHover, .5);
-$linkAlt: $secondary-hue1;
+$linkAlt: $links;
 $md-primary: $links;
 
 
@@ -159,8 +158,8 @@ $highlight-hue1: #FFFCC4;
 
 
 $modalBackdrop: rgb(68,68,68);
-$linkTitle: #73E9FF;
-$moreLink: #45aab4;
+$linkTitle: $links;
+$moreLink: $links;
 
 
 $selectedItem: saturate(lighten($midGrey, 53%), 40%);
