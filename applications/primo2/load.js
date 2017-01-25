@@ -10,18 +10,18 @@ function loadReusableComponents() {
   //insert elements, even before Polymer is loaded
 
   //first element of the original document
-  var firstElement = document.body.children[0];
+  // var firstElement = document.body.children[0];
+  var firstElement = document.querySelector('primo-explore');
 
-  var alerts = document.querySelector('uqlibrary-alerts');
-  if (!alerts) {
-    //as a back up insert header if it's not defined already
-    alerts = document.createElement('uqlibrary-alerts');
-    document.body.insertBefore(alerts, firstElement);
-  }
+  //as a back up insert header if it's not defined already
+  var alerts = document.createElement('uqlibrary-alerts');
+  // document.body.insertBefore(alerts, firstElement);
+  firstElement.appendChild(alerts);
 
   // insert header after body-tag
   var header = document.createElement('uq-minimal-header');
-  document.body.insertBefore(header, firstElement);
+  // document.body.insertBefore(header, firstElement);
+  firstElement.appendChild(header);
 
   // while new PrimoUI has infinite scrolling, do not include footer
 
