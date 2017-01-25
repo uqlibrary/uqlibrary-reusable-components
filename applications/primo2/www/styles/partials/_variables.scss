@@ -129,7 +129,6 @@ $links-background-hue1: transparent;
 
 
 
-$links: $links;
 $links-hue-1: darken(saturate($links, 5%), 5%);
 $links-hue-5: darken(saturate($links, 20%), 20%);
 $linksHover: darken(saturate($links, 20%), 20%);
