@@ -15,12 +15,12 @@ function loadReusableComponents() {
 
   //as a back up insert header if it's not defined already
   var alerts = document.createElement('uqlibrary-alerts');
-  document.body.insertBefore(alerts, firstElement.childNodes[0]);
+  // document.body.insertBefore(alerts, firstElement.childNodes[0]);
   // firstElement.appendChild(alerts);
 
   // insert header after body-tag
   var header = document.createElement('uq-minimal-header');
-  document.body.insertBefore(header, firstElement.childNodes[0]);
+  // document.body.insertBefore(header, firstElement.childNodes[0]);
   // firstElement.appendChild(header);
 
   // while new PrimoUI has infinite scrolling, do not include footer
