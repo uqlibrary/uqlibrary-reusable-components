@@ -39,6 +39,11 @@ function loadReusableComponents() {
 
   });
 
+  app.component('prmSearchBarAfter', {
+    template: '<uq-minimal-header></uq-minimal-header>'
+
+  });
+
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
     header.showLoginButton = false;
