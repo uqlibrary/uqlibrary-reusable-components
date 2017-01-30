@@ -34,6 +34,10 @@
       width: 90%;
     }
   }
+
+  .rn_ChatPostMessage textarea {
+    width: calc(100% - 80px); // 80px seems to leave enough room for the button
+  }
 }
 
 // between mobile and full width screen is an evil sweet spot that the ipad falls into:
