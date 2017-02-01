@@ -2,9 +2,7 @@
 body.lib_chatlanding {
     background-image: none;
 
-// start of taken directly from page
-
-    background-color: #F5F5F5;
+    background-color: $secondary-color-light;
 
     #rn_PageContent {
         margin:0;
@@ -16,9 +14,11 @@ body.lib_chatlanding {
     }
 
     .rn_ChatEngagementStatus {
-        background-color:#F5F5F5;
+        background-color:$secondary-color-light;
         padding: 14.5px 0 0 10px;
+        padding: 0.9rem 0 0 0.625rem;
         height: 26.5px;
+        height: 1.65rem;
     }
 
     .rn_ChatSendButton{
@@ -31,9 +31,10 @@ body.lib_chatlanding {
         border:none;
         padding-left: 0;
         padding-bottom: 10px;
+        padding-bottom: 0.625rem;
     }
     #rn_ChatDialogContainer {
-        background-color:#F5F5F5;
+        background-color:$secondary-color-light;
         border: none;
     }
 
@@ -48,17 +49,19 @@ body.lib_chatlanding {
 
     .rn_ChatCancelButton button {
         width: 60px;
+        width: 3.75rem;
     }
 
      input[type="submit"], button {
-        background-color: #3A7DDA;
+        background-color: $accent-color;
         background-image: none;
         height: 44px;
+        height: 2.75ren;
         -moz-border-radius: 0;
         -webkit-border-radius: 0;
-        -moz-box-shadow: 0px 0px 0px rgba(0,0,0,0);
-        -webkit-box-shadow: 0px 0px 0px;
-        border: solid 1px #3A7DDA;
+        -moz-box-shadow: 0 0 0 rgba(0,0,0,0);
+        -webkit-box-shadow: 0 0 0;
+        border: solid 1px $accent-color;
         font-size: 1.222em;
         text-shadow: none;
         margin:0;
@@ -69,7 +72,7 @@ body.lib_chatlanding {
 
 
     .rn_ChatTranscript {
-        background-color: #F5F5F5;
+        background-color: $secondary-color-light;
         border: none;
         overflow: auto;
         min-height:348px;
@@ -78,15 +81,17 @@ body.lib_chatlanding {
         .rn_MessagePost {
           display:block;
           clear:both;
-          border-top: 10px #F1F1F1 solid;
-          border-bottom: 2px #632381 solid;
+          border-top: 10px $secondary-color-light solid;
+          border-top-width: 0.625rem;
+          border-bottom: 2px $theme-color-lighter solid;
         }
 
     }
 
     .rn_MessagePost {
-        color: #4E4E4E;
+        color: $secondary-color;
         padding:10px;
+        padding:0.625rem;
         display:block;
         font-family: Roboto, Helvetica, sans-serif;
         background-color: white;
@@ -95,15 +100,14 @@ body.lib_chatlanding {
     .rn_UserTextPrefix {
         color: #0D67B3 !important;
         font-weight: bold;
-        /*float:right; */
     }
 
     .rn_AgentTextPrefix {
-        color: #632381 !important;
+        color: $secondary-color-dark !important;
         font-weight: bold;
 
     }
-// end from page
+
     #rn_PageContent {
         padding-top: 0;
     }
@@ -113,7 +117,9 @@ body.lib_chatlanding {
         background-color: #fff !important;
         color: $theme-color !important;
         padding-left: 20px;
+        padding-left: 1.25rem;
         height: 50px;
+        height: 3.125rem;
 
         h1 {
             font-weight:normal;
@@ -123,6 +129,7 @@ body.lib_chatlanding {
 
     #rn_ChatDialogHeaderButtonContainer {
         margin-right: 40px;
+        margin-right: 2.5rem;
     }
 
     .rn_ChatPostMessage textarea {
@@ -150,6 +157,7 @@ body.lib_chatlaunch {
     div#rn_PageTitle {
         background-color: $theme-color;
         padding-left: 20px;
+        padding-left: 1.25rem;
 
         h1 {
             color: #fff;
@@ -158,8 +166,10 @@ body.lib_chatlaunch {
         }
     }
 
+    // not currently used
     div.lib_chatlaunch_header {
         padding: 15px 0 0 0;
+        padding-top: 1rem;
         color: $secondary-color-dark;
         font-size: 1.222em;
 
@@ -169,7 +179,8 @@ body.lib_chatlaunch {
     }
 
     hr {
-        margin: 25px 0;
+        margin: 24px 0;
+        margin: 1.5rem 0;
         border-width: 1px 0 0 0;
         border-style: solid;
         border-color: $secondary-color-light;
@@ -183,6 +194,7 @@ body.lib_chatlaunch {
         display: block;
         font-weight: normal;
         margin: 4px 0;
+        margin: 0.25rem 0;
     }
 
     .rn_Required {
