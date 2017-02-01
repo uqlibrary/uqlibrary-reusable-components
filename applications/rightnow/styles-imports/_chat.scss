@@ -46,9 +46,11 @@ body.lib_chatlanding {
         height: 2.1rem;
     }
 
+    .rn_ChatCancelButton button {
+        width: 60px;
+    }
 
-    input[type="submit"], button {
-        width:60px;
+     input[type="submit"], button {
         background-color: #3A7DDA;
         background-image: none;
         height: 44px;
@@ -85,7 +87,7 @@ body.lib_chatlanding {
         color: #4E4E4E;
         padding:10px;
         display:block;
-        font-family: roboto, helvetica;
+        font-family: Roboto, Helvetica, sans-serif;
         background-color: white;
     }
 
@@ -121,6 +123,11 @@ body.lib_chatlanding {
     #rn_ChatDialogHeaderButtonContainer {
         margin-right: 40px;
     }
+
+    .rn_ChatPostMessage textarea {
+        width: calc(100% - 80px); // 80px seems to leave enough room for the button
+    }
+
 }
 
 
