@@ -62,7 +62,8 @@ body.lib_chatlanding {
         font-size: 1.222em;
         text-shadow: none;
         margin:0;
-
+       // legacy fix needed for ios
+        -webkit-appearance: none;
     }
 
 
