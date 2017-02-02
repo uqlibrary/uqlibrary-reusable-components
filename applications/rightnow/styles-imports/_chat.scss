@@ -39,7 +39,7 @@ body.lib_chatlanding {
     }
 
     .rn_ChatPostMessage textarea {
-        width: 358px;
+        width: calc(100% - 80px); // 80px seems to leave enough room for the button
         float: left;
         padding: 8px 8px 0 8px;
         padding: 0.5rem 0.5rem 0 0.5rem;
@@ -56,7 +56,7 @@ body.lib_chatlanding {
         background-color: $accent-color;
         background-image: none;
         height: 44px;
-        height: 2.75ren;
+        height: 2.75rem;
         -moz-border-radius: 0;
         -webkit-border-radius: 0;
         -moz-box-shadow: 0 0 0 rgba(0,0,0,0);
@@ -65,8 +65,6 @@ body.lib_chatlanding {
         font-size: 1.222em;
         text-shadow: none;
         margin:0;
-       // legacy fix needed for ios
-        -webkit-appearance: none;
     }
 
 
@@ -132,15 +130,11 @@ body.lib_chatlanding {
         margin-right: 2.5rem;
     }
 
-    .rn_ChatPostMessage textarea {
-        width: calc(100% - 80px); // 80px seems to leave enough room for the button
-    }
-
 }
 
 
 body.lib_chatlaunch {
-    // bg-c hack - rightnow inserts a p tag at the top of the page, which leaves
+    // hack - rightnow inserts a p tag at the top of the page, which leaves
     // whitespace at the top. If we set the body background to the theme color, the p will take the color
     // of that - then we override the color further down. Nothing else removes it. :(
     background-color: $theme-color;
@@ -272,6 +266,8 @@ body.lib_chatlaunch {
         -webkit-box-shadow: 0px 0px 0px;
         border: solid 1px $accent-color;
         text-shadow: none;
+        // legacy fix needed for ios
+        -webkit-appearance: none;
 
     }
     form input[type="submit"]
@@ -296,7 +292,6 @@ body.lib_chatlaunch {
 
 
 // chat popups - natively they look awful!
-// first draft
 div#rnDialog1_c.yui3-widget.yui3-panel.yui3-widget-positioned.yui3-widget-stacked.yui3-widget-modal.yui3-panel-focused {
     background-color: #fff;
     color: inherit;
