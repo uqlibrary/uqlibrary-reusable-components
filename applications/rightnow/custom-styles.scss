@@ -257,12 +257,20 @@ div.rn_CurrentTime {
   display: none;
 }
 
-// style the chat online/offline link
+// style the chat online/offline link in the sidebar
+#uq_AskQuestionContent .menu .conditionalWidget .rn_Chat a  {
+  padding: 11.2px 30px;
+  padding: 0.7rem 1.8rem;
+  font-weight: 400;
+
+}
 .conditionalWidget .rn_ConditionalChatLink .rn_Chat {
   a { // button
+    text-transform: uppercase;
+    color: #fff;
+    background-color: $accent-color;
+    border-radius: 0;
     display: inline-block;
-    padding: 6px 12px;
-    padding: 0.4rem 0.75rem;
     margin-bottom: 0;
     text-align: center;
     white-space: nowrap;
@@ -270,9 +278,6 @@ div.rn_CurrentTime {
     cursor: pointer;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px;
-    background-color: $accent-color-light;
-    color: #fff;
   }
   span { // message
     display: block;
