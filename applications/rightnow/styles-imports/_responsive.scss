@@ -35,6 +35,14 @@
     }
   }
 
+  body.lib_chatlanding {
+    // iphone text fields may zoom when font size is less than 16px
+    .rn_ChatPostMessage textarea {
+      font-style: 16px;
+      font-style: 1rem;
+    }
+  }
+
 }
 
 // between mobile and full width screen is an evil sweet spot that the ipad falls into:
