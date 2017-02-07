@@ -1,0 +1,105 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>uq-minimal-footer</title>
+
+    <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="../node_modules/web-component-tester/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../elements/elements.html">
+
+</head>
+<body>
+
+<template is="dom-bind">
+    <uq-minimal-header></uq-minimal-header>
+</template>
+
+<script>
+    suite('<uq-minimal-header> tests', function () {
+
+        setup(function () {
+            document.cookie="UQLMockData=enabled";
+        });
+
+        test('Check that main div wrapper exists', function (done) {
+            flush(function () {
+
+                // Does the main div wrapper element render?
+                var mainFooter = document.querySelector('.uq-minimal-header');
+                expect(mainFooter).to.exist;
+                done();
+            });
+        });
+
+        test('Check that ask-us button exists', function (done) {
+            flush(function () {
+
+                // Does the main div wrapper element render?
+                var askusButton = document.querySelector('uql-callout-button.uql-askus-button');
+                expect(askusButton).to.exist;
+                done();
+            });
+        });
+
+        test('Check that my library button exists', function (done) {
+            flush(function () {
+
+                // Does the main div wrapper element render?
+                var appsButton = document.querySelector('paper-button.uql-apps-button');
+                expect(appsButton).to.exist;
+                done();
+            });
+        });
+
+        test('Check that global-links have rendered', function (done) {
+            flush(function () {
+
+                // Does the main div wrapper element render?
+                var globalLinks = document.querySelector('ul.global-links');
+                expect(globalLinks).to.exist;
+                done();
+            });
+        });
+
+        test('Check that the logo exists', function (done) {
+            flush(function () {
+
+                // Does the main div wrapper element render?
+                var mainLogo = document.querySelector('div.uq-title');
+                expect(mainLogo).to.exist;
+                done();
+            });
+        });
+
+        test('Check that no elements have the unresolved parameter', function (done) {
+            flush(function () {
+
+                //Expect footer-content div to not have the unresolved parameter after 5 seconds
+                setTimeout(function() {
+                    var checkUnresolved = document.querySelector('.header-content');
+                    expect(checkUnresolved).to.not.have.property('unrelsoved');
+                    done();
+                }, 2000);
+
+            });
+        });
+
+
+    });
+</script>
+
+</body>
+</html>
