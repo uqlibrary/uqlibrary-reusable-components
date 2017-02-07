@@ -47,7 +47,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Check that ask-us button exists', function (done) {
             flush(function () {
 
-                // Does the main div wrapper element render?
                 var askusButton = document.querySelector('uql-callout-button.uql-askus-button');
                 expect(askusButton).to.exist;
                 done();
@@ -57,7 +56,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Check that my library button exists', function (done) {
             flush(function () {
 
-                // Does the main div wrapper element render?
                 var appsButton = document.querySelector('paper-button.uql-apps-button');
                 expect(appsButton).to.exist;
                 done();
@@ -67,7 +65,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Check that global-links have rendered', function (done) {
             flush(function () {
 
-                // Does the main div wrapper element render?
                 var globalLinks = document.querySelector('ul.global-links');
                 expect(globalLinks).to.exist;
                 done();
@@ -77,14 +74,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Check that the logo exists', function (done) {
             flush(function () {
 
-                // Does the main div wrapper element render?
                 var mainLogo = document.querySelector('div.uq-title');
                 expect(mainLogo).to.exist;
                 done();
             });
         });
 
-        test('Check that no elements have the unresolved parameter', function (done) {
+        test('Check that the header-content element doesnt have unresolved parameter after 2 seconds', function (done) {
             flush(function () {
 
                 //Expect footer-content div to not have the unresolved parameter after 5 seconds

@@ -34,10 +34,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             document.cookie="UQLMockData=enabled";
         });
 
-        test('Check that minimal footer div wrapper renders as expected', function (done) {
+        test('Check that main footer div wrapper renders as expected', function (done) {
             flush(function () {
 
-                // Does the main div wrapper element render?
                 var mainFooter = document.querySelector('.footer-container');
                 expect(mainFooter).to.exist;
                 done();
@@ -47,17 +46,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Check that the global links component renders as expected', function (done) {
             flush(function () {
 
-                //Do the global links render as expected?
                 var globalLinks = document.querySelector('uql-global-links');
                 expect(globalLinks).to.not.be.null;
                 done();
             });
         });
 
-        test('Check that no elements have the unresolved paramter', function (done) {
+        test('Check that footer-content element doesnt have the unresolved parameter after 2 seconds', function (done) {
             flush(function () {
 
-                //Expect footer-content div to not have the unresolved parameter after 5 seconds
                 setTimeout(function() {
                     var checkUnresolved = document.querySelector('.footer-content');
                     expect(checkUnresolved).to.not.have.property('unrelsoved');
