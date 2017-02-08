@@ -124,15 +124,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             flush(function () {
 
                 var askUsButton = testObj.querySelector('uql-askus-button').$.callout;
-
                 expect(askUsButton.$.dropdown.opened).to.be.equal(false);
 
-                console.log('askUsButton = ' + askUsButton);
-
-
                 var askUsButtonClick = askUsButton.$.button;
-                console.log('askUsButtonClick = ' + askUsButtonClick);
-
                 askUsButtonClick.click();
 
                 setTimeout(function () {
