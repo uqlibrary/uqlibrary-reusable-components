@@ -26,6 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body>
 
 <style>
+    /* This has been added, as sometimes the browser that selenium spawns isn't over 1024px and invokes a tablet/mobile view which hides some elements */
     body {width: 1280px !important;}
 </style>
 
@@ -74,11 +75,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             });
         });
 
-        test('Check that global-links have rendered', function (done) {
+        test('Check that global-links have rendered 9 links as expected', function (done) {
             flush(function () {
 
                 var globalLinks = testObj.querySelector('ul.global-links');
                 expect(globalLinks).to.exist;
+
+                var globalLinksNum = testObj.querySelectorAll('ul.global-links li.uql-global-links');
+                expect(globalLinksNum.length).to.equal(9);
                 done();
             });
         });
