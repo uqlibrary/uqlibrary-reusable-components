@@ -16,6 +16,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
 
     <!-- Import the element to test -->
     <link rel="import" href="../elements/elements.html">
@@ -23,21 +25,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body>
 
-<template is="dom-bind">
-    <uq-minimal-footer></uq-minimal-footer>
-</template>
+<style>
+    body {width: 1280px !important;}
+</style>
+
+<test-fixture id="basic">
+    <template>
+        <uq-minimal-footer></uq-minimal-footer>
+    </template>
+</test-fixture>
 
 <script>
     suite('<uq-minimal-footer> tests', function () {
 
+        var testObj;
+
         setup(function () {
             document.cookie="UQLMockData=enabled";
+            testObj = fixture('basic');
         });
 
         test('Check that main footer div wrapper renders as expected', function (done) {
             flush(function () {
 
-                var mainFooter = document.querySelector('.footer-container');
+                var mainFooter = testObj.querySelector('.footer-container');
                 expect(mainFooter).to.exist;
                 done();
             });
@@ -46,8 +57,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Check that the global links component renders as expected', function (done) {
             flush(function () {
 
-                var globalLinks = document.querySelector('uql-global-links');
-                expect(globalLinks).to.not.be.null;
+                var globalLinks = testObj.querySelector('uql-global-links');
+                expect(globalLinks).to.exist;
                 done();
             });
         });
@@ -56,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             flush(function () {
 
                 setTimeout(function() {
-                    var checkUnresolved = document.querySelector('.footer-content');
+                    var checkUnresolved = testObj.querySelector('.footer-content');
                     expect(checkUnresolved).to.not.have.property('unrelsoved');
                     done();
                 }, 2000);

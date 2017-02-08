@@ -16,6 +16,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
 
     <!-- Import the element to test -->
     <link rel="import" href="../elements/elements.html">
@@ -23,22 +25,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body>
 
-<template is="dom-bind">
-    <uq-minimal-header></uq-minimal-header>
-</template>
+<style>
+    body {width: 1280px !important;}
+</style>
+
+<test-fixture id="basic">
+    <template>
+        <uq-minimal-header></uq-minimal-header>
+    </template>
+</test-fixture>
 
 <script>
     suite('<uq-minimal-header> tests', function () {
 
+        var testObj;
+
         setup(function () {
             document.cookie="UQLMockData=enabled";
+            testObj = fixture('basic');
         });
 
         test('Check that main div wrapper exists', function (done) {
             flush(function () {
 
                 // Does the main div wrapper element render?
-                var mainFooter = document.querySelector('.uq-minimal-header');
+                var mainFooter = testObj.querySelector('.uq-minimal-header');
                 expect(mainFooter).to.exist;
                 done();
             });
@@ -47,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Check that ask-us button exists', function (done) {
             flush(function () {
 
-                var askusButton = document.querySelector('uql-callout-button.uql-askus-button');
+                var askusButton = testObj.querySelector('uql-callout-button.uql-askus-button');
                 expect(askusButton).to.exist;
                 done();
             });
@@ -55,17 +66,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('Check that my library button exists', function (done) {
             flush(function () {
-
-                var appsButton = document.querySelector('paper-button.uql-apps-button');
-                expect(appsButton).to.exist;
-                done();
+                setTimeout(function() {
+                    var appsButton = testObj.querySelector('#appsButton');
+                    expect(appsButton).to.exist;
+                    done();
+                }, 2000);
             });
         });
 
         test('Check that global-links have rendered', function (done) {
             flush(function () {
 
-                var globalLinks = document.querySelector('ul.global-links');
+                var globalLinks = testObj.querySelector('ul.global-links');
                 expect(globalLinks).to.exist;
                 done();
             });
@@ -74,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('Check that the logo exists', function (done) {
             flush(function () {
 
-                var mainLogo = document.querySelector('div.uq-title');
+                var mainLogo = testObj.querySelector('div.uq-title');
                 expect(mainLogo).to.exist;
                 done();
             });
@@ -85,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 //Expect footer-content div to not have the unresolved parameter after 5 seconds
                 setTimeout(function() {
-                    var checkUnresolved = document.querySelector('.header-content');
+                    var checkUnresolved = testObj.querySelector('.header-content');
                     expect(checkUnresolved).to.not.have.property('unrelsoved');
                     done();
                 }, 2000);
