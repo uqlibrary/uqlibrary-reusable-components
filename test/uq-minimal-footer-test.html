@@ -48,12 +48,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('Check that main footer div wrapper renders as expected', function (done) {
             flush(function () {
-
                 var mainFooter = testObj.querySelector('.footer-container');
                 expect(mainFooter).to.exist;
                 done();
             });
         });
+
+        test('Check that 5 main unordered list items render for the text', function (done) {
+            flush(function () {
+                var mainFooterLi = testObj.querySelectorAll('ul.footer-uq-details li.uq-minimal-footer');
+                expect(mainFooterLi.length).to.equal(5);
+                done();
+            });
+        });
+
+        test('Check that 4 main unordered list items render for the text', function (done) {
+            flush(function () {
+                var mainFooterLegal = testObj.querySelectorAll('ul.footer-legal-details li.uq-minimal-footer');
+                expect(mainFooterLegal.length).to.equal(4);
+                done();
+            });
+        });
+
+        test('Check that the global links component renders as expected', function (done) {
+            flush(function () {
+
+                var globalLinks = testObj.querySelector('uql-global-links');
+                expect(globalLinks).to.exist;
+                done();
+            });
+        });
+
 
         test('Check that the global links component renders 9 links as expected', function (done) {
             flush(function () {
@@ -68,16 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             });
         });
 
-        test('Check that the global links component renders as expected', function (done) {
-            flush(function () {
-
-                var globalLinks = testObj.querySelector('uql-global-links');
-                expect(globalLinks).to.exist;
-                done();
-            });
-        });
-
-        test('Check that footer-content element doesn`t have the "unresolved" parameter after 2 seconds', function (done) {
+        test('Check that footer-content element does not have the "unresolved" parameter after 2 seconds', function (done) {
             flush(function () {
 
                 setTimeout(function() {

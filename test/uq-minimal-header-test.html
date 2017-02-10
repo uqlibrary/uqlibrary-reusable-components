@@ -58,7 +58,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('Check that ask-us button exists', function (done) {
             flush(function () {
-
                 var askusButton = testObj.querySelector('uql-callout-button.uql-askus-button');
                 expect(askusButton).to.exist;
                 done();
@@ -96,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             });
         });
 
-        test('Check that the header-content element doesnt have unresolved parameter after 2 seconds', function (done) {
+        test('Check that the header-content element doesn`t have unresolved parameter after 2 seconds', function (done) {
             flush(function () {
 
                 //Expect footer-content div to not have the unresolved parameter after 5 seconds
@@ -109,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             });
         });
 
-        test('AskUs callout should contain buttons (with contact methods, eg Email, Phone, Chat, etc)', function (done) {
+        test('AskUs callout should contain 6 buttons (with contact methods, eg Email, Phone, Chat, etc)', function (done) {
             flush(function () {
                 //wait for api call data to load
                 setTimeout(function () {
