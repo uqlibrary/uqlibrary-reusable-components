@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html manifest="//assets.library.uq.edu.au/master/reusable-components/libwww/reusable-components.appcache">
+
+<head>
+  <title>UQLibrary Reusable Components Demo</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../elements.html">
+
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .body {
+      margin: 0 auto;
+      position: relative;
+      padding: 1em;
+    }
+
+    a:link {
+      /*color: #0f0 !important;*/
+    }
+
+  </style>
+</head>
+
+<body>
+<template id="Demo" is="dom-bind" >
+
+  <uq-minimal-header ></uq-minimal-header>
+
+  <uq-minimal-footer></uq-minimal-footer>
+</template>
+
+
+<script>
+
+  if (window.applicationCache) {
+    applicationCache.addEventListener('updateready', function() {
+      if (confirm('An update is available. Reload now?')) {
+        window.applicationCache.swapCache();
+        window.location.reload();
+      }
+    });
+
+    function logEvent(event) {
+      console.log(event.type);
+    }
+
+    window.applicationCache.addEventListener('checking',logEvent,false);
+    window.applicationCache.addEventListener('noupdate',logEvent,false);
+    window.applicationCache.addEventListener('downloading',logEvent,false);
+    window.applicationCache.addEventListener('progress',logEvent,false);
+    window.applicationCache.addEventListener('cached',logEvent,false);
+    window.applicationCache.addEventListener('obsolete',logEvent,false);
+    window.applicationCache.addEventListener('error',logEvent,false);
+  }
+
+
+  document.cookie="UQLMockData=enabled";
+
+  window.addEventListener('WebComponentsReady', function() {
+    // when polymer is ready - configure elements
+
+    Demo.processEvent = function (event) {
+      var menu = document.getElementById('menu');
+      menu.toggleMenu();
+    }
+
+
+    Demo.appTitle = '';
+    Demo.menuJson = '../uql-menu/demo/menu.json';
+
+    Demo.chatStatusConfig = {
+      buttonTitle: "Chat",
+      buttonTitleOffline: "Ask",
+      chatOnlineText: "Chat with us now!",
+      chatOfflineText: "Chat is offline.",
+      offlineUrl: "https://uqcurrent.custhelp.com/app/library/faqs"
+    };
+
+    Demo.showButtonTitle = true;
+
+    //reveal elements with easing in effect
+    var content = document.querySelectorAll(".loading");
+    for(var i=0; i< content.length; i++){
+      var element = content[i];
+      element.removeAttribute('unresolved');
+    }
+
+  });
+
+</script>
+
+
+</body>
+</html>
