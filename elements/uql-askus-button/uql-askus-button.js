@@ -2,6 +2,10 @@
   Polymer({
     is: 'uql-askus-button',
     properties: {
+        autoLoad: {
+            type: Object,
+            value: true
+        }
 
     },
     listeners: {
@@ -15,21 +19,27 @@
         var contactsJsonFileData = null;
         var contactsJson = contactsJsonFileData;
         var self = this;
+
         if (contactsJson !== null) {
-            this.$.callout.calloutItems = contactsJson;
+            //this.$.callout.calloutItems = contactsJson;
+            this._setData(contactsJson);
         } else {
             // Set up a listener to wait till the contacts have been loaded from the API, then push them to the callout
             this.$.contactsApi.addEventListener('uqlibrary-api-contacts-loaded', function(e) {
-                self.$.callout.calloutItems = {
-                    "items": e.detail.items,
-                    "summary": e.detail.summary
-                };
+                //self.$.callout.calloutItems = {
+                //    "items": e.detail.items,
+                //    "summary": e.detail.summary
+                //};
+                self._setData(e.detail);
             });
             // Fire the API to get the contacts
-            this.$.contactsApi.get();
+            if(this.autoLoad){
+                this.$.contactsApi.get();
+            }
+
         }
       },
-		/**
+	 /**
      * Called when a link is clicked in the uqlibrary-callout
      * @param e
      * @private
@@ -44,6 +54,11 @@
      */
     _calloutOpened: function (e) {
       this.$.ga.addEvent('Navigation', 'Opened');
-    }
+    },
+      
+      _setData: function (data) {
+          this.$.callout.calloutItems = data;
+      }
   });
+
 })();
