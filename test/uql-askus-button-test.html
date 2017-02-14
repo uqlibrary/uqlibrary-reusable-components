@@ -59,13 +59,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('AskUs callout should contain buttons (with contact methods, eg Email, Phone, Chat, etc)', function (done) {
-      flush(function () {
         //wait for api call data to load
         setTimeout(function () {
           expect(element.$.callout.querySelectorAll('paper-button.button-callout').length).to.equal(6);
           done();
-        }, 500);
-      });
+        }, 100);
     });
 
     test('clicking on AskUs button opens drop-down', function (done) {
