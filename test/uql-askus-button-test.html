@@ -77,7 +77,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var askUsButton = calloutButton.$.button;
         expect(askUsButton).not.to.be.null;
         askUsButton.click();
-        expect(element.querySelectorAll('paper-button.button-callout').length).to.equal(6);
 
         setTimeout(function () {
           expect(calloutButton.$.dropdown.opened).to.be.equal(true);
@@ -86,28 +85,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       })
     });
-
-
-      test('Unit testing with dummy json data, expect 2 buttons to render in dropdown', function (done) {
-          flush(function () {
-
-              var calloutButton = element.$.callout;
-              expect(calloutButton).not.to.be.null;
-              expect(calloutButton.$.dropdown.opened).to.be.equal(false);
-
-              var askUsButton = calloutButton.$.button;
-              expect(askUsButton).not.to.be.null;
-              askUsButton.click();
-              expect(element.querySelectorAll('paper-button.button-callout').length).to.equal(6);
-
-              setTimeout(function () {
-                  expect(calloutButton.$.dropdown.opened).to.be.equal(true);
-                  done();
-              }, 100);
-
-          })
-      });
-
 
   });
 </script>
@@ -145,7 +122,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 setTimeout(function () {
                     expect(element.$.callout.querySelectorAll('paper-button.button-callout').length).to.equal(2);
                     done();
-                }, 500);
+                }, 100);
 
             })
         });
