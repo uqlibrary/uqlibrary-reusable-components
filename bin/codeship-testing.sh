@@ -42,10 +42,10 @@ case "$PIPE_NUM" in
   echo "WCT: local unit testing..."
   gulp test
 
-  if [ ${CI_BRANCH} == "production" ]; then
+  #if [ ${CI_BRANCH} == "production" ]; then
     echo "WCT: remote unit testing..."
     gulp test:remote
-  fi
+  #fi
 
 ;;
 "2")

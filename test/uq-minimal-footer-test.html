@@ -11,100 +11,77 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>uq-minimal-footer</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>uq-minimal-footer</title>
 
-    <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
-    <script src="../node_modules/web-component-tester/browser.js"></script>
-    <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
-    <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
+  <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../node_modules/web-component-tester/browser.js"></script>
+  <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+  <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
 
-    <!-- Import the element to test -->
-    <link rel="import" href="../elements/elements.html">
+  <!-- Import the element to test -->
+  <link rel="import" href="../elements/uq-minimal-footer.html">
 
 </head>
 <body>
 
 <style>
-    /* This has been added, as sometimes the browser that selenium spawns isn't over 1024px and invokes a tablet/mobile view which hides some elements */
-    body {width: 1280px !important;}
+  /* This has been added, as sometimes the browser that selenium spawns isn't over 1024px and invokes a tablet/mobile view which hides some elements */
+  body {
+    width: 1280px !important;
+  }
 </style>
 
 <test-fixture id="basic">
-    <template>
-        <uq-minimal-footer></uq-minimal-footer>
-    </template>
+  <template>
+    <uq-minimal-footer></uq-minimal-footer>
+  </template>
 </test-fixture>
 
 <script>
-    suite('<uq-minimal-footer> tests', function () {
+  suite('<uq-minimal-footer> tests', function () {
 
-        var testObj;
+    var testObj;
 
-        setup(function () {
-            document.cookie="UQLMockData=enabled";
-            testObj = fixture('basic');
-        });
-
-        test('Check that main footer div wrapper renders as expected', function (done) {
-            flush(function () {
-                var mainFooter = testObj.querySelector('.footer-container');
-                expect(mainFooter).to.exist;
-                done();
-            });
-        });
-
-        test('Check that 5 main unordered list items render for the text', function (done) {
-            flush(function () {
-                var mainFooterLi = testObj.querySelectorAll('ul.footer-uq-details li.uq-minimal-footer');
-                expect(mainFooterLi.length).to.equal(5);
-                done();
-            });
-        });
-
-        test('Check that 4 main unordered list items render for the text', function (done) {
-            flush(function () {
-                var mainFooterLegal = testObj.querySelectorAll('ul.footer-legal-details li.uq-minimal-footer');
-                expect(mainFooterLegal.length).to.equal(4);
-                done();
-            });
-        });
-
-        test('Check that the global links component renders as expected', function (done) {
-            flush(function () {
-
-                var globalLinks = testObj.querySelector('uql-global-links');
-                expect(globalLinks).to.exist;
-                done();
-            });
-        });
-
-
-        test('Check that the global links component renders 9 links as expected', function (done) {
-            flush(function () {
-
-                var globalLinks = testObj.querySelector('uql-global-links');
-                expect(globalLinks).to.exist;
-
-                var globalLinksNum = testObj.querySelectorAll('ul.global-links li.uql-global-links');
-                expect(globalLinksNum.length).to.equal(9);
-
-                done();
-            });
-        });
-
-        test('Check that footer-content element does not have the "unresolved" parameter after 2 seconds', function (done) {
-            flush(function () {
-
-                setTimeout(function() {
-                    var checkUnresolved = testObj.querySelector('.footer-content');
-                    expect(checkUnresolved).to.not.have.property('unrelsoved');
-                    done();
-                }, 2000);
-
-            });
-        });
+    setup(function () {
+      document.cookie = "UQLMockData=enabled";
+      testObj = fixture('basic');
     });
+
+    test('Check that main footer div wrapper renders as expected', function (done) {
+      flush(function () {
+        var mainFooter = testObj.querySelector('.footer-container');
+        expect(mainFooter).to.exist;
+        done();
+      });
+    });
+
+    test('Check that 5 main unordered list items render for the text', function (done) {
+      flush(function () {
+        var mainFooterLi = testObj.querySelectorAll('ul.footer-uq-details li.uq-minimal-footer');
+        expect(mainFooterLi.length).to.equal(5);
+        done();
+      });
+    });
+
+    test('Check that 4 main unordered list items render for the text', function (done) {
+      flush(function () {
+        var mainFooterLegal = testObj.querySelectorAll('ul.footer-legal-details li.uq-minimal-footer');
+        expect(mainFooterLegal.length).to.equal(4);
+        done();
+      });
+    });
+
+    test('Check that the global links component renders as expected', function (done) {
+      flush(function () {
+
+        var globalLinks = testObj.querySelector('uql-global-links');
+        expect(globalLinks).to.exist;
+        done();
+      });
+    });
+
+  });
 </script>
 
 </body>

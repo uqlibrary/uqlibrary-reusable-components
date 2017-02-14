@@ -11,24 +11,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>uql-askus-button</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>uql-askus-button</title>
 
-    <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
-    <script src="../node_modules/web-component-tester/browser.js"></script>
-    <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
-    <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
+  <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../node_modules/web-component-tester/browser.js"></script>
+  <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+  <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
 
-    <!-- Import the element to test -->
-    <link rel="import" href="../elements/uql-askus-button/uql-askus-button.html">
+  <!-- Import the element to test -->
+  <link rel="import" href="../elements/uql-askus-button/uql-askus-button.html">
 
 </head>
 <body>
 
 <test-fixture id="basic">
-    <template>
-        <uql-askus-button></uql-askus-button>
-    </template>
+  <template>
+    <uql-askus-button></uql-askus-button>
+  </template>
 </test-fixture>
 
 <script>
@@ -58,6 +58,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
     });
 
+    test('AskUs callout should contain buttons (with contact methods, eg Email, Phone, Chat, etc)', function (done) {
+      flush(function () {
+        //wait for api call data to load
+        setTimeout(function () {
+          expect(element.$.callout.querySelectorAll('paper-button.button-callout').length).to.equal(6);
+          done();
+        }, 200);
+      });
+    });
+
+
     test('clicking on AskUs button opens drop-down', function (done) {
       flush(function () {
         var calloutButton = element.$.callout;
@@ -80,45 +91,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </script>
 
 <test-fixture id="unit">
-    <template>
-        <uql-askus-button auto-load="false"></uql-askus-button>
-    </template>
+  <template>
+    <uql-askus-button auto-load="false"></uql-askus-button>
+  </template>
 </test-fixture>
 
 <script>
-    suite('<uql-askus-button> unit test', function () {
-        var element;
+  suite('<uql-askus-button> unit test', function () {
+    var element;
 
-        setup(function () {
-            document.cookie = "UQLMockData=enabled";
-            element = fixture('unit');
-        });
-
-        test('Checking that 2 buttons are rendered per mock data', function (done) {
-            flush(function () {
-
-                var testData = {
-                    summary: [
-                        {label: "Summary", link: "#"}
-                    ],
-                    items:  [
-                        {label: "Item 1", icon: "communication:import-contacts", link: "#"},
-                        {label: "Item 2", icon: "communication:import-contacts", link: "#"}
-                    ]
-                };
-
-                element._setData(testData);
-
-                setTimeout(function () {
-                    expect(element.$.callout.querySelectorAll('paper-button.button-callout').length).to.equal(2);
-                    done();
-                }, 100);
-
-            })
-        });
-
-
+    setup(function () {
+      document.cookie = "UQLMockData=enabled";
+      element = fixture('unit');
     });
+
+    test('Checking that 2 buttons are rendered per mock data', function (done) {
+      flush(function () {
+
+        var testData = {
+          summary: [
+            {label: "Summary", link: "#"}
+          ],
+          items: [
+            {label: "Item 1", icon: "communication:import-contacts", link: "#"},
+            {label: "Item 2", icon: "communication:import-contacts", link: "#"}
+          ]
+        };
+
+        element._setData(testData);
+
+        setTimeout(function () {
+          expect(element.$.callout.querySelectorAll('paper-button.button-callout').length).to.equal(2);
+          done();
+        }, 100);
+
+      })
+    });
+
+
+  });
 
 </script>
 
