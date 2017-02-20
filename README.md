@@ -1,24 +1,16 @@
 # uqlibrary-reusable-components
 
-[ ![Codeship Status for uqlibrary/rdmt](https://app.codeship.com/projects/ec94a770-2f74-0133-e71a-02dbfc2dcf25/status?branch=master)](https://codeship.com/projects/99389)
+[![Codeship Status for uqlibrary/uqlibrary-reusable-components](https://app.codeship.com/projects/ec94a770-2f74-0133-e71a-02dbfc2dcf25/status?branch=master)](https://codeship.com/projects/99389)
 [![Dependency Status](https://david-dm.org/uqlibrary/uqlibrary-reusable-components.svg)](https://david-dm.org/uqlibrary/uqlibrary-reusable-components)
 [![Dev Dependency Status](https://david-dm.org/uqlibrary/uqlibrary-reusable-components/dev-status.svg)](https://david-dm.org/uqlibrary/uqlibrary-reusable-components?type=dev)
 
 ## Contents:
 
-* [Getting Started](#getting-started)
+* [Getting started](#getting-started)
 * [Updating IA](#updating-ia)
-* [Applications Customisations](#applications-customisations)
-* [LibGuides](#libguides)
-* [LibAnswers](#libanswers-httpanswerslibraryuqeduau)
-* [UQ Drupal](#uq-drupal-httpsweblibraryuqeduau)
-* [UQLAPP, FBS, Training, Contacts, Exams, ACDB](#uqlapp-fbs-training-contacts-exams-acdb)
-* [PRIMO](#primo-httpssearchlibraryuqeduau)
-* [Shared](#shared-uqlais-ezproxy-static-pages)
-* [Studenthub](#studenthub-httpswwwstudenthubuqeduau)
-* [Omeka](#omeka)
+* [Applications customisations](#applications-customisations)
 * [Forcing IMS logins](#forcing-ims-logins)
-* [Elements Development](#elements-development)
+* [Elements development](#elements-development)
 * [Local testing](#local-testing)
 
 The Central Repository contains:
@@ -77,227 +69,18 @@ All custom styles/scripts are located in /applications/[app name]/
 - load.js - script contains injection of components for the application 
 - custom-styles.scss/custom-styles.css - custom css for the application
 
-#### LibGuides
-
-test group (uses master branch): http://guides.library.uq.edu.au/test
-include this code in Custom JS/CSS Code in LibGuides configuration
-
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico">
-        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-        <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/custom-styles.css" />
-
-customisation of groups shall be done the same way as custom-styles, example:how-to-find-group.css
-
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/how-to-find-group.css" />
-        
-#### UQ Drupal (https://web.library.uq.edu.au)
-
-UQ ITS is managing UQ Drupal library's CMS (web.library.uq.edu.au). Any components to be used in UQ Drupal require registration within UQ Drupal.
-
-        <html manifest="//assets.library.uq.edu.au/reusable-components/libwww/reusable-components.appcache">
-
-        <script type="text/javascript" src="//www.library.uq.edu.au/js/ims.js"></script>
-        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js"></script>
-        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js"></script>
-        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/libwww/load.js"></script>
-        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libwww/custom-styles.css" />
-                
-        
-
-reusable-components.appcache is a manifest file which contains a list of files that can be cached by a browser. Application cache file has a version number which signals to a browser that cached files were updated. Version is updated automatically at deployment time. 
-
-#### UQLAPP, FBS, Training, Contacts, Exams, ACDB
-
-Used in files:
-- UQLAPP: frontend/app/index.html
-- FBS: public/lib/Template.class.php
-- Training: calendarfunctions.php
-- Contacts: contacts/librarians/index.html
-- Exams: help.html, search.html and eep.inc.php
-- ACDB (https://www.library.uq.edu.au/acdba.html) : /usr/local/apache/uqlapi/auth/common1.inc (reusable_copyright_header function)
-
-Include the following:
-
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
-        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-        
-        <script src="//assets.library.uq.edu.au/reusable-components/uqlapp/load.js" async></script>
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/uqlapp/custom-styles.css" />
-        
-##### ACDB (https://www.library.uq.edu.au/acdba.html)
-
-then in the /var/www/www.library.uq.edu.au/public_html/get-reusable.php file, call the following php function:
-
-                reusable_copyright_header();
-
-#### PRIMO (https://search.library.uq.edu.au)
-Primo includes static_html/footer.html on every page which loads all UQL styling and JavaScript. 
-footer.html is uploaded to Primo Back Office via File Uploader to 61UQ view (production).
-
-Master branch is deployed and changes can be seen on [61UQ_DEV view] (http://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV)
-
-
-Primo static_html/footer.html to include following:
-
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
-        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-        
-        <script src="//assets.library.uq.edu.au/reusable-components/primo/load.js" async></script>
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/primo/custom-styles.css" />
-        
-Primo styling for Primo iframes.
-When custom-styles.css is finalised, it has to be uploaded to Primo to apply styles to Primo iframes (not Alma iframes).
-
-In Primo Back Office:
-
-1. Upload custom-styles.css to 61UQ view via Deploy & Utilities -> File Uploader
-2. In FE & Delivery -> Views List edit 61UQ view, Save & Continue all the way through, and Deploy.
-
-To test your new CSS has been applied go to a Primo page and add attribute &wroDevMode=true to query string. This will stop CSS concat tool from merging all CSS files on server side.
-More details [Primo CSS customisation](https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Customizing_the_Default_CSS_File)
-, [File Uploader Tool](https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Back_Office_Guide/Primo_Utilities/The_File_Uploader_Tool)
-and [Debugging CSS/JS in Primo] (https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Debugging_CSS_and_JavaScript)                
-
-Styling for Alma iframes:
-
-1. Login to https://uq.alma.exlibrisgroup.com/SAML
-2. Go to Alma > Administration > General Configuration > General Configuration Menu
-3. Select Delivery System Skins
-4. Select "uqskin" and click on Action->Edit
-5. Download the branding_skin.zip
-6. Unzip the file and uncomment and edit css class in the mashup.css as required
-7. Rezip the file (remember to remove all the system hidden folders and files e.g. .Dstore)
-8. Upload the zip file and Save
-
-Then Go To Primo Back Office:
-
-1. Go to Advanced Configuration > Mapping Tables
-2. Select "Delivery" for subsystem
-3. Select "Templates" and click on Edit
-4. Look for "Almagetit" and "Almaviewit" and make sure they have "&req.skin=uqskin" appended
-5. If they dont, append the text and click Save and Deploy.
-
-On the search result page, confirm the settings have been applied correctly:
-
-1. Check the iframe src, it shall have "&req.skin=uqskin" appended
-2. Check in the header section, it shall load the mashup.css from the uqskin:
-
-        <link href="/view/branding_skin/css/mashup.css?skinName=uqskin&version=June2016&skinVersion=1466583814&customerId=3130&institutionId=3131" rel="stylesheet" type="text/css">
-
-#### Shared (uqlais, ezproxy static pages)
-https://github.com/uqlibrary/UQLAIS/blob/master/templates/header.tpl.html includes following:
-
-        <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico"> 
-        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>
-                
-        <script src="//assets.library.uq.edu.au/reusable-components/shared/load-minimal.js" async></script>
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/shared/common-minimal-styles.css" />
-
-#### Studenthub (https://www.studenthub.uq.edu.au/)
-
-A third party product that we are theming to match the general library theme.
-
-Current area is the [Library Staff Development workgroup portal](https://studenthub.uq.edu.au/workgroups/library-staff-development/events/). We are theming this by putting our polymer reusable elements in the top of the body of the page via a GUI editor.
-
-*Editing in the studenthub GUI interface does not return all the html lines that were supplied*, so start with the code block below - dont try to edit in place in the GUI.
-
-Method to edit the theme:
-
-- Decide what changes are needed and update below
-- Visit the theme edit page [current link](https://www.studenthub.uq.edu.au/Admin/SubSites/Layout.aspx?id=14) or: login > left hand menu, click on Work Groups > centre block, click on name of Work Group > right hand menu, click on Work group settings > middle area, click on Layout
-- Click on the word '(text)' in the header of the example-layout (if this isnt available, drag the 'text' item from
-the layout options into the header field, then click)
-- Click on the angle bracket icon ('<>') - a very short area will load with white markup on a black background. This is the editing area
-- Select the current markup and delete (the GUI does not return everything we provide them)
-- Paste in the markup from below
-- Click OK
-- Reload the workgroup portal page to confirm (the change should be instant)
-
-Code to include in the GUI editor (keep this up to date as it can't be reviewed reliably in the GUI):
-
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
-        <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>
-        <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>
-        <link rel="import" href="//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html" async>    
-        <script src="//assets.library.uq.edu.au/reusable-components/careerhub/load.js" async></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/careerhub/custom-styles.css">
-
-Notes:
-
-* Careerhub have said they will put the meta viewport line in the template. It hasnt appeared yet - if it does, this line can be removed here
-* Material design icons are being used, so the font family is included
-
-#### Omeka
-
-A third party product we are using for online library exhibits
-
-[View](https://uqlibraryonlineexhibitions.omeka.net/)
-
-Login as admin [here](https://uqlibraryonlineexhibitions.omeka.net/admin/) - user email and password are in Vault.
-
-The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/omeka/custom-styles.scss)
-
-CSS can also be updated in the [CSS Plugin](http://uqlibraryonlineexhibitions.omeka.net/admin/plugins)
-which has major restrictions, eg:
-
-* any styling of html header and footer elements are removed!!!
-* any styling of the body element is removed
-* any property set to a value of 'inherit' is removed
-* omeka doesnt recognise rem unit values and removes the property, so supply a px default
-* the following properties are removed:
-** transition
-** transition-delay
-** max-width
-** width
-** min-height
-* it strips :before attributes
-* any styling on a child element rewrites the '>' to \3E
-* doubtless more
-
-The [load.js](//assets.library.uq.edu.au/reusable-components/omeka/load.js) file:
-
-* loads the responsive meta
-* applies the uq favicon
-* applies the uq apple icon
-* attaches the above css file
-* loads the reusable components
-
-JS is applied in the footer, which can be edited [on this page](http://uqlibraryonlineexhibitions.omeka.net/admin/exhibits/theme-config/1) (or... click on exhibits in the left hand nav, click 'edit' on the chosen exhibit, scroll down to the theme dropdown, choose the correct theme and click Configure).
-
-Once on that page, scroll down to 'Footer Text', click the 'HTML' icon on the edit area, and update the html for the footer. Maintain the following code block as the correct code:
-
-        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/omeka/load.js"></script>
-        <script type="text/javascript" src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents.js"></script>
-
-If you have a specific theme that needs special styling, add a new class name in by adding these lines to the bottom of the footer, as above. It will add a class to the body element (base it on the theme name) - then you can write css to taregt just this theme (it will affect all exhibits that have had this classname added to the body)
-
-        <script type="text/javascript">// <![CDATA[
-          AddClassNameToBody('bigtheme');
-        ]]></script>  
-
-#### RightNow
-
-RightNow is an Oracle CRM we are using to be in line with central UQ usage. It provides library clients with FAQ answers, replacing the old answers.library.uq.edu.au tool.
-
-The github repo at [oracle-rightnow](https://github.com/uqlibrary/oracle-rightnow) is a repository of templates and views *backing up* code on the CRM servers for our pages at [https://uqcurrent.custhelp.com/](https://uqcurrent.custhelp.com/app/library/faqs) - changes are NOT made by updating github and pushing! Visit the oracle-rightnow repo for more details.
-
-The RightNow pages feature Library styling on the page, including mega-menu to give users maximum possible information to answer questions. The Library login button is hidden, because there is the possibility of logging into RightNow, and the Ask Us button is shown because it links to the chat popup and other contact items.
-
-The LibCal 'chat opening hours' element is included throughout - RightNow does provide an opening hours element, which can be seen at https://uqcurrent.custhelp.com/app/library/showHours (provided to let the WCT team check what RightNow is actually doing) but it isnt used publically as the formatting options are not to WCT's requirements. A Chat entry has been added to LibCal and the LibCal responsive layout has been adapted (duplicated) to give a sidebar Opening Hours display in RightNow.
-
-At the time of writing, the chat button had been removed from the sidebar by RightNow UQ staff due to technical problems. This should be returned at some point and be the top item. The chat button can be implemented in two ways: as a "[Syndicated Widget](https://uqcurrent.custhelp.com/ci/tags/syndicated_widgets)" which is written in javascript and unfortunately conflicts with other RightNow code on the page (it is intended to be used on third party pages) and as a "[Standard Widget](https://uqcurrent.custhelp.com/ci/admin/docs/widgets/standard)" which uses RightNow tag-based language. The Standard Widget is the correct version to use on RightNow pages; the Syndicated Widget could be used on other library pages, but we are using our chat-status button instead.
-
+Customised applications:
+* [LibGuides](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libapps)
+* [LibAnswers](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libapps)
+* [UQ Drupal](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libwww)
+* [UQLAPP, FBS, Contacts, Exams, ACDB](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/uqlapp)
+* [PRIMO](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)
+* [NEW PRIMO UI](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo2)
+* [Shared](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/shared)
+* [Studenthub](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/careerhub)
+* [Omeka](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/omeka)
+* [Rightnow](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/rightnow)
+* [Talis](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/talis)
 
 ### Forcing IMS logins
 
