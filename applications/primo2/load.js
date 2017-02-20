@@ -1,10 +1,11 @@
-function ready(fn) {
-  if (document.readyState != 'loading'){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
+
+var primoViewHasLoaded = setInterval(function() {
+  //wait for primo's angular to load itself (eg replaces primo-explore contents with angular contents, then insert header)
+  if (document.querySelector('noscript').length == 0) {
+    loadReusableComponents();
+    clearInterval(primoViewHasLoaded);
   }
-}
+}, 50);
 
 function loadReusableComponents() {
   //insert elements, even before Polymer is loaded

@@ -136,11 +136,6 @@ then in the /var/www/www.library.uq.edu.au/public_html/get-reusable.php file, ca
 
                 reusable_copyright_header();
 
-#### PRIMO2 (search.library.uq.edu.au/primo-explore/search?vid=61UQ_DEV)
-Theming for new PrimoUI.
-TBA...
-
-
 #### PRIMO (https://search.library.uq.edu.au)
 Primo includes static_html/footer.html on every page which loads all UQL styling and JavaScript. 
 footer.html is uploaded to Primo Back Office via File Uploader to 61UQ view (production).
