@@ -70,12 +70,13 @@ All custom styles/scripts are located in /applications/[app name]/
 - custom-styles.scss/custom-styles.css - custom css for the application
 
 Customised applications:
+
 * [LibGuides](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libapps)
 * [LibAnswers](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libapps)
 * [UQ Drupal](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libwww)
 * [UQLAPP, FBS, Contacts, Exams, ACDB](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/uqlapp)
-* [PRIMO](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)
-* [NEW PRIMO UI](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo2)
+* [Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)
+* [New Primo UI](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo2)
 * [Shared](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/shared)
 * [Studenthub](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/careerhub)
 * [Omeka](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/omeka)
