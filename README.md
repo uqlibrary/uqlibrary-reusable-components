@@ -16,8 +16,7 @@
 The Central Repository contains:
 
 - /elements/ - common elements, eg header/footer
-    - view full demo [here] (http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
-    - full documentation [here] (http://uqlibrary.github.io/uqlibrary-reusable-components)
+    - view full demo [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html)
 - /test/ - tests for elements
 - /applications/ - applications customisations, eg LibGuides styles/scripts
 - /bin/ - shell scripts, eg deployment, gh-pages
@@ -27,22 +26,12 @@ The Central Repository contains:
 
 ### Getting Started
 
-#### Prerequisites
-
 Project requires the following major dependencies:
 
 - Node.js, used to run JavaScript tools from the command line.
 - npm, the node package manager, installed with Node.js and used to install Node.js packages.
 - gulp, a Node.js-based build tool.
 - bower, a Node.js-based package manager used to install front-end packages (like Polymer).
-
-#### Viewing the Demo 
-
-The demo page is available [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
-
-(Swap out alternate branch names for 'master' in this url to test other branches).
-
-#### Installing Dependencies 
 
 With Node.js installed, run the following one liner from the root of the repo:
 
@@ -111,10 +100,9 @@ All common styles, colours, or mix-ins are located in /elements/common-styles.ht
  - run /bin/generate-gh-pages.sh from this new empty directory
  - script will update gh-pages branch of the project
  - check gh-pages were updated successfully
-    - view full demo [here](http://uqlibrary.github.io/uqlibrary-reusable-components/elements/demo)
-    - full documentation [here](http://uqlibrary.github.io/uqlibrary-reusable-components)
+    - view full demo [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html)
 
-Codeship will deploy changes automatically by running deployment task /bin/codeship.sh:
+Codeship will deploy changes automatically by running deployment task /bin/codeship.sh (if Codeship is configured for deployment, by default it only builds a feature branch):
 - installs all dependencies
 - sets AWS configuration
 - runs checks/tests
@@ -133,7 +121,8 @@ Distribution package on S3 looks like this:
     - elements.vulcanized.html
     - elements.vulcanized.js
     
-Subdirectory [branch_name] only exists for non-production branches, eg master/uat .
+Subdirectory [branch_name] only exists for non-production branches, eg master/uat.
+Demo for feature branches is available at **http://assets.library.uq.edu.au/[branch_name]/reusable-components/elements/demo/index.html** 
 
 ### Testing
 
