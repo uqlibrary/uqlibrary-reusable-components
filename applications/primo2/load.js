@@ -1,7 +1,7 @@
 
 var primoViewHasLoaded = setInterval(function() {
   //wait for primo's angular to load itself (eg replaces primo-explore contents with angular contents, then insert header)
-  if (document.querySelector('noscript').length === 0) {
+  if (document.querySelector('noscript') === null || typeof(document.querySelector('noscript')) === 'undefined' ) {
     loadReusableComponents();
     clearInterval(primoViewHasLoaded);
   }
