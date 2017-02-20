@@ -38,4 +38,3 @@ function loadReusableComponents() {
   });
 }
 
-ready(loadReusableComponents);

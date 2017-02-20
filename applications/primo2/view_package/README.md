@@ -12,11 +12,11 @@ The development package allows you to configure :
   - all global updates (eg fonts, colours, etc) to be updated in Primo's SASS package
   - SASS package can be downloaded from https://search.library.uq.edu.au/primo-explore/lib/scsss.tar.gz (check for changes after every PrimoUI update)
 
-- images
-  - TBA
+- images includes
+  - favicon.ico 
   
 - html
-  - TBA
+  - landing page to contain NO elements
 
 - JavaScript
   - reusable components are injected by custom.js
@@ -31,7 +31,7 @@ No changes are expected to be done to the package. All updates to be done in reu
 - upload zip to Promo BO, run deployment
 
 
-##Primo devenvironment
+##Primo dev environment
 
 Try setting up local environment following this: https://github.com/ExLibrisGroup/primo-explore-devenv
 
