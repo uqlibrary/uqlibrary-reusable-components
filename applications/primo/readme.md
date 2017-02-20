@@ -1,7 +1,8 @@
 #PRIMO Customisations
 
-Primo URL: https://search.library.uq.edu.au
-Development environment (master branch): https://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV
+- Primo URL: https://search.library.uq.edu.au
+- Development environment (master branch): https://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV
+
 
 Primo includes static_html/footer.html on every page which loads all UQL styling and JavaScript. 
 footer.html is uploaded to Primo Back Office via File Uploader to 61UQ view (production).

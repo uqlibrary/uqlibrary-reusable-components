@@ -1,7 +1,7 @@
-#### UQ Drupal Customisation
+#UQ Drupal Customisation
 
-UQ Drupal URL: https://web.library.uq.edu.au
-No development environment
+- UQ Drupal URL: https://web.library.uq.edu.au
+- No development environment
 
 UQ ITS is managing UQ Drupal library's CMS (web.library.uq.edu.au). Any components to be used in UQ Drupal require registration within UQ Drupal.
 

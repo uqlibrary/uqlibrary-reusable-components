@@ -1,6 +1,7 @@
 #PRIMO2 Customisations
 
-New Primo UI URL (master branch): https://search.library.uq.edu.au/primo-explore/search?vid=61UQ_DEV
+- New Primo UI URL (master branch): https://search.library.uq.edu.au/primo-explore/search?vid=61UQ_DEV
+
 
 ####Theming for new Primo UI includes:
 

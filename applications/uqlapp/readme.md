@@ -1,5 +1,9 @@
 #UQLAPP, FBS, Contacts, Exams, ACDB
 
+- UQLAPP URL: https://app.library.uq.edu.au/#/
+- no development environment, but possible to create if required, all applications are managed by UQL
+
+
 Used in files:
 - UQLAPP: frontend/app/index.html
 - FBS: public/lib/Template.class.php

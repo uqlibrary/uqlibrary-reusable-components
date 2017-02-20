@@ -1,4 +1,4 @@
-#### Shared (ezproxy, static pages on enki)
+#Shared (ezproxy, static pages on enki)
 
 To include standard components on static pages (on enki), use following HTML:
 

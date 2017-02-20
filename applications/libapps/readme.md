@@ -2,8 +2,9 @@
 
 ##LibGuides
 
-LibGuides URL: http://guides.library.uq.edu.au
-Development environment (master branch): http://guides.library.uq.edu.au/test
+- LibGuides URL: http://guides.library.uq.edu.au
+- Development environment (master branch): http://guides.library.uq.edu.au/test
+
 
 Include this code in Custom JS/CSS Code in LibGuides configuration:
 
@@ -20,12 +21,12 @@ Customisation of groups shall be done the same way as custom-styles, example:how
 
 ##LibAnswers - in the process of being replaced by Rightnow
 
-LibGuides URL: http://answers.library.uq.edu.au		
-Development environment (master branch): http://answers.library.uq.edu.au/test		
+- LibGuides URL: http://answers.library.uq.edu.au		
+- Development environment (master branch): http://answers.library.uq.edu.au/test		
 
 
 Include this code in Custom JS/CSS Code in LinAnswers configuration		
- 		
+	
          <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico">		
          <script src="//assets.library.uq.edu.au/reusable-components/resources/preloader.js" async></script>		
          <script src="//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js" async></script>		

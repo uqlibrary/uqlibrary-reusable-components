@@ -1,7 +1,7 @@
 #Omeka Customisation
 
-Omeka URL: https://uqlibraryonlineexhibitions.omeka.net/
-No development environment
+- Omeka URL: https://uqlibraryonlineexhibitions.omeka.net/
+- No development environment
 
 
 A third party product we are using for online library exhibits
