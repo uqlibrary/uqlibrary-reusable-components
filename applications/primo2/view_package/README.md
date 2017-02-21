@@ -27,7 +27,7 @@ No changes are expected to be done to the package. All updates to be done in reu
 
 - 'view_package' directory should be renamed to a name of desired view (eg 61UQ for production view, 61UQ_DEV for development, etc)
 - delete any hidden filese (eg .idea, .git, etc)
-- create a zip, eg 61UQ_DEV.zip
+- create a zip, eg 61UQ_DEV.zip `$ zip -r 61UQ_DEV.zip 61UQ_DEV`
 - upload zip to Promo BO, run deployment
 
 
