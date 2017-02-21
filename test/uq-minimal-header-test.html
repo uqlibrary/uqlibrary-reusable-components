@@ -97,14 +97,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
     });
 
-    test('if uql-apps-button is displayed if user is logged in', function (done) {
+    test('if uql-apps-button is displayed when user is logged in', function (done) {
       flush(function () {
         setTimeout(function () {
           var button = testObj.querySelector('uql-apps-button');
           expect(button).to.exist;
           expect(testObj.userLoggedIn).to.be.true;
           done();
-        }, 20);
+        }, 150);
 
       });
     });
