@@ -7,6 +7,13 @@ function ready(fn) {
 }
 
 function loadReusableComponents() {
+  //if primo has loaded with HTTP reload with HTTPS
+  if (location.protocol !== 'https:')
+  {
+    location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    return;
+  }
+
   loadUQFavicon();
 
   addAppleTouchIcon();
