@@ -46,7 +46,7 @@
     font-weight: 700
   }
   tbody td.s-lc-whw-sublocname {
-    padding-left: 1rem;
+    padding-left: 0;
     font-weight: 700
   }
   td {
@@ -60,6 +60,13 @@
     margin-top: 0.75rem;
   }
 
+  // put some padding above the 'phone hours' block
+  tr:nth-of-type(2),
+  tr:nth-of-type(3) {
+    padding-top: 16px;
+    padding-top: 1rem;
+  }
+
 
   td:before {
     position: absolute;
@@ -70,11 +77,6 @@
     padding-right: 0.625rem;
     white-space: nowrap;
     margin-top: -6px;
-  }
-
-  /* hide service point name */
-  td:nth-of-type(1) {
-    display: none;
   }
 
   td:nth-of-type(2):before {
