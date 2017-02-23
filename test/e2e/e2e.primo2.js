@@ -12,7 +12,7 @@ module.exports = {
 
     // primo specific checks
     client
-      .assert.elementPresent('tr#exlidResult0 h2', 'at least one primo result is present')
+      .assert.elementPresent('prm-brief-result-container', 'at least one primo result is present')
       .end();
 
   }
