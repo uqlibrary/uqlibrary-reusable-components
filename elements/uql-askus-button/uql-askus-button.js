@@ -21,22 +21,14 @@
         var self = this;
 
         if (contactsJson !== null) {
-            //this.$.callout.calloutItems = contactsJson;
             this._setData(contactsJson);
         } else {
-            // Set up a listener to wait till the contacts have been loaded from the API, then push them to the callout
             this.$.contactsApi.addEventListener('uqlibrary-api-contacts-loaded', function(e) {
-                //self.$.callout.calloutItems = {
-                //    "items": e.detail.items,
-                //    "summary": e.detail.summary
-                //};
                 self._setData(e.detail);
             });
-            // Fire the API to get the contacts
             if(this.autoLoad){
                 this.$.contactsApi.get();
             }
-
         }
       },
 	 /**
@@ -53,7 +45,7 @@
      * @private
      */
     _calloutOpened: function (e) {
-      this.$.ga.addEvent('Navigation', 'Opened');
+      this.$.ga.addEvent('AskUs Button', 'Opened');
     },
       
       _setData: function (data) {
