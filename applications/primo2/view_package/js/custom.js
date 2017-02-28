@@ -3,13 +3,27 @@
 
   var app = angular.module('viewCustom', ['angularLoad']);
 
-    /****************************************************************************************************/
+  //record GA page view event to new primo tracker GA ID
+  app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
 
-    /*In case of CENTRAL_PACKAGE - comment out the below line to replace the other module definition*/
+    $rootScope.$on('$locationChangeSuccess', function(event){
+      //temporarily create a tracker specifically to new Primo
+      if ($window.ga) {
+        $window.ga(function () {
+          $window.ga('create', 'UA-4365437-14', 'search.library.uq.edu.au', 'NewPrimoTracker');
+        });
+        $window.ga('NewPrimoTracker.send', 'pageview', {location: $location.url()});
+      }
+    });
+  }]);
 
-    /*var app = angular.module('centralCustom', ['angularLoad']);*/
+  /****************************************************************************************************/
 
-    /****************************************************************************************************/
+  /*In case of CENTRAL_PACKAGE - comment out the below line to replace the other module definition*/
+
+  /*var app = angular.module('centralCustom', ['angularLoad']);*/
+
+  /****************************************************************************************************/
 
   function insertScript(url) {
     var script = document.querySelector("script[src*='"+url+"']");
