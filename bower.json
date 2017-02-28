@@ -33,7 +33,8 @@
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#1.0.5",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search#v1.0.6",
     "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.2.8",
-    "uqlibrary-training": "uqlibrary/uqlibrary-training#v1.0.7"
+    "uqlibrary-training": "uqlibrary/uqlibrary-training#v1.0.7",
+    "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input#v1.1.2"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0"
@@ -43,6 +44,7 @@
   "resolutions": {
     "uqlibrary-styles": "v1.1.0",
     "uqlibrary-ga": "v1.0.7",
-    "uqlibrary-api": "v1.3.8"
+    "uqlibrary-api": "v1.3.8",
+    "uqlibrary-autosuggest-input": "v1.1.2",
   }
 }
