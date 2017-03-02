@@ -1,8 +1,8 @@
 prm-search-bar {
 
   .search-switch-buttons .md-button.switch-to-advanced, .md-button.switch-to-simple {
-    color: $accent-color;
-    background-color: transparent;
+    color: $accent-color !important;
+    background-color: transparent !important;
     font-size: 16px;
     padding: 11px;
   }
@@ -14,6 +14,6 @@ prm-search-bar {
 }
 
 .md-button[aria-label="Search"], .md-button.button-confirm{
-  background-color: $primary;
-  color: #FFFFFF;
+  background-color: $primary !important;
+  color: #FFFFFF !important;
 }
