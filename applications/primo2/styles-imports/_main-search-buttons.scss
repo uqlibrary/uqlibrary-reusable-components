@@ -4,11 +4,17 @@ prm-search-bar {
     color: #333 !important;
     background-color: transparent !important;
     font-size: 16px;
-    padding: 11px;
+    padding: 10px;
+    border: 1px solid transparent;
   }
 
-  .search-switch-buttons .md-button.switch-to-advanced:hover, .md-button.switch-to-simple:hover, .search-switch-buttons .md-button.switch-to-advanced:focus, .md-button.switch-to-simple:focus {
+  .search-switch-buttons .md-button.switch-to-advanced:hover, .md-button.switch-to-simple:hover {
     color: $primary !important;
+    border: 1px #2990f5;
+  }
+  .search-switch-buttons .md-button.switch-to-advanced:focus, .md-button.switch-to-simple:focus {
+    color: $primary !important;
+    border: 1px #2990f5;
   }
 
   .search-switch-buttons {
