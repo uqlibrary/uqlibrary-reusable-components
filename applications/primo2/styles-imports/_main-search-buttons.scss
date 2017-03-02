@@ -4,15 +4,14 @@ prm-search-bar {
     color: #333 !important;
     background-color: transparent !important;
     font-size: 16px;
-    padding: 10px;
-    border: 1px solid transparent;
+    padding: 11px;
   }
 
   .search-switch-buttons .md-button.switch-to-advanced:hover, .md-button.switch-to-simple:hover {
     color: $primary !important;
   }
   .search-switch-buttons .md-button.switch-to-advanced:focus, .md-button.switch-to-simple:focus {
-    outline: #288BBED auto 5px;
+    outline: #288BED auto 5px;
     color: $primary !important;
   }
 
@@ -35,5 +34,5 @@ prm-search-bar {
 .md-button[aria-label="Search"]:focus, .md-button.button-confirm:focus {
   background-color: $primary-hue2 !important;
   color: #FFFFFF !important;
-  outline: #288BBED auto 5px;
+  outline: #288BED auto 5px;
 }
