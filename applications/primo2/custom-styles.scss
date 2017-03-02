@@ -58,6 +58,9 @@
 @import "www/styles/main";
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
+/* Style imports to override primo defaults */
+@import "styles-imports/_main-search-buttons.scss";
+
 
 uqlibrary-alerts,
 uq-minimal-header {
@@ -73,24 +76,4 @@ prm-user-area {
 
 prm-logo {
   display: none;
-}
-
-prm-search-bar,
-prm-topbar .top-nav-bar {
-  background-color: transparent;
-}
-
-prm-search-bar {
-
-  .search-switch-buttons .md-button.switch-to-advanced {
-    color: #fff;
-    background-color: $accent-color;
-    font-size: 16px;
-    padding: 11px;
-  }
-
-  .search-switch-buttons {
-    padding-top: 0;
-  }
-
 }
