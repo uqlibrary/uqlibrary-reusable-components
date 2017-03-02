@@ -11,7 +11,7 @@ prm-search-bar {
     color: $primary !important;
   }
   .search-switch-buttons .md-button.switch-to-advanced:focus, .md-button.switch-to-simple:focus {
-    outline: #288BED auto 5px;
+    outline: #288BED auto 5px !important;
     color: $primary !important;
   }
 
@@ -34,5 +34,5 @@ prm-search-bar {
 .md-button[aria-label="Search"]:focus, .md-button.button-confirm:focus {
   background-color: $primary-hue2 !important;
   color: #FFFFFF !important;
-  outline: #288BED auto 5px;
+  outline: #288BED auto 5px !important;
 }
