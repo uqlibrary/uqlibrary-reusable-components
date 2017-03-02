@@ -1,10 +1,14 @@
 prm-search-bar {
 
   .search-switch-buttons .md-button.switch-to-advanced, .md-button.switch-to-simple {
-    color: $accent-color !important;
+    color: #333 !important;
     background-color: transparent !important;
     font-size: 16px;
     padding: 11px;
+  }
+
+  .search-switch-buttons .md-button.switch-to-advanced:hover, .md-button.switch-to-simple:hover {
+    color: #2377CB !important;
   }
 
   .search-switch-buttons {
@@ -14,6 +18,6 @@ prm-search-bar {
 }
 
 .md-button[aria-label="Search"], .md-button.button-confirm{
-  background-color: $primary !important;
+  background-color: #2377CB !important;
   color: #FFFFFF !important;
 }
