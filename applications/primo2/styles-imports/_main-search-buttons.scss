@@ -10,11 +10,10 @@ prm-search-bar {
 
   .search-switch-buttons .md-button.switch-to-advanced:hover, .md-button.switch-to-simple:hover {
     color: $primary !important;
-    border: 1px #2990f5;
   }
   .search-switch-buttons .md-button.switch-to-advanced:focus, .md-button.switch-to-simple:focus {
+    outline: #288BBED auto 5px;
     color: $primary !important;
-    border: 1px #2990f5;
   }
 
   .search-switch-buttons {
@@ -28,7 +27,13 @@ prm-search-bar {
   color: #FFFFFF !important;
 }
 
-.md-button[aria-label="Search"]:hover, .md-button.button-confirm:hover, .md-button[aria-label="Search"]:focus, .md-button.button-confirm:focus{
+.md-button[aria-label="Search"]:hover, .md-button.button-confirm:hover{
   background-color: $primary-hue2 !important;
   color: #FFFFFF !important;
+}
+
+.md-button[aria-label="Search"]:focus, .md-button.button-confirm:focus {
+  background-color: $primary-hue2 !important;
+  color: #FFFFFF !important;
+  outline: #288BBED auto 5px;
 }
