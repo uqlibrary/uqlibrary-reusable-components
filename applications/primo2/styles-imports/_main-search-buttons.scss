@@ -10,6 +10,7 @@ prm-search-bar {
   .search-switch-buttons .md-button.switch-to-advanced:hover, .md-button.switch-to-simple:hover {
     color: $primary !important;
   }
+
   .search-switch-buttons .md-button.switch-to-advanced:focus, .md-button.switch-to-simple:focus {
     outline: #288BED auto 5px !important;
     color: $primary !important;
@@ -18,7 +19,6 @@ prm-search-bar {
   .search-switch-buttons {
     padding-top: 0;
   }
-
 }
 
 .md-button[aria-label="Search"], .md-button.button-confirm{
