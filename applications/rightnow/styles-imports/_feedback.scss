@@ -1,9 +1,9 @@
 // feedback.php
-.menu__link  {
-  background-image: url('images/external-link-24x24.png');
-  background-repeat: no-repeat;
-  background-position: right center;
-  padding-right: 26px;
+
+.menu__link iron_icon {
+  color: #BBB;
+  width: 16px;
+  width: 1rem;
 }
 
 .rn_FileAttachmentUpload.rn_Input {
