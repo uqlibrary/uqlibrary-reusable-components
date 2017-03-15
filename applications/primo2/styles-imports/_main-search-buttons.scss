@@ -1,0 +1,38 @@
+prm-search-bar {
+
+  .search-switch-buttons .md-button.switch-to-advanced, .md-button.switch-to-simple {
+    color: #333 !important;
+    background-color: transparent !important;
+    font-size: 16px;
+    padding: 11px;
+  }
+
+  .search-switch-buttons .md-button.switch-to-advanced:hover, .md-button.switch-to-simple:hover {
+    color: $primary !important;
+  }
+
+  .search-switch-buttons .md-button.switch-to-advanced:focus, .md-button.switch-to-simple:focus {
+    outline: #288BED auto 5px !important;
+    color: $primary !important;
+  }
+
+  .search-switch-buttons {
+    padding-top: 0;
+  }
+}
+
+.md-button[aria-label="Search"], .md-button.button-confirm{
+  background-color: $primary !important;
+  color: #FFFFFF !important;
+}
+
+.md-button[aria-label="Search"]:hover, .md-button.button-confirm:hover{
+  background-color: $primary-hue2 !important;
+  color: #FFFFFF !important;
+}
+
+.md-button[aria-label="Search"]:focus, .md-button.button-confirm:focus {
+  background-color: $primary-hue2 !important;
+  color: #FFFFFF !important;
+  outline: #288BED auto 5px !important;
+}

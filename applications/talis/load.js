@@ -24,10 +24,6 @@ function loadReusableComponents() {
   var header = document.createElement('uq-minimal-header');
   document.body.insertBefore(header, firstElement);
 
-  // insert sub footer before body-tag
-  var subFooter = document.createElement('uql-connect-footer');
-  document.body.appendChild(subFooter);
-
   // insert footer before body-tag
   var footer = document.createElement('uq-minimal-footer');
   document.body.appendChild(footer);
