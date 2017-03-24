@@ -1,11 +1,11 @@
 prm-user-area {
   background-color: transparent !important;
 
-  span {
+  span, prm-icon md-icon {
     color: #333 !important;
   }
 
-  prm-search-bookmark-filter md-icon {
+  prm-search-bookmark-filter prm-icon md-icon {
     color: #333 !important;
   }
 
