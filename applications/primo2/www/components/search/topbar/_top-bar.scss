@@ -3,7 +3,9 @@
 @import 'mainMenu/main-menu-full';
 @import 'mainMenu/main-menu';
 @import 'userArea/authentication';
-@import 'userArea/user-area';
+
+//@import 'userArea/user-area';
+@import 'userArea/uql_user-area';
 
 prm-topbar {
 	height: $defaultBarHeight;
@@ -16,6 +18,7 @@ prm-topbar {
 
     .md-button {
         //@extend .button-over-dark;
+
         &:not(.md-icon-button) {
             @extend .layout-full-height;
             @extend .zero-margin;

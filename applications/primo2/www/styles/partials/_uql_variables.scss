@@ -162,7 +162,8 @@ $moreLink: $links;
 
 $selectedItem: saturate(lighten($midGrey, 53%), 40%);
 
-
+$citationTitle:  rgb(68, 112, 123);
+// $citationTitle: $titles;
 
 // chips
 $chipTouchHeight: 28px;
@@ -176,6 +177,11 @@ $defaultBarHeight: 60px;
 
 // height of buttons in brief results
 $briefButtonHeight: 38px;
+
+// citations
+$citation: tomato;
+$citationColor: $citation;
+$citation-hue1: darken($citation, 40%);
 
 // Angular Material
 //-----------------
