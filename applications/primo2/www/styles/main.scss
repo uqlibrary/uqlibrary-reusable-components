@@ -1,7 +1,6 @@
 // Variables and themes
 // ====================
 @import "partials/variables";
-@import "partials/uql_variables";
 @import "partials/easing";
 @import "partials/media-queries";
 @import "partials/mixins";
@@ -152,7 +151,6 @@
 
 // Recommendations
 @import "../components/search/fullView/recomendation/recommendations";
-@import "../components/search/fullView/recomendation/uql_recommendations";
 
 //virtual browse
 @import "../components/search/virtualBrowse/virtual-browse.scss";

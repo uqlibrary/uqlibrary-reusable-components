@@ -56,6 +56,11 @@
 }
 
 @import "www/styles/main";
+@import "www/styles/partials/uql_variables";
+@import "www/components/search/fullView/recomendation/uql_recommendations";
+@import "www/components/search/topbar/userArea/uql_user-area";
+
+
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
 /* Style imports to override primo defaults */
@@ -80,4 +85,9 @@ prm-logo {
 prm-search-bar,
 prm-topbar .top-nav-bar {
   background-color: transparent;
+}
+
+//hide favorites
+.top-nav-bar > prm-search-bookmark-filter {
+  display:none;
 }
