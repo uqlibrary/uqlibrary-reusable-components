@@ -3,9 +3,7 @@
 @import 'mainMenu/main-menu-full';
 @import 'mainMenu/main-menu';
 @import 'userArea/authentication';
-
-//@import 'userArea/user-area';
-@import 'userArea/uql_user-area';
+@import 'userArea/user-area';
 
 prm-topbar {
 	height: $defaultBarHeight;
