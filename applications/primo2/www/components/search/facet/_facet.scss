@@ -159,6 +159,10 @@ prm-facet {
                 max-width: 100%;
 
                 @include rtl-prop(margin-right, margin-left, .2em, 0);
+
+                + span {
+                    display: inline-flex;
+                }
             }
             .button-exclude {
                 md-icon {

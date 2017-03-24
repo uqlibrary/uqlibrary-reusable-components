@@ -25,12 +25,14 @@
 	overflow: hidden;
     @include rtl(position, absolute, fixed);
 }
+
+// accessibilty element visible only on focus
 %accessible-only-focus, .accessible-only-focus {
 	position: static;
 	width: auto;
 	height: auto;
-	margin-left: 1em;
-	left:inherit;
+	left: inherit;
+	overflow: auto;
 }
 
 // text
@@ -44,15 +46,8 @@
 	 }
 }
 
-// shading / color
-%darker-bg, .darker-bg {
-	background-color: transparentize($dark, .88);
-}
-
 // shadows
 %default-shadow, .default-shadow {
-	// box-shadow: 0 1px 0 0 darken($bg, 5%),
-	// 			0 5px 5px -3px darken($bg, 5%);
     box-shadow: 0 1px 0 0 transparentize(black, .97),0 5px 5px -3px transparentize(black, .93);
 	&-on-light {
 
@@ -86,6 +81,12 @@
 					0 0 0 .6em #acbecc,
 					0 2px 15px 5px rgba(0,0,0,.2);
 	}
+}
+
+
+// shading / color
+%darker-bg, .darker-bg {
+	background-color: transparentize($dark, .88);
 }
 
 // backgrounds
@@ -188,16 +189,16 @@
 }
 
 //remove transitions and animation 
-%remove-keyframes-animation {
+%remove-keyframes-animation, .remove-keyframes-animation  {
     animation: none !important;    
 }
-%remove-transition {
+%remove-transition, .remove-transition {
     transition: none !important;
     transition-duration: 0ms !important;
     transition-delay: 0ms !important;
 }
 // remove box- shadows
-%remove-box-shadow {
+%remove-box-shadow, .remove-box-shadow {
     box-shadow: none !important;
 }
 

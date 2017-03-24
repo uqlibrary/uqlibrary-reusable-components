@@ -119,6 +119,7 @@ md-toolbar:not(.md-menu-toolbar) {
 
 		.__xs &{
 			padding-left: 0;
+			font-size: 1em;
 		}
 
 		+ .toolbar-select-input {
@@ -216,6 +217,10 @@ md-toolbar:not(.md-menu-toolbar) {
 		opacity: .8;
 		&:hover {
 			opacity: 1;
+		}
+		.__xs & {
+			width: 56px;
+			min-width: 56px;
 		}
 		md-icon {
 			width: 34px;

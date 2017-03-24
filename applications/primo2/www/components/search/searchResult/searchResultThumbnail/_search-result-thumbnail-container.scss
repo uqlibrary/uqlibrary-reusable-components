@@ -1,57 +1,56 @@
+$thumbnailWidth: 60px;
+
 prm-search-result-thumbnail-container {
-
-    &:not(.dedup-images-holder) {
-        img {
-            + img,
-            + img + img {
-                display: none !important;
-            }
-        }
-    }
-}
-
-.dedup-images-holder {
     position: relative;
-    display: inline-block;
-    // perspective: 1000;
+    display: block;
+    // width: $thumbnailWidth;
 
-    > div {
-        prm-full-view & {
-            width: 60px;
-        }
-    }
+    // @include ie-only {
+    //     display: inline-block;
+    // }
 
     img {
-        transition: $swift-ease-out;
-        transform-origin: 50% 0%;
-        min-height: 88px;
-        min-width: 60px;
-        &:first-of-type {
-            transform: rotate3d(0, 0, 1, -7deg) translate3d(-12px, 0, 0) scale3d(0.8, 0.8, 1);
-            prm-brief-result-container:hover & {
-                transform: rotate3d(0, 0, 1, -12deg) translate3d(-25px, -3px, 0) scale3d(0.8, 0.8, 1);
-            }
-        }
-        + img {
-            display: block;
-            position: absolute;
-            top: 0;
-            transform: rotate3d(0, 0, 1, -3deg) translate3d(-1px, 0, 0) scale3d(0.8, 0.8, 1);
-            z-index: 3;
-            prm-brief-result-container:hover & {
-                transform: rotate3d(0, 0, 1, -7deg) translate3d(-7px, -1px, 0) scale3d(0.8, 0.8, 1);
-            }
-
-            + img {
-                position: absolute;
-                top: 0;
-                transform: rotate3d(0, 1, 0, 0deg) translate3d(8px, 0, 0) scale3d(.8, .8, 1);
-                z-index: 4;
-                prm-brief-result-container:hover & {
-                    transform: rotate3d(0, 0, 1, 2deg) translate3d(12px, 0, 0) scale3d(.8, .8, 1);
-                }
+        box-shadow: none;
+        width: 100%;
+        display: block;
+        
+        // only images with an actual image (not placeholder or fallback image) get shadow
+        &[src*="http"] {
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 2px 1px 0 white, -3px 3px 10px -3px rgba(0, 0, 0, 0.3);
+            html[dir="rtl"] & {
+                box-shadow: 0 1px 1px rgba(0, 0, 0, .3), -2px 1px 0 white, 3px 3px 10px -3px rgba(0, 0, 0, 0.3);
             }
         }
     }
     
+    // fan effect for dedup/frbr
+    .fan-img {
+        width: $thumbnailWidth;
+        position: absolute;
+        display: block;
+        top: 0; 
+        left: 0;
+        transform-origin: 50% 0;
+        transition: transform .4s $swift-ease-out-timing-function;
+        &:nth-of-type(1) {
+            transform: rotate3d(0, 0, 1, -6deg) translate3d(-12px, 0, 0) scale3d(0.8, 0.8, 1);
+            prm-brief-result-container:hover & {
+                transform: rotate3d(0, 0, 1, -12deg) translate3d(-25px, -3px, 0) scale3d(0.8, 0.8, 1);
+            }
+        }
+        &:nth-of-type(2) {
+            transform: rotate3d(0, 0, 1, -3deg) translate3d(-2px, 0, 0) scale3d(0.8, 0.8, 1);
+            prm-brief-result-container:hover & {
+                transform: rotate3d(0, 0, 1, -7deg) translate3d(-8px, -1px, 0) scale3d(0.8, 0.8, 1);
+            }
+        }
+        &:nth-of-type(3) {
+            transform: rotate3d(0, 0, 1, 0deg) translate3d(8px, 0, 0) scale3d(.8, .8, 1);
+            prm-brief-result-container:hover & {
+                transform: rotate3d(0, 0, 1, 2deg) translate3d(14px, 0, 0) scale3d(.8, .8, 1);
+            }
+        }
+    }
 }
+
+

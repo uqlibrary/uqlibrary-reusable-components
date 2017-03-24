@@ -1,0 +1,93 @@
+prm-view-overlay {
+	position: fixed;
+	top: 0;
+	bottom:0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	transition: $swift-ease-out;	
+
+	&.visible {
+		z-index: 100;
+		transition-duration: 0s;
+	}
+}
+.prm-view-overlay-inner {
+	height: 100%;
+	width: 70%;
+	z-index: 1;
+	box-shadow: -5px 0 15px -3px transparentize(black, .88);
+
+	&.ng-enter {
+		opacity: 0;
+		transform: translate3d(120px,0,0);
+		transition: $swift-ease-out;
+		&.ng-enter-active {
+			opacity: 1;
+			transform: translate3d(0,0,0);
+		}
+	}
+	&.ng-leave {
+		opacity: 1;
+		transition: $swift-ease-in;
+		transform: translate3d(0,0,0);
+		&.ng-leave-active {
+			opacity: 0;
+			transform: translate3d(120px,0,0);
+		}
+	}
+	@extend .prm-background;
+}
+.prm-view-overlay-close {
+
+}
+.prm-view-overlay-backdrop {
+	position: fixed;
+	top: 0;
+	bottom:0;
+	left: 0;
+	right: 0;
+	z-index: 0;
+	transition: $swift-ease-out;
+	background-color: transparentize(black, .75);
+	&.ng-enter {
+		opacity: 0;
+		&.ng-enter-active {
+			opacity: 1;
+		}
+	}
+	&.ng-leave {
+		opacity: 1;
+		&.ng-leave-active {
+			opacity: 0;
+		}
+	}
+}
+.prm-view-overlay-close-button {
+	z-index: 2;
+	&.ng-enter {
+		opacity: 0;
+		transform: translate3d(120px,0,0);
+		transition: $swift-ease-out;
+		transition-delay: .1s;
+		&.ng-enter-active {
+			opacity: 1;
+			transform: translate3d(0,0,0);
+		}
+	}
+	&.ng-leave {
+		opacity: 1;
+		transition: $swift-ease-in;
+		transition-delay: .1s;
+		transform: translate3d(0,0,0);
+		&.ng-leave-active {
+			opacity: 0;
+			transform: translate3d(120px,0,0);
+		}
+	}
+	.md-button {
+		z-index: 1;
+		color: white;
+	}
+
+}

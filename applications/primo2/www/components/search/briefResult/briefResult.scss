@@ -1,23 +1,30 @@
 $verticalMargin: .25em;
 
 prm-brief-result {
+    position: relative;
 
-    .item-title{
-        font-size: 1.18em;
-        line-height: 1.2em;
+    .item-title {
+        // font-size: 1.18em;
+        // line-height: 1.2em;
         color: $titles;
         max-width: 75%;
         margin: 7px 0 7px 0;
         margin: 0;
         font-weight: $bold;
         cursor: pointer;   
+        align-self: flex-start;
 
         [dir="rtl"] & {
             @extend .text-rtl;
+        }
+        
+        .full-view-mouse-pointer  {
+        	cursor: text;
         }     
         
         .__xs & {            
             max-width: none;
+            font-size: 1.1em;
         }
         span{ //make sure spans gets the color from here and not from the wrapping link (specificity)
             color: $titles;
@@ -26,6 +33,7 @@ prm-brief-result {
 
     .item-detail {
         font-weight: $normal;
+        line-height: 1.4em;
         @extend .word-break;
         
         [dir="rtl"] & {
@@ -34,12 +42,12 @@ prm-brief-result {
 
         > span {            
             &:last-child {
-                &:after {
-                    content: "";
-                    display: table;
-                    width: 100%;
-                    margin-bottom: $verticalMargin;
-                }
+                // &:after {
+                //     content: "";
+                //     display: table;
+                //     width: 100%;
+                //     margin-bottom: $verticalMargin;
+                // }
 
                 @include ie-only {
                     &:after {
@@ -48,8 +56,7 @@ prm-brief-result {
                 }
             }
 
-            @include ie-only { 
-                // float: left;
+            @include ie-only {
             }
         }
         span {

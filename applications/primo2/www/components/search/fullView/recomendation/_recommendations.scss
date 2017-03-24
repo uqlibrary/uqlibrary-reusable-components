@@ -37,6 +37,12 @@
             }
         }
     }
+    .section-description {
+        margin-left: 2em;
+        @include __xs {
+            margin-left: 0;
+        }
+    }
     p {
         margin-bottom: 0;
         &.recommendation-details {
@@ -161,7 +167,7 @@ prm-recomendation-item {
  .recommendations-title {
 	font-size: 1em;
 	margin-bottom: 0;
-    color: $links;
+    color: #44707b;
     font-weight: 600;
     line-height: 1.2em !important;
     padding-bottom: 0 !important;

@@ -35,11 +35,12 @@ prm-full-view {
     }
 }
 
-// .full-view-container {
-//     [dir="rtl"] & {
-//         flex-direction: row-reverse;
-//     }
-// }
+.full-view-container {
+    .__xs &,
+    .__sm & {
+        z-index: 1;
+    }
+}
 
 prm-full-view-cont {
     > md-content,
@@ -64,7 +65,7 @@ prm-full-view-cont {
     width: 100%;
     opacity: 0;
     border-radius: 0 !important;
-    // transform: translate3d(20vw, 0, 0) scale(1.0) !important;
+    transform: translate3d(20vw, 0, 0) scale(1.0) !important;
     
     @include rtl(transform, translate3d(20vw, 0, 0) scale(1.0) !important,  translate3d(-20vw, 0, 0) scale(1.0) !important);
     @include rtl-prop(right, left, 0, auto);
@@ -72,7 +73,7 @@ prm-full-view-cont {
     // padding-top: 48px;
     @extend .prm-background.prm-hue2;
 
-    @include ie-exceptions;
+    // @include ie-exceptions;
 
     // breakpoints
     .__gt-sm & {
@@ -91,7 +92,7 @@ prm-full-view-cont {
         transition: $swift-ease-in;
         transform: translate3d(5vw, 0, 0) rotateZ(90deg);
 
-        @include ie-exceptions;
+        // @include ie-exceptions;
 
         &.md-icon-button {
             @include setSize(96px);
@@ -125,7 +126,7 @@ prm-full-view-cont {
         opacity: 1;
         transform: translate3d(0, 0, 0) scale(1.0) !important;
 
-        @include ie-exceptions;
+        // @include ie-exceptions;
 
         ~ .close-button {
             transition: $swift-ease-out;
@@ -134,17 +135,17 @@ prm-full-view-cont {
             opacity: 1;
             transform: translate3d(0, 0, 0) rotateZ(0deg);
 
-            @include ie-exceptions;
+            // @include ie-exceptions;
         }
     }
     &._md-transition-out {
         transition: $swift-ease-in;
         opacity: 0;
-        // transform: translate3d(20vw, 0, 0) scale(1.0) !important;
+        transform: translate3d(20vw, 0, 0) scale(1.0) !important;
 
         @include rtl(transform, translate3d(20vw, 0, 0) scale(1.0) !important,  translate3d(-20vw, 0, 0) scale(1.0) !important);
 
-        @include ie-exceptions;
+        // @include ie-exceptions;
 
         ~ .close-button {
             transition: $swift-ease-in;
@@ -153,7 +154,7 @@ prm-full-view-cont {
             opacity: 0;
             transform: translate3d(20vw, 0, 0) rotateZ(180deg);
 
-            @include ie-exceptions;
+            // @include ie-exceptions;
         }
     }
     md-dialog-content {
@@ -182,7 +183,7 @@ prm-full-view-cont {
         padding: 0;
     }
 
-    @include ie-exceptions;
+    // @include ie-exceptions;
 
     &:last-of-type {
         // margin-bottom: 10em;
@@ -260,7 +261,7 @@ prm-full-view-cont {
             opacity: 1;
             transition: opacity .2s ease;
 
-            @include ie-exceptions;
+            // @include ie-exceptions;
         }
         .standalone-mode & {
             left: $sideSpacing;

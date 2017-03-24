@@ -1,0 +1,26 @@
+/* starting citationTrailsIndication */
+prm-citation-trails-indication {
+  display: flex;
+
+  .md-button {
+    &.md-icon-button, &.button-with-icon {
+      box-shadow: none;
+      margin: 0;
+      // @extend .prm-citation-color;
+      @include bgColor($citationColor);
+      &:hover {
+        @extend .prm-citation-color.citation-hover;
+      }
+      text-transform: none;
+    }
+  }
+
+  &[type="citing"] {
+    md-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+}
+
+

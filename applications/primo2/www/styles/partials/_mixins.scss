@@ -43,7 +43,7 @@
                 color: $baseColor;
                 background-color: transparentize($baseColor, .92);
              } @else {
-                color: darken(saturate($baseColor, 15%), 10%);
+                color: darken(saturate($baseColor, 15%), 20%);
                 background-color: transparentize($baseColor, .9);
              }
         }
@@ -81,20 +81,26 @@
   text-align: justify;
   margin-right: -1em;
   padding-right: 1em;
+  [dir=rtl] & {
+    margin-right: 0;
+    padding-right: 0;
+    margin-left: -1em;
+    padding-left: 1em;
+  }
   &:before {
     content: '...';
     position: absolute;
-    right: 0;
     bottom: 0;
+    @include rtl-prop(right, left, 0, auto);
   }
   &:after {
     content: '';
     position: absolute;
-    right: 0;
     width: 1em;
     height: 1em;
     margin-top: 0.2em;
     background: $bgColor;
+    @include rtl-prop(right, left, 0, auto);
   }
 }
 

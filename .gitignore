@@ -9,6 +9,7 @@ dist
 
 aws.json
 aws.json-e
+*.html-e
 aws-env.sh
 
 tmp

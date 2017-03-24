@@ -107,9 +107,17 @@ md-grid-tile,
 			    font-size: .8em;
 			    opacity: .4;
 			    top: .35em;
-		        left: .35em;
 		        line-height: 1em;
+		        
+		        html[dir="ltr"] &{
+	        		left: .35em;
+		        }				        
+		        html[dir="rtl"] &{
+	        		right: .35em;
+		        }		        
 		}
+		
+		
 
 		prm-spinner {
 			&.overlay-cover {

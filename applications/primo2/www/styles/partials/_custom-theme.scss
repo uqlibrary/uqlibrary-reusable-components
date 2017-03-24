@@ -88,8 +88,8 @@
 		background-color: darken($background, 5%);
 	}
 	&.prm-hue2 {
+		// background-color: lighten($background, 4%);
 		background-color: $background-hue2;
-		background-color: lighten($background, 4%);
 	}
 	&.prm-hue3 {
 		background-color: $background-hue3;
@@ -278,11 +278,24 @@
 	color: $negative;
 }
 
+
+.prm-citation-color {
+	color: $citation;
+	
+	&.citation-hover {
+		color: $citation-hue1
+	}
+}
+
 // BOX SHADOW
 // set box-shadow so will be able to extend color
 // This is set here and not in _mixins so it will be part of the color scheme
 @mixin box-shadow($display,$h-shadow,$v-shadow,$blur,$spread,$color) {
 	box-shadow: $display $h-shadow $v-shadow $blur $spread $color;
+}
+
+.prm-citation-title {
+	color: $citationTitle;
 }
 
 /* primary color hook end*/

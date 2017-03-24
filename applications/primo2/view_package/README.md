@@ -2,7 +2,7 @@
 # The Primo New UI Customization Workflow Development Environment
 
 
-##Package documentation
+## Package documentation
 
 The development package allows you to configure :
 
@@ -23,7 +23,7 @@ The development package allows you to configure :
   
 No changes are expected to be done to the package. All updates to be done in reusable-components/applications/primo2/*.(scss|js)
 
-##Package deployment
+## Package deployment
 
 - 'view_package' directory should be renamed to a name of desired view (eg 61UQ for production view, 61UQ_DEV for development, etc)
 - delete any hidden filese (eg .idea, .git, etc)
@@ -31,7 +31,7 @@ No changes are expected to be done to the package. All updates to be done in reu
 - upload zip to Promo BO, run deployment
 
 
-##Primo dev environment
+## Primo dev environment
 
 Try setting up local environment following this: https://github.com/ExLibrisGroup/primo-explore-devenv
 

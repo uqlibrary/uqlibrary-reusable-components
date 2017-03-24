@@ -1,0 +1,138 @@
+/* starting citationTrailsItem */
+
+prm-citation-trails-item {
+    md-card {
+        max-width: 140px;
+        min-width: 140px;
+        max-height: 100px;
+        height: 100px;
+        line-height: 18px;
+        font-size: .9em;
+        md-card-content {
+            display: flex;
+            padding: 10px 16px;
+            height: 100%;
+            width: 100%;
+            white-space: normal;
+            text-transform: none;
+            text-align: left;
+            [dir=rtl] & {
+                text-align: right;
+            }
+            justify-content: center;
+        }
+        > .md-button {
+            &:hover,
+            &:focus {
+                .item-type {
+                    opacity: 1;
+                }                
+            }
+        }
+    }
+    .item-title {
+         font-size: 1em;
+         line-height: 1.3em;
+         margin: 0;
+         max-height: 100%;
+         overflow: hidden;
+         @include multiLineEllipsis($lineHeight: 1.3em, $lineCount: 4, $bgColor: $background-hue2);
+         margin-right: 0;
+         padding-right: 1em;
+         [dir=rtl] & {
+            margin-left: 1em;
+            padding-right: 0;
+         }
+
+         // @include rtl-prop(margin-right, margin-left, 0em, auto);
+         // @include rtl-prop(padding-right, padding-left, 1em, auto);
+    }
+    .item-type {
+        @extend .prm-citation-color;
+        position: absolute;
+        top: 0;
+        left: .1em;
+        @include rtl-prop(left, right, .1em, auto);
+        opacity: .5;
+        transition-duration: 0s;
+        md-icon {
+          @include setSize(18px);          
+        }
+        
+    }
+    p {
+        @extend %text-trim-ellipsis;
+    }
+
+    &.active-item {
+        md-card {
+            max-width: 280px;
+            min-width: 280px;
+            height: 110px;
+            max-height: 110px;
+            .__gt-sm & {
+                max-width: 340px;
+                min-width: 340px;
+            }
+            > .md-button {
+                background-color: white;
+                &:hover,
+                &:focus {
+                    .item-title {                       
+                        span {
+                            @extend a.hover
+                        }
+                    }
+                }
+            }
+            md-card-title {
+                font-weight: 600;
+            }
+            md-card-content {}
+        }
+        .item-title {
+            @extend .bold-text;
+            @include multiLineEllipsis($lineHeight: 1.3em, $lineCount: 2, $bgColor: white);           margin-right: 0em;
+            padding-right: 1em;
+            // @include rtl-prop(margin-right, margin-left, 0em, auto);
+            // @include rtl-prop(padding-right, padding-left, 1em, auto);
+            @extend .prm-citation-title;
+            [dir=rtl] & {
+                padding-right: 0;
+                padding-left: 1em;
+            }
+        }
+        .item-type {
+            position: relative;
+            top: auto;
+            left: auto;
+            opacity: 1;
+            &.ng-hide-remove {
+                opacity: 0;
+                transform: translate(0, -15px);
+                transition: transform .4s cubic-bezier(0.19, 1, 0.22, 1), opacity .3s ease;
+                &.ng-hide-remove-active {
+                    opacity: 1;
+                    transform: translate(0, 0);
+                }
+            }
+        }
+        ~ prm-citation-trails-item {
+          .item-type {
+            right: .1em;
+            @include rtl-prop(right, left, .1em, auto);
+            left: auto;
+          }
+        }
+
+    }
+    .md-button {
+        &:hover {
+            .item-title {
+                &:after {
+                    background-color: $white;
+                }
+            }
+        }
+    }
+}
