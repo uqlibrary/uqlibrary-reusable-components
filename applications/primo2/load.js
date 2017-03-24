@@ -18,7 +18,7 @@ function loadReusableComponents() {
   var templateCache = appInjector.get('$templateCache');
   templateCache.put('components/search/topbar/userArea/user-area.html',
     '<div layout="row" layout-align="center center">' +
-    '<span>{{$ctrl.userName()}}</span>' +
+    '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
     '<prm-search-bookmark-filter></prm-search-bookmark-filter>' +
     '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +
     '<prm-authentication layout="flex" [is-logged-in]="$ctrl.userName().length > 0"></prm-authentication>' +

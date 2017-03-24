@@ -1,14 +1,13 @@
 prm-user-area {
     @extend .layout-full-height;
     //@extend %darker-bg;
-    @extend .button-link;
     // min-width: 60px; 
     flex: 0 0 auto; 
 
     .user-menu-button {
         line-height: 1.3em;
         width: 100%;
-        @extend .button-over-dark;
+        //@extend .button-over-dark;
         @extend .zero-margin;
 
         .user-name {
@@ -126,14 +125,14 @@ prm-user-area {
                 padding: 0 1em;
                 border-radius: 0;
                 transition-duration: 0s;
-                @extend .hoverable-over-dark;
+                //@extend .hoverable-over-dark;
             }
             md-input-container {
                 margin: 0;
                 padding: 0 1em;
                 height: 100%;
                 text-transform: uppercase;
-                @extend .hoverable-over-dark;
+                //@extend .hoverable-over-dark;
                 &:after {
                     display: none;
                 }
