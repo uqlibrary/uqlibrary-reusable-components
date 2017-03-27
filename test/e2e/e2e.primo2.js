@@ -18,5 +18,17 @@ module.exports = {
     // primo specific checks
     .assert.elementPresent('prm-brief-result-container', 'at least one primo result is present')
     .end();
+  },
+
+  'Test user area modifications have been applied' : function(client) {
+    client
+        .url(urlTest)
+        .pause(4000)
+        .assert.elementPresent('prm-topbar prm-user-area', 'user area component is present')
+        .assert.elementPresent('prm-topbar prm-user-area prm-authentication', 'login component is present')
+        .assert.elementPresent('prm-topbar prm-user-area prm-authentication span', 'login text is present')
+        .assert.containsText('prm-topbar prm-user-area prm-authentication span', 'LOG IN')
+        .assert.elementPresent('prm-topbar prm-user-area prm-library-card-menu', 'user account component is present')
+        .assert.elementPresent('prm-topbar prm-user-area prm-search-bookmark-filter', 'bookmark component is present')
   }
 };

@@ -8,11 +8,11 @@ var primoViewHasLoaded = setInterval(function() {
 }, 50);
 
 function loadReusableComponents() {
-  //insert elements, even before Polymer is loaded
-
-  //first element of the original document
+  // insert elements, even before Polymer is loaded
+  // first element of the original document
   var firstElement = document.querySelector('primo-explore');
 
+  // insert updated user-area view for login/logout/account access, e2e tests this is applied
   var app = angular.element(firstElement);
   var appInjector = app.injector();
   var templateCache = appInjector.get('$templateCache');
@@ -53,9 +53,6 @@ function loadReusableComponents() {
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
-    //console.log('WebComponentsReady....');
-    //console.dir(header);
-
     // header.showLoginButton = false;
   });
 
