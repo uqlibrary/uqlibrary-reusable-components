@@ -1,19 +1,29 @@
 // feedback.php
+.feedbackpage {
+  .menu__link .iron-icon-0 {
+    color: #BBB;
+    width: 16px;
+    width: 1rem;
+  }
 
-.menu__link .iron-icon-0 {
-  color: #BBB;
-  width: 16px;
-  width: 1rem;
-}
+  .rn_FileAttachmentUpload.rn_Input {
+    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
+  }
 
-.rn_FileAttachmentUpload.rn_Input {
-  margin-bottom: 24px;
-  margin-bottom: 1.5rem;
-}
+  .successMsg {
+    background-color: $uq-emerald;
+    color: $secondary-color-light;
+    padding: 8px;
+    padding: 0.5rem;
+  }
 
-.successMsg {
-  background-color: $uq-emerald;
-  color: $secondary-color-light;
-  padding: 8px;
-  padding: 0.5rem;
+  #researchParticipate {
+    font-size: 16px;
+    font-size: 1rem;
+    display: block;
+    padding-left: 0;
+    color: #000;
+    font-weight: normal;
+  }
 }
