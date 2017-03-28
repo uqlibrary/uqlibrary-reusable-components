@@ -2,6 +2,10 @@
 
 body {
 	font-size: $defaultFontSize;
+  .combined-half-mark {
+    font-family: arial;
+    font-size: .95em;
+  }
 }
 h1, h2, h3, h4 {
 	margin-top: 0;
@@ -41,6 +45,9 @@ em.keyword {
 }
 .text-uppercase {
 	text-transform: uppercase;
+}
+.text-no-case {
+    text-transform: none;
 }
 .bold-text,
 strong {

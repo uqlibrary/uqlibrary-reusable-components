@@ -1,27 +1,3 @@
-
-// .filter-chips {
-//     padding: .5em 1em;
-
-//     @include media( "screen", ">smallTablet", "<desktop" ){
-//         padding: .5em 0;
-//     }
-
-//     &.no-chips {
-//         max-height: 0;
-//         padding: 0;
-//     }
-// }
-// body {
-//     @extend %absolute-full-cover;
-//     overflow: hidden;   
-// }
-
-// div[ui-view] {
-//     overflow-y: auto;
-//     height: 100%;
-//     @extend %absolute-full-cover;
-// }
-
 .main,
 .sidebar {
     min-width: 0;

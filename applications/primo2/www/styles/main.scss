@@ -1,6 +1,8 @@
 // Variables and themes
 // ====================
-@import "partials/variables";
+//@import "partials/variables";
+@import "partials/uql_variables";
+
 @import "partials/easing";
 @import "partials/media-queries";
 @import "partials/mixins";
@@ -15,7 +17,7 @@
 @import "partials/headings";
 @import "partials/structure";
 @import "partials/animation";
-// @import "partials/ng-animation";
+@import "partials/ng-animation";
 @import "partials/layout";
 @import "partials/scrollbars";
 @import "partials/masonry";
@@ -23,14 +25,8 @@
 @import "partials/colors";
 @import "partials/lists";
 
-
-// accessibiliy
-// ============
-@import "partials/accessibility";
-
-// Primo components
-// ================
-@import "partials/citations-unit";
+// Primo general styles
+// ====================
 @import "partials/permalink-unit";
 @import "partials/bars";
 @import "partials/blocks";
@@ -38,8 +34,16 @@
 @import "partials/links";
 @import "partials/statuses";
 @import "partials/hacks";
+@import "partials/horizontal-content";
 
-// Loader
+// Primo accessibiliy
+// ==================
+@import "partials/accessibility";
+
+// Primo component imports
+// =======================
+
+// Loader / spinner
 @import "../components/spinner/spinner";
 
 // icons
@@ -48,34 +52,58 @@
 // login
 @import "../components/security/login/login";
 
-// search result
-@import "../components/search/search";
+// Primo explore
 @import "../components/primoExplore/primo-explore-main";
+
+// search result list
 @import "../components/search/searchResult/searchResultList/search-result-list";
+
+// search result item
 @import "../components/search/searchResult/searchResult";
-@import "../components/search/briefResult/briefResult";
-@import "../components/search/briefResult/briefResultContainer";
-@import "../components/search/searchResult/searchResultSortBy/searchResultSortBy";
 @import "../components/search/searchResult/searchResultAvailability/searchResultAvailabilityLine";
 @import "../components/search/searchResult/searchResultFrbr/search-results-frbr-line";
 
+// results thumbnails
+@import "../components/search/searchResult/searchResultThumbnail/search-result-thumbnail-container";
+
+// brief results container
+@import "../components/search/briefResult/briefResult";
+@import "../components/search/briefResult/briefResultContainer";
+
+// snippets
+@import "../components/search/snippet/snippet";
+
+// result item actions (email, permalink, citation etc)
+@import "../components/search/actions/action-list";
+
+// citation module
+@import "../components/search/actions/citation/citation";
+
+//citation Trail
+@import "../components/search/citationTrails/citation-trails-item";
+@import "../components/search/citationTrails/citation-trails-indication";
+@import "../components/search/citationTrails/citation-trails-breadcrumbs";
+@import "../components/search/citationTrails/citation-trails-fullview-link.scss";
+
 //Pagination
-@import "../components/infra/resultsNavigator/pagination-controls.scss";
+// @import "../components/infra/resultsNavigator/pagination-controls.scss";
+
+// Paging widget
+@import "../components/search/searchResult/searchResultList/pageNavMenu/page-nav-menu.scss";
+
+// back button
+@import "../components/search/fullView/backToSearchResultsButton/back-to-search-results-button";
+
+// Deposit
+@import "../components/infra/deposit/deposit-form";
+@import "../components/infra/deposit/uploadFile/upload-file";
+@import "../components/account/deposits/deposits";
 
 //savedQueries
 @import "../components/search/searchResult/savedQueriesList/saved-queries-list";
 @import "../components/search/searchResult/savedQueriesList/savedQueryFilter/saved-query-filter";
 @import "../components/search/savedQueries/addQueryToSavedSearches/addQueryToSavedSearches";
 @import "../components/search/savedQueries/addAlertToast/addAlertToast";
-
-// "send" actions
-@import "../components/search/actions/action-list";
-
-// citation module
-@import "../components/search/actions/citation/citation" ;
-
-// results thumbnails
-@import "../components/search/searchResult/searchResultThumbnail/search-result-thumbnail-container";
 
 // copy to clipboard button
 @import "../components/clipboard/copy-clipboard-btn";
@@ -89,8 +117,11 @@
 
 // header
 @import "../components/search/searchBar/search-bar";
-
+// journals
+@import "../components/journals/journals-search-bar";
+@import "../components/journals/search-within-journal";
 // full view
+@import "../components/search/fullView/view-overlay";
 @import "../components/search/fullView/full-details";
 @import "../components/search/fullView/details/serviceDetails";
 @import "../components/search/fullView/getit/opac/locations/location-items";
@@ -101,6 +132,7 @@
 @import "../static/homepage/homepage";
 
 // facets
+@import "../components/search/searchResult/searchResultSortBy/searchResultSortBy";
 @import "../components/search/facet/facet";
 @import "../components/search/breadcrumbs/breadcrumbs";
 
@@ -119,28 +151,22 @@
 @import "../components/account/overview/account-overview";
 @import "../components/account/personalInfo/personal-info";
 
-// snippets
-@import "../components/search/snippet/snippet";
-
 // Recommendations
-@import "../components/search/fullView/recomendation/recommendations";
-
-// back button
-@import "../components/search/fullView/backToSearchResultsButton/back-to-search-results-button";
+//@import "../components/search/fullView/recomendation/recommendations";
+@import "../components/search/fullView/recomendation/uql_recommendations";
 
 //virtual browse
 @import "../components/search/virtualBrowse/virtual-browse.scss";
 @import "../components/search/virtualBrowse/virtualBrowseItem/virtual-browse-item";
 @import "../components/search/virtualBrowse/virtualBrowseItemInfo/virtual-browse-item-info";
 
-// Digital collection components
-// =============================
+// Digital collection
 @import "../components/collection/collection-discovery";
 @import "../components/collection/collectionBreadcrumbs/collection-breadcrumbs";
 
 
-// Angular material (md) directives
-// ================================
+// Angular material (md) directives styles
+// =======================================
 @import "partials/md-autocomplete";
 @import "partials/md-backdrop";
 @import "partials/md-progress-linear";
@@ -149,7 +175,6 @@
 @import "partials/md-content";
 @import "partials/md-sidenav";
 @import "partials/md-tabs";
-//@import "partials/md-button"; -- since we include the md-button.scss in the custom-tyheme.scss this is removed
 @import "partials/md-grid-list";
 @import "partials/md-card";
 @import "partials/md-input";
@@ -166,6 +191,7 @@
 @import "partials/md-radio-button";
 @import "partials/md-divider";
 @import "partials/md-virtual-repeat-container";
+@import "partials/md-nav-bar";
 
-
-
+// The following scss is imported via custom-theme.scss instead (keep it commented-out)
+//@import "partials/md-button"; 

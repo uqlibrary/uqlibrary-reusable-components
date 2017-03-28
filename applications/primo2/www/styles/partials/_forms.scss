@@ -50,13 +50,23 @@
 	box-shadow: inset -1px 0 0 0 ;
 	@extend .prm-background-color.prm-hue4; //splitted the color to support from box-shadow to allow color customization
 	flex-grow: 1;
+	
 	*{//splitted the color to support from box-shadow to allow color customization
 		color: initial;
 	}
+	button.button-confirm prm-icon {
+		+ span, & svg path{
+			@extend .md-button.button-confirm;
+        
+	}
 }
+	
+}
+
 .service-form-dynamic-panel {
 	flex-grow: 3;
 }
+
 
 .md-input-container-dummy {
 	position: relative;
@@ -91,6 +101,8 @@
 	.md-select-icon-dummy {
 		visibility: hidden;
 	}
+	
+	
 
 }	
 

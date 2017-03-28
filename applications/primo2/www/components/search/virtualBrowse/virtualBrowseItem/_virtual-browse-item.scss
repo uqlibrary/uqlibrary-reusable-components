@@ -29,6 +29,9 @@ prm-virtual-browse-item {
 			overflow: hidden;
 			position: relative;
 			background-color: currentColor;
+			img {
+				height: auto !important;
+			}
 		}
 		md-card-title, md-card-content {
 			padding: .5em;

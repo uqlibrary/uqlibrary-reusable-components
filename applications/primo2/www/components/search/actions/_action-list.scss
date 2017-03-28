@@ -2,94 +2,76 @@
 @import "sendEmailAction/send-email";
 
 /* starting actionList */
-
-prm-action-list, .saved-query-list {
-    md-tabs-canvas,
-    md-pagination-wrapper,
-    md-tabs-canvas {
-        height: 60px;
-    }
-    md-tab-item,
-    .md-tab {        
-        opacity: 1;
-        border-radius: 0;
-        padding: .5em 0;
-        .__xs & {
-            padding: .5em;
-        }
-    }
-     md-tab-item {
-        flex: 1;
-        .__xs & {
-            min-width: 5em;
-        }
-     }
-    md-ink-bar {
-        margin-left: 1.4em;
-        margin-right: 1.4em;
-        .__xs &{
-            margin-left: 1em;
-            margin-right: 1em;
-        }
-    }
-
-    .media-actions,
-    .item-actions{
-        // display: none;
-        position: absolute;
-        // height: 90%;
-        top: 9px;
-        bottom: 0;
-        right: $paddingSmall;
-        // margin: auto;
-        height: 40px;
-        z-index: 11;
-
-        .button-one,
-        .button-two {
-            display: block;
-            margin-bottom: 5px;
-            z-index: 10;
+.favorites-action-list{
+    prm-action-list, .saved-query-list {
+        .md-nav-item {
             opacity: 1;
-            visibility: hidden;
-            transform: scale3d(0, 0, 1);
-            // transition: transform .2s $easeInBack, opacity .3s ease, visibility 0 .4s, z-index 0 .4s;
-            &:last-child {
-                margin-bottom: 0;
-            }
-            .item-expanded &,
-            .item-hovered & {
-                z-index: 10;
-                opacity: 1;
-                visibility: visible;
-                transform: scale3d(1, 1, 1);
-                // transition: transform .4s .3s $easeOutBack, opacity .1s .3s ease, visibility 0 0, z-index 0 0;
-            }
-            &:nth-child(1) {
-                .item-expanded &, .item-hovered & {
-                    transition: transform .4s .5s $easeOutBack, opacity .1s .5s ease, visibility 0s 0s, z-index 0s 0s;
-                }
-            }
-            &:nth-child(2) {
-                .item-expanded &, .item-hovered & {
-                    transition: transform .4s .3s $easeOutBack, opacity .1s .3s ease, visibility 0s 0s, z-index 0s 0s;
-                }
-            }
-        }
-        i {
-            margin-right: 5px;
-        }
-        li {
-            margin-right: 0 !important;
-            width: auto !important;
+            transform: scale3d(1, 1, 1);
+            color:red;
+
+
         }
     }
+}
+prm-action-list, .saved-query-list {
 
-    .form-focus {
-        > div {
-            .__xs & {
-                padding: 0;
+    
+    > md-nav-bar {
+        height: auto;
+        .md-nav-bar {
+            height: auto;
+            border-width: 0px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        ul {
+            width: auto;
+            display: inline-flex;            
+        }
+
+        .md-nav-item {
+            max-width: 90px;
+            opacity: 0;
+            transform: translate3d(0,20px,0) scale3d(.5,.5,1);
+
+            &:last-of-type {
+                margin-right: 8px;
             }
+            .md-button {
+                color: transparentize($dark, .2);
+                border-radius: 0;
+                // padding: .5em 1em;
+                padding-bottom: .75em;
+                padding-top: .75em;
+                margin: 0;
+                @extend .md-button.icon-button-with-text;
+            }
+        }
+        &.wrapped-items {
+            .__sm &, .__xs & {
+                .md-nav-item {
+                    min-width: 78px;    
+                }
+            }
+        }    
+    }
+    
+    &.visible {
+        .md-nav-item {
+            opacity: 1;
+            transition: $swift-ease-out;
+            transition-duration: .25s;
+            transform: translate3d(0,0,0) scale3d(1,1,1);
+            $max: 12;
+              @for $i from 1 through $max {     
+                 $value: $max - $i;
+                 &:nth-child(#{abs($i)}) {
+                   transition-delay: ($value * .02)#{s};
+                 }
+              }
         }
     }
 }
@@ -116,7 +98,8 @@ prm-action-list, .saved-query-list {
     }
 
     prm-brief-result-container & {        
-        margin: 1em 1em 1.5em 1em;
+        // margin: 1em 1em 1.5em 1em;
+        margin: 1em 1.5em 1.5em 1.5em;
     }
 
     prm-full-view & {
@@ -156,8 +139,4 @@ prm-action-list, .saved-query-list {
     .button-confirm {
         margin: 0;
     }
-}
-
-md-tabs.action-tabs md-tabs-wrapper {
-    border-style: none;
 }

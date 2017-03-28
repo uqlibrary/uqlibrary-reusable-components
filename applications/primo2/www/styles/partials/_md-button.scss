@@ -90,7 +90,6 @@
     
     // icon button (override Angular material)
     &.md-icon-button {
-        min-width: 40px;
         &.square-button {
             border-radius: 0;
         }
@@ -140,6 +139,13 @@
                 }
             }
         }
+    }
+
+    &.icon-button-with-text {
+        font-size: 10px;
+        line-height: 14px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
     }
 
     // Button with border
@@ -250,6 +256,13 @@
         @extend .arrow-link;
         .button-content {
             @extend a;
+            line-height: 1.4em;
+        }
+        &:hover, &:focus{
+            background: transparent;
+            .button-content {
+                @extend a.hover
+            }
         }
         [link-arrow] {            
             position: static;

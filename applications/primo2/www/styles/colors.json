@@ -6,6 +6,8 @@
   "warning": "tomato",
   "positive": "#0f7d00",
   "negative": "gray",
-  "notice": "#e08303"
+  "notice": "#e08303",
+  "citation": "tomato",
+  "citationTitles": "rgb(68, 112, 123)"
 }
 

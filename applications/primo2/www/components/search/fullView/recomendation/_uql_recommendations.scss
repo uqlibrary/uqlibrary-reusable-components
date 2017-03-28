@@ -1,0 +1,219 @@
+ prm-recomendations {
+
+ 	width: 100%;
+
+ 	md-divider {
+	    border: none;
+	    margin-top: .5em;
+	    margin-bottom: .5em;
+	    opacity: .5;
+	    border-bottom: 1px solid darken($bg, 15%);
+	}
+}
+
+.recommendations-list {
+    width: 100%;
+}
+
+.recommendations-wrapper {
+    position: relative;
+
+    .section-head {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .section-title {
+        padding: 0 1em 0 0;
+        margin: 0;
+        margin-left: 1.5em;
+        @include __xs {
+            margin-left: 0;
+            padding-left: 1em;
+        }
+        prm-full-view-cont & {
+            .__xs & {
+                // margin-left: 1.25em;
+            }
+        }
+    }
+    .section-description {
+        margin-left: 2em;
+        @include __xs {
+            margin-left: 0;
+        }
+    }
+    p {
+        margin-bottom: 0;
+        &.recommendation-details {
+            span {
+                max-width: 100%;
+                display: inline-block;
+                @extend %text-trim-ellipsis;
+            }
+        }
+    }
+
+    prm-full-view-cont & {
+        .__xs &,
+        .__sm & {
+            padding-top: 2.5em;
+            @extend .prm-background.prm-hue2;
+        }
+        .__sm & {
+            padding-left: 8.5em;
+        }
+    }
+}
+
+prm-recomendation-item {
+	padding: .5em 1em .5em 1em;
+    transform-origin: 0 50%;
+    margin-right: .5em;
+    position: relative;
+    cursor: pointer;
+    margin-left: 1em;
+    margin-bottom: .75em;
+    width: 100%;
+
+    @include __xs {
+        margin: 0;
+        padding: 1em 1.5em;
+    }
+
+    prm-full-view-cont & {
+        .__xs & {
+            margin-left: 0;
+        }
+    }
+
+    .media-figure {        
+        max-width: 3em;
+
+        @include rtl-prop(margin-right, margin-left, 1em, 0)
+    }
+    img {
+        width: 100%;
+    }
+    .media-on-hover {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        padding-left: 1em;
+        transform: translateX(2px);
+
+        // background: -moz-linear-gradient(left,  rgba(241,241,241,0) 0%, rgba(241,241,241,1) 48%, rgba(241,241,241,1) 100%);
+        // background: -webkit-linear-gradient(left,  rgba(241,241,241,0) 0%,rgba(241,241,241,1) 48%,rgba(241,241,241,1) 100%);
+        // background: linear-gradient(to right,  rgba(241,241,241,0) 0%,rgba(241,241,241,1) 48%,rgba(241,241,241,1) 100%);
+        // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f1f1f1', endColorstr='#f1f1f1',GradientType=1 );
+
+
+        &.ng-enter {
+            transform: translateX(10px);
+            opacity: 0;
+            transition: $swift-ease-out;
+            transition-duration: .3s;
+            // transition-delay: .2s;
+            &.ng-enter-active {
+                transform: translateX(2px);
+                opacity: 1;
+            }
+        }
+         &.ng-leave {
+            transform: translateX(2px);
+            opacity: 1;
+            transition: $swift-ease-out;
+            &.ng-leave-active {
+                opacity: 0;
+                transform: translateX(10px);
+            }
+        }
+
+        md-icon {
+            height: 20px;
+            width: 20px;
+        }
+
+        .pin-button {
+            position: relative;
+            top: -8px;
+            @extend .prm-secondary-color.prm-hue1;
+            @extend .prm-background.prm-hue2;
+            @extend .default-shadow;
+
+            &:hover {
+                opacity: 1;
+                @extend .prm-background.prm-hue2;
+            }
+
+            prm-full-view-cont & {
+                @extend .prm-background
+            }
+
+            md-icon {
+                transform: rotate(25deg);
+                @include setSize(20px);
+
+            }
+        }
+
+        .pin-icon {
+
+            color: $moreLink;
+
+        }
+    }
+}
+ .recommendations-title {
+    font-size: 1em;
+    margin-bottom: 0;
+    color: $links;
+    font-weight: 600;
+    line-height: 1.2em !important;
+    padding-bottom: 0 !important;
+    display: block;
+    position: relative;
+
+    @include rtl-prop(padding-right, padding-left, 16px, 0);
+
+    &:after {
+        @extend .prm-background.prm-hue2;
+        prm-full-view-cont & {
+            @extend .prm-background;
+            .__xs &,
+            .__sm & {
+                @extend .prm-background.prm-hue2;
+            }
+        }
+    }
+    &:hover,
+    &.hover {
+        > span > span {        
+            @extend a:hover;
+        }
+    }
+    prm-icon {
+        opacity: 0;
+        position: absolute;
+        bottom: 0;
+        @include rtl-prop(right, left, 1em, auto);
+        @extend .prm-background.prm-hue2;
+
+        prm-full-view-cont & {
+            @extend .prm-background;
+            .__xs &,
+            .__sm & {
+                @extend .prm-background.prm-hue2;
+            }
+        }
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+    md-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+}

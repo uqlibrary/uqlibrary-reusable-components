@@ -2,8 +2,7 @@
 // The complex color calculation were created with http://razorjam.github.io/sasscolourfunctioncalculator/
 
 // Fonts family
-//$serif: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$serif: Roboto, Helvetica, Arial, sans-serif;
+$serif: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 // Font weights
 $light: 300;
@@ -35,11 +34,11 @@ $almostBlack: #777;
 
 
 
-$titles: #2377CB;
+$titles: rgb(68, 112, 123);
 $frbr: #ed9100;
 $pink: rgb(255, 171, 200);
 
-$dark: #333;
+$dark: #3a3a3a;
 $darker: darken(saturate(adjust-hue($dark, 0.0000), 0.0000), 6.6667);
 
 // lighter background color
@@ -66,27 +65,28 @@ $alert-hue1: darken(desaturate(adjust-hue($alert, 0.3074), 15.3043), 2.9412);
 $disabled: #aaa;
 $courseColor: #55909B;
 
-$primary: #2377CB;
+$primary: #53738C;
 $primary-hue1: darken($primary, 3%);
 $primary-hue2: darken($primary, 5%);
 $primary-hue3: darken($primary-hue2, 2%);
 $primary-hue4: darken($primary, 10%);
 
-$secondary: $primary;
-$secondary-hue1: $primary;
-$secondary-hue2: $primary;
+$secondary: #A9CDD6;
+$secondary-hue1: darken(saturate(adjust-hue($secondary, -6.5946), 9.1452), 26.2745); 
+$secondary-hue2: darken($secondary, 20%);
 
 
 $backgroundColor: white;
 
-$positive: #2377CB;
+$positive: #0f7d00;
 
 $negative: gray;
 
 $background: darken(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 8.6275); //redundancy of almostwhite
 
 $background-hue1: darken($backgroundColor, 3%); // darker 1 (i.e: background for locations filter bar)
-$background-hue2: lighten(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 3.9216); // lighter 1 (i.e: background for full view dialog)
+// $background-hue2: lighten(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 3.9216); // lighter 1 (i.e: background for full view dialog)
+$background-hue2: lighten($background, 4%);
 $background-hue3: lighten(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 5.8824); // lighter 2 (i.e: background for actions forms)
 
 $background-hue4: lighten($background, 3%);
@@ -100,17 +100,7 @@ $background-hue11: darken($background, 2%);
 $background-hue12: darken($background, 7%);
 $background-hue13: lighten($background, 2%);
 
-
-
-
-
-
-
-
-
-
-$white: $backgroundColor;
-
+$white: white;
 
 $almostWhite: lighten(saturate(adjust-hue($background, 60.0000), 20.0000), 0.7843);
 $bg: $background;
@@ -122,18 +112,16 @@ $autoCompleteBg: $backgroundColor;
 $sectionHighlight: darken(desaturate($background, 0), 5%);
 $snippets:#999;
 
+$links: #5C92BD;
 
+$links-background-hue1: transparentize($links, 1);
 
-$links: #2377CB;
-$links-background-hue1: transparent;
-
-
-
+$links: $links;
 $links-hue-1: darken(saturate($links, 5%), 5%);
 $links-hue-5: darken(saturate($links, 20%), 20%);
 $linksHover: darken(saturate($links, 20%), 20%);
 $linksHover-hue-2: transparentize($linksHover, .5);
-$linkAlt: $links;
+$linkAlt: $secondary-hue1;
 $md-primary: $links;
 
 
@@ -147,23 +135,21 @@ $warningBorder: inset 0 0 0 3px $warning;
 
 
 $text: $dark;
-$text-hue1: lighten($text, 20%);
+$text-hue1: lighten($text, 30%);
 
 $notice: #e08303;
 
 $highlight: $highlightYellow;
 $highlight-hue1: #FFFCC4;
 
-
-
 $modalBackdrop: rgb(68,68,68);
-$linkTitle: $links;
-$moreLink: $links;
-
+$linkTitle: #73E9FF;
+$moreLink: #45aab4;
 
 $selectedItem: saturate(lighten($midGrey, 53%), 40%);
 
-
+$citationTitle:  rgb(68, 112, 123);
+// $citationTitle: $titles;
 
 // chips
 $chipTouchHeight: 28px;
@@ -178,6 +164,11 @@ $defaultBarHeight: 60px;
 // height of buttons in brief results
 $briefButtonHeight: 38px;
 
+// citations
+$citation: tomato;
+$citationColor: $citation;
+$citation-hue1: darken($citation, 40%);
+
 // Angular Material
 //-----------------
 
@@ -186,6 +177,7 @@ $progressBarHeight: 15px;
 
 // buttons
 $defaultMdButtonHover: rgba(158,158,158,0.2);
+
 
 
 //// Angular Material overrides

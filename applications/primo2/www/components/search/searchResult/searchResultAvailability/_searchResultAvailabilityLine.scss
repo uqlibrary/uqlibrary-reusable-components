@@ -1,7 +1,13 @@
 prm-search-result-availability-line {
 
-  // margin-bottom: .2em;
+  
   line-height: 1.2em;
+  &:before {
+    content: "";
+    display: block;
+    height: .5em;
+    width: 100%;
+  }
 
   [availability-type] {
     color: transparentize($dark, .6);

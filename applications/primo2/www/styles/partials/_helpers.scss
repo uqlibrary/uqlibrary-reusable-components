@@ -50,6 +50,9 @@ $sizes: (
 			}
 		}
 	}
+	&-inline {
+		display: inline;
+	}
 }
 .blockify-spans {
 	span {

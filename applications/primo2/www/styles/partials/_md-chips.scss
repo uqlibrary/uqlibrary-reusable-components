@@ -7,21 +7,12 @@
     strong, b {
         font-weight: $bold;
     }  
-
-    // &.chips-column {
-    //     .md-chip {
-    //         clear: both;    
-    //     }        
-    // }    
     .md-chip {
         background-color: $white;
         height: $chipTouchHeight;
         line-height: $chipTouchHeight;
         position: relative;
-
-        // &:not(.md-readonly) {
-        //     padding: 0 26px 0 10px;
-        // }
+        
         
         .md-chip-content {
             display: flex;
@@ -39,46 +30,12 @@
             border-radius: 1em;
         }
 
-        // .md-chip-remove-container {
-        //     height: $chipTouchHeight;
-        // }
-
-        // .md-chip-remove {
-        //     height: $chipTouchHeight;            
-        // }
-
-        // &.facet-excluded {
-        //     color: $red;
-
-        //     .md-chip-content {
-        //         position: relative;
-
-        //         &:after {
-        //             content: "";
-        //             width: 100%;
-        //             height: 1px;
-        //             position: absolute;
-        //             top: .2em;
-        //             bottom: 0;
-        //             margin: auto;
-        //             background-color: $dark;
-        //             left: 0;
-        //         }
-        //     }
-        // }
 
         &.outline-chip {
             background-color: transparent;
             color: transparentize($dark, .3);
             box-shadow: inset 0 0 0 1px transparentize($dark, .7);
         }
-
-        // .filtered-facets-section &,
-        // &.selected {
-        //     .button-exclude {
-        //         display: none;
-        //     }
-        // }
 
         &.toggleable-chip {
             background-color: transparent;

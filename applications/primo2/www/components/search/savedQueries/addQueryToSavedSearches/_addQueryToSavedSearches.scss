@@ -1,3 +1,16 @@
+prm-add-query-to-saved-searches {
+  // temp hack for aligning saved queries button in results title
+  prm-search-result-list & {
+    height: 19px;
+    margin-left: 1em;
+    .md-button {
+      top: -5px;
+      font-style: initial;
+    }
+  }
+}
+
+
 $actionButtonSize: 50px;
 $actionButtonMargin: 4px;
 

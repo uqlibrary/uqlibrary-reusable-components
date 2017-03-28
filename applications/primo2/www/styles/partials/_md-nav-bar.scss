@@ -1,0 +1,45 @@
+md-nav-bar {
+	ul {
+		max-width: 100%;
+		// overflow-x: auto;
+	}
+	.md-nav-item {
+		&:first-of-type {
+			margin-left: 0;
+		}
+		.md-button {
+			min-width: 48px;
+		}
+	}
+	&.vertical-nav-bar {
+		height: auto;
+		.md-nav-bar {
+			height: inherit;
+			border-width: 0;
+		}
+		ul {
+			flex-direction: column;
+		}
+		.md-nav-item {
+			margin-left: 0;
+			max-width: none;
+			.md-button {
+				margin: 0;
+				padding: .5em 1em;
+				&.md-active {
+					@extend .bold-text;
+					color: black;
+				}
+			}
+		}
+
+	}
+	&.wrapped-items {
+		ul {
+			flex-wrap: wrap;
+		}
+	}
+	md-nav-ink-bar {
+		display: none;
+	}
+}

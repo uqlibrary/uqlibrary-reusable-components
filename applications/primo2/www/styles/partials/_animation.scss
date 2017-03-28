@@ -469,25 +469,25 @@
   }
 
 
-.animate-search-bar {    
-  transition: max-height .3s $swift-ease-in-timing-function, opacity .5s ease;
-  &.ng-hide-add {
-    overflow: hidden;
-    max-height: 20em;  
-    opacity: 1;
-    transition: max-height .4s $swift-ease-out-timing-function, opacity .8s ease;
-  }
-  &.ng-hide-remove {
-    overflow: hidden;
-    max-height: 0; 
-    opacity: 0;
-    &.ng-hide-remove-active {
-      max-height: 20em;
-      opacity: 1;
-    }
-  }
-  &.ng-hide {
-    max-height: 0;
-    opacity: 0;
-  }
-}
+// .animate-search-bar {    
+//   transition: max-height .3s $swift-ease-in-timing-function, opacity .5s ease;
+//   &.ng-hide-add {
+//     overflow: hidden;
+//     max-height: 20em;  
+//     opacity: 1;
+//     transition: max-height .4s $swift-ease-out-timing-function, opacity .8s ease;
+//   }
+//   &.ng-hide-remove {
+//     overflow: hidden;
+//     max-height: 0; 
+//     opacity: 0;
+//     &.ng-hide-remove-active {
+//       max-height: 20em;
+//       opacity: 1;
+//     }
+//   }
+//   &.ng-hide {
+//     max-height: 0;
+//     opacity: 0;
+//   }
+// }

@@ -1,0 +1,27 @@
+prm-journals-search-bar {
+
+  @extend prm-search-bar;
+
+	.search-elements-wrapper {
+      min-height: 60px;
+      font-size: 1.3em;
+	}
+	
+	.classic-input {
+		overflow: hidden;
+
+		@extend .default-shadow-on-dark;
+
+		md-autocomplete input {
+			font-size: 100%;
+		}
+		.submit-button {
+			padding: 0 1em;
+
+			md-icon {
+				@include setSize(34px)
+			}
+		}
+	}  
+}
+

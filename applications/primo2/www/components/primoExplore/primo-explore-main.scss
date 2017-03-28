@@ -1,4 +1,7 @@
 prm-explore-main {
+  * :focus{
+    outline: none !important; //remove default focus border
+  }
   .header {
     > prm-spinner {
 
@@ -18,6 +21,10 @@ prm-explore-main {
         width: 30px;
         height: 90px;
         transform: rotate(90deg) scale(1) translateY(0);
+      }
+
+      .loader-graphic {
+        transform: translateY(85px);
       }
 
       &.ng-enter {

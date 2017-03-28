@@ -1,5 +1,21 @@
 /* starting snippet */
-.media-text-snippet {
-    color: $snippets;
-    font-style: italic;
+
+prm-snippet {
+  position: relative;
+  prm-icon {
+  	@extend .weak-text;
+  	width: 1.2em;
+  	height: 1.2em;
+    display: inline-block;
+  	&.open-quote {
+  		md-icon {
+		  	transform: scale(.8) rotate(180deg) translate(6px, 4px);
+		  }
+	  }
+	 &.close-quote {
+  		md-icon {
+		  	transform: scale(.8) translate(-4px, 2px);
+		  }
+	  }
+  }
 }

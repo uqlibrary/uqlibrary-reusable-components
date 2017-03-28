@@ -2,8 +2,8 @@ prm-breadcrumbs {
     .md-chip {
         border-radius: 1.2em;        
         margin-bottom: .5em;
-
-        // @include rtl-prop(margin-right, margin-left, .5em, 0);
+        @extend .default-shadow;
+        @include rtl-prop(margin-right, margin-left, .5em, 0);
 
         &.facet-excluded {
             color: $red;
@@ -58,29 +58,4 @@ prm-breadcrumbs {
             @include setSize(18px)
         }
     }
-    // .md-chips:not(.md-readonly) {
-    //     .md-chip:not(.md-readonly) {
-    //         .md-chip-content{
-    //             margin-right: .5em
-    //         }
-    //     }
-    // }    
-
-    // .md-chip-remove-container {
-    //     &:hover {
-    //         .md-chip-remove {
-    //             color: $warn;
-    //         }
-    //     }
-    // }
-
-    // .md-chip {
-    //     .md-chip-content {
-    //         strong {
-    //             &:after {
-    //                 display: none
-    //             }
-    //         }
-    //     }
-    // }
 }

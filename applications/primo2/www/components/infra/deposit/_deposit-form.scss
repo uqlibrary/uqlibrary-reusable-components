@@ -1,0 +1,105 @@
+/* starting depositForm */
+
+.deposit-dialog {
+    width: 650px;
+    z-index:1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.deposit-dialog-container{
+	width: 100%;
+}
+
+.deposit-dialog-actions{
+    border-top-style: none !important;
+}
+
+.deposit-textarea{
+    font-family: inherit;
+}
+
+.deposit-section{
+	margin-top:initial !important;
+}
+
+.deposit-tou{
+	overflow: auto;
+    height: 180px;
+    margin-left: 20px;
+}
+
+.deposit-notes{
+    margin-left: 20px;
+}
+.deposit-caret-down:before{
+	display: inline-block;
+    content: '\25BC';
+    position: relative;
+    -webkit-transform: scaleY(.6) scaleX(1);
+}
+
+.deposit-caret-up:before{
+	display: inline-block;
+    content: '\25B2';
+    position: relative;
+    -webkit-transform: scaleY(.6) scaleX(1);
+}
+
+.btn-link {
+  color: #5c92bd;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.btn-link,
+.btn-link:active,
+.btn-link.active,
+.btn-link[disabled],
+fieldset[disabled] .btn-link {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.btn-link,
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active {
+  border-color: transparent;
+}
+
+.btn-link:hover,
+.btn-link:focus {
+  color: #23527c;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+.btn-link[disabled]:hover,
+.btn-link[disabled]:focus,
+fieldset[disabled] .btn-link:hover,
+fieldset[disabled] .btn-link:focus {
+  color: #777777;
+  text-decoration: none;
+}
+
+.ruled-form .form-section {
+  padding-bottom: .5em;
+  max-height: 99em;
+  opacity: 1;
+  -webkit-transition: max-height 0.5s ease, opacity 0.4s ease;
+          transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+
+.form-section.collapsed {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+.form-section.collapsed + .form-section .caret {
+  -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+

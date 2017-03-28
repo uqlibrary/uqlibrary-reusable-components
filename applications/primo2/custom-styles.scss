@@ -59,7 +59,8 @@
 @import "../../bower_components/uqlibrary-styles/skeleton.scss";
 
 /* Style imports to override primo defaults */
-@import "styles-imports/_main-search-buttons.scss";
+@import "styles-imports/main-search-buttons";
+@import "styles-imports/prm-user-area";
 
 
 uqlibrary-alerts,
@@ -80,4 +81,9 @@ prm-logo {
 prm-search-bar,
 prm-topbar .top-nav-bar {
   background-color: transparent;
+}
+
+//hide favorites
+.top-nav-bar > prm-search-bookmark-filter {
+  display:none;
 }

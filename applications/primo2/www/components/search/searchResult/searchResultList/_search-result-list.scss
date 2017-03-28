@@ -1,17 +1,16 @@
+$bottomSpace: 450px;
+
 prm-search-result-list {
     min-height: 600px;
-    .results-container {
-        padding: 0;
-    }
-    .results-title,
+
+    // results list header + footer
+    .results-header,
     .results-footer {
-        font-size: 1.1em;
-        margin: 0;
-        font-weight: $light;
-        width: 100%;
+        @extend .light-text;
         @extend .prm-background.prm-hue2;
     }
-    .results-title {
+    // results list header (results count)
+    .results-header {
         padding: .5em .75em;
         border-bottom-width: 1px;
         border-bottom-style: solid;
@@ -40,12 +39,12 @@ prm-search-result-list {
 
             [dir="rtl"] & {
                 margin-right: 0;
-                @extend .margin-left-medium
+                @extend .margin-left-medium;
             }
         }
 
     }
-
+    // results list footer
     .results-footer {
         padding: 0;
         border-top: 1px solid $almostWhite;
@@ -55,129 +54,102 @@ prm-search-result-list {
             line-height: 1.5em;
         }
     }
+
+    // results list spinner/loader container
     .results-loader {
         position: relative;
         height: 10em;
     }
-    .sort-by-menu {
-        label {
-            // margin-top: 4px;
-            margin-bottom: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto 0;
-            font-weight: $light;
+    
+    .list-spacer {
+        min-height: $bottomSpace;
+    }
+
+
+    .results-title {
+        position: relative;
+        top: -7px;
+        @extend .italic-text;
+        @include rtl-prop(padding-left, padding-right, 5px, auto);
+
+        .__sm & {
+            top: -3px;
         }
-        select {
-            font-weight: $normal;
-            font-size: 1em;
-            padding: 0;
+        .__xs & {
+            top: 0;
+            margin-top: 7px;
         }
     }
-    .paging-container {
-        float: right;
-        font-size: .9em;
-        width: 100%;
-        line-height: 1.5em;
-        > div {
-            display: inherit;
-            &.paging-disabled {
-                visibility: hidden
-            }
+    // this is to complement the tweak above, to make the first "page #" appear in the same line as the results count
+    .pages-separated-with-gaps {
+        .results-title:not(.results-title-favorites) {
+            @include rtl-prop(padding-left, padding-right, 60px, auto);
+
         }
-        .left-ward-paging {
-            border-right: 1px solid $almostWhite;
-        }
-        .right-ward-paging {
-            border-left: 1px solid $almostWhite;
-        }
-        .center-paging {
-            border-right: 1px solid $almostWhite;
-        }
-        .paging-cell {
-            padding: 1em 1.6em;
-            border-left: 1px solid $almostWhite;
-            cursor: pointer;
-            &:only-child {
-                border-width: 0;
-            }
-            &:hover {
-                background-color: $white;
-            }
-            &.current-page {
-                background-color: $white;
-                font-weight: $normal;
-                position: relative;
+        &.single-page {
+            .results-title:not(.results-title-favorites) {
+                padding-left: 5px;
+                @include rtl-prop(padding-left, padding-right, 5px, auto);
                 &:before {
-                    content: "\f0d7";
-                    position: absolute;
-                    top: -.4em;
-                    left: .7em;
-                    font-family: fontawesome;
-                    font-size: 1.8em;
-                    color: $nearlyWhite;
-                    text-shadow: 0 2px 0 $almostWhite;
+                    display: none;
                 }
-            }
-            &.next-page {
-                text-transform: uppercase;
-                font-weight: $normal;
-                letter-spacing: 0.1em;
-            }
-            .arrow-right {
-                margin-left: 1em;
-            }
-            .arrow-left {
-                margin-right: 1em;
             }
         }
-    }
-    .saved-query-list-2-line {
-        &:hover,
-        &:focus {
-            &:before {
-                opacity: 1;
-                z-index: 0;
-            }
-        }
-        &:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: $backgroundColor;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0;
-            prm-full-view & {
-                display: none;
-                padding-left: 1em;
-            }
-        }
-        .md-list-item-text {
-            h3 {
-                &.item-title {
-                    font-weight: $bold;
+        .list-item-wrapper {
+            // first item of every page
+            &.first-in-page {
+                position: relative;
+                .md-subheader {
+                    height: 0;
+                    position: relative;
+                    z-index: 0;
+                    ._md-subheader-inner {
+                        position: absolute;
+                        top: -25px;                        
+                        padding: 0;
+
+                        @include rtl-prop(left, right, 7px, auto);
+                    }
+                    .tiny-uppercase-text {
+                        font-size: 0.85em;
+                    }
                 }
+                &:first-of-type {
+                    margin-top: 10px;
+                    .md-subheader {
+                        height: 0;
+                        position: relative;
+                        font-size: 15px;
+                        ._md-subheader-inner {
+                            top: -34px;
+                            .__sm & {
+                                top: -30px;
+                            }
+                            .__xs & {
+                                top: -27px;
+                            }
+                        }
+                    }
+                }            
+                &:not(:first-of-type) {
+                    margin-top: 34px;
+                    &:before {
+                        content: "";
+                        width: 100%;
+                        height: 2em;
+                        background: transparent;
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        top: calc(-34px - 2em);
+                        @extend .default-shadow;
+                    }                
+                }            
             }
-            h4 {
-                strong {
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    font-size: .85em;
-                    opacity: .75;
-                }
-                i {
-                    opacity: .5;
-                    margin: 0 .25em;
-                }
+            &:nth-last-child(2) {
+                @extend .default-shadow;
             }
-            p {
-                span.text-bold {
-                    font-weight: $bold;
-                }
-            }
+        
         }
     }
 }
