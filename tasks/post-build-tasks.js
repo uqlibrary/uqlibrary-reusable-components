@@ -78,6 +78,6 @@ gulp.task('inject-ga-values', function() {
 gulp.task('optimize', function () {
   gulp.src(config.applications + '/**/*')
       .pipe($.if('*.css',$.cssmin())) // Minify css output
-      .pipe($.if('*.js',$.uglify({preserveComments: 'some'}))) // Minify js output
+      .pipe($.if('*.js',$.uglify({preserveComments: 'some', mangle: { except: ['$compile']}} ))) // Minify js output, for primo2 do not change variable names: $compile
       .pipe(gulp.dest(config.applications));
 });
