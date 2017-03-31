@@ -1,6 +1,6 @@
 // test for something basic that should always return results
 var searchText = 'book';
-var urlTest = 'https://search.library.uq.edu.au/primo-explore/search?query=any,contains,'+searchText+'&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&offset=0';
+var urlTest = 'https://search.library.uq.edu.au/primo-explore/search?query=any,contains,'+searchText+'&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ&offset=0';
 
 module.exports = {
   '@tags': ['e2etest', 'primo'],
