@@ -1,24 +1,42 @@
 (function () {
     "use strict";
 
-    var app = angular.module('viewCustom', ['angularLoad']);
-    app.component('prmUserAreaAfter', {
-        bindings: {
-            parentCtrl: '<'
-        },
-        controller: function($compile, $scope, $templateCache, $element) {
-            $templateCache.put('components/search/topbar/userArea/user-area.html',
-                '<div layout="row" layout-align="center center">' +
-                '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
-                '<prm-search-bookmark-filter></prm-search-bookmark-filter>' +
-                '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +
-                '<prm-authentication layout="flex" [is-logged-in]="$ctrl.userName().length > 0"></prm-authentication>' +
-                '</div>'
-            );
-
-            $compile($element.parent())($scope);
-        }
-    });
+    // var app = angular.module('viewCustom', ['angularLoad']);
+    // app.component('prmUserAreaAfter', {
+    //     bindings: {
+    //         parentCtrl: '<'
+    //     },
+    //     controller: function($compile, $scope, $templateCache, $element) {
+    //         $templateCache.put('components/search/topbar/userArea/user-area.html',
+    //             '<div layout="row" layout-align="center center">' +
+    //             '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
+    //             '<prm-search-bookmark-filter></prm-search-bookmark-filter>' +
+    //             '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +
+    //             '<prm-authentication layout="flex" [is-logged-in]="$ctrl.userName().length > 0"></prm-authentication>' +
+    //             '</div>'
+    //         );
+    //
+    //         $compile($element.parent())($scope);
+    //     }
+    // });
+    //
+    // var app = angular.element(firstElement);
+    // var appInjector = app.injector();
+    // var templateCache = appInjector.get('$templateCache');
+    // templateCache.put('components/search/topbar/userArea/user-area.html',
+    //     '<div layout="row" layout-align="center center">' +
+    //     '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
+    //     '<prm-search-bookmark-filter></prm-search-bookmark-filter>' +
+    //     '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +
+    //     '<prm-authentication layout="flex" [is-logged-in]="$ctrl.userName().length > 0"></prm-authentication>' +
+    //     '</div>'
+    // );
+    //
+    // var appRootScope = appInjector.get('$rootScope');
+    // appInjector.invoke(function ($compile) {
+    //     $compile(app)(appRootScope);
+    //     appRootScope.$apply();
+    // });
 
 })();
 
@@ -26,6 +44,40 @@ var primoViewHasLoaded = setInterval(function() {
     //wait for primo's angular to load itself (eg replaces primo-explore contents with angular contents, then insert header)
     if (document.querySelector('noscript') === null || typeof(document.querySelector('noscript')) === 'undefined' ) {
         clearInterval(primoViewHasLoaded);
+
+        // var template = 'components/search/topbar/userArea/user-area.html';
+        // var newUserArea = '<div layout="row" layout-align="center center">' +
+        //     '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
+        //     '<prm-search-bookmark-filter></prm-search-bookmark-filter>' +
+        //     '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +
+        //     '<prm-authentication layout="flex" [is-logged-in]="$ctrl.userName().length > 0"></prm-authentication>' +
+        //     '</div>';
+        // var app = angular.module('viewCustom', ['angularLoad']);
+        // app.component('prmUserAreaAfter', {
+        //     bindings: {
+        //         parentCtrl: '<'
+        //     },
+        //     controller: function($compile, $scope, $templateCache, $element) {
+        //         $templateCache.put(template, newUserArea
+        //
+        //         );
+        //
+        //         $compile($element.parent())($scope);
+        //     }
+        // });
+
+        // var firstElement = document.querySelector('primo-explore');
+        // var app = angular.element(firstElement);
+        // var appInjector = app.injector();
+        // var templateCache = appInjector.get('$templateCache');
+        // templateCache.put(template, newUserArea);
+        //
+        // var appRootScope = appInjector.get('$rootScope');
+        // appInjector.invoke(function ($compile) {
+        //     $compile(app)(appRootScope);
+        //     appRootScope.$apply();
+        // });
+
         loadReusableComponents();
     }
 }, 50);
