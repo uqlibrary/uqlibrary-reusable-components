@@ -15,11 +15,11 @@ function loadReusableComponents() {
     // insert header inside primo's view
     var header = document.createElement('uq-minimal-header');
     header.setAttribute("show-login-button", "false");
-    firstElement.insertBefore(header, firstElement.firstChild);
+    // firstElement.insertBefore(header, firstElement.firstChild);
 
     // insert alerts inside primo's view
     var alerts = document.createElement('uqlibrary-alerts');
-    firstElement.insertBefore(alerts, firstElement.firstChild);
+    // firstElement.insertBefore(alerts, firstElement.firstChild);
 
     // while new PrimoUI has infinite scrolling, do not include footer
 
