@@ -10,7 +10,7 @@ function loadReusableComponents() {
     // insert elements, even before Polymer is loaded
     // first element of the original document
     // var firstElement = document.querySelector('primo-explore');
-    var firstElement = document.body.children[0];
+    var firstElement = document.body; //.children[0];
 
     // insert header inside primo's view
     var header = document.createElement('uq-minimal-header');
