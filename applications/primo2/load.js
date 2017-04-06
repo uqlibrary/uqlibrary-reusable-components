@@ -34,6 +34,11 @@ function loadReusableComponents() {
     window.addEventListener('WebComponentsReady', function() {
         // when polymer is ready - configure elements
         // header.showLoginButton = false;
+
+        if (angular) {
+            var leftOffset = angular.element(document.querySelector('prm-user-area #fixed-buttons-holder')).prop('offsetLeft');
+            document.querySelector('prm-topbar #fixed-buttons-holder').style.left = leftOffset + "px";
+        }
     });
 }
 
