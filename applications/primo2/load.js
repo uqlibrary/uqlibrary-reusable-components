@@ -6,13 +6,6 @@ var primoViewHasLoaded = setInterval(function() {
     }
 }, 50);
 
-function adjustPinPosition() {
-    if (angular) {
-        var leftOffset = angular.element(document.querySelector('prm-user-area #fixed-buttons-holder')).prop('offsetLeft');
-        document.querySelector('prm-topbar #fixed-buttons-holder').style.left = leftOffset + "px";
-    }
-}
-
 function loadReusableComponents() {
     // insert elements, even before Polymer is loaded
     // first element of the original document
@@ -42,13 +35,11 @@ function loadReusableComponents() {
         // when polymer is ready - configure elements
         // header.showLoginButton = false;
 
-        adjustPinPosition();
+        //move user area up into header
+        document.querySelector('uq-minimal-header').appendChild(document.querySelector('prm-user-area'));
+
     });
 }
-
-window.onresize = function(event) {
-    adjustPinPosition();
-};
 
 // enable GTM
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

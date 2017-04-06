@@ -18,7 +18,7 @@
   }]);
 
   var template = 'components/search/topbar/userArea/user-area.html';
-  var newUserArea = '<div layout="row" layout-align="center center">' +
+  var newUserArea = '<div layout="row" layout-align="end center">' +
       '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
       '<prm-search-bookmark-filter></prm-search-bookmark-filter>' +
       '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +

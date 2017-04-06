@@ -90,20 +90,6 @@ prm-topbar .top-nav-bar {
 
 //hide favorites outside of user area
 .top-nav-bar > prm-search-bookmark-filter {
-  visibility: hidden;
-
-  @media all and (min-width: 1047px) {
-    #fixed-buttons-holder:not(.fixed-to-top) {
-      position: absolute;
-      top: 101px;
-    }
-  }
-  @media all and (max-width: 1046px) {
-    #fixed-buttons-holder:not(.fixed-to-top) {
-
-      position: absolute;
-      top: 67px;
-    }
-  }
+  display: none;
 }
 
