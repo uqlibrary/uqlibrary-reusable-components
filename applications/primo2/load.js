@@ -2,15 +2,14 @@ var primoViewHasLoaded = setInterval(function() {
     //wait for primo's angular to load itself (eg replaces primo-explore contents with angular contents, then insert header)
     if (document.querySelector('noscript') === null || typeof(document.querySelector('noscript')) === 'undefined' ) {
         clearInterval(primoViewHasLoaded);
-        loadReusableComponents();
+        insertReusableComponents();
     }
 }, 50);
 
-function loadReusableComponents() {
+function insertReusableComponents() {
     // insert elements, even before Polymer is loaded
     // first element of the original document
     var firstElement = document.querySelector('primo-explore');
-    // var firstElement = document.body; //.children[0];
 
     // insert header inside primo's view
     var header = document.createElement('uq-minimal-header');
@@ -21,8 +20,14 @@ function loadReusableComponents() {
     var alerts = document.createElement('uqlibrary-alerts');
     firstElement.insertBefore(alerts, firstElement.firstChild);
 
-    // while new PrimoUI has infinite scrolling, do not include footer
+    // move user area into header, by this time Polymer and Angular should be loaded
+    var header = document.querySelector('uq-minimal-header');
+    var userArea = document.querySelector('prm-user-area');
+    if (header && userArea) {
+        header.appendChild(userArea);
+    }
 
+    // while new PrimoUI has infinite scrolling, do not include footer
     // // insert sub footer before body-tag
     // var subFooter = document.createElement('uql-connect-footer');
     // document.body.appendChild(subFooter);
@@ -30,16 +35,8 @@ function loadReusableComponents() {
     // // insert footer before body-tag
     // var footer = document.createElement('uq-minimal-footer');
     // document.body.appendChild(footer);
-
-    window.addEventListener('WebComponentsReady', function() {
-        // when polymer is ready - configure elements
-        // header.showLoginButton = false;
-
-        //move user area up into header
-        document.querySelector('uq-minimal-header').appendChild(document.querySelector('prm-user-area'));
-
-    });
 }
+
 
 // enable GTM
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
