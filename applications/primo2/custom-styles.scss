@@ -66,7 +66,6 @@
 
 /* Style imports to override primo defaults */
 @import "styles-imports/main-search-buttons";
-@import "styles-imports/prm-user-area";
 
 uqlibrary-alerts,
 uq-minimal-header {
@@ -86,10 +85,5 @@ prm-logo {
 prm-search-bar,
 prm-topbar .top-nav-bar {
   background-color: transparent;
-}
-
-//hide favorites outside of user area
-.top-nav-bar > prm-search-bookmark-filter {
-  display: none;
 }
 

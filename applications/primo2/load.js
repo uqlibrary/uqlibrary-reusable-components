@@ -28,20 +28,6 @@ function insertReusableComponents() {
     // // insert footer before body-tag
     // var footer = document.createElement('uq-minimal-footer');
     // document.body.appendChild(footer);
-
-    var headerHasLoaded = setInterval(function() {
-        //wait for primo's angular to load itself (eg replaces primo-explore contents with angular contents, then insert header)
-        if (document.querySelector('uqlibrary-ga') !== null && typeof(document.querySelector('uqlibrary-ga')) !== 'undefined' ) {
-            clearInterval(headerHasLoaded);
-
-            // move user area into header when polymer has loaded
-            var header = document.querySelector('uq-minimal-header');
-            var userArea = document.querySelector('prm-user-area');
-            if (header && userArea) {
-                header.appendChild(userArea);
-            }
-        }
-    }, 50);
 }
 
 // enable GTM
