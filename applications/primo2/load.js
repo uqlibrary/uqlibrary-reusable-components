@@ -7,7 +7,7 @@ var fixUserArea = setInterval(function() {
         var headerOffset = angular.element(document.querySelector('.top-nav-bar')).prop('offsetTop');
         document.querySelector('md-fab-toolbar').style.top = headerOffset + 'px';
     }
-}, 100);
+}, 500);
 
 // enable GTM
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
