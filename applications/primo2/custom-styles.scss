@@ -87,3 +87,21 @@ prm-topbar .top-nav-bar {
   background-color: transparent;
 }
 
+//fixing layout after header was inserted
+prm-topbar {
+  height: auto;
+}
+prm-user-area md-fab-toolbar {
+  Height: 60px;
+
+}
+.md-dialog-container {
+  Z-index: 10000;
+}
+
+md-backdrop._md-dialog-backdrop {
+  z-index: 1002;
+}
+
+
+

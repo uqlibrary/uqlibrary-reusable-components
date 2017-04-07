@@ -18,7 +18,8 @@
   }]);
 
   app.component('prmTopBarBefore', {
-    template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
+    template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
+    '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
   });
 
   /****************************************************************************************************/
