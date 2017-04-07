@@ -17,6 +17,10 @@
     });
   }]);
 
+  app.component('prmTopBarBefore', {
+    template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
+  });
+
   /****************************************************************************************************/
 
   /*In case of CENTRAL_PACKAGE - comment out the below line to replace the other module definition*/
