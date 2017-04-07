@@ -5,7 +5,7 @@ var fixUserArea = setInterval(function() {
     if (document.querySelector('uq-minimal-header') !== null && typeof(document.querySelector('uq-minimal-header')) !== 'undefined' ) {
         clearInterval(fixUserArea);
         var headerOffset = angular.element(document.querySelector('.top-nav-bar')).prop('offsetTop');
-        document.querySelector('md-fab-toolbar').style.top = offset + 'px';
+        document.querySelector('md-fab-toolbar').style.top = headerOffset + 'px';
     }
 }, 100);
 
