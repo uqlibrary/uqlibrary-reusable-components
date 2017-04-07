@@ -2,36 +2,12 @@
 
 var fixUserArea = setInterval(function() {
     //wait for header to be inserted by angular
-    if (document.querySelector('uq-minimal-header') !== null && typeof(document.querySelector('uq-minimal-header')) === 'undefined' ) {
+    if (document.querySelector('uq-minimal-header') !== null && typeof(document.querySelector('uq-minimal-header')) !== 'undefined' ) {
         clearInterval(fixUserArea);
         var headerOffset = angular.element(document.querySelector('.top-nav-bar')).prop('offsetTop');
         document.querySelector('md-fab-toolbar').style.top = offset + 'px';
     }
 }, 100);
-
-function insertReusableComponents() {
-    // insert elements, even before Polymer is loaded
-    // first element of the original document
-    // var firstElement = document.querySelector('primo-explore');
-    //
-    // // insert header inside primo's view
-    // var header = document.createElement('uq-minimal-header');
-    // header.setAttribute("show-login-button", "false");
-    // firstElement.insertBefore(header, firstElement.firstChild);
-    //
-    // // insert alerts inside primo's view
-    // var alerts = document.createElement('uqlibrary-alerts');
-    // firstElement.insertBefore(alerts, firstElement.firstChild);
-
-    // while new PrimoUI has infinite scrolling, do not include footer
-    // // insert sub footer before body-tag
-    // var subFooter = document.createElement('uql-connect-footer');
-    // document.body.appendChild(subFooter);
-    //
-    // // insert footer before body-tag
-    // var footer = document.createElement('uq-minimal-footer');
-    // document.body.appendChild(footer);
-}
 
 // enable GTM
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
