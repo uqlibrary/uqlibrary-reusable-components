@@ -67,6 +67,7 @@
 /* Style imports to override primo defaults */
 @import "styles-imports/main-search-buttons";
 @import "styles-imports/prm-user-area";
+@import "styles-imports/full_view_status";
 
 uqlibrary-alerts,
 uq-minimal-header {
@@ -91,11 +92,6 @@ prm-logo {
 prm-search-bar,
 prm-topbar .top-nav-bar {
   background-color: transparent;
-}
-
-
-prm-full-view prm-brief-result .item-title span {
-  color: $dark !important;
 }
 
 //fixing layout after header was inserted

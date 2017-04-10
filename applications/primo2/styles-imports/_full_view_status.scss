@@ -1,4 +1,10 @@
 prm-full-view {
+
+  // title of an item in full view display
+  prm-brief-result .item-title span {
+    color: $dark !important;
+  }
+
   // .available_in_institution,
   // .available_in_library,
   // .available_in_my_institution,
@@ -13,7 +19,7 @@ prm-full-view {
   .fulltext,
   .fulltext_linktorsrc {
     > span:first-of-type {
-      @extend .status-available-no-link !optional;
+      color: $dark !important;
     }
   }
 }
