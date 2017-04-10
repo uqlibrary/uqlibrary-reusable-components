@@ -17,22 +17,9 @@
     });
   }]);
 
-  var template = 'components/search/topbar/userArea/user-area.html';
-  var newUserArea = '<div layout="row" layout-align="center center">' +
-      '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
-      '<prm-search-bookmark-filter></prm-search-bookmark-filter>' +
-      '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +
-      '<prm-authentication layout="flex" [is-logged-in]="$ctrl.userName().length > 0"></prm-authentication>' +
-      '</div>';
-
-  app.component('prmUserAreaAfter', {
-      bindings: {
-          parentCtrl: '<'
-      },
-      controller: function($compile, $scope, $templateCache, $element) {
-          $templateCache.put(template, newUserArea);
-          $compile($element.parent())($scope);
-      }
+  app.component('prmTopBarBefore', {
+    template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
+    '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
   });
 
   /****************************************************************************************************/

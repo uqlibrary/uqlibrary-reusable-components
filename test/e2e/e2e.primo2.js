@@ -30,5 +30,6 @@ module.exports = {
         .assert.containsText('prm-topbar prm-user-area prm-authentication span', 'LOG IN')
         .assert.elementPresent('prm-topbar prm-user-area prm-library-card-menu', 'user account component is present')
         .assert.elementPresent('prm-topbar prm-user-area prm-search-bookmark-filter', 'bookmark component is present')
+        .end();
   }
 };
