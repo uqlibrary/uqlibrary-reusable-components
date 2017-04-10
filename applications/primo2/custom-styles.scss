@@ -93,6 +93,11 @@ prm-topbar .top-nav-bar {
   background-color: transparent;
 }
 
+
+prm-full-view prm-brief-result .item-title span {
+  color: $dark !important;
+}
+
 //fixing layout after header was inserted
 prm-topbar {
   height: auto;
