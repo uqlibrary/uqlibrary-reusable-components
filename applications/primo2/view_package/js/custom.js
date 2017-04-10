@@ -6,6 +6,16 @@
   //record GA page view event to new primo tracker GA ID
   app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
 
+    // remove favourite element from nav-bar because it's included in user area overwrite
+    $rootScope.$on("$stateChangeSuccess", function() {
+      // Primo keeps adding favourites element every time user clicks on My Account
+      // Keep removing fav element every time it's added
+      var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
+      if (favouritesElement !== null && typeof(favouritesElement) !== 'undefined') {
+          favouritesElement.parentNode.removeChild(favouritesElement);
+      }
+    });
+
     $rootScope.$on('$locationChangeSuccess', function(event){
       //temporarily create a tracker specifically to new Primo
       if ($window.ga) {

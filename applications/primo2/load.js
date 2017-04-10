@@ -1,16 +1,3 @@
-
-
-var fixUserArea = setInterval(function() {
-    //wait for header to be inserted by angular
-    if (document.querySelector('uq-minimal-header') !== null && typeof(document.querySelector('uq-minimal-header')) !== 'undefined' ) {
-        clearInterval(fixUserArea);
-
-        //remove unused favourites element
-        var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
-        favouritesElement.parentNode.removeChild(favouritesElement);
-    }
-}, 500);
-
 // enable GTM
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
