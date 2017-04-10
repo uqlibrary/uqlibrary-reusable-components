@@ -79,7 +79,11 @@ prm-user-area {
   }
 }
 
-prm-logo,
+prm-logo {
+  display: none;
+}
+
+// hide favourites element on nav bar, it's included within user area
 .top-nav-bar > prm-search-bookmark-filter {
   display: none;
 }
