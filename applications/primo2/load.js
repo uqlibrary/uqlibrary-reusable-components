@@ -2,12 +2,16 @@
 
 var fixUserArea = setInterval(function() {
     //wait for header to be inserted by angular
-    if (document.querySelector('uq-minimal-header') !== null && typeof(document.querySelector('uq-minimal-header')) !== 'undefined' ) {
+    if (document.querySelector('uq-minimal-header') !== null && typeof(document.querySelector('uq-minimal-header')) !== 'undefined') {
         clearInterval(fixUserArea);
-        var headerOffset = angular.element(document.querySelector('.top-nav-bar')).prop('offsetTop');
-        document.querySelector('md-fab-toolbar').style.top = headerOffset + 'px';
+
+        //remove unused favourites element
+        var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
+        if (favouritesElement !== null && typeof(favouritesElement) !== 'undefined') {
+            favouritesElement.parentNode.removeChild(favouritesElement);
+        }
     }
-}, 500);
+}, 100);
 
 // enable GTM
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
