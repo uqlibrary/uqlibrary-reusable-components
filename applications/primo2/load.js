@@ -5,10 +5,6 @@ var fixUserArea = setInterval(function() {
     if (document.querySelector('uq-minimal-header') !== null && typeof(document.querySelector('uq-minimal-header')) !== 'undefined' ) {
         clearInterval(fixUserArea);
 
-        //set correct offset to include header/alerts for favourites animations
-        var headerOffset = angular.element(document.querySelector('.top-nav-bar')).prop('offsetTop');
-        document.querySelector('md-fab-toolbar').style.top = headerOffset + 'px';
-
         //remove unused favourites element
         var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
         favouritesElement.parentNode.removeChild(favouritesElement);
