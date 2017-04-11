@@ -1,0 +1,33 @@
+prm-full-view {
+
+  // title of an item in full view display
+  prm-brief-result .item-title {
+
+    a:hover {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    span {
+      color: $dark !important;
+    }
+  }
+
+  // .available_in_institution,
+  // .available_in_library,
+  // .available_in_my_institution,
+  // .available_in_other_institution,
+  // .available_in_maininstitution
+  // .does_not_exist_in_my_institution_available,  
+  // .viewit_getit_FT,
+  // .viewit_FT,
+  [class*="available"],
+  [class*="FT"],
+  .not_restricted,
+  .fulltext,
+  .fulltext_linktorsrc {
+    > span:first-of-type {
+      color: $dark !important;
+    }
+  }
+}
