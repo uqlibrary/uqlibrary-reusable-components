@@ -1,8 +1,16 @@
 prm-full-view {
 
   // title of an item in full view display
-  prm-brief-result .item-title span {
-    color: $dark !important;
+  prm-brief-result .item-title {
+
+    a:hover {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    span {
+      color: $dark !important;
+    }
   }
 
   // .available_in_institution,
