@@ -112,5 +112,9 @@ md-backdrop._md-dialog-backdrop {
   z-index: 1002;
 }
 
+body.md-dialog-is-showing  {
+  overflow-x:visible!important;
+}
+
 
 
