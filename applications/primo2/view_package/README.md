@@ -1,4 +1,3 @@
-
 # The Primo New UI Customization Workflow Development Environment
 
 
@@ -25,7 +24,8 @@ No changes are expected to be done to the package. All updates to be done in reu
 
 ## Package deployment
 
-- 'view_package' directory should be renamed to a name of desired view (eg 61UQ for production view, 61UQ_DEV for development, etc)
+- 'view_package' directory should be renamed to a name of desired view (eg 61UQ for production view, 61UQ_DEV for development, etc) 
+- eg. `$cp -r ~/uqlibrary-reusable-components/applications/primo2/view_package/ ~/61UQ_DEV`
 - delete any hidden filese (eg .idea, .git, etc)
 - create a zip, eg 61UQ_DEV.zip `$ zip -r 61UQ_DEV.zip 61UQ_DEV`
 - upload zip to Promo BO, run deployment
