@@ -26,7 +26,7 @@
     "validator-js": "~4.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.3.8",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.2",
-    "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.7",
+    "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.8",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#v1.1.0",
     "uqlibrary-callout": "uqlibrary/uqlibrary-callout#v1.0.5",
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#v1.2.3",
