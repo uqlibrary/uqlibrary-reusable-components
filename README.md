@@ -153,11 +153,3 @@ Sample test commands:
 `$ nightwatch -c nightwatch.json --env chrome` #  run test on safari browser (name must match object name in nightwatch.json)
 
 (The nightwatch e2e tests are setup as one file per project, plus a file of minimal common items which isn't valid to run on its own. To only run the valid tests, use the tag e2etest.)
-
-
-
-
-
-
-
-
