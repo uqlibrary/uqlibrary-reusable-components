@@ -27,9 +27,17 @@ module.exports = {
         .assert.elementPresent('prm-topbar prm-user-area', 'user area component is present')
         .assert.elementPresent('prm-topbar prm-user-area prm-authentication', 'login component is present')
         .assert.elementPresent('prm-topbar prm-user-area prm-authentication span', 'login text is present')
-        .expect.element('prm-topbar prm-user-area prm-authentication span').text.to.match(/(?:LOG IN|Log in)/)
         .assert.elementPresent('prm-topbar prm-user-area prm-library-card-menu', 'user account component is present')
         .assert.elementPresent('prm-topbar prm-user-area prm-search-bookmark-filter', 'bookmark component is present')
         .end();
+  },
+
+  'Test user area contains log in button' : function(client) {
+    client
+        .url(urlTest)
+        .pause(4000)
+        .expect.element('prm-topbar prm-user-area prm-authentication span').text.to.match(/(?:LOG IN|Log in)/);
+
+    client.end();
   }
 };
