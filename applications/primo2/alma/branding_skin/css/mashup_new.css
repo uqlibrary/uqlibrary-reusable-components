@@ -1,3 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  font-family: Roboto,Helvetica,Arial,sans-serif;
+  font-size: 15px;
+}
+
+input, textarea, select, button {
+  font-size: 15px;
+}
+
+a,
+.iframeHeader input[type="submit"],
+.getitNoHoldings .submitAsLink,
+.getitNoHoldings .requestOptionNoHoldings input {
+  color: #2377CB;
+}
+
+a:hover,
+.getitNoHoldings .requestOptionNoHoldings input:hover{
+  color: #288BED;
+  text-decoration: underline;
+}
+
+.getitNoHoldings {
+  background-color: transparent;
+}
+
+.iframeHeaderContent>em {
+  font-size: 1em;
+}
+
+.itemsList table tbody tr td:first-child,
+.holdingInfo li {
+  color: #333;
+}
 /*************MASHUP CSS******************
 
 mashup.css defines the design of all mashup screens.
@@ -1298,6 +1334,7 @@ table tbody tr:not(:last-child) {
     margin-left: 3px
 }
  */
+
 /* .getitNoHoldings .requestOptionNoHoldings input {
     -webkit-appearance: none;
     -moz-appearance: none;
