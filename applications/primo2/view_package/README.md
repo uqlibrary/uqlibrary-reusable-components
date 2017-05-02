@@ -1,5 +1,4 @@
-# The Primo New UI Customization Workflow Development Environment
-
+# The New Primo UI Customization Package
 
 ## Package documentation
 
@@ -7,10 +6,7 @@ The development package allows you to configure :
 
 - css
   - no customisation to be done in custom.css
-  - all CSS changes to be done in reusable-components/applications/primo2/custom-styles.scss
-  - all global updates (eg fonts, colours, etc) to be updated in Primo's SASS package
-  - SASS package can be downloaded from https://search.library.uq.edu.au/primo-explore/lib/scsss.tar.gz (check for changes after every PrimoUI update)
-
+  
 - images includes
   - favicon.ico 
   
@@ -19,6 +15,7 @@ The development package allows you to configure :
 
 - JavaScript
   - reusable components are injected by custom.js
+  - temporary customisation for user area (for simpler login/logout actions). Might be removed as soon as ExLibris fix this issue.
   
 No changes are expected to be done to the package. All updates to be done in reusable-components/applications/primo2/*.(scss|js)
 
@@ -26,10 +23,13 @@ No changes are expected to be done to the package. All updates to be done in reu
 
 - 'view_package' directory should be renamed to a name of desired view (eg 61UQ for production view, 61UQ_DEV for development, etc) 
 - eg. `$cp -r ~/uqlibrary-reusable-components/applications/primo2/view_package/ ~/61UQ_DEV`
-- delete any hidden filese (eg .idea, .git, etc)
-- create a zip, eg 61UQ_DEV.zip `$ zip -r 61UQ_DEV.zip 61UQ_DEV`
-- upload zip to Promo BO, run deployment
-
+- make sure there are no hidden files (eg .idea, .git, etc)
+- create a zip named after the Primo view, eg 61UQ_DEV view will have 61UQ_DEV.zip `$ zip -r 61UQ_DEV.zip 61UQ_DEV`
+- upload zip to Promo BO to corresponding view:
+  - in menu `Deploy & Utilities -> Customization Manager`  
+  - select view, eg 61UQ_DEV
+  - upload package for `View Name` - choose and upload zip-file
+  - once file is uploaded, click `Deploy` button
 
 ## Primo dev environment
 
