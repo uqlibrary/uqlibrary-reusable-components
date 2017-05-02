@@ -11,14 +11,15 @@
 ## Styling guidelines
 - all global overrides (eg fonts, colours, etc) to be updated in Primo's SASS package
   - `/www/styles/main.scss` - contains a list of SCSS imports
-  - any global overrides to be a copy of original partial, named with `uql_*` prefix (variables example below):
-    - global variables(colours) override is imported from `@import "partials/uql_variables";` 
-    - original variables import is kept in the `main.scss` for reference `//@import "partials/variables";`  
-- all local customisations/fixes to be done in reusable-components/applications/primo2/custom-styles.scss
+  - any global overrides of a partial to be copied to `styles-imports/www` (variables example below):
+    - global variables(colours) override is imported from `@import "../../styles-imports/www/variables";` 
+    - original variables import is kept in the `main.scss` for reference `//@import "partials/variables";`
+  - keep overrides to a minimum
+- all local customisations/fixes to be done in `reusable-components/applications/primo2/custom-styles.scss`
 - SASS package can be downloaded from https://search.library.uq.edu.au/primo-explore/lib/scsss.tar.gz 
 - SASS package for SandBox (pre-release) can be downloaded from https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/lib/scsss.tar.gz
 - when ExLibris deployes a new release to Primo Sand Box (2-3 weeks before going to production):
-  - in primo-sand-box branch: update SASS package to use latest from Primo Sand Box
+  - in primo-sand-box branch: update SASS package to use latest from Primo Sand Box, might require a merge of overrides
   - test/verify customisations are not broken
 - new SASS package to be merged with any styling customisations
 
