@@ -27,7 +27,7 @@ md-input-container {
 		font-weight: inherit;
 		color: transparentize($dark, .35);
 		white-space: nowrap;
-		overflow: visible;
+		// overflow: visible;
 		&.md-required {
 			&:after {
 				display: none;
@@ -107,7 +107,7 @@ md-input-container {
 		textarea,
 		md-select-value,
 		.md-select-value,
-		._md-select-value {
+		._md-select-value,{
 			border-bottom-color:transparentize($dark, .75);
 		}
 		&.md-input-invalid {
@@ -116,6 +116,14 @@ md-input-container {
 			.md-select-value,
 			._md-select-value {
 				border-bottom-color: $red;
+			}
+		}
+		&:not(.md-input-invalid) {
+			&.md-input-focused {
+				.md-input,
+				input {
+					border-width: 0;
+				}
 			}
 		}
 	}
@@ -235,13 +243,31 @@ md-input-container {
 		}
 	}
 
+	&.empty-select-on-init:not(.md-input-focused){
+		md-select {
+			md-select-value {
+				&:after {
+					@extend .md-input-color-underline;
+				}
+			}
+			&:focus {
+				md-select-value {
+					&:after {
+						@extend .md-input-color-underline.focused;
+					}
+				}
+			}
+		}
+	}
+
+
 	.light-on-dark-dialog & {
 		label {
 			&:not(.md-no-float):not(._md-container-ignore) {
 				color: $white;
 			}
 		}
-	}
+	}	
 	
 }
 
@@ -286,7 +312,7 @@ md-input-container {
 		label:not(.md-no-float):not(._md-container-ignore) {
 			transform: translate3d(.75em,2em,0) scale(1);
 		}
-		&.md-input-focused {
+		&.md-input-focused, &.md-input-has-value{
 			label,
 			label:not(.md-no-float),
 			label:not(.md-no-float):not(._md-container-ignore) {
@@ -310,13 +336,32 @@ md-input-container {
 	  text-align: left;
 	  border-top-left-radius: $radius; 
 	  border-bottom-left-radius: $radius;
-	  border-right: 1px solid;
+	  border-right-width: 1px;
+	  border-right-style: solid;
 	  @extend .prm-alert-bg;
 	  @extend .prm-alert;
 	  @extend .prm-alert-border;
 	}
 }
 
+// underline for focused md-input-container elements, also used in md-select sometimes
+.md-input-color-underline {
+	position: absolute;
+	bottom: -1px;
+	content:"";
+	height: 3px;
+	left: 25%;
+	width: 0;
+	opacity: 1;
+	@extend             .prm-secondary-bg.prm-hue1;
+
+	&.focused {
+		width: 100%;
+		transition: $swift-ease-out;
+		transition-duration: .3s;
+		transform: translateX(-25%);
+	}
+}
 
 
 

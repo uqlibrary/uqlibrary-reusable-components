@@ -78,7 +78,7 @@ prm-search-bookmark-filter{
     
 #favorites-button {
     // background-color: darken($midGrey, 5%);
-    background-color: transparentize($dark, .85);
+    // background-color: transparentize($dark, .85);
     z-index: auto !important;
 
     &:before {

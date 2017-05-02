@@ -4,6 +4,7 @@
 /* starting actionList */
 .favorites-action-list{
     prm-action-list, .saved-query-list {
+        position: relative;
         .md-nav-item {
             opacity: 1;
             transform: scale3d(1, 1, 1);
@@ -12,15 +13,24 @@
 
         }
     }
+    .close-action-menu{
+        position: absolute;
+        right:0px;
+        top: 0px;
+        padding: 1px 1px 1px 1px;
+    }
+
 }
 prm-action-list, .saved-query-list {
 
-    
+
     > md-nav-bar {
         height: auto;
         .md-nav-bar {
             height: auto;
             border-width: 0px;
+
+
         }
 
         nav {
@@ -53,12 +63,12 @@ prm-action-list, .saved-query-list {
         &.wrapped-items {
             .__sm &, .__xs & {
                 .md-nav-item {
-                    min-width: 78px;    
+                    min-width: 78px;
                 }
             }
-        }    
+        }
     }
-    
+
     &.visible {
         .md-nav-item {
             opacity: 1;
@@ -78,7 +88,7 @@ prm-action-list, .saved-query-list {
 
 .send-actions-content {
     max-height: 0;
-    overflow: hidden;
+
     opacity: 0;
     transition: opacity 0s ease, max-height 0s $easeOutQuint;
     .send-content-visible & {
@@ -139,4 +149,14 @@ prm-action-list, .saved-query-list {
     .button-confirm {
         margin: 0;
     }
+}
+.marg-nav-item{
+    margin-left: 5px;
+}
+.safari-wrapper{
+    display: inline-block;
+}
+
+.non-safari{
+    overflow: hidden;
 }

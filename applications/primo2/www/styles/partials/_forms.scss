@@ -50,23 +50,20 @@
 	box-shadow: inset -1px 0 0 0 ;
 	@extend .prm-background-color.prm-hue4; //splitted the color to support from box-shadow to allow color customization
 	flex-grow: 1;
-	
 	*{//splitted the color to support from box-shadow to allow color customization
 		color: initial;
 	}
+	
 	button.button-confirm prm-icon {
 		+ span, & svg path{
 			@extend .md-button.button-confirm;
         
+		}
 	}
 }
-	
-}
-
 .service-form-dynamic-panel {
 	flex-grow: 3;
 }
-
 
 .md-input-container-dummy {
 	position: relative;
@@ -101,10 +98,46 @@
 	.md-select-icon-dummy {
 		visibility: hidden;
 	}
-	
-	
 
 }	
 
+.form-shaded-content {
+	background-color: #f8f8f8;
+    border-color: #eee;
+}
 
+.request-form {
+	md-input-container {
+		margin: 12px 0;
+
+		label,
+		label:not(.md-no-float):not(._md-container-ignore),
+		md-select .md-select-value.md-select-placeholder,
+		md-select ._md-select-value._md-select-placeholder {
+			opacity: .7;
+			@extend .prm-primary-color;
+		}
+
+		&.md-input-focused, 
+		&.md-input-has-placeholder,
+		&.md-input-has-value {
+			label:not(.md-no-float) {
+				opacity: 1;
+				transform: translate3d(0,12px,0) scale(.85);
+			}
+		}
+
+		+ md-input-container {
+			margin-left: 1.5em
+		}
+	}
+	.request-form-group {
+
+	}
+	.request-form-group-item {
+		+ .request-form-group-item {
+			margin-left: 1.5em
+		}
+	}
+}
 

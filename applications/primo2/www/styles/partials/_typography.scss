@@ -20,6 +20,10 @@ h2 {
 h3 {
     //
 }
+b {
+    font-weight: normal;
+    @extend .bold-text;
+}
 p {
   margin: 0 0 .5em;
 }

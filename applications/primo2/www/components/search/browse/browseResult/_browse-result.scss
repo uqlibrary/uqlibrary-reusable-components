@@ -1,0 +1,15 @@
+prm-browse-result{
+  .cross-ref-icon{
+    >md-icon{
+      transform: rotate(-180deg);
+      top: -1px;position: relative;
+    }
+  }
+  .call-number-description{
+    white-space: normal !important;
+  }
+  .not-link{
+    cursor: pointer !important;
+  }
+
+}

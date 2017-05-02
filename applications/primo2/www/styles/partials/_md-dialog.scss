@@ -1,3 +1,10 @@
+
+body{
+	&.md-dialog-is-showing{
+		overflow-x: visible!important;
+	}
+}
+
 .md-dialog-container {
 	// z-index: 101;
 }

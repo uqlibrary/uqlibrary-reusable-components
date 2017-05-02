@@ -19,18 +19,25 @@
 }
 
 .deposit-section{
-	margin-top:initial !important;
+	padding-left: 2em;
+    padding-right: 2em;
+}
+
+.btn-deposit{
+	padding: 0px;
+}
+
+.mandatory-files-error{
+	color: tomato;
+    font-size: 12px;
+    padding-top: 4px;
 }
 
 .deposit-tou{
 	overflow: auto;
     height: 180px;
-    margin-left: 20px;
 }
 
-.deposit-notes{
-    margin-left: 20px;
-}
 .deposit-caret-down:before{
 	display: inline-block;
     content: '\25BC';

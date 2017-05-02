@@ -1,0 +1,31 @@
+/* starting alphabetToolbar */
+prm-alphabet-toolbar {
+  > div {
+    padding: 1em;
+  }
+  .md-button {
+    margin: 0;
+    line-height: 30px;
+    @include setSize(30px);
+    width: auto;
+    @include bgColor(white);
+    &.letter-button {
+      width: 30px;
+
+    }
+    > span {
+      @extend .bold-text;
+    }
+    &.active,
+    &.active:hover,
+    &.active:focus,
+    &.active.md-focused {
+      // box-shadow: 0 0 0 1px transparentize(white, .5);
+      // box-shadow: 0 0 0 1px #ede49e;
+      @extend .default-shadow-on-dark;
+      color: black;
+      background: rgb(247, 237, 163);
+    }
+  }
+
+}
