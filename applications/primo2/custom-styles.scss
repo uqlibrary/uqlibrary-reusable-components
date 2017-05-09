@@ -76,6 +76,7 @@ uq-minimal-header {
 
 prm-user-area {
   margin-top: 10px !important;
+
   .user-menu-button .user-name {
     color: $accent-color;
   }
@@ -149,6 +150,12 @@ prm-browse-search-bar .search-scope {
   color: #2377CB !important;
 }
 
+// Change the color of 'See:' in the browse listings
 span[translate="nui.browse.crossref.see"] {
   color: #000000;
+}
+
+//Bump the user area down away from the header a little
+prm-user-area {
+  margin-top: 10px !important;
 }
