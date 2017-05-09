@@ -75,6 +75,7 @@ uq-minimal-header {
 }
 
 prm-user-area {
+  margin-top: 10px;
   .user-menu-button .user-name {
     color: $accent-color;
   }
@@ -120,5 +121,7 @@ uqlibrary-alerts {
   width: 100% !important;
 }
 
-
-
+// Hide the menu with "Browse and Tags"
+prm-main-menu {
+  display: none;
+}
