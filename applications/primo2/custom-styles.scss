@@ -125,3 +125,13 @@ uqlibrary-alerts {
 prm-main-menu {
   display: none;
 }
+
+// Hide the article full view side menu item "Tags"
+button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme.md-ink-ripple[aria-label="Tags"] {
+  display: none;
+}
+
+//Hide the "Tags" content area on the article full view
+div.full-view-section#tags{
+  display: none;
+}
