@@ -178,7 +178,7 @@ md-grid-tile,
 				opacity: .8;
 			}
 
-			&:hover {
+			&:hover, &:focus {
 				@extend .prm-links;
 				.arrow-icon {
 					opacity: 1;

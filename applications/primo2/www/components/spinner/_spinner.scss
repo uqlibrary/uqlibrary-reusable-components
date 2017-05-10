@@ -59,11 +59,7 @@ prm-spinner {
 	    	width: 45px;
 	    }
     }
-    &.bottom-loader{
-      .loader {
-        height: 100px;
-      }
-    }
+
     &.light-on-dark {
     	.diamond {
     		background-color: $accentOnDark;
@@ -119,6 +115,11 @@ prm-spinner {
 
     }
 
+	&.bottom-loader{
+		.loader {
+			height: 100px;
+		}
+	}
 }
 
 @keyframes diamonds {

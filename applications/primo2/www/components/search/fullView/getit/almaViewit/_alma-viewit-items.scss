@@ -1,0 +1,19 @@
+prm-alma-viewit-items {
+   .pointer{
+      cursor: pointer;
+   }
+  .license {
+    cursor:auto;
+  }
+  .item-title {
+     line-height: 1.5em
+  }
+   .md-list-item-text {
+      prm-icon {
+         color: rgba(58,58,58,.4);
+         margin-right: .15em;
+         transform: scale(.9);
+         display: inline-block;   
+      }
+  }
+}

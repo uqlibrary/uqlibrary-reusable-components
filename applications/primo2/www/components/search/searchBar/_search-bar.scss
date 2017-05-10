@@ -760,6 +760,28 @@ prm-search-bar {
     prm-alert-bar {
         padding-top: 1.5em;
     }
+
+   /* .facet-to-left {
+        flex-direction: row-reverse;
+
+        .facet-to-left-spacer {
+            order: 3;
+        }
+        .facet-to-left-search-bar {
+            order: 2;
+        }
+        .facet-to-left-advanced-search {
+            order: 1;
+            !*flex: 1 1 15%!important;*!
+           !* max-width: 27%!important;*!
+            !*max-height: 100%;
+            box-sizing: border-box;*!
+        }
+    }*/
+
+    .facet-to-left-spacer {
+        margin-right: 5.5em;
+    }
 }
 
 prm-advanced-search {

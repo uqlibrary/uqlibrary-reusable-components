@@ -1,0 +1,120 @@
+prm-tags-results-list {
+	.results-title {
+		position: relative;
+		top: -.75em;
+		// @extend .margin-bottom-small
+
+		.results-count {
+			padding-left: .5em;
+		}
+	}
+	md-list {
+	+ .expand-link {
+		//color: darken(saturate($positive, 10%), 10%);
+
+		md-icon {
+			margin-right: .5em;
+			color: inherit;
+		}
+	}
+
+	.show-more-button {
+		background-color: transparentize(white, .5);
+	}
+
+	&.prm-bricks-list {
+		box-shadow: none;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+	
+	&.has-list-nav {
+      position: relative;
+    }
+    .list-nav {
+      position: absolute;
+      right: -48px;
+      top: 0;
+      height: 100%;
+      .list-nav-inner {
+        height: 100%;
+      }
+      .md-button {
+        @include setSize(48px);
+        margin: 0;
+      }
+    }
+    &.prm-list {
+      @extend .default-shadow;
+      &.prm-linkable-list-items {
+        md-list-item {
+          min-height: 0;
+          padding: 0;
+          margin-bottom: 1px;
+          &:before {
+            min-height: 0
+          }
+          > .md-button {
+            min-height: 48px;
+            padding: 0;
+            &:before {
+              min-height: 0
+            }
+            > a {
+              &:hover, &:focus {
+                box-shadow: none !important;
+                background-color: transparent;
+                + .md-list-item-inner,
+                + ._md-list-item-inner {
+                  @extend .prm-hover-list-element-bg;
+                }
+              }
+            }
+          }
+          ._md-list-item-inner {
+            padding: .75em 1em;
+            @extend .prm-background.prm-hue2;
+          }
+          .item-title {
+            // @extend .bold-text;
+            line-height: 1.7em;
+            @extend .prm-citation-title;
+            white-space: normal;
+            > prm-icon {
+              color: inherit;
+              margin-right: 5px;
+              color: initial;
+              md-icon {
+                @include setSize(18px);
+              }
+            }
+            .combined-half-mark{
+              font-size: 12px;
+            }
+          }
+
+
+
+        }
+        &.prm-dense-list {
+          md-list-item {
+            &:before {
+              min-height: 0;
+            }
+            .item-title {
+              font-size: 15px;
+            }
+            .md-list-item-inner,
+            ._md-ilst-item-inner {
+              padding: .5em 1em;
+              &:before {
+                min-height: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+}
+}

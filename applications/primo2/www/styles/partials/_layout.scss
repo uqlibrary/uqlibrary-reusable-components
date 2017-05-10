@@ -29,8 +29,20 @@
 	}
 }
 
-.layout-column {
-	> div {
+%layout-flex {
+	box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+%layout-column, .layout-column {
+	-webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    @extend %layout-flex; 
+    > div {
 		.__xs & {
 			display: block;
 			&.layout-row {
@@ -42,6 +54,14 @@
 			}
 		}
 	}
+}
+
+%layout-row {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+    @extend %layout-flex; 
 }
 
 // extend Angular Material flex classes

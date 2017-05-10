@@ -6,6 +6,11 @@ prm-brief-result-container {
     width: 100%;
     position: relative;  
 
+    .md-button[disabled="disabled"]{
+        z-index: -1;
+    }
+
+
     .list-item-primary-content {
         padding: $paddingLarge $paddingExtra;
         z-index: 10;
@@ -33,7 +38,7 @@ prm-brief-result-container {
             left: 0;
             bottom: 0;
             right: 0;
-            background-color: $white;
+            @extend .prm-hover-list-element-bg;
             z-index: 0;
             opacity: 0;
 

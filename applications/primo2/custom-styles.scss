@@ -75,6 +75,8 @@ uq-minimal-header {
 }
 
 prm-user-area {
+  margin-top: 10px !important;
+
   .user-menu-button .user-name {
     color: $accent-color;
   }
@@ -98,12 +100,14 @@ prm-topbar .top-nav-bar {
 prm-topbar {
   height: auto;
 }
+
 .top-nav-bar,
 prm-user-area .md-fab-toolbar {
   height: 60px !important;
   min-height: 60px !important;
 
 }
+
 .md-dialog-container {
   Z-index: 10000;
 }
@@ -112,13 +116,46 @@ md-backdrop._md-dialog-backdrop {
   z-index: 1002;
 }
 
-body.md-dialog-is-showing  {
-  overflow-x:visible!important;
+body.md-dialog-is-showing {
+  overflow-x: visible !important;
 }
 
 uqlibrary-alerts {
   width: 100% !important;
 }
 
+// Hide the menu with "Browse and Tags"
+prm-main-menu {
+  display: none;
+}
 
+// Hide the article full view side menu item "Tags"
+button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme.md-ink-ripple[aria-label="Tags"] {
+  display: none;
+}
 
+//Hide the "Tags" content area on the article full view
+div.full-view-section#tags {
+  display: none;
+}
+
+//Browse interface - made dropdown list grey BG instead of yellow
+prm-browse-search-bar .search-scope {
+  background-color: #F2F2F2 !important;
+  border-color: #CCCCCC !important;
+}
+
+// Browse interface - link colors
+.duedate > span, .fulltext > span, .fulltext_linktorsrc > span, .getit > span, .login-dialog .collapsable-container md-list md-list-item .md-list-item-inner, .login-dialog .md-list md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item .md-list-item-text h3, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3, .login-dialog md-list md-list-item .md-list-item-text .list-item-title, .login-dialog md-list md-list-item .md-list-item-text h3, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3, .md-button.arrow-link-button .button-content, .md-button.arrow-link-button [link-arrow], .not_restricted > span, .prm-links, .restricted > span, .separate-list-items md-list-item .item-loader-with-text .md-button, .tiles-grid-tile .tile-header .header-link .arrow-icon, .tiles-grid-tile .tile-header .header-link:focus, .tiles-grid-tile .tile-header .header-link:hover, .tiles-grid-tile .tile-header .md-button, [class*=NFT] > span, [class*=check_] > span, [class*="_more"] > span, [class*="_unknown"] > span, [class*=may_] > span, [class*=does_not_exist] > span, [class*=available] > span, [class*=FT] > span, [class*=unavailable] > span, [class*=no_] > span, a, md-grid-tile .tile-header .header-link .arrow-icon, md-grid-tile .tile-header .header-link:focus, md-grid-tile .tile-header .header-link:hover, md-grid-tile .tile-header .md-button, md-input-container.has-fixed-message [ng-message] a, md-list-item.list-item-as-link, md-tabs.tabs-as-app .back-button, md-tabs.tabs-as-links md-tab-item, md-tabs.tabs-as-links md-tab-item:not([disabled]), prm-tags-list .md-chips .md-chip .md-chip-content strong, prm-tags-list .md-chips md-chip .md-chip-content strong, prm-tags-list md-chips .md-chip .md-chip-content strong, prm-tags-list md-chips md-chip .md-chip-content strong, .prm-citation-title, md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-citation-trails-item.active-item .item-title, prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .item-title {
+  color: #2377CB !important;
+}
+
+// Change the color of 'See:' in the browse listings
+span[translate="nui.browse.crossref.see"] {
+  color: #000000;
+}
+
+//Bump the user area down away from the header a little
+prm-user-area {
+  margin-top: 10px !important;
+}

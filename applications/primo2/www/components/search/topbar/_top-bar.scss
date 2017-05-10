@@ -15,8 +15,7 @@ prm-topbar {
     }
 
     .md-button {
-        //@extend .button-over-dark;
-
+        @extend .button-over-dark;
         &:not(.md-icon-button) {
             @extend .layout-full-height;
             @extend .zero-margin;

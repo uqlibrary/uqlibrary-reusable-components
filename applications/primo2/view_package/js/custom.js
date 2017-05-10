@@ -91,14 +91,14 @@
   }
 
   var scripts = [
-    '//assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.min.js',
-    '//assets.library.uq.edu.au/reusable-components/resources/preloader.js',
-    '//assets.library.uq.edu.au/reusable-components/primo2/load.js'
+    '//assets.library.uq.edu.au/master/reusable-components/webcomponentsjs/webcomponents-lite.min.js',
+    '//assets.library.uq.edu.au/master/reusable-components/resources/preloader.js',
+    '//assets.library.uq.edu.au/master/reusable-components/primo2/load.js'
   ];
 
   var links = [
-    { rel: 'import', href: '//assets.library.uq.edu.au/reusable-components/elements.vulcanized.html'},
-    { rel: 'stylesheet', href: '//assets.library.uq.edu.au/reusable-components/primo2/custom-styles.css'}
+    { rel: 'import', href: '//assets.library.uq.edu.au/master/reusable-components/elements.vulcanized.html'},
+    { rel: 'stylesheet', href: '//assets.library.uq.edu.au/master/reusable-components/primo2/custom-styles.css'}
   ];
 
   insertLink(links[0]);

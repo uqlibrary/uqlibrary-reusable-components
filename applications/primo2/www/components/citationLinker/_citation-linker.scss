@@ -1,0 +1,20 @@
+/* starting citationLinker */
+prm-citation-linker { /*change maybe later!*/
+	
+	.form-shaded-content {
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+	}
+	> .padded-container {
+		.__xs & {
+			padding: 0;
+		}
+	}
+	md-input-container {
+		+ md-input-container {
+			.__xs & {
+				margin-left: 0;
+			}
+		}
+	}
+}

@@ -19,9 +19,50 @@
 }
 
 .md-datepicker-calendar-pane {
-	background-color: white;
+	background-color: transparent;
 }
 
 .md-calendar-date-disabled {
 	color: rgba(0,0,0,0.435);
+}
+
+// tweak date picker. Move calendar button to the right
+._md-datepicker-floating-label._md-datepicker-has-calendar-icon {
+	&:after {
+		bottom: 3px;
+		margin-left: -10px;
+	}
+	&.md-input-focused {
+		&:after {
+			width: calc(100% - 38px);
+		}
+		.md-datepicker-input,
+		.md-input
+		input {
+			border-width: 0;
+		}
+	}
+	> label {
+		left: -1px;
+		&:not(.md-no-float):not(.md-container-ignore) {
+			right: auto;
+		}
+	}
+	md-datepicker {
+		.md-datepicker-button {
+			height: 24px;
+			width: 34px;
+			line-height: 24px;
+			padding: .2em;
+			margin-right: 0;
+			margin-left: 0;
+			float: right;
+		}
+		.md-datepicker-input-container {
+			margin-left: 0;
+			input {
+				float: left
+			}
+		}
+	}
 }

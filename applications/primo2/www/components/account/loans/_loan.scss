@@ -1,1 +1,7 @@
 /* starting loan */
+
+.loans-brief-display{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

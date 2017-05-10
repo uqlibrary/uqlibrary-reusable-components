@@ -55,6 +55,7 @@
     // use to make buttons seem like links
     &.button-link {
         @include bgColor($links);
+        box-shadow: none;
         &.link-alt-color {
             @include bgColor($linkAlt);
         }

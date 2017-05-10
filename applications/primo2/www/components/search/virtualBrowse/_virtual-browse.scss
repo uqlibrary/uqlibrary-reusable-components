@@ -4,6 +4,9 @@ prm-virtual-browse {
 	position: relative;
 	width: 100%;
 	display: block;
+	.hide-disabled-virtual-browse-items{
+		display: none !important;
+	}
 	.md-virtual-repeat-container {
 		background-color: transparent;
 		height: 240px;

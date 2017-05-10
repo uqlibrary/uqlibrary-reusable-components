@@ -120,7 +120,8 @@ prm-full-view-cont {
         }
 
     }
-
+    
+    &.md-transition-in,
     &._md-transition-in {
         transition: $swift-ease-out;
         opacity: 1;
@@ -138,6 +139,7 @@ prm-full-view-cont {
             // @include ie-exceptions;
         }
     }
+    &.md-transition-out,
     &._md-transition-out {
         transition: $swift-ease-in;
         opacity: 0;
@@ -167,7 +169,7 @@ prm-full-view-cont {
     .full-view-inner-container {
         position: relative;
         .__xs &, .__sm & {
-            padding-top: 5em;    
+            padding-top: 5em;
         }
         
     }
@@ -274,6 +276,9 @@ prm-full-view-cont {
 
 
 .full-view-inner-container {
+    &.flex-basis-auto-ie11{
+      flex-basis: auto;
+    }
     padding: 1em;
     z-index: 0;
      @extend .prm-background.prm-hue2;
@@ -283,6 +288,7 @@ prm-full-view-cont {
     }
     .__gt-sm & {
         padding-bottom: 10em;
+        width: 100%;
     }
 
     + .full-view-aside {
