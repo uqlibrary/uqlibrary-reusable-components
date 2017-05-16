@@ -116,9 +116,10 @@ md-backdrop._md-dialog-backdrop {
   z-index: 1002;
 }
 
-body.md-dialog-is-showing {
+/* REMOVED per Stacey VG.
+ body.md-dialog-is-showing {
   overflow-x: visible !important;
-}
+} */
 
 uqlibrary-alerts {
   width: 100% !important;
