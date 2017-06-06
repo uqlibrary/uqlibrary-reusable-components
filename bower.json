@@ -25,7 +25,7 @@
     "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
     "validator-js": "~4.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.3.8",
-    "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.2",
+    "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.3",
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.9",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#v1.1.0",
     "uqlibrary-callout": "uqlibrary/uqlibrary-callout#v1.0.5",
