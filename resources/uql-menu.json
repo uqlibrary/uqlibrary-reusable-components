@@ -161,7 +161,7 @@
       "items": [
         {
           "label": "View & renew your loans",
-          "href": "http://search.library.uq.edu.au/primo_library/libweb/action/login.do?loginFn=signin&vid=61UQ&targetURL=http%3a%2f%2fsearch.library.uq.edu.au%2fprimo_library%2flibweb%2faction%2fmyAccountMenu.do%3fvid%3d61UQ"
+          "href": "https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=https%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo-explore%2Faccount%3Fvid%3D61UQ%26section%3Doverview%26lang%3Den_US"
         },
         {
           "label": "How to borrow",
