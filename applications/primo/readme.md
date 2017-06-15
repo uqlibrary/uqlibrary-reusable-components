@@ -55,3 +55,11 @@ On the search result page, confirm the settings have been applied correctly:
 2. Check in the header section, it shall load the mashup.css from the uqskin:
 
         <link href="/view/branding_skin/css/mashup.css?skinName=uqskin&version=June2016&skinVersion=1466583814&customerId=3130&institutionId=3131" rel="stylesheet" type="text/css">
+
+## Miscellaneous
+
+To make a link that forces login, prepend the link with:
+
+http://search.library.uq.edu.au/primo_library/libweb/action/login.do?loginFn=signin&vid=61UQ&targetURL=...
+
+eg [Link to Saved Searches](http://search.library.uq.edu.au/primo_library/libweb/action/login.do?loginFn=signin&vid=61UQ&targetURL=http%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo_library%2Flibweb%2Faction%2Fquery.do%3Ffn%3Ddisplay%26vid%3D61UQ)
