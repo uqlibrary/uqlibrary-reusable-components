@@ -7,3 +7,19 @@
   display: none;
 }
 
+.largeWarning {
+  background-color: $error-color;
+  color: $secondary-color-light;
+  font-size: 19px;
+  font-size: 1.1875rem;
+
+  text-align: center;
+  padding: 16px;
+  padding: 1rem;
+}
+
+.largeWarning a {
+  background-color: inherit;
+  color: #fff;
+  text-decoration: underline;
+}
