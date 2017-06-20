@@ -1,0 +1,20 @@
+prm-tags-search-bar {
+	@extend prm-journals-search-bar;
+  label{
+    transform: none!important;
+    position: relative;
+    top: 2px;
+    opacity: 1!important;
+    color: inherit!important;
+    padding-right: 0.2em!important;
+  }
+  md-input-container{
+    display: flex;
+    input{
+      flex: 1 1;
+      width: 100%;
+      margin-top: auto!important;
+      margin-bottom: auto!important;
+    }
+  }
+}

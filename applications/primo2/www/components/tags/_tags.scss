@@ -1,0 +1,17 @@
+prm-tags {
+	md-chips-wrap, .md-chips {
+		.md-chip, md-chip {
+			.__gt-sm & {
+				clear: both;
+			}
+		}
+	}
+	md-card.default-card {
+		.__xs &, .__sm & {
+			margin-left: 0;
+			margin-right: 0;
+			margin-top: 0;
+			width: 100%;
+		}
+	}
+}

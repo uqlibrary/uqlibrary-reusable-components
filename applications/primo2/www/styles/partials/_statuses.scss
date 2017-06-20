@@ -16,8 +16,10 @@
   [class*="does_not_exist"],
   .getit
   {
-    > span:first-of-type {
-      @extend .status-maybe !optional;
+    @extend .status-maybe !optional;
+    > span{
+
+      @extend .prm-links;
     }
   }
 
@@ -35,8 +37,9 @@
   .fulltext, 
   .fulltext_linktorsrc
   {
-    > span:first-of-type {
-      @extend .status-available !optional;
+    @extend .status-available !optional;
+    > span {
+      @extend .prm-links;
     }
   }
 
@@ -53,7 +56,8 @@
   .restricted,
   .duedate 
   {
-    > span:first-of-type {
-      @extend .status-unavailable !optional;
+    @extend .status-unavailable !optional;
+    > span {
+      @extend .prm-links;
     }
   }

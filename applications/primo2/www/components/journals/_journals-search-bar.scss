@@ -9,6 +9,7 @@ prm-journals-search-bar {
 	
 	.classic-input {
 		overflow: hidden;
+		min-width: 100%;
 
 		@extend .default-shadow-on-dark;
 
@@ -22,6 +23,12 @@ prm-journals-search-bar {
 				@include setSize(34px)
 			}
 		}
-	}  
+	}
+	.journal-search-tile{
+		width: 90px;
+		span{
+			max-width: 100%;
+		}
+	}
 }
 

@@ -25,15 +25,15 @@
     "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
     "validator-js": "~4.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.3.8",
-    "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.2",
-    "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.7",
+    "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.3",
+    "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.9",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#v1.1.0",
     "uqlibrary-callout": "uqlibrary/uqlibrary-callout#v1.0.5",
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#v1.2.3",
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#1.0.5",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search#v1.0.6",
-    "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.2.9",
-    "uqlibrary-training": "uqlibrary/uqlibrary-training#v1.0.7",
+    "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.3.0",
+    "uqlibrary-training": "uqlibrary/uqlibrary-training#v1.0.9",
     "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input#v1.1.3"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
   "ignore": [],
   "resolutions": {
     "uqlibrary-styles": "v1.1.0",
-    "uqlibrary-ga": "v1.0.7",
+    "uqlibrary-ga": "v1.0.9",
     "uqlibrary-api": "v1.3.8"
   }
 }

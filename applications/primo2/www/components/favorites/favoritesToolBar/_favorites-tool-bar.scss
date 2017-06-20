@@ -54,10 +54,9 @@ prm-favorites-tool-bar {
     transition: all .4s 0s ease;
     opacity: 1;
     .__xs & {
-      position: absolute;
       height: 100%;
       display: flex;
-      align-items: center
+      align-items: center;
     }
     &.ng-hide {      
       opacity: 0;
@@ -82,4 +81,12 @@ prm-favorites-tool-bar {
       }
     }
   }
+
+  .disabledFavTool {
+    color: $disabled;
+  }
+
 }
+
+
+

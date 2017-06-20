@@ -115,6 +115,11 @@ prm-spinner {
 
     }
 
+	&.bottom-loader{
+		.loader {
+			height: 100px;
+		}
+	}
 }
 
 @keyframes diamonds {
@@ -124,9 +129,4 @@ prm-spinner {
     100% {
         transform: translateY(-4em) rotate(45deg) scale(0);
     }
-}
-&.bottom-loader{
-	.loader {
-		height: 100px;
-	}
 }

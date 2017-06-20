@@ -1,0 +1,17 @@
+/* starting stackMap */
+prm-stack-map {
+	.stack-map-url{
+
+		border: 1px solid;
+		padding:0px 9px 0px 9px;
+		@extend .prm-background-border;
+
+		a{
+			line-height: 28px;
+			text-align: center;
+    		text-transform: uppercase;
+    		font-weight: 500;
+    		font-size: 14px;
+		}
+	}
+}

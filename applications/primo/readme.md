@@ -1,4 +1,4 @@
-#PRIMO Customisations
+# PRIMO Customisations
 
 - Primo URL: https://search.library.uq.edu.au
 - Development environment (master branch): https://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV
@@ -17,7 +17,7 @@ Primo static_html/footer.html to include following:
         <script src="//assets.library.uq.edu.au/reusable-components/primo/load.js" async></script>
         <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/primo/custom-styles.css" />
         
-##Styling for Primo iframes
+## Styling for Primo iframes
 When custom-styles.css is finalised, it has to be uploaded to Primo to apply styles to Primo iframes (not Alma iframes).
 
 In Primo Back Office:
@@ -30,7 +30,7 @@ More details [Primo CSS customisation](https://knowledge.exlibrisgroup.com/Primo
 , [File Uploader Tool](https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Back_Office_Guide/Primo_Utilities/The_File_Uploader_Tool)
 and [Debugging CSS/JS in Primo] (https://knowledge.exlibrisgroup.com/Primo/Product_Documentation/Technical_Guide/Customizing_Primo%E2%80%99s_User_Interface/Debugging_CSS_and_JavaScript)                
 
-##Styling for Alma iframes
+## Styling for Alma iframes
 
 1. Login to https://uq.alma.exlibrisgroup.com/SAML
 2. Go to Alma > Administration > General Configuration > General Configuration Menu

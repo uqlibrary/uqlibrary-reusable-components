@@ -3,6 +3,8 @@
 // variables
 $directions: top right bottom left;
 $sizes: (
+	zero: 0,
+	tiny: .25em,
   small: .5em,
   medium: 1em,
   large: 1.5em
@@ -170,4 +172,9 @@ $sizes: (
 }
 .padding {
   @include helpers-sizes(padding)
+}
+
+/* // width-auto // */
+.width-auto {
+	width: auto!important;
 }
