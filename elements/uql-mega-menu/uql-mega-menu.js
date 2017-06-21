@@ -173,6 +173,7 @@
       }
     },
 
+    // filter callbacks for dom-repeat
     isCol1: function(menuSubItem) {
       return menuSubItem.col1;
     },

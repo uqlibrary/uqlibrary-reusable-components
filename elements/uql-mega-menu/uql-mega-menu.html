@@ -62,19 +62,26 @@ Example:
       @apply(--layout-horizontal);
     }
 
+    .has-numcols-1 {
+      width: 240px;
+    }
+
     /* this block has two cols so needs to be twice as wide */
     .has-numcols-2 {
       width: 480px;
     }
 
-    .has-numcols-1 {
-      width: 240px;
-    }
-
     .has-numcols-3 ,
     .has-3cols-true {
       width: 720px;
-/*      margin-left: -240px;   later */
+    }
+
+    /*
+     * this works because it is near the right that we have a 3 col menu.
+     * if they put one on the left too, this will have to be re-evaluated
+     */
+    .hasCols3 {
+      margin-left: -240px;
     }
 
     .dropdown-content .sub-menu{
@@ -133,7 +140,7 @@ Example:
         </paper-tabs>
 
         <template is="dom-repeat" items="{{menu.items}}" as="menuitem">
-          <iron-dropdown id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
+          <iron-dropdown class$="hasCols{{menuitem.numCols}}" id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
                          on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
             <div class$="dropdown-content has-numcols-{{menuitem.numCols}}">
               <div class="sub-menu">
