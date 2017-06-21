@@ -153,3 +153,17 @@ Sample test commands:
 `$ nightwatch -c nightwatch.json --env chrome` #  run test on safari browser (name must match object name in nightwatch.json)
 
 (The nightwatch e2e tests are setup as one file per project, plus a file of minimal common items which isn't valid to run on its own. To only run the valid tests, use the tag e2etest.)
+
+# Workflow
+
+## Suggested workflow for changing CSS on 3rd party sites:
+
+* Open the page that needs restyling
+* Assuming Chrome, open the inspect page and tweak settings in the Elements > css pane until you have what you want
+* Open the scss file in PhpStorm and make updates
+* Run `gulp styles`
+* Open the generated custom-styles.css file and copy all
+* On the web page, in the inspector, goto Sources and navigate to the same custom-styles.css file
+* Select all and overwrite with css copied from custom-styles.css, above
+* Look at the page to check you got what you wanted
+* Repeat
