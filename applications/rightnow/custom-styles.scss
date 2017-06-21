@@ -599,7 +599,7 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
 }
 
 #rn_Body .rn_Multiline .rn_Content li, .lib_sidebar ul>li {
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid $secondary-color-light;
   margin-bottom: 0;
 }
 
@@ -615,7 +615,7 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
 
 .rn_AnswerList #rn_SearchControls .rn_SearchButton button {
   border-radius: 0;
-  background-color: #2377CB;
+  background-color: $accent-color;
   color: #fff;
   text-transform: uppercase;
   font-size: 1rem;
@@ -639,10 +639,10 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
 }
 
 
-button,
-input[type='submit'] {
+.rn_AnswerList #rn_SearchControls .rn_SearchButton button,
+.rn_FormSubmit button {
   -webkit-appearance: none;
-  background-color: #2377CB;
+  background-color: $accent-color;
   color: #fff;
   width: 160px;
   width: 10rem;
@@ -663,13 +663,13 @@ input[type='submit'] {
 
   content: "Answers others found helpful";
 
-  border-top: 1px solid #f2f2f2;
+  border-top: 1px solid $secondary-color-light;
   padding-top: 10px;
   padding-top: 0.625rem;
   font-size: 18px;
   font-size: 1.125rem;
   font-weight: 500;
-  color: #333333;
+  color: $secondary-color-dark;
   margin-left: -20px;
   margin-left: -1.25rem;
   padding-left: 0;
