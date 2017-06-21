@@ -160,3 +160,6 @@ span[translate="nui.browse.crossref.see"] {
 prm-user-area {
   margin-top: 10px !important;
 }
+
+/* HIDE REVIEWS & TAGS TAB */
+.EXLTabsRibbon div li.EXLReviewsTab { display:none; }
