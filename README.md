@@ -126,6 +126,10 @@ Demo for feature branches is available at **http://assets.library.uq.edu.au/[bra
 
 ### Testing
 
+#### Unit Testing
+
+`gulp test`
+
 #### Local testing
 
 * install selenium server
@@ -134,7 +138,7 @@ Run Selenium server. Selenium is required to run tests locally Selenium Installe
 
   `java -jar selenium-server-standalone-{VERSION}.jar`
   
-or `brew install selenium-server-standalone` then `selenium-server -p 4444`
+or `brew install selenium-server-standalone` then `selenium-server -port 4444`
 
 * run tests
 
