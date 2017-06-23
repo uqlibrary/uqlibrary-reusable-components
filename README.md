@@ -167,3 +167,5 @@ Sample test commands:
 * Select all and overwrite with css copied from custom-styles.css, above
 * Look at the page to check you got what you wanted
 * Repeat
+
+This lets you precisely check any changes without having to create a github release.

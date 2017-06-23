@@ -26,17 +26,26 @@
     text-align: left;
   }
 
+  // only the header of Today should be bolded
+  thead th {
+    font-weight: normal;
+  }
+  thead th.s-lc-whw-today-h {
+    font-weight: bold;
+  }
+
   // match date area (header row and 'today' column)
   thead tr th,
   td.s-lc-whw-today,
-  th.s-lc-whw-today-h {
+  th.s-lc-whw-today-h ,
+  tr.s-lc-whw-loc {
     background-color: #F5F5F5;
     border-color: $footer-background-color;
-  }
+//  }
 
   // colour library name row
-  tr.s-lc-whw-loc {
-    background-color: #fcfcfc;
+//  tr.s-lc-whw-loc {
+//    background-color: #fcfcfc;
   }
 
   tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
@@ -55,18 +64,68 @@
     left: -9999px;
   }
 
-  .s-lc-whw-bh {
-    min-width: 21rem;
+  button.disabled, button[disabled], .button.disabled, .button[disabled] {
+    background-color: $secondary-color;
+  }
+
+//  .s-lc-whw-bh {
+//    min-width: 21rem;
+//  }
+}
+
+@media only screen and (min-width: 750px) {
+  #libcal-hours-block-0 {
+
+    // make the all-hours display scroll under a fixed header
+    // per https://codepen.io/tjvantoll/pen/JEKIu
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    th {
+      text-decoration: underline;
+      border-width: 0;
+    }
+    th, td {
+      padding: 5px;
+    }
+
+    td:nth-child(1), th:nth-child(1) {
+      width: 20em;
+    }
+    td:nth-child(2), th:nth-child(2),
+    td:nth-child(3), th:nth-child(3),
+    td:nth-child(4), th:nth-child(4),
+    td:nth-child(5), th:nth-child(5),
+    td:nth-child(6), th:nth-child(6),
+    td:nth-child(7), th:nth-child(7),
+    td:nth-child(8), th:nth-child(8) {
+      width: calc(12vw - 2em);
+      //  started with min-width: calc(100vw - 20em)/6 made it valid then reduced until it fit
+
+    }
+
+    thead tr {
+      display: block;
+      position: relative;
+    }
+    tbody {
+      display: block;
+      overflow: auto;
+      width: 100%;
+      height: 300px;
+    }
   }
 }
 
+
+
 // make the buttons use text labels instead
-button.s-lc-whw-ne:before {
-  content: 'Next week ';
-}
-button.s-lc-whw-pr:after {
-  content: ' Prev week';
-}
+//button.s-lc-whw-ne:before {
+//  content: 'Next week ';
+//}
+//button.s-lc-whw-pr:after {
+//  content: ' Prev week';
+//}
 
 // all libraries has the library name row showing on non-mobile
 #libcal-hours-block-0.libcal-hours-block tbody tr.s-lc-whw-loc td {
