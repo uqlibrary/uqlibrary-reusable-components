@@ -45,6 +45,14 @@ Alma skin/css has been customised, but there's not way currently to run Alma cur
 
 *Solution (as discussed with SvG): wait until new Primo UI is production live and old Primo UI is not in use anymore and update the skin for new UI only.*
 
+## Miscellaneous
+
+To make a link that forces login, prepend the link with:
+
+https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=...
+
+eg [Link to Saved Items](https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=https%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo-explore%2Ffavorites%3Fvid%3D61UQ%26lang%3Den_US%C2%A7ion%3Ditems)
+
 
   
   
