@@ -41,11 +41,6 @@
   tr.s-lc-whw-loc {
     background-color: #F5F5F5;
     border-color: $footer-background-color;
-//  }
-
-  // colour library name row
-//  tr.s-lc-whw-loc {
-//    background-color: #fcfcfc;
   }
 
   tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
@@ -67,10 +62,6 @@
   button.disabled, button[disabled], .button.disabled, .button[disabled] {
     background-color: $secondary-color;
   }
-
-//  .s-lc-whw-bh {
-//    min-width: 21rem;
-//  }
 }
 
 @media only screen and (min-width: 750px) {
@@ -82,8 +73,11 @@
     border-collapse: collapse;
 
     th {
-      text-decoration: underline;
       border-width: 0;
+    }
+    // but the top-left cell doesnt want underline as it creates a little line
+    thead th.s-lc-whw-bh {
+      text-decoration: none;
     }
     th, td {
       padding: 5px;
@@ -116,16 +110,6 @@
     }
   }
 }
-
-
-
-// make the buttons use text labels instead
-//button.s-lc-whw-ne:before {
-//  content: 'Next week ';
-//}
-//button.s-lc-whw-pr:after {
-//  content: ' Prev week';
-//}
 
 // all libraries has the library name row showing on non-mobile
 #libcal-hours-block-0.libcal-hours-block tbody tr.s-lc-whw-loc td {
