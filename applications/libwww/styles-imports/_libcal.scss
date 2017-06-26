@@ -34,10 +34,19 @@
     font-weight: bold;
   }
 
+  // set up in anticipation of springshare making the table follow
+  // https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H43
+  tbody tr.s-lc-whw-subloc th {
+    background-color: #fff;
+    color: inherit;
+    border-color: $footer-background-color;
+  }
+
   // match date area (header row and 'today' column)
   thead tr th,
   td.s-lc-whw-today,
   th.s-lc-whw-today-h ,
+  tbody tr.s-lc-whw-loc th , // becomes active when springshare makes the table accessibile
   tr.s-lc-whw-loc {
     background-color: #F5F5F5;
     border-color: $footer-background-color;
@@ -72,9 +81,17 @@
     table-layout: fixed;
     border-collapse: collapse;
 
-    th {
+    thead th {
       border-width: 0;
     }
+
+    tbody th.s-lc-whw-locname {
+      font-weight: 500;
+    }
+    tbody th.s-lc-whw-sublocname {
+      font-weight: 300;
+    }
+
     // but the top-left cell doesnt want underline as it creates a little line
     thead th.s-lc-whw-bh {
       text-decoration: none;
