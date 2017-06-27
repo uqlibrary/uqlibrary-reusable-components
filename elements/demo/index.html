@@ -25,6 +25,10 @@
       /*color: #0f0 !important;*/
     }
 
+    #searchKeywordInput {
+      width: 412px;
+    }
+
   </style>
 </head>
 
@@ -60,6 +64,20 @@
     <div> Show IA button <input type="checkbox" checked="{{showIAStatus::change}}"> </div>
     <div> Show menu button <input type="checkbox" checked="{{showMenuButton::change}}"> </div>
 
+    <p>UQ Library homepage search</p>
+    <div id="layout" style="margin:16px; ">
+      <div id="main">
+        <div id="search">
+          <paper-card>
+            <div class="card-content">
+              <uqlibrary-search></uqlibrary-search>
+            </div>
+          </paper-card>
+        </div>
+      </div>
+    </div>
+
+
     <p>Ezproxy</p>
     <uql-ezproxy></uql-ezproxy>
 
@@ -84,10 +102,6 @@
     <div>
     <p>Fryer Search on eSpace</p>
     <uqlibrary-fryer-search search-type="espace"></uqlibrary-fryer-search>
-    </div>
-
-    <div style="margin:16px; ">
-      <uqlibrary-search></uqlibrary-search>
     </div>
 
   </div>
@@ -143,6 +157,7 @@
     };
 
     Demo.showButtonTitle = true;
+    Demo.showMenuButton = true;
 
     //reveal elements with easing in effect
     var content = document.querySelectorAll(".loading");
