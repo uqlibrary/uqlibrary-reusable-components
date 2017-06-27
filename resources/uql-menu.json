@@ -9,35 +9,35 @@
           "label": "Your librarian",
           "subtext": "Get subject-specific help",
           "href": "https://www.library.uq.edu.au/contacts/librarians/",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Book a room",
           "href": "https://www.library.uq.edu.au/fbs",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Training",
           "subtext": "Online & in-person classes",
           "href": "https://web.library.uq.edu.au/library-services/training",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "I.T.",
           "subtext": "Printing, WiFi, available computers",
           "href": "https://web.library.uq.edu.au/library-services/it",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Copyright advice",
           "href": "https://web.library.uq.edu.au/library-services/copyright-advice",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Digitisation",
           "subtext": "Convert material to digital format",
           "href": "https://web.library.uq.edu.au/library-services/digitisation",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "for Students",
@@ -177,17 +177,17 @@
           "label": "How to request",
           "subtext": "On loan, off-campus, or not at UQ",
           "href": "https://web.library.uq.edu.au/borrowing-requesting/how-request",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Request document delivery",
           "href": "https://web.library.uq.edu.au/borrowing-requesting/request-document-delivery",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Request a purchase",
           "href": "https://web.library.uq.edu.au/borrowing-requesting/request-purchase",
-          "right": "right"
+          "col2": "yes"
         }
       ]
     },
@@ -217,83 +217,90 @@
         },
         {
           "label": "Architecture & Music",
-          "href": "https://web.library.uq.edu.au/locations-hours/architecture-music-library"
+          "href": "https://web.library.uq.edu.au/locations-hours/architecture-music-library",
+          "col2": "yes"
+
         },
         {
           "label": "Biological Sciences",
-          "href": "https://web.library.uq.edu.au/locations-hours/biological-sciences-library"
+          "href": "https://web.library.uq.edu.au/locations-hours/biological-sciences-library",
+          "col2": "yes"
         },
         {
           "label": "Centre for Digital Scholarship",
-          "href": "https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship"
+          "href": "https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship",
+          "col2": "yes"
         },
         {
           "label": "Duhig Tower",
-          "href": "https://web.library.uq.edu.au/locations-hours/duhig-tower"
+          "href": "https://web.library.uq.edu.au/locations-hours/duhig-tower",
+          "col2": "yes"
         },
         {
           "label": "D. H. Engineering & Sciences",
-          "href": "https://web.library.uq.edu.au/locations-hours/dorothy-hill-engineering-and-sciences-library"
+          "href": "https://web.library.uq.edu.au/locations-hours/dorothy-hill-engineering-and-sciences-library",
+          "col2": "yes"
 
         },
         {
           "label": "Fryer",
-          "href": "https://web.library.uq.edu.au/locations-hours/fryer-library"
+          "href": "https://web.library.uq.edu.au/locations-hours/fryer-library",
+          "col2": "yes"
 
         },
         {
           "label": "Gatton",
           "subtext": "J.K. Murray Library",
           "href": "https://web.library.uq.edu.au/locations-hours/uq-gatton-library-jk-murray-library",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Grad. Economics & Business",
           "href": "https://web.library.uq.edu.au/locations-hours/graduate-economics-and-business-library",
-          "right": "right"
+          "col2": "yes"
 
         },
         {
           "label": "Herston Health Sciences",
           "href": "https://web.library.uq.edu.au/locations-hours/herston-health-sciences-library",
-          "right": "right"
+          "col3": "yes"
 
         },
         {
           "label": "Law",
           "subtext": "Walter Harrison Library",
           "href": "https://web.library.uq.edu.au/locations-hours/law-library-walter-harrison-library",
-          "right": "right"
+          "col3": "yes"
 
         },
         {
           "label": "UQ/Mater McAuley Library",
           "href": "https://web.library.uq.edu.au/locations-hours/uqmater-mcauley-library",
-          "right": "right"
+          "col3": "yes"
 
         },
         {
           "label": "PACE Health Sciences",
           "href": "https://web.library.uq.edu.au/locations-hours/pace-health-sciences-library",
-          "right": "right"
+          "col3": "yes"
 
         },
         {
           "label": "Rural Clinical School",
           "href": "https://web.library.uq.edu.au/locations-hours/rural-clinical-school-rcs-library",
-          "right": "right"
+          "col3": "yes"
 
         },
         {
           "label": "Social Sciences & Humanities",
           "href": "https://web.library.uq.edu.au/locations-hours/social-sciences-humanities-library",
-          "right": "right"
+          "col3": "yes"
 
         },
         {
           "label": "Warehouse",
           "href": "https://web.library.uq.edu.au/locations-hours/warehouse",
-          "right": "right"
+          "col3": "yes"
 
         }
       ]
@@ -333,37 +340,37 @@
         {
           "label": "Organisational structure",
           "href": "https://web.library.uq.edu.au/about-us/organisational-structure",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Policies & guidelines",
           "href": "https://web.library.uq.edu.au/about-us/policies-guidelines",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Reports & publications",
           "href": "https://web.library.uq.edu.au/about-us/reports-and-publications",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Employment",
           "href": "https://web.library.uq.edu.au/about-us/employment",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Awards & fellowships",
           "href": "https://web.library.uq.edu.au/about-us/awards-fellowships",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Mission",
           "href": "https://web.library.uq.edu.au/about-us/mission",
-          "right": "right"
+          "col2": "yes"
         },
         {
           "label": "Participate in customer research",
           "href": "https://web.library.uq.edu.au/about-us/participate-customer-research",
-          "right": "right"
+          "col2": "yes"
         }
       ]
     },

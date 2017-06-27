@@ -41,7 +41,7 @@ Example:
 
     .menu-content {
       margin: 0 auto;
-      max-width: var(--max-width);
+/*      max-width: var(--max-width); */
       width: 100%;
     }
 
@@ -62,12 +62,26 @@ Example:
       @apply(--layout-horizontal);
     }
 
-    .has-right-true {
+    .has-numcols-1 {
+      width: 240px;
+    }
+
+    /* this block has two cols so needs to be twice as wide */
+    .has-numcols-2 {
       width: 480px;
     }
 
-    .has-right-false {
-      width: 240px;
+    .has-numcols-3 ,
+    .has-3cols-true {
+      width: 720px;
+    }
+
+    /*
+     * this works because it is near the right that we have a 3 col menu.
+     * if they put one on the left too, this will have to be re-evaluated
+     */
+    .hasCols3 {
+      margin-left: -240px;
     }
 
     .dropdown-content .sub-menu{
@@ -75,7 +89,7 @@ Example:
       padding-top: 15px;
     }
 
-    .sub-menu.uql-submenu-right {
+    .sub-menu.uql-submenu-subsequent {
       border-left-width: thin;
       border-left-style: solid;
       border-color: var(--menu-border-color);
@@ -83,8 +97,8 @@ Example:
 
     .sub-menu {
       background-color: var(--menu-open-background-color);
-      margin: 0px;
-      padding: 0px;
+      margin: 0;
+      padding: 0;
     }
 
     .sub-menu a {
@@ -115,40 +129,47 @@ Example:
     <div class="menu-container">
       <div class="menu-content loading" unresolved>
         <paper-tabs id="topMenu" on-tap="_topMenuSelected">
-          <template is="dom-repeat" items="{{menu.items}}">
+          <template is="dom-repeat" items="{{menu.items}}" as="menuitem">
             <paper-tab data-item-index$="{{index}}">
-              {{item.label}}
-              <template is="dom-if" if="{{item.items}}">
+              {{menuitem.label}}
+              <template is="dom-if" if="{{menuitem.items}}">
                 <iron-icon icon="icons:icons:arrow-drop-down"></iron-icon>
               </template>
             </paper-tab>
           </template>
         </paper-tabs>
 
-        <template is="dom-repeat" items="{{menu.items}}">
-          <iron-dropdown id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
+        <template is="dom-repeat" items="{{menu.items}}" as="menuitem">
+          <iron-dropdown class$="hasCols{{menuitem.numCols}}" id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
                          on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
-            <div class$="dropdown-content has-right-{{item.hasRight}}">
+            <div class$="dropdown-content has-numcols-{{menuitem.numCols}}">
               <div class="sub-menu">
-                <template is="dom-repeat" items="{{item.items}}" as="subItem">
-                  <template is="dom-if" if="{{!subItem.right}}">
+                <template is="dom-repeat" items="{{menuitem.items}}" as="subItem" filter="isCol1">
                     <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="_closeDropdown">
                       <div>{{subItem.label}}</div>
                       <div class="subtext">{{subItem.subtext}}</div>
                     </a>
-                  </template>
                 </template>
               </div>
 
-              <template is="dom-if" if="{{item.hasRight}}">
-                <div class="sub-menu uql-submenu-right">
-                  <template is="dom-repeat" items="{{item.items}}" as="subItem">
-                    <template is="dom-if" if="{{subItem.right}}">
+              <template is="dom-if" if="{{menuitem.hasTwoOrMoreCols}}">
+                <div class="sub-menu uql-submenu-subsequent">
+                  <template is="dom-repeat" items="{{menuitem.items}}" as="subItem" filter="isCol2">
                       <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="_closeDropdown">
                         <div>{{subItem.label}}</div>
                         <div class="subtext">{{subItem.subtext}}</div>
                       </a>
-                    </template>
+                  </template>
+                </div>
+              </template>
+
+              <template is="dom-if" if="{{menuitem.hasThreeCols}}">
+                <div class="sub-menu uql-submenu-subsequent">
+                  <template is="dom-repeat" items="{{menuitem.items}}" as="subItem" filter="isCol3">
+                      <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="_closeDropdown">
+                        <div>{{subItem.label}}</div>
+                        <div class="subtext">{{subItem.subtext}}</div>
+                      </a>
                   </template>
                 </div>
               </template>
