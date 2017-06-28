@@ -126,11 +126,11 @@ Example:
 
     <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
 
-    <div class="menu-container">
+    <div class="menu-container" role="menu">
       <div class="menu-content loading" unresolved>
         <paper-tabs id="topMenu" on-tap="_topMenuSelected">
           <template is="dom-repeat" items="{{menu.items}}" as="mainmenuitem">
-            <paper-tab data-item-index$="{{index}}">
+            <paper-tab data-item-index$="{{index}}" role="menuitem" aria-haspopup="true">
               {{mainmenuitem.label}}
               <template is="dom-if" if="{{mainmenuitem.items}}">
                 <iron-icon icon="icons:icons:arrow-drop-down"></iron-icon>
@@ -145,7 +145,7 @@ Example:
             <div class$="dropdown-content has-numcols-{{submenu.numCols}}">
               <div class="sub-menu">
                 <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem1" filter="isCol1">
-                    <a class$="paper-item {{submenuItem1.class}}" href="{{submenuItem1.href}}" on-tap="_closeDropdown">
+                    <a class$="paper-item {{submenuItem1.class}}" href="{{submenuItem1.href}}" on-tap="_closeDropdown" role="menuitem">
                       <div>{{submenuItem1.label}}</div>
                       <div class="subtext">{{submenuItem1.subtext}}</div>
                     </a>
@@ -155,7 +155,7 @@ Example:
               <template is="dom-if" if="{{submenu.hasTwoOrMoreCols}}">
                 <div class="sub-menu uql-submenu-subsequent">
                   <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem2" filter="isCol2">
-                      <a class$="paper-item {{submenuItem2.class}}" href="{{submenuItem2.href}}" on-tap="_closeDropdown">
+                      <a class$="paper-item {{submenuItem2.class}}" href="{{submenuItem2.href}}" on-tap="_closeDropdown" role="menuitem">
                         <div>{{submenuItem2.label}}</div>
                         <div class="subtext">{{submenuItem2.subtext}}</div>
                       </a>
@@ -166,7 +166,7 @@ Example:
               <template is="dom-if" if="{{submenu.hasThreeCols}}">
                 <div class="sub-menu uql-submenu-subsequent">
                   <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem3" filter="isCol3">
-                      <a class$="paper-item {{submenuItem3.class}}" href="{{submenuItem3.href}}" on-tap="_closeDropdown">
+                      <a class$="paper-item {{submenuItem3.class}}" href="{{submenuItem3.href}}" on-tap="_closeDropdown" role="menuitem">
                         <div>{{submenuItem3.label}}</div>
                         <div class="subtext">{{submenuItem3.subtext}}</div>
                       </a>
