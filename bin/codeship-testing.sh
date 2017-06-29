@@ -38,24 +38,24 @@ done
 
 case "$PIPE_NUM" in
 "1")
-  # "Unit testing" on codeship
-  echo "WCT: local unit testing..."
-  gulp test
-
-  #if [ ${CI_BRANCH} == "production" ]; then
-    echo "WCT: remote unit testing..."
-    gulp test:remote
-  #fi
-
-;;
-"2")
-  # "Lint checking"
+  # "Test Commands" tab on codeship
   echo "Check file syntax..."
   gulp syntax
 
 ;;
+"2")
+  # "Unit tests" tab on codeship
+  echo "WCT: local unit testing..."
+  gulp test
+
+;;
 "3")
-  # "Nightwatch on saucelabs" on codeship - placeholder
-  # tests are run after deployment codeship-prod-testing.sh
+  # "Saucelabs" tab on codeship
+
+  echo "WCT: remote unit testing (for Master and Prod branch only)..."
+  if [[ (${CI_BRANCH} == "master" || ${CI_BRANCH} == "production") ]]; then
+    gulp test:remote
+  fi
+
 ;;
 esac
