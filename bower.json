@@ -32,9 +32,9 @@
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#v1.2.3",
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#1.0.5",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search#v1.0.6",
-    "uqlibrary-search": "uqlibrary/uqlibrary-search#v1.3.3",
+    "uqlibrary-search": "uqlibrary/uqlibrary-search#accessible",
     "uqlibrary-training": "uqlibrary/uqlibrary-training#v1.0.9",
-    "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input#v1.1.3"
+    "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input#accessible"
   },
   "devDependencies": {
     "test-fixture": "PolymerElements/test-fixture#^1.0.0"
