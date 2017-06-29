@@ -129,9 +129,9 @@ Example:
 
     <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
 
-    <div class="menu-container" role="menu">
+    <nav class="menu-container">
       <div class="menu-content loading" unresolved>
-        <paper-tabs id="topMenu" on-tap="_topMenuSelected">
+        <paper-tabs id="topMenu" on-tap="_topMenuSelected" role="menubar">
           <template is="dom-repeat" items="{{menu.items}}" as="mainmenuitem">
             <paper-tab data-item-index$="{{index}}" role="menuitem" aria-haspopup="true">
               {{mainmenuitem.label}}
@@ -145,7 +145,7 @@ Example:
         <template is="dom-repeat" items="{{menu.items}}" as="submenu">
           <iron-dropdown class$="hasCols{{submenu.numCols}}" id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
                          on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
-            <div class$="dropdown-content has-numcols-{{submenu.numCols}}">
+            <div class$="dropdown-content has-numcols-{{submenu.numCols}}" role="menu">
               <div class="sub-menu">
                 <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem1" filter="isCol1">
                     <a class$="paper-item {{submenuItem1.class}}" href="{{submenuItem1.href}}" on-tap="_closeDropdown" role="menuitem">
@@ -182,7 +182,7 @@ Example:
         </template>
 
       </div>
-    </div>
+    </nav>
 
     <!-- Hidden span to skip navigation -->
     <span id="megaMenuAfter" tabindex="0" aria-label="Start of content" style="position: fixed; top:-2000px; left: -2000px">Start of content</span>
