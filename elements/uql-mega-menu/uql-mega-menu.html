@@ -51,8 +51,16 @@ Example:
       margin-top: -8px;
     }
 
+    paper-tab.uql-mega-menu {
+      /* the border is to stop a sizing jump when the  focused border is applied */
+      border: thin solid var(--menu-background-color);
+    }
     paper-tab.sub-menu-opened {
       background-color: var(--menu-open-background-color);
+      border: thin solid var(--menu-open-background-color);
+    }
+    paper-tab[focused].uql-mega-menu {
+      border: thin solid var(--menu-selected-bar-color);
     }
 
     .dropdown-content {
@@ -118,10 +126,6 @@ Example:
 
     iron-dropdown {
       position: absolute !important;
-    }
-
-    paper-tab[focused].uql-mega-menu {
-      border: thin solid #000;
     }
   </style>
 
