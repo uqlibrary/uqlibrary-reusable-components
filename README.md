@@ -158,9 +158,9 @@ Sample test commands:
 
 (The nightwatch e2e tests are setup as one file per project, plus a file of minimal common items which isn't valid to run on its own. To only run the valid tests, use the tag e2etest.)
 
-# Workflow
+## Workflow
 
-## Suggested workflow for changing CSS on 3rd party sites:
+### Suggested workflow for changing CSS on 3rd party sites:
 
 * Open the page that needs restyling
 * Assuming Chrome, open the inspect page and tweak settings in the Elements > css pane until you have what you want
@@ -173,3 +173,37 @@ Sample test commands:
 * Repeat
 
 This lets you precisely check any changes without having to create a github release.
+
+## Codeship backup at 30/june/2017
+
+### Test Setup
+
+jdk_switcher use oraclejdk8
+chmod a+x -R bin/*
+bin/codeship-setup.sh
+
+### Pipelines
+
+#### Test Commands
+
+export PIPE_NUM=1
+bin/codeship-testing.sh
+
+#### Unit tests
+
+export PIPE_NUM=2
+bin/codeship-testing.sh
+
+#### Saucelabs
+
+export PIPE_NUM=3
+bin/codeship-testing.sh
+
+### Deployment
+
+CUSTOM SCRIPT
+jdk_switcher use oraclejdk8
+chmod a+x -R bin/*
+bin/codeship-setup.sh
+bin/codeship-deployment.sh
+bin/codeship-prod-testing.sh
