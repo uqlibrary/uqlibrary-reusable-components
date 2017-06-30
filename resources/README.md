@@ -28,4 +28,4 @@ If neither col2 nor col3 is found, the menu is assumed to be a single column men
 
 * Remember that each line must be separated by a comma within the braces
 * If you put a col2 entry _after_ the last col3 entry within a submenu, display weirdness may happen - don't do that...
-* test layout carefully when first adding a third column
+* Be careful changing from 2-cols to 3-cols - if you change the left hand menu the placement will need adjustment as it is currently sized to push `Locations & Hours` to the left. Developers may need to make changes

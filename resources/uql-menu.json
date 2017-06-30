@@ -107,6 +107,10 @@
           "label": "Databases",
           "href": "https://app.library.uq.edu.au/#/gateways/database?browse=&alpha=&title=&sub="
         },
+         {
+          "label": "Google Scholar",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/google-scholar"
+        },
         {
           "label": "UQ eSpace",
           "subtext": "Archive of UQ research & more",
