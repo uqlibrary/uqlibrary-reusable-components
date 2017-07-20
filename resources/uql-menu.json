@@ -8,7 +8,7 @@
         {
           "label": "Your librarian",
           "subtext": "Get subject-specific help",
-          "href": "https://www.library.uq.edu.au/contacts/librarians/",
+          "href": "https://web.library.uq.edu.au/library-services/liaison-librarians",
           "col2": "yes"
         },
         {
@@ -109,6 +109,7 @@
         },
          {
           "label": "Google Scholar",
+          "subtext": "Access via the Library",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/google-scholar"
         },
         {
