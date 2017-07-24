@@ -131,7 +131,7 @@ prm-main-menu {
 }
 
 // Hide the article full view side menu item "Tags"
-button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme.md-ink-ripple[aria-label="Tags"] {
+button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme[aria-label="Tags"] {
   display: none;
 }
 
