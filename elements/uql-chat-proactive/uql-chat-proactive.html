@@ -1,0 +1,30 @@
+<link rel="import" href="../elements.html">
+
+<!--
+`<uql-chat-proactive>` provides a popup at the bottom of the page that offers chat when AskUs is online
+
+Example:
+      <uql-chat-proactive></uql-chat-proactive>
+
+@demo uql-chat-proactive/demo/index.html
+-->
+
+<dom-module id="uql-chat-proactive">
+
+    <style is="custom-style" include="common-styles">
+        :host {
+            font-family: var(--font-family);
+            font-size: 10px;
+        }
+    </style>
+    <template>
+        <uqlibrary-api-contacts id="contactsApi"></uqlibrary-api-contacts>
+        <uqlibrary-ga id="ga" app-name="Header Ask Us"></uqlibrary-ga>
+        <div>
+
+        </div>
+
+    </template>
+
+    <script src="uql-chat-proactive.js"></script>
+</dom-module>
