@@ -69,10 +69,7 @@
       // particularly in the unusual event that chat is going up and down a lot
       // and it might annoy users, going up and down, if they are on the page for a while
       // the tab is always there - that is sufficient
-
-      // TODO add check for 'if cookie not set'
-var cookieset = false;
-      if (!cookieset) {
+      if (!this._isCookieSetNoPopup()) {
         this.async(function () {
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
@@ -128,7 +125,7 @@ var cookieset = false;
      * called when the uses clicks the 'x' button or 'maybe later'
      */
     _closeDialog: function() {
-      // TODO: add cookie to stop it expanding again
+      this._setCookieNoPopup();
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
     },
@@ -205,6 +202,41 @@ var cookieset = false;
         return (item.label === 'Contact form');
       });
       this.contactLinkItems = tempitem[0];
+    },
+
+    /**
+     * Gets a cookie by name
+     * @param name the name of the cookie to return
+     * @returns {String}
+     * @private
+     */
+    _getCookie: function (name) {
+      var parts = document.cookie.split(";");
+      for (var i = 0, l = parts.length; i < l; i++) {
+        var cookieParts = parts[i].trim().split('=');
+        if (cookieParts[0] === name) {
+          return cookieParts[1];
+        }
+      }
+    },
+
+    /**
+     * set a cookie so the user doesnt see the popup for the rest of the session
+     * @private
+     */
+    _setCookieNoPopup: function() {
+      document.cookie="noChatPopup=true; expires=0; path=/";
+    },
+
+    /**
+     * check if the no-oppup- cookie has been set
+     * @returns {boolean}
+     * @private
+     */
+    _isCookieSetNoPopup: function() {
+      cookie = this._getCookie('noChatPopup');
+      return (typeof cookie !== "undefined");
     }
+
   });
 })();
