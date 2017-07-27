@@ -48,7 +48,7 @@
 
       numberSecondsBeforePopup: {
         type: Number,
-        value: 1000 // 30000
+        value: 10000 // 60000
       },
 
       /**
@@ -63,23 +63,26 @@
     ready: function () {
       var self = this;
 
-      // start timer for 30 seconds
+      // set a timer for the tab to expand to a window
       // logic - we only do this on page load, not whenever chat comes online.
       // we could do it when chat comes online, but that is liable to give uneven chat loads
       // particularly in the unusual event that chat is going up and down a lot
       // and it might annoy users, going up and down, if they are on the page for a while
       // the tab is always there - that is sufficient
-      this.async(function() {
-if (this._chatOnline) { console.log('async: _chatOnline true'); } else { console.log('async: _chatOnline false');}
-        if (this._chatOnline) {
-          this._showPopupChatBlock = true;
-          this._showChatOnlineTab = false;
-        }
-      }, this.numberSecondsBeforePopup);
+
+      // add check for 'if cookie not set'
+var cookieset = false;
+      if (!cookieset) {
+        this.async(function () {
+          if (this._chatOnline) {
+            this._showPopupChatBlock = true;
+            this._showChatOnlineTab = false;
+          }
+        }, this.numberSecondsBeforePopup);
+      }
     },
 
     attached: function () {
-console.log('in attached');
       var self = this;
 
       // get chat status
@@ -98,20 +101,13 @@ console.log('in attached');
       var contactsJson = contactsJsonFileData;
 
       if (contactsJson !== null) {
-console.log('set from vulc');
         this._setData(contactsJson);
       } else {
-console.log('set from api');
         this.$.contactsApi.addEventListener('uqlibrary-api-contacts-loaded', function(e) {
-console.log('e: '+e.detail);
           self._setData(e.detail);
-console.log('contacts got');
         });
-        if(this.autoLoad){
-          this.$.contactsApi.get();
-        }
+        this.$.contactsApi.get();
       }
-      console.log('end attached');
     },
 
     /**
@@ -126,10 +122,13 @@ console.log('contacts got');
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
       }
-if (this._chatOnline) { console.log('_handleChangedChatStatus: _chatOnline true'); } else { console.log('_handleChangedChatStatus: _chatOnline false');}
     },
 
+    /*
+     * called when the uses clicks the 'x' button or 'maybe later'
+     */
     _closeDialog: function() {
+      // add cookie to stop it expanding again
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
     },
@@ -153,24 +152,21 @@ if (this._chatOnline) { console.log('_handleChangedChatStatus: _chatOnline true'
      * @private
      */
     _openChat: function (e) {
-//      this.fire("uql-chat-proactive-link-clicked", this._link(e.model.item));
-console.log(this.chatLinkItems);
       // Check if this item has a custom "target" attribute
-      if (e.model.item.target) {
+      if (this.chatLinkItems.target) {
         if (this._isMobile()) {
           // On mobile we ignore the targetOptions
-          window.open(this._link(e.model.item), e.model.item.target);
+          window.open(this._link(this.chatLinkItems), this.chatLinkItems.target);
         } else {
-          window.open(this._link(e.model.item), e.model.item.target, e.model.item.targetOptions || "");
+          window.open(this._link(this.chatLinkItems), this.chatLinkItems.target, this.chatLinkItems.targetOptions || "");
         }
       } else {
-        window.location = this._link(e.model.item);
+        window.location = this._link(this.chatLinkItems);
       }
     },
 
-    // tbd
     _openContactForm: function(e) {
-
+      window.location = 'https://uqcurrent.custhelp.com/app/library/contact';
     },
 
     /**
@@ -188,20 +184,10 @@ console.log(this.chatLinkItems);
      * @private
      */
     _setData: function (data) {
-console.log('in _setData');
-      //      this.$.callout.calloutItems = data;
-      this.chatLinkItems = data.filter(this._getChatLinkItems);
-console.log("chatLinkItems: "+this.chatLinkItems);
-    },
-
-    /**
-     * extract the chat item from an array
-     * @param item
-     * @returns {boolean}
-     * @private
-     */
-    _getChatLinkItems: function(item) {
-      return (item.label == 'Chat');
+      tempitem = data.items.filter(function(item) {
+        return (item.label === 'Chat');
+      });
+      this.chatLinkItems = tempitem[0];
     }
   });
 })();
