@@ -14,7 +14,30 @@ Example:
     <style is="custom-style" include="common-styles">
         :host {
             font-family: var(--font-family);
-            font-size: 10px;
+        }
+
+        .popupinvite {
+            position: relative;
+            padding: 8px;
+            padding: 0.5rem;
+
+            margin-right: 8px;
+            margin-right: 0.5rem;
+
+        }
+        .popupinvite h3 {
+                margin: 8px;
+                margin: 0.5rem;
+
+        }
+        paper-button.closebutton {
+            position: absolute;
+            top: 8px;
+            top: 0.5rem;
+            right: 1px;
+        }
+        .actionbuttons {
+            text-align: center;
         }
     </style>
     <template>
@@ -35,38 +58,36 @@ Example:
         <div hidden$="[[!_showChatOnlineTab]]">
             <div>
                 <paper-button
-                        aria-label$="Chat - online now"
-                        class="utton-callout button-colored-theme"
+                        aria-label="Chat - online now"
+                        class="button-colored-theme"
                         role="button"
                         on-click="_openChat">Chat - online now</paper-button>
             </div>
         </div>
 
-        <div hidden$="[[!_showPopupChatBlock]]">
-            <paper-dialog>
-                <div>
-                    <p>Chat - online now</p>
-                    <paper-button
-                            aria-label$="Close"
-                            class="button-colored-theme"
-                            role="button"
-                            on-click="_closeDialog">x</paper-button>
-                </div>
-                <p>Library staff are here to assist. Would you like to chat?</p>
-                <div>
-                    <paper-button
-                            aria-label$="Chat now"
-                            class="button-callout button-colored-theme"
-                            role="button"
-                            on-click="_openChat">Chat now</paper-button>
-                    <paper-button
-                            aria-label$="Maybe later"
-                            class="button-callout button-colored-theme"
-                            role="button"
-                            on-click="_closeDialog">Maybe later</paper-button>
-                </div>
-            </paper-dialog>
-        </div>
+        <paper-card class="popupinvite" hidden$="[[!_showPopupChatBlock]]">
+            <div>
+                <h3>Chat - online now</h3>
+                <paper-button
+                        aria-label="Close"
+                        class="button-colored-secondary closebutton"
+                        role="button"
+                        on-click="_closeDialog">x</paper-button>
+            </div>
+            <p>Library staff are here to assist. Would you like to chat?</p>
+            <div class="actionbuttons">
+                <paper-button
+                        aria-label="Chat now"
+                        class="button-colored-accent"
+                        role="button"
+                        on-click="_openChat">Chat now</paper-button>
+                <paper-button
+                        aria-label="Maybe later"
+                        class="button-colored-secondary"
+                        role="button"
+                        on-click="_closeDialog">Maybe later</paper-button>
+            </div>
+        </paper-card>
 
     </template>
 
