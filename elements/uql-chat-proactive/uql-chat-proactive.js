@@ -70,7 +70,7 @@
       // and it might annoy users, going up and down, if they are on the page for a while
       // the tab is always there - that is sufficient
 
-      // add check for 'if cookie not set'
+      // TODO add check for 'if cookie not set'
 var cookieset = false;
       if (!cookieset) {
         this.async(function () {
@@ -128,7 +128,7 @@ var cookieset = false;
      * called when the uses clicks the 'x' button or 'maybe later'
      */
     _closeDialog: function() {
-      // add cookie to stop it expanding again
+      // TODO: add cookie to stop it expanding again
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
     },
@@ -148,25 +148,37 @@ var cookieset = false;
     },
 
     /**
-     * Called when chat open link is clicked. Fires an event and redirects the user to the given link
+     * open a link for any Contact object
+     * @param item
      * @private
      */
-    _openChat: function (e) {
+    _openWindow: function (item) {
       // Check if this item has a custom "target" attribute
-      if (this.chatLinkItems.target) {
+      if (item.target) {
         if (this._isMobile()) {
           // On mobile we ignore the targetOptions
-          window.open(this._link(this.chatLinkItems), this.chatLinkItems.target);
+          window.open(this._link(item), item.target);
         } else {
-          window.open(this._link(this.chatLinkItems), this.chatLinkItems.target, this.chatLinkItems.targetOptions || "");
+          window.open(this._link(item), item.target, item.targetOptions || "");
         }
       } else {
-        window.location = this._link(this.chatLinkItems);
+        window.location = this._link(item);
       }
     },
 
-    _openContactForm: function(e) {
-      window.location = 'https://uqcurrent.custhelp.com/app/library/contact';
+    /**
+     * Called when chat now is clicked.
+     */
+    openChat: function () {
+      this._openWindow(this.chatLinkItems);
+    },
+
+    /**
+     *
+     * called when 'leave a question' is clicked
+     */
+    openContactForm: function() {
+      this._openWindow(this.contactLinkItems);
     },
 
     /**
@@ -188,6 +200,11 @@ var cookieset = false;
         return (item.label === 'Chat');
       });
       this.chatLinkItems = tempitem[0];
+
+      tempitem = data.items.filter(function(item) {
+        return (item.label === 'Contact form');
+      });
+      this.contactLinkItems = tempitem[0];
     }
   });
 })();
