@@ -24,6 +24,8 @@ Example:
             margin-right: 8px;
             margin-right: 0.5rem;
 
+            border: thin solid var(--secondary-color);
+
         }
         .popupinvite h3 {
                 margin: 8px;
@@ -40,6 +42,11 @@ Example:
             margin-right: -40px;
             margin-top: -20px;
         }
+        paper-button.closebutton:hover {
+            background-color: inherit;
+            color: var(--secondary-color-dark);
+        }
+
         .actionbuttons {
             text-align: center;
         }
@@ -87,7 +94,7 @@ Example:
                         on-click="openChat">Chat now</paper-button>
                 <paper-button
                         aria-label="Maybe later"
-                        class="button-secondary"
+                        class="button-colored-secondary"
                         role="button"
                         on-click="_closeDialog">Maybe later</paper-button>
             </div>
