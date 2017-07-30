@@ -46,6 +46,12 @@
         value: false
       },
 
+      /* it shows the offline tab straight away if we dont control it like this */
+      _chatstatusupdated: {
+        type: Boolean,
+        value: false
+      },
+
       numberSecondsBeforePopup: {
         type: Number,
         value: 10000 // 60000
@@ -63,13 +69,13 @@
     ready: function () {
       var self = this;
 
-      // set a timer for the tab to expand to a window
-      // logic - we only do this on page load, not whenever chat comes online.
-      // we could do it when chat comes online, but that is liable to give uneven chat loads
-      // particularly in the unusual event that chat is going up and down a lot
-      // and it might annoy users, going up and down, if they are on the page for a while
-      // the tab is always there - that is sufficient
       if (!this._isCookieSetNoPopup()) {
+        // set a timer for the tab to expand to a window
+        // logic - we only do this on page load, not whenever chat comes online.
+        // we could do it when chat comes online, but that is liable to give uneven chat loads
+        // particularly in the unusual event that chat is going up and down a lot
+        // and it might annoy users, going up and down, if they are on the page for a while
+        // the tab is always there - that is sufficient
         this.async(function () {
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
@@ -83,12 +89,13 @@
       var self = this;
 
       // get chat status
-      this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function(e) {
-        if(e.detail && e.detail.hasOwnProperty('online')) {
-          self._chatOnline = e.detail.online;
-        }
-      });
-      this.$.chatStatusApi.get();
+        this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function(e) {
+          if(e.detail && e.detail.hasOwnProperty('online')) {
+            self._chatOnline = e.detail.online;
+          }
+        });
+        this.$.chatStatusApi.get();
+        this._chatstatusupdated = true;
 
       // get contact data - it holds popup details for chat
 
@@ -114,7 +121,7 @@
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
         this._showChatOfflineTab = false;
-      } else {
+      } else if (this._chatstatusupdated) {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
