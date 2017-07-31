@@ -244,17 +244,42 @@
      * @private
      */
     _setCookieNoPopup: function() {
-      document.cookie=this.cookieNameNoPopup+"=true; expires=0; path=/");
+      document.cookie=this.cookieNameNoPopup + "=true; expires=0; path=" + this.getDomain(window.location.hostname);
     },
 
     /**
-     * check if the no-oppup- cookie has been set
+     * check if the nopop cookie has been set
      * @returns {boolean}
      * @private
      */
     _isCookieSetNoPopup: function() {
       cookie = this._getCookie(this.cookieNameNoPopup);
       return (typeof cookie !== "undefined");
+    },
+
+    /**
+     * get the domain that should be written to the cookie
+     * we cant hit all the possible domains at the same time,
+     * but we can at least a generic library one, rather than only the subdomain
+     * @param currentHostname
+     */
+    getDomain: function(currentHostname) {
+      var cookiePath;
+      var libraryRegExp = /(.*).library.uq.edu.au/i;
+      if (libraryRegExp.test(currentHostname))  {
+        // If we are on a library subdomain, use library root domain.
+        cookiePath = '.library.uq.edu.au';
+      } else {
+        // Otherwise, eg studenthub.uq.edu.au, use that domain, without any www
+        var otherRegExp = /www.(.*)/i;
+        if (otherRegExp.test(currentHostname)) {
+          cookiePath = currentHostname.substring(4);
+        } else {
+          cookiePath = '.' + currentHostname;
+        }
+      }
+console.log('writing cookie for domain '+cookiePath);
+      return cookiePath;
     }
 
   });
