@@ -47,7 +47,7 @@
       },
 
       /* it shows the offline tab straight away if we dont control it like this */
-      _chatstatusupdated: {
+      _chatStatusUpdated: {
         type: Boolean,
         value: false
       },
@@ -98,7 +98,9 @@
     attached: function () {
       var self = this;
 
-      // get chat status
+      // get chat status after a number of seconds
+      // this avoids the initial call which always seems to be offline
+      // so we dont briefly load the offline tab
       this.async(function () {
         this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function(e) {
           if(e.detail && e.detail.hasOwnProperty('online')) {
@@ -106,7 +108,7 @@
           }
         });
         this.$.chatStatusApi.get();
-        this._chatstatusupdated = true;
+        this._chatStatusUpdated = true;
       }, this.numberSecondsBeforeChatTabAppears);
 
       // get contact data - it holds popup details for chat
@@ -133,7 +135,7 @@
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
         this._showChatOfflineTab = false;
-      } else if (this._chatstatusupdated) {
+      } else if (this._chatStatusUpdated) {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
@@ -156,7 +158,7 @@
      * @private
      */
     _link: function (item) {
-      if (item.linkMobile && this._isMobile()) {
+      if (item.linkMobile && this._isMobile(navigator.userAgent)) {
         return item.linkMobile;
       } else {
         return item.link;
@@ -171,7 +173,7 @@
     _openWindow: function (item) {
       // Check if this item has a custom "target" attribute
       if (item.target) {
-        if (this._isMobile()) {
+        if (this._isMobile(navigator.userAgent)) {
           // On mobile we ignore the targetOptions
           window.open(this._link(item), item.target);
         } else {
@@ -202,8 +204,8 @@
      * @returns {boolean}
      * @private
      */
-    _isMobile: function () {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    _isMobile: function (userAgent) {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
     },
 
     /**
@@ -212,15 +214,15 @@
      * @private
      */
     _setData: function (data) {
-      tempitem = data.items.filter(function(item) {
-        return (item.label === 'Chat');
-      });
-      this.chatLinkItems = tempitem[0];
+      this.chatLinkItems = this._setLinks(data, 'Chat');
+      this.contactLinkItems = this._setLinks(data, 'Contact form');
+    },
 
+    _setLinks: function (data, label) {
       tempitem = data.items.filter(function(item) {
-        return (item.label === 'Contact form');
+        return (item.label === label);
       });
-      this.contactLinkItems = tempitem[0];
+      return tempitem[0];
     },
 
     /**
@@ -264,22 +266,19 @@
      * @param currentHostname
      */
     getDomain: function(currentHostname) {
-      var cookiePath;
       var libraryRegExp = /(.*).library.uq.edu.au/i;
       if (libraryRegExp.test(currentHostname))  {
         // If we are on a library subdomain, use library root domain.
-        cookiePath = '.library.uq.edu.au';
+        return '.library.uq.edu.au';
       } else {
         // Otherwise, eg studenthub.uq.edu.au, use that domain, without any www
         var otherRegExp = /www.(.*)/i;
         if (otherRegExp.test(currentHostname)) {
-          cookiePath = currentHostname.substring(4);
+          return currentHostname.substring(3);
         } else {
-          cookiePath = '.' + currentHostname;
+          return '.' + currentHostname;
         }
       }
-console.log('writing cookie for domain '+cookiePath);
-      return cookiePath;
     }
 
   });
