@@ -57,17 +57,17 @@ Example:
         <uqlibrary-api-chat-status id="chatStatusApi"></uqlibrary-api-chat-status>
         <uqlibrary-ga id="ga" app-name="Header Proactive Chat"></uqlibrary-ga>
 
-        <div hidden$="[[!_showChatOfflineTab]]">
+        <div aria-live="polite" hidden$="[[!_showChatOfflineTab]]">
             <div>
                 <paper-button
-                        aria-label$="Chat offline - leave your question"
+                        aria-label="Chat offline - leave your question"
                         class="button-colored-theme"
                         role="button"
                         on-click="openContactForm">Chat offline - leave your question</paper-button>
             </div>
         </div>
 
-        <div hidden$="[[!_showChatOnlineTab]]">
+        <div aria-live="polite" hidden$="[[!_showChatOnlineTab]]">
             <div>
                 <paper-button
                         aria-label="Chat - online now"
@@ -77,7 +77,7 @@ Example:
             </div>
         </div>
 
-        <paper-card class="popupinvite" hidden$="[[!_showPopupChatBlock]]">
+        <paper-card class="popupinvite" role="alert" aria-live="polite" aria-label="Chat - online now" hidden$="[[!_showPopupChatBlock]]">
             <div>
                 <h3>Chat - online now</h3>
                 <paper-button
