@@ -52,9 +52,19 @@
         value: false
       },
 
+      numberSecondsBeforeChatTabAppears: {
+        type: Number,
+        value: 3000
+      },
+
       numberSecondsBeforePopup: {
         type: Number,
         value: 10000 // 60000
+      },
+
+      cookieNameNoPopup: {
+        type: String,
+        value: 'noChatPopup'
       },
 
       /**
@@ -71,7 +81,7 @@
 
       if (!this._isCookieSetNoPopup()) {
         // set a timer for the tab to expand to a window
-        // logic - we only do this on page load, not whenever chat comes online.
+        // logic - we only do this on page load (ie ready function), not whenever chat comes online.
         // we could do it when chat comes online, but that is liable to give uneven chat loads
         // particularly in the unusual event that chat is going up and down a lot
         // and it might annoy users, going up and down, if they are on the page for a while
@@ -89,6 +99,7 @@
       var self = this;
 
       // get chat status
+      this.async(function () {
         this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function(e) {
           if(e.detail && e.detail.hasOwnProperty('online')) {
             self._chatOnline = e.detail.online;
@@ -96,6 +107,7 @@
         });
         this.$.chatStatusApi.get();
         this._chatstatusupdated = true;
+      }, this.numberSecondsBeforeChatTabAppears);
 
       // get contact data - it holds popup details for chat
 
@@ -232,7 +244,7 @@
      * @private
      */
     _setCookieNoPopup: function() {
-      document.cookie="noChatPopup=true; expires=0; path=/";
+      document.cookie=this.cookieNameNoPopup+"=true; expires=0; path=/");
     },
 
     /**
@@ -241,7 +253,7 @@
      * @private
      */
     _isCookieSetNoPopup: function() {
-      cookie = this._getCookie('noChatPopup');
+      cookie = this._getCookie(this.cookieNameNoPopup);
       return (typeof cookie !== "undefined");
     }
 
