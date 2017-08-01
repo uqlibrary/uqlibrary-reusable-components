@@ -51,6 +51,10 @@ Example:
         .actionbuttons {
             text-align: center;
         }
+
+        .tab-button {
+            border: thin solid #fff;
+        }
     </style>
     <template>
         <uqlibrary-api-contacts id="contactsApi"></uqlibrary-api-contacts>
@@ -61,7 +65,7 @@ Example:
             <div>
                 <paper-button
                         aria-label="Chat offline - leave your question"
-                        class="button-colored-theme"
+                        class="button-colored-theme tab-button"
                         role="button"
                         on-click="openContactForm">Chat offline - leave your question</paper-button>
             </div>
@@ -71,7 +75,7 @@ Example:
             <div>
                 <paper-button
                         aria-label="Chat - online now"
-                        class="button-colored-theme"
+                        class="button-colored-theme tab-button"
                         role="button"
                         on-click="openChat">Chat - online now</paper-button>
             </div>
