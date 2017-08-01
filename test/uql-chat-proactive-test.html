@@ -112,8 +112,8 @@
               "label": "More ways to contact us"
             }
           };
-        var output = 'Chat';
-        expect(output).to.equal(testObj._setLink(input, 'Chat').label);
+        var expected = 'communication:chat';
+        expect(expected).to.equal(testObj._setLink(input, 'Chat').icon);
         done();
       });
 
@@ -146,8 +146,8 @@
                 "label": "More ways to contact us"
               }
             };
-          var output = 'Contact form';
-          expect(output).to.equal(testObj._setLink(input, 'Contact form').label);
+          var expected = 'device:dvr';
+          expect(expected).to.equal(testObj._setLink(input, 'Contact form').icon);
           done();
         });
       });
