@@ -3,28 +3,7 @@
     is: 'uql-chat-proactive',
     properties: {
       /**
-       * Holds menu item objects for the call out
-       */
-      menuItems: {
-        type: Array,
-        value: []
-      },
-      /**
-       * Holds the summary for this call out
-       */
-      summary: {
-        type: Object
-      },
-      /**
-       * Width of the main container
-       */
-      containerWidth: {
-        type: Number,
-        value: 280
-      },
-
-      /**
-       * Whether the chat is online
+       * Whether Chat is online
        */
       _chatOnline: {
         type: Boolean,
@@ -52,12 +31,12 @@
         value: false
       },
 
-      numberSecondsBeforeChatTabAppears: {
+      numberMillisecondsBeforeChatTabAppears: {
         type: Number,
         value: 3000
       },
 
-      numberSecondsBeforePopup: {
+      numberMillsecondsBeforePopup: {
         type: Number,
         value: 10000 // 60000
       },
@@ -90,8 +69,9 @@
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
             this._showChatOnlineTab = false;
+            this._showChatOfflineTab = false;
           }
-        }, this.numberSecondsBeforePopup);
+        }, this.numberMillsecondsBeforePopup);
       }
     },
 
@@ -109,7 +89,7 @@
         });
         this.$.chatStatusApi.get();
         this._chatStatusUpdated = true;
-      }, this.numberSecondsBeforeChatTabAppears);
+      }, this.numberMillisecondsBeforeChatTabAppears);
 
       // get contact data - it holds popup details for chat
 
@@ -119,10 +99,10 @@
       var contactsJson = contactsJsonFileData;
 
       if (contactsJson !== null) {
-        this._setData(contactsJson);
+        this._setLinks(contactsJson);
       } else {
         this.$.contactsApi.addEventListener('uqlibrary-api-contacts-loaded', function(e) {
-          self._setData(e.detail);
+          self._setLinks(e.detail);
         });
         this.$.contactsApi.get();
       }
@@ -157,7 +137,7 @@
      * @returns {*}
      * @private
      */
-    _link: function (item) {
+    _getLink: function (item) {
       if (item.linkMobile && this._isMobile(navigator.userAgent)) {
         return item.linkMobile;
       } else {
@@ -175,17 +155,17 @@
       if (item.target) {
         if (this._isMobile(navigator.userAgent)) {
           // On mobile we ignore the targetOptions
-          window.open(this._link(item), item.target);
+          window.open(this._getLink(item), item.target);
         } else {
-          window.open(this._link(item), item.target, item.targetOptions || "");
+          window.open(this._getLink(item), item.target, item.targetOptions || "");
         }
       } else {
-        window.location = this._link(item);
+        window.location = this._getLink(item);
       }
     },
 
     /**
-     * Called when chat now is clicked.
+     * Called when 'Chat Now' is clicked.
      */
     openChat: function () {
       this._openWindow(this.chatLinkItems);
@@ -217,12 +197,19 @@
      * @param data
      * @private
      */
-    _setData: function (data) {
-      this.chatLinkItems = this._setLinks(data, 'Chat');
-      this.contactLinkItems = this._setLinks(data, 'Contact form');
+    _setLinks: function (data) {
+      this.chatLinkItems = this._setLink(data, 'Chat');
+      this.contactLinkItems = this._setLink(data, 'Contact form');
     },
 
-    _setLinks: function (data, label) {
+    /**
+     * get one chunk of the Contact data, per the label
+     * @param data Object
+     * @param label string
+     * @returns object
+     * @private
+     */
+    _setLink: function (data, label) {
       tempitem = data.items.filter(function(item) {
         return (item.label === label);
       });
