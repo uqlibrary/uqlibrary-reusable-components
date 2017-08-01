@@ -250,7 +250,12 @@
      * @private
      */
     _setCookieNoPopup: function() {
-      document.cookie=this.cookieNameNoPopup + "=true; expires=0; path=" + this.getDomain(window.location.hostname);
+      var numDaysExpiry = 1;
+      var date = new Date();
+      date.setTime(date.getTime()+(numDaysExpiry*24*60*60*1000));
+      var expires = date.toGMTString();
+
+      document.cookie=this.cookieNameNoPopup + "=true; expires=" + expires + "; path=" + this.getDomain(window.location.hostname);
     },
 
     /**
