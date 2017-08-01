@@ -246,16 +246,23 @@
     },
 
     /**
-     * set a cookie so the user doesnt see the popup for the rest of the session
+     * get the date string for the cookie expiry
+     * @param numDaysExpiry integer
+     * @returns string
+     */
+    _getCookieExpiryDate: function (numDaysExpiry) {
+      var date = new Date();
+      date.setTime(date.getTime() + (numDaysExpiry * 24 * 60 * 60 * 1000));
+      return date.toGMTString();
+    },
+
+    /**
+     * set a cookie so the user doesnt see the popup for a while
+     * (was originally session cookie, but Chrome doesnt delete those!)
      * @private
      */
     _setCookieNoPopup: function() {
-      var numDaysExpiry = 1;
-      var date = new Date();
-      date.setTime(date.getTime()+(numDaysExpiry*24*60*60*1000));
-      var expires = date.toGMTString();
-
-      document.cookie=this.cookieNameNoPopup + "=true; expires=" + expires + "; path=" + this.getDomain(window.location.hostname);
+      document.cookie=this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=" + this.getDomain(window.location.hostname);
     },
 
     /**
@@ -271,7 +278,7 @@
     /**
      * get the domain that should be written to the cookie
      * we cant hit all the possible domains at the same time,
-     * but we can at least a generic library one, rather than only the subdomain
+     * but we can at least set a generic library one, rather than only the subdomain
      * @param currentHostname
      */
     getDomain: function(currentHostname) {
