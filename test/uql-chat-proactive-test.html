@@ -77,9 +77,80 @@
         done();
       });
 
-
-
     });
+
+    suite('set data unit tests', function () {
+      test('if chat url is correctly set', function (done) {
+
+        var input = {
+            "items": [
+              {
+                "label": "FAQ"
+              },
+              {
+                "label": "Chat",
+                "icon": "communication:chat",
+                "link": "https://uqcurrent.custhelp.com/app/chat/chat_launch_lib/p/45",
+                "disabled": "chat-offline",
+                "target": "chatWindow",
+                "targetOptions": "width=474, height=600"
+              },
+              {
+                "label": "Email"
+              },
+              {
+                "label": "Phone"
+              },
+              {
+                "label": "Contact form"
+              },
+              {
+                "label": "Come see us"
+              }
+            ],
+            "summary": {
+              "label": "More ways to contact us"
+            }
+          };
+        var output = 'Chat';
+        expect(output).to.equal(testObj._setLink(input, 'Chat').label);
+        done();
+      });
+
+      test('if contact url is correctly set', function (done) {
+
+          var input = {
+              "items": [
+                {
+                  "label": "FAQ"
+                },
+                {
+                  "label": "Chat"
+                },
+                {
+                  "label": "Email"
+                },
+                {
+                  "label": "Phone"
+                },
+                {
+                  "label": "Contact form",
+                  "icon": "device:dvr",
+                  "link": "https://uqcurrent.custhelp.com/app/library/contact"
+                },
+                {
+                  "label": "Come see us"
+                }
+              ],
+              "summary": {
+                "label": "More ways to contact us"
+              }
+            };
+          var output = 'Contact form';
+          expect(output).to.equal(testObj._setLink(input, 'Contact form').label);
+          done();
+        });
+      });
 
   });
 </script>
