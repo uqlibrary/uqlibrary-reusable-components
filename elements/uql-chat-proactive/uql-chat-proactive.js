@@ -69,7 +69,7 @@
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
             this._showChatOnlineTab = false;
-            this._showChatOfflineTab = false;
+            this._showChatOfflineTab = false; // for the rare event where we are going from offline to online at just the right moment
           }
         }, this.numberMillsecondsBeforePopup);
       }
@@ -179,8 +179,6 @@
      */
     openContactForm: function() {
       this._openWindow(this.contactLinkItems);
-      this._showPopupChatBlock = false;
-      this._showChatOnlineTab = true;
     },
 
     /**
