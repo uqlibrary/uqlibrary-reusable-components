@@ -189,6 +189,8 @@
      */
     openChat: function () {
       this._openWindow(this.chatLinkItems);
+      this._showPopupChatBlock = false;
+      this._showChatOnlineTab = true;
     },
 
     /**
@@ -197,6 +199,8 @@
      */
     openContactForm: function() {
       this._openWindow(this.contactLinkItems);
+      this._showPopupChatBlock = false;
+      this._showChatOnlineTab = true;
     },
 
     /**
