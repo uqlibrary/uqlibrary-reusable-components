@@ -28,7 +28,8 @@
       /* it shows the offline tab straight away if we dont control it like this */
       _chatStatusUpdated: {
         type: Boolean,
-        value: false
+        value: false,
+        observer: '_handleChangedChatStatus'
       },
 
       numberMillisecondsBeforeChatTabAppears: {
@@ -56,8 +57,6 @@
 
     },
     ready: function () {
-      var self = this;
-
       if (!this._isCookieSetNoPopup()) {
         // set a timer for the tab to expand to a window
         // logic - we only do this on page load (ie ready function), not whenever chat comes online.
@@ -69,7 +68,6 @@
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
             this._showChatOnlineTab = false;
-            this._showChatOfflineTab = false; // for the rare event where we are going from offline to online at just the right moment
           }
         }, this.numberMillsecondsBeforePopup);
       }
