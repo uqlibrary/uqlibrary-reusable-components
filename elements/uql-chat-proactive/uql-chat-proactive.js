@@ -28,8 +28,7 @@
       /* it shows the offline tab straight away if we dont control it like this */
       _chatStatusUpdated: {
         type: Boolean,
-        value: false,
-        observer: '_handleChangedChatStatus'
+        value: false
       },
 
       numberMillisecondsBeforeChatTabAppears: {
@@ -87,6 +86,7 @@
         });
         this.$.chatStatusApi.get();
         this._chatStatusUpdated = true;
+        this._handleChangedChatStatus();
       }, this.numberMillisecondsBeforeChatTabAppears);
 
       // get contact data - it holds popup details for chat
