@@ -25,7 +25,7 @@
         value: false
       },
 
-      /* it shows the offline tab straight away if we dont control it like this */
+      /* stops flash of offline before online tab */
       _chatStatusUpdated: {
         type: Boolean,
         value: false
@@ -55,22 +55,6 @@
       }
 
     },
-    ready: function () {
-      if (!this._isCookieSetNoPopup()) {
-        // set a timer for the tab to expand to a window
-        // logic - we only do this on page load (ie ready function), not whenever chat comes online.
-        // we could do it when chat comes online, but that is liable to give uneven chat loads
-        // particularly in the unusual event that chat is going up and down a lot
-        // and it might annoy users, going up and down, if they are on the page for a while
-        // the tab is always there - that is sufficient
-        this.async(function () {
-          if (this._chatOnline) {
-            this._showPopupChatBlock = true;
-            this._showChatOnlineTab = false;
-          }
-        }, this.numberMillsecondsBeforePopup);
-      }
-    },
 
     attached: function () {
       var self = this;
@@ -78,15 +62,16 @@
       // get chat status after a number of seconds
       // this avoids the initial call which always seems to be offline
       // so we dont briefly load the offline tab
+      // the delay also draws the user's attention to the tab
       this.async(function () {
         this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function(e) {
           if(e.detail && e.detail.hasOwnProperty('online')) {
             self._chatOnline = e.detail.online;
+            self._chatStatusUpdated = true;
+            self._handleChangedChatStatus();
           }
         });
         this.$.chatStatusApi.get();
-        this._chatStatusUpdated = true;
-        this._handleChangedChatStatus();
       }, this.numberMillisecondsBeforeChatTabAppears);
 
       // get contact data - it holds popup details for chat
@@ -104,6 +89,21 @@
         });
         this.$.contactsApi.get();
       }
+
+      if (!this._isCookieSetNoPopup()) {
+        // set a timer for the tab to expand to a window
+        // logic - we only do this on page load (ie ready function), not whenever chat comes online.
+        // we could do it when chat comes online, but that is liable to give uneven chat loads
+        // particularly in the unusual event that chat is going up and down a lot
+        // and it might annoy users, going up and down, if they are on the page for a while
+        // the tab is always there - that is sufficient
+        this.async(function () {
+          if (this._chatOnline) {
+            this._showPopupChatBlock = true;
+            this._showChatOnlineTab = false;
+          }
+        }, this.numberMillsecondsBeforePopup);
+      }
     },
 
     /**
@@ -113,7 +113,7 @@
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
         this._showChatOfflineTab = false;
-      } else if (this._chatStatusUpdated) {
+      } else if (typeof this._chatStatusUpdated !== 'undefined') {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
