@@ -8,12 +8,12 @@
         {
           "label": "Your librarian",
           "subtext": "Get subject-specific help",
-          "href": "https://www.library.uq.edu.au/contacts/librarians/",
+          "href": "https://web.library.uq.edu.au/library-services/liaison-librarians",
           "col2": "yes"
         },
         {
           "label": "Book a room",
-          "href": "https://www.library.uq.edu.au/fbs",
+          "href": "https://uqbookit.uq.edu.au/#/app/booking-types/77b52dde-d704-4b6d-917e-e820f7df07cb",
           "col2": "yes"
         },
         {
@@ -109,6 +109,7 @@
         },
          {
           "label": "Google Scholar",
+          "subtext": "Enhanced access via UQ Library",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/google-scholar"
         },
         {
