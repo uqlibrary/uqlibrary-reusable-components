@@ -160,3 +160,9 @@ span[translate="nui.browse.crossref.see"] {
 prm-user-area {
   margin-top: 10px !important;
 }
+
+// saved searches and search history list items run over the 'number icon' in narrower windows (and any Windows chrome)
+md-list-item .md-list-item-text.layout-fill.layout-align-start-start.layout-column.flex-80 {
+  margin-left: 30px;
+  margin-top: 10px;
+}
