@@ -245,7 +245,8 @@
      * @private
      */
     _setCookieNoPopup: function() {
-      document.cookie=this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=" + this.getDomain(window.location.hostname);
+console.log('write cookie as: '+this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=/; domain=" + this.getDomain(window.location.hostname))
+      document.cookie=this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=/; domain=" + this.getDomain(window.location.hostname);
     },
 
     /**
@@ -262,20 +263,20 @@
      * get the domain that should be written to the cookie
      * we cant hit all the possible domains at the same time,
      * but we can at least set a generic library one, rather than only the subdomain
-     * @param currentHostname
+     * @param hostname
      */
-    getDomain: function(currentHostname) {
+    getDomain: function(hostname) {
       var libraryRegExp = /(.*).library.uq.edu.au/i;
-      if (libraryRegExp.test(currentHostname))  {
+      if (libraryRegExp.test(hostname))  {
         // If we are on a library subdomain, use library root domain.
         return '.library.uq.edu.au';
       } else {
         // Otherwise, eg studenthub.uq.edu.au, use that domain, without any www
         var otherRegExp = /www.(.*)/i;
-        if (otherRegExp.test(currentHostname)) {
-          return currentHostname.substring(3);
+        if (otherRegExp.test(hostname)) {
+          return hostname.substring(3);
         } else {
-          return '.' + currentHostname;
+          return '.' + hostname;
         }
       }
     }
