@@ -245,7 +245,7 @@
      * @private
      */
     _setCookieNoPopup: function() {
-console.log('write cookie as: '+this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=/; domain=" + this.getDomain(window.location.hostname))
+console.log('write cookie as: '+this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=/; domain=" + this.getDomain(window.location.hostname));
       document.cookie=this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=/; domain=" + this.getDomain(window.location.hostname);
     },
 
