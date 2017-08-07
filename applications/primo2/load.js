@@ -8,6 +8,13 @@ var fixUserArea = setInterval(function() {
         if (favouritesElement !== null && typeof(favouritesElement) !== 'undefined') {
             favouritesElement.parentNode.removeChild(favouritesElement);
         }
+
+        // add proactive chat element
+        // (search.library has no footer - elsewhere we have just attached it to the minimal footer)
+        var chatBlockParent = document.createElement('div');
+        var chatblock = document.createElement('uql-chat-proactive');
+        document.chatBlockParent.appendChild(chatblock);
+        document.body.appendChild(chatBlockParent);
     }
 }, 100);
 
