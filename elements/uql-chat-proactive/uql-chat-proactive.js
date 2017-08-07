@@ -92,7 +92,7 @@
 
       if (!this._isCookieSetNoPopup()) {
         // set a timer for the tab to expand to a window
-        // logic - we only do this on page load (ie ready function), not whenever chat comes online.
+        // logic - we only do this on page load (ie attached function), not whenever chat comes online.
         // we could do it when chat comes online, but that is liable to give uneven chat loads
         // particularly in the unusual event that chat is going up and down a lot
         // and it might annoy users, going up and down, if they are on the page for a while
@@ -245,8 +245,11 @@
      * @private
      */
     _setCookieNoPopup: function() {
-console.log('write cookie as: '+this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=/; domain=" + this.getDomain(window.location.hostname));
-      document.cookie=this.cookieNameNoPopup + "=true; expires=" + this._getCookieExpiryDate(1) + "; path=/; domain=" + this.getDomain(window.location.hostname);
+      var cookieString = this.cookieNameNoPopup + "=true;";
+      cookieString += " expires=" + this._getCookieExpiryDate(1) + ";";
+      cookieString += " path=/;";
+      cookieString += " domain=" + this.getDomain(window.location.hostname);
+      document.cookie = cookieString;
     },
 
     /**
@@ -267,7 +270,9 @@ console.log('write cookie as: '+this.cookieNameNoPopup + "=true; expires=" + thi
      */
     getDomain: function(hostname) {
       var libraryRegExp = /(.*).library.uq.edu.au/i;
-      if (libraryRegExp.test(hostname))  {
+      if ('localhost' == hostname)  {
+        return 'localhost';
+      } else if (libraryRegExp.test(hostname))  {
         // If we are on a library subdomain, use library root domain.
         return '.library.uq.edu.au';
       } else {
