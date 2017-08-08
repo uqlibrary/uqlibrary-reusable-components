@@ -15,10 +15,10 @@ if [ ${CI_BRANCH} == "production" ]; then
   echo "Run nightwatch tests"
   cd bin/
 
-  echo "local firefox on windows test..."
+  printf "\n --- LOCAL FIREFOX on windows test... ---\n\n"
   nightwatch -c nightwatch.json --tag e2etest
 
-  echo "local chrome on windows test..."
+  printf "\n --- LOCAL CHROME on windows test... ---\n\n"
   nightwatch -c nightwatch.json --env chrome --tag e2etest
 
   # saucelabs only on production branch
@@ -32,23 +32,23 @@ if [ ${CI_BRANCH} == "production" ]; then
   sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
   sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
-  echo "chrome on windows on saucelabs"
+  printf "\n --- CHROME ON WINDOWS on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --tag e2etest
 
-  echo "firefox on windows on saucelabs"
+  printf "\n --- FIREFOX ON WINDOWS on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows --tag e2etest
 
   # note: edge and ie11 require avoidProxy set to true in the .json file per https://support.saucelabs.com/customer/en/portal/private/cases/43779
-  echo "edge on saucelabs"
+  printf "\n --- EDGE on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
 
-  echo "chrome on mac on saucelabs"
+  printf "\n --- CHROME ON MAC on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
 
-  echo "firefox on mac on saucelabs"
+  printf "\n --- FIREFOX ON MAC on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac --tag e2etest
 
-  echo "safari on mac on saucelabs"
+  printf "\n --- SAFARI ON MAC on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
 
 fi
