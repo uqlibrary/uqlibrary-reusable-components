@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UQ Library Proactive Chat</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../node_modules/web-component-tester/browser.js"></script>
+  <script src="../bower_components/test-fixture/test-fixture-mocha.js"></script>
+  <link rel="import" href="../bower_components/test-fixture/test-fixture.html">
+
+  <link rel="import" href="../elements/uql-chat-proactive/uql-chat-proactive.html">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body class="fullbleed layout vertical">
+<test-fixture id="basic">
+  <template>
+    <uql-chat-proactive></uql-chat-proactive>
+  </template>
+</test-fixture>
+<script>
+  suite('<uql-chat-proactive> tests', function () {
+    var testObj;
+
+    setup(function () {
+      testObj = fixture('basic');
+      document.cookie="UQLMockData=enabled";
+    });
+
+//    a11ySuite('basic');
+
+    suite('domain test method unit tests', function () {
+
+      test('if search.library recognised', function (done) {
+        var input = 'search.library.uq.edu.au';
+        var output = '.library.uq.edu.au';
+        expect(output).to.equal(testObj.getDomain(input));
+        done();
+      });
+
+      test('if www.library recognised', function (done) {
+        var input = 'www.library.uq.edu.au';
+        var output = '.library.uq.edu.au';
+        expect(output).to.equal(testObj.getDomain(input));
+        done();
+      });
+
+      test('if web.library recognised', function (done) {
+        var input = 'web.library.uq.edu.au';
+        var output = '.library.uq.edu.au';
+        expect(output).to.equal(testObj.getDomain(input));
+        done();
+      });
+
+      test('if studenthub recognised', function (done) {
+        var input = 'www.studenthub.uq.edu.au';
+        var output = '.studenthub.uq.edu.au';
+        expect(output).to.equal(testObj.getDomain(input));
+        done();
+      });
+
+      test('if omeka recognised', function (done) {
+        var input = 'uqlibraryonlineexhibitions.omeka.net';
+        var output = '.uqlibraryonlineexhibitions.omeka.net';
+        expect(output).to.equal(testObj.getDomain(input));
+        done();
+      });
+
+      test('if www - free domain recognised', function (done) {
+        var input = 'studenthub.uq.edu.au';
+        var output = '.studenthub.uq.edu.au';
+        expect(output).to.equal(testObj.getDomain(input));
+        done();
+      });
+
+    });
+
+    suite('set data unit tests', function () {
+      test('if chat url is correctly set', function (done) {
+
+        var input = {
+            "items": [
+              {
+                "label": "FAQ"
+              },
+              {
+                "label": "Chat",
+                "icon": "communication:chat",
+                "link": "https://uqcurrent.custhelp.com/app/chat/chat_launch_lib/p/45",
+                "disabled": "chat-offline",
+                "target": "chatWindow",
+                "targetOptions": "width=474, height=600"
+              },
+              {
+                "label": "Email"
+              },
+              {
+                "label": "Phone"
+              },
+              {
+                "label": "Contact form"
+              },
+              {
+                "label": "Come see us"
+              }
+            ],
+            "summary": {
+              "label": "More ways to contact us"
+            }
+          };
+        var expected = 'communication:chat';
+        expect(expected).to.equal(testObj._setLink(input, 'Chat').icon);
+        done();
+      });
+
+      test('if contact url is correctly set', function (done) {
+
+          var input = {
+              "items": [
+                {
+                  "label": "FAQ"
+                },
+                {
+                  "label": "Chat"
+                },
+                {
+                  "label": "Email"
+                },
+                {
+                  "label": "Phone"
+                },
+                {
+                  "label": "Contact form",
+                  "icon": "device:dvr",
+                  "link": "https://uqcurrent.custhelp.com/app/library/contact"
+                },
+                {
+                  "label": "Come see us"
+                }
+              ],
+              "summary": {
+                "label": "More ways to contact us"
+              }
+            };
+          var expected = 'device:dvr';
+          expect(expected).to.equal(testObj._setLink(input, 'Contact form').icon);
+          done();
+        });
+      });
+
+  });
+</script>
+</body>
+</html>

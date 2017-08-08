@@ -1,0 +1,110 @@
+<link rel="import" href="../elements.html">
+
+<!--
+`<uql-chat-proactive>` provides a popup at the bottom of the page that offers chat when AskUs is online
+
+Example:
+      <uql-chat-proactive></uql-chat-proactive>
+
+@demo uql-chat-proactive/demo/index.html
+-->
+
+<dom-module id="uql-chat-proactive">
+
+    <style is="custom-style" include="common-styles">
+        :host {
+            font-family: var(--font-family);
+        }
+
+        .popupinvite {
+            position: relative;
+            padding: 8px;
+            padding: 0.5rem;
+
+            margin-right: 8px;
+            margin-right: 0.5rem;
+
+            border: thin solid var(--secondary-color);
+
+        }
+        .popupinvite h3 {
+            margin: 8px 8px 8px 0;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+
+        }
+        paper-button.closebutton {
+            position: absolute;
+            top: 8px;
+            top: 0.5rem;
+            right: -8px;
+            right: -0.5rem;
+
+            font-size: 30px;
+            margin-right: -40px;
+            margin-top: 0;
+            padding: 0;
+        }
+        paper-button.closebutton:hover {
+            background-color: inherit;
+            color: var(--secondary-color-dark);
+        }
+
+        .actionbuttons {
+            text-align: center;
+        }
+
+        .tab-button {
+            border: thin solid #fff;
+        }
+    </style>
+    <template>
+        <uqlibrary-api-contacts id="contactsApi"></uqlibrary-api-contacts>
+        <uqlibrary-api-chat-status id="chatStatusApi"></uqlibrary-api-chat-status>
+        <uqlibrary-ga id="ga" app-name="Header Proactive Chat"></uqlibrary-ga>
+
+        <div aria-live="polite" hidden$="[[!_showChatOfflineTab]]">
+            <div>
+                <paper-button
+                        aria-label="Chat offline - leave your question"
+                        class="button-colored-theme tab-button"
+                        role="button"
+                        on-click="openContactForm">Chat offline - leave your question</paper-button>
+            </div>
+        </div>
+
+        <div aria-live="polite" hidden$="[[!_showChatOnlineTab]]">
+            <div>
+                <paper-button
+                        aria-label="Chat - online now"
+                        class="button-colored-theme tab-button"
+                        role="button"
+                        on-click="openChat">Chat - online now</paper-button>
+            </div>
+        </div>
+
+        <paper-card class="popupinvite" role="alert" aria-live="polite" aria-label="Chat - online now" hidden$="[[!_showPopupChatBlock]]">
+            <h3>Chat - online now</h3>
+            <p>Library staff are here to assist. Would you like to chat?</p>
+            <div class="actionbuttons">
+                <paper-button
+                        aria-label="Chat now"
+                        class="button-colored-accent"
+                        role="button"
+                        on-click="openChat">Chat now</paper-button>
+                <paper-button
+                        aria-label="Maybe later"
+                        class="button-colored-secondary"
+                        role="button"
+                        on-click="_closeDialog">Maybe later</paper-button>
+            </div>
+            <paper-button
+                    aria-label="Close"
+                    class="button-secondary closebutton"
+                    role="button"
+                    on-click="_closeDialog">&#215;</paper-button>
+        </paper-card>
+
+    </template>
+
+    <script src="uql-chat-proactive.js"></script>
+</dom-module>
