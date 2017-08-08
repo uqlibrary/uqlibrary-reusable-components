@@ -38,7 +38,7 @@
 
       numberMillsecondsBeforePopup: {
         type: Number,
-        value: 10000 // 60000
+        value: 60000
       },
 
       cookieNameNoPopup: {
