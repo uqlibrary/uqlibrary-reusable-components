@@ -128,9 +128,14 @@
           "href": "https://web.library.uq.edu.au/research-tools-techniques/search-techniques"
         },
         {
-          "label": "Referencing",
-          "subtext": "Endnote, style guides, plagiarism",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing"
+          "label": "Referencing style guides",
+          "subtext": "APA, AGLC, Harvard, Chicago ...",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-style-guides"
+        },
+        {
+          "label": "Referencing software",
+          "subtext": "Endnote, Mendeley, Zotero",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-software"
         },
         {
           "label": "Off-campus access",
