@@ -107,6 +107,7 @@
         },
         {
           "label": "Databases",
+          "subtext": "Browse or search by title or topic",
           "href": "https://app.library.uq.edu.au/#/gateways/database?browse=&alpha=&title=&sub="
         },
          {
@@ -120,13 +121,13 @@
           "href": "https://espace.library.uq.edu.au/"
         },
         {
-          "label": "Research by subject",
+          "label": "Subject guides",
           "subtext": "Law, medicine, management ...",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/research-subject"
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/subject-guides"
         },
         {
           "label": "Search techniques",
-          "subtext": "Find quality information",
+          "subtext": "Find the results you need",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/search-techniques"
         },
         {
@@ -141,6 +142,7 @@
         },
         {
           "label": "Off-campus access",
+          "subtext": "Access full-text from anywhere",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access"
         }
       ]
@@ -381,6 +383,7 @@
         },
         {
           "label": "Participate in customer research",
+          "subtext": "Help us improve our services",
           "href": "https://web.library.uq.edu.au/about-us/participate-customer-research",
           "col2": "yes"
         }
