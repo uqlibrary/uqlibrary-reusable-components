@@ -7,12 +7,13 @@
       "items": [
         {
           "label": "Your librarian",
-          "subtext": "Get subject-specific help",
+          "subtext": "Expert advice for your discipline",
           "href": "https://web.library.uq.edu.au/library-services/liaison-librarians",
           "col2": "yes"
         },
         {
           "label": "Book a room",
+          "subtext": "Student meeting and study rooms",
           "href": "https://uqbookit.uq.edu.au/#/app/booking-types/77b52dde-d704-4b6d-917e-e820f7df07cb",
           "col2": "yes"
         },
@@ -30,6 +31,7 @@
         },
         {
           "label": "Copyright advice",
+          "subtext": "For teaching, research, publishing ...",
           "href": "https://web.library.uq.edu.au/library-services/copyright-advice",
           "col2": "yes"
         },
@@ -54,22 +56,21 @@
           "label": "for Teaching staff",
           "subtext": "Reading lists, Blackboard links ...",
           "href": "https://web.library.uq.edu.au/library-services/services-for-teaching-staff"
-
         },
         {
           "label": "for Professional staff",
+          "subtext": "Access, training, borrowing",
           "href": "https://web.library.uq.edu.au/library-services/services-for-professional-staff"
-
         },
         {
           "label": "for Hospital staff",
+          "subtext": "Membership, literature search",
           "href": "https://web.library.uq.edu.au/library-services/services-for-hospital-staff"
-
         },
         {
           "label": "for UQ alumni",
+          "subtext": "Membership, resources",
           "href": "https://web.library.uq.edu.au/library-services/services-for-uq-alumni"
-
         },
         {
           "label": "for Community",
@@ -79,18 +80,19 @@
         },
         {
           "label": "for Secondary schools",
+          "subtext": "UQL Cyberschool",
           "href": "https://web.library.uq.edu.au/library-services/services-for-secondary-schools"
-
         },
         {
           "label": "for Clients with disabilities",
+          "subtext": "Accessibiliy, assistive technology",
           "href": "https://web.library.uq.edu.au/library-services/support-for-clients-disabilities"
 
         },
         {
           "label": "for Other libraries",
+          "subtext": "Document supply, off-air recordings",
           "href": "https://web.library.uq.edu.au/library-services/for-other-libraries"
-
         }
       ]
     },
@@ -105,6 +107,7 @@
         },
         {
           "label": "Databases",
+          "subtext": "Browse or search by title or topic",
           "href": "https://app.library.uq.edu.au/#/gateways/database?browse=&alpha=&title=&sub="
         },
          {
@@ -118,22 +121,28 @@
           "href": "https://espace.library.uq.edu.au/"
         },
         {
-          "label": "Research by subject",
+          "label": "Subject guides",
           "subtext": "Law, medicine, management ...",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/research-subject"
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/subject-guides"
         },
         {
           "label": "Search techniques",
-          "subtext": "Find quality information",
+          "subtext": "Find the results you need",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/search-techniques"
         },
         {
-          "label": "Referencing",
-          "subtext": "Endnote, style guides, plagiarism",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing"
+          "label": "Referencing style guides",
+          "subtext": "APA, AGLC, Harvard, Chicago ...",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-style-guides"
+        },
+        {
+          "label": "Referencing software",
+          "subtext": "Endnote, Mendeley, Zotero",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-software"
         },
         {
           "label": "Off-campus access",
+          "subtext": "Access full-text from anywhere",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access"
         }
       ]
@@ -374,6 +383,7 @@
         },
         {
           "label": "Participate in customer research",
+          "subtext": "Help us improve our services",
           "href": "https://web.library.uq.edu.au/about-us/participate-customer-research",
           "col2": "yes"
         }
