@@ -41,15 +41,25 @@ npm install -g gulp bower && npm install && bower install
 
 ### Updating IA
 
-Make sure your branch is set to master.  Make your changes to this file, either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).  
+BUEA staff are able to make changes to the Mega Menu. Instructions:
+
+* Make sure your branch is set to master.
+* Changes can be made either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).
+* Make your changes to this file:
 
 https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json
 
-Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here:
+* Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here:
 
 [Codeship for re-usable components](https://codeship.com/projects/99389)
     
 This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
+
+After BUEA staff have made changes, developers should start the following builds:
+
+* uqlibrary-reusable-components on master (build should happen from initial push to github)
+* uqlibrary-pages on production (pulls master of reusable, no release necessary) - updates homepage
+* uqlibrary-reusable-components on production (merge master into prod and push) - updates drupal at web.library.uq.edu.au
 
 ### Applications Customisations
 
@@ -199,7 +209,7 @@ bin/codeship-testing.sh
 export PIPE_NUM=3
 bin/codeship-testing.sh
 
-### Deployment
+### Deployment (mastr and production)
 
 CUSTOM SCRIPT
 jdk_switcher use oraclejdk8
