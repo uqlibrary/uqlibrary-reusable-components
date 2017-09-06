@@ -32,19 +32,14 @@ Example:
             margin: 0.5rem 0.5rem 0.5rem 0;
 
         }
-        paper-button.closebutton {
+        paper-icon-button.closebutton {
             position: absolute;
             top: 8px;
             top: 0.5rem;
-            right: -8px;
-            right: -0.5rem;
-
-            font-size: 30px;
-            margin-right: -40px;
-            margin-top: 0;
-            padding: 0;
+            right: 6px;
+            right: 0.75rem;
         }
-        paper-button.closebutton:hover {
+        paper-icon-button.closebutton:hover {
             background-color: inherit;
             color: var(--secondary-color-dark);
         }
@@ -97,11 +92,11 @@ Example:
                         role="button"
                         on-click="_closeDialog">Maybe later</paper-button>
             </div>
-            <paper-button
+            <paper-icon-button icon="close"
                     aria-label="Close"
                     class="button-secondary closebutton"
                     role="button"
-                    on-click="_closeDialog">&#215;</paper-button>
+                    on-click="_closeDialog"></paper-icon-button>
         </paper-card>
 
     </template>
