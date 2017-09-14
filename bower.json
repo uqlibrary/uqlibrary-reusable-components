@@ -26,7 +26,7 @@
     "validator-js": "~4.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.5.1",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.3",
-    "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.9",
+    "uqlibrary-ga": "uqlibrary/uqlibrary-ga#dimension3",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#v1.1.0",
     "uqlibrary-callout": "uqlibrary/uqlibrary-callout#v1.0.5",
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown#v1.2.3",
@@ -43,7 +43,7 @@
   "ignore": [],
   "resolutions": {
     "uqlibrary-styles": "v1.1.0",
-    "uqlibrary-ga": "v1.0.9",
+    "uqlibrary-ga": "dimension3",
     "uqlibrary-api": "v1.5.1"
   }
 }
