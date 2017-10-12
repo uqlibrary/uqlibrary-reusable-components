@@ -11,19 +11,19 @@ Example:
 
 <dom-module id="uql-menu-button">
 
-  <style is="custom-style" include="common-styles">
-    :host {
-      font-family: var(--font-family);
-      font-size: 10px;
-    }
-
-    paper-button {
-      @apply(--layout-vertical);
-    }
-
-  </style>
-
   <template>
+    <style is="custom-style" include="common-styles">
+      :host {
+        font-family: var(--font-family);
+        font-size: 10px;
+      }
+
+      paper-button {
+        @apply(--layout-vertical);
+      }
+
+    </style>
+
     <paper-button class="button-colored-theme" id="menuButton">
       <iron-icon icon="icons:menu" aria-label="open site menu"></iron-icon>
       <template is="dom-if" if="{{showTitle}}">

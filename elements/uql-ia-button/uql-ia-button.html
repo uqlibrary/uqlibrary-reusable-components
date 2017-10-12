@@ -10,18 +10,19 @@ Example:
 <dom-module id="uql-ia-button">
 
   <link rel="import" href="../elements.html">
-  <style is="custom-style" include="common-styles">
-    :host {
-      font-family: var(--font-family);
-      font-size: 10px;
-    }
-
-    paper-button {
-      @apply(--layout-vertical);
-    }
-
-  </style>
   <template>
+    <style is="custom-style" include="common-styles">
+      :host {
+        font-family: var(--font-family);
+        font-size: 10px;
+      }
+
+      paper-button {
+        @apply(--layout-vertical);
+      }
+
+    </style>
+
     <paper-button class="button-colored-theme" on-tap="toggleIA" id="iaButton">
       <template is="dom-if" if="{{isIAEnabled}}">
         <iron-icon icon="icons:radio-button-checked" aria-label="ia switch"></iron-icon>

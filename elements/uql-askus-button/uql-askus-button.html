@@ -12,13 +12,14 @@ Example:
 
 <dom-module id="uql-askus-button">
 
-    <style is="custom-style" include="common-styles">
-        :host {
-            font-family: var(--font-family);
-            font-size: 10px;
-        }
-    </style>
     <template>
+        <style is="custom-style" include="common-styles">
+            :host {
+                font-family: var(--font-family);
+                font-size: 10px;
+            }
+        </style>
+
         <uqlibrary-api-contacts id="contactsApi"></uqlibrary-api-contacts>
         <uqlibrary-ga id="ga" app-name="Header Ask Us"></uqlibrary-ga>
         <uql-callout-button
