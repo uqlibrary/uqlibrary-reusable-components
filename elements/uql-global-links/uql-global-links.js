@@ -34,7 +34,7 @@
              { url: "http://www.uq.edu.au/news/", title: "News" },
              { url: "http://www.uq.edu.au/events/", title: "Events" },
              { url: "http://jobs.uq.edu.au/", title: "Jobs" },
-             { url: "https://www.uq.edu.au/giving/donations/", title: "Give Now" },
+             { url: "https://www.uq.edu.au/giving/", title: "Give Now" },
              { url: "http://my.uq.edu.au/", title: "my.UQ" }
            ];
            return links;

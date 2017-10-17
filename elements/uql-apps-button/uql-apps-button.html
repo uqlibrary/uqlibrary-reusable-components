@@ -10,19 +10,19 @@ Example:
 -->
 <dom-module id="uql-apps-button">
 
-    <style is="custom-style" include="common-styles">
-        :host {
-            font-family: var(--font-family);
-            font-size: 10px;
-        }
-
-        paper-button {
-            @apply(--layout-vertical);
-        }
-
-    </style>
-
     <template>
+        <style is="custom-style" include="common-styles">
+            :host {
+                font-family: var(--font-family);
+                font-size: 10px;
+            }
+
+            paper-button {
+                @apply(--layout-vertical);
+            }
+
+        </style>
+
         <paper-button class="button-colored-theme" on-tap="_myLibraryClicked" id="appsButton">
             <iron-icon icon="icons:apps"></iron-icon>
             <template is="dom-if" if="{{showTitle}}">
@@ -30,6 +30,7 @@ Example:
             </template>
         </paper-button>
     </template>
+
 
     <script src="uql-apps-button.js"></script>
 

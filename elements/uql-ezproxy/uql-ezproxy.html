@@ -5,52 +5,52 @@
 @demo uql-ezproxy/demo/index.html
 -->
 <dom-module id="uql-ezproxy">
-  <style is="custom-style" include="common-styles">
+  <template>
+    <style is="custom-style" include="common-styles">
 
-    :host {
-      margin: 30px 0;
-      display: block;
-      font-family: var(--font-family);
-      font-size:14px;
-    }
-
-    .input-container {
-      @apply(--layout-horizontal);
-    }
-
-    .output-container {
-      @apply(--layout-vertical);
-    }
-
-    paper-card {
-      width: 100%;
-      padding: 16px;
-      background-color: var(--uq-grey-light);
-    }
-
-    .buttons-container {
-      text-align: right;
-      margin-top: 16px;
-    }
-
-    @media all and (max-width: 600px) {
+      :host {
+        margin: 30px 0;
+        display: block;
+        font-family: var(--font-family);
+        font-size:14px;
+      }
 
       .input-container {
+        @apply(--layout-horizontal);
+      }
+
+      .output-container {
         @apply(--layout-vertical);
+      }
+
+      paper-card {
+        width: 100%;
+        padding: 16px;
+        background-color: var(--uq-grey-light);
       }
 
       .buttons-container {
-        @apply(--layout-vertical);
+        text-align: right;
+        margin-top: 16px;
       }
 
-      .buttons-container paper-button {
-        margin-bottom: 16px;
+      @media all and (max-width: 600px) {
+
+        .input-container {
+          @apply(--layout-vertical);
+        }
+
+        .buttons-container {
+          @apply(--layout-vertical);
+        }
+
+        .buttons-container paper-button {
+          margin-bottom: 16px;
+        }
       }
-    }
 
-  </style>
+    </style>
 
-  <template>
     <uqlibrary-ga id="ga" app-name="EzProxy"></uqlibrary-ga>
     <paper-card elevation="1">
       <div hidden$="[[!showInputPanel]]" class="input-container">

@@ -11,48 +11,49 @@ Example:
 
 <dom-module id="uql-chat-proactive">
 
-    <style is="custom-style" include="common-styles">
-        :host {
-            font-family: var(--font-family);
-        }
-
-        .popupinvite {
-            position: relative;
-            padding: 8px;
-            padding: 0.5rem;
-
-            margin-right: 8px;
-            margin-right: 0.5rem;
-
-            border: thin solid var(--secondary-color);
-
-        }
-        .popupinvite h3 {
-            margin: 8px 8px 8px 0;
-            margin: 0.5rem 0.5rem 0.5rem 0;
-
-        }
-        paper-icon-button.closebutton {
-            position: absolute;
-            top: 8px;
-            top: 0.5rem;
-            right: 6px;
-            right: 0.75rem;
-        }
-        paper-icon-button.closebutton:hover {
-            background-color: inherit;
-            color: var(--secondary-color-dark);
-        }
-
-        .actionbuttons {
-            text-align: center;
-        }
-
-        .tab-button {
-            border: thin solid #fff;
-        }
-    </style>
     <template>
+        <style is="custom-style" include="common-styles">
+            :host {
+                font-family: var(--font-family);
+            }
+
+            .popupinvite {
+                position: relative;
+                padding: 8px;
+                padding: 0.5rem;
+
+                margin-right: 8px;
+                margin-right: 0.5rem;
+
+                border: thin solid var(--secondary-color);
+
+            }
+            .popupinvite h3 {
+                margin: 8px 8px 8px 0;
+                margin: 0.5rem 0.5rem 0.5rem 0;
+
+            }
+            paper-icon-button.closebutton {
+                position: absolute;
+                top: 8px;
+                top: 0.5rem;
+                right: 6px;
+                right: 0.75rem;
+            }
+            paper-icon-button.closebutton:hover {
+                background-color: inherit;
+                color: var(--secondary-color-dark);
+            }
+
+            .actionbuttons {
+                text-align: center;
+            }
+
+            .tab-button {
+                border: thin solid #fff;
+            }
+        </style>
+
         <uqlibrary-api-contacts id="contactsApi"></uqlibrary-api-contacts>
         <uqlibrary-api-chat-status id="chatStatusApi"></uqlibrary-api-chat-status>
         <uqlibrary-ga id="ga" app-name="Header Proactive Chat"></uqlibrary-ga>

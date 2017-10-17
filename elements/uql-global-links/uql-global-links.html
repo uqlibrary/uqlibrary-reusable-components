@@ -5,47 +5,48 @@
 @demo uql-global-links/demo/index.html
 -->
 <dom-module id="uql-global-links">
-  <style is="custom-style">
-    :host {
-      margin: 0 auto;
-      max-width: var(--max-width);
-      width: 100%;
-      display: block;
-      font-family: var(--font-family);
-      line-height: 1em;
-    }
-
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: block;
-    }
-
-    li {
-        display: inline-block;
-    }
-
-
-    li a,
-    li a:active,
-    li a:visited {
-      @apply(--global-links-style);
-      margin-right: 10px;
-      text-decoration: none;
-    }
-
-    li a:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    .separator {
-      margin-right: 10px;
-    }
-
-  </style>
   <template>
+    <style is="custom-style">
+      :host {
+        margin: 0 auto;
+        max-width: var(--max-width);
+        width: 100%;
+        display: block;
+        font-family: var(--font-family);
+        line-height: 1em;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+
+      li {
+          display: inline-block;
+      }
+
+
+      li a,
+      li a:active,
+      li a:visited {
+        @apply(--global-links-style);
+        margin-right: 10px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      .separator {
+        margin-right: 10px;
+      }
+
+    </style>
+
     <uqlibrary-ga id="ga" app-name="[[appName]]"></uqlibrary-ga>
 
     <ul class="global-links">

@@ -12,131 +12,130 @@ Example:
 
 <dom-module id="uql-mega-menu">
 
-  <style is="custom-style" include="common-styles">
-
-    :root {
-      --glowing-box-highlight: #7ebaf8;
-    }
-
-    :host {
-      font-family: var(--font-family);
-
-      --paper-tab-content: {
-        @apply(--layout-flex-none);
-        font-weight: 300 !important;
-        opacity: 1 !important;
-        font-size: 16px;
-      };
-    }
-
-    .menu-container {
-      @apply(--uq-box-shadow);
-    }
-
-    .menu-container,
-    .menu-content {
-      background-color: var(--menu-background-color);
-    }
-
-    .menu-container,
-    .menu-content,
-    paper-tabs {
-      height: 67px;
-    }
-
-    .menu-content {
-      margin: 0 auto;
-      max-width: var(--max-width);
-      width: 100%;
-    }
-
-    div.subtext {
-      color: var(--menu-sub-text-color);
-      font-size: 90%;
-      margin-top: -8px;
-    }
-
-    /* the border is to stop a sizing jump when the  focused border is applied */
-    paper-tab.uql-mega-menu {
-      border: medium solid var(--menu-background-color);
-    }
-    paper-tab.sub-menu-opened {
-      background-color: var(--menu-open-background-color);
-      border: medium solid var(--menu-open-background-color);
-    }
-    paper-tab[focused].uql-mega-menu  {
-      /* technique per https://css-tricks.com/snippets/css/glowing-blue-input-highlights/ */
-      box-shadow: 0 0 5px var(--glowing-box-highlight);
-      border: medium solid var(--glowing-box-highlight);
-    }
-
-    .dropdown-content {
-      background-color: var(--menu-open-background-color);
-      @apply(--uq-box-shadow);
-      @apply(--layout-flex);
-      @apply(--layout-horizontal);
-    }
-
-    .has-numcols-1 {
-      width: 240px;
-    }
-
-    /* this block has two cols so needs to be twice as wide */
-    .has-numcols-2 {
-      width: 480px;
-    }
-
-    .has-numcols-3 {
-      width: 720px;
-    }
-
-    /*
-     * shift the right hand menus over a bit
-     */
-    #subMenu4.hasCols3,
-    #subMenu5.hasCols3,
-    #subMenu6.hasCols3 {
-      margin-left: -240px;
-    }
-
-    .dropdown-content .sub-menu{
-      @apply(--layout-flex);
-      padding-top: 15px;
-    }
-
-    .sub-menu.uql-submenu-subsequent {
-      border-left-width: thin;
-      border-left-style: solid;
-      border-color: var(--menu-border-color);
-    }
-
-    .sub-menu {
-      background-color: var(--menu-open-background-color);
-      margin: 0;
-      padding: 0;
-    }
-
-    .sub-menu a {
-      @apply(--layout-flex);
-      @apply(--layout-vertical);
-
-      @apply(--menu-item);
-    }
-
-    .sub-menu a:hover {
-      background-color: var(--menu-hover-background-color);
-    }
-
-    .sub-menu a.iron-selected {
-      font-weight: 500 !important;
-    }
-
-    iron-dropdown {
-      position: absolute !important;
-    }
-  </style>
-
   <template>
+    <style is="custom-style" include="common-styles">
+
+      :root {
+        --glowing-box-highlight: #7ebaf8;
+      }
+
+      :host {
+        font-family: var(--font-family);
+
+        --paper-tab-content: {
+          @apply(--layout-flex-none);
+          font-weight: 300 !important;
+          opacity: 1 !important;
+          font-size: 16px;
+        };
+      }
+
+      .menu-container {
+        @apply(--uq-box-shadow);
+      }
+
+      .menu-container,
+      .menu-content {
+        background-color: var(--menu-background-color);
+      }
+
+      .menu-container,
+      .menu-content,
+      paper-tabs {
+        height: 67px;
+      }
+
+      .menu-content {
+        margin: 0 auto;
+        max-width: var(--max-width);
+        width: 100%;
+      }
+
+      div.subtext {
+        color: var(--menu-sub-text-color);
+        font-size: 90%;
+        margin-top: -8px;
+      }
+
+      /* the border is to stop a sizing jump when the  focused border is applied */
+      paper-tab.uql-mega-menu {
+        border: medium solid var(--menu-background-color);
+      }
+      paper-tab.sub-menu-opened {
+        background-color: var(--menu-open-background-color);
+        border: medium solid var(--menu-open-background-color);
+      }
+      paper-tab[focused].uql-mega-menu  {
+        /* technique per https://css-tricks.com/snippets/css/glowing-blue-input-highlights/ */
+        box-shadow: 0 0 5px var(--glowing-box-highlight);
+        border: medium solid var(--glowing-box-highlight);
+      }
+
+      .dropdown-content {
+        background-color: var(--menu-open-background-color);
+        @apply(--uq-box-shadow);
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+      }
+
+      .has-numcols-1 {
+        width: 240px;
+      }
+
+      /* this block has two cols so needs to be twice as wide */
+      .has-numcols-2 {
+        width: 480px;
+      }
+
+      .has-numcols-3 {
+        width: 720px;
+      }
+
+      /*
+       * shift the right hand menus over a bit
+       */
+      #subMenu4.hasCols3,
+      #subMenu5.hasCols3,
+      #subMenu6.hasCols3 {
+        margin-left: -240px;
+      }
+
+      .dropdown-content .sub-menu{
+        @apply(--layout-flex);
+        padding-top: 15px;
+      }
+
+      .sub-menu.uql-submenu-subsequent {
+        border-left-width: thin;
+        border-left-style: solid;
+        border-color: var(--menu-border-color);
+      }
+
+      .sub-menu {
+        background-color: var(--menu-open-background-color);
+        margin: 0;
+        padding: 0;
+      }
+
+      .sub-menu a {
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+
+        @apply(--menu-item);
+      }
+
+      .sub-menu a:hover {
+        background-color: var(--menu-hover-background-color);
+      }
+
+      .sub-menu a.iron-selected {
+        font-weight: 500 !important;
+      }
+
+      iron-dropdown {
+        position: absolute !important;
+      }
+    </style>
 
     <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
 
