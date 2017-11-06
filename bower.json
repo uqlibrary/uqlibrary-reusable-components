@@ -19,12 +19,12 @@
     "neon-elements": "PolymerElements/neon-elements#^1.0.0",
     "paper-elements": "PolymerElements/paper-elements#^1.0.1",
     "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
-    "polymer": "Polymer/polymer#^1.4.0",
+    "polymer": "Polymer/polymer#1.9.3",
     "webcomponentsjs": "^0.7.12",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
     "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
     "validator-js": "~4.2.0",
-    "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.3.8",
+    "uqlibrary-api": "uqlibrary/uqlibrary-api#v1.5.1",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts#v1.0.2",
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga#v1.0.9",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles#v1.1.0",
@@ -44,6 +44,6 @@
   "resolutions": {
     "uqlibrary-styles": "v1.1.0",
     "uqlibrary-ga": "v1.0.9",
-    "uqlibrary-api": "v1.3.8"
+    "uqlibrary-api": "v1.5.1"
   }
 }

@@ -4,10 +4,10 @@ var fixUserArea = setInterval(function() {
         clearInterval(fixUserArea);
 
         //remove unused favourites element
-        var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
-        if (favouritesElement !== null && typeof(favouritesElement) !== 'undefined') {
-            favouritesElement.parentNode.removeChild(favouritesElement);
-        }
+        // var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
+        // if (favouritesElement !== null && typeof(favouritesElement) !== 'undefined') {
+        //     favouritesElement.parentNode.removeChild(favouritesElement);
+        // }
     }
 }, 100);
 

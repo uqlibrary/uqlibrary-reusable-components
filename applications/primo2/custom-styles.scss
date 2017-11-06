@@ -87,9 +87,9 @@ prm-logo {
 }
 
 // hide favourites element on nav bar, it's included within user area
-.top-nav-bar > prm-search-bookmark-filter {
-  display: none;
-}
+//.top-nav-bar > prm-search-bookmark-filter {
+//  display: none;
+//}
 
 prm-search-bar,
 prm-topbar .top-nav-bar {
@@ -125,9 +125,9 @@ uqlibrary-alerts {
 }
 
 // Hide the menu with "Browse and Tags"
-prm-main-menu {
-  display: none;
-}
+//prm-main-menu {
+//  display: none;
+//}
 
 // Hide the article full view side menu item "Tags"
 button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme[aria-label="Tags"] {
