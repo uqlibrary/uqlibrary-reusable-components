@@ -7,14 +7,14 @@
   app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
 
     // remove favourite element from nav-bar because it's included in user area overwrite
-    $rootScope.$on("$stateChangeSuccess", function() {
-      // Primo keeps adding favourites element every time user clicks on My Account
-      // Keep removing fav element every time it's added
-      var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
-      if (favouritesElement !== null && typeof(favouritesElement) !== 'undefined') {
-          favouritesElement.parentNode.removeChild(favouritesElement);
-      }
-    });
+    // $rootScope.$on("$stateChangeSuccess", function() {
+    //   // Primo keeps adding favourites element every time user clicks on My Account
+    //   // Keep removing fav element every time it's added
+    //   var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
+    //   if (favouritesElement !== null && typeof(favouritesElement) !== 'undefined') {
+    //       favouritesElement.parentNode.removeChild(favouritesElement);
+    //   }
+    // });
 
     $rootScope.$on('$locationChangeSuccess', function(event){
       //temporarily create a tracker specifically to new Primo
@@ -33,12 +33,12 @@
   });
 
   var template = 'components/search/topbar/userArea/user-area.html';
-  var newUserArea = '<div layout="row" layout-align="end center">' +
-      '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
-      '<prm-search-bookmark-filter layout-align="end center" layout="row" flex="noshrink" aria-hidden="false"></prm-search-bookmark-filter>' +
-      '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +
-      '<prm-authentication layout="flex" [is-logged-in]="$ctrl.userName().length > 0"></prm-authentication>' +
-      '</div>';
+  // var newUserArea = '<div layout="row" layout-align="end center">' +
+  //     '<span class="hide-xs">{{$ctrl.userName()}}</span>' +
+  //     '<prm-search-bookmark-filter layout-align="end center" layout="row" flex="noshrink" aria-hidden="false"></prm-search-bookmark-filter>' +
+  //     '<prm-library-card-menu ng-show="$ctrl.userName().length > 0"></prm-library-card-menu>' +
+  //     '<prm-authentication layout="flex" [is-logged-in]="$ctrl.userName().length > 0"></prm-authentication>' +
+  //     '</div>';
 
   app.component('prmUserAreaAfter', {
       bindings: {
