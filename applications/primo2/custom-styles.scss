@@ -75,6 +75,7 @@ uq-minimal-header {
 }
 
 prm-user-area {
+  //Bump the user area down away from the header a little
   /* margin-top: 10px !important; */
 
   .user-menu-button .user-name {
@@ -153,11 +154,6 @@ prm-browse-search-bar .search-scope {
 // Change the color of 'See:' in the browse listings
 span[translate="nui.browse.crossref.see"] {
   color: #000000;
-}
-
-//Bump the user area down away from the header a little
-prm-user-area {
-  margin-top: 10px !important;
 }
 
 // saved searches and search history list items run over the 'number icon' in narrower windows (and any Windows chrome)
