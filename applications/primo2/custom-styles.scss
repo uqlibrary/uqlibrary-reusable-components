@@ -166,3 +166,8 @@ md-list-item .md-list-item-text.layout-fill.layout-align-start-start.layout-colu
 md-fab-toolbar {
   top: 100px !important;
 }
+@media all and (max-width: 1047px) {
+  md-fab-toolbar {
+    top: 66px !important;
+  }
+}
