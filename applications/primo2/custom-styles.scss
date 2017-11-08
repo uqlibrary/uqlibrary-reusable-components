@@ -161,3 +161,8 @@ md-list-item .md-list-item-text.layout-fill.layout-align-start-start.layout-colu
   margin-left: 30px;
   margin-top: 10px;
 }
+
+// move the primo second-click login button below the minimal header so it isnt hidden
+md-fab-toolbar {
+  top: 100px !important;
+}
