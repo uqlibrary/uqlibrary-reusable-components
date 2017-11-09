@@ -171,3 +171,17 @@ md-fab-toolbar {
     top: 66px !important;
   }
 }
+
+// the whole bar (its blue without this styling)
+md-fab-actions {
+  background-color: #e9e9e9;
+}
+
+//the login button that appears after you click 'not logged in'
+// no styling needed - once we remove the blue from the bar, it goes nicely grey
+//prm-authentication {
+//}
+
+// the 'My Account' link beside the 'Log In' button
+//prm-library-card-menu {
+//}
