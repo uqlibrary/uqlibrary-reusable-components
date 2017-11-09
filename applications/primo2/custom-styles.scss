@@ -200,5 +200,24 @@ prm-topbar {
 // when the logged in username is moused over it goes transparent and shows a blue from an element behind it?!?
 // reset the colour here to make it a nice grey
 prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
-  background-color: #e9e9e9!important
+  background-color: #767676!important
+}
+
+// make the background color on the log in button same as background
+button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
+  background-color: #e9e9e9!important;
+}
+
+prm-topbar > div {
+  background-color: #e9e9e9!important;
+}
+
+//md-dialog {
+//  background-color: #767676;
+//}
+
+// make the username area in 'display logout button' mode blend in
+prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
+  background-color: #fff!important;
+
 }

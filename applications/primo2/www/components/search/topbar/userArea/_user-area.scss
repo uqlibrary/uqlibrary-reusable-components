@@ -17,7 +17,7 @@ prm-user-area {
       text-align: left;
       @extend %text-trim-ellipsis;
 
-      max-width: 150px;
+      max-width: 200px;
 
       .__sm & {
         max-width: 120px;
