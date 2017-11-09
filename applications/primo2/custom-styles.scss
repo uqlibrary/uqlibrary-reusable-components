@@ -178,7 +178,6 @@ md-fab-actions {
 }
 
 //the login button that appears after you click 'not logged in'
-// no styling needed - once we remove the blue from the bar, it goes nicely grey
 prm-authentication {
   background-color: #e9e9e9;
 }
@@ -188,6 +187,7 @@ prm-library-card-menu button.button-with-icon.zero-margin.md-button.md-primoExpl
   box-shadow: none;
 }
 
+// make the icon colors in the login bar black
 prm-topbar {
   prm-icon {
     md-icon,
@@ -195,4 +195,10 @@ prm-topbar {
       color: #000 !important;
     }
   }
+}
+
+// when the logged in username is moused over it goes transparent and shows a blue from an element behind it?!?
+// reset the colour here to make it a nice grey
+prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
+  background-color: #e9e9e9!important
 }
