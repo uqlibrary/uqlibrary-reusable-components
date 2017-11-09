@@ -179,9 +179,20 @@ md-fab-actions {
 
 //the login button that appears after you click 'not logged in'
 // no styling needed - once we remove the blue from the bar, it goes nicely grey
-//prm-authentication {
-//}
+prm-authentication {
+  background-color: #e9e9e9;
+}
 
-// the 'My Account' link beside the 'Log In' button
-//prm-library-card-menu {
-//}
+// remove the little line to the left
+prm-library-card-menu button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
+  box-shadow: none;
+}
+
+prm-topbar {
+  prm-icon {
+    md-icon,
+    md-icon.md-primoExplore-theme {
+      color: #000 !important;
+    }
+  }
+}
