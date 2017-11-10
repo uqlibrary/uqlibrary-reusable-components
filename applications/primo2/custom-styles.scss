@@ -222,6 +222,8 @@ prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-backgrou
 
 }
 
+// put  a yellow background on the login button in the yellow login prompt bar
+prm-login-alma-mashup button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple,
 ui-view button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
   background-color: #F7EDA3 !important
 }
