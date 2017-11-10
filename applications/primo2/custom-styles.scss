@@ -253,3 +253,9 @@ md-dialog prm-library-card-menu {
 md-divider.md-primoExplore-theme {
   display: none;
 }
+
+@media all and (max-width: 1047px) {
+  .search-input {
+    width: 90%;
+  }
+}
