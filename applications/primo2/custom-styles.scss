@@ -212,9 +212,9 @@ prm-topbar > div {
   background-color: #e9e9e9!important;
 }
 
-//md-dialog {
-//  background-color: #767676;
-//}
+md-dialog {
+  background-color: #767676;
+}
 
 // make the username area in 'display logout button' mode blend in
 prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
@@ -226,4 +226,30 @@ prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-backgrou
 prm-login-alma-mashup button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple,
 ui-view button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
   background-color: #F7EDA3 !important
+}
+
+
+// hide the 'english' option in the mobile user view
+.overlay-menu-item.layout-align-center-center.layout-row {
+  display: none;
+}
+
+// log out button in modal account popup on mobile needs a better colour
+md-content prm-authentication {
+  background-color: rgba(52, 102, 154, 1);
+  border-color: #34669a;
+}
+md-content prm-authentication button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
+  background-color: rgba(52, 102, 154, 1);
+  border-color: #34669a;
+}
+// weird colour choice to match opacity
+
+// put some space above so we dont get the purple header under the button through the opacity
+md-dialog prm-library-card-menu {
+  margin-top: 4em;
+}
+
+md-divider.md-primoExplore-theme {
+  display: none;
 }
