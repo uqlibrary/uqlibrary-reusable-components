@@ -9,4 +9,28 @@ prm-user-area {
     color: $dark !important;
   }
 
+  // make the background color on the log in button same as background
+  button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
+    background-color: $backgroundActual !important;
+  }
+
+  // make the username area in 'display logout button' mode blend in
+  md-fab-toolbar.md-is-open {
+    md-fab-trigger ._md-fab-toolbar-background {
+      // why does white work? I dont know! but nothing else does!
+      background-color: #fff !important;
+    }
+  }
+}
+
+// remove the little line to the left of the 'login' and 'my account' buttons
+prm-library-card-menu button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
+  box-shadow: none;
+}
+
+// put  a yellow background on the login button in the yellow login prompt bar
+// (override the background-color set above)
+prm-login-alma-mashup button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple,
+ui-view button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
+  background-color: $alert !important
 }

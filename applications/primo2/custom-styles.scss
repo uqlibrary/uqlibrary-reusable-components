@@ -143,12 +143,12 @@ div.full-view-section#tags {
 //Browse interface - made dropdown list grey BG instead of yellow
 prm-browse-search-bar .search-scope {
   background-color: #F2F2F2 !important;
-  border-color: #CCCCCC !important;
+  border-color: $blueGrey !important;
 }
 
 // Browse interface - link colors
 .duedate > span, .fulltext > span, .fulltext_linktorsrc > span, .getit > span, .login-dialog .collapsable-container md-list md-list-item .md-list-item-inner, .login-dialog .md-list md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item .md-list-item-text h3, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3, .login-dialog md-list md-list-item .md-list-item-text .list-item-title, .login-dialog md-list md-list-item .md-list-item-text h3, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3, .md-button.arrow-link-button .button-content, .md-button.arrow-link-button [link-arrow], .not_restricted > span, .prm-links, .restricted > span, .separate-list-items md-list-item .item-loader-with-text .md-button, .tiles-grid-tile .tile-header .header-link .arrow-icon, .tiles-grid-tile .tile-header .header-link:focus, .tiles-grid-tile .tile-header .header-link:hover, .tiles-grid-tile .tile-header .md-button, [class*=NFT] > span, [class*=check_] > span, [class*="_more"] > span, [class*="_unknown"] > span, [class*=may_] > span, [class*=does_not_exist] > span, [class*=available] > span, [class*=FT] > span, [class*=unavailable] > span, [class*=no_] > span, a, md-grid-tile .tile-header .header-link .arrow-icon, md-grid-tile .tile-header .header-link:focus, md-grid-tile .tile-header .header-link:hover, md-grid-tile .tile-header .md-button, md-input-container.has-fixed-message [ng-message] a, md-list-item.list-item-as-link, md-tabs.tabs-as-app .back-button, md-tabs.tabs-as-links md-tab-item, md-tabs.tabs-as-links md-tab-item:not([disabled]), prm-tags-list .md-chips .md-chip .md-chip-content strong, prm-tags-list .md-chips md-chip .md-chip-content strong, prm-tags-list md-chips .md-chip .md-chip-content strong, prm-tags-list md-chips md-chip .md-chip-content strong, .prm-citation-title, md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-citation-trails-item.active-item .item-title, prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .item-title {
-  color: #2377CB !important;
+  color: $links !important;
 }
 
 // Change the color of 'See:' in the browse listings
@@ -160,102 +160,4 @@ span[translate="nui.browse.crossref.see"] {
 md-list-item .md-list-item-text.layout-fill.layout-align-start-start.layout-column.flex-80 {
   margin-left: 30px;
   margin-top: 10px;
-}
-
-// move the primo second-click login button below the minimal header so it isnt hidden
-md-fab-toolbar {
-  top: 100px !important;
-}
-@media all and (max-width: 1047px) {
-  md-fab-toolbar {
-    top: 66px !important;
-  }
-}
-
-// the whole bar (its blue without this styling)
-md-fab-actions {
-  background-color: #e9e9e9;
-}
-
-//the login button that appears after you click 'not logged in'
-prm-authentication {
-  background-color: #e9e9e9;
-}
-
-// remove the little line to the left
-prm-library-card-menu button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
-  box-shadow: none;
-}
-
-// make the icon colors in the login bar black
-prm-topbar {
-  prm-icon {
-    md-icon,
-    md-icon.md-primoExplore-theme {
-      color: #000 !important;
-    }
-  }
-}
-
-// when the logged in username is moused over it goes transparent and shows a blue from an element behind it?!?
-// reset the colour here to make it a nice grey
-prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
-  background-color: #767676!important
-}
-
-// make the background color on the log in button same as background
-prm-user-area button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
-  background-color: #e9e9e9!important;
-}
-
-prm-topbar > div {
-  background-color: #e9e9e9!important;
-}
-
-md-dialog {
-  background-color: #767676;
-}
-
-// make the username area in 'display logout button' mode blend in
-prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
-  background-color: #fff!important;
-
-}
-
-// put  a yellow background on the login button in the yellow login prompt bar
-prm-login-alma-mashup button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple,
-ui-view button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
-  background-color: #F7EDA3 !important
-}
-
-
-// hide the 'english' option in the mobile user view
-.overlay-menu-item.layout-align-center-center.layout-row {
-  display: none;
-}
-
-// log out button in modal account popup on mobile needs a better colour
-md-content prm-authentication {
-  background-color: rgba(52, 102, 154, 1);
-  border-color: #34669a;
-}
-md-content prm-authentication button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
-  background-color: rgba(52, 102, 154, 1);
-  border-color: #34669a;
-}
-// weird colour choice to match opacity
-
-// put some space above so we dont get the purple header under the button through the opacity
-md-dialog prm-library-card-menu {
-  margin-top: 4em;
-}
-
-md-divider.md-primoExplore-theme {
-  display: none;
-}
-
-@media all and (max-width: 1047px) {
-  .search-input {
-    width: 90%;
-  }
 }

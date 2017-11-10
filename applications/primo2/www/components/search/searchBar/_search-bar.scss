@@ -787,3 +787,9 @@ prm-search-bar {
 prm-advanced-search {
     @extend .layout-full-width;
 }
+
+@media all and (max-width: 1047px) {
+    .search-input {
+        width: 90%;
+    }
+}

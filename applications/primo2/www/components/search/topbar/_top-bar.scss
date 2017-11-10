@@ -40,4 +40,15 @@ prm-topbar {
         }
     }
 
+    // make the icon colors in the login bar black
+    prm-icon {
+        md-icon,
+        md-icon.md-primoExplore-theme {
+            color: $textColor !important;
+        }
+    }
+}
+
+prm-topbar > div {
+    background-color: $backgroundActual !important;
 }
