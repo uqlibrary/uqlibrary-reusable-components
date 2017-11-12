@@ -148,3 +148,9 @@ md-list-item .md-list-item-text.layout-fill.layout-align-start-start.layout-colu
   margin-left: 30px;
   margin-top: 10px;
 }
+
+// temporary styling to remove the 'browse button' while testing the november release in prod-dev
+// (button is controllable in the BO from november)
+div.top-nav-bar-links.buttons-group.layout-align-center-center.layout-row.flex-100 {
+  display: none;
+}
