@@ -63,14 +63,14 @@
   }
 
   var scripts = [
-    '//assets.library.uq.edu.au/primo-Nov2017-release/reusable-components/webcomponentsjs/webcomponents-lite.min.js',
-    '//assets.library.uq.edu.au/primo-Nov2017-release/reusable-components/resources/preloader.js',
-    '//assets.library.uq.edu.au/primo-Nov2017-release/reusable-components/primo2/load.js'
+    '//assets.library.uq.edu.au/primo-sand-box/reusable-components/webcomponentsjs/webcomponents-lite.min.js',
+    '//assets.library.uq.edu.au/primo-sand-box/reusable-components/resources/preloader.js',
+    '//assets.library.uq.edu.au/primo-sand-box/reusable-components/primo2/load.js'
   ];
 
   var links = [
-    { rel: 'import', href: '//assets.library.uq.edu.au/primo-Nov2017-release/reusable-components/elements.vulcanized.html'},
-    { rel: 'stylesheet', href: '//assets.library.uq.edu.au/primo-Nov2017-release/reusable-components/primo2/custom-styles.css'}
+    { rel: 'import', href: '//assets.library.uq.edu.au/primo-sand-box/reusable-components/elements.vulcanized.html'},
+    { rel: 'stylesheet', href: '//assets.library.uq.edu.au/primo-sand-box/reusable-components/primo2/custom-styles.css'}
   ];
 
   insertLink(links[0]);
