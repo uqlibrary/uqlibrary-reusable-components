@@ -17,6 +17,7 @@ prm-user-area {
       text-align: left;
       @extend %text-trim-ellipsis;
 
+      // Stacey wanted a little more text before the ellipsis
       max-width: 200px;
 
       .__sm & {
@@ -65,6 +66,7 @@ prm-user-area {
   }
 
   // move the primo second-click login button below the minimal header so it isnt hidden
+  // (see also 1047 width at bottom of file)
   md-fab-toolbar {
     top: 100px !important;
   }
@@ -218,6 +220,8 @@ prm-user-area {
 
 }
 
+// move the primo second-click login button below the minimal header so it isnt hidden
+// (see also normal width, above)
 @media all and (max-width: 1047px) {
   prm-user-area {
     md-fab-toolbar {

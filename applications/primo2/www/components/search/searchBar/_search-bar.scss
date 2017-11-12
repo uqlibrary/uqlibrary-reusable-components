@@ -789,6 +789,7 @@ prm-advanced-search {
 }
 
 @media all and (max-width: 1047px) {
+    // the 'close' button sits in the middle of the search input field in ipad-width view
     .search-input {
         width: 90%;
     }

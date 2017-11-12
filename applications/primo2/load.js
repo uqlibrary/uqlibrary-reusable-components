@@ -2,12 +2,6 @@ var fixUserArea = setInterval(function() {
     //wait for header to be inserted by angular
     if (document.querySelector('uq-minimal-header') !== null && typeof(document.querySelector('uq-minimal-header')) !== 'undefined') {
         clearInterval(fixUserArea);
-
-        //remove unused favourites element
-        // var favouritesElement = document.querySelector('.top-nav-bar > prm-search-bookmark-filter');
-        // if (favouritesElement !== null && typeof(favouritesElement) !== 'undefined') {
-        //     favouritesElement.parentNode.removeChild(favouritesElement);
-        // }
     }
 }, 100);
 

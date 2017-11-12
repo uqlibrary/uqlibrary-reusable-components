@@ -75,9 +75,6 @@ uq-minimal-header {
 }
 
 prm-user-area {
-  //Bump the user area down away from the header a little
-  /* margin-top: 10px !important; */
-
   .user-menu-button .user-name {
     color: $accent-color;
   }
@@ -86,11 +83,6 @@ prm-user-area {
 prm-logo {
   display: none;
 }
-
-// hide favourites element on nav bar, it's included within user area
-//.top-nav-bar > prm-search-bookmark-filter {
-//  display: none;
-//}
 
 prm-search-bar,
 prm-topbar .top-nav-bar {
@@ -124,11 +116,6 @@ body.md-dialog-is-showing {
 uqlibrary-alerts {
   width: 100% !important;
 }
-
-// Hide the menu with "Browse and Tags"
-//prm-main-menu {
-//  display: none;
-//}
 
 // Hide the article full view side menu item "Tags"
 button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme[aria-label="Tags"] {
