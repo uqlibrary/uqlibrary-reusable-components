@@ -33,6 +33,6 @@ md-dialog {
 
 
 // hide the 'english' option in the mobile user view
-.overlay-menu-item.layout-align-center-center.layout-row {
+div.md-dialog-container .overlay-menu-item.layout-align-center-center.layout-row {
 	display: none;
 }
