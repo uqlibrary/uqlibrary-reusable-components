@@ -154,3 +154,7 @@ md-list-item .md-list-item-text.layout-fill.layout-align-start-start.layout-colu
 div.top-nav-bar-links.buttons-group.layout-align-center-center.layout-row.flex-100 {
   display: none;
 }
+// also hide the browse button in the mobile view
+div.md-dialog-container .custom-links-container.layout-wrap.layout-align-sm-start-start.layout-align-center-start.layout-row {
+  display: none;
+}
