@@ -8,16 +8,16 @@ prm-search-bookmark-filter{
     @extend %darker-bg;
     @extend .prm-secondary-color;
   }
-  
+
  #back-to-top-button{
  	.md-button {
  		color: #333;
  	}
- } 
+ }
   
 
 #fixed-buttons-holder{
-    transition-duration: 0s;  
+    transition-duration: 0s;
     position: relative;
     animation: animateStickyButtonOut .4s $swift-ease-out-timing-function forwards;
     svg {
@@ -26,17 +26,17 @@ prm-search-bookmark-filter{
     &.fixed-to-top {
         position: fixed;
         top: 1em;
-        right: 1em;    
-        z-index: 15;        
-        animation: animateStickyButtonIn .7s $swift-ease-out-timing-function forwards;     
-        
+        right: 1em;
+        z-index: 15;
+        animation: animateStickyButtonIn .7s $swift-ease-out-timing-function forwards;
+
         svg {
             fill: $dark;
             transition-duration: .4s;
             transition-delay: 0s;
         }
     }
-    
+
 }
 @keyframes animateStickyButtonIn {
     0% {

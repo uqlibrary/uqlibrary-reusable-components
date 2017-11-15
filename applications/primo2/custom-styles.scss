@@ -75,19 +75,12 @@ uq-minimal-header {
 }
 
 prm-user-area {
-  margin-top: 10px !important;
-
   .user-menu-button .user-name {
     color: $accent-color;
   }
 }
 
 prm-logo {
-  display: none;
-}
-
-// hide favourites element on nav bar, it's included within user area
-.top-nav-bar > prm-search-bookmark-filter {
   display: none;
 }
 
@@ -125,11 +118,6 @@ uqlibrary-alerts {
   width: 100% !important;
 }
 
-// Hide the menu with "Browse and Tags"
-prm-main-menu {
-  display: none;
-}
-
 // Hide the article full view side menu item "Tags"
 button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme[aria-label="Tags"] {
   display: none;
@@ -143,12 +131,12 @@ div.full-view-section#tags {
 //Browse interface - made dropdown list grey BG instead of yellow
 prm-browse-search-bar .search-scope {
   background-color: #F2F2F2 !important;
-  border-color: #CCCCCC !important;
+  border-color: $blueGrey !important;
 }
 
 // Browse interface - link colors
 .duedate > span, .fulltext > span, .fulltext_linktorsrc > span, .getit > span, .login-dialog .collapsable-container md-list md-list-item .md-list-item-inner, .login-dialog .md-list md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item .md-list-item-text h3, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3, .login-dialog md-list md-list-item .md-list-item-text .list-item-title, .login-dialog md-list md-list-item .md-list-item-text h3, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3, .md-button.arrow-link-button .button-content, .md-button.arrow-link-button [link-arrow], .not_restricted > span, .prm-links, .restricted > span, .separate-list-items md-list-item .item-loader-with-text .md-button, .tiles-grid-tile .tile-header .header-link .arrow-icon, .tiles-grid-tile .tile-header .header-link:focus, .tiles-grid-tile .tile-header .header-link:hover, .tiles-grid-tile .tile-header .md-button, [class*=NFT] > span, [class*=check_] > span, [class*="_more"] > span, [class*="_unknown"] > span, [class*=may_] > span, [class*=does_not_exist] > span, [class*=available] > span, [class*=FT] > span, [class*=unavailable] > span, [class*=no_] > span, a, md-grid-tile .tile-header .header-link .arrow-icon, md-grid-tile .tile-header .header-link:focus, md-grid-tile .tile-header .header-link:hover, md-grid-tile .tile-header .md-button, md-input-container.has-fixed-message [ng-message] a, md-list-item.list-item-as-link, md-tabs.tabs-as-app .back-button, md-tabs.tabs-as-links md-tab-item, md-tabs.tabs-as-links md-tab-item:not([disabled]), prm-tags-list .md-chips .md-chip .md-chip-content strong, prm-tags-list .md-chips md-chip .md-chip-content strong, prm-tags-list md-chips .md-chip .md-chip-content strong, prm-tags-list md-chips md-chip .md-chip-content strong, .prm-citation-title, md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-citation-trails-item.active-item .item-title, prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .item-title {
-  color: #2377CB !important;
+  color: $links !important;
 }
 
 // Change the color of 'See:' in the browse listings
@@ -156,16 +144,18 @@ span[translate="nui.browse.crossref.see"] {
   color: #000000;
 }
 
-//Bump the user area down away from the header a little
-prm-user-area {
-  margin-top: 10px !important;
-}
-
-/* HIDE REVIEWS & TAGS TAB */
-.EXLTabsRibbon div li.EXLReviewsTab { display:none; }
-
 // saved searches and search history list items run over the 'number icon' in narrower windows (and any Windows chrome)
 md-list-item .md-list-item-text.layout-fill.layout-align-start-start.layout-column.flex-80 {
   margin-left: 30px;
   margin-top: 10px;
+}
+
+// temporary styling to remove the 'browse button' while testing the november release in prod-dev
+// (button is controllable in the BO from november)
+div.top-nav-bar-links.buttons-group.layout-align-center-center.layout-row.flex-100 {
+  display: none;
+}
+// also hide the browse button in the mobile view
+div.md-dialog-container .custom-links-container.layout-wrap.layout-align-sm-start-start.layout-align-center-start.layout-row {
+  display: none;
 }
