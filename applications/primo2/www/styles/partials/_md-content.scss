@@ -9,4 +9,30 @@ md-content.md-primoExplore-theme {
 	&.opaque-content {
 		background-color: $white;
 	}
+
+	// log out button in modal account popup on mobile needs a better colour
+	// weird colour choice to match opacity
+	prm-authentication {
+		background-color: rgba(52, 102, 154, 1);
+		border-color: #34669a;
+	}
+	prm-authentication button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
+		background-color: rgba(52, 102, 154, 1);
+		border-color: #34669a;
+	}
+}
+
+md-dialog {
+	background-color: $almostBlack;
+
+	// put some space above so we dont get the purple header under the button through the opacity
+	prm-library-card-menu {
+		margin-top: 4em;
+	}
+}
+
+
+// hide the 'english' option in the mobile user view
+div.md-dialog-container .overlay-menu-item.layout-align-center-center.layout-row {
+	display: none;
 }
