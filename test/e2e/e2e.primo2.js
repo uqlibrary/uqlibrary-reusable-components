@@ -28,7 +28,7 @@ module.exports = {
         .assert.elementPresent('prm-topbar prm-user-area prm-authentication', 'login component is present')
         .assert.elementPresent('prm-topbar prm-user-area prm-authentication span', 'login text is present')
         .assert.elementPresent('prm-topbar prm-user-area prm-library-card-menu', 'user account component is present')
-        .assert.elementPresent('prm-topbar prm-user-area prm-search-bookmark-filter', 'bookmark component is present')
+      .assert.elementPresent('prm-topbar .top-nav-bar prm-search-bookmark-filter', 'bookmark component is present')
         .end();
   },
 
