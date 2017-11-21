@@ -32,5 +32,6 @@ prm-library-card-menu button.button-with-icon.zero-margin.md-button.md-primoExpl
 // (override the background-color set above)
 prm-login-alma-mashup button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple,
 ui-view button.button-with-icon.zero-margin.md-button.md-primoExplore-theme.md-ink-ripple {
-  background-color: $alert !important
+  background-color: $alert !important;
+  border-radius: 0;
 }
