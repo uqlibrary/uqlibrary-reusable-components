@@ -20,6 +20,13 @@ md-content.md-primoExplore-theme {
 		background-color: rgba(52, 102, 154, 1);
 		border-color: #34669a;
 	}
+
+	// and then hit the login button in the yellow bar to get rid of the 4 dots that surround it...
+	div.bar.alert-bar.layout-align-center-center.layout-row prm-authentication {
+		background-color: $alert;
+		border-color: $alert;
+	}
+
 }
 
 md-dialog {
