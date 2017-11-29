@@ -9,8 +9,8 @@ set -e
 
 if [ ${CI_BRANCH} == "production" ]; then
 
-  # no point running this test until deployment is complete - give it 10 minutes: 60 * 10 = 600 seconds
-  echo "sleep 10 minutes to allow deployment to complete before testing"
+  # no point running these tests until invalidation is complete - give it 10 minutes: 60 * 10 = 600 seconds
+  echo "sleep 10 minutes to allow invalidation to complete before testing production systems"
   sleep 600
   echo "awake now!"
 
