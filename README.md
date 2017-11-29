@@ -55,11 +55,12 @@ https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources
     
 This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
 
-After BUEA staff have made changes, developers should start the following builds:
+After BUEA staff have pushed their changes, developers should:
 
-* uqlibrary-reusable-components on master (build should happen from initial push to github)
-* uqlibrary-pages on production (pulls master of reusable, no release necessary) - updates homepage
-* uqlibrary-reusable-components on production (merge master into prod and push) - updates drupal at web.library.uq.edu.au
+* for uqlibrary-reusable-components: confirm master build passes (it should start from initial push to github by BUEA)
+* for uqlibrary-pages: start rebuild of production branch (after reusable master passes; it pulls master of reusable, no release necessary) - updates homepage
+* for uqlibrary-reusable-components: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
+* for uqlibrary-mylibrary: if affected, start rebuild of production (pulls production of reusable) - updates https://www.library.uq.edu.au/mylibrary/
 
 ### Applications Customisations
 
