@@ -183,24 +183,23 @@
           "href": "https://web.library.uq.edu.au/borrowing-requesting/how-to-borrow"
         },
         {
+          "label": "Borrowing rules",
+          "href": "https://web.library.uq.edu.au/borrowing-requesting/how-borrow/borrowing-rules"
+        },
+        {
           "label": "Overdue items",
           "href": "https://web.library.uq.edu.au/borrowing-requesting/overdue-items",
           "subtext": "Pay library fines"
         },
         {
-          "label": "How to request",
+          "label": "Requests & holds",
           "subtext": "On loan, off-campus, or not at UQ",
-          "href": "https://web.library.uq.edu.au/borrowing-requesting/how-request",
+          "href": "https://web.library.uq.edu.au/request-holds",
           "col2": "yes"
         },
         {
           "label": "Request document delivery",
           "href": "https://web.library.uq.edu.au/borrowing-requesting/request-document-delivery",
-          "col2": "yes"
-        },
-        {
-          "label": "Request a purchase",
-          "href": "https://web.library.uq.edu.au/borrowing-requesting/request-purchase",
           "col2": "yes"
         }
       ]
