@@ -29,7 +29,7 @@
            var links = [
              { url: "http://www.uq.edu.au/", title: "UQ Home" },
              { url: "http://www.uq.edu.au/contacts/", title: "Contacts" },
-             { url: "http://www.uq.edu.au/study/", title: "Study" },
+             { url: "https://future-students.uq.edu.au/", title: "Study" },
              { url: "http://www.uq.edu.au/maps/", title: "Maps" },
              { url: "http://www.uq.edu.au/news/", title: "News" },
              { url: "http://www.uq.edu.au/events/", title: "Events" },
