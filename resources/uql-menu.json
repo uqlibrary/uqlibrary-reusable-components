@@ -201,6 +201,11 @@
           "label": "Request document delivery",
           "href": "https://web.library.uq.edu.au/borrowing-requesting/request-document-delivery",
           "col2": "yes"
+        },
+        {
+           "label": "Request a purchase",
+           "href": "https://web.library.uq.edu.au/borrowing-requesting/request-purchase",
+           "col2": "yes"
         }
       ]
     },
