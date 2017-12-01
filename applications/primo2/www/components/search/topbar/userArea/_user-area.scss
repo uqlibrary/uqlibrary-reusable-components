@@ -65,12 +65,6 @@ prm-user-area {
     @extend .layout-full-height;
   }
 
-  // move the primo second-click login button below the minimal header so it isnt hidden
-  // (see also 1047 width at bottom of file)
-  md-fab-toolbar {
-    top: 100px !important;
-  }
-
   md-toolbar {
     font-size: 1em;
   }
@@ -120,7 +114,8 @@ prm-user-area {
 
   md-fab-toolbar {
     position: absolute;
-    top: 0;
+    bottom: 0 !important; // move the primo second-click login button below the minimal header so it isnt hidden
+    top: auto !important;
     right: 0;
     z-index: -1;
     width: auto;
@@ -218,14 +213,4 @@ prm-user-area {
     }
   }
 
-}
-
-// move the primo second-click login button below the minimal header so it isnt hidden
-// (see also normal width, above)
-@media all and (max-width: 1047px) {
-  prm-user-area {
-    md-fab-toolbar {
-      top: 66px !important;
-    }
-  }
 }
