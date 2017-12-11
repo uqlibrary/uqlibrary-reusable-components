@@ -135,11 +135,44 @@ Example:
       iron-dropdown {
         position: absolute !important;
       }
+
+      #menuNavInstruction {
+        text-transform: none;
+        background-color: #000;
+        color: #FFF;
+        position: absolute;
+
+        overflow: hidden;
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+      }
+
+      #menuNavInstruction.keyboard-focus {
+        z-index: 1000;
+
+        overflow: visible;
+        height: 70px;
+        width: 350px;
+        margin: -70px 5px 5px 400px;
+        padding: 0 10px
+      }
     </style>
 
     <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
 
     <nav class="menu-container">
+
+      <paper-button id="menuNavInstruction"
+                    aria-live="polite"
+                    aria-label="Use arrow keys to navigate menu headings and the tab key to navigate their sub-items"
+                    title="Use arrow keys to navigate menu headings and the tab key to navigate their sub-items"
+                    >
+        Use arrow keys to navigate menu headings and the tab key to navigate their sub-items
+      </paper-button>
+
       <div class="menu-content loading" unresolved>
         <paper-tabs id="topMenu" on-tap="_topMenuSelected" role="menubar">
           <template is="dom-repeat" items="{{menu.items}}" as="mainmenuitem">
