@@ -101,6 +101,9 @@ prm-user-area .md-fab-toolbar {
 
 }
 
+/*
+// line 17041
+// made the virtual browse tooltip not appear - PT #153037612
 .md-dialog-container {
   Z-index: 10000;
 }
@@ -108,6 +111,8 @@ prm-user-area .md-fab-toolbar {
 md-backdrop._md-dialog-backdrop {
   z-index: 1002;
 }
+*/
+
 
 body.md-dialog-is-showing {
   overflow-x: visible !important;
