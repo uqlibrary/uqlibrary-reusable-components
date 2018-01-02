@@ -38,7 +38,7 @@
 
       numberMillsecondsBeforePopup: {
         type: Number,
-        value: 10000 // 60000
+        value: 60000
       },
 
       cookieNameNoPopup: {
@@ -100,6 +100,7 @@
         this.async(function () {
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
+            this._movePrimoFiltersAreaForPopup();
             this._showChatOnlineTab = false;
           }
         }, this.numberMillsecondsBeforePopup);
@@ -109,15 +110,60 @@
     /**
      * Called when the chat status has changed, eg uqlibrary-api-chat-status-loaded has fired. Updates display status
      */
-    _handleChangedChatStatus: function () {
+    _handleChangedChatStatus: function() {
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
+        this._movePrimoFiltersAreaForTab();
         this._showChatOfflineTab = false;
       } else if (typeof this._chatStatusUpdated !== 'undefined') {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
+        this._movePrimoFiltersAreaForTab();
       }
+    },
+
+    // while we have used css to stop the facet sidebar going 'over' the proactive chat widget,
+    // this isnt working for the primo 'apply filters' widget
+    // as its 'bottom edge' varies depending on whether the tab or the popup shows, or nothing
+    // so do it with js...
+    _movePrimoFiltersAreaForPopup: function() {
+      // put a 125px margin at the bottom
+      this._movePrimoFiltersArea(125, 70);
+    },
+
+    _movePrimoFiltersAreaForTab: function() {
+      // put a 45px margin at the bottom
+      this._movePrimoFiltersArea(45, 0);
+    },
+
+    // we cant just set this on load, because the 'filter' popup isnt available unless
+    // (and until) the user checks a checkbox in the sidebar
+    // so once our popup appears, look for the div every couple of seconds
+    _movePrimoFiltersArea: function(filterButtonBottomMargin, sidebarBottomMargin) {
+
+      var checkEvery2Seconds = 2000;
+      this.async(function () {
+        var filterDivs = document.getElementsByClassName('multiselect-submit-inner');
+        if (filterDivs && filterDivs.length) {
+          var filterDiv = filterDivs[0];
+          if (filterDiv) {
+            // move the block with the filter button so it doesnt slide under the proactive chat widget
+            filterDiv.style.marginBottom = filterButtonBottomMargin + 'px';
+          }
+        }
+        var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
+        if (sidebarDivs && sidebarDivs.length) {
+          var sidebarDiv = sidebarDivs[0];
+          if (sidebarDiv) {
+            // move the bottom of the sidebar so it doesnt slide under the filter button block
+            sidebarDiv.style.marginBottom = sidebarBottomMargin + 'px';
+          }
+        }
+
+        // check again
+        this._movePrimoFiltersArea(filterButtonBottomMargin, sidebarBottomMargin);
+      }, checkEvery2Seconds);
     },
 
     /*
