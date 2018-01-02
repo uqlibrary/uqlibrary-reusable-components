@@ -179,8 +179,3 @@ prm-breadcrumbs .md-chip.persistent-facet strong {
 prm-breadcrumbs .md-chip.persistent-facet .md-chip-content .persistence-button {
   left: -1px;
 }
-
-/* per PT 153837535 - make facet sidebar not slide over proactive chat widget */
-.primo-scrollbar.is-stuck {
-  z-index: 0 !important;
-}
