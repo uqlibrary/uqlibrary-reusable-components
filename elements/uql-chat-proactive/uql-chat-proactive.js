@@ -375,8 +375,8 @@ console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to '
 
     _isPrimoPage: function() {
       return (
-        'search.library.uq.edu.au' === window.location.hostname // primo prod
-        || window.location.hostname.endsWith('exlibrisgroup.com') // primo sandbox
+        'search.library.uq.edu.au' === window.location.hostname || // primo prod
+        window.location.hostname.endsWith('exlibrisgroup.com') // primo sandbox
       );
     }
 
