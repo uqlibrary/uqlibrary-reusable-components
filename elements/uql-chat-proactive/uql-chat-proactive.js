@@ -146,7 +146,7 @@
      * @private
      */
     _watchForPrimoFiltersButton: function() {
-      var facetsSidebar = 'facets';
+      var facetsSidebar = document.getElementById('facets');
       var filterDivs = document.getElementsByClassName('multiselect-submit-inner');
       var foundDiv = document.body.contains(filterDivs);
       var observer = new MutationObserver(function(mutations) {
@@ -166,7 +166,8 @@
         }
 
       });
-      observer.observe(document.body, {childList: true});
+console.log('_watchForPrimoFiltersButton observing');
+      observer.observe(facetsSidebar, {subtree: true});
     },
 
     /*
@@ -174,6 +175,7 @@
      * so proactive chat doesnt cover any options
      */
     _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
+console.log('_makeRoomForSidebarBottomElements setting ' + sidebarDivMarginBottom + 'px');
       if ('search.library.uq.edu.au' === window.location.hostname) {
         var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
         if (sidebarDivs && sidebarDivs.length) {
@@ -190,6 +192,7 @@
      * the amount of space needed to allow the 'apply filters' button to appear
      */
     _setFilterButtonPositioning: function(bottomMargin) {
+console.log('_setFilterButtonPositioning setting bottommargin variable to ' + bottomMargin);
       // put a 125px margin at the bottom
       this.filterDivMarginBottom = bottomMargin;
     },
