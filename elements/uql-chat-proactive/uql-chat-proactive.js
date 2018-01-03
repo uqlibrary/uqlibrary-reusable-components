@@ -52,12 +52,20 @@
       chatLinkItems: {
         type: Object,
         value: null
-      }
+      },
 
-    },
+      filterDivMarginBottom: {
+        type: Number,
+        value: 0
+      }
+},
 
     attached: function () {
       var self = this;
+
+      if ('search.library.uq.edu.au' === window.location.hostname) {
+        this._watchForPrimoFiltersButton();
+      }
 
       // get chat status after a number of seconds
       // this avoids the initial call which always seems to be offline
@@ -100,7 +108,8 @@
         this.async(function () {
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
-            this._movePrimoFiltersAreaForPopup();
+            this._setFilterButtonPositioning(125);
+            this._makeRoomForSidebarBottomElements(70);
             this._showChatOnlineTab = false;
           }
         }, this.numberMillsecondsBeforePopup);
@@ -113,57 +122,84 @@
     _handleChangedChatStatus: function() {
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
-        this._movePrimoFiltersAreaForTab();
+        this._setFilterButtonPositioningForTab();
         this._showChatOfflineTab = false;
       } else if (typeof this._chatStatusUpdated !== 'undefined') {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
-        this._movePrimoFiltersAreaForTab();
+        this._setFilterButtonPositioningForTab();
       }
+      this._makeRoomForSidebarBottomElements(0);
     },
 
-    // while we have used css to stop the facet sidebar going 'over' the proactive chat widget,
-    // this isnt working for the primo 'apply filters' widget
-    // as its 'bottom edge' varies depending on whether the tab or the popup shows, or nothing
-    // so do it with js...
-    _movePrimoFiltersAreaForPopup: function() {
-      // put a 125px margin at the bottom
-      this._movePrimoFiltersArea(125, 70);
-    },
-
-    _movePrimoFiltersAreaForTab: function() {
-      // put a 45px margin at the bottom
-      this._movePrimoFiltersArea(45, 0);
-    },
-
-    // we cant just set this on load, because the 'filter' popup isnt available unless
-    // (and until) the user checks a checkbox in the sidebar
-    // so once our popup appears, look for the div every couple of seconds
-    _movePrimoFiltersArea: function(filterButtonBottomMargin, sidebarBottomMargin) {
-
-      var checkEvery2Seconds = 2000;
-      this.async(function () {
-        var filterDivs = document.getElementsByClassName('multiselect-submit-inner');
-        if (filterDivs && filterDivs.length) {
-          var filterDiv = filterDivs[0];
-          if (filterDiv) {
-            // move the block with the filter button so it doesnt slide under the proactive chat widget
-            filterDiv.style.marginBottom = filterButtonBottomMargin + 'px';
+    /**
+     * while we have used css to stop the facet sidebar going 'over' the proactive chat widget,
+     * static css isnt sufficient for the primo 'apply filters' widget
+     * as its 'bottom edge' position must vary depending on whether the tab or the popup shows, or nothing
+     * and we cant just set this on load, because the 'filter' popup isnt available to the dom unless
+     * (and until) the user checks a checkbox in the sidebar
+     * mutation observer browser support: https://caniuse.com/#feat=mutationobserver
+     * Details:
+     * https://jcubic.wordpress.com/2017/04/28/how-to-detect-if-element-is-added-or-removed-from-dom/
+     * https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+     * @private
+     */
+    _watchForPrimoFiltersButton: function() {
+      var facetsSidebar = 'facets';
+      var filterDivs = document.getElementsByClassName('multiselect-submit-inner');
+      var foundDiv = document.body.contains(filterDivs);
+      var observer = new MutationObserver(function(mutations) {
+        if (document.body.contains(element)) {
+          if (!foundDiv) {
+            // element inserted
+            var filterDiv = filterDivs[0];
+            if (filterDiv) {
+              // move the block with the filter button so it doesnt slide under the proactive chat widget
+              filterDiv.style.marginBottom = this.filterDivMarginBottom + 'px';
+            }
           }
+          foundDiv = true;
+        } else if (foundDiv) {
+          // element removed
+          foundDiv = false;
         }
+
+      });
+      observer.observe(document.body, {childList: true});
+    },
+
+    /*
+     * force a gap at the bottom of the facets sidebar on primo
+     * so proactive chat doesnt cover any options
+     */
+    _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
+      if ('search.library.uq.edu.au' === window.location.hostname) {
         var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
         if (sidebarDivs && sidebarDivs.length) {
           var sidebarDiv = sidebarDivs[0];
           if (sidebarDiv) {
             // move the bottom of the sidebar so it doesnt slide under the filter button block
-            sidebarDiv.style.marginBottom = sidebarBottomMargin + 'px';
+            sidebarDiv.style.marginBottom = sidebarDivMarginBottom + 'px';
           }
         }
+      }
+    },
 
-        // check again
-        this._movePrimoFiltersArea(filterButtonBottomMargin, sidebarBottomMargin);
-      }, checkEvery2Seconds);
+    /*
+     * the amount of space needed to allow the 'apply filters' button to appear
+     */
+    _setFilterButtonPositioning: function(bottomMargin) {
+      // put a 125px margin at the bottom
+      this.filterDivMarginBottom = bottomMargin;
+    },
+
+    /*
+     * the amount of space needed to allow the 'apply filters' button to appear above the tab
+     */
+    _setFilterButtonPositioningForTab: function() {
+      // put a 45px margin at the bottom
+      this._setFilterButtonPositioning(45);
     },
 
     /*
