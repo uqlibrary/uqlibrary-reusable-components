@@ -146,7 +146,7 @@
      * @private
      */
     _watchForPrimoFiltersButton: function() {
-      var facetsSidebar = document.getElementById('facets');
+      var facetsSidebar = document.querySelector('#facets');
       var filterDivs = document.getElementsByClassName('multiselect-submit-inner');
       var foundDiv = document.body.contains(filterDivs);
       var observer = new MutationObserver(function(mutations) {
