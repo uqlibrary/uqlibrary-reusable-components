@@ -148,9 +148,15 @@
     _watchForPrimoFiltersButton: function() {
       var facetsSidebar = document.querySelector('prm-explore-main');
       var filterDivs = document.getElementsByClassName('multiselect-submit-inner');
-      var foundDiv = document.body.contains(filterDivs);
+      var foundDiv;
+      if (filterDivs && filterDivs.length) {
+        foundDiv = document.body.contains(filterDivs);
+      } else {
+        foundDiv = false;
+      }
       var observer = new MutationObserver(function(mutations) {
-        if (document.body.contains(element)) {
+        filterDivs = document.getElementsByClassName('multiselect-submit-inner');
+        if (filterDivs && document.body.contains(filterDivs)) {
           if (!foundDiv) {
             // element inserted
 console.log('filter button added');
