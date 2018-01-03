@@ -146,7 +146,7 @@
      * @private
      */
     _watchForPrimoFiltersButton: function() {
-      var facetsSidebar = document.querySelector('prm-explore-main');
+      // var facetsSidebar = document.querySelector('prm-explore-main');
       var filterDivs = document.getElementsByClassName('multiselect-submit-inner');
       var foundDiv;
       if (filterDivs && filterDivs.length) {
@@ -175,7 +175,11 @@ console.log('filter button removed');
 
       });
 console.log('_watchForPrimoFiltersButton observing');
-      observer.observe(facetsSidebar, {childList: true, subtree: true});
+      observer.observe(document.body, {
+        childList: true, // required field
+        subtree: true // the field to be observed is a descendant, not a child
+      });
+      // observer.observe(facetsSidebar, {childList: true, subtree: true});
     },
 
     /*
@@ -183,13 +187,14 @@ console.log('_watchForPrimoFiltersButton observing');
      * so proactive chat doesnt cover any options
      */
     _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
-console.log('_makeRoomForSidebarBottomElements setting ' + sidebarDivMarginBottom + 'px');
+console.log('_makeRoomForSidebarBottomElements');
       if (this._isPrimoPage(window.location.hostname)) {
         var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
         if (sidebarDivs && sidebarDivs.length) {
           var sidebarDiv = sidebarDivs[0];
           if (sidebarDiv) {
             // move the bottom of the sidebar so it doesnt slide under the filter button block
+console.log('_makeRoomForSidebarBottomElements setting ' + sidebarDivMarginBottom + 'px');
             sidebarDiv.style.marginBottom = sidebarDivMarginBottom + 'px';
           }
         }
