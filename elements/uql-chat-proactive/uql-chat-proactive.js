@@ -63,7 +63,7 @@
     attached: function () {
       var self = this;
 
-      if ('search.library.uq.edu.au' === window.location.hostname) {
+      if (this._isPrimoPage()) {
         this._watchForPrimoFiltersButton();
       }
 
@@ -108,7 +108,7 @@
         this.async(function () {
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
-            this._setFilterButtonPositioning(125);
+            this._setPrimoFilterButtonPositioning(125);
             this._makeRoomForSidebarBottomElements(70);
             this._showChatOnlineTab = false;
           }
@@ -122,13 +122,13 @@
     _handleChangedChatStatus: function() {
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
-        this._setFilterButtonPositioningForTab();
+        this._setPrimoFilterButtonPositioningForTab();
         this._showChatOfflineTab = false;
       } else if (typeof this._chatStatusUpdated !== 'undefined') {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
-        this._setFilterButtonPositioningForTab();
+        this._setPrimoFilterButtonPositioningForTab();
       }
       this._makeRoomForSidebarBottomElements(0);
     },
@@ -153,6 +153,7 @@
         if (document.body.contains(element)) {
           if (!foundDiv) {
             // element inserted
+console.log('filter button added');
             var filterDiv = filterDivs[0];
             if (filterDiv) {
               // move the block with the filter button so it doesnt slide under the proactive chat widget
@@ -161,6 +162,7 @@
           }
           foundDiv = true;
         } else if (foundDiv) {
+console.log('filter button removed');
           // element removed
           foundDiv = false;
         }
@@ -191,8 +193,8 @@ console.log('_makeRoomForSidebarBottomElements setting ' + sidebarDivMarginBotto
     /*
      * the amount of space needed to allow the 'apply filters' button to appear
      */
-    _setFilterButtonPositioning: function(bottomMargin) {
-console.log('_setFilterButtonPositioning setting bottommargin variable to ' + bottomMargin);
+    _setPrimoFilterButtonPositioning: function(bottomMargin) {
+console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to ' + bottomMargin);
       // put a 125px margin at the bottom
       this.filterDivMarginBottom = bottomMargin;
     },
@@ -200,9 +202,9 @@ console.log('_setFilterButtonPositioning setting bottommargin variable to ' + bo
     /*
      * the amount of space needed to allow the 'apply filters' button to appear above the tab
      */
-    _setFilterButtonPositioningForTab: function() {
+    _setPrimoFilterButtonPositioningForTab: function() {
       // put a 45px margin at the bottom
-      this._setFilterButtonPositioning(45);
+      this._setPrimoFilterButtonPositioning(45);
     },
 
     /*
@@ -369,6 +371,13 @@ console.log('_setFilterButtonPositioning setting bottommargin variable to ' + bo
           return '.' + hostname;
         }
       }
+    },
+
+    _isPrimoPage: function() {
+      return (
+        'search.library.uq.edu.au' === window.location.hostname // primo prod
+        || window.location.hostname.endsWith('exlibrisgroup.com') // primo sandbox
+      );
     }
 
   });
