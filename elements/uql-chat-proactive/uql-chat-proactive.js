@@ -63,7 +63,7 @@
     attached: function () {
       var self = this;
 
-      if (this._isPrimoPage()) {
+      if (this._isPrimoPage(window.location.hostname)) {
         this._watchForPrimoFiltersButton();
       }
 
@@ -175,7 +175,7 @@ console.log('filter button removed');
 
       });
 console.log('_watchForPrimoFiltersButton observing');
-      observer.observe(facetsSidebar, {subtree: true});
+      observer.observe(facetsSidebar, {childList: true, subtree: true});
     },
 
     /*
@@ -184,7 +184,7 @@ console.log('_watchForPrimoFiltersButton observing');
      */
     _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
 console.log('_makeRoomForSidebarBottomElements setting ' + sidebarDivMarginBottom + 'px');
-      if ('search.library.uq.edu.au' === window.location.hostname) {
+      if (this._isPrimoPage(window.location.hostname)) {
         var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
         if (sidebarDivs && sidebarDivs.length) {
           var sidebarDiv = sidebarDivs[0];
@@ -379,11 +379,20 @@ console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to '
       }
     },
 
-    _isPrimoPage: function() {
-      return (
-        'search.library.uq.edu.au' === window.location.hostname || // primo prod
-        window.location.hostname.endsWith('exlibrisgroup.com') // primo sandbox
-      );
+    _isPrimoPage: function(hostname) {
+      // return (
+      //   'search.library.uq.edu.au' === hostname || // primo prod
+      //   hostname.endsWith('exlibrisgroup.com') // primo sandbox
+      // );
+      if (
+        'search.library.uq.edu.au' === hostname || // primo prod
+        hostname.endsWith('exlibrisgroup.com') // primo sandbox
+      ) {
+console.log('is primo page');
+        return true;
+      } else {
+        return false;
+      }
     }
 
   });
