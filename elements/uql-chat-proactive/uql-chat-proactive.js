@@ -144,7 +144,7 @@
      * mutation observer browser support: https://caniuse.com/#feat=mutationobserver
      * @private
      */
-    _watchForPrimoFiltersButton: function(filterButtonBottomMargin, sidebarBottomMargin) {
+    _watchForPrimoFiltersButton: function() {
 console.log('_watchForPrimoFiltersButton');
       var checkEvery2Seconds = 1000;
       this.async(function () {
@@ -153,13 +153,13 @@ console.log('_watchForPrimoFiltersButton');
           var filterButtonDiv = filterButtonDivs[0];
           if (filterButtonDiv) {
             // move the block with the filter button so it doesnt slide under the proactive chat widget
-console.log('change the bottom margin to ' + filterButtonBottomMargin + 'px');
-            filterButtonDiv.style.marginBottom = filterButtonBottomMargin + 'px';
+console.log('change the bottom margin to ' + this.filterButtonDivMarginBottom + 'px');
+            filterButtonDiv.style.marginBottom = this.filterButtonDivMarginBottom + 'px';
           }
         }
 
         // check again
-        this._watchForPrimoFiltersButton(filterButtonBottomMargin, sidebarBottomMargin);
+        this._watchForPrimoFiltersButton();
       }, checkEvery2Seconds);
     },
 
