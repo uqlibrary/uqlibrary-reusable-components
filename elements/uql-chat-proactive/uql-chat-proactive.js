@@ -146,7 +146,8 @@
      * @private
      */
     _watchForPrimoFiltersButton: function() {
-      // var facetsSidebar = document.querySelector('prm-explore-main');
+      var facetsSidebar = document.querySelector('prm-facet div');
+console.log(facetsSidebar);
 //      var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
       var filterButtonDivs = document.querySelector('.multiselect-submit-inner');
       var in_dom;
@@ -179,11 +180,11 @@ console.log('filter button removed');
 
       });
 console.log('_watchForPrimoFiltersButton observing');
-      observer.observe(document.body, {
-        childList: true, // required field
-        subtree: true // the field to be observed is a descendant, not a child
-      });
-      // observer.observe(facetsSidebar, {childList: true, subtree: true});
+      // observer.observe(document.body, {
+      //   childList: true, // required field
+      //   subtree: true // the field to be observed is a descendant, not a child
+      // });
+      observer.observe(facetsSidebar, {childList: true});
     },
 
     /*
