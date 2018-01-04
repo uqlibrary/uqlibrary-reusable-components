@@ -54,11 +54,14 @@
         value: null
       },
 
+      /*
+       * holds the height we put below the Apply Filter button - varies if tab or popup showing
+       */
       filterButtonDivMarginBottom: {
         type: Number,
         value: 0
       }
-},
+    },
 
     attached: function () {
       var self = this;
@@ -138,14 +141,9 @@
      * as its 'bottom edge' position must vary depending on whether the tab or the popup shows, or nothing
      * and we cant just set this on load, because the 'filter' popup isnt available to the dom unless
      * (and until) the user checks a checkbox in the sidebar
-     * Details:
-     * https://jcubic.wordpress.com/2017/04/28/how-to-detect-if-element-is-added-or-removed-from-dom/
-     * https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
-     * mutation observer browser support: https://caniuse.com/#feat=mutationobserver
      * @private
      */
     _watchForPrimoFiltersButton: function() {
-console.log('_watchForPrimoFiltersButton');
       var checkEvery2Seconds = 1000;
       this.async(function () {
         var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
@@ -153,7 +151,6 @@ console.log('_watchForPrimoFiltersButton');
           var filterButtonDiv = filterButtonDivs[0];
           if (filterButtonDiv) {
             // move the block with the filter button so it doesnt slide under the proactive chat widget
-console.log('change the bottom margin to ' + this.filterButtonDivMarginBottom + 'px');
             filterButtonDiv.style.marginBottom = this.filterButtonDivMarginBottom + 'px';
           }
         }
@@ -163,61 +160,17 @@ console.log('change the bottom margin to ' + this.filterButtonDivMarginBottom + 
       }, checkEvery2Seconds);
     },
 
-    _watchForPrimoFiltersButtonMUTATION: function() {
-      var facetsSidebar = document.querySelector('prm-facet div');
-console.log(facetsSidebar);
-//      var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
-      var filterButtonDivs = document.querySelector('.multiselect-submit-inner');
-      var in_dom;
-      // if (filterButtonDivs && filterButtonDivs.length) {
-      //   in_dom = document.body.contains(filterButtonDivs);
-      // } else {
-      //   in_dom = false;
-      // }
-
-
-      in_dom = document.body.contains(filterButtonDivs);
-      var observer = new MutationObserver(function(mutations) {
-//        filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner'); // do we need to set it again?
-        if (document.body.contains(filterButtonDivs)) {
-          if (!in_dom) {
-            // element inserted
-console.log('filter button added');
-            var filterButtonDiv = filterButtonDivs[0];
-            if (filterButtonDiv) {
-              // move the block with the filter button so it doesnt slide under the proactive chat widget
-              filterButtonDiv.style.marginBottom = this.filterButtonDivMarginBottom + 'px';
-            }
-          }
-          in_dom = true;
-        } else if (in_dom) {
-console.log('filter button removed');
-          // element removed
-          in_dom = false;
-        }
-
-      });
-console.log('_watchForPrimoFiltersButton observing');
-      // observer.observe(document.body, {
-      //   childList: true, // required field
-      //   subtree: true // the field to be observed is a descendant, not a child
-      // });
-      observer.observe(facetsSidebar, {childList: true});
-    },
-
     /*
      * force a gap at the bottom of the facets sidebar on primo
      * so proactive chat doesnt cover any options
      */
     _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
-console.log('_makeRoomForSidebarBottomElements');
       if (this._isPrimoPage(window.location.hostname)) {
         var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
         if (sidebarDivs && sidebarDivs.length) {
           var sidebarDiv = sidebarDivs[0];
           if (sidebarDiv) {
             // move the bottom of the sidebar so it doesnt slide under the filter button block
-console.log('_makeRoomForSidebarBottomElements setting ' + sidebarDivMarginBottom + 'px');
             sidebarDiv.style.marginBottom = sidebarDivMarginBottom + 'px';
           }
         }
@@ -228,7 +181,6 @@ console.log('_makeRoomForSidebarBottomElements setting ' + sidebarDivMarginBotto
      * the amount of space needed to allow the 'apply filters' button to appear
      */
     _setPrimoFilterButtonPositioning: function(bottomMargin) {
-console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to ' + bottomMargin);
       // put a 125px margin at the bottom
       this.filterButtonDivMarginBottom = bottomMargin;
     },
@@ -393,7 +345,7 @@ console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to '
      */
     getDomain: function(hostname) {
       var libraryRegExp = /(.*).library.uq.edu.au/i;
-      if ('localhost' == hostname)  {
+      if ('localhost' === hostname)  {
         return 'localhost';
       } else if (libraryRegExp.test(hostname))  {
         // If we are on a library subdomain, use library root domain.
@@ -410,19 +362,10 @@ console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to '
     },
 
     _isPrimoPage: function(hostname) {
-      // return (
-      //   'search.library.uq.edu.au' === hostname || // primo prod
-      //   hostname.endsWith('exlibrisgroup.com') // primo sandbox
-      // );
-      if (
+      return (
         'search.library.uq.edu.au' === hostname || // primo prod
         hostname.endsWith('exlibrisgroup.com') // primo sandbox
-      ) {
-console.log('is primo page');
-        return true;
-      } else {
-        return false;
-      }
+      );
     }
 
   });
