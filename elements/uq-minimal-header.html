@@ -237,9 +237,11 @@ Example:
       </div>
     </div>
 
-    <div class="proactivechat">
-      <uql-chat-proactive></uql-chat-proactive>
-    </div>
+    <template is="dom-if" if="{{showChatButton}}">
+      <div class="proactivechat">
+        <uql-chat-proactive></uql-chat-proactive>
+      </div>
+    </template>
 
     <!-- Hidden span to skip navigation -->
     <span id="headerAfter" tabindex="0" aria-label="Start of content" style="position: fixed; top: -200px; left: -200px;"></span>
