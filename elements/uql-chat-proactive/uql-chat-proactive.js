@@ -143,17 +143,20 @@
      * @private
      */
     _setPopupMaxWidthInPrimo: function() {
+console.log('in _setPopupMaxWidthInPrimo');
       var sidebarWidthString;
       var proactivechat;
       var facets = document.querySelector('#facets');
       if (facets) {
         sidebarWidthString = window.getComputedStyle(facets, null).getPropertyValue('width').trim();
+console.log('sidebarWidthString = ' + sidebarWidthString);
       }
       if (sidebarWidthString) {
         proactivechat = document.querySelector('.proactivechat paper-card');
       }
       if (proactivechat) {
         proactivechat.style.maxWidth = sidebarWidthString;
+console.log('max width set');
       }
     },
 
