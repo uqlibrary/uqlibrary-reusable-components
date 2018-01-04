@@ -159,7 +159,7 @@ console.log('change the bottom margin to ' + filterButtonBottomMargin + 'px');
         }
 
         // check again
-        this._movePrimoFiltersArea(filterButtonBottomMargin, sidebarBottomMargin);
+        this._watchForPrimoFiltersButton(filterButtonBottomMargin, sidebarBottomMargin);
       }, checkEvery2Seconds);
     },
 
