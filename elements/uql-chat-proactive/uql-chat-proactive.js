@@ -145,7 +145,7 @@
     _setPopupMaxWidthInPrimo: function() {
       var sidebarWidthString;
       var proactivechat;
-      var facets = document.getElementById('facets');
+      var facets = document.querySelector('#facets');
       if (facets) {
         sidebarWidthString = window.getComputedStyle(facets, null).getPropertyValue('width').trim();
       }
@@ -168,13 +168,10 @@
     _watchForPrimoFiltersButton: function() {
       var numMilliSecondsRecheck = 1000;
       this.async(function () {
-        var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
-        if (filterButtonDivs && filterButtonDivs.length) {
-          var filterButtonDiv = filterButtonDivs[0];
-          if (filterButtonDiv) {
+        var filterButtonDiv = document.querySelector('.multiselect-submit-inner');
+        if (filterButtonDiv) {
             // move the block with the filter button so it doesnt slide under the proactive chat widget
             filterButtonDiv.style.marginBottom = this.filterButtonDivMarginBottom + 'px';
-          }
         }
 
         // check again
@@ -188,13 +185,10 @@
      */
     _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
       if (this._isPrimoPage(window.location.hostname)) {
-        var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
-        if (sidebarDivs && sidebarDivs.length) {
-          var sidebarDiv = sidebarDivs[0];
-          if (sidebarDiv) {
+        var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
+        if (sidebarDiv) {
             // move the bottom of the sidebar so it doesnt slide under the filter button block
             sidebarDiv.style.marginBottom = sidebarDivMarginBottom + 'px';
-          }
         }
       }
     },
