@@ -54,7 +54,7 @@
         value: null
       },
 
-      filterDivMarginBottom: {
+      filterButtonDivMarginBottom: {
         type: Number,
         value: 0
       }
@@ -139,38 +139,42 @@
      * as its 'bottom edge' position must vary depending on whether the tab or the popup shows, or nothing
      * and we cant just set this on load, because the 'filter' popup isnt available to the dom unless
      * (and until) the user checks a checkbox in the sidebar
-     * mutation observer browser support: https://caniuse.com/#feat=mutationobserver
      * Details:
      * https://jcubic.wordpress.com/2017/04/28/how-to-detect-if-element-is-added-or-removed-from-dom/
      * https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+     * mutation observer browser support: https://caniuse.com/#feat=mutationobserver
      * @private
      */
     _watchForPrimoFiltersButton: function() {
       // var facetsSidebar = document.querySelector('prm-explore-main');
-      var filterDivs = document.getElementsByClassName('multiselect-submit-inner');
-      var foundDiv;
-      if (filterDivs && filterDivs.length) {
-        foundDiv = document.body.contains(filterDivs);
-      } else {
-        foundDiv = false;
-      }
+//      var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
+      var filterButtonDivs = document.querySelector('.multiselect-submit-inner');
+      var in_dom;
+      // if (filterButtonDivs && filterButtonDivs.length) {
+      //   in_dom = document.body.contains(filterButtonDivs);
+      // } else {
+      //   in_dom = false;
+      // }
+
+
+      in_dom = document.body.contains(filterButtonDivs);
       var observer = new MutationObserver(function(mutations) {
-        filterDivs = document.getElementsByClassName('multiselect-submit-inner');
-        if (filterDivs && document.body.contains(filterDivs)) {
-          if (!foundDiv) {
+//        filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner'); // do we need to set it again?
+        if (document.body.contains(filterButtonDivs)) {
+          if (!in_dom) {
             // element inserted
 console.log('filter button added');
-            var filterDiv = filterDivs[0];
-            if (filterDiv) {
+            var filterButtonDiv = filterButtonDivs[0];
+            if (filterButtonDiv) {
               // move the block with the filter button so it doesnt slide under the proactive chat widget
-              filterDiv.style.marginBottom = this.filterDivMarginBottom + 'px';
+              filterButtonDiv.style.marginBottom = this.filterButtonDivMarginBottom + 'px';
             }
           }
-          foundDiv = true;
-        } else if (foundDiv) {
+          in_dom = true;
+        } else if (in_dom) {
 console.log('filter button removed');
           // element removed
-          foundDiv = false;
+          in_dom = false;
         }
 
       });
@@ -207,7 +211,7 @@ console.log('_makeRoomForSidebarBottomElements setting ' + sidebarDivMarginBotto
     _setPrimoFilterButtonPositioning: function(bottomMargin) {
 console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to ' + bottomMargin);
       // put a 125px margin at the bottom
-      this.filterDivMarginBottom = bottomMargin;
+      this.filterButtonDivMarginBottom = bottomMargin;
     },
 
     /*
