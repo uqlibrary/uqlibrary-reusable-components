@@ -382,9 +382,16 @@
 
     _isPrimoPage: function(hostname) {
       return (
-        'search.library.uq.edu.au' === hostname || // primo prod
-        hostname.endsWith('exlibrisgroup.com') // primo sandbox
+        this._isPrimoProdPage(hostname) || this._isPrimoSandboxPage(hostname)
       );
+    },
+
+    _isPrimoProdPage: function(hostname) {
+      return ('search.library.uq.edu.au' === hostname);
+    },
+
+    _isPrimoSandboxPage: function(hostname) {
+      return (hostname.endsWith('exlibrisgroup.com'));
     }
 
   });
