@@ -122,14 +122,13 @@
     _handleChangedChatStatus: function() {
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
-        this._setPrimoFilterButtonPositioningForTab();
         this._showChatOfflineTab = false;
       } else if (typeof this._chatStatusUpdated !== 'undefined') {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
-        this._setPrimoFilterButtonPositioningForTab();
       }
+      this._setPrimoFilterButtonPositioningForTab();
       this._makeRoomForSidebarBottomElements(0);
     },
 
@@ -145,7 +144,26 @@
      * mutation observer browser support: https://caniuse.com/#feat=mutationobserver
      * @private
      */
-    _watchForPrimoFiltersButton: function() {
+    _watchForPrimoFiltersButton: function(filterButtonBottomMargin, sidebarBottomMargin) {
+console.log('_watchForPrimoFiltersButton');
+      var checkEvery2Seconds = 1000;
+      this.async(function () {
+        var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
+        if (filterButtonDivs && filterButtonDivs.length) {
+          var filterButtonDiv = filterButtonDivs[0];
+          if (filterButtonDiv) {
+            // move the block with the filter button so it doesnt slide under the proactive chat widget
+console.log('change the bottom margin to ' + filterButtonBottomMargin + 'px');
+            filterButtonDiv.style.marginBottom = filterButtonBottomMargin + 'px';
+          }
+        }
+
+        // check again
+        this._movePrimoFiltersArea(filterButtonBottomMargin, sidebarBottomMargin);
+      }, checkEvery2Seconds);
+    },
+
+    _watchForPrimoFiltersButtonMUTATION: function() {
       var facetsSidebar = document.querySelector('prm-facet div');
 console.log(facetsSidebar);
 //      var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
@@ -230,6 +248,7 @@ console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to '
       this._setCookieNoPopup();
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
+      this._setPrimoFilterButtonPositioningForTab();
     },
 
     /**
@@ -272,6 +291,7 @@ console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to '
       this._openWindow(this.chatLinkItems);
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
+      this._setPrimoFilterButtonPositioningForTab();
     },
 
     /**
