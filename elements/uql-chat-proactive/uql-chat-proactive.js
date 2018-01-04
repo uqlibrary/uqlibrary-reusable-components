@@ -52,12 +52,23 @@
       chatLinkItems: {
         type: Object,
         value: null
-      }
+      },
 
+      /*
+       * holds the height we put below the Apply Filter button - varies if tab or popup showing
+       */
+      filterButtonDivMarginBottom: {
+        type: Number,
+        value: 0
+      }
     },
 
     attached: function () {
       var self = this;
+
+      if (this._isPrimoPage(window.location.hostname)) {
+        this._watchForPrimoFiltersButton();
+      }
 
       // get chat status after a number of seconds
       // this avoids the initial call which always seems to be offline
@@ -100,6 +111,8 @@
         this.async(function () {
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
+            this._setPrimoFilterButtonPositioning(125);
+            this._makeRoomForSidebarBottomElements(70);
             this._showChatOnlineTab = false;
           }
         }, this.numberMillsecondsBeforePopup);
@@ -109,7 +122,7 @@
     /**
      * Called when the chat status has changed, eg uqlibrary-api-chat-status-loaded has fired. Updates display status
      */
-    _handleChangedChatStatus: function () {
+    _handleChangedChatStatus: function() {
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
         this._showChatOfflineTab = false;
@@ -118,6 +131,66 @@
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
       }
+      this._setPrimoFilterButtonPositioningForTab();
+      this._makeRoomForSidebarBottomElements(0);
+    },
+
+    /**
+     * while we have used css to stop the facet sidebar going 'over' the proactive chat widget,
+     * static css isnt sufficient for the primo 'apply filters' widget
+     * as its 'bottom edge' position must vary depending on whether the tab or the popup shows, or nothing
+     * and we cant just set this on load, because the 'filter' popup isnt available to the dom unless
+     * (and until) the user checks a checkbox in the sidebar
+     * @private
+     */
+    _watchForPrimoFiltersButton: function() {
+      var checkEvery2Seconds = 1000;
+      this.async(function () {
+        var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
+        if (filterButtonDivs && filterButtonDivs.length) {
+          var filterButtonDiv = filterButtonDivs[0];
+          if (filterButtonDiv) {
+            // move the block with the filter button so it doesnt slide under the proactive chat widget
+            filterButtonDiv.style.marginBottom = this.filterButtonDivMarginBottom + 'px';
+          }
+        }
+
+        // check again
+        this._watchForPrimoFiltersButton();
+      }, checkEvery2Seconds);
+    },
+
+    /*
+     * force a gap at the bottom of the facets sidebar on primo
+     * so proactive chat doesnt cover any options
+     */
+    _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
+      if (this._isPrimoPage(window.location.hostname)) {
+        var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
+        if (sidebarDivs && sidebarDivs.length) {
+          var sidebarDiv = sidebarDivs[0];
+          if (sidebarDiv) {
+            // move the bottom of the sidebar so it doesnt slide under the filter button block
+            sidebarDiv.style.marginBottom = sidebarDivMarginBottom + 'px';
+          }
+        }
+      }
+    },
+
+    /*
+     * the amount of space needed to allow the 'apply filters' button to appear
+     */
+    _setPrimoFilterButtonPositioning: function(bottomMargin) {
+      // put a 125px margin at the bottom
+      this.filterButtonDivMarginBottom = bottomMargin;
+    },
+
+    /*
+     * the amount of space needed to allow the 'apply filters' button to appear above the tab
+     */
+    _setPrimoFilterButtonPositioningForTab: function() {
+      // put a 45px margin at the bottom
+      this._setPrimoFilterButtonPositioning(25);
     },
 
     /*
@@ -127,6 +200,7 @@
       this._setCookieNoPopup();
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
+      this._setPrimoFilterButtonPositioningForTab();
     },
 
     /**
@@ -169,6 +243,7 @@
       this._openWindow(this.chatLinkItems);
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
+      this._setPrimoFilterButtonPositioningForTab();
     },
 
     /**
@@ -270,7 +345,7 @@
      */
     getDomain: function(hostname) {
       var libraryRegExp = /(.*).library.uq.edu.au/i;
-      if ('localhost' == hostname)  {
+      if ('localhost' === hostname)  {
         return 'localhost';
       } else if (libraryRegExp.test(hostname))  {
         // If we are on a library subdomain, use library root domain.
@@ -284,6 +359,13 @@
           return '.' + hostname;
         }
       }
+    },
+
+    _isPrimoPage: function(hostname) {
+      return (
+        'search.library.uq.edu.au' === hostname || // primo prod
+        hostname.endsWith('exlibrisgroup.com') // primo sandbox
+      );
     }
 
   });

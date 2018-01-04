@@ -101,6 +101,9 @@ prm-user-area .md-fab-toolbar {
 
 }
 
+/*
+// line 17041
+// made the virtual browse tooltip not appear - PT #153037612
 .md-dialog-container {
   Z-index: 10000;
 }
@@ -108,6 +111,8 @@ prm-user-area .md-fab-toolbar {
 md-backdrop._md-dialog-backdrop {
   z-index: 1002;
 }
+*/
+
 
 /* REMOVED per Stacey VG.
  body.md-dialog-is-showing {
@@ -158,4 +163,20 @@ div.top-nav-bar-links.buttons-group.layout-align-center-center.layout-row.flex-1
 // also hide the browse button in the mobile view
 div.md-dialog-container .custom-links-container.layout-wrap.layout-align-sm-start-start.layout-align-center-start.layout-row {
   display: none;
+}
+
+/* make the lock always show on facets area */
+prm-facet prm-breadcrumbs div.md-chip-content strong {
+  padding-left: 22px;
+}
+prm-breadcrumbs .md-chips .md-chip-content .persistence-button {
+  opacity: 1;
+  transform: none;
+  padding-left: -2px;
+}
+prm-breadcrumbs .md-chip.persistent-facet strong {
+  padding-left: 0;
+}
+prm-breadcrumbs .md-chip.persistent-facet .md-chip-content .persistence-button {
+  left: -1px;
 }

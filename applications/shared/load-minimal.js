@@ -31,6 +31,7 @@ function loadReusableComponents() {
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
     header.showLoginButton = false;
+    header.showChatButton = false;
   });
 }
 
