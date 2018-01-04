@@ -67,6 +67,7 @@
       var self = this;
 
       if (this._isPrimoPage(window.location.hostname)) {
+        this._setPopupMaxWidthInPrimo();
         this._watchForPrimoFiltersButton();
       }
 
@@ -136,6 +137,25 @@
     },
 
     /**
+     * On the primo results page, change the width of the proactive chat popup
+     * so that it doesnt overlap the results list
+     * because there are yucky things happening there with z-index
+     * @private
+     */
+    _setPopupMaxWidthInPrimo: function() {
+      var facets = document.getElementById('facets');
+      if (facets) {
+        var sidebarWidthString = window.getComputedStyle(facets, null).getPropertyValue('width').trim();
+      }
+      if (sidebarWidthString) {
+        var proactivechat = document.querySelector('.proactivechat paper-card');
+      }
+      if (proactivechat) {
+        proactivechat.style.maxWidth = sidebarWidthString;
+      }
+    },
+
+    /**
      * while we have used css to stop the facet sidebar going 'over' the proactive chat widget,
      * static css isnt sufficient for the primo 'apply filters' widget
      * as its 'bottom edge' position must vary depending on whether the tab or the popup shows, or nothing
@@ -144,7 +164,7 @@
      * @private
      */
     _watchForPrimoFiltersButton: function() {
-      var checkEvery2Seconds = 1000;
+      var numMilliSecondsRecheck = 1000;
       this.async(function () {
         var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
         if (filterButtonDivs && filterButtonDivs.length) {
@@ -157,7 +177,7 @@
 
         // check again
         this._watchForPrimoFiltersButton();
-      }, checkEvery2Seconds);
+      }, numMilliSecondsRecheck);
     },
 
     /*
@@ -181,7 +201,6 @@
      * the amount of space needed to allow the 'apply filters' button to appear
      */
     _setPrimoFilterButtonPositioning: function(bottomMargin) {
-      // put a 125px margin at the bottom
       this.filterButtonDivMarginBottom = bottomMargin;
     },
 
