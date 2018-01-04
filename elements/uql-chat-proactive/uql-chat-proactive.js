@@ -238,7 +238,7 @@ console.log('_setPrimoFilterButtonPositioning setting bottommargin variable to '
      */
     _setPrimoFilterButtonPositioningForTab: function() {
       // put a 45px margin at the bottom
-      this._setPrimoFilterButtonPositioning(45);
+      this._setPrimoFilterButtonPositioning(25);
     },
 
     /*
