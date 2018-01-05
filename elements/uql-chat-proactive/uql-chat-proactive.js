@@ -39,6 +39,7 @@
       numberMillsecondsBeforePopup: {
         type: Number,
         value: 60000
+        // if you change this, consider the time in _setPopupMaxWidthInPrimo
       },
 
       cookieNameNoPopup: {
@@ -139,25 +140,35 @@
     /**
      * On the primo results page, change the width of the proactive chat popup
      * so that it doesnt overlap the results list
-     * because there are yucky things happening there with z-index
+     * because there are yucky things happening there with z-index.
+     * If they load the page with no query, thewre is no sidebar - async gets around that
      * @private
      */
     _setPopupMaxWidthInPrimo: function() {
-console.log('in _setPopupMaxWidthInPrimo');
+console.log('start _setPopupMaxWidthInPrimo');
+      var numMilliSecondsRecheck = 10000; // 10 seconds - we have 60 seconds before the popup loads. give them time to type in their query...
       var sidebarWidthString;
       var proactivechat;
-      var facets = document.querySelector('#facets');
-      if (facets) {
-        sidebarWidthString = window.getComputedStyle(facets, null).getPropertyValue('width').trim();
+      var facets;
+
+      this.async(function () {
+console.log('in _setPopupMaxWidthInPrimo async');
+        facets = document.querySelector('#facets');
+        if (facets) {
+          sidebarWidthString = window.getComputedStyle(facets, null).getPropertyValue('width').trim();
 console.log('sidebarWidthString = ' + sidebarWidthString);
-      }
-      if (sidebarWidthString) {
-        proactivechat = document.querySelector('.proactivechat paper-card');
-      }
-      if (proactivechat) {
-        proactivechat.style.maxWidth = sidebarWidthString;
+        }
+        if (sidebarWidthString) {
+          proactivechat = document.querySelector('.proactivechat paper-card');
+        }
+        if (proactivechat) {
+          proactivechat.style.maxWidth = sidebarWidthString;
 console.log('max width set');
-      }
+        } else {
+console.log('not found - run again later');
+          this._setPopupMaxWidthInPrimo();
+        }
+      }, numMilliSecondsRecheck);
     },
 
     /**
