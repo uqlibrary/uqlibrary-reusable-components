@@ -75,13 +75,14 @@ Customised applications:
 * [LibAnswers](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libapps)
 * [UQ Drupal](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libwww)
 * [UQLAPP, FBS, Contacts, Exams, ACDB](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/uqlapp)
-* [Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)
-* [New Primo UI](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo2)
+* [Primo UI](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo2)
 * [Shared](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/shared)
 * [Studenthub](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/careerhub)
 * [Omeka](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/omeka)
 * [Rightnow](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/rightnow)
 * [Talis](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/talis)
+
+* deprecated *[old Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)*
 
 ### Forcing IMS logins
 

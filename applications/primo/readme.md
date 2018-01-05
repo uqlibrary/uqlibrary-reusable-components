@@ -1,5 +1,7 @@
 # PRIMO Customisations
 
+THIS VERSION OF PRIMO IS DEPRECATED - SEE [NEW PRIMO](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo2) FOR CURRENT DOCS
+
 - Primo URL: https://search.library.uq.edu.au
 - Development environment (master branch): https://search.library.uq.edu.au/primo_library/libweb/action/search.do?vid=61UQ_DEV
 
