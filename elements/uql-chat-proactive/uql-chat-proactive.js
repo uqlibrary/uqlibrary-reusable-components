@@ -39,6 +39,7 @@
       numberMillsecondsBeforePopup: {
         type: Number,
         value: 60000
+        // if you change this value, consider the time in _setPopupMaxWidthInPrimo
       },
 
       cookieNameNoPopup: {
@@ -67,6 +68,7 @@
       var self = this;
 
       if (this._isPrimoPage(window.location.hostname)) {
+        this._setPopupMaxWidthInPrimo();
         this._watchForPrimoFiltersButton();
       }
 
@@ -136,6 +138,36 @@
     },
 
     /**
+     * On the primo results page, change the width of the proactive chat popup
+     * so that it doesnt overlap the results list
+     * because there are yucky things happening there with z-index.
+     * If they load the page with no query, there is no sidebar yet - async gets around that
+     * @private
+     */
+    _setPopupMaxWidthInPrimo: function() {
+      var numMilliSecondsRecheck = 10000; // 10 seconds - we have 60 seconds before the popup loads. give them time to type in their query...
+
+      var sidebarWidthString;
+      var proactivechat;
+      var facets;
+
+      this.async(function () {
+        facets = document.querySelector('#facets');
+        if (facets) {
+          sidebarWidthString = window.getComputedStyle(facets, null).getPropertyValue('width').trim();
+        }
+        if (sidebarWidthString) {
+          proactivechat = document.querySelector('.proactivechat paper-card');
+        }
+        if (proactivechat) {
+          proactivechat.style.maxWidth = sidebarWidthString;
+        } else {
+          this._setPopupMaxWidthInPrimo();
+        }
+      }, numMilliSecondsRecheck);
+    },
+
+    /**
      * while we have used css to stop the facet sidebar going 'over' the proactive chat widget,
      * static css isnt sufficient for the primo 'apply filters' widget
      * as its 'bottom edge' position must vary depending on whether the tab or the popup shows, or nothing
@@ -144,20 +176,17 @@
      * @private
      */
     _watchForPrimoFiltersButton: function() {
-      var checkEvery2Seconds = 1000;
+      var numMilliSecondsRecheck = 1000;
       this.async(function () {
-        var filterButtonDivs = document.getElementsByClassName('multiselect-submit-inner');
-        if (filterButtonDivs && filterButtonDivs.length) {
-          var filterButtonDiv = filterButtonDivs[0];
-          if (filterButtonDiv) {
+        var filterButtonDiv = document.querySelector('.multiselect-submit-inner');
+        if (filterButtonDiv) {
             // move the block with the filter button so it doesnt slide under the proactive chat widget
             filterButtonDiv.style.marginBottom = this.filterButtonDivMarginBottom + 'px';
-          }
         }
 
         // check again
         this._watchForPrimoFiltersButton();
-      }, checkEvery2Seconds);
+      }, numMilliSecondsRecheck);
     },
 
     /*
@@ -166,22 +195,19 @@
      */
     _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
       if (this._isPrimoPage(window.location.hostname)) {
-        var sidebarDivs = document.getElementsByClassName('sidebar-inner-wrapper');
-        if (sidebarDivs && sidebarDivs.length) {
-          var sidebarDiv = sidebarDivs[0];
-          if (sidebarDiv) {
+        var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
+        if (sidebarDiv) {
             // move the bottom of the sidebar so it doesnt slide under the filter button block
             sidebarDiv.style.marginBottom = sidebarDivMarginBottom + 'px';
-          }
         }
       }
     },
 
     /*
      * the amount of space needed to allow the 'apply filters' button to appear
+     * pixels
      */
     _setPrimoFilterButtonPositioning: function(bottomMargin) {
-      // put a 125px margin at the bottom
       this.filterButtonDivMarginBottom = bottomMargin;
     },
 
@@ -363,9 +389,16 @@
 
     _isPrimoPage: function(hostname) {
       return (
-        'search.library.uq.edu.au' === hostname || // primo prod
-        hostname.endsWith('exlibrisgroup.com') // primo sandbox
+        this._isPrimoProdPage(hostname) || this._isPrimoSandboxPage(hostname)
       );
+    },
+
+    _isPrimoProdPage: function(hostname) {
+      return ('search.library.uq.edu.au' === hostname);
+    },
+
+    _isPrimoSandboxPage: function(hostname) {
+      return (hostname.endsWith('exlibrisgroup.com'));
     }
 
   });
