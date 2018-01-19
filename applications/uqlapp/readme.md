@@ -1,15 +1,11 @@
-#UQLAPP, FBS, Contacts, Exams, ACDB
+# UQLAPP, Exams
 
 - UQLAPP URL: https://app.library.uq.edu.au/#/
 - no development environment, but possible to create if required, all applications are managed by UQL
 
-
 Used in files:
-- UQLAPP: frontend/app/index.html
-- FBS: public/lib/Template.class.php
-- Contacts: contacts/librarians/index.html
-- Exams: help.html, search.html and eep.inc.php
-- ACDB (https://www.library.uq.edu.au/acdba.html) : /usr/local/apache/uqlapi/auth/common1.inc (reusable_copyright_header function)
+- UQLAPP frontend: https://app.library.uq.edu.au/ at frontend/app/index.html
+- Exams: https://www.library.uq.edu.au/exams/
 
 Include the following:
 
@@ -26,3 +22,9 @@ Include the following:
 then in the /var/www/www.library.uq.edu.au/public_html/get-reusable.php file, call the following php function:
 
                 reusable_copyright_header();
+
+Historically, this also supplied components for:
+
+- FBS: public/lib/Template.class.php (deprecated, replaced by bookit)
+- Librarian Contacts System: contacts/librarians/index.html (deprecated, replaced by drupal: https://web.library.uq.edu.au/library-services/liaison-librarians
+- ACDB (https://www.library.uq.edu.au/acdba.html) : now uses core reusable componets elements as it is in uqlibrary-pages

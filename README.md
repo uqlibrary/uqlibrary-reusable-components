@@ -82,7 +82,7 @@ Customised applications:
 * [Rightnow](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/rightnow)
 * [Talis](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/talis)
 
-* deprecated *[old Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)*
+* deprecated: [old Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)*
 
 ### Forcing IMS logins
 
