@@ -19,7 +19,6 @@ uq-minimal-header,
 uq-minimal-footer,
 uql-connect-footer
 {
-  z-index: 1001 !important;
   -webkit-box-flex: 0;
   -webkit-flex: none;
   -ms-flex: none;
@@ -29,7 +28,7 @@ uql-connect-footer
 }
 
 .app {
-  padding: 1.5em 1.5em 0;
+  padding: 0 1.5em 0 0;
   width: 100%;
   min-height: calc(100vh - 450px);
 }
