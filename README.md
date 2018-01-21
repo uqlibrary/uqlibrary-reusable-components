@@ -41,15 +41,26 @@ npm install -g gulp bower && npm install && bower install
 
 ### Updating IA
 
-Make sure your branch is set to master.  Make your changes to this file, either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).  
+BUEA staff are able to make changes to the Mega Menu. Instructions:
+
+* Make sure your branch is set to master.
+* Changes can be made either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).
+* Make your changes to this file:
 
 https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json
 
-Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here:
+* Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here:
 
 [Codeship for re-usable components](https://codeship.com/projects/99389)
     
 This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
+
+After BUEA staff have pushed their changes, developers should:
+
+* for uqlibrary-reusable-components: confirm master build passes (it should start from initial push to github by BUEA)
+* for uqlibrary-pages: start rebuild of production branch (after reusable master passes; it pulls master of reusable, no release necessary) - updates homepage
+* for uqlibrary-reusable-components: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
+* for uqlibrary-mylibrary: if affected, start rebuild of production (pulls production of reusable) - updates https://www.library.uq.edu.au/mylibrary/
 
 ### Applications Customisations
 
@@ -64,13 +75,14 @@ Customised applications:
 * [LibAnswers](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libapps)
 * [UQ Drupal](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/libwww)
 * [UQLAPP, FBS, Contacts, Exams, ACDB](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/uqlapp)
-* [Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)
-* [New Primo UI](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo2)
+* [Primo UI](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo2)
 * [Shared](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/shared)
 * [Studenthub](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/careerhub)
 * [Omeka](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/omeka)
 * [Rightnow](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/rightnow)
 * [Talis](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/talis)
+
+* deprecated: [old Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/tree/master/applications/primo)*
 
 ### Forcing IMS logins
 
@@ -126,6 +138,10 @@ Demo for feature branches is available at **http://assets.library.uq.edu.au/[bra
 
 ### Testing
 
+#### Unit Testing
+
+`gulp test`
+
 #### Local testing
 
 * install selenium server
@@ -134,7 +150,7 @@ Run Selenium server. Selenium is required to run tests locally Selenium Installe
 
   `java -jar selenium-server-standalone-{VERSION}.jar`
   
-or `brew install selenium-server-standalone` then `selenium-server -p 4444`
+or `brew install selenium-server-standalone` then `selenium-server -port 4444`
 
 * run tests
 
@@ -153,3 +169,53 @@ Sample test commands:
 `$ nightwatch -c nightwatch.json --env chrome` #  run test on safari browser (name must match object name in nightwatch.json)
 
 (The nightwatch e2e tests are setup as one file per project, plus a file of minimal common items which isn't valid to run on its own. To only run the valid tests, use the tag e2etest.)
+
+## Workflow
+
+### Suggested workflow for changing CSS on 3rd party sites:
+
+* Open the page that needs restyling
+* Assuming Chrome, open the inspect page and tweak settings in the Elements > css pane until you have what you want
+* Open the scss file in PhpStorm and make updates
+* Run `gulp styles`
+* Open the generated custom-styles.css file and copy all
+* On the web page, in the inspector, goto Sources and navigate to the same custom-styles.css file
+* Select all and overwrite with css copied from custom-styles.css, above
+* Look at the page to check you got what you wanted
+* Repeat
+
+This lets you precisely check any changes without having to create a github release.
+
+## Codeship backup at 30/june/2017
+
+### Test Setup
+
+jdk_switcher use oraclejdk8
+chmod a+x -R bin/*
+bin/codeship-setup.sh
+
+### Pipelines
+
+#### Test Commands
+
+export PIPE_NUM=1
+bin/codeship-testing.sh
+
+#### Unit tests
+
+export PIPE_NUM=2
+bin/codeship-testing.sh
+
+#### Saucelabs
+
+export PIPE_NUM=3
+bin/codeship-testing.sh
+
+### Deployment (mastr and production)
+
+CUSTOM SCRIPT
+jdk_switcher use oraclejdk8
+chmod a+x -R bin/*
+bin/codeship-setup.sh
+bin/codeship-deployment.sh
+bin/codeship-prod-testing.sh

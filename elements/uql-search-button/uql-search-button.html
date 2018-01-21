@@ -12,19 +12,19 @@ Example:
 
 <dom-module id="uql-search-button">
 
-  <style is="custom-style" include="common-styles">
-    :host {
-      font-family: var(--font-family);
-      font-size: 10px;
-    }
-
-    paper-button {
-      @apply(--layout-vertical);
-    }
-
-  </style>
-
   <template>
+    <style is="custom-style" include="common-styles">
+      :host {
+        font-family: var(--font-family);
+        font-size: 10px;
+      }
+
+      paper-button {
+        @apply(--layout-vertical);
+      }
+
+    </style>
+
     <uqlibrary-ga app-name="Header" id="ga"></uqlibrary-ga>
 
     <paper-button

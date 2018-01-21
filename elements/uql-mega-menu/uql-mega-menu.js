@@ -151,18 +151,39 @@
       if (newValue !== null && newValue.items) {
         for(var itemIndex = 0; itemIndex < newValue.items.length; itemIndex++) {
           var element = newValue.items[itemIndex];
-          element.hasRight = false;
+          element.numCols = 1;
 
           if (element.items) {
             for(var subIndex = 0; subIndex < element.items.length; subIndex++) {
               var subItem = element.items[subIndex];
-              if (subItem.right) {
-                element.hasRight = true;
+              if (subItem.col2) {
+                element.hasTwoOrMoreCols = true;
+                element.numCols = Math.min (2, element.numCols + 1);
+
+              } else if (subItem.col3) {
+                element.hasThreeCols = true;
+                element.numCols = Math.min (3, element.numCols + 1);
+
+              } else {
+                subItem.col1 = "yes";
               }
             }
           }
         }
       }
+    },
+
+    // filter callbacks for dom-repeat
+    isCol1: function(menuSubItem) {
+      return menuSubItem.col1;
+    },
+
+    isCol2: function(menuSubItem) {
+      return menuSubItem.col2;
+    },
+
+    isCol3: function(menuSubItem) {
+      return menuSubItem.col3;
     }
 
   })

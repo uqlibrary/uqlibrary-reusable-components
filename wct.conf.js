@@ -5,19 +5,17 @@ var ret = {
   'webserver': {
     'pathMappings': []
   },
-  plugins: {
-    local: {
-     browsers: [
-        'firefox',
-        'chrome'
-      ]
-    },
-    sauce: {
-      browsers: [
-        'OSX 10.11/safari@10.0'
-      ]
+    plugins: {
+        sauce: {
+            browsers: [
+                'Windows 10/chrome@54',
+                'Windows 10/firefox@50',
+                'OS X 10.11/safari@9.0',
+                'OS X 10.11/firefox@50',
+                'OS X 10.11/chrome@54'
+            ]
+        }
     }
-  }
 };
 
 var mapping = {};

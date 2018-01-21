@@ -224,7 +224,7 @@ prm-brief-result-container {
 
 .result-item-actions {
     min-width: 0;
-    z-index: 0; // remove z-index: 10; because it slid over the proactive chat widget PT #153837535
+    z-index: 10;
     position: absolute;
     top: 0;
     right: 0;

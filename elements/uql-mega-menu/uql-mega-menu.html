@@ -12,143 +12,211 @@ Example:
 
 <dom-module id="uql-mega-menu">
 
-  <style is="custom-style" include="common-styles">
-    :host {
-      font-family: var(--font-family);
-
-      --paper-tab-content: {
-        @apply(--layout-flex-none);
-        font-weight: 300 !important;
-        opacity: 1 !important;
-        font-size: 16px;
-      };
-    }
-
-    .menu-container {
-      @apply(--uq-box-shadow);
-    }
-
-    .menu-container,
-    .menu-content {
-      background-color: var(--menu-background-color);
-    }
-
-    .menu-container,
-    .menu-content,
-    paper-tabs {
-      height: 67px;
-    }
-
-    .menu-content {
-      margin: 0 auto;
-      max-width: var(--max-width);
-      width: 100%;
-    }
-
-    div.subtext {
-      color: var(--menu-sub-text-color);
-      font-size: 90%;
-      margin-top: -8px;
-    }
-
-    paper-tab.sub-menu-opened {
-      background-color: var(--menu-open-background-color);
-    }
-
-    .dropdown-content {
-      background-color: var(--menu-open-background-color);
-      @apply(--uq-box-shadow);
-      @apply(--layout-flex);
-      @apply(--layout-horizontal);
-    }
-
-    .has-right-true {
-      width: 480px;
-    }
-
-    .has-right-false {
-      width: 240px;
-    }
-
-    .dropdown-content .sub-menu{
-      @apply(--layout-flex);
-      padding-top: 15px;
-    }
-
-    .sub-menu.uql-submenu-right {
-      border-left-width: thin;
-      border-left-style: solid;
-      border-color: var(--menu-border-color);
-    }
-
-    .sub-menu {
-      background-color: var(--menu-open-background-color);
-      margin: 0px;
-      padding: 0px;
-    }
-
-    .sub-menu a {
-      @apply(--layout-flex);
-      @apply(--layout-vertical);
-
-      @apply(--menu-item);
-    }
-
-    .sub-menu a:hover {
-      background-color: var(--menu-hover-background-color);
-    }
-
-    .sub-menu a.iron-selected {
-      font-weight: 500 !important;
-    }
-
-    iron-dropdown {
-      position: absolute !important;
-    }
-
-  </style>
-
   <template>
+    <style is="custom-style" include="common-styles">
+
+      :root {
+        --glowing-box-highlight: #7ebaf8;
+      }
+
+      :host {
+        font-family: var(--font-family);
+
+        --paper-tab-content: {
+          @apply(--layout-flex-none);
+          font-weight: 300 !important;
+          opacity: 1 !important;
+          font-size: 16px;
+        };
+      }
+
+      .menu-container {
+        @apply(--uq-box-shadow);
+      }
+
+      .menu-container,
+      .menu-content {
+        background-color: var(--menu-background-color);
+      }
+
+      .menu-container,
+      .menu-content,
+      paper-tabs {
+        height: 67px;
+      }
+
+      .menu-content {
+        margin: 0 auto;
+        max-width: var(--max-width);
+        width: 100%;
+      }
+
+      div.subtext {
+        color: var(--menu-sub-text-color);
+        font-size: 90%;
+        margin-top: -8px;
+      }
+
+      /* the border is to stop a sizing jump when the  focused border is applied */
+      paper-tab.uql-mega-menu {
+        border: medium solid var(--menu-background-color);
+      }
+      paper-tab.sub-menu-opened {
+        background-color: var(--menu-open-background-color);
+        border: medium solid var(--menu-open-background-color);
+      }
+      paper-tab[focused].uql-mega-menu  {
+        /* technique per https://css-tricks.com/snippets/css/glowing-blue-input-highlights/ */
+        box-shadow: 0 0 5px var(--glowing-box-highlight);
+        border: medium solid var(--glowing-box-highlight);
+      }
+
+      .dropdown-content {
+        background-color: var(--menu-open-background-color);
+        @apply(--uq-box-shadow);
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+      }
+
+      .has-numcols-1 {
+        width: 240px;
+      }
+
+      /* this block has two cols so needs to be twice as wide */
+      .has-numcols-2 {
+        width: 480px;
+      }
+
+      .has-numcols-3 {
+        width: 720px;
+      }
+
+      /*
+       * shift the right hand menus over a bit
+       */
+      #subMenu4.hasCols3,
+      #subMenu5.hasCols3,
+      #subMenu6.hasCols3 {
+        margin-left: -240px;
+      }
+
+      .dropdown-content .sub-menu{
+        @apply(--layout-flex);
+        padding-top: 15px;
+      }
+
+      .sub-menu.uql-submenu-subsequent {
+        border-left-width: thin;
+        border-left-style: solid;
+        border-color: var(--menu-border-color);
+      }
+
+      .sub-menu {
+        background-color: var(--menu-open-background-color);
+        margin: 0;
+        padding: 0;
+      }
+
+      .sub-menu a {
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+
+        @apply(--menu-item);
+      }
+
+      .sub-menu a:hover {
+        background-color: var(--menu-hover-background-color);
+      }
+
+      .sub-menu a.iron-selected {
+        font-weight: 500 !important;
+      }
+
+      iron-dropdown {
+        position: absolute !important;
+      }
+
+      #menuNavInstruction {
+        text-transform: none;
+        background-color: #000;
+        color: #FFF;
+        position: absolute;
+
+        overflow: hidden;
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+      }
+
+      #menuNavInstruction.keyboard-focus {
+        z-index: 1000;
+
+        overflow: visible;
+        height: 70px;
+        width: 350px;
+        margin: -70px 5px 5px 400px;
+        padding: 0 10px
+      }
+    </style>
 
     <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
 
-    <div class="menu-container">
+    <nav class="menu-container">
+
+      <paper-button id="menuNavInstruction"
+                    aria-live="polite"
+                    aria-label="Use arrow keys to navigate menu headings and the tab key to navigate their sub-items"
+                    title="Use arrow keys to navigate menu headings and the tab key to navigate their sub-items"
+                    >
+        Use arrow keys to navigate menu headings and the tab key to navigate their sub-items
+      </paper-button>
+
       <div class="menu-content loading" unresolved>
-        <paper-tabs id="topMenu" on-tap="_topMenuSelected">
-          <template is="dom-repeat" items="{{menu.items}}">
-            <paper-tab data-item-index$="{{index}}">
-              {{item.label}}
-              <template is="dom-if" if="{{item.items}}">
+        <paper-tabs id="topMenu" on-tap="_topMenuSelected" role="menubar">
+          <template is="dom-repeat" items="{{menu.items}}" as="mainmenuitem">
+            <paper-tab data-item-index$="{{index}}" role="menuitem" aria-haspopup="true">
+              {{mainmenuitem.label}}
+              <template is="dom-if" if="{{mainmenuitem.items}}">
                 <iron-icon icon="icons:icons:arrow-drop-down"></iron-icon>
               </template>
             </paper-tab>
           </template>
         </paper-tabs>
 
-        <template is="dom-repeat" items="{{menu.items}}">
-          <iron-dropdown id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
+        <template is="dom-repeat" items="{{menu.items}}" as="submenu">
+          <iron-dropdown class$="hasCols{{submenu.numCols}}" id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
+                         on-iron-overlay-opened="_openSubMenu"
                          on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
-            <div class$="dropdown-content has-right-{{item.hasRight}}">
+            <div class$="dropdown-content has-numcols-{{submenu.numCols}}" role="menu">
               <div class="sub-menu">
-                <template is="dom-repeat" items="{{item.items}}" as="subItem">
-                  <template is="dom-if" if="{{!subItem.right}}">
-                    <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="_closeDropdown">
-                      <div>{{subItem.label}}</div>
-                      <div class="subtext">{{subItem.subtext}}</div>
+                <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem1" filter="isCol1">
+                    <a class$="paper-item {{submenuItem1.class}}" href="{{submenuItem1.href}}" on-tap="_closeDropdown" role="menuitem">
+                      <div>{{submenuItem1.label}}</div>
+                      <div class="subtext">{{submenuItem1.subtext}}</div>
                     </a>
-                  </template>
                 </template>
               </div>
 
-              <template is="dom-if" if="{{item.hasRight}}">
-                <div class="sub-menu uql-submenu-right">
-                  <template is="dom-repeat" items="{{item.items}}" as="subItem">
-                    <template is="dom-if" if="{{subItem.right}}">
-                      <a class$="paper-item {{subItem.class}}" href="{{subItem.href}}" on-tap="_closeDropdown">
-                        <div>{{subItem.label}}</div>
-                        <div class="subtext">{{subItem.subtext}}</div>
+              <template is="dom-if" if="{{submenu.hasTwoOrMoreCols}}">
+                <div class="sub-menu uql-submenu-subsequent">
+                  <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem2" filter="isCol2">
+                      <a class$="paper-item {{submenuItem2.class}}" href="{{submenuItem2.href}}" on-tap="_closeDropdown" role="menuitem">
+                        <div>{{submenuItem2.label}}</div>
+                        <div class="subtext">{{submenuItem2.subtext}}</div>
                       </a>
-                    </template>
+                  </template>
+                </div>
+              </template>
+
+              <template is="dom-if" if="{{submenu.hasThreeCols}}">
+                <div class="sub-menu uql-submenu-subsequent">
+                  <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem3" filter="isCol3">
+                      <a class$="paper-item {{submenuItem3.class}}" href="{{submenuItem3.href}}" on-tap="_closeDropdown" role="menuitem">
+                        <div>{{submenuItem3.label}}</div>
+                        <div class="subtext">{{submenuItem3.subtext}}</div>
+                      </a>
                   </template>
                 </div>
               </template>
@@ -158,7 +226,7 @@ Example:
         </template>
 
       </div>
-    </div>
+    </nav>
 
     <!-- Hidden span to skip navigation -->
     <span id="megaMenuAfter" tabindex="0" aria-label="Start of content" style="position: fixed; top:-2000px; left: -2000px">Start of content</span>

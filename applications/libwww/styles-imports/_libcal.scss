@@ -26,17 +26,30 @@
     text-align: left;
   }
 
-  // match date area (header row and 'today' column)
-  thead tr th,
-  td.s-lc-whw-today,
-  th.s-lc-whw-today-h {
-    background-color: #F5F5F5;
+  // only the header of Today should be bolded
+  thead th {
+    font-weight: normal;
+  }
+  thead th.s-lc-whw-today-h {
+    font-weight: bold;
+  }
+
+  // set up in anticipation of springshare making the table follow
+  // https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H43
+  tbody tr.s-lc-whw-subloc th {
+    background-color: #fff;
+    color: inherit;
     border-color: $footer-background-color;
   }
 
-  // colour library name row
+  // match date area (header row and 'today' column)
+  thead tr th,
+  td.s-lc-whw-today,
+  th.s-lc-whw-today-h ,
+  tbody tr.s-lc-whw-loc th , // becomes active when springshare makes the table accessibile
   tr.s-lc-whw-loc {
-    background-color: #fcfcfc;
+    background-color: #F5F5F5;
+    border-color: $footer-background-color;
   }
 
   tbody tr.s-lc-whw-loc td.s-lc-whw-locname {
@@ -55,17 +68,64 @@
     left: -9999px;
   }
 
-  .s-lc-whw-bh {
-    min-width: 21rem;
+  button.disabled, button[disabled], .button.disabled, .button[disabled] {
+    background-color: $secondary-color;
   }
 }
 
-// make the buttons use text labels instead
-button.s-lc-whw-ne:before {
-  content: 'Next week ';
-}
-button.s-lc-whw-pr:after {
-  content: ' Prev week';
+@media only screen and (min-width: 750px) {
+  #libcal-hours-block-0 {
+
+    // make the all-hours display scroll under a fixed header
+    // per https://codepen.io/tjvantoll/pen/JEKIu
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    thead th {
+      border-width: 0;
+    }
+
+    tbody th.s-lc-whw-locname {
+      font-weight: 500;
+    }
+    tbody th.s-lc-whw-sublocname {
+      font-weight: 300;
+    }
+
+    // but the top-left cell doesnt want underline as it creates a little line
+    thead th.s-lc-whw-bh {
+      text-decoration: none;
+    }
+    th, td {
+      padding: 5px;
+    }
+
+    td:nth-child(1), th:nth-child(1) {
+      width: 30em;
+    }
+    td:nth-child(2), th:nth-child(2),
+    td:nth-child(3), th:nth-child(3),
+    td:nth-child(4), th:nth-child(4),
+    td:nth-child(5), th:nth-child(5),
+    td:nth-child(6), th:nth-child(6),
+    td:nth-child(7), th:nth-child(7),
+    td:nth-child(8), th:nth-child(8) {
+      width: calc(12vw - 2em);
+      //  started with min-width: calc(100vw - 30em)/6 then made it valid then reduced until it fit
+
+    }
+
+    thead tr {
+      display: block;
+      position: relative;
+    }
+    tbody {
+      display: block;
+      overflow: auto;
+      width: 100%;
+      height: 400px;
+    }
+  }
 }
 
 // all libraries has the library name row showing on non-mobile

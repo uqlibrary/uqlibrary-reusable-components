@@ -10,7 +10,7 @@ Login as admin [here](https://uqlibraryonlineexhibitions.omeka.net/admin/) - use
 
 The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/omeka/custom-styles.scss)
 
-CSS can also be updated in the [CSS Plugin](http://uqlibraryonlineexhibitions.omeka.net/admin/plugins)
+CSS for the homepage and items pages can also updated in the [CSS Plugin](http://uqlibraryonlineexhibitions.omeka.net/admin/plugins)
 which has major restrictions, eg:
 
 * any styling of html header and footer elements are removed!!!
@@ -48,3 +48,34 @@ If you have a specific theme that needs special styling, add a new class name in
           AddClassNameToBody('bigtheme');
         ]]></script>  
 
+The UQ logo used by omeka is uq-exhibitions-logo.png and archived in this folder.
+
+The css at http://uqlibraryonlineexhibitions.omeka.net/admin/plugins/config?name=CSSEditor as at 29/8/2017:
+
+#home {
+font-family:Roboto, Verdana, Arial, Helvetica, sans-serif
+}
+
+#site-title {
+height:100px;
+background-color:#49075e;
+margin-left:0;
+padding-left:16px
+}
+
+#wrap {
+background-color:#fff;
+color:#222;
+padding-left:1em;
+padding-right:1em;
+margin-left:auto;
+margin-right:auto
+}
+
+@media screen and (max-width: 900px) {
+#footer-text {
+background-color:#49075e;
+color:#d2c1d7;
+height:230px
+}
+}

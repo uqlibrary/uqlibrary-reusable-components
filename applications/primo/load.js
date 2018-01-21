@@ -18,6 +18,8 @@ function loadReusableComponents() {
 
   addAppleTouchIcon();
 
+  showOldPrimoMessage();
+
   modifyUserAreaTile();
 
   //show notification bar if user is not logged in
@@ -159,6 +161,14 @@ function modifyUserAreaTile() {
     }
   }
 
+}
+
+// show a message to the users that they are in old primo and should go to new primo
+function showOldPrimoMessage() {
+  var newBlock = '<div class="largeWarning">' + 'This is an outdated version of UQ Library Search. Please access the new version from ' + '<a href="https://www.library.uq.edu.au/">the Library home page</a>' + '</div>';
+  var mainBlock = '#contentEXL.EXLCustomLayoutContainer.EXLContent.EXLBriefDisplay';
+
+  $(newBlock).prependTo(mainBlock);
 }
 
 // add a event on fadein, this is to solve session timeout issue,

@@ -11,27 +11,28 @@ Example:
 
 <dom-module id="uql-menu">
 
-  <style is="custom-style">
-    :host {
-      /*position: relative;*/
-    }
-
-    uql-drawer-panel {
-      display: none;
-    }
-
-    @media all and (max-width: 1047px) {
-      uql-mega-menu {
-        display: none;
+  <template>
+    <style is="custom-style">
+      :host {
+        /*position: relative;*/
       }
 
       uql-drawer-panel {
-        display: block;
+        display: none;
       }
-    }
 
-  </style>
-  <template>
+      @media all and (max-width: 1047px) {
+        uql-mega-menu {
+          display: none;
+        }
+
+        uql-drawer-panel {
+          display: block;
+        }
+      }
+
+    </style>
+
     <iron-ajax auto="{{autoLoad}}" url="{{menuJson}}"
                handle-as="json"
                on-response="_handleResponse"

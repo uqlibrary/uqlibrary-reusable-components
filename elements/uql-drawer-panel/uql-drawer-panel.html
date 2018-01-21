@@ -11,63 +11,63 @@ Example:
 
 <dom-module id="uql-drawer-panel">
 
-  <style is="custom-style" include="common-styles">
-    :host {
-      font-family: var(--font-family);
-
-      --paper-drawer-panel-scrim: {
-        z-index: 1001;
-      };
-
-      --paper-drawer-panel-drawer-container: {
-        z-index: 1002;
-      };
-
-    }
-
-    .menu-title-bar {
-      line-height: 66px;
-      font-size: 20px;
-      font-weight: 400;
-      background-color: var(--theme-color);
-      color: var(--text-color-inverse);
-      padding-left: 16px;
-    }
-
-    .menu {
-      border-bottom: 1px solid var(--menu-open-background-color);
-    }
-
-    .menu a {
-      @apply(--layout-flex);
-      @apply(--layout-horizontal);
-      @apply(--layout-center);
-
-      @apply(--menu-item);
-
-      border-top: 1px solid var(--menu-open-background-color);
-    }
-
-    .menu a .label {
-      @apply(--layout-flex);
-    }
-
-    .menu a:hover {
-      background-color: var(--menu-hover-background-color);
-    }
-
-    .menu a.iron-selected,
-    .sub-menu a.iron-selected {
-      font-weight: 500 !important;
-    }
-
-    .sub-menu a {
-      padding-left: 30px !important;
-      border: 0 !important;
-    }
-
-  </style>
   <template>
+    <style is="custom-style" include="common-styles">
+      :host {
+        font-family: var(--font-family);
+
+        --paper-drawer-panel-scrim: {
+          z-index: 1001;
+        };
+
+        --paper-drawer-panel-drawer-container: {
+          z-index: 1002;
+        };
+
+      }
+
+      .menu-title-bar {
+        line-height: 66px;
+        font-size: 20px;
+        font-weight: 400;
+        background-color: var(--theme-color);
+        color: var(--text-color-inverse);
+        padding-left: 16px;
+      }
+
+      .menu {
+        border-bottom: 1px solid var(--menu-open-background-color);
+      }
+
+      .menu a {
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+
+        @apply(--menu-item);
+
+        border-top: 1px solid var(--menu-open-background-color);
+      }
+
+      .menu a .label {
+        @apply(--layout-flex);
+      }
+
+      .menu a:hover {
+        background-color: var(--menu-hover-background-color);
+      }
+
+      .menu a.iron-selected,
+      .sub-menu a.iron-selected {
+        font-weight: 500 !important;
+      }
+
+      .sub-menu a {
+        padding-left: 30px !important;
+        border: 0 !important;
+      }
+
+    </style>
 
     <paper-drawer-panel id="paperDrawerPanel" force-narrow="true" class="hidden"
                         on-selected-changed="_isDrawerVisible"

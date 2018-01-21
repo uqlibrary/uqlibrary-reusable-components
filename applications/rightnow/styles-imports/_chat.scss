@@ -4,6 +4,8 @@ body.lib_chatlanding {
 
     background-color: $secondary-color-light;
 
+    overflow: hidden;
+
     #rn_PageContent {
         margin:0;
         overflow: visible;
@@ -128,6 +130,55 @@ body.lib_chatlanding {
     #rn_ChatDialogHeaderButtonContainer {
         margin-right: 40px;
         margin-right: 2.5rem;
+    }
+
+    // file upload dialog doesnt come with a whitebackground by default
+    .rn_Dialog.rn_ChatAttachFileDialog {
+        background-color: white;
+        border:  1px solid #000;
+        padding: 10px;
+    }
+
+    // cancel button on file upload
+    .yui3-widget-hd span.yui3-widget-buttons {
+        position: absolute;
+        right: 10px;
+        right: 0.625rem;
+    }
+    .yui3-widget-ft {
+        padding-top: 16px;
+        padding-top: 1rem;
+        .yui3-widget-buttons button {
+            height: 32px;
+            height: 2rem;
+        }
+    }
+
+    // hide the close button - duplicates Cancel and it generates js errors
+    .rn_ChatAttachFileDialog .yui3-widget-buttons .yui3-button-close {
+        display: none;
+    }
+
+    // file attach button
+    .rn_ChatAttachFileButton.rn_FileAttachmentUpload {
+        position: relative;
+        top: -44px;
+
+        width: 50px;
+    }
+
+    // width and padding-left are associated
+    .rn_ChatAttachFileButton button {
+        width: 50px;
+        padding: 0;
+        margin-left: 5px;
+    }
+    .rn_ChatPostMessage {
+        padding-left:43px;
+    }
+
+    #rnDialog1_c {
+        width: 80%;
     }
 
 }
