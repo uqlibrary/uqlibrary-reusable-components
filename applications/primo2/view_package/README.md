@@ -15,9 +15,13 @@ The development package allows you to configure :
 
 - JavaScript
   - reusable components are injected by custom.js
-  - temporary customisation for user area (for simpler login/logout actions). Might be removed as soon as ExLibris fix this issue.
-  
+  - Browzine components injected
+
 No changes are expected to be done to the package. All updates to be done in reusable-components/applications/primo2/*.(scss|js)
+
+Exceptions:
+- initial reusable injection
+- add Browzine code (which is Angular; we cant do it in our Polymer conpomnents)
 
 ## Package deployment
 
