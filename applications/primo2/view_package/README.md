@@ -26,10 +26,19 @@ Exceptions:
 ## Package deployment
 
 - 'view_package' directory should be renamed to a name of desired view (eg 61UQ for production view, 61UQ_DEV for development, etc) 
-- eg. `$cp -r ~/uqlibrary-reusable-components/applications/primo2/view_package/ ~/61UQ_DEV`
+- eg.
+
+  `$ cp -r ~/uqlibrary-reusable-components/applications/primo2/view_package/ ~/61UQ_DEV`
 - make sure there are no hidden files (eg .idea, .git, etc)
-- create a zip named after the Primo view, eg 61UQ_DEV view will have 61UQ_DEV.zip `$ zip -r 61UQ_DEV.zip 61UQ_DEV`
-- also run `$ zip -d 61UE_DEV.zip \*.DS_Store` to remove the ds_dtore file, automatically created by the zipping process on mac.
+- create a zip named after the Primo view, eg 61UQ_DEV view will have 61UQ_DEV.zip
+
+  `$ zip -r 61UQ_DEV.zip 61UQ_DEV`
+
+- OSX? Also run
+
+  `$ zip -d 61UQ_DEV.zip \*.DS_Store`
+
+  to remove the .ds_store file, automatically created by the zipping process on mac.
 - upload zip to Promo BO to corresponding view:
   - in menu `Deploy & Utilities -> Customization Manager`  
   - select view, eg 61UQ_DEV

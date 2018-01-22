@@ -77,7 +77,7 @@
     template: '<div ng-if="article.data.browzineWebLink">' +
     '<a href="{{ article.data.browzineWebLink }}" target="_blank" title="Browzine displays a journal\'s entire table of contents and more.">' +
     '<img src="https://s3.amazonaws.com/thirdiron-assets/images/integrations/browzine_open_book_icon.png" class="browzine-icon">' +
-    ' View Issue Contents in Browzine ' +
+    ' View issue contents in Browzine ' +
     '<md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" role="img" class="browzine-external-link">' +
     '<svg id="open-in-new_cache29" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">' +
     '</svg>' +
@@ -87,7 +87,7 @@
     '<div ng-if="journal.data[0].browzineWebLink">' +
     '<a href="{{ journal.data[0].browzineWebLink }}" target="_blank" title="Browzine displays a journal\'s entire table of contents and more.">' +
     '<img src="https://s3.amazonaws.com/thirdiron-assets/images/integrations/browzine_open_book_icon.png" class="browzine-icon">' +
-    ' View Journal Contents in Browzine ' +
+    ' View journal contents in Browzine ' +
     '<md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" role="img" class="browzine-external-link">' +
     '<svg id="open-in-new_cache29" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">' +
     '</svg>' +
