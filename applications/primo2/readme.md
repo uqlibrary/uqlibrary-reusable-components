@@ -2,6 +2,8 @@
 
 - New Primo UI URL: [master](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ_DEV) / [production](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ)
 
+UQ Library is a Hosted Multi-Tenant Customer of Ex Libris (the alternative is to be an On-Premises Customer).
+
 ## Theming for new Primo UI includes:
 
 - customisation package `/view_package/*` - [readme](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md)
