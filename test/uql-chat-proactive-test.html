@@ -78,14 +78,28 @@
       });
 
       test('domain ends in exlibris recognised', function (done) {
-        var input = 'developers.exlibrisgroup.com';
+        var input = 'uq-edu-primo-sb.hosted.exlibrisgroup.com';
         var expected = true;
         expect(expected).to.equal(testObj._isPrimoSandboxPage(input));
         done();
       });
 
-      test('domain NOT ends in exlibris recognised', function (done) {
+      test('domain ends in uppercase exlibris recognised', function (done) {
+        var input = 'uq-edu-primo-sb.hosted.EXLIBRISGROUP.COM';
+        var expected = true;
+        expect(expected).to.equal(testObj._isPrimoSandboxPage(input));
+        done();
+      });
+
+      test('domain ends in exlibris NOT recognised', function (done) {
         var input = 'www.google.com';
+        var expected = false;
+        expect(expected).to.equal(testObj._isPrimoSandboxPage(input));
+        done();
+      });
+
+      test('domain end with incomplete exlibris NOT recognised', function (done) {
+        var input = 'librisgroup.com';
         var expected = false;
         expect(expected).to.equal(testObj._isPrimoSandboxPage(input));
         done();
