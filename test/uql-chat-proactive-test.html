@@ -77,6 +77,20 @@
         done();
       });
 
+      test('domain ends in exlibris recognised', function (done) {
+        var input = 'developers.exlibrisgroup.com';
+        var expected = true;
+        expect(expected).to.equal(testObj._isPrimoSandboxPage(input));
+        done();
+      });
+
+      test('domain NOT ends in exlibris recognised', function (done) {
+        var input = 'www.google.com';
+        var expected = false;
+        expect(expected).to.equal(testObj._isPrimoSandboxPage(input));
+        done();
+      });
+
     });
 
     suite('set data unit tests', function () {
