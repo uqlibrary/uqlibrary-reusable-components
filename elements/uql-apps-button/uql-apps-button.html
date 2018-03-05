@@ -23,10 +23,10 @@ Example:
 
         </style>
 
-        <paper-button class="button-colored-theme" on-tap="_myLibraryClicked" id="appsButton">
+        <paper-button class="button-colored-theme" on-tap="_myLibraryClicked" id="appsButton" aria-label="Go to my library">
             <iron-icon icon="icons:apps"></iron-icon>
             <template is="dom-if" if="{{showTitle}}">
-                <div class="button-small inverse icon-button-title" aria-label="Go to my library">{{buttonTitle}}</div>
+                <div class="button-small inverse icon-button-title">{{buttonTitle}}</div>
             </template>
         </paper-button>
     </template>
