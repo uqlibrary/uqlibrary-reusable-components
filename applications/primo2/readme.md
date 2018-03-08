@@ -2,6 +2,8 @@
 
 - New Primo UI URL: [master](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ_DEV) / [production](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ)
 
+UQ Library is a Hosted Multi-Tenant Customer of Ex Libris (the alternative is to be an On-Premises Customer).
+
 ## Theming for new Primo UI includes:
 
 - customisation package `/view_package/*` - [readme](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md)
@@ -9,6 +11,8 @@
 - `custom.scss` - compiles styles from `/www/*` (Primo's SCSS package) and customisations in `/styles-imports/*`
 
 ## Styling guidelines
+
+
 - all global overrides (eg fonts, colours, etc) to be updated in Primo's SASS package
   - `/www/styles/main.scss` - contains a list of SCSS imports
   - any global overrides of a partial to be copied to `styles-imports/www` (variables example below):

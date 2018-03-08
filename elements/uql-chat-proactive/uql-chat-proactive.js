@@ -398,8 +398,8 @@
     },
 
     _isPrimoSandboxPage: function(hostname) {
-      return (hostname.endsWith('exlibrisgroup.com'));
+      var regExp = /(.*)exlibrisgroup.com/i;
+      return regExp.test(hostname);
     }
-
   });
 })();

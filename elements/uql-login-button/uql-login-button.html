@@ -26,19 +26,19 @@ Example:
     <uqlibrary-ga id="ga" app-name="Header"></uqlibrary-ga>
 
     <template is="dom-if" if="{{!isLoggedIn}}">
-      <paper-button class="button-colored-accent" on-tap="performLogin" id="loginButton">
+      <paper-button class="button-colored-accent" on-tap="performLogin" id="loginButton" aria-label="Login">
         <iron-icon icon="social:person-outline"></iron-icon>
         <template is="dom-if" if="{{showTitle}}">
-          <div class="button-small inverse icon-button-title" aria-label="Login">Log in</div>
+          <div class="button-small inverse icon-button-title">Log in</div>
         </template>
       </paper-button>
     </template>
 
     <template is="dom-if" if="{{isLoggedIn}}">
-      <paper-button class="button-colored-accent" on-tap="performLogout" id="logoutButton">
+      <paper-button class="button-colored-accent" on-tap="performLogout" id="logoutButton" aria-label="Logout">
         <iron-icon icon="icons:lock"></iron-icon>
         <template is="dom-if" if="{{showTitle}}">
-          <div class="button-small inverse icon-button-title" aria-label="Logout">Log out</div>
+          <div class="button-small inverse icon-button-title">Log out</div>
         </template>
       </paper-button>
     </template>
