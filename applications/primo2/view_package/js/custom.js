@@ -127,6 +127,54 @@
   });
   // End BrowZine - Primo Integration
 
+  // locked facets
+  // Based on code supplied by Otago eg. https://otago.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=default_tab&search_scope=All&vid=DUNEDIN&facet=rtype,exclude,reviews&offset=0&ref=http:%2F%2Fmarvin.otago.ac.nz
+  /* make "New Search" clear locked facets */
+  app.controller('prmExploreMainAfterController', function($scope) {
+    setTimeout(function(){
+      var currentURL = $scope.$parent.$ctrl.searchService.$location.$$absUrl;
+      var newSearchURL = 'https://otago.hosted.exlibrisgroup.com/primo-explore/search?vid=DUNEDIN&lang=en_US&sortby=rank';
+      var newSearchURL2 = 'https://otago.hosted.exlibrisgroup.com/primo-explore/search?vid=DUNEDIN&sortby=rank';
+      // if we're on the new search page, clear all sticky facets and add review exclude facet
+      if (currentURL == newSearchURL || currentURL == newSearchURL2) {
+        var stickyFacets = $scope.$parent.$ctrl.searchService.facetService.getStickyFacets();
+        for (var i = 0; i < stickyFacets.length; i++) {
+          $scope.$parent.$ctrl.searchService.facetService.removeStickyFacet(stickyFacets[i]);
+        }
+
+        //add reviews facet
+        var reviewFacet = {name: "rtype", type: "exclude", value: "reviews", displayedType: "exact", displayValue: "reviews", label: "Reviews", operation: "add", persistent: false, tooltip: "Remove Type Reviews"};
+        $scope.$parent.$ctrl.searchService.facetService.addStickyFacet(reviewFacet);
+      }
+    }, 2500);
+
+    // convert review facet to sticky
+    if (window.location.href.indexOf("http:%2F%2Fmarvin.otago.ac.nz") > 0) {
+      waitForElementToDisplay('prm-breadcrumbs div div div button prm-icon > md-icon', 1000);
+
+      function waitForElementToDisplay(selector, time) {
+        if(document.querySelector(selector) !=null) {
+          var reviewFacetSelector = document.querySelector('[aria-label="Make this filter persistent throughout the session Reviews"]');
+          angular.element(reviewFacetSelector).triggerHandler('click');
+          return;
+        }
+        else {
+          setTimeout(function() {
+            waitForElementToDisplay(selector, time);
+          }, time);
+        }
+      }
+    }
+  });
+
+  app.component('prmExploreMainAfter', {
+    bindings: {
+      parentCtrl: '<'
+    },
+    controller: 'prmExploreMainAfterController'
+  });
+  // End lock facets
+
 
   function insertScript(url) {
     var script = document.querySelector("script[src*='"+url+"']");
