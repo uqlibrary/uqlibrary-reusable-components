@@ -127,44 +127,66 @@
   });
   // End BrowZine - Primo Integration
 
-  // locked facets
-  // Based on code supplied by Otago eg. https://otago.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=default_tab&search_scope=All&vid=DUNEDIN&facet=rtype,exclude,reviews&offset=0&ref=http:%2F%2Fmarvin.otago.ac.nz
-  /* make "New Search" clear locked facets */
+  // lock facets
+  // Based on code supplied by University of Otago eg. https://otago.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=default_tab&search_scope=All&vid=DUNEDIN&facet=rtype,exclude,reviews&offset=0&ref=http:%2F%2Fmarvin.otago.ac.nz
+  // add 'facets=locked' to any referer to a search results page you want this to happen on
   app.controller('prmExploreMainAfterController', function($scope) {
     setTimeout(function(){
-      var currentURL = $scope.$parent.$ctrl.searchService.$location.$$absUrl;
-      var newSearchURL = 'https://otago.hosted.exlibrisgroup.com/primo-explore/search?vid=DUNEDIN&lang=en_US&sortby=rank';
-      var newSearchURL2 = 'https://otago.hosted.exlibrisgroup.com/primo-explore/search?vid=DUNEDIN&sortby=rank';
-      // if we're on the new search page, clear all sticky facets and add review exclude facet
-      if (currentURL == newSearchURL || currentURL == newSearchURL2) {
-        var stickyFacets = $scope.$parent.$ctrl.searchService.facetService.getStickyFacets();
-        for (var i = 0; i < stickyFacets.length; i++) {
-          $scope.$parent.$ctrl.searchService.facetService.removeStickyFacet(stickyFacets[i]);
-        }
+      if (window.location.search.indexOf("facets=locked") > 0 && window.location.search.indexOf("facet=") > 0) {
+        waitForElementToDisplay('prm-breadcrumbs div div div button prm-icon > md-icon', 1000);
 
-        //add reviews facet
-        var reviewFacet = {name: "rtype", type: "exclude", value: "reviews", displayedType: "exact", displayValue: "reviews", label: "Reviews", operation: "add", persistent: false, tooltip: "Remove Type Reviews"};
-        $scope.$parent.$ctrl.searchService.facetService.addStickyFacet(reviewFacet);
+        function waitForElementToDisplay(selector, time) {
+          if(document.querySelector(selector) !== null) {
+            // in case this is  a second search via the homepage, we need to unlock previous locked ones
+            // this means we need to hard code a list to check, because doesnt know what other urls are provided with
+            // if any future queries add different facets, this list will have to be updated
+            var facets = {
+              'books': 'Books',
+              'newspaper_articles': 'Newspaper Articles',
+              'reviews': 'Reviews',
+              'articles': 'Articles',
+              'media': 'Video & Audio',
+              'physical_items': 'Physical items'
+            };
+
+            for (var key in facets) {
+              var ariaLabel = 'Cancel persistence ' + facets[key];
+              var facetSelector = document.querySelector('[aria-label="' + ariaLabel + '"]');
+              angular.element(facetSelector).triggerHandler('click');
+            }
+
+            // where it exists, extract the facet name from the &facet=rtype,include,books query segment and tell it to lock
+            var queries = window.location.search.split('&');
+            if (queries.length > 1) {
+              queries.map(function(e) {
+                var facet = '';
+                if (0 === e.indexOf("facet=rtype,exclude,")) {
+                  facet = e.replace("facet=rtype,exclude,", '');
+                } else if (0 === e.indexOf("facet=rtype,include,")) {
+                  facet = e.replace("facet=rtype,include,", '');
+                }
+
+                if (facet !== '') {
+                  // if a new facet should be added, this wont work.
+                  // This is deliberate - complaints will drive it being added to the list above, so both on and off work
+                  facet = facets[facet];
+                  var ariaLabel = 'Make this filter persistent throughout the session ' + facet;
+                  var facetSelector = document.querySelector('[aria-label="' + ariaLabel + '"]');
+                  angular.element(facetSelector).triggerHandler('click');
+                }
+              })
+            }
+
+            return;
+          }
+          else {
+            setTimeout(function() {
+              waitForElementToDisplay(selector, time);
+            }, time);
+          }
+        }
       }
     }, 2500);
-
-    // convert review facet to sticky
-    if (window.location.href.indexOf("http:%2F%2Fmarvin.otago.ac.nz") > 0) {
-      waitForElementToDisplay('prm-breadcrumbs div div div button prm-icon > md-icon', 1000);
-
-      function waitForElementToDisplay(selector, time) {
-        if(document.querySelector(selector) !=null) {
-          var reviewFacetSelector = document.querySelector('[aria-label="Make this filter persistent throughout the session Reviews"]');
-          angular.element(reviewFacetSelector).triggerHandler('click');
-          return;
-        }
-        else {
-          setTimeout(function() {
-            waitForElementToDisplay(selector, time);
-          }, time);
-        }
-      }
-    }
   });
 
   app.component('prmExploreMainAfter', {
