@@ -135,111 +135,193 @@
     * 1. search 'library' on homepage, load & lock facets newspaper_articles and reviews
     * 2. return to homepage and search 'books' - only one of 'reviews' and 'newspaper_articles' will be removed
     *
-    * Incomplete:
-    * - I havent quite got the physical items search working properly yet (&facet=tlevel,include,physical_items)
     *
     *
     * sample searches:
-    * https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&facet=rtype,include,books&facets=locked
-    * https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&facet=rtype,include,media&facets=locked
-    * https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&facet=rtype,exclude,newspaper_articles&facet=rtype,exclude,reviews&offset=0&facets=locked
+    * https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&facet=rtype,exclude,newspaper_articles&facet=rtype,exclude,reviews&offset=0
+    * https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&facet=rtype,include,books
     *
    */
 
   // lock facets
   // Based on code supplied by Univerisity of Otago eg. https://otago.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=default_tab&search_scope=All&vid=DUNEDIN&facet=rtype,exclude,reviews&offset=0&ref=http:%2F%2Fmarvin.otago.ac.nz
-  // add '&facets=locked' tag to any referer to a search results page you want this to happen on
- app.controller('prmExploreMainAfterController', function($scope) {
-    setTimeout(function(){
-      var tag = "facets=locked";
-      if (!(window.location.search.indexOf(tag) > 0 && window.location.search.indexOf("facet=") > 0)) {
-        return;
-      }
-
-      waitForElementToDisplay('prm-breadcrumbs div div div button prm-icon > md-icon', 1000);
-
-      function waitForElementToDisplay(selector, time) {
-        if (document.querySelector(selector) !== null) {
-          // in the case where this is a second search via the homepage, we need to unlock previous locked ones
-          // this means we need to hard code a list to check, because this page doesnt know what other search options are provided on the home page
-          // if any future queries add different facets, this list will have to be updated
-          // key = value in url eg books in facet=rtype,exclude,books
-          // value = value on aria-label element of button to be clicked
-          var validFacets = {
-            'reviews': 'Reviews',
-            'books': 'Books',
-            'newspaper_articles': 'Newspaper Articles',
-            'articles': 'Articles',
-            'media': 'Video & Audio',
-            'physical_items': 'Physical items'
-          };
-
-          var queries = window.location.search.split('&');
-          if (queries.length > 1) {
-            var facetsInUrl = [];
-            queries.map(function (e) {
-              // get the facet in the from all the different types
-              if (0 === e.indexOf("facet=rtype,exclude,")) {
-                facetsInUrl.push(e.replace("facet=rtype,exclude,", ''));
-              } else if (0 === e.indexOf("facet=rtype,include,")) {
-                facetsInUrl.push(e.replace("facet=rtype,include,", ''));
-              } else if (0 === e.indexOf("facet=tlevel,exclude,")) {
-                facetsInUrl.push(e.replace("facet=tlevel,exclude,", ''));
-              } else if (0 === e.indexOf("facet=tlevel,include,")) {
-                facetsInUrl.push(e.replace("facet=tlevel,include,", ''));
-              }
-            });
-
-            // do all the settings first because the later facet removal refreshes the page, losing our tag
-            var facet, ariaLabel, facetSelector;
-            for (facet in validFacets) {
-              if (facetsInUrl.indexOf(facet) !== -1) {
-                // found in the url - lock it
-                ariaLabel = 'Make this filter persistent throughout the session ' + validFacets[facet];
-                facetSelector = document.querySelector('[aria-label="' + ariaLabel + '"]');
-                if (facetSelector !== null) {
-                  angular.element(facetSelector).triggerHandler('click');
-                }
-              }
-            }
-
-            var thisFacet, ariaLabelLock, facetSelectorLock;
-            for (facet in validFacets) {
-              if (facetsInUrl.indexOf(facet) !== -1) {
-                // skip any that are for this page
-              } else {
-                // remove a facet if it was locked from an earlier search
-                thisFacet = validFacets[facet];
-                ariaLabel = 'Remove Content type ' + thisFacet;
-                facetSelector = document.querySelector('[aria-label="' + ariaLabel + '"]'); // the x (remove) button exists to click
-                ariaLabelLock = 'Cancel persistence ' + thisFacet;
-                facetSelectorLock = document.querySelector('[aria-label="' + ariaLabelLock + '"]'); // the 'locked' button exists - this is one we should remove
-                if (facetSelector !== null && facetSelectorLock !== null) {
-                  angular.element(facetSelector).triggerHandler('click');
-                  //once this is clicked the page will refresh and wont have our tag on the end :(
-                  // so only one is ever done :(
-                }
-              }
-            }
-
-            return;
-          }
-          else {
-            setTimeout(function () {
-              waitForElementToDisplay(selector, time);
-            }, time);
-          }
-        }
-      }
-    }, 2500);
-  });
-
-  app.component('prmExploreMainAfter', {
-    bindings: {
-      parentCtrl: '<'
-    },
-    controller: 'prmExploreMainAfterController'
-  });
+  // add '&locked=off' tag to any referer to a search results page you DO NOT want supplied facets to be locked
+//   app.controller('prmExploreMainAfterController', function($scope) {
+//     setTimeout(function(){
+//       var tag = "locked=off";
+//       if (window.location.search.indexOf(tag) > 0) { // this search does not have facet locking
+//         return;
+//       }
+//
+//       if (window.location.search.indexOf("facet=") === -1) { // no facets found in url
+//         return;
+//       }
+//
+//       waitForElementToDisplay('prm-breadcrumbs div div div button prm-icon > md-icon', 1000);
+//
+//       // sample search with all types:
+//       // https://search.library.uq.edu.au/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ&offset=0&facet=rtype,exclude,newspaper_articles&facet=tlevel,exclude,peer_reviewed&facet=library,include,61UQ_FRY
+//       // https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&offset=0&facet=rtype,exclude,newspaper_articles&facet=tlevel,exclude,peer_reviewed&facet=library,include,61UQ_FRY
+//
+//       // https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&offset=0&facet=rtype,include,books
+//
+//       /**
+//        * get the details for each facet in the url (we will lock each of them)
+//        * @returns {Array}
+//        */
+//       function getUrlParameters() {
+//         var facetsInUrl = [];
+//
+//         // pre specify all the ones that have ununusal usages; ordinary ones like `books` are generated below
+//         var facetLabels = {
+// //            'reviews': 'Reviews',
+// //            'books': 'Books',
+// //             'newspaper_articles': 'Newspaper Articles',
+// //             'articles': 'Articles',
+// //             'physical_items': 'Physical items',
+//           'media': 'Video & Audio',
+//           'peer_reviewed': 'Peer-reviewed journals', // tlevel
+//           'dissertations': 'Theses',
+//           'theses': 'Theses',
+//           'online_resources': 'Available online',
+//           'fryer': 'Fryer',
+//           '61UQ_FRY': 'Fryer', // library
+//           '61UQ_SSH': 'Social Sciences & Humanities', // library
+//           '61UQ_WHS': 'Warehouse', // library
+//           'reference_entrys': 'Reference Entries',
+//           'text_resources': 'Text Resources'
+//         };
+//
+//         var removeLabel, rawLabel;
+//
+//         var queries = window.location.search.split('&');
+//         if (queries.length > 1) {
+//           queries.map(function (e) {
+//             var requestedFacet = '', facetType = '';
+//             // get the facet from the associated type
+//             if (0 === e.indexOf("facet=rtype,")) {
+//               facetType = 'rtype';
+//               if (0 === e.indexOf("facet=rtype,exclude,")) {
+//                 requestedFacet = e.replace("facet=rtype,exclude,", '');
+//               } else if (0 === e.indexOf("facet=rtype,include,")) {
+//                 requestedFacet = e.replace("facet=rtype,include,", '');
+//               }
+//             } else if (0 === e.indexOf("facet=tlevel,")) {
+//               facetType = 'tlevel';
+//               if (0 === e.indexOf("facet=tlevel,exclude,physical_items")) {
+//                 requestedFacet = e.replace("facet=tlevel,exclude,", '');
+//               } else if (0 === e.indexOf("facet=tlevel,include,physical_items")) {
+//                 requestedFacet = e.replace("facet=tlevel,include,", '');
+//               }
+//             } else if (0 === e.indexOf("facet=library,")) {
+//               facetType = 'library';
+//               if (0 === e.indexOf("facet=library,include")) {
+//                 requestedFacet = e.replace("facet=library,include,", '');
+//               } else if (0 === e.indexOf("facet=library,exclude")) {
+//                 requestedFacet = e.replace("facet=library,exclude,", '');
+//               }
+//             }
+//
+//             if (requestedFacet !== '') {
+//               // if this facet isnt found in the validfacet list above, calculate the aria-label name, and add it
+//               var found = false;
+//               for (var f in facetLabels) {
+//                 if (requestedFacet === f) {
+//                   found = true;
+//                   break;
+//                 }
+//               }
+//               if (!found) {
+//                 // add to validFacet list
+//                 facetLabels[requestedFacet] = requestedFacet.slice(0, 1).toUpperCase() + requestedFacet.replace('_', ' ').slice(1);
+//               }
+//
+//               rawLabel = facetLabels[requestedFacet];
+//
+//               if ('library' === facetType) {
+//                 removeLabel = 'Remove Library location ' + rawLabel;
+//               } else if ('tlevel' === facetType) {
+//                 removeLabel = 'Remove Show only ' + rawLabel;
+//               } else {
+//                 removeLabel = 'Remove Content type ' + rawLabel;
+//               }
+//
+//               facetsInUrl.push({
+//                 name: requestedFacet,
+//                 type: facetType,
+//                 removeLabel: removeLabel,
+//                 lockLabel: 'Make this filter persistent throughout the session ' + rawLabel
+//               });
+//             }
+//           });
+//         }
+//         return facetsInUrl;
+//       }
+//
+//       function getAriaLabelsPerFacet(facetsInUrl) {
+//         var ariaLabelsPerFacet = [];
+//         if (facetsInUrl.length > 0) {
+//           var name, removeLabel, lockLabel;
+//           for (var ii = 0, len = facetsInUrl.length; ii < len; ii++) {
+//             name = facetsInUrl[ii].name;
+//             removeLabel = facetsInUrl[ii].removeLabel;
+//             lockLabel = facetsInUrl[ii].lockLabel;
+//             ariaLabelsPerFacet.push(lockLabel);
+//           }
+//         }
+//         return ariaLabelsPerFacet;
+//       }
+//
+//
+//       function waitForElementToDisplay(selector, time) {
+//         if (document.querySelector(selector) !== null) {
+//
+//           // get list of aria labels for params in url
+//           var facetsInUrl= getUrlParameters();
+//
+//           var ariaLabelsPerFacet =  getAriaLabelsPerFacet(facetsInUrl);
+//
+//           // find facets on page
+//           var blockSelector = document.querySelectorAll('prm-breadcrumbs');
+//           if (blockSelector[0].children !== undefined && 0 <  blockSelector[0].children.length) {
+//             var ariaLabelFound, child, buttonField;
+//             for (var ii = 0, leni = blockSelector[0].children.length; ii < leni; ii++) {
+//               console.log(ii);
+//               console.log(blockSelector[0].children[ii]);
+//               child = blockSelector[0].children[ii];
+//               for (var jj = 0, lenj = ariaLabelsPerFacet.length; jj < lenj; jj++) {
+//                 ariaLabelFound = child.querySelector('[aria-label="' + ariaLabelsPerFacet[jj] + '"]')
+//                 if (ariaLabelFound !== null) {
+//                   // this label is found so its one of our url params - click the lock button
+//                   angular.element(ariaLabelFound).triggerHandler('click');
+//                 } else { // if (is locked) {
+//                   // this is not one of our urls and is locked. Must be from a previous query - remove it
+//                   buttonField = child.querySelector('button');
+//                   angular.element(buttonField).triggerHandler('click');
+//                 }
+//               }
+//             }
+//           }
+//
+//
+//           return;
+//         }
+//         else {
+//           setTimeout(function () {
+//             waitForElementToDisplay(selector, time);
+//           }, time);
+//
+//         }
+//       }
+//     }, 2500);
+//   });
+//
+//   app.component('prmExploreMainAfter', {
+//     bindings: {
+//       parentCtrl: '<'
+//     },
+//     controller: 'prmExploreMainAfterController'
+//   });
   // End lock facets
 
 
