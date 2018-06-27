@@ -155,12 +155,12 @@ md-list-item .md-list-item-text.layout-fill.layout-align-start-start.layout-colu
   margin-top: 10px;
 }
 
-/* temporary styling to remove the 'browse button' while testing the november release in prod-dev */
-/* (button is controllable in the BO from november) */
+// temporary styling to remove the 'browse button' while testing the november release in prod-dev
+// (button is controllable in the BO from november)
 div.top-nav-bar-links.buttons-group.layout-align-center-center.layout-row.flex-100 {
   display: none;
 }
-/* also hide the browse button in the mobile view */
+// also hide the browse button in the mobile view
 div.md-dialog-container .custom-links-container.layout-wrap.layout-align-sm-start-start.layout-align-center-start.layout-row {
   display: none;
 }
@@ -179,32 +179,4 @@ prm-breadcrumbs .md-chip.persistent-facet strong {
 }
 prm-breadcrumbs .md-chip.persistent-facet .md-chip-content .persistence-button {
   left: -1px;
-}
-
-
-/* Browzine styles */
-/* per https://thirdiron.atlassian.net/wiki/spaces/BrowZineAPIDocs/pages/79200260/Ex+Libris+Primo+Integration */
-.browzine-icon  {
-  margin-right:2px;
-}
-.browzine-external-link {
-  width:15px;
-  height:15px;
-  min-width:15px;
-  min-height:15px;
-}
-
-/* make the links under the search bar readable */
-._md-select-value ._md-select-icon {
-  color: #333;
-}
-
-._md-text {
-  color: #333;
-}
-
-/* underline animated highlight */
-md-input-container:after,
-.md-input-color-underline {
-  background-color: #49075e !important;
 }
