@@ -44,6 +44,7 @@
   "resolutions": {
     "uqlibrary-styles": "v1.1.1",
     "uqlibrary-ga": "v1.1.1",
-    "uqlibrary-api": "v1.5.1"
+    "uqlibrary-api": "v1.5.1",
+    "polymer": "1.9.3"
   }
 }
