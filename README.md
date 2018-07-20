@@ -11,7 +11,7 @@
 * [Applications customisations](#applications-customisations)
 * [Forcing IMS logins](#forcing-ims-logins)
 * [Elements development](#elements-development)
-* [Local testing](#local-testing)
+* [Testing](#unit-testing)
 
 The Central Repository contains:
 

@@ -57,6 +57,42 @@ https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=...
 
 eg [Link to Saved Items](https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=https%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo-explore%2Ffavorites%3Fvid%3D61UQ%26lang%3Den_US%C2%A7ion%3Ditems)
 
+## Developing
 
-  
+Stacey is likely to ask for various changes to be done in various environments.
+
+There are 6 basic environments:
+
+- prod - live, public primo at [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ&sortby=rank) branch is `master`
+- prod-dev - development on the live server [search.library.uq.edu.au with vid=61UQ_DEV](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV) branch is `master`
+- prod-otb - [Blue out of the box primo in the prod environment](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN) - it would be very unusual for us to make changes to this
+- sandbox - sandbox area, [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ&sortby=rank) branch is `primo-sand-box`
+- sandbox-dev - sandbox dev area [uq-edu-primo-sb.hosted.exlibrisgroup.com with vid=61UQ_DEV](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) branch is `primo-sand-box-dev`
+- sandbox-otb - sandbox out of the box [uq-edu-primo-sb.hosted.exlibrisgroup.com with vid=61UQ_DEV_LOGIN](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV_LOGIN&sortby=rank) - it would be very unusual for us to make changes to this
+
+(at times prod and prod-dev might need to be distinguished with branches production and master)
+
+### Workflow
+
+Stacey sometimes asks for different changes in different environments so she can demonstrate the differences to WAG (Web Advisory Group). This may mean changes to the package that gets uploaded to Primo or it may mean changes to the js & css that is called from assets.library.uq.edu.au, or both.
+
+Here is a workflow that covers both of these:
+
+- start by making sure the branch you are altering is up to date:
+  - merge master into the branch eg primo-sand-box-dev
+  - correct branch name in applications/primo2/view_package/js/custom.js & commit
+- do development:
+  - make changes
+  - [upload package](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md) to back office if an angular change
+  - push to github if an assets.library element changes (and also at appropriate times to record any angular changes)
+- eventually, get acceptance from stacey that she wants it live - now you need to put any changes to the primo package in the 3 other environments, so they all match
+- for each of the 3 other branches (where there is an change to the primo package):
+  - merge in, preferably from master
+  - change the branch name in custom.js
+  - recommit
+  - upload the package (if angular changes involved)
+
+Its very tedious and involves a lot of changing the branch name back and forth :(
+
+*Key Item!!*: always make sure to commit the correct branch name in custom/custom.js before you push to github!!!!
   
