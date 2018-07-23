@@ -185,5 +185,20 @@ prm-breadcrumbs .md-chip.persistent-facet .md-chip-content .persistence-button {
 button.button-with-menu-arrow.md-button.md-primoExplore-theme.md-ink-ripple,
 button.user-button.md-button.md-primoExplore-theme.md-ink-ripple ,
 prm-user-area-expandable .md-button.user-button .menu-arrow {
-  color: #333;
+  color: $dark;
+}
+
+// make the dropdowns under the search bar readable
+._md-select-value ._md-select-icon {
+  color: $dark;
+}
+
+._md-text {
+  color: $dark;
+}
+
+// underline animated highlight on the dropdowns under the search bar
+md-input-container:after,
+.md-input-color-underline {
+  background-color: $theme-color !important;
 }
