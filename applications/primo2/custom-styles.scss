@@ -208,3 +208,9 @@ md-input-container:after,
   padding-left: 16px;
   padding-left: 1rem;
 }
+
+// hide the last entry (display language) in the account drop down menu
+#menu_container_31 md-menu-item:nth-last-child(1), // logged in
+#menu_container_22 md-menu-item:nth-child(1) { // not logged in
+  display: none;
+}
