@@ -202,3 +202,9 @@ md-input-container:after,
 .md-input-color-underline {
   background-color: $theme-color !important;
 }
+
+// account -> loans & requests. Give more space for the weird looking checkboxes
+.md-list-item-text.md-list-item-with-checkbox.layout-wrap.layout-row.flex > div {
+  padding-left: 16px;
+  padding-left: 1rem;
+}
