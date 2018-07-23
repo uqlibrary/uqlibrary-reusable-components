@@ -179,7 +179,7 @@
     }
   }
 
-  // start and end with slash unless prod
+  // start and end with slash unless prod, which is just a single slash
   var branchName = '/primo-sand-box-dev/';
 
   var scripts = [

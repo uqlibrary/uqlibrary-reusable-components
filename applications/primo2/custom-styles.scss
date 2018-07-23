@@ -180,3 +180,10 @@ prm-breadcrumbs .md-chip.persistent-facet strong {
 prm-breadcrumbs .md-chip.persistent-facet .md-chip-content .persistence-button {
   left: -1px;
 }
+
+// make the username and menu buttons (top right) black text
+button.button-with-menu-arrow.md-button.md-primoExplore-theme.md-ink-ripple,
+button.user-button.md-button.md-primoExplore-theme.md-ink-ripple ,
+prm-user-area-expandable .md-button.user-button .menu-arrow {
+  color: #333;
+}
