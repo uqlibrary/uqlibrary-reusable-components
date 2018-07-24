@@ -8,9 +8,7 @@ A third party product we are using for online library exhibits
 
 Login as admin [here](https://uqlibraryonlineexhibitions.omeka.net/admin/) - user email and password are in PasswordState.
 
-The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/omeka/applications/omeka/custom-styles.scss)
-
-All work is done in branch `omeka`.
+The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/omeka/custom-styles.scss)
 
 CSS can also be updated in the [CSS Plugin](http://uqlibraryonlineexhibitions.omeka.net/admin/plugins)
 which has major restrictions, eg:
