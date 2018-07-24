@@ -8,7 +8,9 @@ A third party product we are using for online library exhibits
 
 Login as admin [here](https://uqlibraryonlineexhibitions.omeka.net/admin/) - user email and password are in PasswordState.
 
-The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/omeka/custom-styles.scss)
+The prefered method of styling is to style [the assets css file](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/omeka/applications/omeka/custom-styles.scss)
+
+All work is done in branch `omeka`.
 
 CSS can also be updated in the [CSS Plugin](http://uqlibraryonlineexhibitions.omeka.net/admin/plugins)
 which has major restrictions, eg:
@@ -26,6 +28,8 @@ which has major restrictions, eg:
 * it strips :before attributes
 * any styling on a child element rewrites the '>' to \3E
 * doubtless more
+
+This means the Omeka homepage cannot have a great deal of styling - I think I've wrung everything out of it that can be done.
 
 The [load.js](//assets.library.uq.edu.au/reusable-components/omeka/load.js) file:
 
