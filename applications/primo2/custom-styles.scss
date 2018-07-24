@@ -217,3 +217,19 @@ md-menu-content.prm-user-menu-content.md-primoExplore-theme md-menu-item:nth-chi
 // note the divider above the hidden 'display language' in the non-logged in panel remains. This is because hiding md-menu-divider:nth-child(2) it makes the divider under user name disappear in the logged-in panel :(
   display: none;
 }
+
+// checkboxes on Loans/Request are ugly as!
+md-list.separate-list-items md-list-item .item-index {
+  margin-top: 0.55em;
+}
+md-list md-list-item .md-list-item-with-checkbox md-checkbox {
+  top: 0.8em;
+}
+
+// put some space on the library outlinks
+.header-subtitle {
+  margin-top: 1rem;
+}
+.header-subtitle prm-account-links a {
+  padding-right: 1rem;
+}
