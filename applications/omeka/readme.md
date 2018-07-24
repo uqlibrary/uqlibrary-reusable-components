@@ -27,6 +27,8 @@ which has major restrictions, eg:
 * any styling on a child element rewrites the '>' to \3E
 * doubtless more
 
+This means the Omeka homepage cannot have a great deal of styling - I think I've wrung everything out of it that can be done.
+
 The [load.js](//assets.library.uq.edu.au/reusable-components/omeka/load.js) file:
 
 * loads the responsive meta
