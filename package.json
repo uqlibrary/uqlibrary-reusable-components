@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "del": "^2.2.0",
+    "forwarded": "^0.1.2",
     "glob": "^7.1.1",
     "growl": "^1.10.5",
     "gulp": "^3.8.5",
@@ -43,6 +44,7 @@
     "opn": "^4.0.2",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
+    "tough-cookie": "^2.4.3",
     "validation": "0.0.1",
     "vulcanize": "v1.15.2",
     "web-component-tester": "^5.0.0",
