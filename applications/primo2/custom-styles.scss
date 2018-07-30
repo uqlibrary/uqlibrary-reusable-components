@@ -180,3 +180,56 @@ prm-breadcrumbs .md-chip.persistent-facet strong {
 prm-breadcrumbs .md-chip.persistent-facet .md-chip-content .persistence-button {
   left: -1px;
 }
+
+// make the username and menu buttons (top right) black text
+button.button-with-menu-arrow.md-button.md-primoExplore-theme.md-ink-ripple,
+button.user-button.md-button.md-primoExplore-theme.md-ink-ripple ,
+prm-user-area-expandable .md-button.user-button .menu-arrow {
+  color: $dark;
+}
+
+// make the dropdowns under the search bar readable
+._md-select-value ._md-select-icon {
+  color: $dark;
+}
+
+._md-text {
+  color: $dark;
+}
+
+// underline animated highlight on the dropdowns under the search bar
+md-input-container:after,
+.md-input-color-underline {
+  background-color: $theme-color !important;
+}
+
+// account -> loans & requests. Give more space for the weird looking checkboxes
+.md-list-item-text.md-list-item-with-checkbox.layout-wrap.layout-row.flex > div {
+  padding-left: 16px;
+  padding-left: 1rem;
+}
+
+// hide Display Language in the account drop down menu
+// exlibris claim this will be removed (when there is only one language) in prod, so this may only be needed for sandbox
+md-menu-content.prm-user-menu-content.md-primoExplore-theme md-menu-item:nth-child(10), // logged in panel: hide 'display language'
+md-menu-content.prm-user-menu-content.md-primoExplore-theme md-menu-divider:nth-child(9), // logged in panel: hide divider above 'display language'
+md-menu-content.prm-user-menu-content.md-primoExplore-theme md-menu-item:nth-child(1) {  // not logged in panel: 'display language' is md-menu-item first child in this panel! lucky!
+// note the divider above the hidden 'display language' in the non-logged in panel remains. This is because hiding md-menu-divider:nth-child(2) it makes the divider under user name disappear in the logged-in panel :(
+  display: none;
+}
+
+// checkboxes on Loans/Request are ugly as!
+md-list.separate-list-items md-list-item .item-index {
+  margin-top: 0.55em;
+}
+md-list md-list-item .md-list-item-with-checkbox md-checkbox {
+  top: 0.8em;
+}
+
+// put some space on the library outlinks
+.header-subtitle {
+  margin-top: 1rem;
+}
+.header-subtitle prm-account-links a {
+  padding-right: 1rem;
+}
