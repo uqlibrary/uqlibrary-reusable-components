@@ -180,7 +180,7 @@
   }
 
   // start and end with slash unless prod, which is just a single slash
-  var branchName = '/primo-sand-box-dev/';
+  var branchName = '/primo-sand-box/';
 
   var scripts = [
     '//assets.library.uq.edu.au' + branchName + 'reusable-components/webcomponentsjs/webcomponents-lite.min.js',
