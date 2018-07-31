@@ -209,15 +209,6 @@ md-input-container:after,
   padding-left: 1rem;
 }
 
-// hide Display Language in the account drop down menu
-// exlibris claim this will be removed (when there is only one language) in prod, so this may only be needed for sandbox
-md-menu-content.prm-user-menu-content.md-primoExplore-theme md-menu-item:nth-child(10), // logged in panel: hide 'display language'
-md-menu-content.prm-user-menu-content.md-primoExplore-theme md-menu-divider:nth-child(9), // logged in panel: hide divider above 'display language'
-md-menu-content.prm-user-menu-content.md-primoExplore-theme md-menu-item:nth-child(1) {  // not logged in panel: 'display language' is md-menu-item first child in this panel! lucky!
-// note the divider above the hidden 'display language' in the non-logged in panel remains. This is because hiding md-menu-divider:nth-child(2) it makes the divider under user name disappear in the logged-in panel :(
-  display: none;
-}
-
 // checkboxes on Loans/Request are ugly as!
 md-list.separate-list-items md-list-item .item-index {
   margin-top: 0.55em;
