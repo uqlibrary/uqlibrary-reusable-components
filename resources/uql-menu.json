@@ -344,6 +344,10 @@
           "href": "https://web.library.uq.edu.au/about-us/membership"
         },
         {
+          "label": "Projects",
+          "href": "https://web.library.uq.edu.au/about-us/projects"
+        },
+        {
           "label": "History of the Library",
           "href": "https://web.library.uq.edu.au/about-us/history-library"
         },
@@ -354,6 +358,7 @@
         {
           "label": "Library tours",
           "href": "https://web.library.uq.edu.au/about-us/library-tours"
+          "col2": "yes"
         },
         {
           "label": "Organisational structure",
@@ -384,13 +389,7 @@
           "label": "Mission",
           "href": "https://web.library.uq.edu.au/about-us/mission",
           "col2": "yes"
-        },
-        {
-          "label": "Participate in customer research",
-          "subtext": "Help us improve our services",
-          "href": "https://web.library.uq.edu.au/about-us/participate-customer-research",
-          "col2": "yes"
-        }
+        }  
       ]
     },
     {
