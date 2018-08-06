@@ -31,7 +31,7 @@ UQ Library is a Hosted Multi-Tenant Customer of Ex Libris (the alternative is to
 
 New Primo UI is in active development. All releases are scheduled by ExLibris and are available in Primo Sand Box a couple of weeks before going to production.
 * New Primo UI SB 61UQ_DEV view is configured/customised with uqlibrary-reusable-components#primo-sand-box
-* Please, merge uqlibrary-reusable-components#primo-sand-box into master very carefully (view_package contents are referencing sandbox assets)
+* Merge uqlibrary-reusable-components#primo-sand-box into master VERY CAREFULLY (view_package contents are referencing sandbox assets - ALWAYS check the branchName value is correct (matches the current branch) in view_package/js/custom.js before pushing)
 * [Primo SB BO](https://uq-edu-primo-sb.hosted.exlibrisgroup.com:1443/primo_publishing/admin/acegilogin.jsp)
 * [Primo SB 61UQ_DEV](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=61UQ_DEV)
 * [Primo SB Default View](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN)
@@ -80,7 +80,7 @@ Here is a workflow that covers both of these:
 
 - start by making sure the branch you are altering is up to date:
   - merge master into the branch eg primo-sand-box-dev
-  - correct branch name in applications/primo2/view_package/js/custom.js & commit
+  - correct branch name to match current branch name in applications/primo2/view_package/js/custom.js & commit
 - do development:
   - make changes
   - [upload package](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md) to back office if an angular change

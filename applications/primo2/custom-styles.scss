@@ -224,3 +224,8 @@ md-list md-list-item .md-list-item-with-checkbox md-checkbox {
 .header-subtitle prm-account-links a {
   padding-right: 1rem;
 }
+
+// the 'Virtual Browse' item in the left hand menu for an individual eg book is just getting its rightmost letter clipped off
+div#services-index button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme.md-ink-ripple {
+  padding: 0;
+}
