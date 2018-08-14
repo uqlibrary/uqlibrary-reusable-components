@@ -17,3 +17,7 @@ UQ ITS is managing UQ Drupal library's CMS (web.library.uq.edu.au). Any componen
         
 
 reusable-components.appcache is a manifest file which contains a list of files that can be cached by a browser. Application cache file has a version number which signals to a browser that cached files were updated. Version is updated automatically at deployment time. 
+
+Drupal staging calls the master branch of reusable, eg https://library.stage.drupal.uq.edu.au/contact-us calls //assets.library.uq.edu.au/master/reusable-components/libwww/load.js
+
+This means we can test changes on drupal before going live. (I beleive ITS have to give individual access to make library.staging visible to developers individually - I've been dealing with David Pollitt, October 2017)
