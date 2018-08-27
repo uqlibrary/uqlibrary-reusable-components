@@ -41,7 +41,7 @@ npm install -g gulp bower && npm install && bower install
 
 ### Updating IA
 
-BUEA staff are able to make changes to the Mega Menu. Instructions:
+UX Services staff are able to make changes to the Mega Menu. Instructions for them:
 
 * Make sure your branch is set to master.
 * Changes can be made either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).
@@ -49,15 +49,13 @@ BUEA staff are able to make changes to the Mega Menu. Instructions:
 
 https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json
 
-* Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here:
-
-[Codeship for re-usable components](https://codeship.com/projects/99389)
+* Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here: [Codeship for re-usable components](https://codeship.com/projects/99389)
     
 This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
 
-After BUEA staff have pushed their changes, developers should:
+After UX Services staff have pushed their changes, developers should:
 
-* for uqlibrary-reusable-components: confirm master build passes (it should start from initial push to github by BUEA)
+* for uqlibrary-reusable-components: confirm master build passes (it should start from initial push to github by UX Services)
 * for uqlibrary-pages: start rebuild of production branch (after reusable master passes; it pulls master of reusable, no release necessary) - updates homepage
 * for uqlibrary-reusable-components: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
 * for uqlibrary-mylibrary: if affected, start rebuild of production (pulls production of reusable) - updates https://www.library.uq.edu.au/mylibrary/
