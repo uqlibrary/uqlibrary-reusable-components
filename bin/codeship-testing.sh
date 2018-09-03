@@ -2,6 +2,16 @@
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
 set -e
 
+function logSauceCommands {
+ SAUCELABS_LOG_FILE="${TMPDIR}sc.log"
+ if [ -f {$SAUCELABS_LOG_FILE} ]; then
+  echo "Command failed - dumping {$SAUCELABS_LOG_FILE} for debug of saucelabs"
+  cat {$SAUCELABS_LOG_FILE}
+ else
+   echo "Command failed - attempting to dump saucelabs log file but $SAUCELABS_LOG_FILE not found - did we reach the saucelabs section?"
+ fi
+}
+
 if [ -z $CI_BRANCH ]; then
   branch=$(git rev-parse --abbrev-ref HEAD)
 else
@@ -52,10 +62,11 @@ case "$PIPE_NUM" in
 "3")
   # "Saucelabs" tab on codeship
 
+  trap logSauceCommands EXIT
+
   echo "WCT: remote unit testing (for Master and Prod branch only)..."
   if [[ (${CI_BRANCH} == "master" || ${CI_BRANCH} == "production") ]]; then
     gulp test:remote
   fi
-
 ;;
 esac

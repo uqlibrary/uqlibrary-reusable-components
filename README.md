@@ -168,6 +168,24 @@ Sample test commands:
 
 (The nightwatch e2e tests are setup as one file per project, plus a file of minimal common items which isn't valid to run on its own. To only run the valid tests, use the tag e2etest.)
 
+#### Run Tests Remotely
+
+    $ gulp test:remote
+
+When you run this command, you may get the error:
+
+"Missing Sauce credentials. Did you forget to set SAUCE_USERNAME and/or SAUCE_ACCESS_KEY?"
+
+To set these fields:
+
+1. Visit the [Reusable-components Codeship Environment Variable page](https://app.codeship.com/projects/99389/environment/edit)
+2. Note the values for SAUCE_USERNAME and for SAUCE_ACCESS_KEY
+3. export these as local variables on your box, eg:
+
+    `$ export SAUCE_ACCESS_KEY='XXX'`
+
+then run the `gulp test:remote` command again
+
 ## Workflow
 
 ### Suggested workflow for changing CSS on 3rd party sites:
