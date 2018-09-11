@@ -64,6 +64,8 @@ After UX Services staff have pushed their changes, developers should:
 * for uqlibrary-reusable-components: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
 * for uqlibrary-mylibrary: if affected, start rebuild of production (pulls production of reusable) - updates https://www.library.uq.edu.au/mylibrary/
 
+If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (web.library.uq.edu.au) as well. This can be tested before going live by updating the master branch of reusable and viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
+
 ### Applications Customisations
 
 All custom styles/scripts are located in /applications/[app name]/
