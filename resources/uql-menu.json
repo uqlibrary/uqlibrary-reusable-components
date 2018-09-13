@@ -129,25 +129,25 @@
           "label": "Search techniques",
           "subtext": "Find the results you need",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/search-techniques",
-           "col2": "yes"
+          "col2": "yes"
         },
         {
           "label": "Referencing style guides",
           "subtext": "APA, AGLC, Harvard, Chicago ...",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-style-guides",
-           "col2": "yes"
+          "col2": "yes"
         },
         {
           "label": "Referencing software",
           "subtext": "Endnote, Mendeley, Zotero",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-software",
-           "col2": "yes"
+          "col2": "yes"
         },
         {
           "label": "Off-campus access",
           "subtext": "Access full-text from anywhere",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access",
-           "col2": "yes"
+          "col2": "yes"
         }
       ]
     },
