@@ -2,6 +2,10 @@
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
 set -e
 
+if [ -z ${TMPDIR} ]; then # codeship doesnt seem to set this
+  TMPDIR="/tmp"
+fi
+
 function logSauceCommands {
  SAUCELABS_LOG_FILE="${TMPDIR}sc.log"
  if [ -f {$SAUCELABS_LOG_FILE} ]; then
