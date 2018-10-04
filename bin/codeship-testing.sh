@@ -3,7 +3,7 @@
 set -e
 
 if [ -z ${TMPDIR} ]; then # codeship doesnt seem to set this
-  TMPDIR="/tmp"
+  TMPDIR="/tmp/"
 fi
 
 function logSauceCommands {
