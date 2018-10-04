@@ -45,7 +45,14 @@ Example:
             /** Margin is required because pages has a ".main" class that sets a massive margin... */
             uqlibrary-callout {
                 --uqlibrary-callout-menu: {
-                    margin: 10px 0px;
+                    margin: 10px 0;
+                }
+            }
+
+            /* the dropdown overlaps the main results area in primo, only */
+            @media all and (min-width: 1300px) {
+                prm-explore-main uqlibrary-iron-dropdown {
+                    width: 200px;
                 }
             }
 
