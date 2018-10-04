@@ -53,7 +53,7 @@
     },
     ready: function () {
         // the chat dropdown overlaps the primo results area badly at normal width - narrow it
-        if (this._isPrimoPage(window.location.hostname)) {
+        if (this._isPrimoPage(window.location.hostname) && screen.width >= 1300) {
             this.calloutWidth = 200;
         }
     },
