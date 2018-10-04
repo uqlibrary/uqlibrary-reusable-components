@@ -52,10 +52,7 @@
       'iron-overlay-canceled': '_overlayClosed'
     },
     ready: function () {
-        // the chat dropdown overlaps the primo results area badly at normal width - narrow it
-        if (this._isPrimoPage(window.location.hostname) && screen.width >= 1300) {
-            this.calloutWidth = 200;
-        }
+
     },
     _calloutItemsChanged: function () {
       this.$.callout.menu = this.calloutItems;
@@ -122,6 +119,11 @@
 
       this.$.callout.arrowHorizontalAlign = "right";
       this.$.callout.arrow = true;
+
+      if (this._isPrimoPage(window.location.hostname) && window.innerWidth >= 1300) {
+        this.$.dropdown.horizontalOffset = 0 - this.$.button.offsetWidth - 20;
+        this.$.callout.arrowHorizontalAlign = "center";
+      }
     },
     /**
      * Aligns the callout on the center of the button
