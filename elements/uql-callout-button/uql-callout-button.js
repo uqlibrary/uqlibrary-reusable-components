@@ -120,8 +120,9 @@
       this.$.callout.arrowHorizontalAlign = "right";
       this.$.callout.arrow = true;
 
+      // the ask us dropdown overlaps the primo results area badly at larger widths - move it over
       if (this._isPrimoPage(window.location.hostname) && window.innerWidth >= 1300) {
-        this.$.dropdown.horizontalOffset = 0 - this.$.button.offsetWidth - 20;
+        this.$.dropdown.horizontalOffset = 0 - this.$.button.offsetWidth;
         this.$.callout.arrowHorizontalAlign = "center";
       }
     },
