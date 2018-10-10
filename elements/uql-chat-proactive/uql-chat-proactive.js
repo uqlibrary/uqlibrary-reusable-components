@@ -472,7 +472,7 @@
     addClassToBlock: function(className, block) {
         var element = document.querySelector(block);
         if (!!element) {
-            chatItem.classList.add(className);
+            element.classList.add(className);
         }
     },
 
