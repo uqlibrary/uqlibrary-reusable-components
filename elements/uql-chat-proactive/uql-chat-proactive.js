@@ -140,7 +140,7 @@ if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { conso
                     console.log('_isChatpopupOverlappingPrimoSidebar: windowWidth = ' + windowWidth); // #dev
                     console.log('_isChatpopupOverlappingPrimoSidebar: sidebarLeft = ' + sidebarLeft); // #dev
                     return (proactivechat.getBoundingClientRect().width > (windowWidth - sidebarLeft));
-                } else {console.log('_isPrimoInResponsiveMode not setB'); }x
+                } else {console.log('_isPrimoInResponsiveMode not setB'); }
             } else {console.log('proactivechat not setB'); }
         } else {console.log('sidebarLeft not setB'); }
 
