@@ -70,6 +70,7 @@
       var self = this;
 
       if (this._isPrimoPage(window.location.hostname)) {
+        this.addClassToBlock('primo', '.chatItem');
         // this._placeProactiveChatInPrimo();
         this._watchForPrimoFiltersButton();
       }
@@ -111,17 +112,40 @@
         this.async(function () {
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
+
             // this._setPrimoFilterButtonPositioning(125); // set filterButtonDivMarginBottom
-            if (this._isPrimoPage(window.location.hostname)) {
+            if (this._isPrimoPage(window.location.hostname) && this._isChatpopupOverlappingPrimoSidebar()) {
+              // make space for the block
               proactivechat = document.querySelector('.proactivechat paper-card');
-              if (proactivechat) {
-                this._makeRoomForSidebarBottomElements(proactivechat.style.height);
+              if (!!proactivechat) {
+                this._makeRoomForPrimoSidebarBottomElements(proactivechat.getBoundingClientRect().height);
               }
             }
+
             this._showChatOnlineTab = false;
           }
         }, numberMillsecondsBeforePopup);
       }
+    },
+
+    // if width of chat item is > window width - left pos of #facets
+    // chat popup is laying over the result cards, make it sit inside the sidebar
+    _isChatpopupOverlappingPrimoSidebar: function() {
+        var sidebarLeft = false;
+        var proactivechat;
+
+        var facets = document.querySelector('#facets');
+        if (!!facets) {
+            sidebarLeft = facets.getBoundingClientRect().left;
+        }
+
+        proactivechat = document.querySelector('.proactivechat paper-card');
+        if (!!sidebarLeft && !!proactivechat && !this._isPrimoInResponsiveMode) {
+          var tt = document.getElementsByTagName('body')[0],
+              windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
+          return (proactivechat.style.width > (windowWidth - sidebarLeft));
+        }
+        return false;
     },
 
     /**
@@ -139,7 +163,7 @@
       // this._setPrimoFilterButtonPositioningForTab();
 
       if (this._isPrimoPage(window.location.hostname)) {
-        this._makeRoomForSidebarBottomElements(this._heightChatMinimisedTab);
+        this._makeRoomForPrimoSidebarBottomElements(this._heightChatMinimisedTab);
       }
     },
 
@@ -151,8 +175,6 @@
      */
     // not required as it was only because the icons were showing through it - the z-index of 0 makes it unneeded
     // _placeProactiveChatInPrimo: function() {
-    //
-    //   this.addClassToBlock('primo', '.chatItem');
     //
     //   var numMilliSecondsRecheck = 10000; // 10 seconds - we have 60 seconds before the popup loads. give them time to type in their query...
     //   var windowWidthTablet = 960; // primo goes to mobile width at 960px
@@ -167,7 +189,7 @@
     //     proactivechat = document.querySelector('.proactivechat paper-card');
     //     facets = document.querySelector('#facets');
     //     if (facets) {
-    //       sidebarLeft = window.getComputedStyle(facets, null).getPropertyValue('left');
+    //       sidebarLeft = facets.offsetLeft;
     //     }
     //     if (sidebarLeft && proactivechat && windowWidth > windowWidthTablet) {
     //       if (proactivechat.style.width > (windowWidth - sidebarLeft)) {
@@ -193,7 +215,7 @@
       var numMilliSecondsRecheck = 1000;
       this.async(function () {
         var filterButtonDiv = document.querySelector('.multiselect-submit-inner'); // alternate: querySelector('prm-facet > div > div:nth-of-type(2) > div');
-        if (filterButtonDiv) {
+        if (!!filterButtonDiv && filterButtonDiv.getBoundingClientRect().height > 0) {
 
           var chatLeft = false;
           var chatHeight = false;
@@ -201,20 +223,20 @@
           var chatPopup = document.querySelector('.proactivechat paper-card');
           var chatOnlineTab = document.querySelector('.proactivechat .onlineTab');
           var chatOfflineTab = document.querySelector('.proactivechat .offlineTab');
-          if (chatPopup) {
-            chatLeft = chatPopup.style.left;
-            chatHeight = chatPopup.style.height;
-          } else if (chatOnlineTab) {
-            chatLeft = chatOnlineTab.style.left;
-            chatHeight = chatOnlineTab.style.height;
-          } else if (chatOfflineTab) {
-            chatLeft = chatOfflineTab.style.left;
-            chatHeight = chatOfflineTab.style.height;
+          if (!!chatPopup && chatPopup.getBoundingClientRect().height > 0) {
+            chatLeft = chatPopup.getBoundingClientRect().left;
+            chatHeight = chatPopup.getBoundingClientRect().height;
+          } else if (!!chatOnlineTab && chatOnlineTab.getBoundingClientRect().height > 0) {
+            chatLeft = chatOnlineTab.getBoundingClientRect().left;
+            chatHeight = chatOnlineTab.getBoundingClientRect().height;
+          } else if (!!chatOfflineTab && chatOfflineTab.getBoundingClientRect().height > 0) {
+            chatLeft = chatOfflineTab.getBoundingClientRect().left;
+            chatHeight = chatOfflineTab.getBoundingClientRect().height;
           }
 
           if (!!chatLeft) {
-            filterButtonDivWidth = window.getComputedStyle(filterButtonDiv, null).getPropertyValue('width');
-            filterButtonDivLeft = window.getComputedStyle(filterButtonDiv, null).getPropertyValue('left');
+            filterButtonDivWidth = filterButtonDiv.getBoundingClientRect().width;
+            filterButtonDivLeft = filterButtonDiv.getBoundingClientRect().left;
 
              // if the chat widget is inside the filter button area, push the filter button area up
              // so the filter button area isnt under (or over) the chat widget
@@ -232,10 +254,10 @@
     },
 
     /*
-     * force a gap at the bottom of the facets sidebar on primo
-     * so proactive chat doesnt cover any options
+     * force a gap at the bottom of the facets sidebar on primo when chat popup is over it
+     * so proactive chat doesnt cover any options in the checkbox list
      */
-    _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
+    _makeRoomForPrimoSidebarBottomElements: function(sidebarDivMarginBottom) {
       var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
       if (sidebarDiv) {
           // move the bottom of the sidebar so it doesnt slide under the filter button block
@@ -269,7 +291,7 @@
       this._showChatOnlineTab = true;
 
       if (this._isPrimoPage(window.location.hostname)) {
-        this._makeRoomForSidebarBottomElements(this._heightChatMinimisedTab);
+        this._makeRoomForPrimoSidebarBottomElements(this._heightChatMinimisedTab);
       }
       // this._setPrimoFilterButtonPositioningForTab();
     },
@@ -452,18 +474,15 @@
         if (!!element) {
             chatItem.classList.add(className);
         }
+    },
+
+    _isPrimoInResponsiveMode: function() {
+        var tt = document.getElementsByTagName('body')[0],
+            windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
+
+        var windowWidthTablet = 960; // primo goes to mobile width at 960px
+
+        return windowWidth <= windowWidthTablet;
     }
-    //
-    // removeClassFromBlock: function(className, block) {
-    //     var element = document.querySelector(block);
-    //     if (!!element) {
-    //         var classes = block.className.split(' ');
-    //         index = classes.indexOf(className);
-    //         if (index > -1) {
-    //             classes.splice(index, 1);
-    //         }
-    //         block.className = classes.join();
-    //     }
-    // }
   });
 })();
