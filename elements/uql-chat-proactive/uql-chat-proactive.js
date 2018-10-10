@@ -43,14 +43,6 @@
         type: Object,
         value: null
       },
-
-      /**
-       * to save processing time, hard code the height of the minimised tab for use in multiple places
-       */
-      _heightChatMinimisedTab: {
-        type: Number,
-        value: 70
-      }
     },
 
     attached: function () {
@@ -126,10 +118,14 @@
 
         var facets = document.querySelector('#facets');
         if (!!facets) {
+            console.log('facets set');
             sidebarLeft = facets.getBoundingClientRect().left;
         }
+else { console.log('facets not set'); }
+if (!!sidebarLeft) { console.log('sidebarLeft set'); } else {console.log('sidebarLeft not set'); }
 
         proactivechat = document.querySelector('.proactivechat paper-card');
+if (!!proactivechat) { console.log('proactivechat set'); } else {console.log('proactivechat not set'); }
         if (!!sidebarLeft && !!proactivechat && !this._isPrimoInResponsiveMode) {
           var tt = document.getElementsByTagName('body')[0],
               windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
@@ -156,7 +152,7 @@
       // this._setPrimoFilterButtonPositioningForTab();
 
       if (this._isPrimoPage(window.location.hostname)) {
-        var heightChatMinimisedTab = 70; // this._heightChatMinimisedTab not always set yet
+        var heightChatMinimisedTab = 70;
         console.log('_handleChangedChatStatus: set height = '+heightChatMinimisedTab); // #dev
         this._makeRoomForPrimoSidebarBottomElements(heightChatMinimisedTab);
       }
@@ -287,8 +283,9 @@
       this._showChatOnlineTab = true;
 
       if (this._isPrimoPage(window.location.hostname)) {
-        console.log('_closeDialog: set height = '+this._heightChatMinimisedTab); // #dev
-        this._makeRoomForPrimoSidebarBottomElements(this._heightChatMinimisedTab);
+        var heightChatMinimisedTab = 70;
+        console.log('_closeDialog: set height = '+heightChatMinimisedTab); // #dev
+        this._makeRoomForPrimoSidebarBottomElements(heightChatMinimisedTab);
       }
       // this._setPrimoFilterButtonPositioningForTab();
     },
@@ -474,11 +471,13 @@
     },
 
     _isPrimoInResponsiveMode: function() {
+        console.log('_isPrimoInResponsiveMode');
         var tt = document.getElementsByTagName('body')[0],
             windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
 
         var windowWidthTablet = 960; // primo goes to mobile width at 960px
-
+console.log('windowWidth = '+windowWidth);
+console.log('windowWidthTablet = '+windowWidthTablet);
         return windowWidth <= windowWidthTablet;
     }
   });
