@@ -102,11 +102,7 @@ if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { conso
             // this._setPrimoFilterButtonPositioning(125); // set filterButtonDivMarginBottom
             if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode() && this._isChatpopupOverlappingPrimoSidebar()) {
               // make space for the block
-              proactivechat = document.querySelector('.proactivechat paper-card');
-              if (!!proactivechat) {
-                console.log('get proactivechat height = '+proactivechat.getBoundingClientRect().height); // #dev
-                this._makeRoomForPrimoSidebarBottomElements(proactivechat.getBoundingClientRect().height);
-              }
+              this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card');
             }
           }
         }, numberMillsecondsBeforePopup);
@@ -152,16 +148,21 @@ if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { conso
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
         this._showChatOfflineTab = false;
+
+        if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
+          this._makeRoomForPrimoSidebarBottomElements('.onlineTab');
+        }
       } else if (typeof this._chatStatusUpdated !== 'undefined') {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
+
+        if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
+          this._makeRoomForPrimoSidebarBottomElements('.offlineTab');
+        }
       }
       // this._setPrimoFilterButtonPositioningForTab();
 
-      if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
-          this._makeRoomForPrimoSidebarBottomElementsAboveInlineTab();
-      }
     },
 
     /**
@@ -250,21 +251,32 @@ if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { conso
       }, numMilliSecondsRecheck);
     },
 
-    _makeRoomForPrimoSidebarBottomElementsAboveInlineTab: function() {
-      var heightChatMinimisedTab = 70; // height of offline and online tabs
-      console.log('_makeRoomForPrimoSidebarBottomElementsAboveInlineTab: set height = '+heightChatMinimisedTab); // #dev
-      this._makeRoomForPrimoSidebarBottomElements(heightChatMinimisedTab);
-    },
+    // _makeRoomForPrimoSidebarBottomElementsAboveInlineTab: function() {
+    //   var heightChatMinimisedTab = 70; // height of offline and online tabs
+    //   console.log('_makeRoomForPrimoSidebarBottomElementsAboveInlineTab: set height = '+heightChatMinimisedTab); // #dev
+    //   this._makeRoomForPrimoSidebarBottomElements(heightChatMinimisedTab);
+    // },
 
     /*
      * force a gap at the bottom of the facets sidebar on primo when chat popup is over it
      * so proactive chat doesnt cover any options in the checkbox list
+     * @param tagIdentifier string
+     * eg this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card')
+     * @private
      */
-    _makeRoomForPrimoSidebarBottomElements: function(sidebarDivMarginBottom) {
-      var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
-      if (sidebarDiv) {
+    _makeRoomForPrimoSidebarBottomElements: function(tagIdentifier) {
+      element = document.querySelector(tagIdentifier);
+      if (!!element && element.getBoundingClientRect().height > 0) {
+          console.log('found element '+tagIdentifier);
+        newMarginBottom = element.getBoundingClientRect().height;
+          console.log('newMarginBottom = '+newMarginBottom);
+
+        var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
+        if (sidebarDiv) {
           // move the bottom of the sidebar so it doesnt slide under the filter button block
-          sidebarDiv.style.marginBottom = sidebarDivMarginBottom + 'px';
+          sidebarDiv.style.marginBottom = newMarginBottom + 'px';
+              console.log('new margin done');
+        }
       }
     },
 
@@ -294,7 +306,7 @@ if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { conso
       this._showChatOnlineTab = true;
 
       if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
-        this._makeRoomForPrimoSidebarBottomElementsAboveInlineTab();
+        this._makeRoomForPrimoSidebarBottomElements('.onlineTab');
       }
       // this._setPrimoFilterButtonPositioningForTab();
     },
