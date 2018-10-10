@@ -100,7 +100,7 @@ if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { conso
             this._showChatOnlineTab = false;
 
             // this._setPrimoFilterButtonPositioning(125); // set filterButtonDivMarginBottom
-            if (this._isPrimoPage(window.location.hostname) && this._isChatpopupOverlappingPrimoSidebar()) {
+            if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode() && this._isChatpopupOverlappingPrimoSidebar()) {
               // make space for the block
               proactivechat = document.querySelector('.proactivechat paper-card');
               if (!!proactivechat) {
@@ -132,15 +132,13 @@ if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { conso
             console.log('sidebarLeft set');
             if (!!proactivechat) {
                 console.log('proactivechat set');
-                if (!this._isPrimoInResponsiveMode) {
-                    console.log('determining _isChatpopupOverlappingPrimoSidebar');
-                    var tt = document.getElementsByTagName('body')[0],
-                        windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
-                    console.log('_isChatpopupOverlappingPrimoSidebar: proactivechat.getBoundingClientRect().width = ' + proactivechat.getBoundingClientRect().width); // #dev
-                    console.log('_isChatpopupOverlappingPrimoSidebar: windowWidth = ' + windowWidth); // #dev
-                    console.log('_isChatpopupOverlappingPrimoSidebar: sidebarLeft = ' + sidebarLeft); // #dev
-                    return (proactivechat.getBoundingClientRect().width > (windowWidth - sidebarLeft));
-                } else {console.log('_isPrimoInResponsiveMode not setB'); }
+                console.log('determining _isChatpopupOverlappingPrimoSidebar');
+                var tt = document.getElementsByTagName('body')[0],
+                    windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
+                console.log('_isChatpopupOverlappingPrimoSidebar: proactivechat.getBoundingClientRect().width = ' + proactivechat.getBoundingClientRect().width); // #dev
+                console.log('_isChatpopupOverlappingPrimoSidebar: windowWidth = ' + windowWidth); // #dev
+                console.log('_isChatpopupOverlappingPrimoSidebar: sidebarLeft = ' + sidebarLeft); // #dev
+                return (proactivechat.getBoundingClientRect().width > (windowWidth - sidebarLeft));
             } else {console.log('proactivechat not setB'); }
         } else {console.log('sidebarLeft not setB'); }
 
