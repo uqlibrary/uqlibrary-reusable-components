@@ -133,7 +133,10 @@
         if (!!sidebarLeft && !!proactivechat && !this._isPrimoInResponsiveMode) {
           var tt = document.getElementsByTagName('body')[0],
               windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
-          return (proactivechat.style.width > (windowWidth - sidebarLeft));
+          console.log('_isChatpopupOverlappingPrimoSidebar: proactivechat.getBoundingClientRect().width = '+proactivechat.getBoundingClientRect().width); // #dev
+          console.log('_isChatpopupOverlappingPrimoSidebar: windowWidth = '+windowWidth); // #dev
+          console.log('_isChatpopupOverlappingPrimoSidebar: sidebarLeft = '+sidebarLeft); // #dev
+          return (proactivechat.getBoundingClientRect().width > (windowWidth - sidebarLeft));
         }
         return false;
     },
@@ -153,8 +156,9 @@
       // this._setPrimoFilterButtonPositioningForTab();
 
       if (this._isPrimoPage(window.location.hostname)) {
-        console.log('_handleChangedChatStatus: set height = '+this._heightChatMinimisedTab); // #dev
-        this._makeRoomForPrimoSidebarBottomElements(this._heightChatMinimisedTab);
+        var heightChatMinimisedTab = 70; // this._heightChatMinimisedTab not always set yet
+        console.log('_handleChangedChatStatus: set height = '+heightChatMinimisedTab); // #dev
+        this._makeRoomForPrimoSidebarBottomElements(heightChatMinimisedTab);
       }
     },
 
