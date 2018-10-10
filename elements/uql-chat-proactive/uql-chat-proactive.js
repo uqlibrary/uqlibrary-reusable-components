@@ -8,7 +8,7 @@
       _chatOnline: {
         type: Boolean,
         value: false,
-        observer: '_handleChangedChatStatus'
+        observer: '_handleLoadingChatStatus'
       },
 
       /* all three display tabs are hidden until we ascertain the Chat Status */
@@ -64,7 +64,7 @@
           if(e.detail && e.detail.hasOwnProperty('online')) {
             self._chatOnline = e.detail.online;
             self._chatStatusUpdated = true;
-            self._handleChangedChatStatus();
+            self._handleLoadingChatStatus();
           }
         });
         this.$.chatStatusApi.get();
@@ -88,6 +88,7 @@
 
       // show the popup after a delay
       var numberMillsecondsBeforePopup = 60000; // 1 minute
+if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { console.log('cookie set - no popup'); }
       if (!this._isCookieSetNoPopup()) {
         // set a timer for the tab to expand to a window
         this.async(function () {
@@ -113,13 +114,14 @@
     // if width of chat item is > window width - left pos of #facets
     // chat popup is laying over the result cards, make it sit inside the sidebar
     _isChatpopupOverlappingPrimoSidebar: function() {
-        var sidebarLeft = false;
         var proactivechat;
+        var sidebarLeft = false;
 
         var facets = document.querySelector('#facets');
         if (!!facets) {
             console.log('facets set');
             sidebarLeft = facets.getBoundingClientRect().left;
+            console.log('sidebarLeft = '+sidebarLeft);
         }
 else { console.log('facets not set'); }
 if (!!sidebarLeft) { console.log('sidebarLeft set'); } else {console.log('sidebarLeft not set'); }
@@ -127,6 +129,7 @@ if (!!sidebarLeft) { console.log('sidebarLeft set'); } else {console.log('sideba
         proactivechat = document.querySelector('.proactivechat paper-card');
 if (!!proactivechat) { console.log('proactivechat set'); } else {console.log('proactivechat not set'); }
         if (!!sidebarLeft && !!proactivechat && !this._isPrimoInResponsiveMode) {
+console.log('determining _isChatpopupOverlappingPrimoSidebar');
           var tt = document.getElementsByTagName('body')[0],
               windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
           console.log('_isChatpopupOverlappingPrimoSidebar: proactivechat.getBoundingClientRect().width = '+proactivechat.getBoundingClientRect().width); // #dev
@@ -138,9 +141,9 @@ if (!!proactivechat) { console.log('proactivechat set'); } else {console.log('pr
     },
 
     /**
-     * Called when the chat status has changed, eg uqlibrary-api-chat-status-loaded has fired. Updates display status
+     * Called when the chat status loads, eg uqlibrary-api-chat-status-loaded has fired. Updates display status
      */
-    _handleChangedChatStatus: function() {
+    _handleLoadingChatStatus: function() {
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
         this._showChatOfflineTab = false;
@@ -153,7 +156,7 @@ if (!!proactivechat) { console.log('proactivechat set'); } else {console.log('pr
 
       if (this._isPrimoPage(window.location.hostname)) {
         var heightChatMinimisedTab = 70;
-        console.log('_handleChangedChatStatus: set height = '+heightChatMinimisedTab); // #dev
+        console.log('_handleLoadingChatStatus: set height = '+heightChatMinimisedTab); // #dev
         this._makeRoomForPrimoSidebarBottomElements(heightChatMinimisedTab);
       }
     },
@@ -249,7 +252,6 @@ if (!!proactivechat) { console.log('proactivechat set'); } else {console.log('pr
      * so proactive chat doesnt cover any options in the checkbox list
      */
     _makeRoomForPrimoSidebarBottomElements: function(sidebarDivMarginBottom) {
-      console.log('_makeRoomForPrimoSidebarBottomElements gets '+sidebarDivMarginBottom); // #dev
       var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
       if (sidebarDiv) {
           // move the bottom of the sidebar so it doesnt slide under the filter button block
@@ -462,11 +464,16 @@ if (!!proactivechat) { console.log('proactivechat set'); } else {console.log('pr
       var regExp = /(.*)exlibrisgroup.com/i;
       return regExp.test(hostname);
     },
-
-    addClassToBlock: function(className, block) {
+// addClassToBlock('primo', '.chatItem');
+    addClassToBlock: function(newClassName, block) {
+console.log('addClassToBlock add '+newClassName+' to element '+block);
         var element = document.querySelector(block);
+console.log(element);
         if (!!element) {
-            element.classList.add(className);
+console.log('element found');
+            // element.classList.add('primo');
+
+            element.className += " " + newClassName;
         }
     },
 
