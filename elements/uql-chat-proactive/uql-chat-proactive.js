@@ -31,11 +31,6 @@
         value: false
       },
 
-      numberMillisecondsBeforeChatTabAppears: {
-        type: Number,
-        value: 3000
-      },
-
       cookieNameNoPopup: {
         type: String,
         value: 'noChatPopup'
@@ -50,20 +45,12 @@
       },
 
       /**
-       * to save processing time, hard code the height of the minimised tab for use
+       * to save processing time, hard code the height of the minimised tab for use in multiple places
        */
-        _heightChatMinimisedTab: {
-          type: Number,
-          value: 70
+      _heightChatMinimisedTab: {
+        type: Number,
+        value: 70
       }
-
-    // /*
-      //  * holds the height we put below the Apply Filter button - varies if tab or popup showing
-      //  */
-      // filterButtonDivMarginBottom: {
-      //   type: Number,
-      //   value: 0
-      // }
     },
 
     attached: function () {
@@ -79,6 +66,7 @@
       // this avoids the initial call which always seems to be offline
       // so we dont briefly load the offline tab
       // the delay also draws the user's attention to the tab
+      var numberMillisecondsBeforeChatTabAppears = 3000;
       this.async(function () {
         this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function(e) {
           if(e.detail && e.detail.hasOwnProperty('online')) {
@@ -88,7 +76,7 @@
           }
         });
         this.$.chatStatusApi.get();
-      }, this.numberMillisecondsBeforeChatTabAppears);
+      }, numberMillisecondsBeforeChatTabAppears);
 
       // get contact data - it holds popup details for chat
 
@@ -106,23 +94,25 @@
         this.$.contactsApi.get();
       }
 
+      // show the popup after a delay
       var numberMillsecondsBeforePopup = 60000; // 1 minute
       if (!this._isCookieSetNoPopup()) {
         // set a timer for the tab to expand to a window
         this.async(function () {
           if (this._chatOnline) {
+            console.log('open chat popup'); // #dev
             this._showPopupChatBlock = true;
+            this._showChatOnlineTab = false;
 
             // this._setPrimoFilterButtonPositioning(125); // set filterButtonDivMarginBottom
             if (this._isPrimoPage(window.location.hostname) && this._isChatpopupOverlappingPrimoSidebar()) {
               // make space for the block
               proactivechat = document.querySelector('.proactivechat paper-card');
               if (!!proactivechat) {
+                console.log('get proactivechat height = '+proactivechat.getBoundingClientRect().height); // #dev
                 this._makeRoomForPrimoSidebarBottomElements(proactivechat.getBoundingClientRect().height);
               }
             }
-
-            this._showChatOnlineTab = false;
           }
         }, numberMillsecondsBeforePopup);
       }
@@ -163,6 +153,7 @@
       // this._setPrimoFilterButtonPositioningForTab();
 
       if (this._isPrimoPage(window.location.hostname)) {
+        console.log('_handleChangedChatStatus: set height = '+this._heightChatMinimisedTab); // #dev
         this._makeRoomForPrimoSidebarBottomElements(this._heightChatMinimisedTab);
       }
     },
@@ -258,6 +249,7 @@
      * so proactive chat doesnt cover any options in the checkbox list
      */
     _makeRoomForPrimoSidebarBottomElements: function(sidebarDivMarginBottom) {
+      console.log('_makeRoomForPrimoSidebarBottomElements gets '+sidebarDivMarginBottom); // #dev
       var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
       if (sidebarDiv) {
           // move the bottom of the sidebar so it doesnt slide under the filter button block
@@ -291,6 +283,7 @@
       this._showChatOnlineTab = true;
 
       if (this._isPrimoPage(window.location.hostname)) {
+        console.log('_closeDialog: set height = '+this._heightChatMinimisedTab); // #dev
         this._makeRoomForPrimoSidebarBottomElements(this._heightChatMinimisedTab);
       }
       // this._setPrimoFilterButtonPositioningForTab();
