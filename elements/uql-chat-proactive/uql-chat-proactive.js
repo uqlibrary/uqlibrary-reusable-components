@@ -49,7 +49,9 @@
       var self = this;
 
       if (this._isPrimoPage(window.location.hostname)) {
-        this.addClassToBlock('primo', '.chatItem');
+        this._addClassToElement('primo', '.offlineTab');
+        this._addClassToElement('primo', '.onlineTab');
+        this._addClassToElement('primo', '.popupinvite');
         // this._placeProactiveChatInPrimo();
         this._watchForPrimoFiltersButton();
       }
@@ -464,16 +466,23 @@ console.log('determining _isChatpopupOverlappingPrimoSidebar');
       var regExp = /(.*)exlibrisgroup.com/i;
       return regExp.test(hostname);
     },
-// addClassToBlock('primo', '.chatItem');
-    addClassToBlock: function(newClassName, block) {
-console.log('addClassToBlock add '+newClassName+' to element '+block);
-        var element = document.querySelector(block);
+
+      /**
+       * add a class to an element
+       * eg this._addClassToElement('primo', '.offlineTab')
+       * @param newClassName string
+       * @param tagIdentifier string
+       */
+    _addClassToElement: function(newClassName, tagIdentifier) {
+console.log('_addClassToElement add '+newClassName+' to element '+tagIdentifier);
+        var element = document.querySelector(tagIdentifier);
 console.log(element);
         if (!!element) {
 console.log('element found');
             // element.classList.add('primo');
 
-            element.className += " " + newClassName;
+            // element.className += " " + newClassName;
+            element.classList.add(newClassName);
         }
     },
 
