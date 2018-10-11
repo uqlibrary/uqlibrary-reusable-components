@@ -8,11 +8,12 @@ var ret = {
     plugins: {
         sauce: {
             browsers: [
+                'Windows 10/microsoftedge',
                 'Windows 10/chrome',
                 'Windows 10/firefox',
-                'OS X 10.11/safari',
-                'OS X 10.11/firefox',
-                'OS X 10.11/chrome'
+                'OS X 10.13/safari',
+                'OS X 10.13/firefox',
+                'OS X 10.13/chrome'
             ]
         },
         local: {
