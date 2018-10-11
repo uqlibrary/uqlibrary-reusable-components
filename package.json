@@ -49,7 +49,7 @@
     "tough-cookie": "^2.4.3",
     "validation": "0.0.1",
     "vulcanize": "v1.15.2",
-    "web-component-tester": "^5.0.0",
+    "web-component-tester": "^6.8.0",
     "yargs": "~6.5.0"
   },
   "engines": {
