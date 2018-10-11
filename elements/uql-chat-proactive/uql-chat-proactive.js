@@ -42,7 +42,7 @@
       chatLinkItems: {
         type: Object,
         value: null
-      },
+      }
     },
 
     attached: function () {

@@ -24,7 +24,7 @@ The Central Repository contains:
 - /templates/ - simple layouts for static pages, used for EZProxy error display etc
 - /backup/ - styles/scripts of applications before reusable components were applied
 
-* NOTE! Whenever you push to production, check the branchName variable in [view-package for Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) is correct!!!! (You may need to set to `/` for production then reset to `/master/` after the push)
+* NOTE! Whenever you push to production, check the branchName variable in [view-package for Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) is correct!!!! (It should be `/` for production).
 
 ### Getting Started
 
