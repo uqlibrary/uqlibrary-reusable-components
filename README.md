@@ -233,35 +233,46 @@ $ nvm install  v8.11.3
 
 ### Test Setup
 
+```
 jdk_switcher use oraclejdk8
 chmod a+x -R bin/*
 nvm install v8.11.3
 node -v
 npm -v
 bin/codeship-setup.sh
+```
 
 ### Pipelines
 
 #### Test Commands
 
+```
 export PIPE_NUM=1
 bin/codeship-testing.sh
+```
 
 #### Unit tests
 
+```
 export PIPE_NUM=2
 bin/codeship-testing.sh
+```
 
 #### Saucelabs
 
+```
 export PIPE_NUM=3
 bin/codeship-testing.sh
+```
 
 ### Deployment (master and production)
 
 CUSTOM SCRIPT
+
+```
 jdk_switcher use oraclejdk8
 chmod a+x -R bin/*
 bin/codeship-setup.sh
 bin/codeship-deployment.sh
 bin/codeship-prod-testing.sh
+```
