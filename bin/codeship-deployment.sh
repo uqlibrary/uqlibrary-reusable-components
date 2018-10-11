@@ -23,6 +23,7 @@ else
 fi
 
 echo "Compile css"
+npm rebuild node-sass
 gulp styles
 
 echo "Insert browser detection message"

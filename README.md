@@ -208,12 +208,36 @@ then run the `gulp test:remote` command again
 
 This lets you precisely check any changes without having to create a github release.
 
+### Gotchas
+
+If you run  `gulp test` and you get the error:
+
+```
+Error: util_1.promisify is not a function
+```
+
+then your node version is too low, eg:
+
+```
+$ npm -v
+6.4.1
+```
+
+Solution: update node to v8, eg:
+
+```
+$ nvm install  v8.11.3
+```
+
 ## Codeship backup at 30/june/2017
 
 ### Test Setup
 
 jdk_switcher use oraclejdk8
 chmod a+x -R bin/*
+nvm install v8.11.3
+node -v
+npm -v
 bin/codeship-setup.sh
 
 ### Pipelines
@@ -233,7 +257,7 @@ bin/codeship-testing.sh
 export PIPE_NUM=3
 bin/codeship-testing.sh
 
-### Deployment (mastr and production)
+### Deployment (master and production)
 
 CUSTOM SCRIPT
 jdk_switcher use oraclejdk8
