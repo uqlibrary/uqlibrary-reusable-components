@@ -19,7 +19,6 @@ cd ../${base}
 pwd
 
 echo "Compile css"
-npm rebuild node-sass
 gulp styles
 
 echo "Check file syntax"
