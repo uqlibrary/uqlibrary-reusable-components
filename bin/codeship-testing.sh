@@ -6,11 +6,11 @@ if [ -z ${TMPDIR} ]; then # codeship doesnt seem to set this
   TMPDIR="/tmp/"
 fi
 
+SAUCELABS_LOG_FILE="${TMPDIR}sc.log"
 function logSauceCommands {
- SAUCELABS_LOG_FILE="${TMPDIR}sc.log"
- if [ -f {$SAUCELABS_LOG_FILE} ]; then
-  echo "Command failed - dumping {$SAUCELABS_LOG_FILE} for debug of saucelabs"
-  cat {$SAUCELABS_LOG_FILE}
+ if [ -f "$SAUCELABS_LOG_FILE" ]; then
+  echo "Command failed - dumping $SAUCELABS_LOG_FILE for debug of saucelabs"
+  cat $SAUCELABS_LOG_FILE
  else
    echo "Command failed - attempting to dump saucelabs log file but $SAUCELABS_LOG_FILE not found - did we reach the saucelabs section?"
  fi
@@ -66,6 +66,7 @@ case "$PIPE_NUM" in
 "3")
   # "Saucelabs" tab on codeship
 
+  echo "On Saucelabs failure, will look for error log here: $SAUCELABS_LOG_FILE"
   trap logSauceCommands EXIT
 
   echo "WCT: remote unit testing (for Master and Prod branch only)..."

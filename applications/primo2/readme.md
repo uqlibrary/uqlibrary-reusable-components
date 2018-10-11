@@ -64,7 +64,7 @@ Stacey is likely to ask for various changes to be done in various environments.
 There are 6 basic environments:
 
 - prod - live, public primo at [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ&sortby=rank) branch is `production`
-- prod-dev - development on the live server [search.library.uq.edu.au with vid=61UQ_DEV](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV) branch is `master` when changes are being developed, but it is `production` most of the time, so we dont accidently overwrite it when we are doing unrelated changes in reusable
+- prod-dev - development on the live server [search.library.uq.edu.au with vid=61UQ_DEV](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV) branch is `primo-prod-dev`
 - prod-otb - [Blue out of the box primo in the prod environment](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN) - it would be very unusual for us to make changes to this
 - sandbox - sandbox area, [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ&sortby=rank) branch is `primo-sand-box`
 - sandbox-dev - sandbox dev area [uq-edu-primo-sb.hosted.exlibrisgroup.com with vid=61UQ_DEV](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) branch is `primo-sand-box-dev`
@@ -91,6 +91,7 @@ Here is a workflow that covers both of these:
   - change the branch name in custom.js
   - recommit
   - upload the package (if angular changes involved)
+  - and push (to make a polymer changes live, or to store an angular change)
 
 Its very tedious and involves a lot of changing the branch name back and forth :(
 

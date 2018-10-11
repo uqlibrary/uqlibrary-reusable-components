@@ -8,7 +8,7 @@
       _chatOnline: {
         type: Boolean,
         value: false,
-        observer: '_handleChangedChatStatus'
+        observer: '_handleLoadingChatStatus'
       },
 
       /* all three display tabs are hidden until we ascertain the Chat Status */
@@ -31,17 +31,6 @@
         value: false
       },
 
-      numberMillisecondsBeforeChatTabAppears: {
-        type: Number,
-        value: 3000
-      },
-
-      numberMillsecondsBeforePopup: {
-        type: Number,
-        value: 60000
-        // if you change this value, consider the time in _setPopupMaxWidthInPrimo
-      },
-
       cookieNameNoPopup: {
         type: String,
         value: 'noChatPopup'
@@ -53,14 +42,6 @@
       chatLinkItems: {
         type: Object,
         value: null
-      },
-
-      /*
-       * holds the height we put below the Apply Filter button - varies if tab or popup showing
-       */
-      filterButtonDivMarginBottom: {
-        type: Number,
-        value: 0
       }
     },
 
@@ -68,7 +49,10 @@
       var self = this;
 
       if (this._isPrimoPage(window.location.hostname)) {
-        this._setPopupMaxWidthInPrimo();
+        this._addClassToElement('primo', '.offlineTab');
+        this._addClassToElement('primo', '.onlineTab');
+        this._addClassToElement('primo', '.popupinvite');
+        // this._placeProactiveChatInPrimo();
         this._watchForPrimoFiltersButton();
       }
 
@@ -76,16 +60,17 @@
       // this avoids the initial call which always seems to be offline
       // so we dont briefly load the offline tab
       // the delay also draws the user's attention to the tab
+      var numberMillisecondsBeforeChatTabAppears = 3000;
       this.async(function () {
         this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function(e) {
           if(e.detail && e.detail.hasOwnProperty('online')) {
             self._chatOnline = e.detail.online;
             self._chatStatusUpdated = true;
-            self._handleChangedChatStatus();
+            self._handleLoadingChatStatus();
           }
         });
         this.$.chatStatusApi.get();
-      }, this.numberMillisecondsBeforeChatTabAppears);
+      }, numberMillisecondsBeforeChatTabAppears);
 
       // get contact data - it holds popup details for chat
 
@@ -103,72 +88,121 @@
         this.$.contactsApi.get();
       }
 
+      // show the popup after a delay
+      var numberMillsecondsBeforePopup = 60000; // 1 minute
+if (!this._isCookieSetNoPopup()) { console.log('cookie not set'); } else { console.log('cookie set - no popup'); }
       if (!this._isCookieSetNoPopup()) {
         // set a timer for the tab to expand to a window
-        // logic - we only do this on page load (ie attached function), not whenever chat comes online.
-        // we could do it when chat comes online, but that is liable to give uneven chat loads
-        // particularly in the unusual event that chat is going up and down a lot
-        // and it might annoy users, going up and down, if they are on the page for a while
-        // the tab is always there - that is sufficient
         this.async(function () {
           if (this._chatOnline) {
+            console.log('open chat popup'); // #dev
             this._showPopupChatBlock = true;
-            this._setPrimoFilterButtonPositioning(125);
-            this._makeRoomForSidebarBottomElements(70);
             this._showChatOnlineTab = false;
+
+            // this._setPrimoFilterButtonPositioning(125); // set filterButtonDivMarginBottom
+            if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode() && this._isChatpopupOverlappingPrimoSidebar()) {
+              // make space for the block
+              this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card');
+            }
           }
-        }, this.numberMillsecondsBeforePopup);
+        }, numberMillsecondsBeforePopup);
       }
     },
 
+    // if width of chat item is > window width - left pos of #facets
+    // then chat popup is laying over the result cards - make it sit inside the sidebar
+    _isChatpopupOverlappingPrimoSidebar: function() {
+        console.log('_isChatpopupOverlappingPrimoSidebar');
+        var sidebarLeft = false;
+
+        var facets = document.querySelector('#facets');
+        if (!!facets) {
+            console.log('facets set');
+            sidebarLeft = facets.getBoundingClientRect().left;
+            console.log('sidebarLeft = '+sidebarLeft);
+        }
+
+        var proactivechat = document.querySelector('.proactivechat paper-card');
+
+        if (!!sidebarLeft) {
+            console.log('sidebarLeft set');
+            if (!!proactivechat) {
+                console.log('proactivechat set');
+                console.log('determining _isChatpopupOverlappingPrimoSidebar');
+                var tt = document.getElementsByTagName('body')[0],
+                    windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
+                console.log('_isChatpopupOverlappingPrimoSidebar: proactivechat.getBoundingClientRect().width = ' + proactivechat.getBoundingClientRect().width); // #dev
+                console.log('_isChatpopupOverlappingPrimoSidebar: windowWidth = ' + windowWidth); // #dev
+                console.log('_isChatpopupOverlappingPrimoSidebar: sidebarLeft = ' + sidebarLeft); // #dev
+                return (proactivechat.getBoundingClientRect().width > (windowWidth - sidebarLeft));
+            } else {console.log('proactivechat not setB'); }
+        } else {console.log('sidebarLeft not setB'); }
+
+        return false;
+    },
+
     /**
-     * Called when the chat status has changed, eg uqlibrary-api-chat-status-loaded has fired. Updates display status
+     * Called when the chat status loads, eg uqlibrary-api-chat-status-loaded has fired. Updates display status
      */
-    _handleChangedChatStatus: function() {
+    _handleLoadingChatStatus: function() {
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
         this._showChatOfflineTab = false;
+
+        if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
+          this._makeRoomForPrimoSidebarBottomElements('.onlineTab');
+        }
       } else if (typeof this._chatStatusUpdated !== 'undefined') {
         this._showChatOnlineTab = false;
         this._showPopupChatBlock = false;
         this._showChatOfflineTab = true;
+
+        if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
+          this._makeRoomForPrimoSidebarBottomElements('.offlineTab');
+        }
       }
-      this._setPrimoFilterButtonPositioningForTab();
-      this._makeRoomForSidebarBottomElements(0);
+      // this._setPrimoFilterButtonPositioningForTab();
+
     },
 
     /**
      * On the primo results page, change the width of the proactive chat popup
      * so that it doesnt overlap the results list
      * because there are yucky things happening there with z-index.
-     * If they load the page with no query, there is no sidebar yet - async gets around that
      * @private
      */
-    _setPopupMaxWidthInPrimo: function() {
-      var numMilliSecondsRecheck = 10000; // 10 seconds - we have 60 seconds before the popup loads. give them time to type in their query...
-
-      var sidebarWidthString;
-      var proactivechat;
-      var facets;
-
-      this.async(function () {
-        facets = document.querySelector('#facets');
-        if (facets) {
-          sidebarWidthString = window.getComputedStyle(facets, null).getPropertyValue('width').trim();
-        }
-        if (sidebarWidthString) {
-          proactivechat = document.querySelector('.proactivechat paper-card');
-        }
-        if (proactivechat) {
-          proactivechat.style.maxWidth = sidebarWidthString;
-        } else {
-          this._setPopupMaxWidthInPrimo();
-        }
-      }, numMilliSecondsRecheck);
-    },
+    // not required as it was only because the icons were showing through it - the z-index of 0 makes it unneeded
+    // _placeProactiveChatInPrimo: function() {
+    //
+    //   var numMilliSecondsRecheck = 10000; // 10 seconds - we have 60 seconds before the popup loads. give them time to type in their query...
+    //   var windowWidthTablet = 960; // primo goes to mobile width at 960px
+    //
+    //   var sidebarLeft, proactivechat, facets;
+    //
+    //   // wait for sidebar and chat to appear
+    //   this.async(function () {
+    //     var tt = document.getElementsByTagName('body')[0],
+    //         windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
+    //
+    //     proactivechat = document.querySelector('.proactivechat paper-card');
+    //     facets = document.querySelector('#facets');
+    //     if (facets) {
+    //       sidebarLeft = facets.offsetLeft;
+    //     }
+    //     if (sidebarLeft && proactivechat && windowWidth > windowWidthTablet) {
+    //       if (proactivechat.style.width > (windowWidth - sidebarLeft)) {
+    //           // if width of chat item is > window width - left pos of #facets
+    //           // chat popup is sticking over the result cards cards
+    //           // set max width of chat item to (width of page - left of sidebar) ie sit in the sidebar
+    //           proactivechat.style.maxWidth = (windowWidth - sidebarLeft) + "px";
+    //       }
+    //     } else {
+    //       this._placeProactiveChatInPrimo();
+    //     }
+    //   }, numMilliSecondsRecheck);
+    // },
 
     /**
-     * while we have used css to stop the facet sidebar going 'over' the proactive chat widget,
      * static css isnt sufficient for the primo 'apply filters' widget
      * as its 'bottom edge' position must vary depending on whether the tab or the popup shows, or nothing
      * and we cant just set this on load, because the 'filter' popup isnt available to the dom unless
@@ -178,10 +212,38 @@
     _watchForPrimoFiltersButton: function() {
       var numMilliSecondsRecheck = 1000;
       this.async(function () {
-        var filterButtonDiv = document.querySelector('.multiselect-submit-inner');
-        if (filterButtonDiv) {
-            // move the block with the filter button so it doesnt slide under the proactive chat widget
-            filterButtonDiv.style.marginBottom = this.filterButtonDivMarginBottom + 'px';
+        var filterButtonDiv = document.querySelector('.multiselect-submit-inner'); // alternate: querySelector('prm-facet > div > div:nth-of-type(2) > div');
+        if (!!filterButtonDiv && filterButtonDiv.getBoundingClientRect().height > 0) {
+
+          var chatLeft = false;
+          var chatHeight = false;
+
+          var chatPopup = document.querySelector('.proactivechat paper-card');
+          var chatOnlineTab = document.querySelector('.proactivechat .onlineTab');
+          var chatOfflineTab = document.querySelector('.proactivechat .offlineTab');
+          if (!!chatPopup && chatPopup.getBoundingClientRect().height > 0) {
+            chatLeft = chatPopup.getBoundingClientRect().left;
+            chatHeight = chatPopup.getBoundingClientRect().height;
+          } else if (!!chatOnlineTab && chatOnlineTab.getBoundingClientRect().height > 0) {
+            chatLeft = chatOnlineTab.getBoundingClientRect().left;
+            chatHeight = chatOnlineTab.getBoundingClientRect().height;
+          } else if (!!chatOfflineTab && chatOfflineTab.getBoundingClientRect().height > 0) {
+            chatLeft = chatOfflineTab.getBoundingClientRect().left;
+            chatHeight = chatOfflineTab.getBoundingClientRect().height;
+          }
+
+          if (!!chatLeft) {
+            filterButtonDivWidth = filterButtonDiv.getBoundingClientRect().width;
+            filterButtonDivLeft = filterButtonDiv.getBoundingClientRect().left;
+
+             // if the chat widget is inside the filter button area, push the filter button area up
+             // so the filter button area isnt under (or over) the chat widget
+            if (chatLeft < (filterButtonDivWidth + filterButtonDivLeft)) {
+               filterButtonDiv.style.marginBottom = chatHeight + 'px';
+            } else {
+               filterButtonDiv.style.marginBottom = '0px';
+            }
+          }
         }
 
         // check again
@@ -189,16 +251,31 @@
       }, numMilliSecondsRecheck);
     },
 
+    // _makeRoomForPrimoSidebarBottomElementsAboveInlineTab: function() {
+    //   var heightChatMinimisedTab = 70; // height of offline and online tabs
+    //   console.log('_makeRoomForPrimoSidebarBottomElementsAboveInlineTab: set height = '+heightChatMinimisedTab); // #dev
+    //   this._makeRoomForPrimoSidebarBottomElements(heightChatMinimisedTab);
+    // },
+
     /*
-     * force a gap at the bottom of the facets sidebar on primo
-     * so proactive chat doesnt cover any options
+     * force a gap at the bottom of the facets sidebar on primo when chat popup is over it
+     * so proactive chat doesnt cover any options in the checkbox list
+     * @param tagIdentifier string
+     * eg this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card')
+     * @private
      */
-    _makeRoomForSidebarBottomElements: function(sidebarDivMarginBottom) {
-      if (this._isPrimoPage(window.location.hostname)) {
+    _makeRoomForPrimoSidebarBottomElements: function(tagIdentifier) {
+      element = document.querySelector(tagIdentifier);
+      if (!!element && element.getBoundingClientRect().height > 0) {
+          console.log('found element '+tagIdentifier);
+        newMarginBottom = element.getBoundingClientRect().height;
+          console.log('newMarginBottom = '+newMarginBottom);
+
         var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
         if (sidebarDiv) {
-            // move the bottom of the sidebar so it doesnt slide under the filter button block
-            sidebarDiv.style.marginBottom = sidebarDivMarginBottom + 'px';
+          // move the bottom of the sidebar so it doesnt slide under the filter button block
+          sidebarDiv.style.marginBottom = newMarginBottom + 'px';
+              console.log('new margin done');
         }
       }
     },
@@ -207,26 +284,31 @@
      * the amount of space needed to allow the 'apply filters' button to appear
      * pixels
      */
-    _setPrimoFilterButtonPositioning: function(bottomMargin) {
-      this.filterButtonDivMarginBottom = bottomMargin;
-    },
+    // _setPrimoFilterButtonPositioning: function(bottomMargin) {
+    //   this.filterButtonDivMarginBottom = bottomMargin;
+    // },
 
     /*
      * the amount of space needed to allow the 'apply filters' button to appear above the tab
      */
-    _setPrimoFilterButtonPositioningForTab: function() {
-      // put a 45px margin at the bottom
-      this._setPrimoFilterButtonPositioning(25);
-    },
+    // _setPrimoFilterButtonPositioningForTab: function() {
+    //   // put a 45px margin at the bottom
+    //   this._setPrimoFilterButtonPositioning(25); // set filterButtonDivMarginBottom
+    // },
 
     /*
      * called when the uses clicks the 'x' button or 'maybe later'
      */
     _closeDialog: function() {
       this._setCookieNoPopup();
+
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
-      this._setPrimoFilterButtonPositioningForTab();
+
+      if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
+        this._makeRoomForPrimoSidebarBottomElements('.onlineTab');
+      }
+      // this._setPrimoFilterButtonPositioningForTab();
     },
 
     /**
@@ -269,7 +351,7 @@
       this._openWindow(this.chatLinkItems);
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
-      this._setPrimoFilterButtonPositioningForTab();
+      // this._setPrimoFilterButtonPositioningForTab();
     },
 
     /**
@@ -354,7 +436,7 @@
     },
 
     /**
-     * check if the nopop cookie has been set
+     * check if the nopopup cookie has been set
      * @returns {boolean}
      * @private
      */
@@ -400,6 +482,30 @@
     _isPrimoSandboxPage: function(hostname) {
       var regExp = /(.*)exlibrisgroup.com/i;
       return regExp.test(hostname);
+    },
+
+      /**
+       * add a class to an element
+       * eg this._addClassToElement('primo', '.offlineTab')
+       * @param newClassName string
+       * @param tagIdentifier string
+       */
+    _addClassToElement: function(newClassName, tagIdentifier) {
+        var element = document.querySelector(tagIdentifier);
+        if (!!element) {
+            element.classList.add(newClassName);
+        }
+    },
+
+    _isPrimoInResponsiveMode: function() {
+        console.log('_isPrimoInResponsiveMode');
+        var tt = document.getElementsByTagName('body')[0],
+            windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
+
+        var windowWidthTablet = 960; // primo goes to mobile width at 960px
+console.log('windowWidth = '+windowWidth);
+console.log('windowWidthTablet = '+windowWidthTablet);
+        return windowWidth <= windowWidthTablet;
     }
   });
 })();

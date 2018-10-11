@@ -37,7 +37,7 @@ Exceptions:
   `$ zip -d 61UQ_DEV.zip \*.DS_Store`
 
   to remove the .ds_store file, automatically created by the zipping process on mac.
-- upload zip to Promo BO to corresponding view:
+- upload zip to Promo BO ([Prod](https://primo-direct-apac.hosted.exlibrisgroup.com:1443/primo_publishing/admin/acegilogin.jsp) or [Sandbox](https://uq-edu-primo-sb.hosted.exlibrisgroup.com:1443/primo_publishing/admin/acegilogin.jsp)) to corresponding view:
   - in menu `Deploy & Utilities -> Customization Manager`  
   - select view, eg 61UQ_DEV
   - upload package for `View Name` - choose and upload zip-file
