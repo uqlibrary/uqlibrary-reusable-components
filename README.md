@@ -235,6 +235,9 @@ $ nvm install  v8.11.3
 
 jdk_switcher use oraclejdk8
 chmod a+x -R bin/*
+nvm install v8.11.3
+node -v
+npm -v
 bin/codeship-setup.sh
 
 ### Pipelines
