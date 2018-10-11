@@ -37,7 +37,8 @@
     "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input#v1.1.3"
   },
   "devDependencies": {
-    "test-fixture": "PolymerElements/test-fixture#^1.0.0"
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0",
+    "web-component-tester": "^6.5.0"
   },
   "main": "elements/uq-minimal-header.html",
   "ignore": [],
