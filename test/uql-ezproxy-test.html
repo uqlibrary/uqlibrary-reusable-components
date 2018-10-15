@@ -479,6 +479,12 @@
         testItem = testObj.querySelector('#outputUrlTextarea');
         actualUrl = testItem.textContent;
         actualUrl = actualUrl.trim();
+        // Edge is weirdly returning the url twice, separated by  \n ONLY IN THE TEST - the page works fine
+        // so trim at the \n when found
+        var n = actualUrl.indexOf("\n");
+        if (-1 !== n) {
+            actualUrl = actualUrl.substring(0, n);
+        }
         expect(actualUrl).to.equal(expectedUrl);
 
         expect(testObj.inputValidator.valid).to.equal(true);
