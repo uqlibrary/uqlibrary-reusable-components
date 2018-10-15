@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "chai": "^3.2.0",
     "deep-extend": "^0.5.1",
     "del": "^2.2.0",
     "forwarded": "^0.1.2",
