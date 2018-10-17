@@ -479,7 +479,7 @@
         testItem = testObj.querySelector('#outputUrlTextarea');
         actualUrl = testItem.textContent;
         actualUrl = actualUrl.trim();
-        if (-1 !== navigator.userAgent.indexOf('Edge/17')) {
+        if (-1 !== navigator.userAgent.indexOf('Edge/17') || navigator.userAgent.indexOf("Trident") !== -1) {
             // Edge is weirdly returning the url twice, separated by  \n  - the page works fine
             // (possibly because an input element strips all but the first line out of a block?)
             // so trim at the \n when found
