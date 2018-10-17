@@ -9,6 +9,7 @@ var ret = {
         sauce: {
             browsers: [
                 'Windows 10/microsoftedge',
+                'Windows 10/internet explorer',
                 'Windows 10/chrome',
                 'Windows 10/firefox',
                 'Windows 10/firefox@60', // ESR - check # at https://www.mozilla.org/en-US/firefox/organizations/
