@@ -7,8 +7,7 @@ set -e
 # reusable components are used in production by other library applications,
 # this test script executes tests to check that reusable components are still applied to library apps
 
-# temp test on master
-if [[ ${CI_BRANCH} == "production" || ${CI_BRANCH} == "master" ]]; then
+if [[ ${CI_BRANCH} == "production" ]]; then
 
   # no point running these tests until invalidation is complete - give it 10 minutes: 60 * 10 = 600 seconds
   echo "sleep 10 minutes to allow invalidation to complete before testing production systems"
