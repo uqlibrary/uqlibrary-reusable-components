@@ -7,7 +7,8 @@ set -e
 # reusable components are used in production by other library applications,
 # this test script executes tests to check that reusable components are still applied to library apps
 
-if [ ${CI_BRANCH} == "production" ]; then
+# temp test on master
+if [[ ${CI_BRANCH} == "production" || ${CI_BRANCH} == "master" ]]; then
 
   # no point running these tests until invalidation is complete - give it 10 minutes: 60 * 10 = 600 seconds
   echo "sleep 10 minutes to allow invalidation to complete before testing production systems"
@@ -54,5 +55,11 @@ if [ ${CI_BRANCH} == "production" ]; then
 
   printf "\n --- SAFARI ON MAC on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
+
+  printf "\n --- FIREFOX ESR ON WINDOWS on saucelabs ---\n\n"
+  nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows-ESR --tag e2etest
+
+  printf "\n --- FIREFOX ESR ON MAC on saucelabs ---\n\n"
+  nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac-ESR --tag e2etest
 
 fi
