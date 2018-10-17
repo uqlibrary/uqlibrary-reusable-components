@@ -57,6 +57,8 @@ https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=...
 
 eg [Link to Saved Items](https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=https%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo-explore%2Ffavorites%3Fvid%3D61UQ%26lang%3Den_US%C2%A7ion%3Ditems)
 
+[This repo](https://github.com/mehmetc/primo-extract) may be useful if we ever have to get into the depths of Primo Angular - it gives access to the sourcemaps of Primo Angular code.
+
 ## Developing
 
 Stacey is likely to ask for various changes to be done in various environments.
