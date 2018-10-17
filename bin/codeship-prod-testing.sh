@@ -7,7 +7,7 @@ set -e
 # reusable components are used in production by other library applications,
 # this test script executes tests to check that reusable components are still applied to library apps
 
-if [[ ${CI_BRANCH} == "production" ]]; then
+if [[ ${CI_BRANCH} == "production" || ${CI_BRANCH} == "master" ]]; then
 
   # no point running these tests until invalidation is complete - give it 10 minutes: 60 * 10 = 600 seconds
   echo "sleep 10 minutes to allow invalidation to complete before testing production systems"
@@ -45,6 +45,9 @@ if [[ ${CI_BRANCH} == "production" ]]; then
   # note: edge and ie11 require avoidProxy set to true in the .json file per https://support.saucelabs.com/customer/en/portal/private/cases/43779
   printf "\n --- EDGE on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
+
+  printf "\n --- IE11 on saucelabs ---\n\n"
+  nightwatch -c nightwatch-saucelabs.json --env ie11 --tag e2etest
 
   printf "\n --- CHROME ON MAC on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
