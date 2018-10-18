@@ -229,3 +229,13 @@ md-list md-list-item .md-list-item-with-checkbox md-checkbox {
 div#services-index button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme.md-ink-ripple {
   padding: 0;
 }
+
+// tweak the styling of the primo database search
+.search-scope.journal-search-tile.layout-align-center-start.layout-column {
+  background-color: #2377CB;
+  color: white;
+  line-height: 1.3;
+}
+prm-atoz-search-bar {
+  background-color: transparent;
+}
