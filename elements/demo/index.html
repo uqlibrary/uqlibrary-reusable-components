@@ -57,10 +57,11 @@
     <div> Chat online text<input value="{{chatStatusConfig.chatOnlineText::input}}"> </div>
     <div> Chat offline text<input value="{{chatStatusConfig.chatOfflineText::input}}"> </div>
     <hr>
-    <div> Show search status <input type="checkbox" checked="{{showSearchStatus::change}}"> </div>
-    <div> Show apps status <input type="checkbox" checked="{{showAppsStatus::change}}"> </div>
-    <div> Show chat status <input type="checkbox" checked="{{showChatStatus::change}}"> </div>
+    <div> Show site search button <input type="checkbox" checked="{{showSearchStatus::change}}"> </div>
+    <div> Show askus button <input type="checkbox" checked="{{showChatStatus::change}}"> </div>
+    <div> Show mylibrary (app) button<input type="checkbox" checked="{{showAppsStatus::change}}"> </div>
     <div> Show login button <input type="checkbox" checked="{{showLoginStatus::change}}"> </div>
+    <br>
     <div> Show IA button <input type="checkbox" checked="{{showIAStatus::change}}"> </div>
     <div> Show menu button <input type="checkbox" checked="{{showMenuButton::change}}"> </div>
 
@@ -153,7 +154,7 @@
       buttonTitleOffline: "Ask",
       chatOnlineText: "Chat with us now!",
       chatOfflineText: "Chat is offline.",
-      offlineUrl: "https://uqcurrent.custhelp.com/app/library/faqs"
+      offlineUrl: "https://support.my.uq.edu.au/app/library/faqs"
     };
 
     Demo.showButtonTitle = true;

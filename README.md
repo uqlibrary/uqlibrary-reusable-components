@@ -24,6 +24,8 @@ The Central Repository contains:
 - /templates/ - simple layouts for static pages, used for EZProxy error display etc
 - /backup/ - styles/scripts of applications before reusable components were applied
 
+* NOTE! Whenever you push to production, confirm the branchName variable in [view-package for Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) is correct!!!! (It should be `/` for production).
+
 ### Getting Started
 
 Project requires the following major dependencies:
@@ -39,9 +41,11 @@ With Node.js installed, run the following one liner from the root of the repo:
 npm install -g gulp bower && npm install && bower install
 ```
 
+* IMPORTANT! Before each change, update our [saucelab browser versions](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/bin/template.nightwatch-saucelabs.json) by using the [saucelabs configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) so we are testing against current OS versions (browser versions are mostly automatic). Also check the [latest ESR version for firefox](https://www.mozilla.org/en-US/firefox/organizations/). (ESR versions are deployed in our Standard Environment across the Libraries).
+
 ### Updating IA
 
-BUEA staff are able to make changes to the Mega Menu. Instructions:
+UX Services staff are able to make changes to the Mega Menu. Instructions for them:
 
 * Make sure your branch is set to master.
 * Changes can be made either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).
@@ -49,18 +53,18 @@ BUEA staff are able to make changes to the Mega Menu. Instructions:
 
 https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json
 
-* Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here:
-
-[Codeship for re-usable components](https://codeship.com/projects/99389)
+* Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered.  You can monitor the status of the build here: [Codeship for re-usable components](https://codeship.com/projects/99389)
     
 This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
 
-After BUEA staff have pushed their changes, developers should:
+After UX Services staff have pushed their changes, developers should:
 
-* for uqlibrary-reusable-components: confirm master build passes (it should start from initial push to github by BUEA)
+* for uqlibrary-reusable-components: confirm master build passes (it should start from initial push to github by UX Services)
 * for uqlibrary-pages: start rebuild of production branch (after reusable master passes; it pulls master of reusable, no release necessary) - updates homepage
 * for uqlibrary-reusable-components: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
 * for uqlibrary-mylibrary: if affected, start rebuild of production (pulls production of reusable) - updates https://www.library.uq.edu.au/mylibrary/
+
+If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (web.library.uq.edu.au) as well. This can be tested before going live by updating the master branch of reusable and viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
 
 ### Applications Customisations
 
@@ -170,6 +174,24 @@ Sample test commands:
 
 (The nightwatch e2e tests are setup as one file per project, plus a file of minimal common items which isn't valid to run on its own. To only run the valid tests, use the tag e2etest.)
 
+#### Run Tests Remotely
+
+    $ gulp test:remote
+
+When you run this command, you may get the error:
+
+"Missing Sauce credentials. Did you forget to set SAUCE_USERNAME and/or SAUCE_ACCESS_KEY?"
+
+To set these fields:
+
+1. Visit the [Reusable-components Codeship Environment Variable page](https://app.codeship.com/projects/99389/environment/edit)
+2. Note the values for SAUCE_USERNAME and for SAUCE_ACCESS_KEY
+3. export these as local variables on your box, eg:
+
+    `$ export SAUCE_ACCESS_KEY='XXX'`
+
+then run the `gulp test:remote` command again
+
 ## Workflow
 
 ### Suggested workflow for changing CSS on 3rd party sites:
@@ -186,36 +208,71 @@ Sample test commands:
 
 This lets you precisely check any changes without having to create a github release.
 
+### Gotchas
+
+If you run  `gulp test` and you get the error:
+
+```
+Error: util_1.promisify is not a function
+```
+
+then your node version is too low, eg:
+
+```
+$ npm -v
+6.4.1
+```
+
+Solution: update node to v8, eg:
+
+```
+$ nvm install  v8.11.3
+```
+
 ## Codeship backup at 30/june/2017
 
 ### Test Setup
 
+```
 jdk_switcher use oraclejdk8
 chmod a+x -R bin/*
+nvm install v8.11.3
+node -v
+npm -v
 bin/codeship-setup.sh
+```
 
 ### Pipelines
 
 #### Test Commands
 
+```
 export PIPE_NUM=1
 bin/codeship-testing.sh
+```
 
 #### Unit tests
 
+```
 export PIPE_NUM=2
 bin/codeship-testing.sh
+```
 
 #### Saucelabs
 
+```
 export PIPE_NUM=3
 bin/codeship-testing.sh
+```
 
-### Deployment (mastr and production)
+### Deployment (master and production)
 
 CUSTOM SCRIPT
+
+```
 jdk_switcher use oraclejdk8
 chmod a+x -R bin/*
 bin/codeship-setup.sh
 bin/codeship-deployment.sh
 bin/codeship-prod-testing.sh
+```

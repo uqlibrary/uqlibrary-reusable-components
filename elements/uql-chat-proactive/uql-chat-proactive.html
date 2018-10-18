@@ -52,13 +52,27 @@ Example:
             .tab-button {
                 border: thin solid #fff;
             }
+
+            /* makes the para go on one line */
+            paper-card p.uql-chat-proactive {
+                font-size: 14px;
+                font-size: 1rem;
+            }
+
+            /* apply class mobileprimo in .js when we are on primo and on a mobile width page */
+            /* stop the proactive chat widget sliding under the 'refine my results' button */
+            @media screen and (max-width: 960px) {
+                .chatItem.primo {
+                    margin-bottom: 60px;
+                }
+            }
         </style>
 
         <uqlibrary-api-contacts id="contactsApi"></uqlibrary-api-contacts>
         <uqlibrary-api-chat-status id="chatStatusApi"></uqlibrary-api-chat-status>
         <uqlibrary-ga id="ga" app-name="Header Proactive Chat"></uqlibrary-ga>
 
-        <div aria-live="polite" hidden$="[[!_showChatOfflineTab]]">
+        <div aria-live="polite" class="chatItem offlineTab" hidden$="[[!_showChatOfflineTab]]">
             <div>
                 <paper-button
                         aria-label="Chat offline - leave your question"
@@ -68,7 +82,7 @@ Example:
             </div>
         </div>
 
-        <div aria-live="polite" hidden$="[[!_showChatOnlineTab]]">
+        <div aria-live="polite" class="chatItem onlineTab" hidden$="[[!_showChatOnlineTab]]">
             <div>
                 <paper-button
                         aria-label="Chat - online now"
@@ -78,7 +92,7 @@ Example:
             </div>
         </div>
 
-        <paper-card class="popupinvite" role="alert" aria-live="polite" aria-label="Chat - online now" hidden$="[[!_showPopupChatBlock]]">
+        <paper-card class="chatItem popupinvite" role="alert" aria-live="polite" aria-label="Chat - online now" hidden$="[[!_showPopupChatBlock]]">
             <h3>Chat - online now</h3>
             <p>Library staff are here to assist. Would you like to chat?</p>
             <div class="actionbuttons">

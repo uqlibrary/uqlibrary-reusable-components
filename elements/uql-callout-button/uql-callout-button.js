@@ -119,6 +119,12 @@
 
       this.$.callout.arrowHorizontalAlign = "right";
       this.$.callout.arrow = true;
+
+      // the ask us dropdown overlaps the primo results area badly at larger widths - move it over
+      if (this._isPrimoPage(window.location.hostname) && window.innerWidth >= 1300) {
+        this.$.dropdown.horizontalOffset = 0 - this.$.button.offsetWidth;
+        this.$.callout.arrowHorizontalAlign = "center";
+      }
     },
     /**
      * Aligns the callout on the center of the button
@@ -188,6 +194,21 @@
      */
     _overlayClosed: function (e) {
       this._lastCloseTimestamp = e.timeStamp;
+    },
+
+    _isPrimoPage: function(hostname) {
+        return (
+            this._isPrimoProdPage(hostname) || this._isPrimoSandboxPage(hostname)
+        );
+    },
+
+    _isPrimoProdPage: function(hostname) {
+        return ('search.library.uq.edu.au' === hostname);
+    },
+
+    _isPrimoSandboxPage: function(hostname) {
+        var regExp = /(.*)exlibrisgroup.com/i;
+        return regExp.test(hostname);
     }
   });
 })();
