@@ -238,10 +238,20 @@ div.list-item-wrapper:not(.first-in-page) {
 
 // tweak the styling of the primo database search
 .search-scope.journal-search-tile.layout-align-center-start.layout-column {
-  background-color: #2377CB;
+  background-color: $theme-color;
   color: white;
   line-height: 1.3;
+  padding-left: 8px;
+  padding-right: 0;
+  text-transform: uppercase;
+  font-size: 13px;
 }
 prm-atoz-search-bar {
   background-color: transparent;
+}
+.search-scope.journal-search-tile.layout-align-center-start.layout-column::before {
+  content: "Search Databases";
+}
+.search-scope.journal-search-tile.layout-align-center-start.layout-column span {
+  display: none;
 }
