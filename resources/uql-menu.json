@@ -144,6 +144,12 @@
           "col2": "yes"
         },
         {
+          "label": "Digital Essentials",
+          "subtext": "Upgrade your digital skills",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/digital-essentials",
+          "col2": "yes"
+        },
+        {
           "label": "Off-campus access",
           "subtext": "Access full-text from anywhere",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access",
