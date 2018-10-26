@@ -90,6 +90,21 @@ Example:
 
     }
 
+    .site-footer__footer {
+      border-top: 1px solid rgba(255,255,255,0.3);
+      margin-top: 16px;
+      margin-top: 1rem;
+      padding-top: 16px;
+      padding-top: 1rem;
+    }
+
+    .site-footer__footer div {
+      padding-left: 15px;
+      padding-left: .9375rem;
+      padding-right: 15px;
+      padding-right: .9375rem;
+    }
+
   </style>
 
 
@@ -121,12 +136,27 @@ Example:
               <li></li>
               <li class="h6">Emergency</li>
               <li>Phone: <a href="tel:+61733653333" title="UQ Emergency phone number" on-tap="_gaLinkClicked">3365 3333</a></li>
-              <li><a href="http://www.uq.edu.au/terms-of-use/" rel="external" on-tap="_gaLinkClicked">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
-                <a href="http://www.uq.edu.au/rti/" rel="external" on-tap="_gaLinkClicked">Right to Information</a></li>
             </ul>
           </li>
         </ul>
       </div>
+
+      <div class="site-footer__footer">
+
+        <div class="footer-content loading" unresolved>
+          <ul class="footer-list">
+            <li>
+              <ul class="footer-uq-details">
+                <li>
+                  <a href="http://www.uq.edu.au/terms-of-use/" rel="external" on-tap="_gaLinkClicked">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
+                  <a href="http://www.uq.edu.au/rti/" rel="external" on-tap="_gaLinkClicked">Right to Information</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     </div>
 
   </template>
