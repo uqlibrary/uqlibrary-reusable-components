@@ -56,10 +56,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
     });
 
-    test('Check that 5 main unordered list items render for the text', function (done) {
+    test('Check that main unordered list items render correct number for the text', function (done) {
       flush(function () {
         var mainFooterLi = testObj.querySelectorAll('ul.footer-uq-details li.uq-minimal-footer');
-        expect(mainFooterLi.length).to.equal(3);
+        expect(mainFooterLi.length).to.equal(4);
         done();
       });
     });
@@ -72,14 +72,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
     });
 
-    test('Check that the global links component renders as expected', function (done) {
-      flush(function () {
-
-        var globalLinks = testObj.querySelector('uql-global-links');
-        expect(globalLinks).to.exist;
-        done();
-      });
-    });
+    // global links removed from footer as part of 2018 branding
+    // test('Check that the global links component renders as expected', function (done) {
+    //   flush(function () {
+    //
+    //     var globalLinks = testObj.querySelector('uql-global-links');
+    //     expect(globalLinks).to.exist;
+    //     done();
+    //   });
+    // });
 
   });
 </script>
