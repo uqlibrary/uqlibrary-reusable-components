@@ -17,6 +17,7 @@ Example:
       position: relative;
       width: 100%;
       font-family: var(--font-family);
+      font-weight: 300;
 
       --global-links-style: {
         color: var(--theme-color-light) !important;
@@ -34,14 +35,22 @@ Example:
     }
 
     a {
-      color: var(--text-color-inverse)!important;
+      color: var(--text-color-inverse);
       text-decoration: none;
+      font-weight: 500;
     }
 
     .footer-content {
       margin: 0 auto;
       max-width: var(--max-width);
-      width: 100%;
+      width: 97%;
+      padding-left: 1.5%;
+      padding-right: 1.5%;
+    }
+    .footer-main {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1140px;
     }
 
     ul, li {
@@ -117,57 +126,67 @@ Example:
       padding-bottom: 4px;
     }
 
+    abbr {
+      text-decoration-line: none;
+      border-bottom: 1px dotted;
+    }
+    a.cricos__link {
+      color: #d4c8de;
+    }
   </style>
 
 
     <uqlibrary-ga id="ga" app-name="UQFooter"></uqlibrary-ga>
 
     <div class="footer-container">
-      <div class="footer-content loading" unresolved>
-        <ul class="footer-list">
-          <li>
-            <ul class="footer-uq-details">
-              <li>© The University of Queensland</li>
-              <li>
-                Enquiries: <a href="tel:+61733651111" title="UQ Enquiries phone number" on-tap="_gaLinkClicked">+61 7 3365 1111</a>
-                &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts" on-tap="_gaLinkClicked">Contact directory</a>
-              </li>
-
-              <li>
-                <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
-                <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
-                Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external" title="Provider number" on-tap="_gaLinkClicked">00025B</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <ul class="footer-legal-details">
-              <li></li>
-              <li class="h6">Emergency</li>
-              <li>Phone: <a href="tel:+61733653333" title="UQ Emergency phone number" on-tap="_gaLinkClicked">3365 3333</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div class="site-footer__footer">
-
+      <div class="footer-main">
         <div class="footer-content loading" unresolved>
           <ul class="footer-list">
             <li>
               <ul class="footer-uq-details">
+                <li>© The University of Queensland</li>
                 <li>
-                  <a href="http://www.uq.edu.au/terms-of-use/" rel="external" on-tap="_gaLinkClicked">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
-                  <a href="https://its.uq.edu.au/feedback?r=https%3A//web.library.uq.edu.au" rel="external" on-tap="_gaLinkClicked">Feedback</a>
+                  Enquiries: <a href="tel:+61733651111" title="UQ Enquiries phone number" on-tap="_gaLinkClicked">+61 7 3365 1111</a>
+                  &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts" on-tap="_gaLinkClicked">Contact directory</a>
+                </li>
+
+                <li>
+                  <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
+                  <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
+                  Provider No: <a class="cricos__link" href="http://www.uq.edu.au/about/cricos-link" rel="external" title="Provider number" on-tap="_gaLinkClicked">00025B</a>
                 </li>
               </ul>
             </li>
             <li>
               <ul class="footer-legal-details">
-                <li><a href="https://web.library.uq.edu.au/user?destination=home" rel="external" on-tap="_gaLinkClicked">Login</a></li>
+                <li></li>
+                <li class="h6">Emergency</li>
+                <li>Phone: <a href="tel:+61733653333" title="UQ Emergency phone number" on-tap="_gaLinkClicked">3365 3333</a></li>
               </ul>
             </li>
           </ul>
+        </div>
+
+        <div class="site-footer__footer">
+
+          <div class="footer-content loading" unresolved>
+            <ul class="footer-list">
+              <li>
+                <ul class="footer-uq-details">
+                  <li>
+                    <a href="http://www.uq.edu.au/terms-of-use/" rel="external" on-tap="_gaLinkClicked">Privacy &amp; Terms of use</a>
+                    &nbsp; | &nbsp;
+                    <a href="https://support.my.uq.edu.au/app/library/feedback" rel="external" on-tap="_gaLinkClicked">Feedback</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ul class="footer-legal-details">
+                  <li><a href="https://web.library.uq.edu.au/user?destination=home" rel="external" on-tap="_gaLinkClicked">Login</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
