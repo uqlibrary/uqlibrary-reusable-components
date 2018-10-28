@@ -196,6 +196,7 @@
 
   insertLink(links[0]);
   insertLink(links[1]);
+  insertLink(links[2]);
 
   insertScript(scripts[0]);
   insertScript(scripts[1]);
