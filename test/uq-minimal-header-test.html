@@ -68,13 +68,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
     });
 
-    test('if title is UQ Library', function (done) {
+    test('if title is Library', function (done) {
       flush(function () {
-        testObj.applicationTitle = "UQ Library";
+        testObj.applicationTitle = "Library";
         setTimeout(function () {
           var element = testObj.querySelector('.application-title');
           expect(element).to.exist;
-          expect(element.textContent).to.be.equal('UQ Library');
+          expect(element.textContent).to.be.equal('Library');
           done();
         }, 10);
 
