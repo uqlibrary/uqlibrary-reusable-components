@@ -27,7 +27,7 @@ which has major restrictions, eg:
 * any styling on a child element rewrites the '>' to \3E
 * doubtless more
 
-This means the Omeka homepage cannot have a great deal of styling - I think I've wrung everything out of it that can be done.
+This means the Omeka homepage cannot have a great deal of styling - I think I've wrung everything out of it that can be done. (See below for backup of css).
 
 The [load.js](//assets.library.uq.edu.au/reusable-components/omeka/load.js) file:
 
@@ -52,22 +52,22 @@ If you have a specific theme that needs special styling, add a new class name in
 
 The UQ logo used by omeka is uq-exhibitions-logo.png and archived in this folder.
 
-The css at http://uqlibraryonlineexhibitions.omeka.net/admin/plugins/config?name=CSSEditor as at 29/8/2017:
+The homepage css at http://uqlibraryonlineexhibitions.omeka.net/admin/plugins/config?name=CSSEditor as at 30/10/2018:
 
 #home {
-font-family:Roboto, Verdana, Arial, Helvetica, sans-serif
+font-family:Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
 #site-title {
 height:100px;
-background-color:#49075e;
+background-color:#51247A;
 margin-left:0;
 padding-left:16px
 }
 
 #wrap {
 background-color:#fff;
-color:#222;
+color:#66615D;
 padding-left:1em;
 padding-right:1em;
 margin-left:auto;
@@ -76,8 +76,12 @@ margin-right:auto
 
 @media screen and (max-width: 900px) {
 #footer-text {
-background-color:#49075e;
-color:#d2c1d7;
+background-color:#51247A;
+color:#d4c8de;
 height:230px
 }
+}
+
+a {
+color:#8457AD
 }
