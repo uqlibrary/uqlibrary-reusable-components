@@ -1,0 +1,27 @@
+#home {
+  font-family:Roboto, Verdana, Arial, Helvetica, sans-serif
+}
+
+#site-title {
+  height:100px;
+  background-color:#49075e;
+  margin-left:0;
+  padding-left:16px
+}
+
+#wrap {
+  background-color:#fff;
+  color:#222;
+  padding-left:1em;
+  padding-right:1em;
+  margin-left:auto;
+  margin-right:auto
+}
+
+@media screen and (max-width: 900px) {
+  #footer-text {
+    background-color:#49075e;
+    color:#d2c1d7;
+    height:230px
+  }
+}
