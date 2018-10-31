@@ -58,33 +58,7 @@ Example:
     .library-title,
     .uq-title {
       color: var(--text-color-inverse);
-      margin: 10px;
-    }
-
-    @media all and (max-width: 1047px) {
-      .uq-title {
-        min-width: auto;
-        height: auto;
-        background: none;
-        background-size: auto;
-        border-right-width: 0;
-        margin-right: 0;
-        padding-right: 0;
-      }
-      .uq-title .uq-title-text {
-        display: block !important;
-        font-size: 16px;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.2;
-      }
-
-      .uq-title {
-        display: inherit;
-        width: auto;
-        height: auto;
-        margin-right: 6px;
-      }
+      margin: 10px 10px 10px 0;
     }
 
     @media all and (min-width: 1047px) {
@@ -98,7 +72,7 @@ Example:
         padding-right: 16px;
       }
 
-      .uq-title .uq-title-text {
+      .uq-title-text {
         display: none !important;
       }
 
@@ -184,12 +158,13 @@ Example:
           height: 66px;
       }
 
-      .uq-title {
+      uql-global-links {
           display: none !important;
       }
 
-      uql-global-links {
-          display: none !important;
+      .library-title ,
+      .uq-title {
+        margin: 0 6px 0 0;
       }
     }
 
@@ -197,12 +172,10 @@ Example:
       .header-container {
         padding: 0 4px;
       }
-
-      .library-title {
-        margin: 0;
-      }
     }
 
+    .uq-title-text,
+    .application-title,
     .library-title {
       font-size: 16px;
       font-size: 1rem;
@@ -211,6 +184,8 @@ Example:
     }
 
     @media only screen and (min-width: 40.0625em) {
+      .uq-title-text,
+      .application-title,
       .library-title {
         font-size: 20px;
         font-size: 1.275rem;
@@ -218,6 +193,8 @@ Example:
     }
 
     @media only screen and (min-width: 90.0625em) {
+      .uq-title-text,
+      .application-title,
       .library-title {
         font-size: 23px;
         font-size: 1.475rem;
