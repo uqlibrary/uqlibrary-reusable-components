@@ -5,8 +5,9 @@
 @import "styles-imports/responsive";
 @import "styles-imports/feedback";
 
-$breadcrumb-text-color: #000;
-$breadcrumb-divider-color: #000;
+// from drupal
+$breadcrumb-text-color: #676767;
+$breadcrumb-divider-color: #ccc;
 
 html,
 body {
@@ -111,7 +112,7 @@ a ,
 
 .page__header {
   background-color: $secondary-color-light;
-  color: #000;
+  color: $secondary-color-dark;
 }
 
 
@@ -448,7 +449,7 @@ body.library #rn_Container .row .columns {
 
 .page__header {
   background-color: $secondary-color-light;
-  color: #000;
+  color: $secondary-color-dark;
 }
 h1.page__title {
   margin-bottom: 0;
@@ -668,7 +669,7 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
   font-size: 18px;
   font-size: 1.125rem;
   font-weight: 500;
-  color: #000;
+  color: $secondary-color-dark;
   margin-left: -20px;
   margin-left: -1.25rem;
   padding-left: 0;
