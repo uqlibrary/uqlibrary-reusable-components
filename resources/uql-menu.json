@@ -107,9 +107,9 @@
         {
           "label": "Databases",
           "subtext": "Browse or search by title or topic",
-          "href": "https://app.library.uq.edu.au/#/gateways/database?browse=&alpha=&title=&sub="
+          "href": "https://search.library.uq.edu.au/primo-explore/dbsearch?vid=61UQ"
         },
-         {
+        {
           "label": "Google Scholar",
           "subtext": "Enhanced access via the Library",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/google-scholar"
@@ -392,7 +392,7 @@
           "label": "Mission",
           "href": "https://web.library.uq.edu.au/about-us/mission",
           "col2": "yes"
-        }  
+        }
       ]
     },
     {
