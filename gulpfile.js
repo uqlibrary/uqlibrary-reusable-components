@@ -12,18 +12,9 @@
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var argv = require('yargs').argv;
 var del = require('del');
-var runSequence = require('run-sequence');
 var merge = require('merge-stream');
-var gutil = require('gulp-util');
-
-var path = require('path');
 var fs = require('fs');
-var glob = require('glob');
-var glob = require('glob');
-
-var cloudfront = require('gulp-invalidate-cloudfront');
 var replace = require('gulp-replace-task');
 var taskList = require('gulp-task-listing');
 
@@ -49,7 +40,6 @@ var config = {
 
 var styleTask = function (srcs) {
   return gulp.src(srcs)
-      // .pipe($.changed(stylesPath, {extension: '.scss'}))
       .pipe($.sass({style: 'expanded'}))
       .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
       .pipe(gulp.dest('.tmp/'))
@@ -65,12 +55,10 @@ gulp.task('jshint', function () {
         config.elements + '/**/*.js',
         '!' + config.elements + '/elements.vulcanized.js'
       ])
-      //.pipe(reload({stream: true, once: true}))
       .pipe($.jshint.extract()) // Extract JS from .html files
       .pipe($.jshint())
       .pipe($.jshint.reporter('jshint-stylish'))
       .pipe($.jshint.reporter('fail'));
-  //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 // Compile and automatically prefix stylesheets
@@ -127,7 +115,7 @@ gulp.task('vulcanize', ['vulcanize:clean_bower', 'vulcanize:clean', 'vulcanize:c
       })) // Separate JS into its own file for CSP compliance and reduce html parser load.
       .pipe($.if('*.js',replace({patterns: [{ match: regEx, replacement: menuJson + ';'}], usePrefix: false}))) //replace menu-json with value from resources/uql-menu.json
       .pipe($.if('*.js',replace({patterns: [{ match: contactsRegEx, replacement: contactsJson + ';'}], usePrefix: false}))) //replace contacts.json with value from uqlibrary-api
-      .pipe($.if('*.js',$.uglify({preserveComments: 'some'}))) // Minify js output
+      .pipe($.if('*.js',$.uglify({output: {comments: /^!|@preserve|@license|@cc_on/i}}))) // Minify js output
       .pipe($.if('*.html', $.minifyHtml({quotes: true, empty: true, spare: true}))) // Minify html output
       .pipe(gulp.dest(config.elements))
       .pipe($.size({title: 'vulcanize'}));
