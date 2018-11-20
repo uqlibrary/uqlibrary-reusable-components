@@ -80,7 +80,6 @@
         },
         {
           "label": "for Secondary schools",
-          "subtext": "UQL Cyberschool",
           "href": "https://web.library.uq.edu.au/library-services/services-for-secondary-schools"
         },
         {
@@ -141,6 +140,12 @@
           "label": "Referencing software",
           "subtext": "Endnote, Mendeley, Zotero",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-software",
+          "col2": "yes"
+        },
+        {
+          "label": "Digital Essentials",
+          "subtext": "Upgrade your digital skills",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/digital-essentials",
           "col2": "yes"
         },
         {

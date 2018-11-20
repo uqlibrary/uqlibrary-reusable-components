@@ -17,6 +17,7 @@ Example:
       position: relative;
       width: 100%;
       font-family: var(--font-family);
+      font-weight: 300;
 
       --global-links-style: {
         color: var(--theme-color-light) !important;
@@ -34,21 +35,29 @@ Example:
     }
 
     a {
-      color: var(--text-color-inverse)!important;
+      color: var(--text-color-inverse);
       text-decoration: none;
+      font-weight: 500;
     }
 
     .footer-content {
       margin: 0 auto;
       max-width: var(--max-width);
-      width: 100%;
+      width: 97%;
+      padding-left: 1.5%;
+      padding-right: 1.5%;
+    }
+    .footer-main {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1140px;
     }
 
     ul, li {
       list-style-image: none;
       list-style-position: outside;
       list-style-type: none;
-      padding: 0;
+      padding: 0 0 4px 0;
       margin: 0;
     }
 
@@ -69,6 +78,21 @@ Example:
       text-align: right;
     }
 
+    .site-footer__footer {
+      border-top: 1px solid rgba(255,255,255,0.3);
+      margin-top: 16px;
+      margin-top: 1rem;
+      padding-top: 16px;
+      padding-top: 1rem;
+    }
+
+    .site-footer__footer div {
+      padding-left: 15px;
+      padding-left: .9375rem;
+      padding-right: 15px;
+      padding-right: .9375rem;
+    }
+
     @media all and (max-width: 840px) {
 
       ul.footer-list > li {
@@ -79,7 +103,6 @@ Example:
       }
 
       ul.footer-list > li:last-child {
-        border-top: 1px solid var(--theme-color-light);
         padding-top: 10px;
       }
 
@@ -88,45 +111,124 @@ Example:
         text-align: center;
       }
 
+      ul.footer-legal-details {
+        margin-left: 0;
+      }
+
+      ul.footer-list > li:last-child {
+        border-top: 1px solid rgba(255,255,255,0.3);
+      }
+
+      ul.footer-legal-details  {
+        text-align: center;
+        margin-left: 0;
+      }
+
+      .footer-legal-details li {
+        text-align: center;
+      }
+
+      ul.footer-list > li:last-child {
+        border-top: 1px solid rgba(255,255,255,0.3);
+        padding-top: 10px;
+      }
+
+      .site-footer__footer  {
+        border-top-width: 0
+      }
+
+      .site-footer__footer {
+        border-top-width: 0;
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .site-footer__footer div {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+
+      /* leave space for protective chat minimised tab */
+      ul.footer-uq-details {
+        margin-bottom: 10px;
+      }
     }
 
+    @media all and (min-width: 840px) {
+      ul.footer-legal-details {
+        margin-left: 224px;
+        margin-left: 16rem;
+      }
+      ul.footer-legal-details li {
+        text-align: left;
+      }
+    }
+
+    li.h6 {
+      color: #fff;
+      padding-bottom: 4px;
+    }
+
+    abbr {
+      text-decoration-line: none;
+      border-bottom: 1px dotted;
+    }
+    a.cricos__link {
+      color: #d4c8de;
+    }
   </style>
 
 
     <uqlibrary-ga id="ga" app-name="UQFooter"></uqlibrary-ga>
 
     <div class="footer-container">
-      <div class="footer-content loading" unresolved>
-        <ul class="footer-list">
-          <li>
-            <ul class="footer-uq-details">
-              <li>Authorised by: University Librarian</li>
-              <li>© The University of Queensland</li>
-              <li>
-                Enquiries: <a href="tel:+61733651111" title="UQ Enquiries phone number" on-tap="_gaLinkClicked">+61 7 3365 1111</a>
-                &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts" on-tap="_gaLinkClicked">Contact directory</a>
-              </li>
+      <div class="footer-main">
+        <div class="footer-content loading" unresolved>
+          <ul class="footer-list">
+            <li>
+              <ul class="footer-uq-details">
+                <li>© The University of Queensland</li>
+                <li>
+                  Enquiries: <a href="tel:+61733651111" title="UQ Enquiries phone number" on-tap="_gaLinkClicked">+61 7 3365 1111</a>
+                  &nbsp; | &nbsp; <a href="http://uq.edu.au/contacts" on-tap="_gaLinkClicked">Contact directory</a>
+                </li>
 
-              <li><uql-global-links app-name="UQFooter" separator="|"></uql-global-links></li>
+                <li>
+                  <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
+                  <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
+                  Provider No: <a class="cricos__link" href="http://www.uq.edu.au/about/cricos-link" rel="external" title="Provider number" on-tap="_gaLinkClicked">00025B</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <ul class="footer-legal-details">
+                <li></li>
+                <li class="h6">Emergency</li>
+                <li>Phone: <a href="tel:+61733653333" title="UQ Emergency phone number" on-tap="_gaLinkClicked">3365 3333</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
 
+        <div class="site-footer__footer">
+
+          <div class="footer-content loading" unresolved>
+            <ul class="footer-list">
               <li>
-                <abbr title="Australian Business Number">ABN</abbr>: 63 942 912 684 &nbsp; | &nbsp;
-                <abbr title="Commonwealth Register of Institutions and Courses for Overseas Students">CRICOS</abbr>
-                Provider No: <a href="http://www.uq.edu.au/about/cricos-link" rel="external" title="Provider number" on-tap="_gaLinkClicked">00025B</a>
+                <ul class="footer-uq-details">
+                  <li>
+                    <a href="http://www.uq.edu.au/terms-of-use/" rel="external" on-tap="_gaLinkClicked">Privacy &amp; Terms of use</a>
+                    &nbsp; | &nbsp;
+                    <a href="https://support.my.uq.edu.au/app/library/feedback" rel="external" on-tap="_gaLinkClicked">Feedback</a>
+                  </li>
+                </ul>
               </li>
             </ul>
-          </li>
-          <li>
-            <ul class="footer-legal-details">
-              <li></li>
-              <li class="h6">Emergency</li>
-              <li>Phone: <a href="tel:+61733653333" title="UQ Emergency phone number" on-tap="_gaLinkClicked">3365 3333</a></li>
-              <li><a href="http://www.uq.edu.au/terms-of-use/" rel="external" on-tap="_gaLinkClicked">Privacy &amp; Terms of use</a> &nbsp; | &nbsp;
-                <a href="http://www.uq.edu.au/rti/" rel="external" on-tap="_gaLinkClicked">Right to Information</a></li>
-            </ul>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
+
     </div>
 
   </template>
