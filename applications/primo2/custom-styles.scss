@@ -235,3 +235,8 @@ div.list-item-wrapper:not(.first-in-page) {
   /* the first item will never be near the chat widget - but it does need to slide over the askus widget at very large screen sizes */
   z-index: 0;
 }
+
+// add space for the lock icon to show on the facets
+.md-chip-content {
+  padding-left: 15px;
+}
