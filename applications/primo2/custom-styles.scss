@@ -241,12 +241,9 @@ div.list-item-wrapper:not(.first-in-page) {
   padding-left: 15px;
 }
 // add space for the checkboxes not to be half cut off
-._md-container.md-ink-ripple {
+.md-chips ._md-container.md-ink-ripple {
   margin-left: 10px;
 }
 strong.facet-title.layout-align-end-stretch.layout-row {
   margin-left: 15px;
-}
-.md-chip.animate-opacity-and-scale.facet-element-marker-rtype.wrapping-chip.facet-title-row {
-  margin-left: -20px;
 }
