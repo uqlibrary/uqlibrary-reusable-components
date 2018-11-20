@@ -1,4 +1,4 @@
-/*
+/* 
 * post build tasks
 *
 * contains tasks that are not required for build, but required for go-live
@@ -7,6 +7,7 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var path = require('path');
 var replace = require('gulp-replace-task');
 var fs = require('fs');
 
@@ -77,6 +78,6 @@ gulp.task('inject-ga-values', function() {
 gulp.task('optimize', function () {
   gulp.src(config.applications + '/**/*')
       .pipe($.if('*.css',$.cssmin())) // Minify css output
-      .pipe($.if('*.js',$.uglify({output: {comments: /^!|@preserve|@license|@cc_on/i}, mangle: { reserved: ['$compile', '$scope', '$templateCache', '$element']}} ))) // Minify js output, for primo2 do not change variable names: $compile
+      .pipe($.if('*.js',$.uglify({preserveComments: 'some', mangle: { except: ['$compile', '$scope', '$templateCache', '$element']}} ))) // Minify js output, for primo2 do not change variable names: $compile
       .pipe(gulp.dest(config.applications));
 });
