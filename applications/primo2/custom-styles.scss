@@ -249,9 +249,3 @@ div.list-item-wrapper:not(.first-in-page) {
 prm-atoz-search-bar {
   background-color: transparent;
 }
-.search-scope.journal-search-tile.layout-align-center-start.layout-column::before {
-  content: "Search Databases";
-}
-.search-scope.journal-search-tile.layout-align-center-start.layout-column span {
-  display: none;
-}
