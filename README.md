@@ -227,14 +227,35 @@ Then run the `gulp test:remote` command again
 
 This lets you precisely check any changes without having to create a github release.
 
-## Codeship backup at 30/june/2017
+### Gotchas
+
+If you run  `gulp test` and you get the error:
+
+```
+Error: util_1.promisify is not a function
+```
+
+then your node version is too low, eg:
+
+```
+npm -v
+6.4.1
+```
+
+Solution: update node to the latest version:
+
+```
+nvm install node
+```
+
+## Codeship backup at 20/Nov/2018
 
 ### Test Setup
 
 ```bash
 jdk_switcher use oraclejdk8
 chmod a+x -R bin/*
-nvm install v8.11.3
+nvm install 11.1.0
 node -v
 npm -v
 bin/codeship-setup.sh
@@ -274,3 +295,7 @@ bin/codeship-setup.sh
 bin/codeship-deployment.sh
 bin/codeship-prod-testing.sh
 ```
+
+### Deployment (branches starting with `feature-`)
+
+Same as above, except remove the last line.
