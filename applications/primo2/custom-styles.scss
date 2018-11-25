@@ -236,6 +236,18 @@ div.list-item-wrapper:not(.first-in-page) {
   z-index: 0;
 }
 
+// add space for the lock icon to show on the facets
+.md-chip-content {
+  padding-left: 15px;
+}
+// add space for the checkboxes not to be half cut off
+.md-chips ._md-container.md-ink-ripple {
+  margin-left: 10px;
+}
+strong.facet-title.layout-align-end-stretch.layout-row {
+  margin-left: 10px;
+}
+
 // tweak the styling of the primo database search
 .search-scope.journal-search-tile.layout-align-center-start.layout-column {
   background-color: $theme-color;
