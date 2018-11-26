@@ -190,13 +190,11 @@
 
   var links = [
     { rel: 'import', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/elements.vulcanized.html'},
-    { rel: 'stylesheet', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css'},
-    { rel: 'stylesheet', href: '//static.uq.net.au/v6/fonts/Roboto/roboto.css'}
+    { rel: 'stylesheet', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css'}
   ];
 
   insertLink(links[0]);
   insertLink(links[1]);
-  insertLink(links[2]);
 
   insertScript(scripts[0]);
   insertScript(scripts[1]);

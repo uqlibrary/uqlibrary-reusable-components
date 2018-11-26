@@ -46,22 +46,22 @@ if [ ${CI_BRANCH} == "production" ]; then
   printf "\n --- EDGE on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
 
-  printf "\n --- IE11 on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env ie11 --tag e2etest
-
   printf "\n --- CHROME ON MAC on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
 
   printf "\n --- FIREFOX ON MAC on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac --tag e2etest
 
-  printf "\n --- SAFARI ON MAC on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
-
   printf "\n --- FIREFOX ESR ON WINDOWS on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows-ESR --tag e2etest
 
   printf "\n --- FIREFOX ESR ON MAC on saucelabs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac-ESR --tag e2etest
+
+  printf "\n --- SAFARI ON MAC on saucelabs ---\n\n"
+  nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
+
+  printf "\n --- IE11 on saucelabs ---\n\n"
+  nightwatch -c nightwatch-saucelabs.json --env ie11 --tag e2etest
 
 fi

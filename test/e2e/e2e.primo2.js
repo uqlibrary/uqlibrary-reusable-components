@@ -14,7 +14,7 @@ module.exports = {
     .waitForElementVisible('uq-minimal-header', 20000)
     .assert.elementPresent('uq-minimal-header', 'uq header component is present')
     .assert.elementPresent('uq-minimal-header uql-global-links', 'uq global links header component is present')
-    .assert.containsText('.library-title a', 'UQ Library')
+    .assert.containsText('.library-title a', 'Library')
     .assert.elementPresent('uql-askus-button', 'uql askus component is present')
     // primo specific checks
     .assert.elementPresent('prm-brief-result-container', 'at least one primo result is present')
