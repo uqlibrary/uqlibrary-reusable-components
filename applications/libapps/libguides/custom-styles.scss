@@ -418,6 +418,37 @@ h3, h4 {
   font-weight: bold !important;
 }
 
+body.s-lg-guide-body .uq-title-text.uq-minimal-header,
+body.s-lg-guide-body .application-title a,
 body.s-lg-guide-body .library-title a {
-  font-size: 23.6px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
 }
+
+@media only screen and (min-width: 642px) {
+  body.s-lg-guide-body .uq-title-text.uq-minimal-header,
+  body.s-lg-guide-body .application-title a,
+  body.s-lg-guide-body .library-title a {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 1049px) {
+  body.s-lg-guide-body .uq-title-text.uq-minimal-header,
+  body.s-lg-guide-body .application-title a,
+  body.s-lg-guide-body .library-title a {
+    font-size: 23px;
+  }
+}
+
+body.s-lg-guide-body li.uql-global-links a.uql-global-links {
+  font-size: 10.4px;
+}
+
+body.s-lg-guide-body uql-chat-proactive paper-card.popupinvite,
+body.s-lg-guide-body uql-chat-proactive paper-card.popupinvite p {
+  font-size: 16px;
+  font-weight: normal;
+}
+
