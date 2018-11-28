@@ -146,6 +146,28 @@
   //  });
   // End lock facets
 
+  app.controller('prmOpenJournalInFullController', [
+    function () {
+      var vm = this; 
+      vm.$onInit = function () {
+        var resourceType = vm.parentCtrl.result.pnx.display.type[0] || '';
+        if (resourceType === 'journal') {
+          vm.parentCtrl.isDirectLink = function () { return false; };
+        }
+      };
+    }
+  ]);
+
+  app.component('prmOpenJournalInFull', {
+    bindings: { parentCtrl: '<' },
+    controller: 'prmOpenJournalInFullController'
+  });
+
+  app.component('prmSearchResultAvailabilityLineAfter', {
+    bindings: { parentCtrl: '<' },
+    template: '<prm-open-journal-in-full parent-ctrl="$ctrl.parentCtrl"></prm-open-journal-in-full>'
+  });
+
   function insertScript(url) {
     var script = document.querySelector("script[src*='" + url + "']");
     if (!script) {
