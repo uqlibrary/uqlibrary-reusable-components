@@ -10,7 +10,7 @@ prm-facet {
         z-index: 0 !important;
     }
     .__xs &,
-    .__sm &, {
+    .__sm & {
         position: fixed;
         left: 0;
         top: 0;
@@ -23,7 +23,7 @@ prm-facet {
 
     .primo-scrollbar {
         .__xs &,
-        .__sm &, {
+        .__sm & {
             overflow: auto;
             height: 100%;
             padding-bottom: 7em;
@@ -196,7 +196,7 @@ prm-facet {
                         transition: transform .3s $easeOutQuint, opacity .2s ease, z-index 0s 0s;
                     }
                 }
-                &:hover, &:focus , & .md-button:focus, .md-chip-content:focus + .md-chip-remove-container,
+                &:hover, &:focus , & .md-button:focus, .md-chip-content:focus + .md-chip-remove-container
                 {
                     z-index: 1;
                     .button-exclude {
