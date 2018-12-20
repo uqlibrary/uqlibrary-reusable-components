@@ -26,10 +26,10 @@
     "uqlibrary-api": "uqlibrary/uqlibrary-api",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts",
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga",
-    "uqlibrary-styles": "uqlibrary/uqlibrary-styles",
+    "uqlibrary-styles": "uqlibrary/uqlibrary-styles#feature-remove-UQ-from-titles-161945449",
     "uqlibrary-callout": "uqlibrary/uqlibrary-callout",
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown",
-    "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported",
+    "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported#feature-remove-UQ-from-titles-161945449",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search",
     "uqlibrary-search": "uqlibrary/uqlibrary-search",
     "uqlibrary-training": "uqlibrary/uqlibrary-training",
@@ -38,5 +38,8 @@
   "devDependencies": {
     "web-component-tester": "*"
   },
-  "main": "elements/uq-minimal-header.html"
+  "main": "elements/uq-minimal-header.html",
+  "resolutions": {
+    "uqlibrary-styles": "feature-remove-UQ-from-titles-161945449"
+  }
 }
