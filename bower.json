@@ -13,6 +13,7 @@
     "url": "git://github.com/uqlibrary/uqlibrary-reusable-components.git"
   },
   "private": true,
+  "main": "elements/uq-minimal-header.html",
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#^1.0.3",
     "neon-elements": "PolymerElements/neon-elements#^1.0.0",
@@ -36,7 +37,6 @@
     "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input"
   },
   "devDependencies": {
-    "web-component-tester": "*"
-  },
-  "main": "elements/uq-minimal-header.html"
+    "web-component-tester": "^5.0.2"
+  }
 }
