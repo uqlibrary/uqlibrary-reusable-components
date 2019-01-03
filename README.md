@@ -248,16 +248,13 @@ Solution: update node to the latest version:
 nvm install node
 ```
 
-## Codeship backup at 20/Nov/2018
+## Codeship backup at 03/Jan/2019
 
 ### Test Setup
 
 ```bash
 jdk_switcher use oraclejdk8
 chmod a+x -R bin/*
-nvm install 11.1.0
-node -v
-npm -v
 bin/codeship-setup.sh
 ```
 
