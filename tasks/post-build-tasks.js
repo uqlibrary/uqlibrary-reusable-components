@@ -28,19 +28,6 @@ var gtmConfig = {
   id: 'GTM-PX9H7R'
 }
 
-// inject preloader.html code into html pages
-gulp.task('inject-preloader', function() {
-
-  var regEx = new RegExp("#preloader#", "g");
-  var browserUpdate = fs.readFileSync("app/bower_components/uqlibrary-browser-supported/preloader.html", "utf8");
-
-  return gulp.src(dist('*'))
-    .pipe(replace({patterns: [{ match: regEx, replacement: browserUpdate}], usePrefix: false}))
-    .pipe(gulp.dest(dist()))
-    .pipe($.size({title: 'inject-preloader'}))
-  ;
-});
-
 // inject browser-update.js code into html pages
 gulp.task('inject-browser-update', function() {
 
@@ -55,10 +42,12 @@ gulp.task('inject-browser-update', function() {
 });
 
 // inject values for GA
-gulp.task('inject-ga-values', function() {
+gulp.task('inject-ga-values', function(done) {
 
-  if (process.env.CI_BRANCH !== "production")
+  if (process.env.CI_BRANCH !== "production") {
+    done();
     return;
+  }
 
   var gaIdEx = new RegExp("<GA-TRACKING-ID>", "g");
   var gaUrlEx = new RegExp("<GA-WEBSITE-URL>", "g");
