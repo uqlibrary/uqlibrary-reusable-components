@@ -479,14 +479,14 @@
         testItem = testObj.querySelector('#outputUrlTextarea');
         actualUrl = testItem.textContent;
         actualUrl = actualUrl.trim();
-        if (-1 !== navigator.userAgent.indexOf('Edge/17') || navigator.userAgent.indexOf("Trident") !== -1) {
+        if (-1 !== navigator.userAgent.indexOf('Edge') || navigator.userAgent.indexOf("Trident") !== -1) {
             // Edge is weirdly returning the url twice, separated by  \n  - the page works fine
             // (possibly because an input element strips all but the first line out of a block?)
             // so trim at the \n when found
             // (this seems to happen in the browser, so must tweak the test, rather than our original code)
             var index = actualUrl.indexOf("\n");
             if (-1 !== index) {
-                console.log('adding test tweak for Edge/17');
+                console.log('adding test tweak for Edge');
                 actualUrl = actualUrl.substring(0, index).trim();
             }
         }
