@@ -7,10 +7,8 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var path = require('path');
 var replace = require('gulp-replace-task');
 var fs = require('fs');
-
 
 var config = {
   applications: 'applications',
@@ -37,9 +35,10 @@ gulp.task('inject-preloader', function() {
   var browserUpdate = fs.readFileSync("app/bower_components/uqlibrary-browser-supported/preloader.html", "utf8");
 
   return gulp.src(dist('*'))
-      .pipe(replace({patterns: [{ match: regEx, replacement: browserUpdate}], usePrefix: false}))
-      .pipe(gulp.dest(dist()))
-      .pipe($.size({title: 'inject-preloader'}));
+    .pipe(replace({patterns: [{ match: regEx, replacement: browserUpdate}], usePrefix: false}))
+    .pipe(gulp.dest(dist()))
+    .pipe($.size({title: 'inject-preloader'}))
+  ;
 });
 
 // inject browser-update.js code into html pages
@@ -49,9 +48,10 @@ gulp.task('inject-browser-update', function() {
   var browserUpdate=fs.readFileSync("bower_components/uqlibrary-browser-supported/browser-update.js", "utf8");
 
   return gulp.src(config.resources + '/**/*.js')
-      .pipe(replace({patterns: [{ match: regEx, replacement: browserUpdate}], usePrefix: false}))
-      .pipe(gulp.dest(config.resources))
-      .pipe($.size({title: 'inject-browser-update'}));
+    .pipe(replace({patterns: [{ match: regEx, replacement: browserUpdate}], usePrefix: false}))
+    .pipe(gulp.dest(config.resources))
+    .pipe($.size({title: 'inject-browser-update'}))
+  ;
 });
 
 // inject values for GA
@@ -66,18 +66,36 @@ gulp.task('inject-ga-values', function() {
   var gtmIdEx = new RegExp("<GTM-CONTAINER-ID>", "g");
 
   return gulp.src(config.elements + '/elements*.js')
-      .pipe(replace({patterns: [{ match: gaIdEx, replacement: gaConfig.id}], usePrefix: false}))
-      .pipe(replace({patterns: [{ match: gaUrlEx, replacement: gaConfig.url}], usePrefix: false}))
-      .pipe(replace({patterns: [{ match: gaDomainEx, replacement: gaConfig.domain}], usePrefix: false}))
-      .pipe(replace({patterns: [{ match: gtmIdEx, replacement: gtmConfig.id}], usePrefix: false}))
-      .pipe(gulp.dest(config.elements))
-      .pipe($.size({title: 'inject-ga-values'}));
+    .pipe(replace({patterns: [{ match: gaIdEx, replacement: gaConfig.id}], usePrefix: false}))
+    .pipe(replace({patterns: [{ match: gaUrlEx, replacement: gaConfig.url}], usePrefix: false}))
+    .pipe(replace({patterns: [{ match: gaDomainEx, replacement: gaConfig.domain}], usePrefix: false}))
+    .pipe(replace({patterns: [{ match: gtmIdEx, replacement: gtmConfig.id}], usePrefix: false}))
+    .pipe(gulp.dest(config.elements))
+    .pipe($.size({title: 'inject-ga-values'}))
+  ;
 });
 
 //optimize css and js of application specific files
-gulp.task('optimize', function () {
+gulp.task('optimize', function (done) {
   gulp.src(config.applications + '/**/*')
-      .pipe($.if('*.css',$.cssmin())) // Minify css output
-      .pipe($.if('*.js',$.uglify({preserveComments: 'some', mangle: { except: ['$compile', '$scope', '$templateCache', '$element']}} ))) // Minify js output, for primo2 do not change variable names: $compile
-      .pipe(gulp.dest(config.applications));
+    .pipe($.if('*.css',$.cssmin())) // Minify css output
+
+    // Minify js output, for primo2 do not change variable names: $compile
+    .pipe($.if('*.js', $.uglify({
+      output: {
+        comments: 'some'
+      }, 
+      mangle: { 
+        reserved: [
+          '$compile', 
+          '$scope', 
+          '$templateCache', 
+          '$element'
+        ]
+      }
+    })))
+
+    .pipe(gulp.dest(config.applications))
+  ;  
+  done();
 });

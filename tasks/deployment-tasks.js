@@ -8,8 +8,6 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var cloudfront = require('gulp-invalidate-cloudfront');
-
-var path = require('path');
 var fs = require('fs');
 var argv = require('yargs').argv;
 var merge = require('merge-stream');
@@ -69,36 +67,6 @@ gulp.task('invalidate', function () {
   ]).pipe(cloudfront(invalidationBatch, awsSettings));
 });
 
-// upload package to S3
-gulp.task('publish', ['copy:aws'], function () {
-
-  // create a new publisher using S3 options
-  var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
-  var publisher = $.awspublish.create(awsConfig);
-
-  // define custom headers
-  var headers = {
-    'Cache-Control': 'max-age=315360000, no-transform, public'
-  };
-
-  return gulp.src('./' + config.dist + '/**')
-      .pipe($.rename(function (path) {
-        path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
-      }))
-      // gzip, Set Content-Encoding headers
-      .pipe($.awspublish.gzip())
-
-      // publisher will add Content-Length, Content-Type and headers specified above
-      // If not specified it will set x-amz-acl to public-read by default
-      .pipe(publisher.publish(headers))
-
-      // create a cache file to speed up consecutive uploads
-      .pipe(publisher.cache())
-
-      // print upload updates to console
-      .pipe($.awspublish.reporter());
-});
-
 // copy and rename elements.html to elements.vulcanized.html
 gulp.task('copy:aws', function () {
 
@@ -131,3 +99,34 @@ gulp.task('copy:aws', function () {
   return merge(vulcanized, dependencies, resources, demo, mock_data, vulcanized2elements, jsonData)
       .pipe($.size({title: 'copy'}));
 });
+
+// upload package to S3
+gulp.task('publish', gulp.series('copy:aws', function () {
+
+  // create a new publisher using S3 options
+  var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
+  var publisher = $.awspublish.create(awsConfig);
+
+  // define custom headers
+  var headers = {
+    'Cache-Control': 'max-age=315360000, no-transform, public'
+  };
+
+  return gulp.src('./' + config.dist + '/**')
+      .pipe($.rename(function (path) {
+        path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
+      }))
+      // gzip, Set Content-Encoding headers
+      .pipe($.awspublish.gzip())
+
+      // publisher will add Content-Length, Content-Type and headers specified above
+      // If not specified it will set x-amz-acl to public-read by default
+      .pipe(publisher.publish(headers))
+
+      // create a cache file to speed up consecutive uploads
+      .pipe(publisher.cache())
+
+      // print upload updates to console
+      .pipe($.awspublish.reporter());
+    
+}));
