@@ -15,7 +15,7 @@ if [[ "$version" < "1.8" ]]; then
 fi
 
 echo "Install dependencies"
-npm install -g gulp@^3.9.1 bower nightwatch
+npm install -g gulp-cli bower nightwatch
 npm install
 bower install
 
