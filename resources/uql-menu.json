@@ -107,7 +107,7 @@
         {
           "label": "Databases",
           "subtext": "Browse or search by title or topic",
-          "href": "https://search.library.uq.edu.au/primo-explore/dbsearch?vid=61UQ"
+          "href": "https://app.library.uq.edu.au/#/gateways/database?browse=&alpha=&title=&sub="
         },
          {
           "label": "Google Scholar",
