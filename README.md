@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/uqlibrary/uqlibrary-reusable-components.svg)](https://david-dm.org/uqlibrary/uqlibrary-reusable-components)
 [![Dev Dependency Status](https://david-dm.org/uqlibrary/uqlibrary-reusable-components/dev-status.svg)](https://david-dm.org/uqlibrary/uqlibrary-reusable-components?type=dev)
 
-## Contents:
+## Contents
 
 * [Getting started](#getting-started)
 * [Updating IA](#updating-ia)
@@ -15,14 +15,14 @@
 
 The Central Repository contains:
 
-- `/elements/` - common elements, eg header/footer
-    - view full demo [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
-- `/test/` - tests for elements
-- `/applications/` - applications customisations, eg LibGuides styles/scripts
-- `/bin/` - shell scripts, eg deployment, gh-pages
-- `/resources/` - icons, uql-menu.json, etc
-- `/templates/` - simple layouts for static pages, used for EZProxy error display etc
-- `/backup/` - styles/scripts of applications before reusable components were applied
+* `/elements/` - common elements, eg header/footer
+  * view full demo [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
+* `/test/` - tests for elements
+* `/applications/` - applications customisations, eg LibGuides styles/scripts
+* `/bin/` - shell scripts, eg deployment, gh-pages
+* `/resources/` - icons, uql-menu.json, etc
+* `/templates/` - simple layouts for static pages, used for EZProxy error display etc
+* `/backup/` - styles/scripts of applications before reusable components were applied
 
 * NOTE! Whenever you push to production, confirm the branchName variable in [view-package for Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) is correct!!!! (It should be `/` for production).
 
@@ -40,7 +40,7 @@ Project requires the following major dependencies:
 With Node.js installed, run the following one liner from the root of the repo:
 
 ```sh
-npm i -g gulp bower && npm install && bower install
+npm i -g gulp-cli bower && npm install && bower install
 ```
 
 * IMPORTANT! Before each change, update our [saucelab browser versions](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/bin/template.nightwatch-saucelabs.json) by using the [saucelabs configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) so we are testing against current OS versions (browser versions are mostly automatic). Also check the [latest ESR version for firefox](https://www.mozilla.org/en-US/firefox/organizations/). (ESR versions are deployed in our Standard Environment across the Libraries).
@@ -53,10 +53,10 @@ UX Services staff are able to make changes to the Mega Menu. Instructions for th
 * Changes can be made either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).
 * Make your changes to this file:
 
-    https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json
+    <https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/resources/uql-menu.json>
 
 * Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered. You can monitor the status of the build here: [Codeship for re-usable components](https://codeship.com/projects/99389)
-    
+
     This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
 
     After UX Services staff have pushed their changes, developers should:
@@ -64,7 +64,7 @@ UX Services staff are able to make changes to the Mega Menu. Instructions for th
 * For `uqlibrary-reusable-components`: confirm master build passes (it should start from initial push to github by UX Services)
 * For `uqlibrary-pages`: start rebuild of production branch (after reusable master passes; it pulls master of reusable, no release necessary) - updates homepage
 * For `uqlibrary-reusable-components`: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
-* For `uqlibrary-mylibrary`: if affected, start rebuild of production (pulls production of reusable) - updates https://www.library.uq.edu.au/mylibrary/
+* For `uqlibrary-mylibrary`: if affected, start rebuild of production (pulls production of reusable) - updates <https://www.library.uq.edu.au/mylibrary/>
 
 If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (web.library.uq.edu.au) as well. This can be tested before going live by updating the master branch of reusable and viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
 
@@ -123,6 +123,7 @@ All common styles, colours, or mix-ins are located in /elements/common-styles.ht
         * View full demo [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
 
 Codeship will deploy changes automatically by running deployment task `/bin/codeship.sh` (if Codeship is configured for deployment, by default it only builds a feature branch):
+
 * Installs all dependencies
 * Sets AWS configuration
 * Runs checks/tests
@@ -132,17 +133,17 @@ Codeship will deploy changes automatically by running deployment task `/bin/code
 Distribution package on S3 looks like this:
 
 * `[branch_name]/reusable-components/`
-    * `/libapps/libguides/*`
-    * `/libapps/libanswers/*`
-    * `/libwww/*`
-    * `/uqlapp/*`
-    * `/other-uql-apps/*`
-    * `/webcomponents/*`
-    * `elements.vulcanized.html`
-    * `elements.vulcanized.js`
-    
+  * `/libapps/libguides/*`
+  * `/libapps/libanswers/*`
+  * `/libwww/*`
+  * `/uqlapp/*`
+  * `/other-uql-apps/*`
+  * `/webcomponents/*`
+  * `elements.vulcanized.html`
+  * `elements.vulcanized.js`
+
 Subdirectory [branch_name] only exists for non-production branches, eg master/uat.
-Demo for feature branches is available at `http://assets.library.uq.edu.au/[branch_name]/reusable-components/elements/demo/index.html` 
+Demo for feature branches is available at `http://assets.library.uq.edu.au/[branch_name]/reusable-components/elements/demo/index.html`
 
 ### Testing
 
@@ -171,7 +172,7 @@ gulp test
 
 1. Run tests
     * Install Nightwatch, the automated UI testing framework
-        * `npm i -g nightwatch` 
+        * `npm i -g nightwatch`
     * To run the default test locally, you will need to [download the Firefox WebDriver](https://github.com/mozilla/geckodriver/releases) and put the location in your Path.
     * To run the Chrome tests locally you will need to [download the Chromium WebDriver](https://sites.google.com/a/chromium.org/chromedriver/) and put the location in your Path.
     * Test commands (run from the `bin` directory: `cd bin`):
@@ -188,7 +189,7 @@ gulp test
             ```bash
             nightwatch -c nightwatch.json --tag omeka
             ```
-            * Replace 'omeka' with whichever one you want to run, from test/e2e/e2e.*.js except the "minimal" one. 
+            * Replace 'omeka' with whichever one you want to run, from test/e2e/e2e.*.js except the "minimal" one.
             * The nightwatch e2e tests are setup as one file per project, plus a file of minimal common items which isn't valid to run on its own. To only run the valid tests, use the tag `e2etest`.
 
 #### Run Tests Remotely
@@ -213,7 +214,7 @@ Then run the `gulp test:remote` command again
 
 ## Workflow
 
-### Suggested workflow for changing CSS on 3rd party sites:
+### Suggested workflow for changing CSS on 3rd party sites
 
 * Open the page that needs restyling
 * Assuming Chrome, open the inspect page and tweak settings in the Elements > css pane until you have what you want
@@ -231,20 +232,20 @@ This lets you precisely check any changes without having to create a github rele
 
 If you run  `gulp test` and you get the error:
 
-```
+```Error
 Error: util_1.promisify is not a function
 ```
 
 then your node version is too low, eg:
 
-```
+```bash
 npm -v
 6.4.1
 ```
 
 Solution: update node to the latest version:
 
-```
+```bash
 nvm install node
 ```
 
