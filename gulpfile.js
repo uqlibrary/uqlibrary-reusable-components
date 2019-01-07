@@ -164,23 +164,8 @@ gulp.task('syntax', gulp.series(
 gulp.task('default', taskList);
 
 // Load tasks for web-component-tester
-gulp.task('test:local', () => {
-  return wct({
-    plugins: {
-      local: {}, 
-      sauce: false
-    }
-  })
-});
-
-gulp.task('test:remote', () => {
-  return wct({
-    plugins: {
-      local: false,
-      sauce: {}
-    }
-  })
-});
+// Adds tasks for `gulp test:local` and `gulp test:remote`
+require('web-component-tester').gulp.init(gulp);
 
 // Test local only by default
 gulp.task('test', gulp.series('test:local'));
