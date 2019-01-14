@@ -32,7 +32,7 @@
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown",
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search",
-    "uqlibrary-search": "uqlibrary/uqlibrary-search#feature-db-search-to-primo-161706258",
+    "uqlibrary-search": "uqlibrary/uqlibrary-search",
     "uqlibrary-training": "uqlibrary/uqlibrary-training",
     "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input"
   },
