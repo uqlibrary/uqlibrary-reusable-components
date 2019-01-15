@@ -15,10 +15,6 @@
   "private": true,
   "main": "elements/uq-minimal-header.html",
   "dependencies": {
-    "iron-elements": "PolymerElements/iron-elements#^1.0.3",
-    "neon-elements": "PolymerElements/neon-elements#^1.0.0",
-    "paper-elements": "PolymerElements/paper-elements#^1.0.1",
-    "platinum-elements": "PolymerElements/platinum-elements#^2.0.0",
     "polymer": "Polymer/polymer#^1.9.3",
     "webcomponentsjs": "^0.7.12",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
@@ -33,8 +29,7 @@
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search",
     "uqlibrary-search": "uqlibrary/uqlibrary-search",
-    "uqlibrary-training": "uqlibrary/uqlibrary-training",
-    "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input"
+    "uqlibrary-training": "uqlibrary/uqlibrary-training"
   },
   "devDependencies": {
     "web-component-tester": "*"
