@@ -13,7 +13,6 @@ var fs = require('fs');
 var config = {
   applications: 'applications',
   elements: 'elements',
-  dependencies: 'bower_components',
   resources: 'resources',
   demo: 'elements/demo'
 };
@@ -31,8 +30,8 @@ var gtmConfig = {
 // inject browser-update.js code into html pages
 gulp.task('inject-browser-update', function() {
 
-  var regEx = new RegExp("//bower_components/uqlibrary-browser-supported/browser-update.js", "g");
-  var browserUpdate=fs.readFileSync("bower_components/uqlibrary-browser-supported/browser-update.js", "utf8");
+  var regEx = new RegExp("//../uqlibrary-browser-supported/browser-update.js", "g");
+  var browserUpdate=fs.readFileSync("../uqlibrary-browser-supported/browser-update.js", "utf8");
 
   return gulp.src(config.resources + '/**/*.js')
     .pipe(replace({patterns: [{ match: regEx, replacement: browserUpdate}], usePrefix: false}))

@@ -9,14 +9,14 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var cloudfront = require('gulp-invalidate-cloudfront');
 var fs = require('fs');
-var argv = require('yargs').argv;
+var argv = require('yargs/yargs')(process.argv.slice(2));
 var merge = require('merge-stream');
 
 var config = {
   dist: 'dist',
   applications: 'applications',
   elements: 'elements',
-  dependencies: 'bower_components',
+  dependencies: '..',
   resources: 'resources',
   demo: 'elements/demo'
 };
@@ -28,7 +28,7 @@ var config = {
  * If no bucket path passed will invalidate production subdir
  */
 gulp.task('invalidate', function () {
-  var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
+  var awsConfig = JSON.parse(fs.readFileSync('./aws.json', 'utf-8'));
 
   var invalidatePath = '';
 
@@ -60,9 +60,10 @@ gulp.task('invalidate', function () {
   };
 
   return gulp.src([
+    config.dependencies + '/*',
+    '!./*',
     config.applications + '/*',
     config.elements + '/*',
-    config.dependencies + '/*',
     config.resources + '/*'
   ]).pipe(cloudfront(invalidationBatch, awsSettings));
 });
@@ -90,13 +91,13 @@ gulp.task('copy:aws', function () {
   var demo = gulp.src([config.demo + '/**/*'])
       .pipe(gulp.dest(config.dist + '/elements/demo'));
 
-  var mock_data = gulp.src([config.dependencies + '/uqlibrary-api/mock/**/*'])
-      .pipe(gulp.dest(config.dist + '/bower_components/uqlibrary-api/mock'));
+  var mockData = gulp.src([config.dependencies + '/uqlibrary-api/mock/**/*'])
+      .pipe(gulp.dest(config.dist + '/../uqlibrary-api/mock'));
 
   var jsonData = gulp.src([config.dependencies + '/uqlibrary-api/data/contacts.json'])
-      .pipe(gulp.dest(config.dist + '/bower_components/uqlibrary-api/data'));
+      .pipe(gulp.dest(config.dist + '/../uqlibrary-api/data'));
 
-  return merge(vulcanized, dependencies, resources, demo, mock_data, vulcanized2elements, jsonData)
+  return merge(vulcanized, dependencies, resources, demo, mockData, vulcanized2elements, jsonData)
       .pipe($.size({title: 'copy'}));
 });
 
@@ -104,7 +105,7 @@ gulp.task('copy:aws', function () {
 gulp.task('publish', gulp.series('copy:aws', function () {
 
   // create a new publisher using S3 options
-  var awsConfig = JSON.parse(fs.readFileSync('./aws.json'));
+  var awsConfig = JSON.parse(fs.readFileSync('./aws.json', 'utf-8'));
   var publisher = $.awspublish.create(awsConfig);
 
   // define custom headers
