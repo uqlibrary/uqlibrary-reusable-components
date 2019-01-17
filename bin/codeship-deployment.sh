@@ -43,7 +43,7 @@ fi
 
 echo "Update DEMO pages to use its vulcanized version"
 elements_ref="../elements.html"
-webcomponents_ref="../../bower_components/webcomponentsjs/webcomponents-lite.js"
+webcomponents_ref="../../../webcomponentsjs/webcomponents-lite.js"
 application_ref="../../applications"
 
 webcomponents_ref_online="../../webcomponentsjs/webcomponents-lite.js"
@@ -84,6 +84,9 @@ gulp publish
 
 echo "Run Cloudfront Invalidation"
 gulp invalidate --path ${InvalidationPath}
+if [ ${CI_BRANCH} != "production" ]; then  
+  gulp invalidate --path /${CI_BRANCH}/uqlibrary-api
+fi
 
 echo "Clean up AWS configuration..."
 rm -f ${awsconfig}

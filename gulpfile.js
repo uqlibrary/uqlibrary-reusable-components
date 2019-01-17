@@ -34,7 +34,6 @@ var AUTOPREFIXER_BROWSERS = [
 var config = {
   applications: 'applications',
   elements: 'elements',
-  dependencies: 'bower_components',
   resources: 'resources',
   demo: 'elements/demo'
 };
@@ -88,9 +87,12 @@ gulp.task('vulcanize:clean_bower', function() {
 
   var regEx = new RegExp("bower_components", "g");
 
-  return gulp.src('bower_components/**/*.html')
+  return gulp.src([
+      '../**/*.html',
+      '!./*'
+    ])
     .pipe(replace({patterns: [{ match: regEx, replacement: ".."}], usePrefix: false}))
-    .pipe(gulp.dest('bower_components'))
+    .pipe(gulp.dest('..'))
     .pipe($.size({title: 'vulcanize:clean_bower'}));
 });
 
@@ -124,7 +126,7 @@ gulp.task('vulcanize', gulp.series(
   var menuJson=fs.readFileSync("./resources/uql-menu.json", "utf8");
   var regEx = new RegExp("menuJsonFileData;", "g");
 
-  var contactsJson=fs.readFileSync("./bower_components/uqlibrary-api/data/contacts.json", "utf8");
+  var contactsJson=fs.readFileSync("./../uqlibrary-api/data/contacts.json", "utf8");
   var contactsRegEx = new RegExp("contactsJsonFileData;", "g");
 
   return gulp.src(config.elements + '/elements.vulcanized.html')

@@ -26,7 +26,7 @@ if [ ${CI_BRANCH} == "production" ]; then
   nightwatch -c nightwatch.json --env chrome --tag e2etest
 
   # saucelabs only on production branch
-  echo "saucelabs..."
+  echo "Remote e2e testing on Sauce Labs"
 
   nwconfigtemp="template.nightwatch-saucelabs.json"
   nwconfig="nightwatch-saucelabs.json"
@@ -36,32 +36,11 @@ if [ ${CI_BRANCH} == "production" ]; then
   sed -i -e "s#<SAUCE_USERNAME>#${SAUCE_USERNAME}#g" ${nwconfig}
   sed -i -e "s#<SAUCE_ACCESS_KEY>#${SAUCE_ACCESS_KEY}#g" ${nwconfig}
 
-  printf "\n --- CHROME ON WINDOWS on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --tag e2etest
-
-  printf "\n --- FIREFOX ON WINDOWS on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows --tag e2etest
-
   # note: edge and ie11 require avoidProxy set to true in the .json file per https://support.saucelabs.com/customer/en/portal/private/cases/43779
-  printf "\n --- EDGE on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env edge --tag e2etest
+  printf "\n --- Windows browsers on Sauce Labs ---\n\n"
+  nightwatch -c nightwatch-saucelabs.json --tag e2etest --env default,firefox-on-windows,edge,ie11,firefox-on-windows-ESR --tag e2etest
 
-  printf "\n --- CHROME ON MAC on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac --tag e2etest
-
-  printf "\n --- FIREFOX ON MAC on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac --tag e2etest
-
-  printf "\n --- FIREFOX ESR ON WINDOWS on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-windows-ESR --tag e2etest
-
-  printf "\n --- FIREFOX ESR ON MAC on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env firefox-on-mac-ESR --tag e2etest
-
-  printf "\n --- SAFARI ON MAC on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env safari-on-mac --tag e2etest
-
-  printf "\n --- IE11 on saucelabs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env ie11 --tag e2etest
+  printf "\n --- Mac browsers on Sauce Labs ---\n\n"
+  nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac,firefox-on-mac,safari-on-mac,firefox-on-mac-ESR --tag e2etest
 
 fi

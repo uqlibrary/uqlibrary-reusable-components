@@ -66,7 +66,7 @@ done
 
 echo "Update DEMO pages to use its vulcanized version"
 elements_ref="../elements.html"
-webcomponents_ref="../../bower_components/webcomponentsjs/webcomponents-lite.js"
+webcomponents_ref="../../../webcomponentsjs/webcomponents-lite.js"
 application_ref="../../applications"
 
 webcomponents_ref_online="../../webcomponentsjs/webcomponents-lite.js"
