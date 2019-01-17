@@ -113,6 +113,13 @@ gulp.task('publish', gulp.series('copy:aws', function () {
     'Cache-Control': 'max-age=315360000, no-transform, public'
   };
 
+  // Local debug config. Comment out lines in the function till here.
+  // var awsConfig = {
+  //   params: {
+  //     bucketSubDir: 'my-branch/reusable-components'
+  //   }
+  // };
+
   return gulp.src(
       [
         './' + config.dist + '/**',
@@ -133,9 +140,18 @@ gulp.task('publish', gulp.series('copy:aws', function () {
           // Avoid creating an empty dir called 'dist'
           path.dirname = awsConfig.params.bucketSubDir;
           path.basename = '.';
+        } else {
+          if (awsConfig.params.bucketSubDir.indexOf('/') > -1) {
+            // For non-production branches, bucketSubDir has the format 
+            // "<branchname>/reusable-components"
+            path.dirname = awsConfig.params.bucketSubDir + '/../' + path.dirname;
+          }
         }
       }
     }))
+
+    // Local debug config. Comment-out lines in this function after the next.
+    // .pipe(gulp.dest('to-aws'));
 
     // gzip, Set Content-Encoding headers
     .pipe($.awspublish.gzip())
