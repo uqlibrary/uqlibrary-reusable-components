@@ -113,21 +113,43 @@ gulp.task('publish', gulp.series('copy:aws', function () {
     'Cache-Control': 'max-age=315360000, no-transform, public'
   };
 
-  return gulp.src('./' + config.dist + '/**')
-      .pipe($.rename(function (path) {
-        path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
-      }))
-      // gzip, Set Content-Encoding headers
-      .pipe($.awspublish.gzip())
+  return gulp.src(
+      [
+        './' + config.dist + '/**',
+        './uqlibrary-api/**'        
+      ], 
+      {
+        base: '.' // To include the directory itself; not just subfolders
+      }
+    )
 
-      // publisher will add Content-Length, Content-Type and headers specified above
-      // If not specified it will set x-amz-acl to public-read by default
-      .pipe(publisher.publish(headers))
+    // Everything inside dist folder should be put inside bucketSubDir
+    // Everything else should be at top level
+    .pipe($.rename(function (path) {
+      if (path.dirname.indexOf(config.dist) === 0) {
+        path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname.substring(config.dist.length + 1);
+      } else {
+        if (path.basename === config.dist) {
+          // Avoid creating an empty dir called 'dist'
+          path.dirname = awsConfig.params.bucketSubDir;
+          path.basename = '.';
+        } else {
+          path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
+        }
+      }
+    }))
 
-      // create a cache file to speed up consecutive uploads
-      .pipe(publisher.cache())
+    // gzip, Set Content-Encoding headers
+    .pipe($.awspublish.gzip())
 
-      // print upload updates to console
-      .pipe($.awspublish.reporter());
+    // publisher will add Content-Length, Content-Type and headers specified above
+    // If not specified it will set x-amz-acl to public-read by default
+    .pipe(publisher.publish(headers))
+
+    // create a cache file to speed up consecutive uploads
+    .pipe(publisher.cache())
+
+    // print upload updates to console
+    .pipe($.awspublish.reporter());
     
 }));
