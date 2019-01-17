@@ -133,8 +133,6 @@ gulp.task('publish', gulp.series('copy:aws', function () {
           // Avoid creating an empty dir called 'dist'
           path.dirname = awsConfig.params.bucketSubDir;
           path.basename = '.';
-        } else {
-          path.dirname = awsConfig.params.bucketSubDir + '/' + path.dirname;
         }
       }
     }))
