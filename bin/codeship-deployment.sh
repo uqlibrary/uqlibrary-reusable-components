@@ -35,7 +35,7 @@ gulp vulcanize
 echo "Update GA Values"
 gulp inject-ga-values
 
-#run css min tasks for staging/production, don't run for master - for better debugging
+#run css min tasks for production, don't run for master - for better debugging
 if [ $branch = "production" ]; then
   echo "Run gulp task to optimize css..."
   gulp optimize
