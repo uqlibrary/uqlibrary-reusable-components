@@ -47,7 +47,9 @@ npm i -g gulp-cli bower && npm install && bower install
 
 ### Updating IA
 
-UX Services staff are able to make changes to the Mega Menu. Instructions for them:
+UX Services staff are able to make changes to the Mega Menu. 
+
+#### Instructions for UX Services staff:
 
 * Make sure your branch is set to master.
 * Changes can be made either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).
@@ -57,14 +59,15 @@ UX Services staff are able to make changes to the Mega Menu. Instructions for th
 
 * Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered. You can monitor the status of the build here: [Codeship for re-usable components](https://codeship.com/projects/99389)
 
-    This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
+    This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be available for preview at [http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
+    
+Bear in mind: once you have made this change it could go live at any time - if you need a specific date consider a PT and have the developers manage the whole thing.
 
-    After UX Services staff have pushed their changes, developers should:
+#### After UX Services staff have pushed their changes, developers should:
 
-* For `uqlibrary-reusable-components`: confirm master build passes (it should start from initial push to github by UX Services)
+* For `uqlibrary-reusable-components`: confirm master build has passed
 * For `uqlibrary-pages`: start rebuild of production branch (after reusable master passes; it pulls master of reusable, no release necessary) - updates homepage
 * For `uqlibrary-reusable-components`: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
-* For `uqlibrary-mylibrary`: if affected, start rebuild of production (pulls production of reusable) - updates <https://www.library.uq.edu.au/mylibrary/>
 
 If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (<https://web.library.uq.edu.au>) as well. This can be tested before going live by updating the master branch of reusable and viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
 
