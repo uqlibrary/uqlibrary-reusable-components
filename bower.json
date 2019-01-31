@@ -18,7 +18,6 @@
     "polymer": "Polymer/polymer#^1.9.3",
     "webcomponentsjs": "^0.7.12",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
-    "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
     "validator-js": "~4.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts",

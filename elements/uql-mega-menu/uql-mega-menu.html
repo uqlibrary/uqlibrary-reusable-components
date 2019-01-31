@@ -132,7 +132,7 @@ Example:
         font-weight: 500 !important;
       }
 
-      iron-dropdown {
+      uqlibrary-iron-dropdown {
         position: absolute !important;
       }
 
@@ -186,7 +186,7 @@ Example:
         </paper-tabs>
 
         <template is="dom-repeat" items="{{menu.items}}" as="submenu">
-          <iron-dropdown class$="hasCols{{submenu.numCols}}" id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
+          <uqlibrary-iron-dropdown class$="hasCols{{submenu.numCols}}" id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
                          on-iron-overlay-opened="_openSubMenu"
                          on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
             <div class$="dropdown-content has-numcols-{{submenu.numCols}}" role="menu">
@@ -222,7 +222,7 @@ Example:
               </template>
 
             </div>
-          </iron-dropdown>
+          </uqlibrary-iron-dropdown>
         </template>
 
       </div>
