@@ -156,7 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(request.response).to.be.ok;
         expect(request.response).to.be.an('object');
 
-        var topLevelMenu = testObj.querySelectorAll('uql-mega-menu iron-dropdown')[0];
+        var topLevelMenu = testObj.querySelectorAll('uql-mega-menu uqlibrary-iron-dropdown')[0];
         var menuItems = topLevelMenu.querySelectorAll('.paper-item');
 
         assert.equal(menuItems.length, testJson.items[0].items.length, 'Should be an item for each of the submenus');

@@ -484,9 +484,9 @@ h1.page__title * {
 .panel-pane__content .rn_FieldDisplay {
   margin-left: 0;
 }
-.panel-pane__content h1 {
+// .panel-pane__content h1 {
 //  font-weight: 800;
-}
+// }
 
 a {
   color: $accent-color;
@@ -582,7 +582,7 @@ li.syndicatedWidget .rn_ConditionalChatLink div a {
 }
 
 // the polymer element is getting a top of 116px. Weird.
-.uql-mega-menu-0 iron-dropdown.uql-mega-menu {
+.uql-mega-menu-0 uqlibrary-iron-dropdown.uql-mega-menu {
   top: 167px !important;
 }
 
