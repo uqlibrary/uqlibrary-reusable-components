@@ -62,7 +62,7 @@
     "chrome-on-mac": {
       "desiredCapabilities": {
         "browserName": "chrome",
-        "platform": "OS X 10.14",
+        "platform": "OS X 10.13",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "screenResolution": "1280x960"
@@ -71,7 +71,7 @@
     "firefox-on-mac": {
       "desiredCapabilities": {
         "browserName": "firefox",
-        "platform": "OS X 10.14",
+        "platform": "OS X 10.13",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "screenResolution": "1280x960"
@@ -80,7 +80,7 @@
     "safari-on-mac": {
       "desiredCapabilities": {
         "browserName": "safari",
-        "platform": "OS X 10.14",
+        "platform": "OS X 10.13",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "screenResolution": "1280x960"
@@ -99,7 +99,7 @@
     "firefox-on-mac-ESR": {
       "desiredCapabilities": {
         "browserName": "firefox",
-        "platform": "OS X 10.14",
+        "platform": "OS X 10.13",
         "version": "60.0",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
