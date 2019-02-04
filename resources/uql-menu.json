@@ -254,6 +254,11 @@
           "col2": "yes"
         },
         {
+          "label": "Central Library",
+          "href": "https://web.library.uq.edu.au/locations-hours/central-library",
+          "col2": "yes"
+        },
+        {
           "label": "Centre for Digital Scholarship",
           "href": "https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship",
           "col2": "yes"
@@ -279,7 +284,7 @@
           "label": "Gatton",
           "subtext": "J.K. Murray Library",
           "href": "https://web.library.uq.edu.au/locations-hours/uq-gatton-library-jk-murray-library",
-          "col2": "yes"
+          "col3": "yes"
         },
         {
           "label": "Herston Health Sciences",
@@ -309,12 +314,6 @@
         {
           "label": "Rural Clinical School",
           "href": "https://web.library.uq.edu.au/locations-hours/rural-clinical-school-rcs-library",
-          "col3": "yes"
-
-        },
-        {
-          "label": "Social Sciences & Humanities",
-          "href": "https://web.library.uq.edu.au/locations-hours/social-sciences-humanities-library",
           "col3": "yes"
 
         },

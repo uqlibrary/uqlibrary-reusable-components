@@ -15,16 +15,16 @@
 
 The Central Repository contains:
 
-* `/elements/` - common elements, eg header/footer
-  * view full demo [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
-* `/test/` - tests for elements
-* `/applications/` - applications customisations, eg LibGuides styles/scripts
-* `/bin/` - shell scripts, eg deployment, gh-pages
-* `/resources/` - icons, uql-menu.json, etc
-* `/templates/` - simple layouts for static pages, used for EZProxy error display etc
-* `/backup/` - styles/scripts of applications before reusable components were applied
+* `/elements/` - Common elements, eg header/footer
+  * View full demo [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
+* `/test/` - Tests for elements
+* `/applications/` - Application customisations such as LibGuides styles/scripts
+* `/bin/` - Shell scripts for testing and deployment
+* `/resources/` - Icons, uql-menu.json, etc
+* `/templates/` - Simple layouts for static pages, used for EZProxy error display etc
+* `/backup/` - Styles/scripts of applications before reusable components were applied
 
-* NOTE! Whenever you push to production, confirm the branchName variable in [view-package for Primo](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) is correct!!!! (It should be `/` for production).
+* NOTE! Whenever you push to production, confirm the branchName variable in `/applications/primo2/view_package/js/custom.js` is correct!!!! (It should be `/` for production).
 
 [Overview of how the Polymer components interact](https://drive.google.com/open?id=1eV_KnLVfYBbn7lTl6AyiYQmHD1t1sBLo) (stored in [Projects](https://drive.google.com/drive/folders/0Bw6wOgp_LaKoZmZjUXM1eUNfU1E) for want of anywhere else to put it).
 
@@ -47,7 +47,9 @@ npm i -g gulp-cli bower && npm install && bower install
 
 ### Updating IA
 
-UX Services staff are able to make changes to the Mega Menu. Instructions for them:
+UX Services staff are able to make changes to the Mega Menu. 
+
+#### Instructions for UX Services staff:
 
 * Make sure your branch is set to master.
 * Changes can be made either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).
@@ -57,23 +59,24 @@ UX Services staff are able to make changes to the Mega Menu. Instructions for th
 
 * Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered. You can monitor the status of the build here: [Codeship for re-usable components](https://codeship.com/projects/99389)
 
-    This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be live.
+    This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be available for preview at [http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
+    
+Bear in mind: once you have made this change it could go live at any time - if you need a specific date consider a PT and have the developers manage the whole thing.
 
-    After UX Services staff have pushed their changes, developers should:
+#### After UX Services staff have pushed their changes, developers should:
 
-* For `uqlibrary-reusable-components`: confirm master build passes (it should start from initial push to github by UX Services)
+* For `uqlibrary-reusable-components`: confirm master build has passed
 * For `uqlibrary-pages`: start rebuild of production branch (after reusable master passes; it pulls master of reusable, no release necessary) - updates homepage
 * For `uqlibrary-reusable-components`: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
-* For `uqlibrary-mylibrary`: if affected, start rebuild of production (pulls production of reusable) - updates <https://www.library.uq.edu.au/mylibrary/>
 
-If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (web.library.uq.edu.au) as well. This can be tested before going live by updating the master branch of reusable and viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
+If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (<https://web.library.uq.edu.au>) as well. This can be tested before going live by updating the master branch of reusable and viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
 
 ### Applications Customisations
 
 All custom styles/scripts are located in `/applications/[app name]/`
 
-* `load.js` - script contains injection of components for the application
-* `custom-styles.scss/custom-styles.css` - custom css for the application
+* `load.js` - Script contains injection of components for the application
+* `custom-styles.scss/custom-styles.css` - Custom css for the application
 
 Customised applications:
 
@@ -107,20 +110,14 @@ All common styles, colours, or mix-ins are located in /elements/common-styles.ht
 #### Development/Deployment process
 
 1. Create/update required component following [Style Guide](http://polymerelements.github.io/style-guide/)
-1. Use common styles/variables/mix-ins from /elements/common-styles.html, customise styling in the element.
+1. Use common styles/variables/mix-ins from `/elements/common-styles.html`, customise styling in the element.
 1. Create/update demo page for the component in `/elements/[component]/demo/index.html`
 1. Create/update test suite in `/test/` directory
 1. If new component is a stand alone component - add it to complete demo page /elements/demo/index.html
-1. Run 'gulp syntax' to check project passes validations
+1. Run `gulp syntax` to check project passes validations
 1. If component is to be included into a specific application, update `/applications/[app name]/load.js` for this application
 1. If styling update is required for a specific application, make sure styles are compiled
 1. Commit all changes
-1. Update documentation for the project:
-    * Create a new temporary non-git directory
-    * Run `/bin/generate-gh-pages.sh` from this new empty directory
-    * Script will update gh-pages branch of the project
-    * Check gh-pages were updated successfully
-        * View full demo [here](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
 
 Codeship will deploy changes automatically by running deployment task `/bin/codeship.sh` (if Codeship is configured for deployment, by default it only builds a feature branch):
 
@@ -194,11 +191,13 @@ gulp test
 
 #### Run Tests Remotely
 
-    gulp test:remote
+```bash
+gulp test:remote
+```
 
 When you run this command, you may get the error:
 
-    Missing Sauce credentials. Did you forget to set SAUCE_USERNAME and/or SAUCE_ACCESS_KEY?
+> Missing Sauce credentials. Did you forget to set SAUCE_USERNAME and/or SAUCE_ACCESS_KEY?
 
 To set these fields,
 
@@ -294,6 +293,6 @@ bin/codeship-deployment.sh
 bin/codeship-prod-testing.sh
 ```
 
-### Deployment (branches starting with `feature-`)
+### Deployment (branches starting with `feature-` or `primo-`)
 
 Same as above, except remove the last line.

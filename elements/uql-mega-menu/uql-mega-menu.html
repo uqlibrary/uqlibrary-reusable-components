@@ -14,7 +14,6 @@ Example:
 
   <template>
     <style is="custom-style" include="common-styles">
-
       :root {
         --glowing-box-highlight: #7ebaf8;
       }
@@ -61,11 +60,13 @@ Example:
       paper-tab.uql-mega-menu {
         border: medium solid var(--menu-background-color);
       }
+
       paper-tab.sub-menu-opened {
         background-color: var(--menu-open-background-color);
         border: medium solid var(--menu-open-background-color);
       }
-      paper-tab[focused].uql-mega-menu  {
+
+      paper-tab[focused].uql-mega-menu {
         /* technique per https://css-tricks.com/snippets/css/glowing-blue-input-highlights/ */
         box-shadow: 0 0 5px var(--glowing-box-highlight);
         border: medium solid var(--glowing-box-highlight);
@@ -100,7 +101,7 @@ Example:
         margin-left: -240px;
       }
 
-      .dropdown-content .sub-menu{
+      .dropdown-content .sub-menu {
         @apply(--layout-flex);
         padding-top: 15px;
       }
@@ -132,7 +133,7 @@ Example:
         font-weight: 500 !important;
       }
 
-      iron-dropdown {
+      uqlibrary-iron-dropdown {
         position: absolute !important;
       }
 
@@ -165,11 +166,10 @@ Example:
 
     <nav class="menu-container">
 
-      <paper-button id="menuNavInstruction"
-                    aria-live="polite"
-                    aria-label="Use arrow keys to navigate menu headings and the tab key to navigate their sub-items"
-                    title="Use arrow keys to navigate menu headings and the tab key to navigate their sub-items"
-                    >
+      <paper-button id="menuNavInstruction" aria-live="polite" 
+        aria-label="Use arrow keys to navigate menu headings and the tab key to navigate their sub-items"
+        title="Use arrow keys to navigate menu headings and the tab key to navigate their sub-items"
+      >
         Use arrow keys to navigate menu headings and the tab key to navigate their sub-items
       </paper-button>
 
@@ -186,26 +186,44 @@ Example:
         </paper-tabs>
 
         <template is="dom-repeat" items="{{menu.items}}" as="submenu">
-          <iron-dropdown class$="hasCols{{submenu.numCols}}" id$="subMenu{{index}}" allow-outside-scroll="true" horizontal-align="left" vertical-align="top" vertical-offset="67"
-                         on-iron-overlay-opened="_openSubMenu"
-                         on-iron-overlay-closed="_subMenuClosed" data-item-index$="{{index}}">
+          <uqlibrary-iron-dropdown
+            class$="hasCols{{submenu.numCols}}"
+            id$="subMenu{{index}}"
+            allow-outside-scroll="true"
+            horizontal-align="left"
+            vertical-align="top"
+            vertical-offset="67"
+            on-iron-overlay-opened="_openSubMenu"
+            on-iron-overlay-closed="_subMenuClosed"
+            data-item-index$="{{index}}"
+          >
             <div class$="dropdown-content has-numcols-{{submenu.numCols}}" role="menu">
               <div class="sub-menu">
                 <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem1" filter="isCol1">
-                    <a class$="paper-item {{submenuItem1.class}}" href="{{submenuItem1.href}}" on-tap="_closeDropdown" role="menuitem">
-                      <div>{{submenuItem1.label}}</div>
-                      <div class="subtext">{{submenuItem1.subtext}}</div>
-                    </a>
+                  <a 
+                    class$="paper-item {{submenuItem1.class}}" 
+                    href="{{submenuItem1.href}}"
+                    on-tap="_closeDropdown"
+                    role="menuitem"
+                  >
+                    <div>{{submenuItem1.label}}</div>
+                    <div class="subtext">{{submenuItem1.subtext}}</div>
+                  </a>
                 </template>
               </div>
 
               <template is="dom-if" if="{{submenu.hasTwoOrMoreCols}}">
                 <div class="sub-menu uql-submenu-subsequent">
                   <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem2" filter="isCol2">
-                      <a class$="paper-item {{submenuItem2.class}}" href="{{submenuItem2.href}}" on-tap="_closeDropdown" role="menuitem">
-                        <div>{{submenuItem2.label}}</div>
-                        <div class="subtext">{{submenuItem2.subtext}}</div>
-                      </a>
+                    <a 
+                      class$="paper-item {{submenuItem2.class}}" 
+                      href="{{submenuItem2.href}}" 
+                      on-tap="_closeDropdown"
+                      role="menuitem"
+                    >
+                      <div>{{submenuItem2.label}}</div>
+                      <div class="subtext">{{submenuItem2.subtext}}</div>
+                    </a>
                   </template>
                 </div>
               </template>
@@ -213,23 +231,35 @@ Example:
               <template is="dom-if" if="{{submenu.hasThreeCols}}">
                 <div class="sub-menu uql-submenu-subsequent">
                   <template is="dom-repeat" items="{{submenu.items}}" as="submenuItem3" filter="isCol3">
-                      <a class$="paper-item {{submenuItem3.class}}" href="{{submenuItem3.href}}" on-tap="_closeDropdown" role="menuitem">
-                        <div>{{submenuItem3.label}}</div>
-                        <div class="subtext">{{submenuItem3.subtext}}</div>
-                      </a>
+                    <a 
+                      class$="paper-item {{submenuItem3.class}}" 
+                      href="{{submenuItem3.href}}" 
+                      on-tap="_closeDropdown"
+                      role="menuitem"
+                    >
+                      <div>{{submenuItem3.label}}</div>
+                      <div class="subtext">{{submenuItem3.subtext}}</div>
+                    </a>
                   </template>
                 </div>
               </template>
 
             </div>
-          </iron-dropdown>
+          </uqlibrary-iron-dropdown>
         </template>
 
       </div>
     </nav>
 
     <!-- Hidden span to skip navigation -->
-    <span id="megaMenuAfter" tabindex="0" aria-label="Start of content" style="position: fixed; top:-2000px; left: -2000px">Start of content</span>
+    <span 
+      id="megaMenuAfter" 
+      tabindex="0" 
+      aria-label="Start of content" 
+      style="position: fixed; top:-2000px; left: -2000px"
+    >
+      Start of content
+    </span>
 
   </template>
 

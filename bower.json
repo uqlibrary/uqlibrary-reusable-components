@@ -15,14 +15,9 @@
   "private": true,
   "main": "elements/uq-minimal-header.html",
   "dependencies": {
-    "iron-elements": "PolymerElements/iron-elements#^1.0.3",
-    "neon-elements": "PolymerElements/neon-elements#^1.0.0",
-    "paper-elements": "PolymerElements/paper-elements#^1.0.1",
-    "platinum-elements": "PolymerElements/platinum-elements#^2.0.0",
-    "polymer": "Polymer/polymer#^1.9.3",
+    "polymer": "Polymer/polymer#^1.11.3",
     "webcomponentsjs": "^0.7.12",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
-    "iron-dropdown": "PolymerElements/iron-dropdown#^1.2.0",
     "validator-js": "~4.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts",
@@ -33,13 +28,12 @@
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search",
     "uqlibrary-search": "uqlibrary/uqlibrary-search",
-    "uqlibrary-training": "uqlibrary/uqlibrary-training",
-    "uqlibrary-autosuggest-input": "uqlibrary/uqlibrary-autosuggest-input"
+    "uqlibrary-training": "uqlibrary/uqlibrary-training"
   },
   "devDependencies": {
     "web-component-tester": "*"
   },
   "resolutions": {
-    "test-fixture": "^1.0.0"
+    "test-fixture": "^1.1.2"
   }
 }
