@@ -2,12 +2,25 @@
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
 set -e
 
-if [ -z ${TMPDIR} ]; then # codeship doesnt seem to set this
-  TMPDIR="/tmp/"
+# if you want to log any saucelab errors to the codeship log, set LOG_SAUCELAB_ERRORS to true in the codeship variables
+# at https://app.codeship.com/projects/131650/environment/edit;
+# else leave it missing in codeship environment variables or false
+if [[ -z $LOG_SAUCELAB_ERRORS ]]; then
+    LOG_SAUCELAB_ERRORS=false
+fi
+if [[ "$LOG_SAUCELAB_ERRORS" == true ]]; then
+    if [ -z ${TMPDIR} ]; then # codeship doesnt seem to set this
+      TMPDIR="/tmp/"
+    fi
 fi
 
 SAUCELABS_LOG_FILE="${TMPDIR}sc.log"
 function logSauceCommands {
+  if [[ "$LOG_SAUCELAB_ERRORS" != true ]]; then
+    echo "An error happened and (presumably) saucelabs failed but we arent reporting the output - set LOG_SAUCELAB_ERRORS to true in Codeship Environment Variables to see the log next time"
+    return
+  fi
+
   if [ ! -f "$SAUCELABS_LOG_FILE" ]; then
     echo "$SAUCELABS_LOG_FILE not found - looking for alt file"
     # testing with check /tmp/sc.log presencewct? it writes to a subdirectory, eg /tmp/wct118915-6262-1w0uwzy.q8it/sc.log
