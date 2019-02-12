@@ -1,11 +1,12 @@
 <link rel="import" href="../elements.html">
 
 <!--
-`<uql-mega-menu>` is a horizontal main menu, composite of paper-tabs and iron-dropdown components.
-It's a sub-component of <uql-menu> which contains horizontal and vertical menu.
+`<uql-mega-menu>` is a horizontal main menu, composite of `<paper-tabs>` and `<iron-dropdown>` components.
+It's a sub-component of `<uql-menu>` which contains horizontal and vertical menu.
 
 Example:
-      <uql-mega-menu></uql-mega-menu>
+
+    <uql-mega-menu></uql-mega-menu>
 
 @demo uql-mega-menu/demo/index.html
 -->
@@ -22,7 +23,7 @@ Example:
         font-family: var(--font-family);
 
         --paper-tab-content: {
-          @apply(--layout-flex-none);
+          @apply --layout-flex-none;
           font-weight: 300 !important;
           opacity: 1 !important;
           font-size: 16px;
@@ -30,7 +31,7 @@ Example:
       }
 
       .menu-container {
-        @apply(--uq-box-shadow);
+        @apply --uq-box-shadow;
       }
 
       .menu-container,
@@ -74,9 +75,9 @@ Example:
 
       .dropdown-content {
         background-color: var(--menu-open-background-color);
-        @apply(--uq-box-shadow);
-        @apply(--layout-flex);
-        @apply(--layout-horizontal);
+        @apply --uq-box-shadow;
+        @apply --layout-flex;
+        @apply --layout-horizontal;
       }
 
       .has-numcols-1 {
@@ -102,7 +103,7 @@ Example:
       }
 
       .dropdown-content .sub-menu {
-        @apply(--layout-flex);
+        @apply --layout-flex;
         padding-top: 15px;
       }
 
@@ -119,10 +120,10 @@ Example:
       }
 
       .sub-menu a {
-        @apply(--layout-flex);
-        @apply(--layout-vertical);
+        @apply --layout-flex;
+        @apply --layout-vertical;
 
-        @apply(--menu-item);
+        @apply --menu-item;
       }
 
       .sub-menu a:hover {

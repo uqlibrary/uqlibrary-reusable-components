@@ -56,26 +56,26 @@
         max-width: var(--max-width);
         padding: 20px;
 
-        @apply(--layout-horizontal);
-        @apply(--layout-justified);
-        @apply(--layout-wrap);
+        @apply --layout-horizontal;
+        @apply --layout-justified;
+        @apply --layout-wrap;
       }
 
       .navigation,
       .buttons,
       .contacts {
-        @apply(--layout-flex);
+        @apply --layout-flex;
       }
 
       .contacts {
-        @apply(--layout-vertical);
+        @apply --layout-vertical;
         min-height:100%;
         position:relative;
       }
 
       .buttons{
-        @apply(--layout-vertical);
-        @apply(--layout-center);
+        @apply --layout-vertical;
+        @apply --layout-center;
       }
 
       h4 {
@@ -87,8 +87,8 @@
       }
 
       .social{
-        @apply(--layout-horizontal);
-        @apply(--layout-top);
+        @apply --layout-horizontal;
+        @apply --layout-top;
       }
 
       .social paper-button {
@@ -132,15 +132,15 @@
       @media all and (max-width: 780px) {
 
         .sub-footer-content {
-          @apply(--layout-vertical);
-          @apply(--layout-center-justified);
+          @apply --layout-vertical;
+          @apply --layout-center-justified;
         }
 
         .navigation,
         .buttons,
         .contacts,
         .contacts ul {
-          @apply(--layout-flex-none);
+          @apply --layout-flex-none;
         }
 
         .buttons {
@@ -156,7 +156,7 @@
 
         .contacts, .internal {
           margin-top:30px;
-          @apply(--layout-center);
+          @apply --layout-center;
         }
 
         li.separator:last-of-type {
