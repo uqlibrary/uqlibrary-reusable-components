@@ -47,9 +47,9 @@ npm i -g gulp-cli bower && npm install && bower install
 
 ### Updating IA
 
-UX Services staff are able to make changes to the Mega Menu. 
+UX Services staff are able to make changes to the Mega Menu.
 
-#### Instructions for UX Services staff:
+#### Instructions for UX Services staff
 
 * Make sure your branch is set to master.
 * Changes can be made either through the GitHub interface or you can use the [GitHub Client](https://desktop.github.com/).
@@ -60,10 +60,10 @@ UX Services staff are able to make changes to the Mega Menu.
 * Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered. You can monitor the status of the build here: [Codeship for re-usable components](https://codeship.com/projects/99389)
 
     This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be available for preview at [http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html](http://assets.library.uq.edu.au/master/reusable-components/elements/demo/index.html).
-    
+
 Bear in mind: once you have made this change it could go live at any time - if you need a specific date consider a PT and have the developers manage the whole thing.
 
-#### After UX Services staff have pushed their changes, developers should:
+#### Steps for devs after UX Services staff have pushed their changes
 
 * For `uqlibrary-reusable-components`: confirm master build has passed
 * For `uqlibrary-pages`: start rebuild of production branch (after reusable master passes; it pulls master of reusable, no release necessary) - updates homepage
@@ -105,7 +105,9 @@ Embed the following if you want to force an IMS login for on campus workstations
 
 Please, read [Style Guide](http://polymerelements.github.io/style-guide/) before starting development.
 
-All common styles, colours, or mix-ins are located in /elements/common-styles.html
+All common styles, colours, or mix-ins are located in `/elements/common-styles.html`
+
+Follow [directions here](https://github.com/uqlibrary/uqlibrary-pages#updating-uql-component-dependencies) for post-dev steps to make sure that changes from child components make it to this repo.
 
 #### Development/Deployment process
 
@@ -159,6 +161,7 @@ gulp test
         ```bash
         java -jar selenium-server-standalone-{VERSION}.jar
         ```
+
         You may want to create a bash alias for this.
 
     * On OSX, `brew install selenium-server-standalone` to install, and then run the server with:
@@ -175,17 +178,23 @@ gulp test
     * Test commands (run from the `bin` directory: `cd bin`):
 
         * Run all the tests using the default driver (`geckodriver`)
+
             ```bash
             nightwatch -c nightwatch.json --tag e2etest
             ```
+
         * Run all the tests using the Chrome driver
+
             ```bash
             nightwatch -c nightwatch.json --tag e2etest --env chrome
             ```
+
         * Run omeka-specific tests (tag defined in `test/e2e/e2e.omeka.js` )
+
             ```bash
             nightwatch -c nightwatch.json --tag omeka
             ```
+
             * Replace 'omeka' with whichever one you want to run, from test/e2e/e2e.*.js except the "minimal" one.
             * The nightwatch e2e tests are setup as one file per project, plus a file of minimal common items which isn't valid to run on its own. To only run the valid tests, use the tag `e2etest`.
 
