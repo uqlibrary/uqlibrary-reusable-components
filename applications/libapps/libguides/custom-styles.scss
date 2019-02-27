@@ -418,26 +418,26 @@ h3, h4 {
   font-weight: bold !important;
 }
 
-.uq-title-text.uq-minimal-header,
-.application-title a,
-.library-title a {
+.s-lg-guide-body .uq-title-text.uq-minimal-header,
+.s-lg-guide-body .application-title a,
+.s-lg-guide-body .library-title a {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
 }
 
 @media only screen and (min-width: 642px) {
-  .uq-title-text.uq-minimal-header,
-  .application-title a,
-  .library-title a {
+  .s-lg-guide-body .uq-title-text.uq-minimal-header,
+  .s-lg-guide-body .application-title a,
+  .s-lg-guide-body .library-title a {
     font-size: 20px;
   }
 }
 
 @media only screen and (min-width: 1049px) {
-  .uq-title-text.uq-minimal-header,
-  .application-title a,
-  .library-title a {
+  .s-lg-guide-body .uq-title-text.uq-minimal-header,
+  .s-lg-guide-body .application-title a,
+  .s-lg-guide-body .library-title a {
     font-size: 23px;
   }
 }
