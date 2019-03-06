@@ -4,7 +4,8 @@
 `<uql-drawer-panel>` is a vertical main menu. In future can be used as a scaffold for application.
 
 Example:
-      <uql-drawer-panel></uql-drawer-panel>
+
+    <uql-drawer-panel></uql-drawer-panel>
 
 @demo uql-drawer-panel/demo/index.html
 -->
@@ -40,17 +41,17 @@ Example:
       }
 
       .menu a {
-        @apply(--layout-flex);
-        @apply(--layout-horizontal);
-        @apply(--layout-center);
+        @apply --layout-flex;
+        @apply --layout-horizontal;
+        @apply --layout-center;
 
-        @apply(--menu-item);
+        @apply --menu-item;
 
         border-top: 1px solid var(--menu-open-background-color);
       }
 
       .menu a .label {
-        @apply(--layout-flex);
+        @apply --layout-flex;
       }
 
       .menu a:hover {

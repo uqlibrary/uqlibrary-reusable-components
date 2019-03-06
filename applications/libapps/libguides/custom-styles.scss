@@ -1,4 +1,4 @@
-@import "../../../bower_components/uqlibrary-styles/skeleton.scss";
+@import "../../../../uqlibrary-styles/skeleton.scss";
 
 * {
   margin: 0;
@@ -418,37 +418,46 @@ h3, h4 {
   font-weight: bold !important;
 }
 
-body.s-lg-guide-body .uq-title-text.uq-minimal-header,
-body.s-lg-guide-body .application-title a,
-body.s-lg-guide-body .library-title a {
+.s-lg-guide-body .uq-title-text.uq-minimal-header,
+.s-lg-guide-body .application-title a,
+.s-lg-guide-body .library-title a {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
 }
 
 @media only screen and (min-width: 642px) {
-  body.s-lg-guide-body .uq-title-text.uq-minimal-header,
-  body.s-lg-guide-body .application-title a,
-  body.s-lg-guide-body .library-title a {
+  .s-lg-guide-body .uq-title-text.uq-minimal-header,
+  .s-lg-guide-body .application-title a,
+  .s-lg-guide-body .library-title a {
     font-size: 20px;
   }
 }
 
 @media only screen and (min-width: 1049px) {
-  body.s-lg-guide-body .uq-title-text.uq-minimal-header,
-  body.s-lg-guide-body .application-title a,
-  body.s-lg-guide-body .library-title a {
+  .s-lg-guide-body .uq-title-text.uq-minimal-header,
+  .s-lg-guide-body .application-title a,
+  .s-lg-guide-body .library-title a {
     font-size: 23px;
   }
 }
 
-body.s-lg-guide-body li.uql-global-links a.uql-global-links {
+li.uql-global-links a.uql-global-links {
   font-size: 10.4px;
 }
 
-body.s-lg-guide-body uql-chat-proactive paper-card.popupinvite,
-body.s-lg-guide-body uql-chat-proactive paper-card.popupinvite p {
+div.proactivechat uql-chat-proactive paper-card.popupinvite,
+div.proactivechat uql-chat-proactive paper-card.popupinvite p.uql-chat-proactive.uql-chat-proactive,
+div.proactivechat uql-chat-proactive paper-button.button-colored-theme.tab-button.style-scope.uql-chat-proactive.x-scope.paper-button-0 {
   font-size: 16px;
   font-weight: normal;
+}
+
+div.proactivechat h3.uql-chat-proactive {
+  font-weight: normal !important;
+}
+ul.uql-global-links li.uql-global-links a.uql-global-links {
+  font-size: 10px;
+  margin-right: 8px;
 }
 

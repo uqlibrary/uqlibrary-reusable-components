@@ -11,6 +11,7 @@ aws.json
 aws.json-e
 *.html-e
 aws-env.sh
+wct.conf.js
 
 tmp
 .sass-cache
