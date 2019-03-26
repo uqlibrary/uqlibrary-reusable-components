@@ -1,4 +1,40 @@
-@import "../../../bower_components/uqlibrary-styles/skeleton.scss";
+@import "../../../../uqlibrary-styles/skeleton.scss";
+
+$font: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$nav-border: 4px solid #51247A;
+$page-background-color: #FAFAFA;
+$border-bottom-color: #8CB800;
+$button-color: #0E62EB;
+
+%navlinks {
+  border-radius: 0 2px 2px 0 !important;
+  background: #EEE;
+  font-size: 14px/1.2;
+  cursor: pointer;
+  color: #2662E3;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 1px 0;
+  background: url("https://assets.library.uq.edu.au/reusable-components/resources/images/arrow-right.png") no-repeat scroll right 12px transparent;
+  padding: 0.6em 0;
+}
+
+%navlinks-hover {
+  background-color: transparent;
+  color: #840C99;
+  border-bottom: 1px solid #eee;
+}
+
+%shadow {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin hover-style($color) {
+  background: transparent;
+  border-bottom: 4px solid $color !important;
+  transition: all .1s ease;
+}
 
 * {
   margin: 0;
@@ -13,9 +49,221 @@ body {
 }
 
 body {
-  font-family: Helvetica, Arial, Roboto, sans-serif;
-  font-weight: 400;
-  background: #fafafa;
+  font-family: $font;
+  font-weight: 300;
+  background: $page-background-color;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+}
+
+h1 {
+	color: #49075E;
+    font-size: 1.938rem;
+    font-weight: 400;
+}
+
+h2 {
+	font-size: 1.438rem;
+}
+
+h3,
+h4 {
+  font-weight: bold !important;
+}
+
+h3 {
+	font-size: 1.25rem;
+}
+
+h4 {
+	font-size: 1.138rem;
+}
+
+h5 {
+	font-size: 1rem;
+}
+
+a {
+  color: #2377CB;
+  text-decoration: none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  &:hover,
+  &:focus {
+    color: #005EA5;
+    text-decoration: underline;
+  }
+}
+
+/* Lists - remove margins from lists to make sure spacing is equal
+some pages have multiple UL's, which makes spacing between UL's different to spacing between LI's in the lists
+*/
+ul, ol {
+  margin: 0 0 18px 8px;
+}
+
+.table {
+  & > thead {
+    & > tr {
+      & > th {
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+.container,
+.container-fluid {
+    & > .navbar-header,
+    & > .navbar-collapse {
+      margin: 0 -15px;
+    }
+}
+
+.nav {
+  & > li {
+    & > a {
+      &:hover,
+      &:focus {
+        color: #007E9E;
+        text-decoration: none;
+        background-color: #FCFCFC;
+        outline: none;
+      }
+    }
+  }
+}
+
+.nav-pills {
+  & > li {
+    &.active {
+      & > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: #007E9E !important;
+        }
+      }
+    }
+  }
+}
+
+.breadcrumb>.active {
+  color: #737373;
+}
+
+/* little dropdown containing sub-menu items */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  display: none;
+  float: left;
+  padding: 0 12px;
+  min-width: 10px;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #FFF;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, .15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  & > li {
+    &:hover {
+      border-bottom: none;
+    }
+    & > a {
+      padding: 6px 0;
+    }
+  }
+  #s-lg-guide-tabs & {
+    padding-bottom: 1px;
+  }
+}
+
+.tabs {
+  height: 30px;
+  margin-bottom: 8px;
+  ul {
+    li {
+      margin-bottom: -1px;
+      margin-top: 2px;
+      margin-right: 4px;
+      border-radius: 2px 2px 0 0;
+      padding: 0 8px;
+      border-bottom: 4px solid #FCFCFC;
+      transition: all .1s ease;
+      &:hover {
+        color: #333 !important;
+        border-bottom: 4px solid $border-bottom-color;
+        transition: all .1s ease;
+      }
+      a {
+        color: #333 !important;
+        background: transparent !important;
+        background-color: transparent;
+        border: none !important;
+        font-weight: 400 !important;
+        &:hover {
+          color: #000 !important;
+        }
+      }
+    }
+    .active {
+      border-bottom: $nav-border;
+      a{
+        span {
+          font-weight: normal !important;
+        }
+      }
+    }
+  }
+}
+
+.panel-group {
+  .panel {
+    @extend %shadow;
+    border-radius: 2px;
+  }
+}
+
+.panel-default {
+  border-color: #CCC;
+  & > .panel-heading {
+    border-radius: 2px;
+    background-color: #FEFEFE;
+  }
+}
+
+.ui-tabs-nav {
+  background: transparent;
+  border: none;
+  .ui-tabs & {
+    li {
+      border: none;
+      background: $page-background-color;
+    }
+    .ui-state-default {
+      @include hover-style(transparent);
+      &:hover {
+        border-bottom-color: $border-bottom-color !important;
+      }
+    }
+    .ui-state-active {
+      &,
+      &:hover {
+        background: transparent;
+        border: none;
+        border-bottom: 4px solid $border-bottom-color !important;
+        cursor: text;
+      }
+    }
+  }
+}
+
+.ui-state-hover {
+  @include hover-style($border-bottom-color);
 }
 
 #s-lib-bc .breadcrumb,
@@ -25,10 +273,6 @@ body {
   padding-bottom: 6px;
 }
 
-.breadcrumb>.active {
-  color: #737373;
-}
-
 .s-lib-footer {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -36,143 +280,153 @@ body {
   background-color: transparent;
 }
 
-.container>.navbar-header,
-.container-fluid>.navbar-header,
-.container>.navbar-collapse,
-.container-fluid>.navbar-collapse {
-  margin: 0 -15px;
-}
-
-/* styles for enclosing side nav */
-
-.s-lg-tabs-side > .nav {
-  background: #fff;
-  border: none;
-  padding: 0 0 0 16px;
-  margin: 1.5em 0;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-}
-/* little dropdown containing sub-menu items */
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  z-index: 1000;
-  display: none;
-  float: left;
-  padding: 0px 12px;
-  min-width: 10px;
-  font-size: 14px;
-  text-align: left;
-  list-style: none;
-  background-color: #fff;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, .15);
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
-
-.dropdown-menu>li>a {
-  padding: 6px 0;
-}
-
-.dropdown-menu>li:hover {
-  border-bottom: none;
-}
-
-#s-lg-guide-tabs .dropdown-menu {
-  padding-bottom: 1px;
-}
-
 #s-lg-tabs-container {
   padding-bottom: 1px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #DDD;
+  .nav-tabs,
+  .nav-pills {
+    & > li {
+      &.active {
+        & > a {
+          border-left: $nav-border;
+        }
+      }
+      & > a {
+        @extend %navlinks;
+        &:hover {
+          @extend %navlinks-hover;
+        }
+      }
+    }
+    & > .active {
+      & > a {
+        color: #333;
+        background-color: transparent;
+        background: url("https://assets.library.uq.edu.au/reusable-components/resources/images/arrow-down.png") no-repeat scroll right 12px transparent;
+        font-weight: normal;
+        padding: 0.6em 0;
+        border-bottom: 1px solid #EEE;
+        &:hover {
+          color: #333;
+          background-color: transparent;
+          border-bottom: 1px solid #EEE;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+  .nav-tabs {
+    & > li {
+      & > a.s-lg-tab-top-link,
+      & > button.s-lg-tab-top-link {
+        &,
+        &:hover {
+          margin-bottom: -1px;
+          margin-top: 2px;
+          background-color: #ddd;
+          border-radius: 5px 5px 0 0;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+  .nav-pills {
+    & > .active {
+      & > a {
+        &,
+        &:hover {
+          border-left: $nav-border;
+        }
+      }
+      & > li {
+        & > a {
+          &,
+          &:hover {
+            border-left: $nav-border;
+          }
+        }
+      }
+    }
+    & > li {
+      &:not(.dropdown-menu) {
+        & > ul {
+          & > li {
+            a {
+              border-bottom: 0 solid #EEE;
+            }
+          }
+        }
+      }
+      & > #s-lg-admin-tab-anchor {
+        background: none !important;
+      }
+      & > ul {
+        & > li {
+          & > a {
+            background: none !important;
+          }
+        }
+      }
+    }
+  }
+  .dropdown {
+    & > .dropdown-toggle {
+      color: #333 !important;
+      font-weight: normal !important;
+      .caret {
+        display: inline-block;
+        border-top-color: black;
+      }
+      &:hover {
+        color: #333 !important;
+        font-weight: normal !important;
+      }
+    }
+  }
+  ul {
+    & > .active {
+      & > .active {
+        /* always bold the top-level selected menu item */
+        font-weight: bold !important;
+      }
+    }
+  }
+  .caret {
+    display: none;
+  }
 }
 
-#s-lg-tabs-container .nav-pills > li > ul > li > a {
-  background: none !important;
-}
-
-#s-lg-guide-tabs .s-lg-tabs-side .nav .dropdown a,
-#s-lg-tabs-container .nav-tabs > li > a,
-#s-lg-tabs-container .nav-pills > li > a {
-  border-radius: 0px 2px 2px 0px !important;
-  background: #eee;
-  font: 14px/1.2 Arial, Helvetica, sans-serif;
-  cursor: pointer;
-  color: #2662E3;
-  border-bottom: 1px solid #eee;
-  margin: 0 0 1px 0;
-  background: url("https://assets.library.uq.edu.au/reusable-components/resources/images/arrow-right.png") no-repeat scroll right 12px transparent;
-
-  padding: 0.6em 0;
-}
-/* submenu items */
-
-#s-lg-guide-tabs .s-lg-tabs-side .nav .dropdown a:hover,
-#s-lg-tabs-container .nav-tabs > li > a:hover,
-#s-lg-tabs-container .nav-pills > li > a:hover {
-  background-color: transparent;
-  color: #840c99;
-  border-bottom: 1px solid #eee;
-}
-/* non-currently-selected main nav links */
-
-#s-lg-tabs-container .dropdown > .dropdown-toggle {
-  color: #333 !important;
-  font-weight: normal !important;
-}
-
-#s-lg-tabs-container .dropdown > .dropdown-toggle:hover {
-  color: #333 !important;
-  font-weight: normal !important;
-}
-/* always bold the top-level selected menu item */
-
-#s-lg-tabs-container ul > .active > .active {
-  font-weight: bold !important;
-}
-
-#s-lg-tabs-container .nav-tabs > .active > a,
-#s-lg-tabs-container .nav-pills > .active > a {
-  color: #333;
-  background-color: transparent;
-  background: url("https://assets.library.uq.edu.au/reusable-components/resources/images/arrow-down.png") no-repeat scroll right 12px transparent;
-  font-weight: normal;
-  padding: 0.6em 0;
-  border-bottom: 1px solid #eee;
-}
-
-#s-lg-tabs-container .nav-tabs > .active > a:hover,
-#s-lg-tabs-container .nav-pills > .active > a:hover {
-  color: #333;
-  background-color: transparent;
-  border-bottom: 1px solid #eee;
-  font-weight: normal;
-}
-
-#s-lg-tabs-container .caret {
-  display: none;
-}
-
-#s-lg-hp-nav-bottom {
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  background-color: #fefefe;
-  box-shadow: 0 2px 8px #ccc;
-}
-
-.panel-default>.panel-heading {
-  border-radius: 2px;
-  background-color: #fefefe;
-}
-
-#s-lg-hp-nav>ul>li, .panel-group .panel {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+/* styles for enclosing side nav */
+.s-lg-tabs-side {
+  & > .nav {
+    background: #FFF;
+    border: none;
+    padding: 0 0 0 16px;
+    margin: 1.5em 0;
+    box-shadow:
+      0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12),
+      0 3px 1px -2px rgba(0, 0, 0, 0.2)
+    ;
+  }
+  #s-lg-guide-tabs & {
+    .nav {
+      .dropdown {
+        a {
+          @extend %navlinks;
+          &:hover {
+            @extend %navlinks-hover;
+          }
+        }
+      }
+    }
+  }
+  .s-lg-boxnav {
+    .list-group-item {
+      background-color: #EEE;
+    }
+  }
 }
 
 .s-lib-box {
@@ -181,123 +435,68 @@ body {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
   0 1px 5px 0 rgba(0, 0, 0, 0.12),
   0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  background-color: #fefefe;
+  background-color: #FEFEFE;
+  .s-lib-box-title {
+    font-size: 1.623rem;
+    margin-bottom: 0;
+    padding: 12px 9px;
+    color: #212121;
+    font-weight: 600;
+    background: #EEE;
+    border-bottom: 1px solid #CCC;
+  }
 }
 
 #s-lg-guide-main {
   padding: 0;
 }
 
-.s-lib-box .s-lib-box-title {
-  font-size: 14px;
-  margin-bottom: 0;
-  padding: 12px 9px;
-  color: #212121;
-  font-weight: 500;
-  background: #fefefe;
-  border-bottom: 1px solid #ccc;
-}
-
 #s-lib-scroll-top {
   display: none !important;
-}
-
-.tabs ul li {
-  margin-bottom: -1px;
-  margin-top: 2px;
-  margin-right: 4px;
-  border-radius: 2px 2px 0px 0px;
-  padding: 0px 8px;
-  border-bottom: 4px solid #fcfcfc;
-  -webkit-transition: all .1s ease;
-  -moz-transition: all .1s ease;
-  -o-transition: all .1s ease;
-  -ms-transition: all .1s ease;
-  transition: all .1s ease;
-}
-
-.tabs ul li:hover {
-  color: #333 !important;
-  border-bottom: 4px solid #8CB800;
-  -webkit-transition: all .1s ease;
-  -moz-transition: all .1s ease;
-  -o-transition: all .1s ease;
-  -ms-transition: all .1s ease;
-  transition: all .1s ease;
-}
-
-.tabs ul li a {
-  color: #333 !important;
-  background: transparent !important;
-  background-color: transparent;
-  border: none !important;
-}
-
-.tabs ul li a:hover {
-  color: #000 !important;
-}
-
-.tabs ul .active {
-  border-bottom: 4px solid #8CB800;
-  /*background-color: #5D8100 !important;
-      color: white !important;*/
-}
-
-.tabs ul .active a span {
-  font-weight: normal !important;
-}
-
-.tabs {
-  height: 30px;
-  margin-bottom: 8px;
 }
 
 #s-lg-guide-tabs-title-bar {
   border: none !important;
 }
 
-.input-group-sm>.form-control,
-.input-group-sm>.input-group-addon,
-.input-group-sm>.input-group-btn>.btn {
-  border-radius: 2px !important;
+.input-group-sm {
+  & > .form-control,
+  & > .input-group-addon {
+    border-radius: 2px !important;
+  }
+  & > .input-group-btn {
+    & > .btn {
+      border-radius: 2px !important;
+    }
+  }
 }
 
 #s-lg-guide-name {
   font-size: 32px;
 }
 
-.s-lg-srch-listing-meta li,
-.s-lib-box-content li {
-  margin-left: 15px;
+.s-lg-srch-listing-meta,
+.s-lib-box-content {
+  li {
+    margin-left: 15px;
+  }
 }
 
-a {
-  color: #007e9e;
+.s-lib-box-content {
+  padding: 20px;
 }
 
-.ui-widget-content a {
-  color: #007e9e !important;
-}
-
-.nav>li>a:hover,
-.nav>li>a:focus {
-  color: #007e9e;
-  text-decoration: none;
-  background-color: #fcfcfc;
-  outline: none;
-}
-
-.nav-pills>li.active>a,
-.nav-pills>li.active>a:hover,
-.nav-pills>li.active>a:focus {
-  background-color: #007e9e !important;
+.ui-widget-content {
+  a {
+    color: #007E9E !important;
+  }
 }
 
 #s-lg-srch-results {
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #FFF;
+  border: 1px solid #CCC;
   padding: 16px;
-  box-shadow: 0 2px 8px #ccc;
+  box-shadow: 0 2px 8px #CCC;
 }
 
 #s-lg-srch-nav {
@@ -308,13 +507,14 @@ a {
   padding-left: 0;
 }
 
-.s-lib-profile-email .label.label-info {
-  color: #FFFFFF;
-  background-color: #007E9E;
-  border-color: #007E9E;
-  font-family: Roboto, 'sans serif', Helvetica, Arial;
-  padding: 10px 15px;
-  font-weight: 400;
+.s-lib-profile-email {
+  .label.label-info {
+    color: #FFF;
+    background-color: $button-color;
+    border: 1px solid $button-color;
+    font-weight: 400;
+    font-size: 1em !important;
+  }
 }
 
 /* Front page: Hide info boxes with subject guide URL from subject list */
@@ -323,132 +523,131 @@ a {
 }
 
 /* Multi-level menu - display arrow-down to indicate a dropdown */
-#s-lg-guide-tabs li.dropdown {
-  background: url("https://assets.library.uq.edu.au/reusable-components/resources/images/arrow-down.png") no-repeat scroll right 12px transparent;
-  padding-right: 8px;
-  margin-right: 12px;
-}
-
-/* Front page - search box fix */
-#s-lg-hp-nav #s-lg-hp-nav-bottom form[role=search] span
-{
-  padding-right: 10px
-}
-#s-lg-hp-nav #s-lg-hp-nav-bottom form[role=search].pull-right {
-  clear: both;
-  float: none !important;
-}
-#s-lg-hp-nav #s-lg-hp-nav-bottom form[role=search] .form-group {
-  width: 70%;
-}
-
-#s-lg-hp-nav #s-lg-hp-nav-bottom form[role=search] .form-group .input-group,
-#s-lg-hp-nav #s-lg-hp-nav-bottom form[role=search] .form-control,
-#s-lg-hp-nav #s-lg-hp-nav-bottom form[role=search] .s-lg-public-search-field {
-  width: 100%;
-}
-#s-lg-hp-nav #s-lg-hp-nav-bottom form[role=search] .btn-default {
-  color: #FFFFFF;
-  background-color: #007E9E;
-  border-color: #007E9E;
-}
-
-@media (max-width:768px) {
-  #s-lg-hp-nav #s-lg-hp-nav-bottom form[role=search] .form-group {
-    width: 100%;
+#s-lg-guide-tabs {
+  .nav-tabs {
+    & > li {
+      margin-bottom: -1px;
+      margin-top: 2px;
+      background-color: #DDD;
+      border-radius: 5px 5px 0 0;
+    }
+  }
+  li {
+    &.dropdown {
+      padding-top: 5px;
+      padding-bottom: 6px;
+    }
   }
 }
 
-/* Lists - remove margins from lists to make sure spacing is equal
-some pages have multiple UL's, which makes spacing between UL's different to spacing between LI's in the lists
-*/
-ul, ol {
-  margin: 0 0 18px 8px;
-}
-.panel-group .panel {
+#s-lg-hp-nav-bottom {
+  border: 1px solid #CCC;
   border-radius: 2px;
-}
-.panel-default {
-  border-color: #ccc;
+  background-color: #FEFEFE;
+  box-shadow: 0 2px 8px #CCC;
 }
 
-#s-lg-tabs-container .nav-pills>li>#s-lg-admin-tab-anchor {
-  background: none !important;
-}
-.ui-tabs-nav {
-  background: transparent;
-  border: none;
-}
-.ui-tabs .ui-tabs-nav li {
-  border: none;
-  background: #fafafa;
-}
-.ui-tabs .ui-tabs-nav .ui-state-default {
-  background: transparent;
-  border-bottom: 4px solid transparent !important;
-  -webkit-transition: all .1s ease;
-  -moz-transition: all .1s ease;
-  -o-transition: all .1s ease;
-  -ms-transition: all .1s ease;
-  transition: all .1s ease;
-}
-.ui-tabs .ui-tabs-nav .ui-state-default:hover, .ui-state-hover {
-  background: transparent;
-  border-bottom: 4px solid #8CB800 !important;
-  -webkit-transition: all .1s ease;
-  -moz-transition: all .1s ease;
-  -o-transition: all .1s ease;
-  -ms-transition: all .1s ease;
-  transition: all .1s ease;
-}
-.ui-tabs .ui-tabs-nav .ui-state-active, .ui-tabs .ui-tabs-nav .ui-state-active:hover {
-  background: transparent;
-  border: none;
-  border-bottom: 4px solid #8CB800 !important;
-  cursor: text;
+#s-lg-hp-nav {
+  & > ul {
+    & > li {
+      @extend %shadow;
+    }
+  }
+  #s-lg-hp-nav-bottom {
+    form {
+      &[role=search] {
+        &.pull-right {
+          clear: both;
+          float: none !important;
+        }
+        span {
+          padding-right: 10px
+        }
+        .form-group {
+          width: 70%;
+          @media (max-width:768px) {
+            width: 100%;
+          }
+          .input-group {
+            width: 100%;
+          }
+        }
+        .form-control,
+        .s-lg-public-search-field {
+          width: 100%;
+        }
+        .btn-default {
+          color: #FFF;
+          background-color: $button-color;
+          border: 1px solid $button-color;
+        }
+      }
+    }
+  }
 }
 
 /* PT94260140 - h3/h4 headers font-size in a box container */
-.s-lib-box-container .s-lib-box-content h3,
-.s-lib-box-container .s-lib-box-content h4 {
-  font-size: 13px;
-}
-
-h3, h4 {
-  font-weight: bold !important;
-}
-
-body.s-lg-guide-body .uq-title-text.uq-minimal-header,
-body.s-lg-guide-body .application-title a,
-body.s-lg-guide-body .library-title a {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.2;
-}
-
-@media only screen and (min-width: 642px) {
-  body.s-lg-guide-body .uq-title-text.uq-minimal-header,
-  body.s-lg-guide-body .application-title a,
-  body.s-lg-guide-body .library-title a {
-    font-size: 20px;
+.s-lib-box-container {
+  .s-lib-box-content {
+    h3,
+    h4 {
+      font-size: 13px;
+    }
   }
 }
 
-@media only screen and (min-width: 1049px) {
-  body.s-lg-guide-body .uq-title-text.uq-minimal-header,
-  body.s-lg-guide-body .application-title a,
-  body.s-lg-guide-body .library-title a {
-    font-size: 23px;
+.uq-minimal-header {
+  .uq-title-text.uq-minimal-header,
+  .application-title a,
+  .library-title a {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    @media only screen and (min-width: 642px) {
+      font-size: 20px;
+    }
+    @media only screen and (min-width: 1049px) {
+      font-size: 23px;
+    }
   }
 }
 
-body.s-lg-guide-body li.uql-global-links a.uql-global-links {
-  font-size: 10.4px;
+div.proactivechat {
+  uql-chat-proactive {
+    paper-card.popupinvite,
+    paper-button.button-colored-theme.tab-button.style-scope.uql-chat-proactive.x-scope.paper-button-0 {
+      font-size: 16px;
+      font-weight: normal;
+    }
+    paper-card.popupinvite {
+      p.uql-chat-proactive.style-scope {
+        font-size: 16px;
+        font-weight: normal;
+      }
+    }
+  }
+  h3 {
+    &.uql-chat-proactive {
+      font-weight: normal !important;
+    }
+  }
 }
 
-body.s-lg-guide-body uql-chat-proactive paper-card.popupinvite,
-body.s-lg-guide-body uql-chat-proactive paper-card.popupinvite p {
-  font-size: 16px;
-  font-weight: normal;
+#rightNowChatLinkContainer {
+  #rightNowChatLinkInfo {
+    & > span {
+      background-color: $button-color;
+      font-weight: 400;
+    }
+  }
 }
 
+li.uql-global-links {
+  a.uql-global-links {
+    font-size: 10.4px;
+    ul.uql-global-links & {
+      font-size: 10px;
+      margin-right: 8px;
+    }
+  }
+}

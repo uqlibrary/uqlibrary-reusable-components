@@ -1,4 +1,4 @@
-@import "../../bower_components/uqlibrary-styles/skeleton.scss";
+@import "../../../uqlibrary-styles/skeleton.scss";
 
 html,
 body {
@@ -82,4 +82,21 @@ uql-connect-footer
 
 a.uql-global-links {
   font-size: 10.4px !important;
+}
+
+
+#uqlapp .uq-title-text,
+#uqlapp .application-title,
+#uqlapp .library-title {
+  font-size: 20.4px;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 90.0625em) {
+  #uqlapp .uq-title-text,
+  #uqlapp .application-title,
+  #uqlapp .library-title {
+    font-size: 23px;
+    font-weight: 500;
+  }
 }
