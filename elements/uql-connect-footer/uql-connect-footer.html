@@ -56,26 +56,26 @@
         max-width: var(--max-width);
         padding: 20px;
 
-        @apply(--layout-horizontal);
-        @apply(--layout-justified);
-        @apply(--layout-wrap);
+        @apply --layout-horizontal;
+        @apply --layout-justified;
+        @apply --layout-wrap;
       }
 
       .navigation,
       .buttons,
       .contacts {
-        @apply(--layout-flex);
+        @apply --layout-flex;
       }
 
       .contacts {
-        @apply(--layout-vertical);
+        @apply --layout-vertical;
         min-height:100%;
         position:relative;
       }
 
       .buttons{
-        @apply(--layout-vertical);
-        @apply(--layout-center);
+        @apply --layout-vertical;
+        @apply --layout-center;
       }
 
       h4 {
@@ -87,8 +87,8 @@
       }
 
       .social{
-        @apply(--layout-horizontal);
-        @apply(--layout-top);
+        @apply --layout-horizontal;
+        @apply --layout-top;
       }
 
       .social paper-button {
@@ -132,15 +132,15 @@
       @media all and (max-width: 780px) {
 
         .sub-footer-content {
-          @apply(--layout-vertical);
-          @apply(--layout-center-justified);
+          @apply --layout-vertical;
+          @apply --layout-center-justified;
         }
 
         .navigation,
         .buttons,
         .contacts,
         .contacts ul {
-          @apply(--layout-flex-none);
+          @apply --layout-flex-none;
         }
 
         .buttons {
@@ -156,7 +156,7 @@
 
         .contacts, .internal {
           margin-top:30px;
-          @apply(--layout-center);
+          @apply --layout-center;
         }
 
         li.separator:last-of-type {
@@ -199,36 +199,36 @@
           <h4>Connect with us</h4>
           <div class="social">
             <paper-button class="button-social" tabindex="-1">
-              <a href="https://web.library.uq.edu.au/blog" target="_blank" title="UQ Library Blog" on-tap="_gaLinkClicked">
+              <a href="https://web.library.uq.edu.au/blog" target="_blank" title="Library Blog" on-tap="_gaLinkClicked">
                 Blog
               </a>
             </paper-button>
 
             <paper-button class="button-social" tabindex="-1">
-              <a href="https://twitter.com/uqlibrary/" target="_blank" rel="external" title="UQ Library on Twitter" on-tap="_gaLinkClicked">
+              <a href="https://twitter.com/uqlibrary/" target="_blank" rel="external" title="Library on Twitter" on-tap="_gaLinkClicked">
                 <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/twitter.png"
-                           aria-label="UQ Library on Twitter" title="Twitter" alt="Twitter icon"></iron-icon>
+                           aria-label="Library on Twitter" title="Twitter" alt="Twitter icon"></iron-icon>
               </a>
             </paper-button>
 
             <paper-button class="button-social" tabindex="-1">
-              <a href="https://www.facebook.com/uniofqldlibrary" target="_blank" rel="external" title="UQ Library on Facebook" on-tap="_gaLinkClicked">
+              <a href="https://www.facebook.com/uniofqldlibrary" target="_blank" rel="external" title="Library on Facebook" on-tap="_gaLinkClicked">
                 <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/facebook.png"
-                           aria-label="UQ Library on Facebook" title="Facebook" alt="Facebook icon"></iron-icon>
+                           aria-label="Library on Facebook" title="Facebook" alt="Facebook icon"></iron-icon>
               </a>
             </paper-button>
 
             <paper-button class="button-social" tabindex="-1">
-              <a href="https://www.instagram.com/uniofqldlibrary/" target="_blank" rel="external" title="UQ Library on Instagram" on-tap="_gaLinkClicked">
+              <a href="https://www.instagram.com/uniofqldlibrary/" target="_blank" rel="external" title="Library on Instagram" on-tap="_gaLinkClicked">
                 <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/instagram.png"
-                           aria-label="UQ Library on Instagram" title="Instagram" alt="Instagram icon"></iron-icon>
+                           aria-label="Library on Instagram" title="Instagram" alt="Instagram icon"></iron-icon>
               </a>
             </paper-button>
 
             <paper-button class="button-social" tabindex="-1">
-              <a href="https://www.youtube.com/user/uqlibrary" target="_blank" rel="external" title="UQ Library on YouTube" on-tap="_gaLinkClicked">
+              <a href="https://www.youtube.com/user/uqlibrary" target="_blank" rel="external" title="Library on YouTube" on-tap="_gaLinkClicked">
                 <iron-icon src="//assets.library.uq.edu.au/reusable-components/resources/social-media-icons/youtube.png"
-                           aria-label="UQ Library on YouTube" title="YouTube" alt="YouTube icon"></iron-icon>
+                           aria-label="Library on YouTube" title="YouTube" alt="YouTube icon"></iron-icon>
               </a>
             </paper-button>
           </div>

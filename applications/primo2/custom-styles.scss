@@ -62,7 +62,7 @@
 }
 
 @import "www/styles/main";
-@import "../../bower_components/uqlibrary-styles/skeleton.scss";
+@import "../../../uqlibrary-styles/skeleton.scss";
 
 /* Style imports to override primo defaults */
 @import "styles-imports/main-search-buttons";
@@ -260,4 +260,8 @@ strong.facet-title.layout-align-end-stretch.layout-row {
 }
 prm-atoz-search-bar {
   background-color: transparent;
+}
+
+.section-content .md-chips .md-chip.wrapping-chip .facet-title {
+  margin-right: 0;
 }

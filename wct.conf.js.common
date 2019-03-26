@@ -1,0 +1,20 @@
+module.exports = {
+  'suites': ['test'],
+  'webserver': {
+    'pathMappings': []
+  },
+    plugins: {
+        sauce: {
+            browsers: [
+                'Windows 10/internet explorer',
+                'Windows 10/chrome',
+                'Windows 10/firefox@60', // ESR - check # at https://www.mozilla.org/en-US/firefox/organizations/
+            ]
+        },
+        local: {
+            "browsers": [
+                "chrome"
+            ]
+        }
+    }
+};

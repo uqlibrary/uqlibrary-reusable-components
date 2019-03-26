@@ -2,12 +2,25 @@
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
 set -e
 
-if [ -z ${TMPDIR} ]; then # codeship doesnt seem to set this
-  TMPDIR="/tmp/"
+# if you want to log any saucelab errors to the codeship log, set LOG_SAUCELAB_ERRORS to true in the codeship variables
+# at https://app.codeship.com/projects/131650/environment/edit;
+# else leave it missing in codeship environment variables or false
+if [[ -z $LOG_SAUCELAB_ERRORS ]]; then
+    LOG_SAUCELAB_ERRORS=false
+fi
+if [[ "$LOG_SAUCELAB_ERRORS" == true ]]; then
+    if [ -z ${TMPDIR} ]; then # codeship doesnt seem to set this
+      TMPDIR="/tmp/"
+    fi
 fi
 
 SAUCELABS_LOG_FILE="${TMPDIR}sc.log"
 function logSauceCommands {
+  if [[ "$LOG_SAUCELAB_ERRORS" != true ]]; then
+    echo "An error happened and (presumably) saucelabs failed but we arent reporting the output - set LOG_SAUCELAB_ERRORS to true in Codeship Environment Variables to see the log next time"
+    return
+  fi
+
   if [ ! -f "$SAUCELABS_LOG_FILE" ]; then
     echo "$SAUCELABS_LOG_FILE not found - looking for alt file"
     # testing with check /tmp/sc.log presencewct? it writes to a subdirectory, eg /tmp/wct118915-6262-1w0uwzy.q8it/sc.log
@@ -79,9 +92,24 @@ case "$PIPE_NUM" in
   echo "On Saucelabs failure, will look for error log here: $SAUCELABS_LOG_FILE"
   trap logSauceCommands EXIT
 
-  echo "WCT: remote unit testing (for Master and Prod branch only)..."
+  echo "WCT: remote unit testing - test most common browsers on Master and Prod..."
+  # check analytics at least annually to confirm correct browser choice
+  # Win/Chrome is our most used browser, 2018
+  # Win/FF is our second most used browser, 2018 - we have the ESR release on Library Desktop SOE
+  # IE11 should be tested on master for earlier detection of problematic js
   if [[ (${CI_BRANCH} == "master" || ${CI_BRANCH} == "production") ]]; then
+    printf "\n-- Remote unit testing on Saucelabs --\n\n"
+    cp wct.conf.js.common wct.conf.js
     gulp test:remote
+    rm wct.conf.js
+  fi
+
+  echo "WCT: remote unit testing on prod for other browsers..."
+  if [[ (${CI_BRANCH} == "production") ]]; then
+    printf "\n-- Remote unit testing on Saucelabs --\n\n"
+    cp wct.conf.js.other wct.conf.js
+    gulp test:remote
+    rm wct.conf.js
   fi
 ;;
 esac
