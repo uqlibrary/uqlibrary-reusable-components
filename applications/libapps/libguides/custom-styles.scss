@@ -19,7 +19,6 @@ $button-color: #0E62EB;
 
 %navlinks-hover {
   background-color: transparent;
-  color: #840C99;
   border-bottom: 1px solid #eee;
 }
 
@@ -324,6 +323,11 @@ ul, ol {
             a {
               border-bottom: 0 solid #EEE;
             }
+          }
+        }
+        & > a {
+          &:hover {
+            border-left: $nav-border;
           }
         }
       }
