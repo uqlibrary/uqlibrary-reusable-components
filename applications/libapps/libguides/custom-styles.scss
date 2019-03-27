@@ -3,7 +3,6 @@
 $font: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $nav-border: 4px solid #51247A;
 $page-background-color: #FAFAFA;
-$border-bottom-color: #8CB800;
 $button-color: #0E62EB;
 
 %navlinks {
@@ -196,7 +195,7 @@ ul, ol {
       transition: all .1s ease;
       &:hover {
         color: #333 !important;
-        border-bottom: 4px solid $border-bottom-color;
+        border-bottom: $nav-border;
         transition: all .1s ease;
       }
       a {
@@ -234,36 +233,6 @@ ul, ol {
     border-radius: 2px;
     background-color: #FEFEFE;
   }
-}
-
-.ui-tabs-nav {
-  background: transparent;
-  border: none;
-  .ui-tabs & {
-    li {
-      border: none;
-      background: $page-background-color;
-    }
-    .ui-state-default {
-      @include hover-style(transparent);
-      &:hover {
-        border-bottom-color: $border-bottom-color !important;
-      }
-    }
-    .ui-state-active {
-      &,
-      &:hover {
-        background: transparent;
-        border: none;
-        border-bottom: 4px solid $border-bottom-color !important;
-        cursor: text;
-      }
-    }
-  }
-}
-
-.ui-state-hover {
-  @include hover-style($border-bottom-color);
 }
 
 #s-lib-bc .breadcrumb,
