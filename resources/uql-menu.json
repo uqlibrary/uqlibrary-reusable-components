@@ -181,6 +181,10 @@
         {
           "label": "Collection management",
           "href": "https://web.library.uq.edu.au/collections/collection-management"
+        },
+        {
+          "label": "UQ Archives",
+          "href": "https://web.library.uq.edu.au/collections/university-queensland-archives"
         }
       ]
     },
