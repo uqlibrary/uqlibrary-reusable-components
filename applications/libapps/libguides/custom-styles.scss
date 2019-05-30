@@ -55,14 +55,17 @@ body {
   line-height: 24px;
 }
 
-h1 {
+/* 'body' to overwrite inbuilt springshare styles... */
+body h1 ,
+body #s-lg-guide-header-info h1,
+body .s-lib-header h1 {
 	color: #49075E;
-    font-size: 1.938rem;
+    font-size: 22px;
     font-weight: 400;
 }
 
-h2 {
-	font-size: 1.438rem;
+body h2 {
+	font-size: 20px;
 }
 
 h3,
@@ -70,17 +73,16 @@ h4 {
   font-weight: bold !important;
 }
 
-h3 {
-	font-size: 1.25rem;
+body h3,
+body .s-lib-box-container .s-lib-box-content h3 {
+  font-size: 18px;
 }
 
-h4 {
-	font-size: 1.138rem;
+body h4,
+body .s-lib-box-container .s-lib-box-content h4 {
+	font-size: 16px;
 }
 
-h5 {
-	font-size: 1rem;
-}
 
 a {
   color: #2377CB;
@@ -559,15 +561,6 @@ ul, ol {
   }
 }
 
-/* PT94260140 - h3/h4 headers font-size in a box container */
-.s-lib-box-container {
-  .s-lib-box-content {
-    h3,
-    h4 {
-      font-size: 13px;
-    }
-  }
-}
 
 .uq-minimal-header {
   .uq-title-text.uq-minimal-header,
