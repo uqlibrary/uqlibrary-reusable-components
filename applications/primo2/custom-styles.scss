@@ -265,3 +265,8 @@ prm-atoz-search-bar {
 .section-content .md-chips .md-chip.wrapping-chip .facet-title {
   margin-right: 0;
 }
+
+// don't let the facet sidebar show through the proactive chat popup
+prm-facet div.primo-scrollbar {
+  z-index: 0 !important;
+}
