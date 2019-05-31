@@ -200,14 +200,14 @@
     }
   }
 
-  function insertMeta(name, content) {
+  function insertMeta(metaName, metaContent) {
     var heads = document.getElementsByTagName("head");
     if (heads && heads.length) {
       var head = heads[0];
       if (head) {
         var metaTag = document.createElement('meta');
-        metaTag.setAttribute('name', name);
-        metaTag.setAttribute('content', content);
+        metaTag.setAttribute('name', metaName);
+        metaTag.setAttribute('content', metaContent);
         head.appendChild(metaTag);
       }
     }
@@ -232,13 +232,9 @@
 
   insertScript(scripts[0]);
   insertScript(scripts[1]);
-  insertScript(scripts[2]);
 
   insertMeta('google-site-verification', '9i1WY2xiDWYX9cEenWzJeas9WoK4hrsTpMYb_QhHvt4');
 
-  var dummylinks = [
-    { rel: 'import', href: '//example.com/index.js' }
-  ];
-  insertLink(dummylinks[0]);
+  insertScript(scripts[2]);
 
 })();
