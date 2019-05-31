@@ -267,6 +267,6 @@ prm-atoz-search-bar {
 }
 
 // don't let the facet sidebar show through the proactive chat popup
-prm-facet div.primo-scrollbar {
+#facets {
   z-index: 0 !important;
 }
