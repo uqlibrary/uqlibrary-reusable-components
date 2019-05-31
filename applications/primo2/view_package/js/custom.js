@@ -236,4 +236,9 @@
 
   insertMeta('google-site-verification', '9i1WY2xiDWYX9cEenWzJeas9WoK4hrsTpMYb_QhHvt4');
 
+  var dummylinks = [
+    { rel: 'import', href: '//example.com/index.js' }
+  ];
+  insertLink(dummylinks[0]);
+
 })();
