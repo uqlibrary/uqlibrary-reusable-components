@@ -88,8 +88,9 @@
       }
 
       // show the popup after a delay
+      // only the tab is shown on Primo (search.library) not the popup as the z-index required on the #facets div was causing flashing on the page :(
       var numberMillsecondsBeforePopup = 60000; // 1 minute
-      if (!this._isCookieSetNoPopup()) {
+      if (!this._isCookieSetNoPopup() && !this._isPrimoPage(window.location.hostname)) {
         // set a timer for the tab to expand to a window
         this.async(function () {
           if (this._chatOnline) {
@@ -198,26 +199,6 @@
     },
 
     /*
-     * force a gap at the bottom of the facets sidebar on primo when chat popup is over it
-     * so proactive chat doesnt cover any options in the checkbox list
-     * @param tagIdentifier string
-     * eg this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card')
-     * @private
-     */
-    _makeRoomForPrimoSidebarBottomElements: function(tagIdentifier) {
-      element = document.querySelector(tagIdentifier);
-      if (!!element && element.getBoundingClientRect().height > 0) {
-        newMarginBottom = element.getBoundingClientRect().height;
-
-        var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
-        if (sidebarDiv) {
-          // move the bottom of the sidebar so it doesnt slide under the filter button block
-          sidebarDiv.style.marginBottom = newMarginBottom + 'px';
-        }
-      }
-    },
-
-    /*
      * called when the uses clicks the 'x' button or 'maybe later'
      */
     _closeDialog: function() {
@@ -225,10 +206,6 @@
 
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
-
-      if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
-        this._makeRoomForPrimoSidebarBottomElements('.onlineTab');
-      }
     },
 
     /**
