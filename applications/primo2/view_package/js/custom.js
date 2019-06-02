@@ -234,6 +234,6 @@
   insertScript(scripts[1]);
   insertScript(scripts[2]);
 
-  insertMeta('google-site-verification', '9i1WY2xiDWYX9cEenWzJeas9WoK4hrsTpMYb_QhHvt4');
+  insertMeta('google-site-verification', '4YYv70xcsa8mkJfxxWpSII5krqP-S0mBoCHaYFso5SA');
 
 })();
