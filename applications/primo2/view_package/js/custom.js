@@ -200,19 +200,6 @@
     }
   }
 
-  function insertMeta(metaName, metaContent) {
-    var heads = document.getElementsByTagName("head");
-    if (heads && heads.length) {
-      var head = heads[0];
-      if (head) {
-        var metaTag = document.createElement('meta');
-        metaTag.setAttribute('name', metaName);
-        metaTag.setAttribute('content', metaContent);
-        head.appendChild(metaTag);
-      }
-    }
-  }
-
   // start and end with slash unless prod, which is just a single slash
   var branchName = '/primo-prod-dev/';
 
@@ -233,7 +220,5 @@
   insertScript(scripts[0]);
   insertScript(scripts[1]);
   insertScript(scripts[2]);
-
-  insertMeta('google-site-verification', '9i1WY2xiDWYX9cEenWzJeas9WoK4hrsTpMYb_QhHvt4');
 
 })();
