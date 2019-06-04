@@ -230,12 +230,6 @@ div#services-index button.zero-margin.button-right-align.button-link.md-button.m
   padding: 0;
 }
 
-div.list-item-wrapper:not(.first-in-page) {
-  /* put the result cards on z-index so they slide _under_ the chat widget.  */
-  /* the first item will never be near the chat widget - but it does need to slide over the askus widget at very large screen sizes */
-  z-index: 0;
-}
-
 // add space for the lock icon to show on the facets
 .md-chip-content {
   padding-left: 15px;
