@@ -41,7 +41,9 @@ Exceptions:
   - in menu `Deploy & Utilities -> Customization Manager`  
   - select view, eg 61UQ_DEV
   - upload package for `View Name` - choose and upload zip-file
-  - once file is uploaded, click `Deploy` button
+  - briefly announce to Stacey (or Eric in her absence) that you are about to deploy (Slack will do) for the rare case of conflict (if they arent at their desks then its very unlikely they are deploying) (Around 8am and 8pm each day Prmo will be doing a 'hotswap'
+   and deploys will normally fail. Just wait.)
+  - once file is uploaded, click the `Deploy` button
 
 ## Primo dev environment
 
