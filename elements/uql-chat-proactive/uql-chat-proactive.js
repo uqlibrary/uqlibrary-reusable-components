@@ -96,11 +96,6 @@
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
             this._showChatOnlineTab = false;
-
-            if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode() && this._isChatpopupOverlappingPrimoSidebar()) {
-              // make space for the block
-              this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card');
-            }
           }
         }, numberMillsecondsBeforePopup);
       }
@@ -199,6 +194,26 @@
     },
 
     /*
+     * force a gap at the bottom of the facets sidebar on primo when chat popup is over it
+     * so proactive chat doesnt cover any options in the checkbox list
+     * @param tagIdentifier string
+     * eg this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card')
+     * @private
+     */
+    _makeRoomForPrimoSidebarBottomElements: function(tagIdentifier) {
+      element = document.querySelector(tagIdentifier);
+      if (!!element && element.getBoundingClientRect().height > 0) {
+        newMarginBottom = element.getBoundingClientRect().height;
+
+        var sidebarDiv = document.querySelector('.sidebar-inner-wrapper');
+        if (sidebarDiv) {
+          // move the bottom of the sidebar so it doesnt slide under the filter button block
+          sidebarDiv.style.marginBottom = newMarginBottom + 'px';
+        }
+      }
+    },
+
+    /*
      * called when the uses clicks the 'x' button or 'maybe later'
      */
     _closeDialog: function() {
@@ -206,6 +221,10 @@
 
       this._showPopupChatBlock = false;
       this._showChatOnlineTab = true;
+
+      if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode()) {
+        this._makeRoomForPrimoSidebarBottomElements('.onlineTab');
+      }
     },
 
     /**
