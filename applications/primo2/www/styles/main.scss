@@ -2,218 +2,218 @@
 // ====================
 //@import "partials/variables";
 @import "../../styles-imports/www/variables";
-//@import "partials/easing";
-//@import "partials/media-queries";
-//@import "partials/mixins";
-//@import "partials/utils";
-//@import "partials/custom-theme";
+@import "partials/easing";
+@import "partials/media-queries";
+@import "partials/mixins";
+@import "partials/utils";
+@import "partials/custom-theme";
 
-//// General classes
-//// ===============
-//@import "partials/basic";
-//@import "partials/helpers";
-//@import "partials/typography";
-//@import "partials/headings";
-//@import "partials/structure";
-//@import "partials/animation";
-//@import "partials/ng-animation";
-//@import "partials/layout";
-//@import "partials/scrollbars";
-//@import "partials/masonry";
-//@import "partials/icons";
-//@import "partials/colors";
-//@import "partials/lists";
-//
-//// Primo general styles
-//// ====================
-//@import "partials/permalink-unit";
-//@import "partials/bars";
-//@import "partials/blocks";
-//@import "partials/forms";
-//@import "partials/links";
-//@import "partials/statuses";
-//@import "partials/hacks";
-//@import "partials/horizontal-content";
-//
-//// Primo accessibiliy
-//// ==================
-//@import "partials/accessibility";
-//
-//// Primo component imports
-//// =======================
-//
-//// Loader / spinner
-//@import "../components/spinner/spinner";
-//
-//// icons
-//@import "../components/icon/icon";
-//
-//// login
-//@import "../components/security/login/login";
-//
-//// Primo explore
-//@import "../components/primoExplore/primo-explore-main";
-//
-//// search result list
-//@import "../components/search/searchResult/searchResultList/search-result-list";
-//@import "../components/search/search";
-//
-//// search result item
-//@import "../components/search/searchResult/searchResult";
-//@import "../components/search/searchResult/searchResultAvailability/searchResultAvailabilityLine";
-//@import "../components/search/searchResult/searchResultFrbr/search-results-frbr-line";
-//
-//// results thumbnails
-//@import "../components/search/searchResult/searchResultThumbnail/search-result-thumbnail-container";
-//
-//// brief results container
-//@import "../components/search/briefResult/briefResult";
-//@import "../components/search/briefResult/briefResultContainer";
-//
-//// snippets
-//@import "../components/search/snippet/snippet";
-//
-//// result item actions (email, permalink, citation etc)
-//@import "../components/search/actions/action-list";
-//
-//// citation module
-//@import "../components/search/actions/citation/citation";
-//
-////citation Trail
-//@import "../components/search/citationTrails/citation-trails-item";
-//@import "../components/search/citationTrails/citation-trails-indication";
-//@import "../components/search/citationTrails/citation-trails-breadcrumbs";
-//@import "../components/search/citationTrails/citation-trails-fullview-link.scss";
-//
-////Pagination
-//// @import "../components/infra/resultsNavigator/pagination-controls.scss";
-//
-//// Paging widget
-//@import "../components/search/searchResult/searchResultList/pageNavMenu/page-nav-menu.scss";
-//
-//// back button
-//@import "../components/search/fullView/backToSearchResultsButton/back-to-search-results-button";
-//
-//// Deposit
-//@import "../components/infra/deposit/deposit-form";
-//@import "../components/infra/deposit/uploadFile/upload-file";
-//@import "../components/account/deposits/deposits";
-//
-////savedQueries
-//@import "../components/search/searchResult/savedQueriesList/saved-queries-list";
-//@import "../components/search/searchResult/savedQueriesList/savedQueryFilter/saved-query-filter";
-//@import "../components/search/savedQueries/addQueryToSavedSearches/addQueryToSavedSearches";
-//@import "../components/search/savedQueries/addAlertToast/addAlertToast";
-//
-//// copy to clipboard button
-//@import "../components/clipboard/copy-clipboard-btn";
-//
-//// topbar
-//@import "../components/search/topbar/top-bar";
-//@import "../components/search/topbar/skipTo/skip-to";
-//
-//// User
-//@import "../components/search/topbar/userArea/authentication";
-//
-//// header
-//@import "../components/search/searchBar/search-bar";
-//// journals
-//@import "../components/journals/journals-search-bar";
-//@import "../components/journals/search-within-journal";
-//@import "../components/journals/alphabetToolbar/alphabet-toolbar";
-//
-//// full view
-//@import "../components/search/fullView/view-overlay";
-//@import "../components/search/fullView/full-details";
-//@import "../components/search/fullView/details/serviceDetails";
-//@import "../components/search/fullView/getit/opac/locations/location-items";
-//@import "../components/search/fullView/getit/opac/locationsFilter/locations-filter";
-//@import "../components/search/fullView/fullViewServiceContainer/full-view-service-container";
-//
-//// homepage
-//@import "../static/homepage/homepage";
-//
-//// facets
-//@import "../components/search/searchResult/searchResultSortBy/searchResultSortBy";
-//@import "../components/search/facet/facet";
-//@import "../components/search/breadcrumbs/breadcrumbs";
-//
-//// Overlay menu
-//@import "../components/search/topbar/mainMenu/main-menu-full";
-//
-//// favorites
-//@import "../components/favorites/favorites";
-//@import "../components/favorites/favoritesToolBar/favorites-tool-bar";
-//@import "../components/favorites/favoritesRecordLabels/favorites-record-labels";
-//@import "../components/favorites/favoritesEditLabelsMenu/favorites-edit-labels-menu";
-//@import "../components/favorites/favoritesLabels/favorites-labels";
-//
-//// account
-//@import "../components/account/account";
-//@import "../components/account/overview/account-overview";
-//@import "../components/account/personalInfo/personal-info";
-//
-//// Recommendations
-////@import "../components/search/fullView/recomendation/recommendations";
-//@import "../../styles-imports/www/recommendations";
+// General classes
+// ===============
+@import "partials/basic";
+@import "partials/helpers";
+@import "partials/typography";
+@import "partials/headings";
+@import "partials/structure";
+@import "partials/animation";
+@import "partials/ng-animation";
+@import "partials/layout";
+@import "partials/scrollbars";
+@import "partials/masonry";
+@import "partials/icons";
+@import "partials/colors";
+@import "partials/lists";
+
+// Primo general styles
+// ====================
+@import "partials/permalink-unit";
+@import "partials/bars";
+@import "partials/blocks";
+@import "partials/forms";
+@import "partials/links";
+@import "partials/statuses";
+@import "partials/hacks";
+@import "partials/horizontal-content";
+
+// Primo accessibiliy
+// ==================
+@import "partials/accessibility";
+
+// Primo component imports
+// =======================
+
+// Loader / spinner
+@import "../components/spinner/spinner";
+
+// icons
+@import "../components/icon/icon";
+
+// login
+@import "../components/security/login/login";
+
+// Primo explore
+@import "../components/primoExplore/primo-explore-main";
+
+// search result list
+@import "../components/search/searchResult/searchResultList/search-result-list";
+@import "../components/search/search";
+
+// search result item
+@import "../components/search/searchResult/searchResult";
+@import "../components/search/searchResult/searchResultAvailability/searchResultAvailabilityLine";
+@import "../components/search/searchResult/searchResultFrbr/search-results-frbr-line";
+
+// results thumbnails
+@import "../components/search/searchResult/searchResultThumbnail/search-result-thumbnail-container";
+
+// brief results container
+@import "../components/search/briefResult/briefResult";
+@import "../components/search/briefResult/briefResultContainer";
+
+// snippets
+@import "../components/search/snippet/snippet";
+
+// result item actions (email, permalink, citation etc)
+@import "../components/search/actions/action-list";
+
+// citation module
+@import "../components/search/actions/citation/citation";
+
+//citation Trail
+@import "../components/search/citationTrails/citation-trails-item";
+@import "../components/search/citationTrails/citation-trails-indication";
+@import "../components/search/citationTrails/citation-trails-breadcrumbs";
+@import "../components/search/citationTrails/citation-trails-fullview-link.scss";
+
+//Pagination
+// @import "../components/infra/resultsNavigator/pagination-controls.scss";
+
+// Paging widget
+@import "../components/search/searchResult/searchResultList/pageNavMenu/page-nav-menu.scss";
+
+// back button
+@import "../components/search/fullView/backToSearchResultsButton/back-to-search-results-button";
+
+// Deposit
+@import "../components/infra/deposit/deposit-form";
+@import "../components/infra/deposit/uploadFile/upload-file";
+@import "../components/account/deposits/deposits";
+
+//savedQueries
+@import "../components/search/searchResult/savedQueriesList/saved-queries-list";
+@import "../components/search/searchResult/savedQueriesList/savedQueryFilter/saved-query-filter";
+@import "../components/search/savedQueries/addQueryToSavedSearches/addQueryToSavedSearches";
+@import "../components/search/savedQueries/addAlertToast/addAlertToast";
+
+// copy to clipboard button
+@import "../components/clipboard/copy-clipboard-btn";
+
+// topbar
+@import "../components/search/topbar/top-bar";
+@import "../components/search/topbar/skipTo/skip-to";
+
+// User
+@import "../components/search/topbar/userArea/authentication";
+
+// header
+@import "../components/search/searchBar/search-bar";
+// journals
+@import "../components/journals/journals-search-bar";
+@import "../components/journals/search-within-journal";
+@import "../components/journals/alphabetToolbar/alphabet-toolbar";
+
+// full view
+@import "../components/search/fullView/view-overlay";
+@import "../components/search/fullView/full-details";
+@import "../components/search/fullView/details/serviceDetails";
+@import "../components/search/fullView/getit/opac/locations/location-items";
+@import "../components/search/fullView/getit/opac/locationsFilter/locations-filter";
+@import "../components/search/fullView/fullViewServiceContainer/full-view-service-container";
+
+// homepage
+@import "../static/homepage/homepage";
+
+// facets
+@import "../components/search/searchResult/searchResultSortBy/searchResultSortBy";
+@import "../components/search/facet/facet";
+@import "../components/search/breadcrumbs/breadcrumbs";
+
+// Overlay menu
+@import "../components/search/topbar/mainMenu/main-menu-full";
+
+// favorites
+@import "../components/favorites/favorites";
+@import "../components/favorites/favoritesToolBar/favorites-tool-bar";
+@import "../components/favorites/favoritesRecordLabels/favorites-record-labels";
+@import "../components/favorites/favoritesEditLabelsMenu/favorites-edit-labels-menu";
+@import "../components/favorites/favoritesLabels/favorites-labels";
+
+// account
+@import "../components/account/account";
+@import "../components/account/overview/account-overview";
+@import "../components/account/personalInfo/personal-info";
+
+// Recommendations
+//@import "../components/search/fullView/recomendation/recommendations";
+@import "../../styles-imports/www/recommendations";
 
 //virtual browse
-// //@import "../components/search/virtualBrowse/virtual-browse.scss";
-// //@import "../components/search/virtualBrowse/virtualBrowseItem/virtual-browse-item";
-// //@import "../components/search/virtualBrowse/virtualBrowseItemInfo/virtual-browse-item-info";
+@import "../components/search/virtualBrowse/virtual-browse.scss";
+@import "../components/search/virtualBrowse/virtualBrowseItem/virtual-browse-item";
+@import "../components/search/virtualBrowse/virtualBrowseItemInfo/virtual-browse-item-info";
 
 // Digital collection
-//@import "../components/collection/collection-discovery";
-//@import "../components/collection/collectionBreadcrumbs/collection-breadcrumbs";
-//
-////Browse search
-//@import "../components/search/browse/browseSearchBar/browse-search-bar";;
-//@import "../components/search/browse/_browse-search.scss";
-//@import "../components/search/browse/browseResult/browse-result";
-//
-////Form builder
-//@import "../components/infra/formBuilder/field/_form-field";
-//
-////Citation linker
-//@import "../components/citationLinker/_citation-linker";
-//
-////Tags
-//@import "../components/tags/tagsList/_tags-list";
-//@import "../components/tags/tagsResults/_tags-results";
-//@import "../components/tags/tagsResults/toggle-button";
-//@import "../components/tags/tagsSearchBar/_tags-search-bar";
-//@import "../components/tags/_tags";
-//
-////alma view it
-//@import  "../components/search/fullView/getit/almaViewit/_alma-viewit-items";
-//
-//// Angular material (md) directives styles
-//// =======================================
-//@import "partials/md-autocomplete";
-//@import "partials/md-backdrop";
-//@import "partials/md-progress-linear";
-//@import "partials/md-backdrop";
-//@import "partials/md-dialog";
-//@import "partials/md-content";
-//@import "partials/md-sidenav";
-//@import "partials/md-tabs";
-//@import "partials/md-grid-list";
-//@import "partials/md-card";
-//@import "partials/md-input";
-//@import "partials/md-select";
-//@import "partials/md-toast";
-//@import "partials/md-tooltip";
-//@import "partials/md-list";
-//@import "partials/md-toolbar";
-//@import "partials/md-datepicker";
-//@import "partials/md-whiteframe";
-//@import "partials/md-menu";
-//@import "partials/md-chips";
-//@import "partials/md-checkbox";
-//@import "partials/md-radio-button";
-//@import "partials/md-divider";
-//@import "partials/md-virtual-repeat-container";
-//@import "partials/md-nav-bar";
+@import "../components/collection/collection-discovery";
+@import "../components/collection/collectionBreadcrumbs/collection-breadcrumbs";
+
+//Browse search
+@import "../components/search/browse/browseSearchBar/browse-search-bar";;
+@import "../components/search/browse/_browse-search.scss";
+@import "../components/search/browse/browseResult/browse-result";
+
+//Form builder
+@import "../components/infra/formBuilder/field/_form-field";
+
+//Citation linker
+@import "../components/citationLinker/_citation-linker";
+
+//Tags
+@import "../components/tags/tagsList/_tags-list";
+@import "../components/tags/tagsResults/_tags-results";
+@import "../components/tags/tagsResults/toggle-button";
+@import "../components/tags/tagsSearchBar/_tags-search-bar";
+@import "../components/tags/_tags";
+
+//alma view it
+@import  "../components/search/fullView/getit/almaViewit/_alma-viewit-items";
+
+// Angular material (md) directives styles
+// =======================================
+@import "partials/md-autocomplete";
+@import "partials/md-backdrop";
+@import "partials/md-progress-linear";
+@import "partials/md-backdrop";
+@import "partials/md-dialog";
+@import "partials/md-content";
+@import "partials/md-sidenav";
+@import "partials/md-tabs";
+@import "partials/md-grid-list";
+@import "partials/md-card";
+@import "partials/md-input";
+@import "partials/md-select";
+@import "partials/md-toast";
+@import "partials/md-tooltip";
+@import "partials/md-list";
+@import "partials/md-toolbar";
+@import "partials/md-datepicker";
+@import "partials/md-whiteframe";
+@import "partials/md-menu";
+@import "partials/md-chips";
+@import "partials/md-checkbox";
+@import "partials/md-radio-button";
+@import "partials/md-divider";
+@import "partials/md-virtual-repeat-container";
+@import "partials/md-nav-bar";
 
 // The following scss is imported via custom-theme.scss instead (keep it commented-out)
 //@import "partials/md-button"; 
