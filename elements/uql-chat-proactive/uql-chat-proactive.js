@@ -88,18 +88,14 @@
       }
 
       // show the popup after a delay
+      // only the tab is shown on Primo (search.library) not the popup as the z-index required on the #facets div was causing flashing on the page :(
       var numberMillsecondsBeforePopup = 60000; // 1 minute
-      if (!this._isCookieSetNoPopup()) {
+      if (!this._isCookieSetNoPopup() && !this._isPrimoPage(window.location.hostname)) {
         // set a timer for the tab to expand to a window
         this.async(function () {
           if (this._chatOnline) {
             this._showPopupChatBlock = true;
             this._showChatOnlineTab = false;
-
-            if (this._isPrimoPage(window.location.hostname) && !this._isPrimoInResponsiveMode() && this._isChatpopupOverlappingPrimoSidebar()) {
-              // make space for the block
-              this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card');
-            }
           }
         }, numberMillsecondsBeforePopup);
       }
