@@ -260,7 +260,9 @@ prm-atoz-search-bar {
   margin-right: 0;
 }
 
-.citation-trails-brief {
+// restore original citation icon colors, overwritten in _icon.scss
+.citation-trails-brief,
+.citation-trails-fullview {
   .md-primoExplore-theme {
     color: orange !important;
   }
