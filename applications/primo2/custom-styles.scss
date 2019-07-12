@@ -265,7 +265,9 @@ prm-atoz-search-bar {
 .citation-trails-fullview {
   .md-primoExplore-theme {
     color: tomato !important;
-    &:hover {
+  }
+  &:hover {
+    .md-primoExplore-theme {
       color: #e02200 !important;
     }
   }
