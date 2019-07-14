@@ -39,10 +39,8 @@ function logSauceCommands {
   fi
 }
 
-if [ -z $CI_BRANCH ]; then
-  branch=$(git rev-parse --abbrev-ref HEAD)
-else
-  branch=$CI_BRANCH
+if [[ -z $CI_BRANCH ]]; then
+  CI_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 fi
 
 echo "Vulcanizing elements..."
@@ -63,6 +61,12 @@ fi
 if ! [ -f elements/elements.vulcanized.js ]; then
     echo "Improperly vulcanized file - missing vulcanized.js"
     exit 1;
+fi
+
+# nothing that the tests in this file cover are changed by file changes that affect primo
+if [[ $CI_BRANCH == primo-* ]] ; then
+    echo "testing not required in primo dev"
+    exit 0
 fi
 
 echo "Updating tests cases to use vulcanized version of elements..."
@@ -89,7 +93,6 @@ case "$PIPE_NUM" in
 "3")
   # "Saucelabs" tab on codeship
 
-  echo "On Saucelabs failure, will look for error log here: $SAUCELABS_LOG_FILE"
   trap logSauceCommands EXIT
 
   echo "WCT: remote unit testing - test most common browsers on Master and Prod..."
