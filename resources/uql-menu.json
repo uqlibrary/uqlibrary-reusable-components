@@ -53,6 +53,11 @@
           "href": "https://web.library.uq.edu.au/library-services/services-for-researchers"
         },
         {
+          "label": "for HDR students",
+          "subtext": "Research support, training, tools",
+          "href": "https://web.library.uq.edu.au/library-services/services-higher-degree-by-research"
+        },
+        {
           "label": "for Teaching staff",
           "subtext": "Reading lists, Blackboard links ...",
           "href": "https://web.library.uq.edu.au/library-services/services-for-teaching-staff"
