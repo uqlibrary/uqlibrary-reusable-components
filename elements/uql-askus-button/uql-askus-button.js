@@ -14,8 +14,8 @@
       'uqlibrary-callout-summary-clicked': '_linkClicked'
     },
       attached: function () {
-        // DO NOT REMOVE!!
-        // This data will be replaced with gulp task to avoid an api call for a static json file
+
+        // DO NOT REMOVE!! gulp vulcanize task will replace 'null' with json data and thus avoid a live api call
         var contactsJsonFileData = null;
         var contactsJson = contactsJsonFileData;
         var self = this;

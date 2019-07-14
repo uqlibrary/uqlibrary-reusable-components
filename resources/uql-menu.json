@@ -53,6 +53,11 @@
           "href": "https://web.library.uq.edu.au/library-services/services-for-researchers"
         },
         {
+          "label": "for HDR students",
+          "subtext": "Research support, training, tools",
+          "href": "https://web.library.uq.edu.au/library-services/services-higher-degree-by-research"
+        },
+        {
           "label": "for Teaching staff",
           "subtext": "Reading lists, Blackboard links ...",
           "href": "https://web.library.uq.edu.au/library-services/services-for-teaching-staff"
@@ -181,6 +186,10 @@
         {
           "label": "Collection management",
           "href": "https://web.library.uq.edu.au/collections/collection-management"
+        },
+        {
+          "label": "UQ Archives",
+          "href": "https://web.library.uq.edu.au/collections/university-queensland-archives"
         }
       ]
     },
@@ -207,9 +216,9 @@
           "subtext": "Pay library fines"
         },
         {
-          "label": "Requests & holds",
+          "label": "Request items",
           "subtext": "On loan, off-campus, or not at UQ",
-          "href": "https://web.library.uq.edu.au/requests-holds",
+          "href": "https://web.library.uq.edu.au/borrowing-requesting/request-items",
           "col2": "yes"
         },
         {
