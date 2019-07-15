@@ -51,17 +51,20 @@ UX Services staff are able to make changes to the Mega Menu.
 
 #### Instructions for UX Services staff
 
-* Make sure your branch is set to `ux-services`.
+* Make sure your branch is set to `ux-services` 
 * Changes can be made either through the GitHub interface or you can use a client like [GitHub Client](https://desktop.github.com/).
 * Make your changes to this file:
 
     <https://github.com/uqlibrary/uqlibrary-reusable-components/blob/ux-services/resources/uql-menu.json>
 
-* Once you have committed (and pushed if using a client) the changes, a build will automatically be triggered. You can monitor the status of the build here: [Codeship for re-usable components](https://codeship.com/projects/99389)
+If editing on the Github website, your screen should look like this:
+![Demonstrating selecting the UX Services branch](https://github.com/uqlibrary/uqlibrary-reusable-components/raw/master/doc/uxservices-branch.png "Demonstrating selecting the UX Services branch")
+
+* Once you have Committed the changes (and Pushed if using a client), a build will automatically be triggered. You can monitor the status of the build here: [Codeship for Reusable Components](https://codeship.com/projects/99389)
 
     This checks the syntax, runs the tests and then triggers a rebuild of the cache.  This can take from 15-20 minutes to complete and the file should then be available for preview at [http://assets.library.uq.edu.au/ux-services/reusable-components/elements/demo/index.html](http://assets.library.uq.edu.au/ux-services/reusable-components/elements/demo/index.html).
 
-* update the PT to indicate you have put your required changes in the ux-services branch.
+* update the PT to indicate you have put your required changes in the `ux-services` branch.
 
 #### Steps for devs after UX Services staff have pushed their changes
 
