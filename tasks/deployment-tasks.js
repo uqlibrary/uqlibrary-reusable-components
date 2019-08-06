@@ -9,7 +9,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var cloudfront = require('gulp-invalidate-cloudfront');
 var fs = require('fs');
-var argv = require('yargs/yargs')(process.argv.slice(2));
+var argv = require('yargs').argv;
 var merge = require('merge-stream');
 
 var config = {
@@ -32,10 +32,10 @@ gulp.task('invalidate', function () {
 
   var invalidatePath = '';
 
-  if (argv.path) {
+  if (!!argv.path) {
     invalidatePath = argv.path + '/*';
   } else {
-    invalidatePath += '/reusable-components/*';
+    invalidatePath = '/reusable-components/*';
   }
 
   $.util.log('Invalidation path: ' + invalidatePath);
@@ -123,8 +123,8 @@ gulp.task('publish', gulp.series('copy:aws', function () {
   return gulp.src(
       [
         './' + config.dist + '/**',
-        './uqlibrary-api/**'        
-      ], 
+        './uqlibrary-api/**'
+      ],
       {
         base: '.' // To include the directory itself; not just subfolders
       }
@@ -142,7 +142,7 @@ gulp.task('publish', gulp.series('copy:aws', function () {
           path.basename = '.';
         } else {
           if (awsConfig.params.bucketSubDir.indexOf('/') > -1) {
-            // For non-production branches, bucketSubDir has the format 
+            // For non-production branches, bucketSubDir has the format
             // "<branchname>/reusable-components"
             path.dirname = awsConfig.params.bucketSubDir + '/../' + path.dirname;
           }
@@ -165,5 +165,5 @@ gulp.task('publish', gulp.series('copy:aws', function () {
 
     // print upload updates to console
     .pipe($.awspublish.reporter());
-    
+
 }));
