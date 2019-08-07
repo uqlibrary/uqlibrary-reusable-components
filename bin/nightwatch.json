@@ -41,6 +41,14 @@
         "acceptSslCerts": true,
         "screenResolution": "1280x960"
       }
+    },
+    "firefox": {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "screenResolution": "1280x960"
+      }
     }
   }
 }
