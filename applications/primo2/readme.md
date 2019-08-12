@@ -98,3 +98,32 @@ Here is a workflow that covers both of these:
 Its very tedious and involves a lot of changing the branch name back and forth :(
 
 *Key Item!!*: always make sure to commit the correct branch name in `custom/custom.js` before you push to github!!!!
+
+## Alma Styling
+
+Parts of the primo pages are inside iframes, eg the 'Get It' block. This means our main custom-styles.css file wont affect it.
+
+Ex libris provides a _second_ css upload that can be used to control the styling inside the iframes.
+
+Workflow:
+
+- Choose your workarea (eg [primo sandbox dev](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) )
+- In the inspect panel, edit the css source file at AlmagetitMashupiframe > uq-psb.alma.exlibrisgroup.com > view > branding_skin > css> mashup_new.css until you are happy with the result
+- Copy your changes to mashup.scss here
+- Run  `gulp almastyles` to create the .css files from the .scss files
+- Run `gulp almazip` to create upload.zip, containing the updates files
+- Login to the alma back office, then visit [https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do...](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins'
+- Upload the .zip file
+- Reload the primo sandbox page and confirm your changes worked
+
+There are 2 gulp tasks for this process:
+
+- `gulp almastyles`, will build the .scss files at applications/primo2/alma/brianding_skin/css into .css files
+-  `gulp almazip`, will build a zip file ready to be uploaded to alma
+
+The upload is done in alma back office. Paths are:
+
+- [sandbox](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar and then clock 'Delivery System Skins' under User Interface Settings
+- prod - tbc
+
+(if you cant access this page ask Stacey for access, or she may want to do the upload herself)
