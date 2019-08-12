@@ -90,7 +90,7 @@ Here is a workflow that covers both of these:
 * Eventually, get acceptance from stacey that she wants it live - now you need to put any changes to the primo package in the 3 other environments, so they all match
 * For each of the 3 other branches (where there is an change to the primo package):
   * Merge in, preferably from master
-  * Change the branch name in `custom.js`
+  * Change the branch name in `custom.js` (NOTE: for prod branch just use a single slash e.g var branchName = '/';)
   * Recommit
   * Upload the package (if angular changes involved)
   * Push (to make a polymer changes live, or to store an angular change)

@@ -259,3 +259,23 @@ prm-atoz-search-bar {
 .section-content .md-chips .md-chip.wrapping-chip .facet-title {
   margin-right: 0;
 }
+
+// restore original citation icon colors, overwritten in _icon.scss
+.citation-trails-brief,
+.citation-trails-fullview {
+  .md-primoExplore-theme {
+    color: tomato !important;
+  }
+  &:hover {
+    .md-primoExplore-theme {
+      color: #e02200 !important;
+    }
+  }
+}
+
+// make the stackmap Map It button uq purple
+button.SMsearchbtn {
+  background-color: #51247A;
+  padding: 10px 15px;
+  font-size: 15px !important;
+}
