@@ -1,14 +1,22 @@
+// Place a Request button blue
 li#formActionsContainer input[type="submit"]#exlidRequestTabFormSubmit,
 a#displayHolding {
   color: #2377CB;
 }
 
-.holdingsList .locate {
+// stackmap button styling
+.holdingsList .locate,
+.holdingInfo a.locate {
   background-color: #51247A;
   color: #fff;
-  text-transform:capitalize;
-  padding: 10px 30px 10px 15px;
-  font-size: 15px !important;
-  font-weight: normal;
-  font-family: Roboto,"Helvetica Neue",sans-serif;
+  text-transform: capitalize;
+  padding: 10px 85px 10px 15px;
+  font-size: 15px!important;
+  font-weight: 300;
+  font-family: Roboto, "Helvetica Neue", sans-serif
+}
+
+// white map-pin in stackmap
+.holdingInfo li a.locate:before {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAOCAYAAAAWo42rAAABQUlEQVQokXWQTUoDQRCFq7qbDBEmcSkB9QAu4lZc6SUEL+HCZQ6QfbZ6g+yzEjyC4MYbGMEMSc/0jP3foQYHQzAPGh6Pr4t6BSklMMaAUuraOTePMRb0rLXzuq6viqKA79UKwHsPzrn7dECVUnctKGV5uodsUkpyN1BKjZgQ/BF+5Zx7aZrmrK7rc+/9a5cLIR4wxrhBxCEFUspxCOGdPBficjgYvJEPIXyylBLvfmZZdhtjbAtmvd5NlyPiALTWT7v7aK2nxpjpXvYMTdOM/+/7J2JAliWVWByCnPcLYnC9XgPn/CTP82W3064qpUbB+yVDRLDWfRljZvuQtXbmnVtyzgGrqgJqioi9PM83ANAnKKX0U5blMfE0jFHIGCPYaq0n3TRjzCSE2ELtiZRSraHbJQA46vc/EDFqrS86CABgC2sZRhADZd/iAAAAAElFTkSuQmCC);
 }
