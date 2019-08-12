@@ -84,8 +84,11 @@ gulp.task('almastyles', function () {
 
 // task to create the zip file to upload to alma as iframe skin (eg sandbox: https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit&pageBean.menuKey=com.exlibris.dps.menu_conf&operation=LOAD&pageBean.helpId=general_configuration&pageBean.currentUrl=xmlFileName%3Dconfiguration_setup.configuration_mngUXP.xml%26almaConfiguration%3Dtrue%26pageViewMode%3DEdit%26pageBean.menuKey%3Dcom.exlibris.dps.menu_conf%26operation%3DLOAD%26pageBean.helpId%3Dgeneral_configuration%26resetPaginationContext%3Dtrue%26showBackButton%3Dfalse&pageBean.navigationBackUrl=..%2Faction%2Fhome.do&resetPaginationContext=true&showBackButton=false&pageBean.securityHashToken=76201656207012320 )
 gulp.task('almazip', function () {
-    return gulp.src('applications/primo2/alma/**/*.css')
-        .pipe(zip('upload.zip'))
+    return gulp.src([
+        'applications/primo2/alma/**/*.css',
+        'applications/primo2/alma/**/icons/*.*'
+    ])
+        .pipe(zip('branding_skin.zip'))
         .pipe(gulp.dest('applications/primo2/alma'));
 });
 
