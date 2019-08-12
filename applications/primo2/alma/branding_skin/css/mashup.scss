@@ -68,7 +68,7 @@ When extracted from the zip, all classes will be commented out.
 	height: 100%
 }*/
 
-body {
+/*body {
   background-color: #ffffff;
   color: #32322f;
   margin: 0px;
@@ -76,8 +76,8 @@ body {
   font-family: Arial, verdana;
   font-size: 80%;
   height: 100%;
-  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
-}
+  -webkit-text-size-adjust: 100%; // Prevent font scaling in landscape while allowing user zoom
+}*/
 
 /*a:link,a:visited {
 	color: #0075b0;
@@ -110,10 +110,10 @@ body {
 	width: 10%
 }*/
 
-.width15 {
+/*.width15 {
   width: 15%;
   font-weight: 700;
-}
+}*/
 
 /*.width20 {
 	width: 20%
@@ -174,10 +174,10 @@ body {
 	padding: 0em;
 }*/
 
-.internalTitle {
+/*.internalTitle {
   padding-top: 12px;
   display:inline-block;
-}
+}*/
 
 /*.internalSection {
 	float: left;
@@ -208,13 +208,13 @@ body {
 }*/
 
 
-ul.filterResults {
+/*ul.filterResults {
   width: 100%;
   margin: 0em;
   padding: 0em;
   background-color: #f6f6f6;
   display: none;
-}
+}*/
 
 /*.sectionTitle {
 	font-weight: 700;
@@ -478,7 +478,7 @@ ul.filterResults {
 	color: #ccc
 }*/
 
-.submitAsLink,.typeC .formDiv input.submitAsLink {
+/*.submitAsLink,.typeC .formDiv input.submitAsLink {
   color: #0075b0;
   background: none repeat scroll 0 0 transparent;
   border: medium none;
@@ -493,7 +493,7 @@ ul.filterResults {
   width: auto;
   font-family: arial;
   letter-spacing: 0px;
-}
+}*/
 
 /*.submitAsNoLink,.typeC .formDiv input.submitAsNoLink {
 	color: #2c4d82;

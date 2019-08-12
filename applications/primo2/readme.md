@@ -108,7 +108,7 @@ Ex libris provides a _second_ css upload that can be used to control the styling
 Workflow:
 
 - Choose your workarea (eg [primo sandbox dev](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) )
-- In the inspect panel, edit the css source file at AlmagetitMashupiframe > uq-psb.alma.exlibrisgroup.com > view > branding_skin > css> mashup_new.css until you are happy with the result
+- In the inspect panel, edit the css source file at AlmagetitMashupiframe > uq-psb.alma.exlibrisgroup.com > view > branding_skin > css > mashup_new.css until you are happy with the result
 - Copy your changes to mashup.scss here
 - Run  `gulp almastyles` to create the .css files from the .scss files
 - Run `gulp almazip` to create upload.zip, containing the updates files
