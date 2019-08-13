@@ -65,12 +65,15 @@ Stacey is likely to ask for various changes to be done in various environments.
 
 There are 6 basic environments:
 
-* `prod` - live, public primo at [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ&sortby=rank) branch is `production`
-* `prod-dev` - development on the live server [search.library.uq.edu.au with vid=61UQ_DEV](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV) branch is `primo-prod-dev`
-* `prod-otb` - [Blue out of the box primo in the prod environment](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN) - it would be very unusual for us to make changes to this
-* `sandbox` - sandbox area, [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ&sortby=rank) branch is `primo-sand-box`
-* `sandbox-dev` - sandbox dev area [uq-edu-primo-sb.hosted.exlibrisgroup.com with vid=61UQ_DEV](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) branch is `primo-sand-box-dev`
-* `sandbox-otb` - sandbox out of the box [uq-edu-primo-sb.hosted.exlibrisgroup.com with vid=61UQ_DEV_LOGIN](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV_LOGIN&sortby=rank) - it would be very unusual for us to make changes to this
+
+| Primo Environment Name | Primo Url        | Git&nbsp;Branch&nbsp;Name  | Notes |
+| ---------------------- | ---------------- | --------------- | ---- |
+| prod | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ&sortby=rank) (ie vid=61UQ) | `production` | live, public primo |
+| prod-dev | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV) (ie vid=61UQ_DEV) | `primo-prod-dev` | development on the live server |
+| prod-otb | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN) (ie vid=61UQ_DEV_LOGIN) | - | Blue out of the box primo in the prod environment - it would be very unusual for us to make changes to this |
+| sandbox | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ&sortby=rank) (ie vid=61UQ) | `primo-sand-box` | sandbox area |
+| sandbox-dev | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) (ie vid=61UQ_DEV) | `primo-sand-box-dev` | sandbox dev area |
+| sandbox-otb | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV_LOGIN&sortby=rank) (ie vid=61UQ_DEV_LOGIN) | - | sandbox out of the box - it would be very unusual for us to make changes to this |
 
 The branch is set in [applications/primo2/view_package/custom.js](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) - [more info](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md)
 
