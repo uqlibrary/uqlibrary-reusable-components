@@ -200,7 +200,10 @@
     }
   }
 
-  // start and end with slash unless prod, which is just a single slash
+  // choose the branchname that matches this branch
+  // var branchName = '/';                                 // <--- use / for master and prod
+  // var branchName = '/primo-prod-dev/';
+  // var branchName = '/primo-sand-box/';
   var branchName = '/primo-sand-box-dev/';
 
   var scripts = [
