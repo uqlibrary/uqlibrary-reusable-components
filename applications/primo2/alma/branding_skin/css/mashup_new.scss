@@ -9,11 +9,12 @@ a#displayHolding {
 .holdingInfo a.locate {
   background-color: #51247A;
   color: #fff;
-  text-transform: capitalize;
-  padding: 10px 85px 10px 15px;
   font-size: 15px!important;
   font-weight: 300;
-  font-family: Roboto, "Helvetica Neue", sans-serif
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: 1px;
+  padding: 10px 85px 10px 15px;
+  text-transform: capitalize;
 }
 
 // white map-pin in stackmap
