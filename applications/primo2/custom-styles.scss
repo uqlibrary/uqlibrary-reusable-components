@@ -275,6 +275,9 @@ prm-atoz-search-bar {
 
 // make the stackmap Map It button uq purple
 button.SMsearchbtn {
+  &:hover {
+    background-color:#51247A;
+  }
   background-color: #51247A;
   padding: 10px 15px;
   font-size: 15px !important;
