@@ -200,8 +200,19 @@
     }
   }
 
-  // start and end with slash unless prod, which is just a single slash
-  var branchName = '/';
+  // this script should only be called on views that have UQ header showing
+  var branchName = '/'; // default. Use for master and prod
+  if (window.location.hostname === 'search.library.uq.edu.au') {
+    if (/vid=61UQ_DEV/.test(window.location.href)) {
+      branchName = '/primo-prod-dev/';
+    }
+  } else {
+    if (/vid=61UQ_DEV/.test(window.location.href)) {
+      branchName = '/primo-sand-box-dev/';
+    } else if (/vid=61UQ/.test(window.location.href)) {
+      branchName = '/primo-sand-box/';
+    }
+  }
 
   var scripts = [
     '//assets.library.uq.edu.au' + branchName + 'reusable-components/webcomponentsjs/webcomponents-lite.min.js',
