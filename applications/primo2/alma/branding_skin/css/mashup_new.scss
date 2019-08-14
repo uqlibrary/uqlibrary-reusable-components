@@ -29,6 +29,6 @@ ul#PAGING input // warehouse pagination buttons
 }
 
 // on a result with multiple locations, we need to create enough height that the stack map Locate button isnt cropped
-table#TABLE_DATA_item_list tr:last-child {
+table#TABLE_DATA_item_list tr {
   min-height: 60px;
 }
