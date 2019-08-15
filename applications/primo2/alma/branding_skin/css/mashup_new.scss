@@ -8,7 +8,7 @@ ul#PAGING input // warehouse pagination buttons
 // stackmap button styling
 .holdingsList a.locate,
 .holdingInfo a.locate {
-  background-color: #51247A;
+  background-color: #2377CB;
   color: #fff;
   font-size: 15px!important;
   font-weight: 300;
@@ -22,12 +22,7 @@ ul#PAGING input // warehouse pagination buttons
   }
 
   &:hover {
-    background-color: #51247A;
+    background-color: #2377CB;
     color: #A9A9A9;
   }
-}
-
-// on a result with multiple locations, we need to create enough height that the stack map Locate button isnt cropped
-table#TABLE_DATA_item_list tr {
-  min-height: 60px;
 }

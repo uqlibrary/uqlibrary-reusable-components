@@ -273,13 +273,13 @@ prm-atoz-search-bar {
   }
 }
 
-// make the stackmap Map It button uq purple
+// make the stackmap Map It button uq button action color blue
 button.SMsearchbtn {
   &:hover {
-    background-color:#51247A;
+    background-color:#2377CB;
     color: #A9A9A9;
   }
-  background-color: #51247A;
+  background-color: #2377CB;
   color: #fff;
   font-size: 15px !important;
 }
