@@ -200,7 +200,7 @@
     }
   }
 
-  // this script should only be called on views that have UQ header showing
+  // this script will only be called on views that have UQ header showing
   var branchName = '/'; // default. Use for master and prod
   if (window.location.hostname === 'search.library.uq.edu.au') {
     if (/vid=61UQ_DEV/.test(window.location.href)) {
