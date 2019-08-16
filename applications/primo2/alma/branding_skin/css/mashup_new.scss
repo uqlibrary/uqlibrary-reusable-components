@@ -10,12 +10,13 @@ ul#PAGING input // warehouse pagination buttons
 .holdingInfo a.locate {
   background-color: #2377CB;
   color: #fff;
-  font-size: 15px!important;
+  font-size: 14px!important;
   font-weight: 300;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: 1px;
   text-transform: capitalize;
   padding: 4px 3.75px;
+  min-width: 90px;
 
   &:before {
     // white-ish map-pin
