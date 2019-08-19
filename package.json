@@ -2,6 +2,7 @@
   "name": "uqlibrary-reusable-components",
   "private": true,
   "scripts": {
+    "postinstall": "bower update",
     "test": "gulp test"
   },
   "devDependencies": {
@@ -37,8 +38,8 @@
     "yargs": "^13.3.0"
   },
   "engines": {
-    "npm": "^6.7.0",
-    "node": "^11.8.0"
+    "npm": "^6",
+    "node": "11.10.1"
   },
   "dependencies": {
     "sauce-connect-launcher": "^1.2.7"
