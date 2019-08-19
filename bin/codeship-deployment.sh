@@ -84,7 +84,7 @@ gulp publish
 
 echo "Run Cloudfront Invalidation"
 gulp invalidate --path ${InvalidationPath}
-if [ ${CI_BRANCH} != "production" ]; then  
+if [ ${CI_BRANCH} != "production" ]; then
   gulp invalidate --path /${CI_BRANCH}/uqlibrary-api
 fi
 
