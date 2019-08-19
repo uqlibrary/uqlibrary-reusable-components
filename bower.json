@@ -1,13 +1,8 @@
 {
   "name": "uqlibrary-reusable-components",
   "description": "Set of reusable components for UQ Library web sites and web applications",
-  "authors": [
-    "UQ Library development team"
-  ],
-  "keywords": [
-    "web-components",
-    "polymer"
-  ],
+  "authors": ["UQ Library development team"],
+  "keywords": ["web-components", "polymer"],
   "repository": {
     "type": "git",
     "url": "git://github.com/uqlibrary/uqlibrary-reusable-components.git"
@@ -16,7 +11,7 @@
   "main": "elements/uq-minimal-header.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.11.3",
-    "webcomponentsjs": "^0.7.12",
+    "webcomponentsjs": "^0.7.24",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
     "uqlibrary-api": "uqlibrary/uqlibrary-api",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts",
@@ -31,7 +26,7 @@
   },
   "devDependencies": {
     "web-component-tester": "*",
-    "validator-js": "~4.2.0"
+    "validator-js": "~11.1.0"
   },
   "resolutions": {
     "test-fixture": "^1.1.2"
