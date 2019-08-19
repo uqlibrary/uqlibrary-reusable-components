@@ -32,7 +32,7 @@ gulp.task('invalidate', function () {
 
   var invalidatePath = '';
 
-  if (!!argv.path) {
+  if (argv.path) {
     invalidatePath = argv.path + '/*';
   } else {
     invalidatePath = '/reusable-components/*';
@@ -72,33 +72,33 @@ gulp.task('invalidate', function () {
 gulp.task('copy:aws', function () {
 
   var apps = gulp.src([config.applications + '/**/*.*',
-    '!' + config.applications + '/**/*.scss',
-    '!' + config.applications + '/**/*.json'])
-      .pipe(gulp.dest(config.dist));
+  '!' + config.applications + '/**/*.scss',
+  '!' + config.applications + '/**/*.json'])
+    .pipe(gulp.dest(config.dist));
 
   var vulcanized = gulp.src([config.elements + '/elements.vulcanized.*'])
-      .pipe(gulp.dest(config.dist));
+    .pipe(gulp.dest(config.dist));
 
   var vulcanized2elements = gulp.src([config.elements + '/elements.vulcanized.*'])
-      .pipe(gulp.dest(config.dist + '/elements'));
+    .pipe(gulp.dest(config.dist + '/elements'));
 
   var dependencies = gulp.src([config.dependencies + '/webcomponentsjs/**/webcomponents*.js'])
-      .pipe(gulp.dest(config.dist + '/webcomponentsjs'));
+    .pipe(gulp.dest(config.dist + '/webcomponentsjs'));
 
   var resources = gulp.src([config.resources + '/**/*'])
-      .pipe(gulp.dest(config.dist + '/resources'));
+    .pipe(gulp.dest(config.dist + '/resources'));
 
   var demo = gulp.src([config.demo + '/**/*'])
-      .pipe(gulp.dest(config.dist + '/elements/demo'));
+    .pipe(gulp.dest(config.dist + '/elements/demo'));
 
   var mockData = gulp.src([config.dependencies + '/uqlibrary-api/mock/**/*'])
-      .pipe(gulp.dest(config.dist + '/../uqlibrary-api/mock'));
+    .pipe(gulp.dest(config.dist + '/../uqlibrary-api/mock'));
 
   var jsonData = gulp.src([config.dependencies + '/uqlibrary-api/data/contacts.json'])
-      .pipe(gulp.dest(config.dist + '/../uqlibrary-api/data'));
+    .pipe(gulp.dest(config.dist + '/../uqlibrary-api/data'));
 
   return merge(vulcanized, dependencies, resources, demo, mockData, vulcanized2elements, jsonData)
-      .pipe($.size({title: 'copy'}));
+    .pipe($.size({ title: 'copy' }));
 });
 
 // upload package to S3
@@ -121,14 +121,14 @@ gulp.task('publish', gulp.series('copy:aws', function () {
   // };
 
   return gulp.src(
-      [
-        './' + config.dist + '/**',
-        './uqlibrary-api/**'
-      ],
-      {
-        base: '.' // To include the directory itself; not just subfolders
-      }
-    )
+    [
+      './' + config.dist + '/**',
+      './uqlibrary-api/**'
+    ],
+    {
+      base: '.' // To include the directory itself; not just subfolders
+    }
+  )
 
     // Everything inside dist folder should be put inside bucketSubDir
     // Everything else should be at top level

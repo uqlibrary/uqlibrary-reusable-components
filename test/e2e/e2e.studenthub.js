@@ -4,7 +4,7 @@ var urlTest = 'https://www.studenthub.uq.edu.au/workgroups/library-staff-develop
 module.exports = {
   '@tags': ['e2etest', 'studenthub'],
 
-  'Test reusable components are applied to StudentHub' : function (client) {
+  'Test reusable components are applied to StudentHub': function (client) {
     // common uql checks
     minimalUql.commonChecks(client, urlTest);
 
@@ -13,9 +13,5 @@ module.exports = {
       .assert.elementPresent('.sidebar .body > a', 'sidebar More Events button is present')
       .assert.containsText('.sidebar .body > a', 'MORE EVENTS')
       .end();
-
   }
-
-
-
 };
