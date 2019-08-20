@@ -9,7 +9,7 @@ if [[ -z $LOG_SAUCELAB_ERRORS ]]; then
     LOG_SAUCELAB_ERRORS=false
 fi
 if [[ "$LOG_SAUCELAB_ERRORS" == true ]]; then
-    if [ -z ${TMPDIR} ]; then # codeship doesnt seem to set this
+    if [[ -z ${TMPDIR} ]]; then # codeship doesnt seem to set this
       TMPDIR="/tmp/"
     fi
 fi
@@ -43,6 +43,10 @@ if [[ -z $CI_BRANCH ]]; then
   CI_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 fi
 
+if [[ -z $PIPE_NUM ]]; then
+    PIPE_NUM=1
+fi
+
 echo "Vulcanizing elements..."
 gulp vulcanize
 
@@ -52,7 +56,7 @@ set +e
 result=`diff elements/elements.html elements/elements.vulcanized.html`
 set -e
 
-if [ -z "${result}" ]; then
+if [[ -z "${result}" ]]; then
     echo "Improperly vulcanized file"
     echo "This happens sporadically, rebuilding should fix"
     exit 1;
