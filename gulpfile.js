@@ -96,6 +96,13 @@ gulp.task('vulcanize:clean_bower', function() {
     .pipe($.size({title: 'vulcanize:clean_bower'}));
 });
 
+// copy the files installed via npm to where vulcanise command will look for it
+gulp.task('vulcanize:npm_copy', function () {
+    return gulp.src(['node_modules/validator/**'])
+        .pipe(gulp.dest('../validator/'));
+
+});
+
 // delete old vulcanized file
 gulp.task('vulcanize:clean', function () {
   return del([
@@ -117,8 +124,9 @@ gulp.task('vulcanize:copy', function () {
 /** Vulcanize */
 // vulcanizes and splits html/js, replaces menu-json with value from resources/uql-menu.json, min html/js 'vulcanize:clean_bower'
 gulp.task('vulcanize', gulp.series(
-  'vulcanize:clean_bower', 
-  'vulcanize:clean', 
+  'vulcanize:clean_bower',
+  'vulcanize:npm_copy',
+  'vulcanize:clean',
   'vulcanize:copy',
   function() {
 
@@ -143,14 +151,14 @@ gulp.task('vulcanize', gulp.series(
     })) // Separate JS into its own file for CSP compliance and reduce html parser load.
     .pipe($.if('*.js',replace({patterns: [{ match: regEx, replacement: menuJson + ';'}], usePrefix: false}))) //replace menu-json with value from resources/uql-menu.json
     .pipe($.if('*.js',replace({patterns: [{ match: contactsRegEx, replacement: contactsJson + ';'}], usePrefix: false}))) //replace contacts.json with value from uqlibrary-api
-    
+
     // Minify js output
     .pipe($.if('*.js',$.uglify({
       output: {
         comments: 'some'
       }
     })))
-    
+
     .pipe($.if('*.html', $.minifyHtml({quotes: true, empty: true, spare: true}))) // Minify html output
     .pipe(gulp.dest(config.elements))
     .pipe($.size({title: 'vulcanize'}))
@@ -173,4 +181,4 @@ require('web-component-tester').gulp.init(gulp);
 gulp.task('test', gulp.series('test:local'));
 
 // Load custom tasks from the `tasks` directory
-require('require-dir')('tasks'); 
+require('require-dir')('tasks');
