@@ -25,8 +25,7 @@
     "uqlibrary-training": "uqlibrary/uqlibrary-training"
   },
   "devDependencies": {
-    "web-component-tester": "*",
-    "validator-js": "~11.1.0"
+    "web-component-tester": "*"
   },
   "resolutions": {
     "test-fixture": "^1.1.2"
