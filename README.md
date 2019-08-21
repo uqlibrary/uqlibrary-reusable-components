@@ -52,7 +52,7 @@ UX Services staff are able to make changes to the Mega Menu.
 
 #### Instructions for UX Services staff
 
-- Make sure your branch is set to `ux-services`
+- Make sure your branch is set to `ux-services` (Using this branch means you can do your change at any time, without impacting other work which might be underway in master. Do, however, liaise with other UX Services staff who might be making other mega menu changes in this branch...)
 - Changes can be made either through the GitHub interface or you can use a client like [GitHub Client](https://desktop.github.com/).
 - Make your changes to this file:
 
@@ -76,6 +76,8 @@ If editing on the Github website, your screen should look like this:
 - For `uqlibrary-reusable-components`: build of production branch (merge master into prod and push) - updates drupal at web.library.uq.edu.au
 
 If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (<https://web.library.uq.edu.au>) as well. This can be tested before going live by running the master branch of reusable through codeship and, post-invalidation in AWS Cloudfront, viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
+
+(If you want to view the drupal staging site using staging data, you will have to build reusable master calling uqlibrary-api where uqlibrary-api.html has set the variable baseApiUrl to 'https://api.library.uq.edu.au/staging'.)
 
 ### Applications Customisations
 
