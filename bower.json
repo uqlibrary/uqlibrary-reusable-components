@@ -1,8 +1,13 @@
 {
   "name": "uqlibrary-reusable-components",
   "description": "Set of reusable components for UQ Library web sites and web applications",
-  "authors": ["UQ Library development team"],
-  "keywords": ["web-components", "polymer"],
+  "authors": [
+    "UQ Library development team"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/uqlibrary/uqlibrary-reusable-components.git"
@@ -29,6 +34,7 @@
     "validator-js": "~11.1.0"
   },
   "resolutions": {
-    "test-fixture": "^1.1.2"
+    "test-fixture": "^1.1.2",
+    "uqlibrary-api": "stagingtest"
   }
 }
