@@ -18,7 +18,7 @@
     "polymer": "Polymer/polymer#^1.11.3",
     "webcomponentsjs": "^0.7.24",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
-    "uqlibrary-api": "uqlibrary/uqlibrary-api#stagingtest",
+    "uqlibrary-api": "uqlibrary/uqlibrary-api",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts",
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga",
     "uqlibrary-styles": "uqlibrary/uqlibrary-styles",
@@ -27,14 +27,13 @@
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search",
     "uqlibrary-search": "uqlibrary/uqlibrary-search",
-    "uqlibrary-training": "uqlibrary/uqlibrary-training#toggle-168019570"
+    "uqlibrary-training": "uqlibrary/uqlibrary-training"
   },
   "devDependencies": {
     "web-component-tester": "*",
     "validator-js": "~11.1.0"
   },
   "resolutions": {
-    "test-fixture": "^1.1.2",
-    "uqlibrary-api": "stagingtest"
+    "test-fixture": "^1.1.2"
   }
 }
