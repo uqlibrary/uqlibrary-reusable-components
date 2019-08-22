@@ -18,7 +18,7 @@
   }]);
 
   app.component('prmTopBarBefore', {
-    template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' + 
+    template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
       '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
   });
 
@@ -148,7 +148,7 @@
 
   app.controller('prmOpenJournalInFullController', [
     function () {
-      var vm = this; 
+      var vm = this;
       vm.$onInit = function () {
         var resourceType = vm.parentCtrl.result.pnx.display.type[0] || '';
         if (resourceType === 'journal') {
@@ -201,7 +201,7 @@
   }
 
   // start and end with slash unless prod, which is just a single slash
-  var branchName = '/master/';
+  var branchName = '/';
 
   var scripts = [
     '//assets.library.uq.edu.au' + branchName + 'reusable-components/webcomponentsjs/webcomponents-lite.min.js',
