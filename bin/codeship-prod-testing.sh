@@ -20,10 +20,8 @@ if [ ${CI_BRANCH} == "production" ]; then
   echo "Run nightwatch tests"
   cd bin/
 
-  printf "\n Not testing firefox here atm - selenium would need an upgrade to use a recent enough geckodriver that recent firefox will work - see https://app.codeship.com/projects/99389/builds/35831843 \n\n"
-
-  printf "\n --- LOCAL CHROME on windows test... ---\n\n"
-  nightwatch -c nightwatch.json --env chrome --tag e2etest
+  printf "\n --- LOCAL Firefox on windows test... ---\n\n"
+  nightwatch -c nightwatch.json --env firefox --tag e2etest
 
   # saucelabs only on production branch
   echo "Remote e2e testing on Sauce Labs"

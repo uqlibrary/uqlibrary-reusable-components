@@ -65,12 +65,15 @@ Stacey is likely to ask for various changes to be done in various environments.
 
 There are 6 basic environments:
 
-* `prod` - live, public primo at [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ&sortby=rank) branch is `production`
-* `prod-dev` - development on the live server [search.library.uq.edu.au with vid=61UQ_DEV](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV) branch is `primo-prod-dev`
-* `prod-otb` - [Blue out of the box primo in the prod environment](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN) - it would be very unusual for us to make changes to this
-* `sandbox` - sandbox area, [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ&sortby=rank) branch is `primo-sand-box`
-* `sandbox-dev` - sandbox dev area [uq-edu-primo-sb.hosted.exlibrisgroup.com with vid=61UQ_DEV](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) branch is `primo-sand-box-dev`
-* `sandbox-otb` - sandbox out of the box [uq-edu-primo-sb.hosted.exlibrisgroup.com with vid=61UQ_DEV_LOGIN](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV_LOGIN&sortby=rank) - it would be very unusual for us to make changes to this
+
+| Primo Environment Name | Primo Url        | Git&nbsp;Branch&nbsp;Name  | Notes |
+| ---------------------- | ---------------- | --------------- | ---- |
+| prod | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ&sortby=rank) with vid=61UQ | `production` | live, public primo |
+| prod-dev | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV) with vid=61UQ_DEV | `primo-prod-dev` | development on the live server |
+| prod-otb | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN) with vid=61UQ_DEV_LOGIN | - | Blue out of the box primo in the prod environment - it would be very unusual for us to make changes to this |
+| sandbox | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ&sortby=rank) with vid=61UQ | `primo-sand-box` | sandbox area |
+| sandbox-dev | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) with vid=61UQ_DEV | <nobr>`primo-sand-box-dev`</nobr> | sandbox dev area |
+| sandbox-otb | [applications/primo2/view_package/custom.js](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) | - | sandbox out of the box - it would be very unusual for us to make changes to this |
 
 The branch is set in [applications/primo2/view_package/custom.js](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) - [more info](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md)
 
@@ -98,3 +101,35 @@ Here is a workflow that covers both of these:
 Its very tedious and involves a lot of changing the branch name back and forth :(
 
 *Key Item!!*: always make sure to commit the correct branch name in `custom/custom.js` before you push to github!!!!
+
+## Alma Styling
+
+Parts of the primo pages are inside iframes, eg the 'Get It' block. This means our main custom-styles.css file wont affect it.
+
+Ex libris provides a _second_ css upload that can be used to control the styling inside the iframes.
+
+Workflow:
+
+1. make your changes
+- Choose your workarea (eg [primo sandbox dev](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) )
+- In the inspect panel, edit the css source file at AlmagetitMashupiframe > uq-psb.alma.exlibrisgroup.com > view > branding_skin > css > mashup_new.css until you are happy with the result
+2. create the package for upload
+- Copy your changes to mashup_new.scss here
+- Run  `gulp almastyles` to create the .css files from the .scss files
+- Run `gulp almazip` to create upload.zip, containing the updates files
+3. upload the package to alma
+- Login to the Alma back office, then visit [https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do...](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins'
+- Upload the .zip file
+- Reload the primo sandbox page and confirm your changes worked
+
+There are 2 gulp tasks for this process:
+
+- `gulp almastyles`, will build the .scss files at applications/primo2/alma/brianding_skin/css into .css files
+-  `gulp almazip`, will build a zip file ready to be uploaded to alma
+
+The upload is done in Alma back office. Paths are:
+
+- [sandbox](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar and then clock 'Delivery System Skins' under User Interface Settings
+- [prod](https://uq.alma.exlibrisgroup.com/SAML)
+
+(if you cant access this page ask Stacey for access, or she may want to do the upload herself)
