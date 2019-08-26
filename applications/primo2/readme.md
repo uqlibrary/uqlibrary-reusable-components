@@ -73,7 +73,7 @@ There are 6 basic environments:
 | prod-otb | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN) with vid=61UQ_DEV_LOGIN | - | Blue out of the box primo in the prod environment - it would be very unusual for us to make changes to this |
 | sandbox | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ&sortby=rank) with vid=61UQ | `primo-sand-box` | sandbox area |
 | sandbox-dev | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) with vid=61UQ_DEV | <nobr>`primo-sand-box-dev`</nobr> | sandbox dev area |
-| sandbox-otb | [applications/primo2/view_package/custom.js](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) | - | sandbox out of the box - it would be very unusual for us to make changes to this |
+| sandbox-otb | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV_LOGIN&sortby=rank) | - | sandbox out of the box - it would be very unusual for us to make changes to this |
 
 The branch is set in [applications/primo2/view_package/custom.js](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) - [more info](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md)
 
