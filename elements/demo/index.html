@@ -105,6 +105,12 @@
     <uqlibrary-fryer-search search-type="espace"></uqlibrary-fryer-search>
     </div>
 
+    <div>
+      <p>Training</p>
+      <uqlibrary-training event-filter-id="104" max-event-count="100" hide-filter="false" hide-category-title="false">
+      </uqlibrary-training>
+    </div>
+
   </div>
   <uql-connect-footer menu-json="{{menuJson}}" main-domain="https://www.library.uq.edu.au"></uql-connect-footer>
   <uq-minimal-footer></uq-minimal-footer>
@@ -135,7 +141,7 @@
   }
 
 
-  document.cookie="UQLMockData=enabled";
+  // document.cookie="UQLMockData=enabled";
 
   window.addEventListener('WebComponentsReady', function() {
     // when polymer is ready - configure elements
