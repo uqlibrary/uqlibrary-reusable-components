@@ -3,8 +3,11 @@
 # start debugging/tracing commands, -e - exit if command returns error (non-zero status)
 set -e
 
+if [[ -z $CI_BRANCH ]]; then
+  CI_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+fi
+
 echo "Deploying branch: ${CI_BRANCH}"
-branch=${CI_BRANCH}
 src=$(git rev-parse --show-toplevel)
 base=$(basename ${src})
 dest="${base/uqlibrary-/}"
@@ -14,12 +17,12 @@ cd ../${base}
 pwd
 
 # use codeship branch environment variable to push to branch name dir unless it's 'production' branch (or master for now)
-if [ ${CI_BRANCH} != "production" ]; then
-  export S3BucketSubDir=/${CI_BRANCH}/${dest}
-  export InvalidationPath=/${CI_BRANCH}/${dest}
-else
+if [[ ${CI_BRANCH} == "production" ]]; then
   export S3BucketSubDir=${dest}
   export InvalidationPath=/${dest}
+else
+  export S3BucketSubDir=/${CI_BRANCH}/${dest}
+  export InvalidationPath=/${CI_BRANCH}/${dest}
 fi
 
 echo "Compile css"
@@ -36,7 +39,7 @@ echo "Update GA Values"
 gulp inject-ga-values
 
 #run css min tasks for production, don't run for master - for better debugging
-if [ $branch = "production" ]; then
+if [[ ${CI_BRANCH} == "production" ]]; then
   echo "Run gulp task to optimize css..."
   gulp optimize
 fi
@@ -63,7 +66,6 @@ version=$(git rev-parse HEAD)
 
 sed -i -e "s#<VERSION>#${version}#g" ${appcache}
 
-echo "Deploying to S3 bucket sub-dir: ${S3BucketSubDir}"
 echo "Prepare AWS configuration..."
 
 # Use env vars to set AWS config
@@ -79,12 +81,13 @@ sed -i -e "s#<S3BucketSubDir>#${S3BucketSubDir}#g" ${awsconfig}
 sed -i -e "s#<CFDistribution>#${CFDistribution}#g" ${awsconfig}
 sed -i -e "s#<AWSRegion>#${AWSRegion}#g" ${awsconfig}
 
-echo "Run gulp task to upload to AWS..."
+echo "Deploying to S3 bucket sub-dir: ${S3BucketSubDir}"
+
 gulp publish
 
 echo "Run Cloudfront Invalidation"
 gulp invalidate --path ${InvalidationPath}
-if [ ${CI_BRANCH} != "production" ]; then
+if [[ ${CI_BRANCH} != "production" ]]; then
   gulp invalidate --path /${CI_BRANCH}/uqlibrary-api
 fi
 

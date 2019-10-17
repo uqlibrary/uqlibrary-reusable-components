@@ -29,11 +29,13 @@
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
     "gulp-vulcanize": "^8.0.0",
+    "gulp-zip": "^5.0.0",
     "jshint": "^2.10.2",
     "jshint-stylish": "^2.2.1",
     "jsonlint": "^1.6.3",
     "merge-stream": "^2.0.0",
     "require-dir": "^1.2.0",
+    "validator": "^11.1.0",
     "web-component-tester": "*",
     "yargs": "^13.3.0"
   },

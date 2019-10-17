@@ -18,6 +18,7 @@ var merge = require('merge-stream');
 var fs = require('fs');
 var replace = require('gulp-replace-task');
 var taskList = require('gulp-task-listing');
+var zip = require('gulp-zip');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -69,6 +70,27 @@ gulp.task('styles', function () {
   return styleTask(['applications/**/*-styles.scss']);
 });
 
+// task to create the css files at application/primo2/alma/branding_skin
+gulp.task('almastyles', function () {
+    return gulp.src(['applications/primo2/alma/**/*.scss'])
+        .pipe($.sass({style: 'expanded'}))
+        .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+        .pipe(gulp.dest('.tmp/'))
+        .pipe($.minifyCss())
+        .pipe(gulp.dest('applications/primo2/alma'))
+        // .pipe($.size({title: 'custom-styles.css'}))
+        ;
+});
+
+// task to create the zip file to upload to alma as iframe skin (eg sandbox: https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit&pageBean.menuKey=com.exlibris.dps.menu_conf&operation=LOAD&pageBean.helpId=general_configuration&pageBean.currentUrl=xmlFileName%3Dconfiguration_setup.configuration_mngUXP.xml%26almaConfiguration%3Dtrue%26pageViewMode%3DEdit%26pageBean.menuKey%3Dcom.exlibris.dps.menu_conf%26operation%3DLOAD%26pageBean.helpId%3Dgeneral_configuration%26resetPaginationContext%3Dtrue%26showBackButton%3Dfalse&pageBean.navigationBackUrl=..%2Faction%2Fhome.do&resetPaginationContext=true&showBackButton=false&pageBean.securityHashToken=76201656207012320 )
+gulp.task('almazip', function () {
+    return gulp.src([
+        'applications/primo2/alma/**/*.css'
+    ])
+        .pipe(zip('branding_skin.zip'))
+        .pipe(gulp.dest('applications/primo2/alma'));
+});
+
 // Lint JSON
 gulp.task('jsonlint', function () {
   return gulp.src([
@@ -96,6 +118,13 @@ gulp.task('vulcanize:clean_bower', function() {
     .pipe($.size({title: 'vulcanize:clean_bower'}));
 });
 
+// copy the files installed via npm to where vulcanise command will look for it
+gulp.task('vulcanize:npm_copy', function () {
+    return gulp.src(['node_modules/validator/**'])
+        .pipe(gulp.dest('../validator/'));
+
+});
+
 // delete old vulcanized file
 gulp.task('vulcanize:clean', function () {
   return del([
@@ -117,8 +146,9 @@ gulp.task('vulcanize:copy', function () {
 /** Vulcanize */
 // vulcanizes and splits html/js, replaces menu-json with value from resources/uql-menu.json, min html/js 'vulcanize:clean_bower'
 gulp.task('vulcanize', gulp.series(
-  'vulcanize:clean_bower', 
-  'vulcanize:clean', 
+  'vulcanize:clean_bower',
+  'vulcanize:npm_copy',
+  'vulcanize:clean',
   'vulcanize:copy',
   function() {
 
@@ -143,14 +173,14 @@ gulp.task('vulcanize', gulp.series(
     })) // Separate JS into its own file for CSP compliance and reduce html parser load.
     .pipe($.if('*.js',replace({patterns: [{ match: regEx, replacement: menuJson + ';'}], usePrefix: false}))) //replace menu-json with value from resources/uql-menu.json
     .pipe($.if('*.js',replace({patterns: [{ match: contactsRegEx, replacement: contactsJson + ';'}], usePrefix: false}))) //replace contacts.json with value from uqlibrary-api
-    
+
     // Minify js output
     .pipe($.if('*.js',$.uglify({
       output: {
         comments: 'some'
       }
     })))
-    
+
     .pipe($.if('*.html', $.minifyHtml({quotes: true, empty: true, spare: true}))) // Minify html output
     .pipe(gulp.dest(config.elements))
     .pipe($.size({title: 'vulcanize'}))
@@ -173,4 +203,4 @@ require('web-component-tester').gulp.init(gulp);
 gulp.task('test', gulp.series('test:local'));
 
 // Load custom tasks from the `tasks` directory
-require('require-dir')('tasks'); 
+require('require-dir')('tasks');
