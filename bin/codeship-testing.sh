@@ -87,8 +87,6 @@ case "$PIPE_NUM" in
   echo "Check file syntax..."
   gulp syntax
 
-;;
-"2")
   # "Unit tests" tab on codeship
   echo "WCT: local unit testing..."
   gulp test
