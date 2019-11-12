@@ -242,6 +242,10 @@
           "href": "https://web.library.uq.edu.au/locations-hours/opening-hours"
         },
         {
+          "label": "Study space availability",
+          "href": "https://web.library.uq.edu.au/locations-hours/study-space-availability"
+        },
+        {
           "label": "24/7 spaces",
           "href": "https://web.library.uq.edu.au/locations-hours/247-study-spaces"
         },
