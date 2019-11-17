@@ -89,7 +89,7 @@
         },
         {
           "label": "for Clients with disabilities",
-          "subtext": "Accessibiliy, assistive technology",
+          "subtext": "Accessibility, assistive technology",
           "href": "https://web.library.uq.edu.au/library-services/support-for-clients-disabilities"
 
         },
@@ -127,7 +127,7 @@
         {
           "label": "Subject guides",
           "subtext": "Law, medicine, management ...",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/subject-guides"
+          "href": "https://guides.library.uq.edu.au/subject"
         },
         {
           "label": "Search techniques",
@@ -240,6 +240,10 @@
         {
           "label": "Opening hours",
           "href": "https://web.library.uq.edu.au/locations-hours/opening-hours"
+        },
+        {
+          "label": "Study space availability",
+          "href": "https://web.library.uq.edu.au/locations-hours/study-space-availability"
         },
         {
           "label": "24/7 spaces",
