@@ -13,8 +13,5 @@ module.exports = {
             .pause(5000)
             .assert.containsText('.application-title', 'Online Exhibitions')
             .end();
-
     }
-
-
 };

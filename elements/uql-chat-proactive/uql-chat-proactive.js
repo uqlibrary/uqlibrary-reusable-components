@@ -61,8 +61,8 @@
       // the delay also draws the user's attention to the tab
       var numberMillisecondsBeforeChatTabAppears = 3000;
       this.async(function () {
-        this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function(e) {
-          if(e.detail && e.detail.hasOwnProperty('online')) {
+        this.$.chatStatusApi.addEventListener('uqlibrary-api-chat-status-loaded', function (e) {
+          if (e.detail && e.detail.hasOwnProperty('online')) {
             self._chatOnline = e.detail.online;
             self._chatStatusUpdated = true;
             self._handleLoadingChatStatus();
@@ -81,7 +81,7 @@
       if (contactsJson !== null) {
         this._setLinks(contactsJson);
       } else {
-        this.$.contactsApi.addEventListener('uqlibrary-api-contacts-loaded', function(e) {
+        this.$.contactsApi.addEventListener('uqlibrary-api-contacts-loaded', function (e) {
           self._setLinks(e.detail);
         });
         this.$.contactsApi.get();
@@ -103,29 +103,29 @@
 
     // if width of chat item is > window width - left pos of #facets
     // then chat popup is laying over the result cards - make it sit inside the sidebar
-    _isChatpopupOverlappingPrimoSidebar: function() {
-        var sidebarLeft = false;
+    _isChatpopupOverlappingPrimoSidebar: function () {
+      var sidebarLeft = false;
 
-        var facets = document.querySelector('#facets');
-        if (!!facets) {
-            sidebarLeft = facets.getBoundingClientRect().left;
-        }
+      var facets = document.querySelector('#facets');
+      if (facets) {
+        sidebarLeft = facets.getBoundingClientRect().left;
+      }
 
-        var proactivechat = document.querySelector('.proactivechat paper-card');
+      var proactivechat = document.querySelector('.proactivechat paper-card');
 
-        if (!!sidebarLeft && !!proactivechat) {
-          var tt = document.getElementsByTagName('body')[0],
-              windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
-          return (proactivechat.getBoundingClientRect().width > (windowWidth - sidebarLeft));
-        }
+      if (!!sidebarLeft && !!proactivechat) {
+        var tt = document.getElementsByTagName('body')[0],
+          windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
+        return (proactivechat.getBoundingClientRect().width > (windowWidth - sidebarLeft));
+      }
 
-        return false;
+      return false;
     },
 
     /**
      * Called when the chat status loads, eg uqlibrary-api-chat-status-loaded has fired. Updates display status
      */
-    _handleLoadingChatStatus: function() {
+    _handleLoadingChatStatus: function () {
       if (this._chatOnline) {
         this._showChatOnlineTab = true;
         this._showChatOfflineTab = false;
@@ -151,7 +151,7 @@
      * (and until) the user checks a checkbox in the sidebar
      * @private
      */
-    _watchForPrimoFiltersButton: function() {
+    _watchForPrimoFiltersButton: function () {
       var numMilliSecondsRecheck = 1000;
       this.async(function () {
         var filterButtonDiv = document.querySelector('.multiselect-submit-inner'); // alternate: querySelector('prm-facet > div > div:nth-of-type(2) > div');
@@ -174,16 +174,16 @@
             chatHeight = chatOfflineTab.getBoundingClientRect().height;
           }
 
-          if (!!chatLeft) {
+          if (chatLeft) {
             filterButtonDivWidth = filterButtonDiv.getBoundingClientRect().width;
             filterButtonDivLeft = filterButtonDiv.getBoundingClientRect().left;
 
-             // if the chat widget is inside the filter button area, push the filter button area up
-             // so the filter button area isnt under (or over) the chat widget
+            // if the chat widget is inside the filter button area, push the filter button area up
+            // so the filter button area isnt under (or over) the chat widget
             if (chatLeft < (filterButtonDivWidth + filterButtonDivLeft)) {
-               filterButtonDiv.style.marginBottom = chatHeight + 'px';
+              filterButtonDiv.style.marginBottom = chatHeight + 'px';
             } else {
-               filterButtonDiv.style.marginBottom = '0px';
+              filterButtonDiv.style.marginBottom = '0px';
             }
           }
         }
@@ -200,7 +200,7 @@
      * eg this._makeRoomForPrimoSidebarBottomElements('.proactivechat paper-card')
      * @private
      */
-    _makeRoomForPrimoSidebarBottomElements: function(tagIdentifier) {
+    _makeRoomForPrimoSidebarBottomElements: function (tagIdentifier) {
       element = document.querySelector(tagIdentifier);
       if (!!element && element.getBoundingClientRect().height > 0) {
         newMarginBottom = element.getBoundingClientRect().height;
@@ -216,7 +216,7 @@
     /*
      * called when the uses clicks the 'x' button or 'maybe later'
      */
-    _closeDialog: function() {
+    _closeDialog: function () {
       this._setCookieNoPopup();
 
       this._showPopupChatBlock = false;
@@ -272,7 +272,7 @@
     /**
      * called when 'Chat offline - leave your question' is clicked
      */
-    openContactForm: function() {
+    openContactForm: function () {
       this._openWindow(this.contactLinkItems);
     },
 
@@ -303,7 +303,7 @@
      * @private
      */
     _setLink: function (data, label) {
-      tempitem = data.items.filter(function(item) {
+      tempitem = data.items.filter(function (item) {
         return (item.label === label);
       });
       return tempitem[0];
@@ -341,7 +341,7 @@
      * (was originally session cookie, but Chrome doesnt delete those!)
      * @private
      */
-    _setCookieNoPopup: function() {
+    _setCookieNoPopup: function () {
       var cookieString = this.cookieNameNoPopup + "=true;";
       cookieString += " expires=" + this._getCookieExpiryDate(1) + ";";
       cookieString += " path=/;";
@@ -354,7 +354,7 @@
      * @returns {boolean}
      * @private
      */
-    _isCookieSetNoPopup: function() {
+    _isCookieSetNoPopup: function () {
       cookie = this._getCookie(this.cookieNameNoPopup);
       return (typeof cookie !== "undefined");
     },
@@ -365,11 +365,11 @@
      * but we can at least set a generic library one, rather than only the subdomain
      * @param hostname
      */
-    getDomain: function(hostname) {
+    getDomain: function (hostname) {
       var libraryRegExp = /(.*).library.uq.edu.au/i;
-      if ('localhost' === hostname)  {
+      if ('localhost' === hostname) {
         return 'localhost';
-      } else if (libraryRegExp.test(hostname))  {
+      } else if (libraryRegExp.test(hostname)) {
         // If we are on a library subdomain, use library root domain.
         return '.library.uq.edu.au';
       } else {
@@ -383,17 +383,17 @@
       }
     },
 
-    _isPrimoPage: function(hostname) {
+    _isPrimoPage: function (hostname) {
       return (
         this._isPrimoProdPage(hostname) || this._isPrimoSandboxPage(hostname)
       );
     },
 
-    _isPrimoProdPage: function(hostname) {
+    _isPrimoProdPage: function (hostname) {
       return ('search.library.uq.edu.au' === hostname);
     },
 
-    _isPrimoSandboxPage: function(hostname) {
+    _isPrimoSandboxPage: function (hostname) {
       var regExp = /(.*)exlibrisgroup.com/i;
       return regExp.test(hostname);
     },
@@ -404,19 +404,19 @@
      * @param newClassName string
      * @param tagIdentifier string
      */
-    _addClassToElement: function(newClassName, tagIdentifier) {
-        var element = document.querySelector(tagIdentifier);
-        if (!!element) {
-            element.classList.add(newClassName);
-        }
+    _addClassToElement: function (newClassName, tagIdentifier) {
+      var element = document.querySelector(tagIdentifier);
+      if (element) {
+        element.classList.add(newClassName);
+      }
     },
 
-    _isPrimoInResponsiveMode: function() {
-        var tt = document.getElementsByTagName('body')[0],
-            windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
+    _isPrimoInResponsiveMode: function () {
+      var tt = document.getElementsByTagName('body')[0],
+        windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || tt.clientWidth;
 
-        var windowWidthTablet = 960; // primo goes to mobile width at 960px
-        return windowWidth <= windowWidthTablet;
+      var windowWidthTablet = 960; // primo goes to mobile width at 960px
+      return windowWidth <= windowWidthTablet;
     }
   });
 })();

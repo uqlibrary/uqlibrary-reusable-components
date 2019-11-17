@@ -16,9 +16,8 @@
   "main": "elements/uq-minimal-header.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.11.3",
-    "webcomponentsjs": "^0.7.12",
+    "webcomponentsjs": "^0.7.24",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.0.2",
-    "validator-js": "~4.2.0",
     "uqlibrary-api": "uqlibrary/uqlibrary-api",
     "uqlibrary-alerts": "uqlibrary/uqlibrary-alerts",
     "uqlibrary-ga": "uqlibrary/uqlibrary-ga",

@@ -19,6 +19,7 @@ tmp
 
 applications/**/*.css
 applications/**/*.css.map
+applications/**/*.zip
 
 */custom-styles.css
 */common-minimal-styles.css
