@@ -134,7 +134,7 @@ Workflow:
 - Run  `gulp almastyles` to create the .css files from the .scss files
 - Run `gulp almazip` to create upload.zip, containing the updates files
 3. upload the package to alma
-- Login to the Alma back office, then visit [https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do...](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins'
+- Login to the Alma back office, then visit [https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do...](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins' (if you get a page with no options, Stacey needs to give you access)
 - Upload the .zip file
 - Reload the primo sandbox page and confirm your changes worked
 
