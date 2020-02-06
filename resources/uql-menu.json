@@ -125,6 +125,11 @@
           "href": "https://espace.library.uq.edu.au/"
         },
         {
+          "label": "Fryer Manuscripts",
+          "subtext": "Search unpublished collections",
+          "href": "https://manuscripts.library.uq.edu.au/"
+        },
+        {
           "label": "Subject guides",
           "subtext": "Law, medicine, management ...",
           "href": "https://guides.library.uq.edu.au/subject"
@@ -138,7 +143,7 @@
         {
           "label": "Referencing style guides",
           "subtext": "APA, AGLC, Harvard, Chicago ...",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-style-guides",
+          "href": "https://guides.library.uq.edu.au/referencing",
           "col2": "yes"
         },
         {
