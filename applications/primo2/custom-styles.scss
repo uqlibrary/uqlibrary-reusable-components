@@ -272,3 +272,8 @@ prm-atoz-search-bar {
     }
   }
 }
+
+// hide the report-a-problem button (that is added in custom.js) on the Actions Bar that applies to the bulk selection feature
+.search-action-list #reportaproblem {
+  display: none;
+}
