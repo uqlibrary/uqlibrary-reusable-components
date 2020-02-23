@@ -272,3 +272,7 @@ prm-atoz-search-bar {
     }
   }
 }
+
+md-content prm-search-result-list .pages-separated-with-gaps .list-item-wrapper.first-in-page:first-of-type .md-subheader ._md-subheader-inner {
+  top: -43px;
+}
