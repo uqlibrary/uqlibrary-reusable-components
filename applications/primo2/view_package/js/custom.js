@@ -25,7 +25,7 @@
       set: "action",
       name: "ic_bug_report_24px"
     },
-    action: "{CRMdomain}/app/library/contact/report_problem/true/incidents.subject/{recordTitle}/incidents.c$external_id/{recordId}"
+    action: "{CRMdomain}/app/library/contact/report_problem/true/incidents.subject/{recordTitle}/incidents.c$summary/{recordId}"
   }]);
 
   angular.module('customActions', []).component('prmActionListAfter', {
