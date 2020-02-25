@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var app = angular.module('viewCustom', ['customActions', 'angularLoad']);
+  var app = angular.module('viewCustom', ['angularLoad']);
 
   app.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
     //record GA page view event to new primo tracker GA ID
@@ -16,108 +16,6 @@
     });
 
   }]);
-
-  // Add custom actions to the Actions Menu (stolen from onesearch.library.wwu.edu)
-  app.constant('customActions', [{
-    name: "Report A Problem",
-    type: "template",
-    icon: {
-      set: "action",
-      name: "ic_bug_report_24px"
-    },
-    action: "{CRMdomain}/app/library/contact/report_problem/true/incidents.subject/{recordTitle}/incidents.c$summary/{recordId}"
-  }]);
-
-  angular.module('customActions', []).component('prmActionListAfter', {
-    require: { prmActionCtrl: '^prmActionList' },
-    controller: ['customActionsService', 'customActions', function (customActionsService, customActions) {
-      this.$onInit = function () {
-        customActionsService.setController(this.prmActionCtrl);
-        customActions.map(function (action) {
-          return customActionsService.addAction(action);
-        });
-      };
-    }]
-  }).factory('customActionsService', function () {
-    return {
-      setController: function setController(controller) {
-        this.prmActionCtrl = controller;
-      },
-      processAction: function processAction(action) {
-        action.iconname = action.name.replace(/\s+/g, ''), action.slug = action.name.replace(/\s+/g, '').toLowerCase(), action.index = Object.keys(this.prmActionCtrl.actionListService.actionsToIndex).length - 1;
-        this.prmActionCtrl.actionLabelNamesMap[action.slug] = action.name;
-        this.prmActionCtrl.actionIconNamesMap[action.slug] = action.iconname;
-        this.prmActionCtrl.actionIcons[action.iconname] = {
-          icon: action.icon.name,
-          iconSet: action.icon.set,
-          type: "svg"
-        };
-        return action;
-      },
-      addAction: function addAction(action) {
-        var _this = this;
-
-        action = this.processAction(action);
-        var whitelistpages = [
-          '/primo-explore/citationTrails',
-          '/primo-explore/chapters',
-          '/primo-explore/dbfulldisplay',
-          '/primo-explore/dbsearch',
-          '/primo-explore/fulldisplay',
-          '/primo-explore/search',
-        ];
-        if (!this.prmActionCtrl.actionListService.actionsToIndex[action.slug]
-          && -1 !== whitelistpages.indexOf(window.location.pathname)
-        ) {
-          this.prmActionCtrl.actionListService.requiredActionsList[action.index] = action.slug;
-          this.prmActionCtrl.actionListService.actionsToDisplay.unshift(action.slug);
-          this.prmActionCtrl.actionListService.actionsToIndex[action.slug] = action.index;
-        }
-        if (action.type === 'template') {
-          // process { } in templateVars
-          if (action.hasOwnProperty('templateVar')) {
-            action.action = action.action.replace(/{\d}/g, function (r) {
-              return action.templateVar[r.replace(/[^\d]/g, '')];
-            });
-          }
-          // add the document id to the data passed to the crm report a problem page (in the url)
-          action.action = action.action.replace(/{recordId}/g, function (r) {
-            return encodeURIComponent(_this.prmActionCtrl.item.pnx.search.recordid[0]);
-          });
-          // add the record title to the data passed to the crm report a problem page (in the url)
-          action.action = action.action.replace(/{recordTitle}/g, function (r) {
-            return encodeURIComponent(_this.prmActionCtrl.item.pnx.search.title[0]);
-          });
-          // replace the domain for the crm report a problem page with the correct CRM domain
-          action.action = action.action.replace(/{CRMdomain}/g, function (r) {
-            if (window.location.hostname === 'search.library.uq.edu.au') {
-              return 'https://support.my.uq.edu.au';
-            }
-            return 'https://uqcurrent--tst1.custhelp.com'; // we can probably return the live url for all when this is in prod
-          });
-          // replace a pnx.xxx.xxx[0] pattern ex. pnx.search.recordid[0]
-          var pnxProperties = action.action.match(/\{(pnx\..*?)\}/g) || [];
-          pnxProperties.forEach(function (p) {
-            var valueForP = p.replace(/[{}]/g, '').split('.').reduce(function (o, i) {
-              try {
-                var h = /(.*)(\[\d\])/.exec(i);
-                if (h instanceof Array) {
-                  return o[h[1]][h[2].replace(/[^\d]/g, '')];
-                }
-                return o[i];
-              } catch (e) {
-                return '';
-              }
-            }, _this.prmActionCtrl.item);
-            action.action = action.action.replace(p, valueForP);
-          });
-        }
-        this.prmActionCtrl.actionListService.onToggle[action.slug] = function () {
-          return window.open(action.action, '_blank');
-        };
-      }
-    };
-  });
 
   app.component('prmTopBarBefore', {
     template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
