@@ -287,3 +287,9 @@ button.md-button.button-as-link-mobile.link-alt-color {
   // filter button doesnt have the same classes applied?!?
   color: #2377CB;
 }
+@media (max-width: 600px) {
+  // align the pin button
+  .md-button.button-as-link {
+    padding-top: 0;
+  }
+}
