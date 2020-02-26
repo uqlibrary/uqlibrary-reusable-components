@@ -18,7 +18,7 @@
       /** Value of redirect URL updated Dec 2016 */
       redirectUrl: {
         type: String,
-        value: "http://www.uq.edu.au/search/?q=%20&as_sitesearch=library.uq.edu.au"
+        value: "https://www.uq.edu.au/search/?q=%20&as_sitesearch=library.uq.edu.au"
       }
     },
 

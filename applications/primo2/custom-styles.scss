@@ -255,6 +255,9 @@ strong.facet-title.layout-align-end-stretch.layout-row {
 prm-atoz-search-bar {
   background-color: transparent;
 }
+md-content prm-search-result-list .pages-separated-with-gaps .list-item-wrapper.first-in-page:first-of-type .md-subheader ._md-subheader-inner {
+  top: -43px;
+}
 
 .section-content .md-chips .md-chip.wrapping-chip .facet-title {
   margin-right: 0;
@@ -313,4 +316,22 @@ div > getit-link-service {
   background-color: inherit;
   color: inherit !important;
   text-decoration: none;
+}
+
+// various tweaks for February 2020 Release of Primo
+@media (max-width: 599px) {
+  // page count for very small page width is mis aligned
+  .__xs prm-search-result-list .pages-separated-with-gaps .list-item-wrapper.first-in-page:first-of-type .md-subheader ._md-subheader-inner ._md-subheader-content {
+    margin-top: -9px;
+  }
+}
+button.md-button.button-as-link-mobile.link-alt-color {
+  // filter button doesnt have the same classes applied?!?
+  color: #2377CB;
+}
+@media (max-width: 600px) {
+  // align the pin button
+  .md-button.button-as-link {
+    padding-top: 0;
+  }
 }

@@ -27,15 +27,15 @@
         type: Array,
          value: function() {
            var links = [
-             { url: "http://www.uq.edu.au/", title: "UQ Home" },
-             { url: "http://www.uq.edu.au/contacts/", title: "Contacts" },
+             { url: "https://www.uq.edu.au/", title: "UQ Home" },
+             { url: "https://www.uq.edu.au/contacts/", title: "Contacts" },
              { url: "https://future-students.uq.edu.au/", title: "Study" },
-             { url: "http://www.uq.edu.au/maps/", title: "Maps" },
-             { url: "http://www.uq.edu.au/news/", title: "News" },
-             { url: "http://www.uq.edu.au/events/", title: "Events" },
-             { url: "http://jobs.uq.edu.au/", title: "Jobs" },
+             { url: "https://www.uq.edu.au/maps/", title: "Maps" },
+             { url: "https://www.uq.edu.au/news/", title: "News" },
+             { url: "https://www.uq.edu.au/events/", title: "Events" },
+             { url: "https://jobs.uq.edu.au/", title: "Jobs" },
              { url: "https://www.uq.edu.au/giving/", title: "Give Now" },
-             { url: "http://my.uq.edu.au/", title: "my.UQ" }
+             { url: "https://my.uq.edu.au/", title: "my.UQ" }
            ];
            return links;
          }
