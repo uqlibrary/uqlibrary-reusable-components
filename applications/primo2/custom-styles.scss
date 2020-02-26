@@ -272,3 +272,45 @@ prm-atoz-search-bar {
     }
   }
 }
+
+// only show the report a problem button once
+div > getit-link-service {
+  display: none;
+}
+#getit_link1_0 div > getit-link-service {
+  display: inline !important;
+  margin-left: -10px;
+}
+
+// style the report a problem button
+.help-button:not([style-scope]) {
+  border: 1px solid #51247A;
+}
+.help-button:not([style-scope]) {
+  background-color: #51247A;
+  color: #FFF;
+  transition: none;
+}
+.help-button:not([style-scope]):hover,
+.help-button:not([style-scope]):hover a,
+.help-button:not([style-scope]):hover a:hover {
+  background-color: #FFF;
+  color: #51247A !important;
+  font-weight: bold;
+  box-shadow: none; // removes underline on the link
+}
+.help-button:not([style-scope]):hover a,
+.help-button:not([style-scope]):hover a:hover {
+  text-decoration: none;
+  box-shadow: none;
+}
+.help-button:not([style-scope]) a {
+  background-color: inherit;
+  color: #fff !important;
+  text-decoration: none;
+}
+.help-button:not([style-scope]) a:hover {
+  background-color: inherit;
+  color: inherit !important;
+  text-decoration: none;
+}

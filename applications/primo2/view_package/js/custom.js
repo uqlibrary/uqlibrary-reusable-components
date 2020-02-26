@@ -1,5 +1,6 @@
 (function () {
   "use strict";
+  'use strict';
 
   var app = angular.module('viewCustom', ['angularLoad']);
 
@@ -20,6 +21,32 @@
   app.component('prmTopBarBefore', {
     template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
       '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
+  });
+
+  // from https://knowledge.exlibrisgroup.com/Primo/Community_Knowledge/How_to_create_a_%E2%80%98Report_a_Problem%E2%80%99_button_below_the_ViewIt_iframe
+  app.component('prmFullViewServiceContainerAfter', {
+    bindings: {parentCtrl: '<'},
+    controller: function($scope){
+      var vm = this;
+
+      vm.targeturl = '';
+
+      var crmDomain = 'https://uqcurrent--tst1.custhelp.com'; // we can probably return the live url for all when this is in prod
+      if (window.location.hostname === 'search.library.uq.edu.au') {
+        crmDomain = 'https://support.my.uq.edu.au';
+      }
+
+      var recordId = decodeURIComponent(vm.parentCtrl.item.pnx.search.recordid);
+
+      var recordTitle = decodeURIComponent(vm.parentCtrl.item.pnx.search.title);
+
+      vm.targeturl = crmDomain + "/app/library/contact/report_problem/true/incidents.subject/" + recordTitle + "/incidents.c$summary/" + recordId;
+    },
+    template : '<div ng-if="$ctrl.targeturl"><getit-link-service>' +
+        '<button class="help-button md-button md-primoExplore-theme md-ink-ripple" type="button" data-ng-click="buttonPressed($event)" aria-label="Report a Problem" aria-hidden="false">' +
+        '<a ng-href="{{$ctrl.targeturl}}" target="_blank">Report a Problem</a>' +
+        '</button>' +
+        '</getit-link-service></div>'
   });
 
   /****************************************************************************************************/
