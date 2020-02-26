@@ -31,16 +31,36 @@
 
       vm.targeturl = '';
 
-      var crmDomain = 'https://uqcurrent--tst1.custhelp.com'; // we can probably return the live url for all when this is in prod
-      if (window.location.hostname === 'search.library.uq.edu.au') {
-        crmDomain = 'https://support.my.uq.edu.au';
+      var recordId = '';
+      if (!!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.search && !!vm.parentCtrl.item.pnx.search.recordid) {
+        recordId = encodeURIComponent(vm.parentCtrl.item.pnx.search.recordid);
+      }
+      if (recordId === '') {
+        // from http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
+        var fieldname = 'docid';
+        var temp = encodeURIComponent((new RegExp('[?|&]' + fieldname + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        if (temp !== null) {
+          recordId = temp;
+        }
       }
 
-      var recordId = encodeURIComponent(vm.parentCtrl.item.pnx.search.recordid);
+      var recordTitle = '';
+      if (recordId !== '' && !!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.search && !!vm.parentCtrl.item.pnx.search.title) {
+        recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.search.title);
+      }
+      if (recordTitle === '' && recordId !== '' && !!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.display && !!vm.parentCtrl.item.pnx.display.title && !!vm.parentCtrl.item.pnx.display.title[0]) {
+        recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.display.title[0]);
+      }
 
-      var recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.search.title);
+      // if we can get a docid and a title - add a button
+      if (recordId !== '' && recordTitle !== '') {
+        var crmDomain = 'https://uqcurrent--tst1.custhelp.com'; // we can probably return the live url for all when this is in prod
+        if (window.location.hostname === 'search.library.uq.edu.au') {
+          crmDomain = 'https://support.my.uq.edu.au';
+        }
 
-      vm.targeturl = crmDomain + "/app/library/contact/report_problem/true/incidents.subject/" + recordTitle + "/incidents.c$summary/" + recordId;
+        vm.targeturl = crmDomain + "/app/library/contact/report_problem/true/incidents.subject/" + recordTitle + "/incidents.c$summary/" + recordId;
+      }
     },
     template : '<div ng-if="$ctrl.targeturl"><getit-link-service>' +
         '<button class="help-button md-button md-primoExplore-theme md-ink-ripple" type="button" data-ng-click="buttonPressed($event)" aria-label="Report a Problem" aria-hidden="false">' +
