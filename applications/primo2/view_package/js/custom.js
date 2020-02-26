@@ -36,9 +36,9 @@
         crmDomain = 'https://support.my.uq.edu.au';
       }
 
-      var recordId = decodeURIComponent(vm.parentCtrl.item.pnx.search.recordid);
+      var recordId = encodeURIComponent(vm.parentCtrl.item.pnx.search.recordid);
 
-      var recordTitle = decodeURIComponent(vm.parentCtrl.item.pnx.search.title);
+      var recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.search.title);
 
       vm.targeturl = crmDomain + "/app/library/contact/report_problem/true/incidents.subject/" + recordTitle + "/incidents.c$summary/" + recordId;
     },
