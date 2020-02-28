@@ -45,8 +45,8 @@
       }
 
       var recordTitle = '';
-      if (recordId !== '' && !!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.search && !!vm.parentCtrl.item.pnx.search.title) {
-        recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.search.title);
+      if (recordId !== '' && !!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.search && !!vm.parentCtrl.item.pnx.search.title && !!vm.parentCtrl.item.pnx.search.title[0]) {
+        recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.search.title[0]);
       }
       if (recordTitle === '' && recordId !== '' && !!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.display && !!vm.parentCtrl.item.pnx.display.title && !!vm.parentCtrl.item.pnx.display.title[0]) {
         recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.display.title[0]);
