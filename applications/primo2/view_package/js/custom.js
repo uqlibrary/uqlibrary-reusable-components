@@ -275,4 +275,14 @@
   insertScript(scripts[0]);
   insertScript(scripts[1]);
   insertScript(scripts[2]);
+
+  // Temporarily manually supply the style to hide all the Report A Problem button
+  // because they get eleventy-three buttons if they dont have the latest style sheet (Chrome caches it horribly well)
+  // This can probably be removed on our next load of work on Primo
+  var css = 'div > getit-link-service { display: none; }',
+      head = document.head || document.getElementsByTagName('head')[0],
+      style = document.createElement('style');
+  head.appendChild(style);
+  style.setAttribute('type', 'text/css');
+  style.appendChild(document.createTextNode(css));
 })();
