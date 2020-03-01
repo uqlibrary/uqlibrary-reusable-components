@@ -67,12 +67,6 @@ if ! [ -f elements/elements.vulcanized.js ]; then
     exit 1;
 fi
 
-# nothing that the tests in this file cover are changed by file changes that affect primo
-if [[ $CI_BRANCH == primo-* ]] ; then
-    echo "testing not required in primo dev"
-    exit 0
-fi
-
 echo "Updating tests cases to use vulcanized version of elements..."
 files=( test/uql* )
 for file in "${files[@]}"; do
@@ -87,6 +81,12 @@ case "$PIPE_NUM" in
   echo "Check file syntax..."
   gulp syntax
 
+  # nothing that the tests in this file cover are changed by file changes that affect primo
+  if [[ $CI_BRANCH == primo-* ]] ; then
+      echo "testing not required in primo dev"
+      exit 0
+  fi
+
   # "Unit tests" tab on codeship
   echo "WCT: local unit testing..."
   gulp test
@@ -94,6 +94,12 @@ case "$PIPE_NUM" in
 ;;
 "3")
   # "Saucelabs" tab on codeship
+
+  # nothing that the tests in this file cover are changed by file changes that affect primo
+  if [[ $CI_BRANCH == primo-* ]] ; then
+      echo "testing not required in primo dev"
+      exit 0
+  fi
 
   trap logSauceCommands EXIT
 

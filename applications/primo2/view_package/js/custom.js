@@ -22,6 +22,52 @@
       '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
   });
 
+  // from https://knowledge.exlibrisgroup.com/Primo/Community_Knowledge/How_to_create_a_%E2%80%98Report_a_Problem%E2%80%99_button_below_the_ViewIt_iframe
+  app.component('prmFullViewServiceContainerAfter', {
+    bindings: {parentCtrl: '<'},
+    controller: function($scope){
+      var vm = this;
+
+      vm.targeturl = '';
+
+      var recordId = '';
+      if (!!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.search && !!vm.parentCtrl.item.pnx.search.recordid) {
+        recordId = encodeURIComponent(vm.parentCtrl.item.pnx.search.recordid);
+      }
+      if (recordId === '') {
+        // from http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
+        var fieldname = 'docid';
+        var temp = encodeURIComponent((new RegExp('[?|&]' + fieldname + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        if (temp !== null) {
+          recordId = temp;
+        }
+      }
+
+      var recordTitle = '';
+      if (recordId !== '' && !!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.search && !!vm.parentCtrl.item.pnx.search.title && !!vm.parentCtrl.item.pnx.search.title[0]) {
+        recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.search.title[0]);
+      }
+      if (recordTitle === '' && recordId !== '' && !!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.display && !!vm.parentCtrl.item.pnx.display.title && !!vm.parentCtrl.item.pnx.display.title[0]) {
+        recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.display.title[0]);
+      }
+
+      // if we can get a docid and a title - add a button
+      if (recordId !== '' && recordTitle !== '') {
+        var crmDomain = 'https://uqcurrent--tst1.custhelp.com'; // we can probably return the live url for all when this is in prod
+        if (window.location.hostname === 'search.library.uq.edu.au') {
+          crmDomain = 'https://support.my.uq.edu.au';
+        }
+
+        vm.targeturl = crmDomain + "/app/library/contact/report_problem/true/incidents.subject/" + recordTitle + "/incidents.c$summary/" + recordId;
+      }
+    },
+    template : '<div ng-if="$ctrl.targeturl"><getit-link-service>' +
+        '<button class="help-button md-button md-primoExplore-theme md-ink-ripple" type="button" data-ng-click="buttonPressed($event)" aria-label="Report a Problem" aria-hidden="false">' +
+        '<a ng-href="{{$ctrl.targeturl}}" target="_blank">Report a Problem</a>' +
+        '</button>' +
+        '</getit-link-service></div>'
+  });
+
   /****************************************************************************************************/
 
   /*In case of CENTRAL_PACKAGE - comment out the below line to replace the other module definition*/
@@ -201,7 +247,7 @@
   }
 
   // this script should only be called on views that have UQ header showing
-  var branchName = '/'; // default. Use for master and prod
+  var branchName = '/'; // default. Use for prod
   if (window.location.hostname === 'search.library.uq.edu.au') {
     if (/vid=61UQ_DEV/.test(window.location.href)) {
       branchName = '/primo-prod-dev/';
@@ -214,22 +260,19 @@
     }
   }
 
-  var scripts = [
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/webcomponentsjs/webcomponents-lite.min.js',
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/resources/preloader.js',
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/load.js'
-  ];
-
   var links = [
     { rel: 'import', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/elements.vulcanized.html' },
     { rel: 'stylesheet', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css' }
   ];
-
   insertLink(links[0]);
   insertLink(links[1]);
 
+  var scripts = [
+    '//assets.library.uq.edu.au' + branchName + 'reusable-components/webcomponentsjs/webcomponents-lite.min.js',
+    '//assets.library.uq.edu.au' + branchName + 'reusable-components/resources/preloader.js',
+    '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/load.js',
+  ];
   insertScript(scripts[0]);
   insertScript(scripts[1]);
   insertScript(scripts[2]);
-
 })();
