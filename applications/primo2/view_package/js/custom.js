@@ -51,8 +51,10 @@
         recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.display.title[0]);
       }
 
-      // if we can get a docid and a title - add a button
-      if (recordId !== '' && recordTitle !== '') {
+      var isIE11 = navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > -1;
+
+      // if we are not IE11 and can get a docid and a title - add a button
+      if (!isIE11 && recordId !== '' && recordTitle !== '') {
         var crmDomain = 'https://uqcurrent--tst1.custhelp.com'; // we can probably return the live url for all when this is in prod
         if (window.location.hostname === 'search.library.uq.edu.au') {
           crmDomain = 'https://support.my.uq.edu.au';
@@ -60,6 +62,7 @@
 
         vm.targeturl = crmDomain + "/app/library/contact/report_problem/true/incidents.subject/" + recordTitle + "/incidents.c$summary/" + recordId;
       }
+      // the button doesnt work in IE11 :( see PT #171563111
     },
     template : '<div ng-if="$ctrl.targeturl"><getit-link-service>' +
         '<button class="help-button md-button md-primoExplore-theme md-ink-ripple" type="button" data-ng-click="buttonPressed($event)" aria-label="Report a Problem" aria-hidden="false">' +
@@ -275,4 +278,14 @@
   insertScript(scripts[0]);
   insertScript(scripts[1]);
   insertScript(scripts[2]);
+
+  // Temporarily manually supply the style to hide all the Report A Problem button
+  // because they get eleventy-three buttons if they dont have the latest style sheet (Chrome caches it horribly well)
+  // This can probably be removed on our next load of work on Primo
+  var css = 'div > getit-link-service { display: none; }',
+      head = document.head || document.getElementsByTagName('head')[0],
+      style = document.createElement('style');
+  head.appendChild(style);
+  style.setAttribute('type', 'text/css');
+  style.appendChild(document.createTextNode(css));
 })();
