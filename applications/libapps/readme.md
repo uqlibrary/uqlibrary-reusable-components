@@ -1,11 +1,11 @@
-# SpringShare Custsomisation
+# SpringShare Customisation
 
 ## LibGuides
 
 * LibGuides URL: <https://guides.library.uq.edu.au>
 * Development environment (master branch): <https://guides.library.uq.edu.au/test>
 
-Include this code in Custom JS/CSS Code in LibGuides configuration:
+Include the following code in Custom JS/CSS Code in LibGuides configuration at <https://uq.libapps.com/libguides/lookfeel.php?action=1>:
 
 ```html
 <link type="image/x-icon" rel="shortcut icon" href="//assets.library.uq.edu.au/reusable-components/resources/favicon.ico">
@@ -22,7 +22,19 @@ Customisation of groups shall be done the same way as custom-styles, example:how
 <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libguides/how-to-find-group.css" />
 ```
 
-## LibAnswers - in the process of being replaced by Rightnow
+(Dana has a repo of styling at <https://github.com/uqlibrary/libguides-local>) 
+
+## LibWizard
+
+LibWizard is a Springshare product which allows users to create quizzes (and forms generally)
+
+Login at <https://uq.libapps.com/> Lots of people have admin to add users - Jake, Nick, Rob, Eric...
+
+libwizard.js is inserted here: <https://uq.libwizard.com/admin/settings>
+
+This appears on pages like <https://uq.libwizard.com/f/APA6-referencing-quiz> which popsup on pages like <https://guides.library.uq.edu.au/referencing/apa6#s-lg-box-21298070>
+
+## LibAnswers - replaced by Rightnow
 
 * LibGuides URL: <https://answers.library.uq.edu.au>
 * Development environment (master branch): <https://answers.library.uq.edu.au/test>
@@ -37,3 +49,4 @@ Include this code in Custom JS/CSS Code in LinAnswers configuration
 <script src="//assets.library.uq.edu.au/reusable-components/libapps/load.js" async></script>
 <link rel="stylesheet" href="//assets.library.uq.edu.au/reusable-components/libapps/libanswers/custom-styles.css" />
 ```
+
