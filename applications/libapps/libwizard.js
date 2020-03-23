@@ -7,7 +7,7 @@ function ready(fn) {
 }
 
 function loadReusableComponents() {
-    addCss('//assets.library.uq.edu.au/reusable-components/omeka/custom-styles.css');
+    addCss('//assets.library.uq.edu.au/reusable-components/libapps/libguides/custom-styles.css');
 
     addElements();
     //insert elements, even before Polymer is loaded
@@ -27,17 +27,14 @@ function loadReusableComponents() {
     var header = document.createElement('uq-minimal-header');
     document.body.insertBefore(header, firstElement);
 
-    // insert sub footer before body-tag
-    var subFooter = document.createElement('uql-connect-footer');
-    document.body.appendChild(subFooter);
-
     // insert footer before body-tag
     var footer = document.createElement('uq-minimal-footer');
     document.body.appendChild(footer);
 
-
     window.addEventListener('WebComponentsReady', function() {
         // when polymer is ready - configure elements
+        header.showLoginButton = false;
+        header.showChatButton = false;
     });
 }
 
