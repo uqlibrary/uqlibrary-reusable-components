@@ -56,6 +56,22 @@
 <link rel="import" href="../../uqlibrary-training/elements/uqlibrary-training.html">
 
 <!-- javascript for Field validation -->
+<!-- Add polyfill for String.prototype.includes() for IE compatibility with validator.js 
+     - https://github.com/validatorjs/validator.js/issues/1272 
+-->
+<script>
+    if (!String.prototype.includes) {
+        String.prototype.includes = function (search, start) {
+            'use strict';
+
+            if (search instanceof RegExp) {
+                throw TypeError('first argument must not be a RegExp');
+            }
+            if (start === undefined) { start = 0; }
+            return this.indexOf(search, start) !== -1;
+        };
+    }
+</script>
 <script type="text/javascript" src="../node_modules/validator/validator.js"></script>
 
 <!-- common components  -->
