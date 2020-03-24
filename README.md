@@ -77,7 +77,7 @@ If editing on the Github website, your screen should look like this:
 
 If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (<https://web.library.uq.edu.au>) as well. This can be tested before going live by running the master branch of reusable through codeship and, post-invalidation in AWS Cloudfront, viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
 
-(If you want to view the drupal staging site using staging data, you will have to build reusable master calling uqlibrary-api where uqlibrary-api.html has set the variable baseApiUrl to 'https://api.library.uq.edu.au/staging'.)
+(If you want to view the drupal staging site using staging data, you will have to build reusable master calling uqlibrary-api where uqlibrary-api.html has set the variable baseApiUrl to `https://api.library.uq.edu.au/staging`.)
 
 ### Applications Customisations
 
@@ -111,7 +111,7 @@ Embed the following if you want to force an IMS login for on campus workstations
 
 ### Elements Development
 
-Please, read [Style Guide](http://polymerelements.github.io/style-guide/) before starting development.
+Please, read [Style Guide](https://polymer-library.polymer-project.org/1.0/docs/devguide/styling) before starting development.
 
 All common styles, colours, or mix-ins are located in `/elements/common-styles.html`
 
@@ -119,7 +119,7 @@ Follow [directions here](https://github.com/uqlibrary/uqlibrary-pages#updating-u
 
 #### Development/Deployment process
 
-1. Create/update required component following [Style Guide](http://polymerelements.github.io/style-guide/)
+1. Create/update required component following [Style Guide](https://polymer-library.polymer-project.org/1.0/docs/devguide/styling)
 1. Use common styles/variables/mix-ins from `/elements/common-styles.html`, customise styling in the element.
 1. Create/update demo page for the component in `/elements/[component]/demo/index.html`
 1. Create/update test suite in `/test/` directory
