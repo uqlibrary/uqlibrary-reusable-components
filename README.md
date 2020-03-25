@@ -44,7 +44,7 @@ With Node.js installed, run the following one liner from the root of the repo:
 npm i -g gulp-cli bower nightwatch npm@6 && npm install
 ```
 
-- IMPORTANT! Before each change, update our [saucelab browser versions](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/bin/template.nightwatch-saucelabs.json) by using the [saucelabs configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) so we are testing against current OS versions (browser versions are mostly automatic). Also check the [latest ESR version for firefox](https://www.mozilla.org/en-US/firefox/organizations/). (ESR versions are deployed in our Standard Environment across the Libraries).
+- IMPORTANT! Before each change, update our [saucelab browser versions](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/bin/nightwatch-saucelabs.json) by using the [saucelabs configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) so we are testing against current OS versions (browser versions are mostly automatic). Also check the [latest ESR version for firefox](https://www.mozilla.org/en-US/firefox/organizations/). (ESR versions are deployed in our Standard Environment across the Libraries).
 
 ### Updating IA
 
