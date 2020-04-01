@@ -22,7 +22,7 @@
       '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
   });
 
-  // from https://knowledge.exlibrisgroup.com/Primo/Community_Knowledge/How_to_create_a_%E2%80%98Report_a_Problem%E2%80%99_button_below_the_ViewIt_iframe
+  // based on https://knowledge.exlibrisgroup.com/Primo/Community_Knowledge/How_to_create_a_%E2%80%98Report_a_Problem%E2%80%99_button_below_the_ViewIt_iframe
   app.component('prmFullViewServiceContainerAfter', {
     bindings: {parentCtrl: '<'},
     controller: function($scope){
@@ -31,8 +31,15 @@
       vm.targeturl = '';
 
       var recordId = '';
-      if (!!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.search && !!vm.parentCtrl.item.pnx.search.recordid) {
-        recordId = encodeURIComponent(vm.parentCtrl.item.pnx.search.recordid);
+      // no one knows what the TN actually means (per SVG), but in practice all the CDI records have it on their record id
+      if (!!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.control && !!vm.parentCtrl.item.pnx.control.recordid
+          && vm.parentCtrl.item.pnx.control.recordid[0] && vm.parentCtrl.item.pnx.control.recordid[0].startsWith('TN')) {
+        recordId = encodeURIComponent(vm.parentCtrl.item.pnx.control.recordid);
+      }
+      if (recordId === '') {
+        if (!!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.search && !!vm.parentCtrl.item.pnx.search.recordid) {
+          recordId = encodeURIComponent(vm.parentCtrl.item.pnx.search.recordid);
+        }
       }
       if (recordId === '') {
         // from http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
