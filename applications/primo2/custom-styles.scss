@@ -332,10 +332,12 @@ getit-link-service a {
   text-transform: uppercase;
   transition: none;
 }
+#getit_link1_0 div > getit-link-service a:hover {
+  color: $theme-color !important;
+}
 getit-link-service a:hover {
   background-color: #FFF;
   box-shadow: none; // removes underline on the link
-  color: $theme-color !important;
   font-weight: bold;
   text-decoration: none;
 }
