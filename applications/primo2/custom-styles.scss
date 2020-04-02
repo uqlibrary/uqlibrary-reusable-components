@@ -318,10 +318,12 @@ div > getit-link-service {
 }
 
 // style the report a problem button without a button
-#getit_link1_0 div > getit-link-service a {
+#getit_link1_0 div > getit-link-service a,
+#getit_link1_0 div > getit-link-service a:focus {
   color: #fff !important;
 }
-getit-link-service a {
+getit-link-service a,
+getit-link-service a:focus {
   background-color: $theme-color;
   border: 1px solid $theme-color;
   color: #fff !important;
@@ -330,6 +332,10 @@ getit-link-service a {
   text-decoration: none;
   text-transform: uppercase;
   transition: none;
+}
+getit-link-service a:focus {
+  border-style: dashed;
+  border-color: #fff;
 }
 #getit_link1_0 div > getit-link-service a:hover {
   color: $theme-color !important;
