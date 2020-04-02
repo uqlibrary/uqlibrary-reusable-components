@@ -282,9 +282,10 @@ div > getit-link-service {
 }
 #getit_link1_0 div > getit-link-service {
   display: inline !important;
+  margin-left: -10px;
 }
 
-// style the report a problem button with a button (to be removed once the button is removed)
+// style the report a problem button
 .help-button:not([style-scope]) {
   border: 1px solid $theme-color;
 }
@@ -314,36 +315,6 @@ div > getit-link-service {
 .help-button:not([style-scope]) a:hover {
   background-color: inherit;
   color: inherit !important;
-  text-decoration: none;
-}
-
-// style the report a problem button without a button
-#getit_link1_0 div > getit-link-service a,
-#getit_link1_0 div > getit-link-service a:focus {
-  color: #fff !important;
-}
-getit-link-service a,
-getit-link-service a:focus {
-  background-color: $theme-color;
-  border: 1px solid $theme-color;
-  color: #fff !important;
-  font-size: 14px;
-  padding: 10px 8px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: none;
-}
-getit-link-service a:focus {
-  border-style: dashed;
-  border-color: #fff;
-}
-#getit_link1_0 div > getit-link-service a:hover {
-  color: $theme-color !important;
-}
-getit-link-service a:hover {
-  background-color: #FFF;
-  box-shadow: none; // removes underline on the link
-  font-weight: bold;
   text-decoration: none;
 }
 
