@@ -69,10 +69,11 @@
 
         vm.targeturl = crmDomain + "/app/library/contact/report_problem/true/incidents.subject/" + recordTitle + "/incidents.c$summary/" + recordId;
       }
-      // the button doesnt work in IE11 :( see PT #171563111
     },
     template : '<div ng-if="$ctrl.targeturl"><getit-link-service>' +
-        '<a ng-href="{{$ctrl.targeturl}}" target="_blank" aria-label="Report a Problem" aria-hidden="false">Report a Problem</a>' +
+        '<button class="help-button md-button md-primoExplore-theme md-ink-ripple" type="button" data-ng-click="buttonPressed($event)" aria-label="Report a Problem" aria-hidden="false">' +
+        '<a ng-href="{{$ctrl.targeturl}}" target="_blank">Report a Problem</a>' +
+        '</button>' +
         '</getit-link-service></div>'
   });
 
