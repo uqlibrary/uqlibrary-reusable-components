@@ -30,30 +30,9 @@ LibWizard is a Springshare product which allows users to create quizzes (and for
 
 Login at <https://uq.libapps.com/> Lots of people have admin to add users - Jake, Nick, Rob, Eric...
 
-Libwizard is used on pages like <https://uq.libwizard.com/f/APA6-referencing-quiz> which popsup on pages like <https://guides.library.uq.edu.au/referencing/apa6#s-lg-box-21298070>
+libwizard.js is inserted here: <https://uq.libwizard.com/admin/settings>
 
-Javascript is inserted here: <https://uq.libwizard.com/admin/settings>
-
-Options:
-
-1. Display a standard UQ Library header and footer 
-
-Insert the following list of scripts in the 'External JS Files' field to get header and (non-connect) footer on libwizard  (this is currently not required by the client)
-
-```
-https://assets.library.uq.edu.au/reusable-components/webcomponentsjs/webcomponents-lite.js
-https://assets.library.uq.edu.au/reusable-components/resources/preloader.js
-https://assets.library.uq.edu.au/reusable-components/libapps/libwizard/load.js
-```
-
-2. Control an iframe display
-
-The code at https://github.com/davidjbradshaw/iframe-resizer is used to control the iframe.
-
-The contents of `iframeResizer.contentWindow.js` is directly inserted into the springshare backend in the 'Custom JS Code' field (it is only in this repo as a backup)
-
-`https://assets.library.uq.edu.au/reusable-components/libapps/libwizard/iframeResizer.min.js` can be included as a script on any page which will display the libwizard iframe. 
-The intent is to insert this script into appropriate pages with GTM.
+This appears on pages like <https://uq.libwizard.com/f/APA6-referencing-quiz> which popsup on pages like <https://guides.library.uq.edu.au/referencing/apa6#s-lg-box-21298070>
 
 ## LibAnswers - replaced by Rightnow
 
