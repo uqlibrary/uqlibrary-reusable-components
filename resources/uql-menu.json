@@ -6,6 +6,12 @@
       "href": "https://web.library.uq.edu.au/library-services",
       "items": [
         {
+          "label": "COVID-19",
+          "subtext": "Latest updates and service info",
+          "href": "https://web.library.uq.edu.au/library-services/covid-19",
+          "col2": "yes"
+        },
+        {
           "label": "Your librarian",
           "subtext": "Expert advice for your discipline",
           "href": "https://web.library.uq.edu.au/library-services/liaison-librarians",
