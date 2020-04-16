@@ -27,7 +27,7 @@ if [[ ${CI_BRANCH} == "production" ]]; then
 
   # note: edge and ie11 require avoidProxy set to true in the .json file per https://support.saucelabs.com/customer/en/portal/private/cases/43779
   printf "\n --- Windows browsers on Sauce Labs ---\n\n"
-  nightwatch -c nightwatch-saucelabs.json --env default,firefox-on-windows,edge,ie11,firefox-on-windows-ESR --tag e2etest
+  nightwatch -c nightwatch-saucelabs.json --env default,firefox-on-windows,edge,firefox-on-windows-ESR --tag e2etest
 
   printf "\n --- Mac browsers on Sauce Labs ---\n\n"
   nightwatch -c nightwatch-saucelabs.json --env chrome-on-mac,firefox-on-mac,safari-on-mac,firefox-on-mac-ESR --tag e2etest
