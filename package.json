@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "postinstall": "bower update",
-    "test": "gulp test"
+    "test": "gulp test",
+    "cleandeps": "THISDIR=${PWD##*/}; BOWERDEPS=$(ls ../ --hide=$THISDIR); cd ..; rm -rf $BOWERDEPS $THISDIR/node_modules"
   },
   "devDependencies": {
     "bower": "^1.8.8",

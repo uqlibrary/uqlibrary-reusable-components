@@ -30,6 +30,20 @@ The Central Repository contains:
 
 ### Getting Started
 
+The project installs its bower dependencies in **ONE DIRECTORY LEVEL ABOVE** the git root directory, so make sure you clone the repo into an empty folder. For example,
+
+```bash
+cd ~
+## The dir name below can be anything; just remember what it is.
+mkdir uql-reusable
+cd uql-reusable
+git clone git@github.com:uqlibrary/uqlibrary-reusable-components.git
+```
+
+This should result in your local checkout being at `~/uql-reusable/uqlibrary-reusable-components`. Make sure you don't put anything else directly under `~/uql-reusable` manually; bower will do that for you.
+
+The reason for this seemingly odd location is to allow for easier integration with other projects which use it. All the UQL polymer repos are built this way, so this strategy should be followed for all of them; not just this one.
+
 Project requires the following major dependencies:
 
 - Node.js, used to run JavaScript tools from the command line.
