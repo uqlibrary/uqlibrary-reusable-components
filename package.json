@@ -3,8 +3,14 @@
   "private": true,
   "scripts": {
     "postinstall": "bower update",
+    "cleandeps": "THISDIR=${PWD##*/}; BOWERDEPS=$(ls ../ --hide=$THISDIR); cd ..; rm -rf $BOWERDEPS $THISDIR/node_modules",
+    "selenium": "curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/selenium_server.sh | bash -s",
     "test": "gulp test",
-    "cleandeps": "THISDIR=${PWD##*/}; BOWERDEPS=$(ls ../ --hide=$THISDIR); cd ..; rm -rf $BOWERDEPS $THISDIR/node_modules"
+    "test:remote": "gulp test:remote",
+    "test:remote:all": "CI_BRANCH=production PIPE_NUM=3 LOG_SAUCELAB_ERRORS=true bash -c ./bin/codeship-testing.sh",
+    "test:prod:windows-all": "nightwatch -c ./bin/nightwatch-saucelabs.json --env default,firefox-on-windows,edge,firefox-on-windows-ESR --tag e2etest",
+    "test:prod:mac-all": "nightwatch -c ./bin/nightwatch-saucelabs.json --env chrome-on-mac,firefox-on-mac,safari-on-mac,firefox-on-mac-ESR --tag e2etest",
+    "test:prod:all": "npm run test:prod:windows-all && npm run test:prod:mac-all"
   },
   "devDependencies": {
     "bower": "^1.8.8",
