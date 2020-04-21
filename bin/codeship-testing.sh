@@ -9,28 +9,38 @@ if [[ -z $LOG_SAUCELAB_ERRORS ]]; then
     LOG_SAUCELAB_ERRORS=false
 fi
 if [[ "$LOG_SAUCELAB_ERRORS" == true ]]; then
-    if [[ -z ${TMPDIR} ]]; then # codeship doesnt seem to set this
+    if [[ -z "$TMPDIR" ]]; then # codeship doesnt seem to set this
       TMPDIR="/tmp/"
     fi
 fi
 
-SAUCELABS_LOG_FILE="${TMPDIR}sc.log"
 function logSauceCommands {
   if [[ "$LOG_SAUCELAB_ERRORS" != true ]]; then
-    echo "An error happened and (presumably) saucelabs failed but we arent reporting the output - set LOG_SAUCELAB_ERRORS to true in Codeship Environment Variables to see the log next time"
+    echo "Skipping display of logs. Set LOG_SAUCELAB_ERRORS to true in Codeship Environment Variables to see the log next time."
     return
   fi
 
+  SAUCELABS_LOG_FILE="${TMPDIR}sc.log"
   if [ ! -f "$SAUCELABS_LOG_FILE" ]; then
     echo "$SAUCELABS_LOG_FILE not found - looking for alt file"
-    # testing with check /tmp/sc.log presencewct? it writes to a subdirectory, eg /tmp/wct118915-6262-1w0uwzy.q8it/sc.log
-    ALTERNATE_SAUCE_LOCN="$(find ${TMPDIR} -name 'wct*')"
-    if [ -d "${ALTERNATE_SAUCE_LOCN}" ]; then
+
+    # Testing with wct, which writes to a subdirectory, e.g. /tmp/wct118915-6262-1w0uwzy.q8it/sc.log
+    ALTERNATE_SAUCE_LOCN=""
+    set +e
+    while read LOGDIR_NAME; do
+      if [[ "$LOGDIR_NAME" -nt "$ALTERNATE_SAUCE_LOCN" ]]; then
+        ALTERNATE_SAUCE_LOCN="$LOGDIR_NAME"
+      fi
+    done < <(find "$TMPDIR" -name 'wct*' 2>/dev/null)
+    set -e
+
+    if [ -d "$ALTERNATE_SAUCE_LOCN" ]; then
       SAUCELABS_LOG_FILE="${ALTERNATE_SAUCE_LOCN}/sc.log"
     else # debug
-      echo "Could not find alternate log file ${ALTERNATE_SAUCE_LOCN}"
+      echo "Could not find alternate log dir $ALTERNATE_SAUCE_LOCN"
     fi
   fi
+
   if [ -f "$SAUCELABS_LOG_FILE" ]; then
     echo "Command failed - dumping $SAUCELABS_LOG_FILE for debug of saucelabs"
     cat $SAUCELABS_LOG_FILE

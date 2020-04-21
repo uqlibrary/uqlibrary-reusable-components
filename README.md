@@ -30,6 +30,20 @@ The Central Repository contains:
 
 ### Getting Started
 
+The project installs its bower dependencies in **ONE DIRECTORY LEVEL ABOVE** the git root directory, so make sure you clone the repo into an empty folder. For example,
+
+```bash
+cd ~
+## The dir name below can be anything; just remember what it is.
+mkdir uql-reusable
+cd uql-reusable
+git clone git@github.com:uqlibrary/uqlibrary-reusable-components.git
+```
+
+This should result in your local checkout being at `~/uql-reusable/uqlibrary-reusable-components`. Make sure you don't put anything else directly under `~/uql-reusable` manually; bower will do that for you.
+
+The reason for this seemingly odd location is to allow for easier integration with other projects which use it. All the UQL polymer repos are built this way, so this strategy should be followed for all of them; not just this one.
+
 Project requires the following major dependencies:
 
 - Node.js, used to run JavaScript tools from the command line.
@@ -44,7 +58,7 @@ With Node.js installed, run the following one liner from the root of the repo:
 npm i -g gulp-cli bower nightwatch npm@6 && npm install
 ```
 
-- IMPORTANT! Before each change, update our [saucelab browser versions](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/bin/template.nightwatch-saucelabs.json) by using the [saucelabs configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) so we are testing against current OS versions (browser versions are mostly automatic). Also check the [latest ESR version for firefox](https://www.mozilla.org/en-US/firefox/organizations/). (ESR versions are deployed in our Standard Environment across the Libraries).
+- IMPORTANT! Before each change, update our [saucelab browser versions](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/bin/nightwatch-saucelabs.json) by using the [saucelabs configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) so we are testing against current OS versions (browser versions are mostly automatic). Also check the [latest ESR version for firefox](https://www.mozilla.org/en-US/firefox/organizations/). (ESR versions are deployed in our Standard Environment across the Libraries).
 
 ### Updating IA
 
@@ -77,7 +91,7 @@ If editing on the Github website, your screen should look like this:
 
 If you are doing big changes to Polymer components, make sure you test everything is working on Drupal (<https://web.library.uq.edu.au>) as well. This can be tested before going live by running the master branch of reusable through codeship and, post-invalidation in AWS Cloudfront, viewing the Drupal staging site, for example, [the training page](https://library.stage.drupal.uq.edu.au/library-services/training).
 
-(If you want to view the drupal staging site using staging data, you will have to build reusable master calling uqlibrary-api where uqlibrary-api.html has set the variable baseApiUrl to 'https://api.library.uq.edu.au/staging'.)
+(If you want to view the drupal staging site using staging data, you will have to build reusable master calling uqlibrary-api where uqlibrary-api.html has set the variable baseApiUrl to `https://api.library.uq.edu.au/staging`.)
 
 ### Applications Customisations
 
@@ -111,7 +125,7 @@ Embed the following if you want to force an IMS login for on campus workstations
 
 ### Elements Development
 
-Please, read [Style Guide](http://polymerelements.github.io/style-guide/) before starting development.
+Please, read [Style Guide](https://polymer-library.polymer-project.org/1.0/docs/devguide/styling) before starting development.
 
 All common styles, colours, or mix-ins are located in `/elements/common-styles.html`
 
@@ -119,7 +133,7 @@ Follow [directions here](https://github.com/uqlibrary/uqlibrary-pages#updating-u
 
 #### Development/Deployment process
 
-1. Create/update required component following [Style Guide](http://polymerelements.github.io/style-guide/)
+1. Create/update required component following [Style Guide](https://polymer-library.polymer-project.org/1.0/docs/devguide/styling)
 1. Use common styles/variables/mix-ins from `/elements/common-styles.html`, customise styling in the element.
 1. Create/update demo page for the component in `/elements/[component]/demo/index.html`
 1. Create/update test suite in `/test/` directory
