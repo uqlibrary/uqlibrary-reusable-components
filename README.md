@@ -24,8 +24,6 @@ The Central Repository contains:
 - `/templates/` - Simple layouts for static pages, used for EZProxy error display etc
 - `/backup/` - Styles/scripts of applications before reusable components were applied
 
-- NOTE! Whenever you push to production, confirm the branchName variable in `/applications/primo2/view_package/js/custom.js` is correct!!!! (It should be `/` for production).
-
 [Overview of how the Polymer components interact](https://drive.google.com/open?id=1eV_KnLVfYBbn7lTl6AyiYQmHD1t1sBLo) (stored in [Projects](https://drive.google.com/drive/folders/0Bw6wOgp_LaKoZmZjUXM1eUNfU1E) for want of anywhere else to put it).
 
 ### Getting Started
