@@ -117,7 +117,6 @@ case "$PIPE_NUM" in
   # check analytics at least annually to confirm correct browser choice
   # Win/Chrome is our most used browser, 2018
   # Win/FF is our second most used browser, 2018 - we have the ESR release on Library Desktop SOE
-  # IE11 should be tested on master for earlier detection of problematic js
   if [[ (${CI_BRANCH} == "master" || ${CI_BRANCH} == "production") ]]; then
     printf "\n-- Remote unit testing on Saucelabs --\n\n"
     cp wct.conf.js.common wct.conf.js
