@@ -335,3 +335,8 @@ button.md-button.button-as-link-mobile.link-alt-color {
     padding-top: 0;
   }
 }
+
+// reduce the padding on the locked facets
+prm-breadcrumbs .md-chip.persistent-facet .md-chip-content strong {
+  padding-left: 12px;
+}
