@@ -340,3 +340,15 @@ button.md-button.button-as-link-mobile.link-alt-color {
 prm-breadcrumbs .md-chip.persistent-facet .md-chip-content strong {
   padding-left: 12px;
 }
+
+// #2377CB isn't accessible on the primo grey background, so slightly different colour is needed
+.language-characters a, // dbsearch alpha-nav
+prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected { // dbsearch sidebar
+  color: #1E66AE!important;
+}
+.button-as-link prm-icon,
+.button-as-link span,
+.sticky-facet-actions {
+  // buttons on main primo page
+  color: #1E66AE;
+}
