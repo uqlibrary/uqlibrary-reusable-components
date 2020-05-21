@@ -340,3 +340,25 @@ button.md-button.button-as-link-mobile.link-alt-color {
 prm-breadcrumbs .md-chip.persistent-facet .md-chip-content strong {
   padding-left: 12px;
 }
+
+// #2377CB isn't accessible on the primo grey background, so slightly different colour is needed
+.language-characters a { // dbsearch alpha-nav
+  color: #1E66AE!important;
+}
+
+// dbsearch sidebar
+prm-tree-nav md-list md-list-item .md-button.branch-name {
+  color: #1E66AE;
+}
+prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected {
+  color: #333!important;
+}
+
+// buttons on main primo page
+prm-facet prm-icon md-icon.md-primoExplore-theme { // little arrow in facet area
+  color: #1E66AE!important;
+}
+button:not(.disabledLockButton).button-as-link prm-icon,
+button:not(.disabledLockButton).button-as-link span {
+  color: #1E66AE;
+}
