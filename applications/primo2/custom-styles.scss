@@ -356,7 +356,8 @@ prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected {
 
 // buttons on main primo page
 prm-facet-range prm-icon md-icon.md-primoExplore-theme,
-prm-facet-exact prm-icon md-icon.md-primoExplore-theme { // little arrow in facet area
+prm-facet-exact button:not(.button-exclude) prm-icon md-icon.md-primoExplore-theme {
+  // little arrow in facet area but NOT the 'exclude filter' checked box (appears on mouseover)
   color: #1E66AE!important;
 }
 button:not(.disabledLockButton).button-as-link prm-icon,
