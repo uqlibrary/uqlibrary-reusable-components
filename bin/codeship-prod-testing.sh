@@ -6,12 +6,15 @@ set -e
 # reusable components are used in production by other library applications,
 # this test script executes tests to check that reusable components are still applied to library apps
 
-if [[ ${CI_BRANCH} == "production" ]]; then
+# temp additional branch name
+if [[ ${CI_BRANCH} == "production" || ${CI_BRANCH} == "feature-postprodprimobug-172970658" ]]; then
 
+if [[ ${CI_BRANCH} == "production" ]]; then # just in case I forget to remove the extra branch name
   # no point running these tests until invalidation is complete - give it 10 minutes: 60 * 10 = 600 seconds
   echo "sleep 10 minutes to allow invalidation to complete before testing production systems"
   sleep 600
   echo "awake now!"
+fi
 
   echo "install selenium"
   curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/selenium_server.sh | bash -s
