@@ -136,9 +136,9 @@
           "href": "https://manuscripts.library.uq.edu.au/"
         },
         {
-          "label": "Subject guides",
-          "subtext": "Law, medicine, management ...",
-          "href": "https://guides.library.uq.edu.au/subject"
+          "label": "Off-campus access",
+          "subtext": "Access full-text from anywhere",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access"
         },
         {
           "label": "Search techniques",
@@ -147,15 +147,21 @@
           "col2": "yes"
         },
         {
+          "label": "Subject guides",
+          "subtext": "Law, medicine, management ...",
+          "href": "https://guides.library.uq.edu.au/subject",
+          "col2": "yes"
+        },        
+        {
           "label": "Referencing style guides",
           "subtext": "APA, AGLC, Harvard, Chicago ...",
           "href": "https://guides.library.uq.edu.au/referencing",
           "col2": "yes"
         },
         {
-          "label": "Referencing software",
-          "subtext": "Endnote, Mendeley, Zotero",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing-software",
+          "label": "EndNote referencing software",
+          "subtext": "Download and support",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/endnote-referencing-software",
           "col2": "yes"
         },
         {
@@ -168,12 +174,6 @@
           "label": "Assignment Essentials",
           "subtext": "Build study & assignment skills",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/assignment-essentials",
-          "col2": "yes"
-        },
-        {
-          "label": "Off-campus access",
-          "subtext": "Access full-text from anywhere",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access",
           "col2": "yes"
         }
       ]
@@ -294,7 +294,7 @@
           "col2": "yes"
         },
         {
-          "label": "D. H. Engineering & Sciences",
+          "label": "DH Engineering & Sciences",
           "href": "https://web.library.uq.edu.au/locations-hours/dorothy-hill-engineering-and-sciences-library",
           "col2": "yes"
         },
@@ -305,7 +305,7 @@
         },
         {
           "label": "Gatton",
-          "subtext": "J.K. Murray Library",
+          "subtext": "JK Murray Library",
           "href": "https://web.library.uq.edu.au/locations-hours/uq-gatton-library-jk-murray-library",
           "col2": "yes"
         },
