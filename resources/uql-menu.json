@@ -166,14 +166,8 @@
         },
         {
           "label": "Digital Essentials",
-          "subtext": "Upgrade your digital skills",
+          "subtext": "Build your digital & assignment skills",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/digital-essentials",
-          "col2": "yes"
-        },
-        {
-          "label": "Assignment Essentials",
-          "subtext": "Build study & assignment skills",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/assignment-essentials",
           "col2": "yes"
         }
       ]
