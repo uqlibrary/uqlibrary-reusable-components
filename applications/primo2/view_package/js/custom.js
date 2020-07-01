@@ -201,26 +201,28 @@
   //  });
   // End lock facets
 
-  app.controller('prmOpenJournalInFullController', [
+  // if the record is one of certain types, the 'Available Online' link should open View It, instead of jumping straight to the resource
+  // (this is because there are usually multiple resources, and the default one may not be the best)
+  app.controller('prmOpenSpecificTypesInFullController', [
     function () {
       var vm = this;
       vm.$onInit = function () {
-        var resourceType = vm.parentCtrl.result.pnx.display.type[0] || '';
-        if (resourceType === 'journal') {
+        var resourceType = (!!vm.parentCtrl.result && !!vm.parentCtrl.result.pnx && !!vm.parentCtrl.result.pnx.display && !!vm.parentCtrl.result.pnx.display.type && vm.parentCtrl.result.pnx.display.type[0]) || '';
+        if (resourceType === 'journal' || resourceType === 'newspaper') {
           vm.parentCtrl.isDirectLink = function () { return false; };
         }
       };
     }
   ]);
 
-  app.component('prmOpenJournalInFull', {
+  app.component('prmOpenSpecificTypesInFull', {
     bindings: { parentCtrl: '<' },
-    controller: 'prmOpenJournalInFullController'
+    controller: 'prmOpenSpecificTypesInFullController'
   });
 
   app.component('prmSearchResultAvailabilityLineAfter', {
     bindings: { parentCtrl: '<' },
-    template: '<prm-open-journal-in-full parent-ctrl="$ctrl.parentCtrl"></prm-open-journal-in-full>'
+    template: '<prm-open-specific-types-in-full parent-ctrl="$ctrl.parentCtrl"></prm-open-specific-types-in-full>'
   });
 
   function insertScript(url) {
