@@ -2,17 +2,19 @@
 
 UQ Library is a Hosted Multi-Tenant Customer of Ex Libris (the alternative is to be an On-Premises Customer).
 
+Primo is managed by the Library's "Discovery and Access Coordinator", referred to below as DAC. This is currently Stacey van Groll.
+
 There are 6 basic environments:
 
 | Primo Environment Name | Primo Url        | Git&nbsp;Branch&nbsp;Name  | Notes |
 | ---------------------- | ---------------- | --------------- | ---- |
 | prod | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?vid=61UQ&sortby=rank) (ie vid=61UQ) | `production` | live, public primo |
 | prod-dev | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV) (ie vid=61UQ_DEV) | `primo-prod-dev` | development on the live server |
-| prod-dac | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DAC) (ie vid=61UQ_DAC) | (uses prod) | Stacey's personal area. Keep it up to date with the others - deploy prod-dev changes here |
+| prod-dac | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DAC) (ie vid=61UQ_DAC) | (uses prod) | DAC's personal area. Keep it up to date with the others - deploy prod-dev changes here |
 | prod-otb | [search.library.uq.edu.au](https://search.library.uq.edu.au/primo-explore/search?sortby=rank&vid=61UQ_DEV_LOGIN) (ie vid=61UQ_DEV_LOGIN) | - | Blue out of the box primo in the prod environment - it would be very unusual for us to make changes to this |
 | sandbox | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ&sortby=rank) (ie vid=61UQ) | `primo-sand-box` | sandbox area |
 | sandbox-dev | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) (ie vid=61UQ_DEV) | `primo-sand-box-dev` | sandbox dev area |
-| sandbox-dac | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DAC&sortby=rank) (ie vid=61UQ_DAC) | (uses primo-sand-box) | Stacey's personal area. Keep it up to date with the others - deploy sandbox-dev changes here |
+| sandbox-dac | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DAC&sortby=rank) (ie vid=61UQ_DAC) | (uses primo-sand-box) | DAC's personal area. Keep it up to date with the others - deploy sandbox-dev changes here |
 | sandbox-otb | [uq-edu-primo-sb.hosted.exlibrisgroup.com](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV_LOGIN&sortby=rank) (ie vid=61UQ_DEV_LOGIN) | - | sandbox out of the box - it would be very unusual for us to make changes to this |
 
 The branch is set in [applications/primo2/view_package/custom.js](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/js/custom.js) (and of course there is the `master` branch, but this does not map to any of the live environments)
@@ -53,7 +55,7 @@ See also notes on Alma Styling, below.
 
 ## Development Workflow
 
-Stacey sometimes asks for different changes in different environments (see table, above) so WAG (Web Advisory Group) can compare the differences. For example she may want Change A in primo-sand-box-dev and Change B in primo-prod-dev.
+DAC sometimes asks for different changes in different environments (see table, above) so WAG (Web Advisory Group) can compare the differences. For example she may want Change A in primo-sand-box-dev and Change B in primo-prod-dev.
 
 You might change the package that gets uploaded to Primo if it is angular changes or you might change the js & css that is called from assets.library.uq.edu.au, or both.
 
@@ -65,7 +67,7 @@ Here is a workflow that covers both of these:
   * Make changes
   * [Upload package](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md) to back office if an angular change
   * Push to github if an assets.library element changes (and also at appropriate times to record any angular changes)
-* Eventually, get acceptance from stacey that she wants it live - now you need to put any changes to the primo package in the 3 other environments, so they all match
+* Eventually, get acceptance from DAC that she wants it live - now you need to put any changes to the primo package in the 3 other environments, so they all match
 * For each of the 3 other branches (where there is an change to the primo package):
   * Merge in, preferably from master
   * Recommit
@@ -93,7 +95,7 @@ Workflow:
 - Run  `gulp almastyles` to create the .css files from the .scss files (probably worth checking the genrated css works by pasting it back into the inspect window in the browser)
 - Run `gulp almazip` to create branding_skin.zip, containing the updates files
 3. Upload the zip to alma
-- Login to the Alma back office (links below), then visit the configuration page (click on the Cog) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins'. Check with Stacey which skin to update if it is unclear.
+- Login to the Alma back office (links below), then visit the configuration page (click on the Cog) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins'. Check with DAC which skin to update if it is unclear.
 - Upload the .zip file (there is no rebuild process here)
 - Reload the primo sandbox page and confirm your changes worked
 - commit your changes
@@ -108,7 +110,7 @@ The upload is done in Alma back office. Paths are:
 - [Sandbox Alma Back Office](https://uq-psb.alma.exlibrisgroup.com/mng/action/home.do) or (direct link to config)[https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit)
 - [Prod Alma Back Office](https://uq.alma.exlibrisgroup.com/SAML)
 
-(if you cant access Alma Back Office Config, ask Stacey for access, or she may want to do the upload herself)
+(if you cant access Alma Back Office Config, ask DAC for access, or she may want to do the upload herself)
 
 ## Miscellaneous
 
@@ -136,7 +138,7 @@ Workflow:
 - Run  `gulp almastyles` to create the .css files from the .scss files
 - Run `gulp almazip` to create upload.zip, containing the updates files
 3. upload the package to alma
-- Login to the Alma back office, then visit [https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do...](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins' (if you get a page with no options, Stacey needs to give you access)
+- Login to the Alma back office, then visit [https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do...](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins' (if you get a page with no options, DAC needs to give you access)
 - Upload the .zip file
 - Reload the primo sandbox page and confirm your changes worked
 
@@ -150,4 +152,4 @@ The upload is done in Alma back office. Paths are:
 - [sandbox](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar and then clock 'Delivery System Skins' under User Interface Settings
 - [prod](https://uq.alma.exlibrisgroup.com/SAML)
 
-(if you cant access this page ask Stacey for access, or she may want to do the upload herself)
+(if you cant access this page ask DAC for access, or she may want to do the upload herself)
