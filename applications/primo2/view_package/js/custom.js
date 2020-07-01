@@ -85,122 +85,6 @@
 
   /****************************************************************************************************/
 
-  /*
-    * this is on hold until May, when the newspaper-articles exclusion will apparently move out of the url
-    * Problems with this 'lock facets' code
-    * it cant remove multiple facets on a subsequent load
-    * eg
-    * 1. search 'library' on homepage, it loads & locks facets newspaper_articles and reviews
-    * 2. return to homepage and search 'books' - only one of 'reviews' and 'newspaper_articles' will be removed
-    *
-    * Incomplete:
-    * - I havent quite got the physical items search working properly yet (&facet=tlevel,include,physical_items)
-    * ** the immediate prior version handle tlevel, but is too slow - consider how it is handling tlevel & library, though
-    * - and this still needs cleaning up
-    *
-    * sample searches:
-    * https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&facet=rtype,include,books&facets=locked
-    * https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&facet=rtype,include,media&facets=locked
-    * https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=61uq_all&search_scope=61UQ_All&sortby=rank&vid=61UQ_DEV&facet=rtype,exclude,newspaper_articles&facet=rtype,exclude,reviews&offset=0&facets=locked
-    *
-   */
-
-  // lock facets
-  // Based on code supplied by Univerisity of Otago eg. https://otago.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,frogs&tab=default_tab&search_scope=All&vid=DUNEDIN&facet=rtype,exclude,reviews&offset=0&ref=http:%2F%2Fmarvin.otago.ac.nz
-  // add '&facets=locked' tag to any referer to a search results page you want this to happen on
-  // app.controller('prmExploreMainAfterController', function($scope) {
-  //    setTimeout(function(){
-  //      var tag = "facets=locked";
-  //      if (!(window.location.search.indexOf(tag) > 0 && window.location.search.indexOf("facet=") > 0)) {
-  //        return;
-  //      }
-  //
-  //      waitForElementToDisplay('prm-breadcrumbs div div div button prm-icon > md-icon', 1000);
-  //
-  //      function waitForElementToDisplay(selector, time) {
-  //        if (document.querySelector(selector) !== null) {
-  //          // in the case where this is a second search via the homepage, we need to unlock previous locked ones
-  //          // this means we need to hard code a list to check, because this page doesnt know what other search options are provided on the home page
-  //          // if any future queries add different facets, this list will have to be updated
-  //          // key = value in url eg books in facet=rtype,exclude,books
-  //          // value = value on aria-label element of button to be clicked
-  //          var validFacets = {
-  //            'reviews': 'Reviews',
-  //            'books': 'Books',
-  //            'newspaper_articles': 'Newspaper Articles',
-  //            'articles': 'Articles',
-  //            'media': 'Video & Audio',
-  //            'physical_items': 'Physical items'
-  //          };
-  //
-  //          var queries = window.location.search.split('&');
-  //          if (queries.length > 1) {
-  //            var facetsInUrl = [];
-  //            queries.map(function (e) {
-  //              // get the facet in the from all the different types
-  //              if (0 === e.indexOf("facet=rtype,exclude,")) {
-  //                facetsInUrl.push(e.replace("facet=rtype,exclude,", ''));
-  //              } else if (0 === e.indexOf("facet=rtype,include,")) {
-  //                facetsInUrl.push(e.replace("facet=rtype,include,", ''));
-  //              } else if (0 === e.indexOf("facet=tlevel,exclude,")) {
-  //                facetsInUrl.push(e.replace("facet=tlevel,exclude,", ''));
-  //              } else if (0 === e.indexOf("facet=tlevel,include,")) {
-  //                facetsInUrl.push(e.replace("facet=tlevel,include,", ''));
-  //              }
-  //            });
-  //
-  //            // do all the settings first because the later facet removal refreshes the page, losing our tag
-  //            var facet, ariaLabel, facetSelector;
-  //            for (facet in validFacets) {
-  //              if (facetsInUrl.indexOf(facet) !== -1) {
-  //                // found in the url - lock it
-  //                ariaLabel = 'Make this filter persistent throughout the session ' + validFacets[facet];
-  //                facetSelector = document.querySelector('[aria-label="' + ariaLabel + '"]');
-  //                if (facetSelector !== null) {
-  //                  angular.element(facetSelector).triggerHandler('click');
-  //                }
-  //              }
-  //            }
-  //
-  //            var thisFacet, ariaLabelLock, facetSelectorLock;
-  //            for (facet in validFacets) {
-  //              if (facetsInUrl.indexOf(facet) !== -1) {
-  //                // skip any that are for this page
-  //              } else {
-  //                // remove a facet if it was locked from an earlier search
-  //                thisFacet = validFacets[facet];
-  //                ariaLabel = 'Remove Content type ' + thisFacet;
-  //                facetSelector = document.querySelector('[aria-label="' + ariaLabel + '"]'); // the x (remove) button exists to click
-  //                ariaLabelLock = 'Cancel persistence ' + thisFacet;
-  //                facetSelectorLock = document.querySelector('[aria-label="' + ariaLabelLock + '"]'); // the 'locked' button exists - this is one we should remove
-  //                if (facetSelector !== null && facetSelectorLock !== null) {
-  //                  angular.element(facetSelector).triggerHandler('click');
-  //                  //once this is clicked the page will refresh and wont have our tag on the end :(
-  //                  // so only one is ever done :(
-  //                }
-  //              }
-  //            }
-  //
-  //            return;
-  //          }
-  //          else {
-  //            setTimeout(function () {
-  //              waitForElementToDisplay(selector, time);
-  //            }, time);
-  //          }
-  //        }
-  //      }
-  //    }, 2500);
-  //  });
-  //
-  //  app.component('prmExploreMainAfter', {
-  //    bindings: {
-  //      parentCtrl: '<'
-  //    },
-  //    controller: 'prmExploreMainAfterController'
-  //  });
-  // End lock facets
-
   // if the record is one of certain types, the 'Available Online' link should open View It, instead of jumping straight to the resource
   // (this is because there are usually multiple resources, and the default one may not be the best)
   app.controller('prmOpenSpecificTypesInFullController', [
@@ -214,12 +98,10 @@
       };
     }
   ]);
-
   app.component('prmOpenSpecificTypesInFull', {
     bindings: { parentCtrl: '<' },
     controller: 'prmOpenSpecificTypesInFullController'
   });
-
   app.component('prmSearchResultAvailabilityLineAfter', {
     bindings: { parentCtrl: '<' },
     template: '<prm-open-specific-types-in-full parent-ctrl="$ctrl.parentCtrl"></prm-open-specific-types-in-full>'
