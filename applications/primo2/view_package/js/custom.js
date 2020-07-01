@@ -91,7 +91,9 @@
     function () {
       var vm = this;
       vm.$onInit = function () {
-        var resourceType = (!!vm.parentCtrl.result && !!vm.parentCtrl.result.pnx && !!vm.parentCtrl.result.pnx.display && !!vm.parentCtrl.result.pnx.display.type && vm.parentCtrl.result.pnx.display.type[0]) || '';
+        var resourceType = (!!vm.parentCtrl.result && !!vm.parentCtrl.result.pnx && !!vm.parentCtrl.result.pnx.display
+            && !!vm.parentCtrl.result.pnx.display.type && vm.parentCtrl.result.pnx.display.type.length > 0
+            && vm.parentCtrl.result.pnx.display.type[0]) || '';
         if (resourceType === 'journal' || resourceType === 'newspaper') {
           vm.parentCtrl.isDirectLink = function () { return false; };
         }
