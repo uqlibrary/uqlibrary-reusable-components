@@ -47,6 +47,11 @@
           "href": "https://web.library.uq.edu.au/library-services/digitisation",
           "col2": "yes"
         },
+          "label": "Special collections",
+          "subtext": "Search, request, access & copy",
+          "href": "https://web.library.uq.edu.au/library-services/special-collections",
+          "col2": "yes"
+        },
         {
           "label": "for Students",
           "subtext": "Reading lists, past exams ...",
@@ -293,8 +298,9 @@
           "col2": "yes"
         },
         {
-          "label": "Fryer",
-          "href": "https://web.library.uq.edu.au/locations-hours/fryer-library",
+          "label": "FW Robinson Reading Room",
+          "subtext": "Fryer Library & UQ Archives",
+          "href": "https://web.library.uq.edu.au/locations-hours/fw-robinson-reading-room",
           "col2": "yes"
         },
         {
