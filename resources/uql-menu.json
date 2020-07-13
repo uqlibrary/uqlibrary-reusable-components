@@ -48,6 +48,12 @@
           "col2": "yes"
         },
         {
+          "label": "Special collections",
+          "subtext": "Search, request, access & copy",
+          "href": "https://web.library.uq.edu.au/library-services/special-collections",
+          "col2": "yes"
+        },
+        {
           "label": "for Students",
           "subtext": "Reading lists, past exams ...",
           "href": "https://web.library.uq.edu.au/library-services/services-for-students"
@@ -166,14 +172,8 @@
         },
         {
           "label": "Digital Essentials",
-          "subtext": "Upgrade your digital skills",
+          "subtext": "Build your digital & assignment skills",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/digital-essentials",
-          "col2": "yes"
-        },
-        {
-          "label": "Assignment Essentials",
-          "subtext": "Build study & assignment skills",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/assignment-essentials",
           "col2": "yes"
         }
       ]
@@ -299,8 +299,9 @@
           "col2": "yes"
         },
         {
-          "label": "Fryer",
-          "href": "https://web.library.uq.edu.au/locations-hours/fryer-library",
+          "label": "FW Robinson Reading Room",
+          "subtext": "Fryer Library & UQ Archives",
+          "href": "https://web.library.uq.edu.au/locations-hours/fw-robinson-reading-room",
           "col2": "yes"
         },
         {
