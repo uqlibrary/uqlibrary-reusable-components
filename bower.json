@@ -26,7 +26,7 @@
     "uqlibrary-iron-dropdown": "uqlibrary/uqlibrary-iron-dropdown",
     "uqlibrary-browser-supported": "uqlibrary/uqlibrary-browser-supported",
     "uqlibrary-fryer-search": "uqlibrary/uqlibrary-fryer-search",
-    "uqlibrary-search": "uqlibrary/uqlibrary-search",
+    "uqlibrary-search": "uqlibrary/uqlibrary-search#feature-newsearch-172993907",
     "uqlibrary-training": "uqlibrary/uqlibrary-training"
   },
   "devDependencies": {
