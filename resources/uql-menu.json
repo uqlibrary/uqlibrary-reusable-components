@@ -308,7 +308,7 @@
           "label": "Gatton",
           "subtext": "JK Murray Library",
           "href": "https://web.library.uq.edu.au/locations-hours/uq-gatton-library-jk-murray-library",
-          "col2": "yes"
+          "col3": "yes"
         },
         {
           "label": "Herston Health Sciences",
@@ -320,12 +320,6 @@
           "label": "Law",
           "subtext": "Walter Harrison Library",
           "href": "https://web.library.uq.edu.au/locations-hours/law-library-walter-harrison-library",
-          "col3": "yes"
-
-        },
-        {
-          "label": "UQ/Mater McAuley Library",
-          "href": "https://web.library.uq.edu.au/locations-hours/uqmater-mcauley-library",
           "col3": "yes"
 
         },
