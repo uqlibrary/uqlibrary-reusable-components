@@ -41,15 +41,6 @@
         "screenResolution": "1280x960"
       }
     },
-    "ie11": {
-      "desiredCapabilities": {
-        "browserName": "internet explorer",
-        "platform": "Windows 10",
-        "acceptSslCerts": true,
-        "screenResolution": "1280x960",
-        "avoidProxy": true
-      }
-    },
     "edge": {
       "desiredCapabilities": {
         "browserName": "MicrosoftEdge",
