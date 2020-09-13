@@ -1,19 +1,26 @@
 {
-  "heading": "Menu demo",
+  "heading": "Library menu",
   "items": [
     {
       "label": "Library services",
       "href": "https://web.library.uq.edu.au/library-services",
       "items": [
         {
+          "label": "COVID-19",
+          "subtext": "Latest updates and service info",
+          "href": "https://web.library.uq.edu.au/library-services/covid-19",
+          "col2": "yes"
+        },
+        {
           "label": "Your librarian",
-          "subtext": "Get subject-specific help",
-          "href": "https://www.library.uq.edu.au/contacts/librarians/",
+          "subtext": "Expert advice for your discipline",
+          "href": "https://web.library.uq.edu.au/library-services/liaison-librarians",
           "col2": "yes"
         },
         {
           "label": "Book a room",
-          "href": "https://www.library.uq.edu.au/fbs",
+          "subtext": "Student meeting and study rooms",
+          "href": "https://uqbookit.uq.edu.au/#/app/booking-types/77b52dde-d704-4b6d-917e-e820f7df07cb",
           "col2": "yes"
         },
         {
@@ -30,6 +37,7 @@
         },
         {
           "label": "Copyright advice",
+          "subtext": "For teaching, research, publishing ...",
           "href": "https://web.library.uq.edu.au/library-services/copyright-advice",
           "col2": "yes"
         },
@@ -37,6 +45,12 @@
           "label": "Digitisation",
           "subtext": "Convert material to digital format",
           "href": "https://web.library.uq.edu.au/library-services/digitisation",
+          "col2": "yes"
+        },
+        {
+          "label": "Special collections",
+          "subtext": "Search, request, access & copy",
+          "href": "https://web.library.uq.edu.au/library-services/special-collections",
           "col2": "yes"
         },
         {
@@ -51,25 +65,29 @@
           "href": "https://web.library.uq.edu.au/library-services/services-for-researchers"
         },
         {
+          "label": "for HDR students",
+          "subtext": "Research support, training, tools",
+          "href": "https://web.library.uq.edu.au/library-services/services-higher-degree-by-research"
+        },
+        {
           "label": "for Teaching staff",
           "subtext": "Reading lists, Blackboard links ...",
           "href": "https://web.library.uq.edu.au/library-services/services-for-teaching-staff"
-
         },
         {
           "label": "for Professional staff",
+          "subtext": "Access, training, borrowing",
           "href": "https://web.library.uq.edu.au/library-services/services-for-professional-staff"
-
         },
         {
           "label": "for Hospital staff",
+          "subtext": "Membership, literature search",
           "href": "https://web.library.uq.edu.au/library-services/services-for-hospital-staff"
-
         },
         {
           "label": "for UQ alumni",
+          "subtext": "Membership, resources",
           "href": "https://web.library.uq.edu.au/library-services/services-for-uq-alumni"
-
         },
         {
           "label": "for Community",
@@ -80,17 +98,17 @@
         {
           "label": "for Secondary schools",
           "href": "https://web.library.uq.edu.au/library-services/services-for-secondary-schools"
-
         },
         {
           "label": "for Clients with disabilities",
+          "subtext": "Accessibility, assistive technology",
           "href": "https://web.library.uq.edu.au/library-services/support-for-clients-disabilities"
 
         },
         {
           "label": "for Other libraries",
+          "subtext": "Document supply, off-air recordings",
           "href": "https://web.library.uq.edu.au/library-services/for-other-libraries"
-
         }
       ]
     },
@@ -101,11 +119,17 @@
         {
           "label": "Library Search",
           "subtext": "What it is & how to use it",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/uq-library-search"
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/library-search"
         },
         {
           "label": "Databases",
-          "href": "https://app.library.uq.edu.au/#/gateways/database?browse=&alpha=&title=&sub="
+          "subtext": "Browse or search by title",
+          "href": "https://search.library.uq.edu.au/primo-explore/dbsearch?vid=61UQ"
+        },
+        {
+          "label": "Google Scholar",
+          "subtext": "Enhanced access via the Library",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/google-scholar"
         },
         {
           "label": "UQ eSpace",
@@ -113,23 +137,44 @@
           "href": "https://espace.library.uq.edu.au/"
         },
         {
-          "label": "Research by subject",
-          "subtext": "Law, medicine, management ...",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/research-subject"
-        },
-        {
-          "label": "Search techniques",
-          "subtext": "Find quality information",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/search-techniques"
-        },
-        {
-          "label": "Referencing",
-          "subtext": "Endnote, style guides, plagiarism",
-          "href": "https://web.library.uq.edu.au/research-tools-techniques/referencing"
+          "label": "Fryer Manuscripts",
+          "subtext": "Search our unpublished collections",
+          "href": "https://manuscripts.library.uq.edu.au/"
         },
         {
           "label": "Off-campus access",
+          "subtext": "Access full-text from anywhere",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/campus-access"
+        },
+        {
+          "label": "Search techniques",
+          "subtext": "Find the results you need",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/search-techniques",
+          "col2": "yes"
+        },
+        {
+          "label": "Subject guides",
+          "subtext": "Law, medicine, management ...",
+          "href": "https://guides.library.uq.edu.au/subject",
+          "col2": "yes"
+        },        
+        {
+          "label": "Referencing style guides",
+          "subtext": "APA, AGLC, Harvard, Chicago ...",
+          "href": "https://guides.library.uq.edu.au/referencing",
+          "col2": "yes"
+        },
+        {
+          "label": "EndNote referencing software",
+          "subtext": "Download and support",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/endnote-referencing-software",
+          "col2": "yes"
+        },
+        {
+          "label": "Digital Essentials",
+          "subtext": "Build your digital & assignment skills",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/digital-essentials",
+          "col2": "yes"
         }
       ]
     },
@@ -152,6 +197,10 @@
         {
           "label": "Collection management",
           "href": "https://web.library.uq.edu.au/collections/collection-management"
+        },
+        {
+          "label": "UQ Archives",
+          "href": "https://web.library.uq.edu.au/collections/university-queensland-archives"
         }
       ]
     },
@@ -160,8 +209,8 @@
       "href": "https://web.library.uq.edu.au/borrowing-requesting",
       "items": [
         {
-          "label": "View & renew your loans",
-          "href": "http://search.library.uq.edu.au/primo_library/libweb/action/login.do?loginFn=signin&vid=61UQ&targetURL=http%3a%2f%2fsearch.library.uq.edu.au%2fprimo_library%2flibweb%2faction%2fmyAccountMenu.do%3fvid%3d61UQ"
+          "label": "View your loans & requests",
+          "href": "https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=https%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo-explore%2Faccount%3Fvid%3D61UQ%26section%3Doverview%26lang%3Den_US"
         },
         {
           "label": "How to borrow",
@@ -169,14 +218,18 @@
           "href": "https://web.library.uq.edu.au/borrowing-requesting/how-to-borrow"
         },
         {
+          "label": "Borrowing rules",
+          "href": "https://web.library.uq.edu.au/borrowing-requesting/how-borrow/borrowing-rules"
+        },
+        {
           "label": "Overdue items",
           "href": "https://web.library.uq.edu.au/borrowing-requesting/overdue-items",
           "subtext": "Pay library fines"
         },
         {
-          "label": "How to request",
+          "label": "Request items",
           "subtext": "On loan, off-campus, or not at UQ",
-          "href": "https://web.library.uq.edu.au/borrowing-requesting/how-request",
+          "href": "https://web.library.uq.edu.au/borrowing-requesting/request-items",
           "col2": "yes"
         },
         {
@@ -185,9 +238,9 @@
           "col2": "yes"
         },
         {
-          "label": "Request a purchase",
-          "href": "https://web.library.uq.edu.au/borrowing-requesting/request-purchase",
-          "col2": "yes"
+           "label": "Request a purchase",
+           "href": "https://web.library.uq.edu.au/borrowing-requesting/request-purchase",
+           "col2": "yes"
         }
       ]
     },
@@ -198,6 +251,10 @@
         {
           "label": "Opening hours",
           "href": "https://web.library.uq.edu.au/locations-hours/opening-hours"
+        },
+        {
+          "label": "Study space availability",
+          "href": "https://web.library.uq.edu.au/locations-hours/study-space-availability"
         },
         {
           "label": "24/7 spaces",
@@ -227,8 +284,8 @@
           "col2": "yes"
         },
         {
-          "label": "Centre for Digital Scholarship",
-          "href": "https://web.library.uq.edu.au/locations-hours/centre-digital-scholarship",
+          "label": "Central Library",
+          "href": "https://web.library.uq.edu.au/locations-hours/central-library",
           "col2": "yes"
         },
         {
@@ -237,22 +294,21 @@
           "col2": "yes"
         },
         {
-          "label": "D. H. Engineering & Sciences",
+          "label": "DH Engineering & Sciences",
           "href": "https://web.library.uq.edu.au/locations-hours/dorothy-hill-engineering-and-sciences-library",
           "col2": "yes"
-
         },
         {
-          "label": "Fryer",
-          "href": "https://web.library.uq.edu.au/locations-hours/fryer-library",
+          "label": "FW Robinson Reading Room",
+          "subtext": "Fryer Library & UQ Archives",
+          "href": "https://web.library.uq.edu.au/locations-hours/fw-robinson-reading-room",
           "col2": "yes"
-
         },
         {
           "label": "Gatton",
-          "subtext": "J.K. Murray Library",
+          "subtext": "JK Murray Library",
           "href": "https://web.library.uq.edu.au/locations-hours/uq-gatton-library-jk-murray-library",
-          "col2": "yes"
+          "col3": "yes"
         },
         {
           "label": "Herston Health Sciences",
@@ -268,12 +324,6 @@
 
         },
         {
-          "label": "UQ/Mater McAuley Library",
-          "href": "https://web.library.uq.edu.au/locations-hours/uqmater-mcauley-library",
-          "col3": "yes"
-
-        },
-        {
           "label": "PACE Health Sciences",
           "href": "https://web.library.uq.edu.au/locations-hours/pace-health-sciences-library",
           "col3": "yes"
@@ -282,12 +332,6 @@
         {
           "label": "Rural Clinical School",
           "href": "https://web.library.uq.edu.au/locations-hours/rural-clinical-school-rcs-library",
-          "col3": "yes"
-
-        },
-        {
-          "label": "Central",
-          "href": "https://web.library.uq.edu.au/locations-hours/social-sciences-humanities-library",
           "col3": "yes"
 
         },
@@ -320,16 +364,21 @@
           "href": "https://web.library.uq.edu.au/about-us/membership"
         },
         {
+          "label": "Projects",
+          "href": "https://web.library.uq.edu.au/about-us/projects"
+        },
+        {
           "label": "History of the Library",
           "href": "https://web.library.uq.edu.au/about-us/history-library"
         },
         {
-          "label": "Giving to the Library",
+          "label": "Give to the Library",
           "href": "https://www.uq.edu.au/giving/organisations/university-queensland-library"
         },
         {
           "label": "Library tours",
-          "href": "https://web.library.uq.edu.au/about-us/library-tours"
+          "href": "https://web.library.uq.edu.au/about-us/library-tours",
+          "col2": "yes"
         },
         {
           "label": "Organisational structure",
@@ -359,11 +408,6 @@
         {
           "label": "Mission",
           "href": "https://web.library.uq.edu.au/about-us/mission",
-          "col2": "yes"
-        },
-        {
-          "label": "Participate in customer research",
-          "href": "https://web.library.uq.edu.au/about-us/participate-customer-research",
           "col2": "yes"
         }
       ]

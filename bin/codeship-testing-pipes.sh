@@ -53,6 +53,9 @@ if [[ -z $CI_BRANCH ]]; then
   CI_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 fi
 
+if [[ -z $PIPE_NUM ]]; then
+    PIPE_NUM=1
+fi
 
 echo "Vulcanizing elements..."
 gulp vulcanize
@@ -82,47 +85,51 @@ for file in "${files[@]}"; do
   sed -i -e "s#${element}/${file2}#elements.vulcanized.html#g" ${file}
 done
 
+case "$PIPE_NUM" in
+"1")
+  # "Test Commands" tab on codeship
+  echo "Check file syntax..."
+  gulp syntax
 
-# "Test Commands" 
-echo "Check file syntax..."
-gulp syntax
+  # nothing that the tests in this file cover are changed by file changes that affect primo
+  if [[ $CI_BRANCH == primo-* ]] ; then
+      echo "testing not required in primo dev"
+      exit 0
+  fi
 
-# nothing that the tests in this file cover are changed by file changes that affect primo
-if [[ $CI_BRANCH == primo-* ]] ; then
-  echo "testing not required in primo dev"
-  exit 0
-fi
+  # "Unit tests" tab on codeship
+  echo "WCT: local unit testing..."
+  gulp test
 
-# "Unit tests" tab on codeship
-echo "WCT: local unit testing..."
-gulp test
+;;
+"3")
+  # "Saucelabs" tab on codeship
 
+  # nothing that the tests in this file cover are changed by file changes that affect primo
+  if [[ $CI_BRANCH == primo-* ]] ; then
+      echo "testing not required in primo dev"
+      exit 0
+  fi
 
-# "Saucelabs" 
-# nothing that the tests in this file cover are changed by file changes that affect primo
-if [[ $CI_BRANCH == primo-* ]] ; then
-  echo "testing not required in primo dev"
-  exit 0
-fi
+  trap logSauceCommands EXIT
 
-trap logSauceCommands EXIT
+  echo "WCT: remote unit testing - test most common browsers on Master and Prod..."
+  # check analytics at least annually to confirm correct browser choice
+  # Win/Chrome is our most used browser, 2018
+  # Win/FF is our second most used browser, 2018 - we have the ESR release on Library Desktop SOE
+  if [[ (${CI_BRANCH} == "master" || ${CI_BRANCH} == "production") ]]; then
+    printf "\n-- Remote unit testing on Saucelabs --\n\n"
+    cp wct.conf.js.common wct.conf.js
+    gulp test:remote
+    rm wct.conf.js
+  fi
 
-echo "WCT: remote unit testing - test most common browsers on Master and Prod..."
-# check analytics at least annually to confirm correct browser choice
-# Win/Chrome is our most used browser, 2018
-# Win/FF is our second most used browser, 2018 - we have the ESR release on Library Desktop SOE
-if [[ (${CI_BRANCH} == "master" || ${CI_BRANCH} == "production") ]]; then
-  printf "\n-- Remote unit testing on Saucelabs --\n\n"
-  cp wct.conf.js.common wct.conf.js
-  gulp test:remote
-  rm wct.conf.js
-fi
-
-echo "WCT: remote unit testing on prod for other browsers..."
-if [[ (${CI_BRANCH} == "production") ]]; then
-  printf "\n-- Remote unit testing on Saucelabs --\n\n"
-  cp wct.conf.js.other wct.conf.js
-  gulp test:remote
-  rm wct.conf.js
-fi
-
+  echo "WCT: remote unit testing on prod for other browsers..."
+  if [[ (${CI_BRANCH} == "production") ]]; then
+    printf "\n-- Remote unit testing on Saucelabs --\n\n"
+    cp wct.conf.js.other wct.conf.js
+    gulp test:remote
+    rm wct.conf.js
+  fi
+;;
+esac
