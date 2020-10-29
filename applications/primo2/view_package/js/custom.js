@@ -57,6 +57,10 @@
       if (recordTitle === '' && recordId !== '' && !!vm.parentCtrl.item.pnx && !!vm.parentCtrl.item.pnx.display && !!vm.parentCtrl.item.pnx.display.title && !!vm.parentCtrl.item.pnx.display.title[0]) {
         recordTitle = encodeURIComponent(vm.parentCtrl.item.pnx.display.title[0]);
       }
+      if (recordTitle !== '') {
+        var maxNumberCharCRMCanAccept = 239;
+        recordTitle = recordTitle.trim().substring(0, maxNumberCharCRMCanAccept);
+      }
 
       var isIE11 = navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > -1;
 
