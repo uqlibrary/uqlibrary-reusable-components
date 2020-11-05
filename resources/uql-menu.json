@@ -175,6 +175,12 @@
           "subtext": "Build your digital & assignment skills",
           "href": "https://web.library.uq.edu.au/research-tools-techniques/digital-essentials",
           "col2": "yes"
+        },
+        {
+          "label": "Digital Researcher Lab",
+          "subtext": "Projects, tools and support",
+          "href": "https://web.library.uq.edu.au/research-tools-techniques/digital-researcher-lab",
+          "col2": "yes"
         }
       ]
     },
