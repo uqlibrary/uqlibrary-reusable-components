@@ -23,6 +23,8 @@ Primo UI is in active development. All releases are scheduled by ExLibris and ar
 
 ## Theming for new Primo UI
 
+Styling of primo pages is done by editing `/applications/primo2/custom-styles.scss`. While you _can_ dig deeper into the scss files, its not recommended (it makes maintenance harder, not easier).
+
 * Customisation package `/view_package/*` - [readme](https://github.com/uqlibrary/uqlibrary-reusable-components/blob/master/applications/primo2/view_package/README.md)
 * `load.js` - Any custom scripts
 * `custom.scss` - Compiles styles from `/www/*` (Primo's SCSS package) and customisations in `/styles-imports/*`
@@ -78,7 +80,7 @@ One useful technique to avoid lots of commits and codeship builds is to edit the
 
 The command `gulp styles` will let you create the required .css file from the .scss for a final check prior to commit. (Paste it back into the browser)
 
-### Alma Styling
+## Alma Styling
 
 Parts of the Primo pages are inside iframes, eg the 'Get It' block on the full display page. This means our main custom-styles.css file wont affect it.
 
@@ -121,35 +123,3 @@ The upload is done in Alma back office. Paths are:
 eg [Link to Saved Items](https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=https%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo-explore%2Ffavorites%3Fvid%3D61UQ%26lang%3Den_US%C2%A7ion%3Ditems)
 
 2. [This repo](https://github.com/mehmetc/primo-extract) may be useful if we ever have to get into the depths of Primo Angular - it gives access to the sourcemaps of Primo Angular code.
-
-## Alma Styling
-
-Parts of the primo pages are inside iframes, eg the 'Get It' block. This means our main custom-styles.css file wont affect it.
-
-Ex libris provides a _second_ css upload that can be used to control the styling inside the iframes.
-
-Workflow:
-
-1. make your changes
-- Choose your workarea (eg [primo sandbox dev](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) )
-- In the inspect panel, edit the css source file at AlmagetitMashupiframe > uq-psb.alma.exlibrisgroup.com > view > branding_skin > css > mashup_new.css until you are happy with the result
-2. create the package for upload
-- Copy your changes to mashup_new.scss here
-- Run  `gulp almastyles` to create the .css files from the .scss files
-- Run `gulp almazip` to create upload.zip, containing the updates files
-3. upload the package to alma
-- Login to the Alma back office, then visit [https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do...](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins' (if you get a page with no options, DAC needs to give you access)
-- Upload the .zip file
-- Reload the primo sandbox page and confirm your changes worked
-
-There are 2 gulp tasks for this process:
-
-- `gulp almastyles`, will build the .scss files at applications/primo2/alma/brianding_skin/css into .css files
--  `gulp almazip`, will build a zip file ready to be uploaded to alma
-
-The upload is done in Alma back office. Paths are:
-
-- [sandbox](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit) and choose 'General' in the sidebar and then clock 'Delivery System Skins' under User Interface Settings
-- [prod](https://uq.alma.exlibrisgroup.com/SAML)
-
-(if you cant access this page ask DAC for access, or she may want to do the upload herself)
