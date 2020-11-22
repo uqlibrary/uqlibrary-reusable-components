@@ -414,6 +414,9 @@ prm-tree-nav md-list md-list-item .md-button.branch-name {
 }
 prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected {
   color: #333!important;
+  &:hover {
+    background-color: rgba(51,51,51,.1) !important;
+  }
 }
 
 // buttons on main primo page
