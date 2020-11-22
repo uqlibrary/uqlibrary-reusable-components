@@ -140,7 +140,62 @@ prm-browse-search-bar .search-scope {
 }
 
 // Browse interface - link colors
-.duedate > span, .fulltext > span, .fulltext_linktorsrc > span, .getit > span, .login-dialog .collapsable-container md-list md-list-item .md-list-item-inner, .login-dialog .md-list md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item .md-list-item-text h3, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3, .login-dialog md-list md-list-item .md-list-item-text .list-item-title, .login-dialog md-list md-list-item .md-list-item-text h3, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3, .md-button.arrow-link-button .button-content, .md-button.arrow-link-button [link-arrow], .not_restricted > span, .prm-links, .restricted > span, .separate-list-items md-list-item .item-loader-with-text .md-button, .tiles-grid-tile .tile-header .header-link .arrow-icon, .tiles-grid-tile .tile-header .header-link:focus, .tiles-grid-tile .tile-header .header-link:hover, .tiles-grid-tile .tile-header .md-button, [class*=NFT] > span, [class*=check_] > span, [class*="_more"] > span, [class*="_unknown"] > span, [class*=may_] > span, [class*=does_not_exist] > span, [class*=available] > span, [class*=FT] > span, [class*=unavailable] > span, [class*=no_] > span, a, md-grid-tile .tile-header .header-link .arrow-icon, md-grid-tile .tile-header .header-link:focus, md-grid-tile .tile-header .header-link:hover, md-grid-tile .tile-header .md-button, md-input-container.has-fixed-message [ng-message] a, md-list-item.list-item-as-link, md-tabs.tabs-as-app .back-button, md-tabs.tabs-as-links md-tab-item, md-tabs.tabs-as-links md-tab-item:not([disabled]), prm-tags-list .md-chips .md-chip .md-chip-content strong, prm-tags-list .md-chips md-chip .md-chip-content strong, prm-tags-list md-chips .md-chip .md-chip-content strong, prm-tags-list md-chips md-chip .md-chip-content strong, .prm-citation-title, md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-citation-trails-item.active-item .item-title, prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .item-title {
+.duedate > span, 
+.fulltext > span, 
+.fulltext_linktorsrc > span, 
+.getit > span, 
+.login-dialog .collapsable-container md-list md-list-item .md-list-item-inner, 
+.login-dialog .md-list md-list-item .md-list-item-text .list-item-title, 
+.login-dialog .md-list md-list-item .md-list-item-text h3, 
+.login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, 
+.login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3, 
+.login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title, 
+.login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3, 
+.login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title, 
+.login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3, 
+.login-dialog md-list md-list-item .md-list-item-text .list-item-title, 
+.login-dialog md-list md-list-item .md-list-item-text h3, 
+.login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, 
+.login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3, 
+.md-button.arrow-link-button .button-content, 
+.md-button.arrow-link-button [link-arrow], 
+.not_restricted > span, 
+.prm-links, 
+.restricted > span, 
+.separate-list-items md-list-item .item-loader-with-text .md-button, 
+.tiles-grid-tile .tile-header .header-link .arrow-icon, 
+.tiles-grid-tile .tile-header .header-link:focus, 
+.tiles-grid-tile .tile-header .header-link:hover, 
+.tiles-grid-tile .tile-header .md-button, 
+[class*=NFT] > span, 
+[class*=check_] > span, 
+[class*="_more"] > span, 
+[class*="_unknown"] > span, 
+[class*=may_] > span, 
+[class*=does_not_exist] > span, 
+[class*=available] > span, 
+[class*=FT] > span, 
+[class*=unavailable] > span, 
+[class*=no_] > span, 
+a, 
+md-grid-tile .tile-header .header-link .arrow-icon, 
+md-grid-tile .tile-header .header-link:focus, 
+md-grid-tile .tile-header .header-link:hover, 
+md-grid-tile .tile-header .md-button, 
+md-input-container.has-fixed-message [ng-message] a, 
+md-list-item.list-item-as-link, 
+md-tabs.tabs-as-app .back-button, 
+md-tabs.tabs-as-links md-tab-item, 
+md-tabs.tabs-as-links md-tab-item:not([disabled]), 
+prm-tags-list .md-chips .md-chip .md-chip-content strong, 
+prm-tags-list .md-chips md-chip .md-chip-content strong, 
+prm-tags-list md-chips .md-chip .md-chip-content strong, 
+prm-tags-list md-chips md-chip .md-chip-content strong, 
+.prm-citation-title, 
+md-list.prm-list.prm-linkable-list-items md-list-item .item-title, 
+prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title, 
+prm-citation-trails-item.active-item .item-title, 
+prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .item-title {
   color: $links !important;
 }
 
@@ -240,6 +295,13 @@ div#services-index button.zero-margin.button-right-align.button-link.md-button.m
 }
 strong.facet-title.layout-align-end-stretch.layout-row {
   margin-left: 10px;
+  .section-content .md-chips .md-chip & {
+    &:active, &:focus, &:hover {
+      &:not([disabled]) {
+        background-color: #5F5F5F;
+      }
+    }
+  }
 }
 
 // tweak the styling of the primo database search
@@ -360,7 +422,44 @@ prm-facet-exact button:not(.button-exclude) prm-icon md-icon.md-primoExplore-the
   // little arrow in facet area but NOT the 'exclude filter' checked box (appears on mouseover)
   color: #1E66AE!important;
 }
-button:not(.disabledLockButton).button-as-link prm-icon,
-button:not(.disabledLockButton).button-as-link span {
-  color: #1E66AE;
+
+.multiselect-facet-group .md-chip .md-chip-content md-checkbox {
+  left: 0;
+}
+
+prm-add-alert-toast md-toast .md-toast-content .md-button {
+  &:active, &:focus, &:hover {
+    &:not([disabled]) {
+      background: #53738C;
+    }
+  }
+}
+
+primo-explore .md-dialog-container.fixed-container {
+  background-color: rgba(83,115,140,0.5);
+}
+
+prm-search-result-list .pages-separated-with-gaps .results-title:not(.results-title-favorites) {
+  padding-left: 70px;
+  top: -7px !important;
+}
+
+.md-button.arrow-link-button .button-content:focus,
+.md-button.arrow-link-button .button-content:hover,
+.md-button.arrow-link-button .hover.button-content,
+.md-button.arrow-link-button:focus .button-content,
+.md-button.arrow-link-button:hover .button-content,
+.prm-links-background.prm-hue-1,
+.recommendations-title.hover>span>span,
+.recommendations-title:hover>span>span, 
+a.hover, 
+a:focus, 
+a:hover,
+prm-citation-trails-item.active-item md-card>.md-button:focus .item-title span,
+prm-citation-trails-item.active-item md-card>.md-button:hover .item-title span,
+prm-tags-list .md-chips .md-chip .md-chip-content:hover strong,
+prm-tags-list .md-chips md-chip .md-chip-content:hover strong,
+prm-tags-list md-chips .md-chip .md-chip-content:hover strong,
+prm-tags-list md-chips md-chip .md-chip-content:hover strong {
+  background-color: transparent;
 }
