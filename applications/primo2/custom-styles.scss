@@ -430,10 +430,21 @@ prm-facet-exact button:not(.button-exclude) prm-icon md-icon.md-primoExplore-the
   left: 0;
 }
 
+prm-facet-range,
+prm-facet-exact {
+  .section-title {
+    &:active, &:focus, &:hover {
+      span {
+        color: #000;
+      }
+    }
+  }
+}
+
 prm-add-alert-toast md-toast .md-toast-content .md-button {
   &:active, &:focus, &:hover {
     &:not([disabled]) {
-      background: #53738C;
+      background: #5F5F5F;
     }
   }
 }
@@ -465,4 +476,15 @@ prm-tags-list .md-chips md-chip .md-chip-content:hover strong,
 prm-tags-list md-chips .md-chip .md-chip-content:hover strong,
 prm-tags-list md-chips md-chip .md-chip-content:hover strong {
   background-color: transparent;
+}
+
+prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:not([disabled]) {
+  &._md-focused, 
+  &.hovered, 
+  &.md-focused, 
+  &:focus, 
+  &:hover {
+    color: #000;
+    background-color: rgba(51,51,51,.1);
+  }
 }
