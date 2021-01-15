@@ -1,3 +1,4 @@
+$uqpurple: #51247A;
 $uqblue: #2377CB;
 
 /* cyrillic-ext */
@@ -519,7 +520,7 @@ prm-service-details prm-collection-navigation-breadcrumbs-item .md-button.button
 // Main Collection Lobby
 // Issue: Ex Libris OTB teal in full page vertical panel - replace with UQ colour. Text should remain white
 prm-collection-gallery-header .collection-header-inner {
-  background-color: $uqblue;
+  background-color: $uqpurple;
   color: #fff;
 }
 
