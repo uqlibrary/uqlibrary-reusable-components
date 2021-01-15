@@ -547,6 +547,15 @@ prm-collection-search .search-within .search-button {
   background-color: $uqblue!important;
 }
 
+// Collection display grid
+// the item text and pin icons should be uq blue
+prm-collection-gallery prm-gallery-item .collection-element .item-title {
+  color: $uqblue;
+}
+md-content prm-icon md-icon.md-primoExplore-theme {
+  color: $uqblue!important;
+}
+
 // Collection display - Search options
 // Issue: Search options text and button colour are Ex Libris OTB and low contrast - Change to UQ text and button colour
 button.search-button.md-button.md-primoExplore-theme {
