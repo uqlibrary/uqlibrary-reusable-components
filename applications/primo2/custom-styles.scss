@@ -564,6 +564,7 @@ button.search-button.md-button.md-primoExplore-theme {
 
 // Main Collection Lobby and Collection display
 // Issue: Entering a collection applies a dark overlay. Remove overlay.
+prm-explore-main .header .transparent-top-bar:before ,
 prm-topbar > div::before {
   background-color: inherit;
   opacity: 0;
