@@ -504,6 +504,9 @@ prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme,
 prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme {
   color: $uqblue !important;
   background-color: rgba(255, 255, 255, 100);
+  opacity: 0.8;
+  margin-left: 10px!important;
+  margin-right: 10px!important;
 }
 
 // Full Record Display, for a record in a Collection, for 'More from the same Collection'
