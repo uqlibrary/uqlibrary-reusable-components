@@ -500,7 +500,6 @@ prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme:hover {
   background-color: $uqblue;
 }
 
-prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme,
 prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme {
   color: $uqblue !important;
   background-color: rgba(255, 255, 255, 100);
@@ -513,11 +512,19 @@ prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme {
 prm-collection-gallery-header prm-save-to-favorites-button button.md-icon-button {
   background-color: white!important;
 }
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:focus,
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:hover
+{
+  color: white!important;
+  background-color: $uqblue!important;
+}
 
 // Full Record Display, for a record in a Collection, for 'More from the same Collection'
 // Issue: Hovering shows a background which is too dark
 // Remove hover background colour, and add underline, as per all other link outs
+prm-more-like-this prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:focus:not([disabled]),
 prm-more-like-this prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover:not([disabled]),
+prm-service-details prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:focus:not([disabled])
 prm-service-details prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover:not([disabled])
 {
   color: $uqblue!important;
