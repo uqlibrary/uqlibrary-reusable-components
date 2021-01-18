@@ -581,5 +581,10 @@ prm-topbar > div::before {
 
 // where Primo picks up the user's login and logs them in, use the correct colors
 prm-silent-login-alert-toast md-toast .md-button.settings-button {
-  color: $uqblue
+  color: $uqblue;
+}
+
+// blue text on button for "Your session has been inactive for an extended period and has been reset." alert
+prm-timeout-toast md-toast .md-button.settings-button {
+  color: $uqblue;
 }
