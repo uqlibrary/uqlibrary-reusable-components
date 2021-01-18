@@ -569,3 +569,8 @@ prm-topbar > div::before {
   background-color: inherit;
   opacity: 0;
 }
+
+// where Primo picks up the user's login and logs them in, use the correct colors
+prm-silent-login-alert-toast md-toast .md-button.settings-button {
+  color: $uqblue
+}
