@@ -509,6 +509,11 @@ prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme {
   margin-right: 10px!important;
 }
 
+// the pin button should be noticeable
+prm-collection-gallery-header prm-save-to-favorites-button button.md-icon-button {
+  background-color: white!important;
+}
+
 // Full Record Display, for a record in a Collection, for 'More from the same Collection'
 // Issue: Hovering shows a background which is too dark
 // Remove hover background colour, and add underline, as per all other link outs
@@ -552,7 +557,7 @@ prm-collection-search .search-within .search-button {
 prm-collection-gallery prm-gallery-item .collection-element .item-title {
   color: $uqblue;
 }
-md-content prm-icon md-icon.md-primoExplore-theme {
+prm-collection-discovery md-content prm-icon md-icon.md-primoExplore-theme {
   color: $uqblue!important;
 }
 
