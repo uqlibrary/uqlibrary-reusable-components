@@ -499,9 +499,19 @@ prm-citation-linker .request-form md-input-container label:not(.md-no-float):not
  {
   opacity: 1;
   color: $accent-color;
-  //color: #000000;
+}
+prm-citation-linker .md-button.button-large.button-with-icon {
+  border: 1px solid #ffffff;
+  &:hover {
+    color: $accent-color !important;
+    background-color: white !important;
+    border-color: $accent-color;
+  }
+}
+prm-citation-linker .md-button.button-large.button-with-icon md-icon {
+  display: none;
 }
 
-md-input-container:not([md-no-float]) .md-select-placeholder span:first-child {
+prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder span:first-child {
   margin-bottom: -3px;
 }
