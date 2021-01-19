@@ -511,9 +511,10 @@ prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme {
 prm-collection-gallery-header prm-save-to-favorites-button button.md-icon-button {
   background-color: white!important;
 }
-prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:focus,
-prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:hover
-{
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:focus:not([disabled]),
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:hover:not([disabled]),
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .unpin-button.unpinned:focus:not([disabled]),
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .unpin-button.unpinned:hover:not([disabled]) {
   color: white!important;
   background-color: $accent-color!important;
 }
