@@ -551,6 +551,9 @@ prm-gallery-collection .collection-folder .item-actions button {
 
 // Collection display array for individual record
 // Issue: for both display View options of grid or gallery, the colour is Ex Libris OTB aqua colour for whichever one is selected - change to UQ colour
+prm-collection-discovery-view-switcher .md-button.is-active:focus:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active-add,
 prm-collection-discovery-view-switcher .md-button.is-active {
   color: $accent-color;
 }
