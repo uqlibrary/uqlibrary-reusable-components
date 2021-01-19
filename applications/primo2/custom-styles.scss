@@ -418,6 +418,9 @@ prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected {
     background-color: rgba(51,51,51,.1) !important;
   }
 }
+prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected:hover {
+  background-color: rgba(51,51,51,.1) !important;
+}
 
 // buttons on main primo page
 prm-facet-range prm-icon md-icon.md-primoExplore-theme,
@@ -487,4 +490,18 @@ prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:no
     color: #000;
     background-color: rgba(51,51,51,.1);
   }
+}
+
+// Citation Search (Citation Linker) The field labels are quite a pale blue in contrast
+prm-citation-linker .request-form md-input-container md-select .md-select-value.md-select-placeholder,
+prm-citation-linker .request-form md-input-container md-select md-select-value span:first-child,
+prm-citation-linker .request-form md-input-container label:not(.md-no-float):not(._md-container-ignore)
+ {
+  opacity: 1;
+  color: $accent-color;
+  //color: #000000;
+}
+
+md-input-container:not([md-no-float]) .md-select-placeholder span:first-child {
+  margin-bottom: -3px;
 }
