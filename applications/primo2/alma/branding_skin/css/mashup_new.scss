@@ -31,6 +31,10 @@ ul#PAGING input // warehouse pagination buttons
 #formActionsContainer input[type="submit"]#submitPurchaseRequest {
   color: $uqblue;
 }
+#formActionsContainer input[type=submit]#submitPurchaseRequest:hover {
+  background-color: $uqblue;
+  color: #fff;
+}
 
 .requestForm li input:not([readonly]),
 .requestForm li textarea:not([readonly]),
