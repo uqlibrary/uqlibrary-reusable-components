@@ -29,20 +29,14 @@ ul#PAGING input // warehouse pagination buttons
 
 // Place a Request button on form should be blue
 #formActionsContainer input[type="submit"]#submitPurchaseRequest {
-  color: $uqblue;
-}
-#formActionsContainer input[type=submit]#submitPurchaseRequest:hover {
+  color: white;
   background-color: $uqblue;
-  color: #fff;
-}
-
-.purchaseRequest li input:not([readonly]),
-.purchaseRequest li textarea:not([readonly]),
-.purchaseRequest li select:not([readonly]),
-.requestForm li input:not([readonly]),
-.requestForm li textarea:not([readonly]),
-.requestForm li select:not([readonly]) {
-  box-shadow: 0 1px 0 0 $uqblue-half-opacity;
+  border: 1px solid #ffffff;
+  &:hover {
+    color:  $uqblue !important;
+    background-color: #ffffff !important;
+    border-color: $uqblue;
+  }
 }
 
 div.serialSelection * {
