@@ -1,3 +1,5 @@
+$accent-color-half-opacity: rgba(35, 119, 203, .5);
+
 /* cyrillic-ext */
 @font-face {
   font-family: 'Roboto';
@@ -140,7 +142,62 @@ prm-browse-search-bar .search-scope {
 }
 
 // Browse interface - link colors
-.duedate > span, .fulltext > span, .fulltext_linktorsrc > span, .getit > span, .login-dialog .collapsable-container md-list md-list-item .md-list-item-inner, .login-dialog .md-list md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item .md-list-item-text h3, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3, .login-dialog md-list md-list-item .md-list-item-text .list-item-title, .login-dialog md-list md-list-item .md-list-item-text h3, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, .login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3, .md-button.arrow-link-button .button-content, .md-button.arrow-link-button [link-arrow], .not_restricted > span, .prm-links, .restricted > span, .separate-list-items md-list-item .item-loader-with-text .md-button, .tiles-grid-tile .tile-header .header-link .arrow-icon, .tiles-grid-tile .tile-header .header-link:focus, .tiles-grid-tile .tile-header .header-link:hover, .tiles-grid-tile .tile-header .md-button, [class*=NFT] > span, [class*=check_] > span, [class*="_more"] > span, [class*="_unknown"] > span, [class*=may_] > span, [class*=does_not_exist] > span, [class*=available] > span, [class*=FT] > span, [class*=unavailable] > span, [class*=no_] > span, a, md-grid-tile .tile-header .header-link .arrow-icon, md-grid-tile .tile-header .header-link:focus, md-grid-tile .tile-header .header-link:hover, md-grid-tile .tile-header .md-button, md-input-container.has-fixed-message [ng-message] a, md-list-item.list-item-as-link, md-tabs.tabs-as-app .back-button, md-tabs.tabs-as-links md-tab-item, md-tabs.tabs-as-links md-tab-item:not([disabled]), prm-tags-list .md-chips .md-chip .md-chip-content strong, prm-tags-list .md-chips md-chip .md-chip-content strong, prm-tags-list md-chips .md-chip .md-chip-content strong, prm-tags-list md-chips md-chip .md-chip-content strong, .prm-citation-title, md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title, prm-citation-trails-item.active-item .item-title, prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .item-title {
+.duedate > span, 
+.fulltext > span, 
+.fulltext_linktorsrc > span, 
+.getit > span, 
+.login-dialog .collapsable-container md-list md-list-item .md-list-item-inner, 
+.login-dialog .md-list md-list-item .md-list-item-text .list-item-title, 
+.login-dialog .md-list md-list-item .md-list-item-text h3, 
+.login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, 
+.login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3, 
+.login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title, 
+.login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3, 
+.login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title, 
+.login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3, 
+.login-dialog md-list md-list-item .md-list-item-text .list-item-title, 
+.login-dialog md-list md-list-item .md-list-item-text h3, 
+.login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, 
+.login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3, 
+.md-button.arrow-link-button .button-content, 
+.md-button.arrow-link-button [link-arrow], 
+.not_restricted > span, 
+.prm-links, 
+.restricted > span, 
+.separate-list-items md-list-item .item-loader-with-text .md-button, 
+.tiles-grid-tile .tile-header .header-link .arrow-icon, 
+.tiles-grid-tile .tile-header .header-link:focus, 
+.tiles-grid-tile .tile-header .header-link:hover, 
+.tiles-grid-tile .tile-header .md-button, 
+[class*=NFT] > span, 
+[class*=check_] > span, 
+[class*="_more"] > span, 
+[class*="_unknown"] > span, 
+[class*=may_] > span, 
+[class*=does_not_exist] > span, 
+[class*=available] > span, 
+[class*=FT] > span, 
+[class*=unavailable] > span, 
+[class*=no_] > span, 
+a, 
+md-grid-tile .tile-header .header-link .arrow-icon, 
+md-grid-tile .tile-header .header-link:focus, 
+md-grid-tile .tile-header .header-link:hover, 
+md-grid-tile .tile-header .md-button, 
+md-input-container.has-fixed-message [ng-message] a, 
+md-list-item.list-item-as-link, 
+md-tabs.tabs-as-app .back-button, 
+md-tabs.tabs-as-links md-tab-item, 
+md-tabs.tabs-as-links md-tab-item:not([disabled]), 
+prm-tags-list .md-chips .md-chip .md-chip-content strong, 
+prm-tags-list .md-chips md-chip .md-chip-content strong, 
+prm-tags-list md-chips .md-chip .md-chip-content strong, 
+prm-tags-list md-chips md-chip .md-chip-content strong, 
+.prm-citation-title, 
+md-list.prm-list.prm-linkable-list-items md-list-item .item-title, 
+prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title, 
+prm-citation-trails-item.active-item .item-title, 
+prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .item-title {
   color: $links !important;
 }
 
@@ -240,6 +297,13 @@ div#services-index button.zero-margin.button-right-align.button-link.md-button.m
 }
 strong.facet-title.layout-align-end-stretch.layout-row {
   margin-left: 10px;
+  .section-content .md-chips .md-chip & {
+    &:active, &:focus, &:hover {
+      &:not([disabled]) {
+        background-color: #5F5F5F;
+      }
+    }
+  }
 }
 
 // tweak the styling of the primo database search
@@ -352,6 +416,12 @@ prm-tree-nav md-list md-list-item .md-button.branch-name {
 }
 prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected {
   color: #333!important;
+  &:hover {
+    background-color: rgba(51,51,51,.1) !important;
+  }
+}
+prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected:hover {
+  background-color: rgba(51,51,51,.1) !important;
 }
 
 // buttons on main primo page
@@ -360,7 +430,202 @@ prm-facet-exact button:not(.button-exclude) prm-icon md-icon.md-primoExplore-the
   // little arrow in facet area but NOT the 'exclude filter' checked box (appears on mouseover)
   color: #1E66AE!important;
 }
-button:not(.disabledLockButton).button-as-link prm-icon,
-button:not(.disabledLockButton).button-as-link span {
-  color: #1E66AE;
+
+.multiselect-facet-group .md-chip .md-chip-content md-checkbox {
+  left: 0;
+}
+
+prm-facet-range,
+prm-facet-exact {
+  .section-title {
+    &:active, &:focus, &:hover {
+      span {
+        color: #000;
+      }
+    }
+  }
+}
+
+prm-add-alert-toast md-toast .md-toast-content .md-button {
+  &:active, &:focus, &:hover {
+    &:not([disabled]) {
+      background: #5F5F5F;
+    }
+  }
+}
+
+primo-explore .md-dialog-container.fixed-container {
+  background-color: rgba(83,115,140,0.5);
+}
+
+prm-search-result-list .pages-separated-with-gaps .results-title:not(.results-title-favorites) {
+  padding-left: 70px;
+  top: -7px !important;
+}
+
+.md-button.arrow-link-button .button-content:focus,
+.md-button.arrow-link-button .button-content:hover,
+.md-button.arrow-link-button .hover.button-content,
+.md-button.arrow-link-button:focus .button-content,
+.md-button.arrow-link-button:hover .button-content,
+.prm-links-background.prm-hue-1,
+.recommendations-title.hover>span>span,
+.recommendations-title:hover>span>span, 
+a.hover, 
+a:focus, 
+a:hover,
+prm-citation-trails-item.active-item md-card>.md-button:focus .item-title span,
+prm-citation-trails-item.active-item md-card>.md-button:hover .item-title span,
+prm-tags-list .md-chips .md-chip .md-chip-content:hover strong,
+prm-tags-list .md-chips md-chip .md-chip-content:hover strong,
+prm-tags-list md-chips .md-chip .md-chip-content:hover strong,
+prm-tags-list md-chips md-chip .md-chip-content:hover strong {
+  background-color: transparent;
+}
+
+prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:not([disabled]) {
+  &._md-focused, 
+  &.hovered, 
+  &.md-focused, 
+  &:focus, 
+  &:hover {
+    color: #000;
+    background-color: rgba(51,51,51,.1);
+  }
+}
+
+// COLLECTION DISCOVERY //
+
+// Breadcrumb trail for sub-collection
+//Issue: Text and hover background is not very good contrast. Although text is our UQ blue already, and they are all links, I think it wise to change the text to blue, and then keep the hover behaviour. Several other Primo sites have done this, and it seems the safest given the underlying image may change, but is likely on average to be darker rather than lighter
+prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme:focus,
+prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme:hover {
+  color:  rgba(255, 255, 255, 100)!important;
+  background-color: $accent-color;
+}
+
+prm-collection-gallery-header prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme {
+  color: $accent-color !important;
+  background-color: rgba(255, 255, 255, 100);
+  opacity: 0.8;
+  margin-left: 10px!important;
+  margin-right: 10px!important;
+}
+
+// the pin button should be noticeable
+prm-collection-gallery-header prm-save-to-favorites-button button.md-icon-button {
+  background-color: white!important;
+}
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:focus:not([disabled]),
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:hover:not([disabled]),
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .unpin-button.unpinned:focus:not([disabled]),
+prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .unpin-button.unpinned:hover:not([disabled]) {
+  color: white!important;
+  background-color: $accent-color!important;
+}
+
+// Full Record Display, for a record in a Collection, for 'More from the same Collection'
+// Issue: Hovering shows a background which is too dark
+// Remove hover background colour, and add underline, as per all other link outs
+prm-more-like-this prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:focus:not([disabled]),
+prm-more-like-this prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover:not([disabled]),
+prm-service-details prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:focus:not([disabled]),
+prm-service-details prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover:not([disabled]),
+prm-record-collection-paths prm-collection-navigation-breadcrumbs-item a.button-as-link.link-alt-color.md-button:focus:not([disabled]),
+prm-record-collection-paths prm-collection-navigation-breadcrumbs-item a.button-as-link.link-alt-color.md-button:hover:not([disabled])
+{
+  color: $accent-color!important;
+  background-color: #fff!important;
+  box-shadow: inset 0 -1px 0 0 $accent-color-half-opacity;
+}
+
+// Main Collection Lobby
+// Issue: Ex Libris OTB teal in full page vertical panel - replace with UQ colour. Text should remain white
+prm-collection-gallery-header .collection-header-inner {
+  background-color: $theme-color;
+  color: #fff;
+}
+
+// Issue: Ex Libris OTB teal for text - replace with UQ blue colour
+prm-gallery-collection .collection-folder .collection-overlay {
+  color: $accent-color;
+}
+prm-gallery-collection .collection-folder .item-actions .md-button,
+prm-gallery-collection .collection-folder .item-actions button {
+  color: $accent-color;
+}
+
+// Collection display array for individual record
+// Issue: for both display View options of grid or gallery, the colour is Ex Libris OTB aqua colour for whichever one is selected - change to UQ colour
+prm-collection-discovery-view-switcher .md-button.is-active:focus:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active-add,
+prm-collection-discovery-view-switcher .md-button.is-active {
+  color: $accent-color;
+}
+
+prm-collection-search .search-within .search-button {
+  color: white!important;
+  background-color: $accent-color!important;
+}
+
+// Collection display grid
+// the item text and pin icons should be uq blue
+//prm-gallery-items-list .is-grid-view prm-gallery-item prm-save-to-favorites-button button md-icon,
+prm-gallery-items-list .result-item-actions .pin-button md-icon,
+prm-collection-gallery prm-gallery-item .collection-element .item-title {
+  color: $accent-color!important;
+}
+
+// Collection display - Search options
+// Issue: Search options text and button colour are Ex Libris OTB and low contrast - Change to UQ text and button colour
+prm-collection-search button.search-button.md-button.md-primoExplore-theme {
+  opacity: 1;
+}
+
+// Main Collection Lobby and Collection display
+// Issue: Entering a collection applies a dark overlay. Remove overlay.
+prm-explore-main .header .transparent-top-bar:before ,
+prm-topbar > div::before {
+  background-color: inherit;
+  opacity: 0;
+}
+
+// END COLLECTION DISCOVERY //
+
+// where Primo picks up the user's login and logs them in, use the correct colors
+prm-silent-login-alert-toast md-toast .md-button.settings-button {
+  color: $accent-color;
+}
+
+// blue text on button for "Your session has been inactive for an extended period and has been reset." alert
+prm-timeout-toast md-toast .md-button.settings-button {
+  color: $accent-color;
+}
+
+// Citation Search (Citation Linker) The field labels are quite a pale blue in contrast
+prm-citation-linker .request-form md-input-container md-select .md-select-value.md-select-placeholder,
+prm-citation-linker .request-form md-input-container md-select md-select-value span:first-child,
+prm-citation-linker .request-form md-input-container label:not(.md-no-float):not(._md-container-ignore)
+ {
+  opacity: 1;
+  color: $accent-color;
+}
+
+// fix submit button on purchase request form
+prm-citation-linker .md-button.button-large.button-with-icon {
+  border: 1px solid #ffffff;
+  &:hover {
+    color: $accent-color !important;
+    background-color: white !important;
+    border-color: $accent-color;
+  }
+}
+
+prm-citation-linker .md-button.button-large.button-with-icon md-icon {
+  display: none;
+}
+
+prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder span:first-child {
+  margin-bottom: -3px;
 }
