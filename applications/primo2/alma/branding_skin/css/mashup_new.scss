@@ -1,7 +1,6 @@
 $uqblue-half-opacity: rgba(35, 119, 203, .5);
 $uqblue: #2377CB;
 
-li#formActionsContainer input[type="submit"]#exlidRequestTabFormSubmit, // Place a Request button blue
 a#displayHolding,
 ul#PAGING input // warehouse pagination buttons
 {
@@ -27,8 +26,10 @@ ul#PAGING input // warehouse pagination buttons
   }
 }
 
-// Place a Request button on form should be blue
-#formActionsContainer input[type="submit"]#submitPurchaseRequest {
+// Various buttons should be blue, and hover to white
+li#formActionsContainer input[type="submit"]#exlidRequestTabFormSubmit, // Get it -> place a request -> Place a Request button
+#formActionsContainer input[type="submit"]#submitPurchaseRequest // Get it -> request a purchase -> Place a Request button
+{
   color: white;
   background-color: $uqblue;
   border: 1px solid #ffffff;
