@@ -1,4 +1,5 @@
 $accent-color-half-opacity: rgba(35, 119, 203, .5);
+$uqblue: #2377CB;
 
 /* cyrillic-ext */
 @font-face {
@@ -142,61 +143,61 @@ prm-browse-search-bar .search-scope {
 }
 
 // Browse interface - link colors
-.duedate > span, 
-.fulltext > span, 
-.fulltext_linktorsrc > span, 
-.getit > span, 
-.login-dialog .collapsable-container md-list md-list-item .md-list-item-inner, 
-.login-dialog .md-list md-list-item .md-list-item-text .list-item-title, 
-.login-dialog .md-list md-list-item .md-list-item-text h3, 
-.login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, 
-.login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3, 
-.login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title, 
-.login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3, 
-.login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title, 
-.login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3, 
-.login-dialog md-list md-list-item .md-list-item-text .list-item-title, 
-.login-dialog md-list md-list-item .md-list-item-text h3, 
-.login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title, 
-.login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3, 
-.md-button.arrow-link-button .button-content, 
-.md-button.arrow-link-button [link-arrow], 
-.not_restricted > span, 
-.prm-links, 
-.restricted > span, 
-.separate-list-items md-list-item .item-loader-with-text .md-button, 
-.tiles-grid-tile .tile-header .header-link .arrow-icon, 
-.tiles-grid-tile .tile-header .header-link:focus, 
-.tiles-grid-tile .tile-header .header-link:hover, 
-.tiles-grid-tile .tile-header .md-button, 
-[class*=NFT] > span, 
-[class*=check_] > span, 
-[class*="_more"] > span, 
-[class*="_unknown"] > span, 
-[class*=may_] > span, 
-[class*=does_not_exist] > span, 
-[class*=available] > span, 
-[class*=FT] > span, 
-[class*=unavailable] > span, 
-[class*=no_] > span, 
-a, 
-md-grid-tile .tile-header .header-link .arrow-icon, 
-md-grid-tile .tile-header .header-link:focus, 
-md-grid-tile .tile-header .header-link:hover, 
-md-grid-tile .tile-header .md-button, 
-md-input-container.has-fixed-message [ng-message] a, 
-md-list-item.list-item-as-link, 
-md-tabs.tabs-as-app .back-button, 
-md-tabs.tabs-as-links md-tab-item, 
-md-tabs.tabs-as-links md-tab-item:not([disabled]), 
-prm-tags-list .md-chips .md-chip .md-chip-content strong, 
-prm-tags-list .md-chips md-chip .md-chip-content strong, 
-prm-tags-list md-chips .md-chip .md-chip-content strong, 
-prm-tags-list md-chips md-chip .md-chip-content strong, 
-.prm-citation-title, 
-md-list.prm-list.prm-linkable-list-items md-list-item .item-title, 
-prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title, 
-prm-citation-trails-item.active-item .item-title, 
+.duedate > span,
+.fulltext > span,
+.fulltext_linktorsrc > span,
+.getit > span,
+.login-dialog .collapsable-container md-list md-list-item .md-list-item-inner,
+.login-dialog .md-list md-list-item .md-list-item-text .list-item-title,
+.login-dialog .md-list md-list-item .md-list-item-text h3,
+.login-dialog .md-list md-list-item > .md-no-style .md-list-item-text .list-item-title,
+.login-dialog .md-list md-list-item > .md-no-style .md-list-item-text h3,
+.login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text .list-item-title,
+.login-dialog .md-list[class$="-line"] md-list-item .md-list-item-text h3,
+.login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text .list-item-title,
+.login-dialog .md-list[class$="-line"] md-list-item > .md-no-style .md-list-item-text h3,
+.login-dialog md-list md-list-item .md-list-item-text .list-item-title,
+.login-dialog md-list md-list-item .md-list-item-text h3,
+.login-dialog md-list md-list-item > .md-no-style .md-list-item-text .list-item-title,
+.login-dialog md-list md-list-item > .md-no-style .md-list-item-text h3,
+.md-button.arrow-link-button .button-content,
+.md-button.arrow-link-button [link-arrow],
+.not_restricted > span,
+.prm-links,
+.restricted > span,
+.separate-list-items md-list-item .item-loader-with-text .md-button,
+.tiles-grid-tile .tile-header .header-link .arrow-icon,
+.tiles-grid-tile .tile-header .header-link:focus,
+.tiles-grid-tile .tile-header .header-link:hover,
+.tiles-grid-tile .tile-header .md-button,
+[class*=NFT] > span,
+[class*=check_] > span,
+[class*="_more"] > span,
+[class*="_unknown"] > span,
+[class*=may_] > span,
+[class*=does_not_exist] > span,
+[class*=available] > span,
+[class*=FT] > span,
+[class*=unavailable] > span,
+[class*=no_] > span,
+a,
+md-grid-tile .tile-header .header-link .arrow-icon,
+md-grid-tile .tile-header .header-link:focus,
+md-grid-tile .tile-header .header-link:hover,
+md-grid-tile .tile-header .md-button,
+md-input-container.has-fixed-message [ng-message] a,
+md-list-item.list-item-as-link,
+md-tabs.tabs-as-app .back-button,
+md-tabs.tabs-as-links md-tab-item,
+md-tabs.tabs-as-links md-tab-item:not([disabled]),
+prm-tags-list .md-chips .md-chip .md-chip-content strong,
+prm-tags-list .md-chips md-chip .md-chip-content strong,
+prm-tags-list md-chips .md-chip .md-chip-content strong,
+prm-tags-list md-chips md-chip .md-chip-content strong,
+.prm-citation-title,
+md-list.prm-list.prm-linkable-list-items md-list-item .item-title,
+prm-browse-search md-list.prm-list.prm-linkable-list-items md-list-item .item-title,
+prm-citation-trails-item.active-item .item-title,
 prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .item-title {
   color: $links !important;
 }
@@ -391,7 +392,7 @@ div > getit-link-service {
 }
 button.md-button.button-as-link-mobile.link-alt-color {
   // filter button doesnt have the same classes applied?!?
-  color: #2377CB;
+  color: $uqblue;
 }
 @media (max-width: 600px) {
   // align the pin button
@@ -405,7 +406,7 @@ prm-breadcrumbs .md-chip.persistent-facet .md-chip-content strong {
   padding-left: 12px;
 }
 
-// #2377CB isn't accessible on the primo grey background, so slightly different colour is needed
+// uqblue (#2377CB) isn't accessible on the primo grey background, so slightly different colour is needed
 .language-characters a { // dbsearch alpha-nav
   color: #1E66AE!important;
 }
@@ -470,9 +471,9 @@ prm-search-result-list .pages-separated-with-gaps .results-title:not(.results-ti
 .md-button.arrow-link-button:hover .button-content,
 .prm-links-background.prm-hue-1,
 .recommendations-title.hover>span>span,
-.recommendations-title:hover>span>span, 
-a.hover, 
-a:focus, 
+.recommendations-title:hover>span>span,
+a.hover,
+a:focus,
 a:hover,
 prm-citation-trails-item.active-item md-card>.md-button:focus .item-title span,
 prm-citation-trails-item.active-item md-card>.md-button:hover .item-title span,
@@ -484,10 +485,10 @@ prm-tags-list md-chips md-chip .md-chip-content:hover strong {
 }
 
 prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:not([disabled]) {
-  &._md-focused, 
-  &.hovered, 
-  &.md-focused, 
-  &:focus, 
+  &._md-focused,
+  &.hovered,
+  &.md-focused,
+  &:focus,
   &:hover {
     color: #000;
     background-color: rgba(51,51,51,.1);
@@ -589,6 +590,36 @@ prm-explore-main .header .transparent-top-bar:before ,
 prm-topbar > div::before {
   background-color: inherit;
   opacity: 0;
+}
+
+// Colour contrast is poor when highlighting text
+prm-collection-gallery-header *::selection {
+  background-color: $uqblue;
+}
+
+// In Display of View Grid or View Gallery, when hovering over the active view option, the hover background is Ex Libris teal
+prm-collection-discovery-view-switcher .md-button.is-active._md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active.hovered:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active.md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus._md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus.hovered:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus.md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus:focus:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus:hover:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover._md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover.hovered:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover.md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover:focus:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover:hover:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover:not([disabled]) {
+  color: #fff;
+  background-color: $uqblue;
+}
+
+// Searching within collections, the line for the search box extends into the search icon
+prm-collection-search button.search-button.md-button.md-primoExplore-theme.md-ink-ripple:not(.is-shifted){
+  margin-left: 40px;
 }
 
 // END COLLECTION DISCOVERY //
