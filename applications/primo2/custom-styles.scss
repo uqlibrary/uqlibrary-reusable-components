@@ -1,5 +1,4 @@
 $accent-color-half-opacity: rgba(35, 119, 203, .5);
-$uqblue: #2377CB;
 
 /* cyrillic-ext */
 @font-face {
@@ -392,7 +391,7 @@ div > getit-link-service {
 }
 button.md-button.button-as-link-mobile.link-alt-color {
   // filter button doesnt have the same classes applied?!?
-  color: $uqblue;
+  color: $accent-color;
 }
 @media (max-width: 600px) {
   // align the pin button
@@ -594,7 +593,7 @@ prm-topbar > div::before {
 
 // Colour contrast is poor when highlighting text
 prm-collection-gallery-header *::selection {
-  background-color: $uqblue;
+  background-color: $accent-color;
 }
 
 // In Display of View Grid or View Gallery, when hovering over the active view option, the hover background is Ex Libris teal
@@ -614,7 +613,7 @@ prm-collection-discovery-view-switcher .md-button.is-active:hover:focus:not([dis
 prm-collection-discovery-view-switcher .md-button.is-active:hover:hover:not([disabled]),
 prm-collection-discovery-view-switcher .md-button.is-active:hover:not([disabled]) {
   color: #fff;
-  background-color: $uqblue;
+  background-color: $accent-color;
 }
 
 // Searching within collections, the line for the search box extends into the search icon
@@ -624,14 +623,81 @@ prm-collection-search button.search-button.md-button.md-primoExplore-theme.md-in
 
 // END COLLECTION DISCOVERY //
 
+prm-add-alert-toast md-toast .md-toast-content .md-button,
+prm-mendeley-toast md-toast .md-toast-content .md-button,
+prm-silent-login-alert-toast md-toast .md-toast-content .md-button,
+prm-voice-search-toast md-toast .md-toast-content .md-button {
+  color: #5F5F5F;
+}
+
 // where Primo picks up the user's login and logs them in, use the correct colors
-prm-silent-login-alert-toast md-toast .md-button.settings-button {
+// as well as blue text on button for "Your session has been inactive for an extended period and has been reset." alert
+prm-add-alert-toast md-toast .md-button.settings-button,
+prm-add-alert-toast md-toast .md-button.settings-button md-icon,
+prm-mendeley-toast md-toast .md-button.settings-button,
+prm-mendeley-toast md-toast .md-button.settings-button md-icon,
+prm-silent-login-alert-toast md-toast .md-button.settings-button,
+prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon,
+prm-timeout-toast md-toast .md-button.settings-button,
+prm-timeout-toast md-toast .md-button.settings-button md-icon,
+prm-voice-search-toast md-toast .md-button.settings-button,
+prm-voice-search-toast md-toast .md-button.settings-button md-icon {
   color: $accent-color;
 }
 
-// blue text on button for "Your session has been inactive for an extended period and has been reset." alert
-prm-timeout-toast md-toast .md-button.settings-button {
-  color: $accent-color;
+// then reverse the colours on hover
+prm-add-alert-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button.hovered:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button:focus:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button:hover:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
+prm-add-alert-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button.hovered:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button:focus:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button:hover:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
+prm-mendeley-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button.hovered:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button:focus:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button:hover:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
+prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button.hovered:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button:focus:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button:hover:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
+prm-timeout-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button.hovered:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button:focus:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button:hover:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
+prm-voice-search-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]) {
+  color: #fff;
+  background-color: $accent-color
 }
 
 // Citation Search (Citation Linker) The field labels are quite a pale blue in contrast
