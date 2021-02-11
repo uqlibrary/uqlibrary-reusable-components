@@ -11,10 +11,10 @@ function loadReusableComponents() {
     // insert elements, even before React is loaded
 
     // first element of the original document
-    const firstElement = document.body.children[0];
+    var firstElement = document.body.children[0];
 
     // insert the react root for the react code to grab onto
-    const reactRoot = document.createElement('div');
+    var reactRoot = document.createElement('div');
     reactRoot.setAttribute('id', 'react-root');
     reactRoot.setAttribute('class', 'layout-fill');
     reactRoot.setAttribute('style', 'height:auto');
@@ -27,8 +27,8 @@ function showElement(button) {
 }
 
 function showAskusButtonBlock() {
-    const showForeignAskUsButton = setInterval(() => {
-        const button = document.getElementById('askus-button-block');
+    var showForeignAskUsButton = setInterval(() => {
+        var button = document.getElementById('askus-button-block');
         if (!!button) {
             showElement(button);
             clearInterval(showForeignAskUsButton);
@@ -36,13 +36,13 @@ function showAskusButtonBlock() {
     }, 100); // check every 100ms
 }
 
-const isLoggedInButtonShowing = () => {
+function isLoggedInButtonShowing() {
     return !!document.getElementById('logged-in-icon');
-};
+}
 
 function showMyLibraryButtonBlock() {
-    const showForeignMylibraryButton = setInterval(() => {
-        const button = document.getElementById('mylibrary-button-block');
+    var showForeignMylibraryButton = setInterval(() => {
+        var button = document.getElementById('mylibrary-button-block');
         if (!!button) {
             showElement(button);
             clearInterval(showForeignMylibraryButton);
@@ -51,8 +51,8 @@ function showMyLibraryButtonBlock() {
 }
 
 function showAuthButtonBlock(isMyLibraryButtonRequired = false) {
-    const showForeignAuthButton = setInterval(() => {
-        const button = document.getElementById('auth-button-block');
+    var showForeignAuthButton = setInterval(() => {
+        var button = document.getElementById('auth-button-block');
         if (!!button) {
             showElement(button);
             clearInterval(showForeignAuthButton);
@@ -63,8 +63,8 @@ function showAuthButtonBlock(isMyLibraryButtonRequired = false) {
 }
 
 function showConnectFooterBlock() {
-    const showConnectFooter = setInterval(() => {
-        const elem = document.getElementById('connect-footer-block');
+    var showConnectFooter = setInterval(() => {
+        var elem = document.getElementById('connect-footer-block');
         if (!!elem) {
             elem.style.display = 'flex';
             clearInterval(showConnectFooter);
@@ -73,15 +73,15 @@ function showConnectFooterBlock() {
 }
 
 function showFooter(isFooterRequired = true, isConnectFooterRequired = false) {
-    const footerExists = setInterval(() => {
-        const footer = document.getElementById('full-footer-block');
+    var footerExists = setInterval(() => {
+        var footer = document.getElementById('full-footer-block');
         if (!!footer) {
             clearInterval(footerExists);
 
             if (!!isFooterRequired) {
                 document.body.appendChild(footer.firstElementChild);
 
-                const footerChild = document.getElementById('full-footer-block-child');
+                var footerChild = document.getElementById('full-footer-block-child');
                 !!footerChild && (footerChild.style.display = 'flex');
 
                 !!isConnectFooterRequired && showConnectFooterBlock();
