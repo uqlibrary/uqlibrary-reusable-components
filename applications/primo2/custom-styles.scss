@@ -622,6 +622,11 @@ prm-collection-search button.search-button.md-button.md-primoExplore-theme.md-in
   margin-left: 40px;
 }
 
+// the description on the collection header needs a little spacing
+prm-collection-gallery-header p {
+  line-height: 1.4;
+}
+
 // END COLLECTION DISCOVERY //
 
 // where Primo picks up the user's login and logs them in, use the correct colors
