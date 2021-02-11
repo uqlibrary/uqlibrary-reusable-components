@@ -1,41 +1,102 @@
 function ready(fn) {
-  if (document.readyState != 'loading'){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
+    if (document.readyState !== 'loading') {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
 }
 
+// insert the react-root into the document tree
 function loadReusableComponents() {
-  //insert elements, even before Polymer is loaded
+    // insert elements, even before React is loaded
 
-  //first element of the original document
-  var firstElement = document.body.children[0];
+    // first element of the original document
+    const firstElement = document.body.children[0];
 
-  // insert alerts after body-tag
-  var alerts = document.querySelector('uqlibrary-alerts');
-  if (!alerts) {
-    //as a back up insert header if it's not defined already
-    alerts = document.createElement('uqlibrary-alerts');
-    document.body.insertBefore(alerts, firstElement);
-  }
-
-  // insert header after alerts
-  var header = document.createElement('uq-minimal-header');
-  document.body.insertBefore(header, firstElement);
-
-  // insert sub footer before body-tag
-  var subFooter = document.createElement('uql-connect-footer');
-  document.body.appendChild(subFooter);
-
-  // insert footer before body-tag
-  var footer = document.createElement('uq-minimal-footer');
-  document.body.appendChild(footer);
-
-
-  window.addEventListener('WebComponentsReady', function() {
-    // when polymer is ready - configure elements
-  });
+    // insert the react root for the react code to grab onto
+    const reactRoot = document.createElement('div');
+    reactRoot.setAttribute('id', 'react-root');
+    reactRoot.setAttribute('class', 'layout-fill');
+    reactRoot.setAttribute('style', 'height:auto');
+    document.body.insertBefore(reactRoot, firstElement);
 }
+
+// unfortunately, all these functions must repeat in every load.js - I couldnt get them to include from a common file
+function showElement(button) {
+    button.style.display = 'block';
+}
+
+function showAskusButtonBlock() {
+    const showForeignAskUsButton = setInterval(() => {
+        const button = document.getElementById('askus-button-block');
+        if (!!button) {
+            showElement(button);
+            clearInterval(showForeignAskUsButton);
+        }
+    }, 100); // check every 100ms
+}
+
+const isLoggedInButtonShowing = () => {
+    return !!document.getElementById('logged-in-icon');
+};
+
+function showMyLibraryButtonBlock() {
+    const showForeignMylibraryButton = setInterval(() => {
+        const button = document.getElementById('mylibrary-button-block');
+        if (!!button) {
+            showElement(button);
+            clearInterval(showForeignMylibraryButton);
+        }
+    }, 100);
+}
+
+function showAuthButtonBlock(isMyLibraryButtonRequired = false) {
+    const showForeignAuthButton = setInterval(() => {
+        const button = document.getElementById('auth-button-block');
+        if (!!button) {
+            showElement(button);
+            clearInterval(showForeignAuthButton);
+
+            !!isMyLibraryButtonRequired && isLoggedInButtonShowing() && showMyLibraryButtonBlock();
+        }
+    }, 100);
+}
+
+function showConnectFooterBlock() {
+    const showConnectFooter = setInterval(() => {
+        const elem = document.getElementById('connect-footer-block');
+        if (!!elem) {
+            elem.style.display = 'flex';
+            clearInterval(showConnectFooter);
+        }
+    }, 100);
+}
+
+function showFooter(isFooterRequired = true, isConnectFooterRequired = false) {
+    const footerExists = setInterval(() => {
+        const footer = document.getElementById('full-footer-block');
+        if (!!footer) {
+            clearInterval(footerExists);
+
+            if (!!isFooterRequired) {
+                document.body.appendChild(footer.firstElementChild);
+
+                const footerChild = document.getElementById('full-footer-block-child');
+                !!footerChild && (footerChild.style.display = 'flex');
+
+                !!isConnectFooterRequired && showConnectFooterBlock();
+            } else {
+                footer.style.display = 'none';
+            }
+            document.body.style.overflow = 'auto'; // the default homepage style blocks page scroll
+        }
+    }, 100);
+}
+
+showAskusButtonBlock();
+
+showAuthButtonBlock();
+
+showFooter(); // show both Minimal (purple) and Connect (grey) Footers
 
 ready(loadReusableComponents);
