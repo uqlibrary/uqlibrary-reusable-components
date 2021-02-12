@@ -628,20 +628,16 @@ prm-collection-gallery-header p {
 
 // END COLLECTION DISCOVERY //
 
-prm-add-alert-toast md-toast .md-toast-content .md-button,
-prm-mendeley-toast md-toast .md-toast-content .md-button,
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button,
-prm-voice-search-toast md-toast .md-toast-content .md-button {
-  color: #5F5F5F;
-}
-
 // primo Toasts should have a uq blue OK button and a not-so-harshly-black Dismiss button
 
 // the Dismiss button
-prm-add-alert-toast md-toast .md-toast-content .md-button, prm-mendeley-toast md-toast .md-toast-content .md-button, prm-silent-login-alert-toast md-toast .md-toast-content .md-button, prm-timeout-toast md-toast .md-toast-content .md-button, prm-voice-search-toast md-toast .md-toast-content .md-button {
+prm-add-alert-toast md-toast .md-toast-content .md-button,
+prm-mendeley-toast md-toast .md-toast-content .md-button,
+prm-silent-login-alert-toast md-toast .md-toast-content .md-button,
+prm-timeout-toast md-toast .md-toast-content .md-button,
+prm-voice-search-toast md-toast .md-toast-content .md-button {
   color: #5F5F5F;
-}
-prm-add-alert-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
+}prm-add-alert-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
 prm-add-alert-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
 prm-add-alert-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
 prm-add-alert-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
