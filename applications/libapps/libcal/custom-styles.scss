@@ -119,29 +119,6 @@ a {
   }
 }
 
-// Dropdowns at reserve/spaces/reading-room
-#s-lc-eq-navform {
-  label {
-    font-weight: normal;
-  }
-}
-
-// Table at reserve/spaces/reading-room
-#time_grid_cont {
-  .s-lc-info-label {
-    background-color: $black-button-color;
-    border-color: darken($black-button-color, 17%);
-    transition: background-color 250ms;
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: darken($black-button-color, 17%);
-      border-color: darken($black-button-color, 25%);
-      outline: darken($black-button-color, 25%);
-    }
-  }
-}
-
 /* Lists - remove margins from lists to make sure spacing is equal
 some pages have multiple UL's, which makes spacing between UL's different to spacing between LI's in the lists
 */
@@ -285,6 +262,34 @@ table,
     border-radius: 2px;
     background-color: #FEFEFE;
   }
+}
+
+// Dropdowns at reserve/spaces/reading-room
+#s-lc-eq-navform {
+  label {
+    font-weight: normal;
+  }
+}
+
+// Table at reserve/spaces/reading-room
+#time_grid_cont {
+  .s-lc-info-label {
+    background-color: $black-button-color;
+    border-color: darken($black-button-color, 17%);
+    transition: background-color 250ms;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($black-button-color, 17%);
+      border-color: darken($black-button-color, 25%);
+      outline: darken($black-button-color, 25%);
+    }
+  }
+}
+
+// Form help message at reservation confirmation screen on reserve/spaces/reading-room
+.s-lc-booking-form-help {
+  padding: 0 10px;
 }
 
 #s-lc-public-bc .breadcrumb,
