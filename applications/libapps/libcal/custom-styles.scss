@@ -1,0 +1,624 @@
+@import "../../../../uqlibrary-styles/skeleton.scss";
+
+$font: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$nav-border: 4px solid #51247A;
+$page-background-color: #FAFAFA;
+$button-color: #0E62EB;
+
+%navlinks {
+  border-radius: 0 2px 2px 0 !important;
+  background: #EEE;
+  font-size: 14px/1.2;
+  cursor: pointer;
+  color: #2662E3;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 1px 0;
+  background: url("https://assets.library.uq.edu.au/reusable-components/resources/images/arrow-right.png") no-repeat scroll right 12px transparent;
+  padding: 0.6em 0;
+}
+
+%navlinks-hover {
+  background-color: transparent;
+  border-bottom: 1px solid #eee;
+}
+
+%shadow {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin hover-style($color) {
+  background: transparent;
+  border-bottom: 4px solid $color !important;
+  transition: all .1s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font;
+  font-weight: 300;
+  background: $page-background-color;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+}
+
+/* 'body' to overwrite inbuilt springshare styles... */
+body h1 ,
+body #s-lc-guide-header-info h1,
+body .s-lib-header h1 {
+	color: #49075E;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+body h2 {
+	font-size: 20px;
+}
+
+h3,
+h4 {
+  font-weight: bold !important;
+}
+
+body h3,
+body .s-lib-box-container .s-lib-box-content h3 {
+  font-size: 18px;
+}
+
+body h4,
+body .s-lib-box-container .s-lib-box-content h4 {
+	font-size: 16px;
+}
+
+
+a {
+  color: #2377CB;
+  text-decoration: none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  &:hover,
+  &:focus {
+    color: #005EA5;
+    text-decoration: underline;
+  }
+}
+
+/* Lists - remove margins from lists to make sure spacing is equal
+some pages have multiple UL's, which makes spacing between UL's different to spacing between LI's in the lists
+*/
+ul, ol {
+  margin: 0 0 18px 8px;
+  padding-left: 10px;
+  td & {
+    margin-bottom: 0;
+    padding: 10px;
+  }
+}
+
+.table {
+  & > thead {
+    & > tr {
+      & > th {
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+.container,
+.container-fluid {
+    & > .navbar-header,
+    & > .navbar-collapse {
+      margin: 0 -15px;
+    }
+}
+
+.nav {
+  & > li {
+    & > a {
+      &:hover,
+      &:focus {
+        color: #007E9E;
+        text-decoration: none;
+        background-color: #FCFCFC;
+        outline: none;
+      }
+    }
+  }
+}
+
+.nav-pills {
+  & > li {
+    &.active {
+      & > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: #007E9E !important;
+        }
+      }
+    }
+  }
+}
+
+.breadcrumb>.active {
+  color: #737373;
+}
+
+/* little dropdown containing sub-menu items */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  display: none;
+  float: left;
+  padding: 0 12px;
+  min-width: 10px;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #FFF;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, .15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  & > li {
+    &:hover {
+      border-bottom: none;
+    }
+    & > a {
+      padding: 6px 0;
+    }
+  }
+  #s-lc-guide-tabs & {
+    padding-bottom: 1px;
+  }
+}
+
+.tabs {
+  height: 30px;
+  margin-bottom: 8px;
+  ul {
+    li {
+      margin-bottom: -1px;
+      margin-top: 2px;
+      margin-right: 4px;
+      border-radius: 2px 2px 0 0;
+      padding: 0 8px;
+      border-bottom: 4px solid #FCFCFC;
+      transition: all .1s ease;
+      &:hover {
+        color: #333 !important;
+        border-bottom: $nav-border;
+        transition: all .1s ease;
+      }
+      a {
+        color: #333 !important;
+        background: transparent !important;
+        background-color: transparent;
+        border: none !important;
+        font-weight: 400 !important;
+        &:hover {
+          color: #000 !important;
+        }
+      }
+    }
+    .active {
+      border-bottom: $nav-border;
+      a{
+        span {
+          font-weight: normal !important;
+        }
+      }
+    }
+  }
+}
+
+.panel-group {
+  .panel {
+    @extend %shadow;
+    border-radius: 2px;
+  }
+}
+
+.panel-default {
+  border-color: #CCC;
+  & > .panel-heading {
+    border-radius: 2px;
+    background-color: #FEFEFE;
+  }
+}
+
+#s-lib-bc .breadcrumb,
+#s-lib-admin-bc .breadcrumb {
+  font-weight: normal;
+  font-size: 12px;
+  padding-bottom: 6px;
+}
+
+.s-lib-footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: none;
+  background-color: transparent;
+}
+
+#s-lc-tabs-container {
+  padding-bottom: 1px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #DDD;
+  .nav-tabs,
+  .nav-pills {
+    & > li {
+      &.active {
+        & > a {
+          border-left: $nav-border;
+        }
+      }
+      & > a {
+        @extend %navlinks;
+        &:hover {
+          @extend %navlinks-hover;
+        }
+      }
+    }
+    & > .active {
+      & > a {
+        color: #333;
+        background-color: transparent;
+        background: url("https://assets.library.uq.edu.au/reusable-components/resources/images/arrow-down.png") no-repeat scroll right 12px transparent;
+        font-weight: normal;
+        padding: 0.6em 0;
+        border-bottom: 1px solid #EEE;
+        &:hover {
+          color: #333;
+          background-color: transparent;
+          border-bottom: 1px solid #EEE;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+  .nav-tabs {
+    & > li {
+      & > a.s-lc-tab-top-link,
+      & > button.s-lc-tab-top-link {
+        &,
+        &:hover {
+          margin-bottom: -1px;
+          margin-top: 2px;
+          background-color: #ddd;
+          border-radius: 5px 5px 0 0;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+  .nav-pills {
+    & > .active {
+      & > a {
+        &,
+        &:hover {
+          border-left: $nav-border;
+        }
+      }
+      & > li {
+        & > a {
+          &,
+          &:hover {
+            border-left: $nav-border;
+          }
+        }
+      }
+    }
+    & > li {
+      &:not(.dropdown-menu) {
+        & > ul {
+          & > li {
+            a {
+              border-bottom: 0 solid #EEE;
+            }
+          }
+        }
+        & > a {
+          &:hover {
+            border-left: $nav-border;
+          }
+        }
+      }
+      & > #s-lc-admin-tab-anchor {
+        background: none !important;
+      }
+      & > ul {
+        & > li {
+          & > a {
+            background: none !important;
+          }
+        }
+      }
+    }
+  }
+  .dropdown {
+    & > .dropdown-toggle {
+      color: #333 !important;
+      font-weight: normal !important;
+      .caret {
+        display: inline-block;
+        border-top-color: black;
+      }
+      &:hover {
+        color: #333 !important;
+        font-weight: normal !important;
+      }
+    }
+  }
+  ul {
+    & > .active {
+      & > .active {
+        /* always bold the top-level selected menu item */
+        font-weight: bold !important;
+      }
+    }
+  }
+  .caret {
+    display: none;
+  }
+}
+
+/* styles for enclosing side nav */
+.s-lc-tabs-side {
+  & > .nav {
+    background: #FFF;
+    border: none;
+    padding: 0 0 0 16px;
+    margin: 1.5em 0;
+    box-shadow:
+      0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12),
+      0 3px 1px -2px rgba(0, 0, 0, 0.2)
+    ;
+  }
+  #s-lc-guide-tabs & {
+    .nav {
+      .dropdown {
+        a {
+          @extend %navlinks;
+          &:hover {
+            @extend %navlinks-hover;
+          }
+        }
+      }
+    }
+  }
+  .s-lc-boxnav {
+    .list-group-item {
+      background-color: #EEE;
+    }
+  }
+}
+
+.s-lib-box {
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  background-color: #FEFEFE;
+  .s-lib-box-title {
+    font-size: 1.623rem;
+    margin-bottom: 0;
+    padding: 12px 9px;
+    color: #212121;
+    font-weight: 600;
+    background: #EEE;
+    border-bottom: 1px solid #CCC;
+  }
+}
+
+#s-lc-guide-main {
+  padding: 0;
+}
+
+#s-lib-scroll-top {
+  display: none !important;
+}
+
+#s-lc-guide-tabs-title-bar {
+  border: none !important;
+}
+
+.input-group-sm {
+  & > .form-control,
+  & > .input-group-addon {
+    border-radius: 2px !important;
+  }
+  & > .input-group-btn {
+    & > .btn {
+      border-radius: 2px !important;
+    }
+  }
+}
+
+#s-lc-guide-name {
+  font-size: 32px;
+}
+
+.s-lc-srch-listing-meta,
+.s-lib-box-content {
+  li {
+    margin-left: 15px;
+  }
+}
+
+.s-lib-box-content {
+  padding: 20px;
+}
+
+.ui-widget-content {
+  a {
+    color: #007E9E !important;
+  }
+}
+
+#s-lc-srch-results {
+  background-color: #FFF;
+  border: 1px solid #CCC;
+  padding: 16px;
+  box-shadow: 0 2px 8px #CCC;
+}
+
+#s-lc-srch-nav {
+  display: none;
+}
+
+.s-lc-link-list {
+  padding-left: 0;
+}
+
+.s-lib-profile-email {
+  .label.label-info {
+    color: #FFF;
+    background-color: $button-color;
+    border: 1px solid $button-color;
+    font-weight: 400;
+    font-size: 1em !important;
+  }
+}
+
+/* Front page: Hide info boxes with subject guide URL from subject list */
+#s-lib-public-main #s-lc-index-list #s-lc-general-accordion .alert-info {
+  display: none;
+}
+
+/* Multi-level menu - display arrow-down to indicate a dropdown */
+#s-lc-guide-tabs {
+  .nav-tabs {
+    & > li {
+      margin-bottom: -1px;
+      margin-top: 2px;
+      background-color: #DDD;
+      border-radius: 5px 5px 0 0;
+    }
+  }
+  li {
+    &.dropdown {
+      padding-top: 5px;
+      padding-bottom: 6px;
+    }
+  }
+}
+
+#s-lc-hp-nav-bottom {
+  border: 1px solid #CCC;
+  border-radius: 2px;
+  background-color: #FEFEFE;
+  box-shadow: 0 2px 8px #CCC;
+}
+
+#s-lc-hp-nav {
+  & > ul {
+    & > li {
+      @extend %shadow;
+    }
+  }
+  #s-lc-hp-nav-bottom {
+    form {
+      &[role=search] {
+        &.pull-right {
+          clear: both;
+          float: none !important;
+        }
+        span {
+          padding-right: 10px
+        }
+        .form-group {
+          width: 70%;
+          @media (max-width:768px) {
+            width: 100%;
+          }
+          .input-group {
+            width: 100%;
+          }
+        }
+        .form-control,
+        .s-lc-public-search-field {
+          width: 100%;
+        }
+        .btn-default {
+          color: #FFF;
+          background-color: $button-color;
+          border: 1px solid $button-color;
+        }
+      }
+    }
+  }
+}
+
+
+.uq-minimal-header {
+  .uq-title-text.uq-minimal-header,
+  .application-title a,
+  .library-title a {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    @media only screen and (min-width: 642px) {
+      font-size: 20px;
+    }
+    @media only screen and (min-width: 1049px) {
+      font-size: 23px;
+    }
+  }
+}
+
+div.proactivechat {
+  uql-chat-proactive {
+    paper-card.popupinvite,
+    paper-button.button-colored-theme.tab-button.style-scope.uql-chat-proactive.x-scope.paper-button-0 {
+      font-size: 16px;
+      font-weight: normal;
+    }
+    paper-card.popupinvite {
+      p.uql-chat-proactive.style-scope {
+        font-size: 16px;
+        font-weight: normal;
+      }
+    }
+  }
+  h3 {
+    &.uql-chat-proactive {
+      font-weight: normal !important;
+    }
+  }
+}
+
+#rightNowChatLinkContainer {
+  #rightNowChatLinkInfo {
+    & > span {
+      background-color: $button-color;
+      font-weight: 400;
+    }
+  }
+}
+
+li.uql-global-links {
+  a.uql-global-links {
+    font-size: 10.4px;
+    ul.uql-global-links & {
+      font-size: 10px;
+      margin-right: 8px;
+    }
+  }
+}
