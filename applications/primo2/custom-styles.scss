@@ -494,154 +494,18 @@ prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:no
   }
 }
 
-// COLLECTION DISCOVERY //
-
-// Breadcrumb trail for sub-collection
-//Issue: Text and hover background is not very good contrast. Although text is our UQ blue already, and they are all links, I think it wise to change the text to blue, and then keep the hover behaviour. Several other Primo sites have done this, and it seems the safest given the underlying image may change, but is likely on average to be darker rather than lighter
-prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme:focus,
-prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme:hover {
-  color:  rgba(255, 255, 255, 100)!important;
-  background-color: $accent-color;
-}
-
-prm-collection-gallery-header prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme {
-  color: $accent-color !important;
-  background-color: rgba(255, 255, 255, 100);
-  opacity: 0.8;
-  margin-left: 10px!important;
-  margin-right: 10px!important;
-}
-
-// the pin button should be noticeable
-prm-collection-gallery-header prm-save-to-favorites-button button.md-icon-button {
-  background-color: white!important;
-}
-prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:focus:not([disabled]),
-prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .pin-button.pinned:hover:not([disabled]),
-prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .unpin-button.unpinned:focus:not([disabled]),
-prm-collection-gallery-header .result-item-actions prm-save-to-favorites-button .unpin-button.unpinned:hover:not([disabled]) {
-  color: white!important;
-  background-color: $accent-color!important;
-}
-
-// Full Record Display, for a record in a Collection, for 'More from the same Collection'
-// Issue: Hovering shows a background which is too dark
-// Remove hover background colour, and add underline, as per all other link outs
-prm-more-like-this prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:focus:not([disabled]),
-prm-more-like-this prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover:not([disabled]),
-prm-service-details prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:focus:not([disabled]),
-prm-service-details prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover:not([disabled]),
-prm-record-collection-paths prm-collection-navigation-breadcrumbs-item a.button-as-link.link-alt-color.md-button:focus:not([disabled]),
-prm-record-collection-paths prm-collection-navigation-breadcrumbs-item a.button-as-link.link-alt-color.md-button:hover:not([disabled])
-{
-  color: $accent-color!important;
-  background-color: #fff!important;
-  box-shadow: inset 0 -1px 0 0 $accent-color-half-opacity;
-}
-
-// Main Collection Lobby
-// Issue: Ex Libris OTB teal in full page vertical panel - replace with UQ colour. Text should remain white
-prm-collection-gallery-header .collection-header-inner {
-  background-color: $theme-color;
-  color: #fff;
-}
-
-// Issue: Ex Libris OTB teal for text - replace with UQ blue colour
-prm-gallery-collection .collection-folder .collection-overlay {
-  color: $accent-color;
-}
-prm-gallery-collection .collection-folder .item-actions .md-button,
-prm-gallery-collection .collection-folder .item-actions button {
-  color: $accent-color;
-}
-
-// Collection display array for individual record
-// Issue: for both display View options of grid or gallery, the colour is Ex Libris OTB aqua colour for whichever one is selected - change to UQ colour
-prm-collection-discovery-view-switcher .md-button.is-active:focus:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:hover:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active-add,
-prm-collection-discovery-view-switcher .md-button.is-active {
-  color: $accent-color;
-}
-
-prm-collection-search .search-within .search-button {
-  color: white!important;
-  background-color: $accent-color!important;
-}
-
-// Collection display grid
-// the item text and pin icons should be uq blue
-//prm-gallery-items-list .is-grid-view prm-gallery-item prm-save-to-favorites-button button md-icon,
-prm-gallery-items-list .result-item-actions .pin-button md-icon,
-prm-collection-gallery prm-gallery-item .collection-element .item-title {
-  color: $accent-color!important;
-}
-
-// Collection display - Search options
-// Issue: Search options text and button colour are Ex Libris OTB and low contrast - Change to UQ text and button colour
-prm-collection-search button.search-button.md-button.md-primoExplore-theme {
-  opacity: 1;
-}
-
-// Main Collection Lobby and Collection display
-// Issue: Entering a collection applies a dark overlay. Remove overlay.
-prm-explore-main .header .transparent-top-bar:before ,
-prm-topbar > div::before {
-  background-color: inherit;
-  opacity: 0;
-}
-
-// Colour contrast is poor when highlighting text
-prm-collection-gallery-header *::selection {
-  background-color: $accent-color;
-}
-
-// In Display of View Grid or View Gallery, when hovering over the active view option, the hover background is Ex Libris teal
-prm-collection-discovery-view-switcher .md-button.is-active._md-focused:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active.hovered:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active.md-focused:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:focus._md-focused:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:focus.hovered:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:focus.md-focused:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:focus:focus:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:focus:hover:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:focus:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:hover._md-focused:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:hover.hovered:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:hover.md-focused:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:hover:focus:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:hover:hover:not([disabled]),
-prm-collection-discovery-view-switcher .md-button.is-active:hover:not([disabled]) {
-  color: #fff;
-  background-color: $accent-color;
-}
-
-// Searching within collections, the line for the search box extends into the search icon
-prm-collection-search button.search-button.md-button.md-primoExplore-theme.md-ink-ripple:not(.is-shifted){
-  margin-left: 40px;
-}
-
-// the description on the collection header needs a little spacing
-prm-collection-gallery-header p {
-  line-height: 1.4;
-}
-
-// END COLLECTION DISCOVERY //
-
-prm-add-alert-toast md-toast .md-toast-content .md-button,
-prm-mendeley-toast md-toast .md-toast-content .md-button,
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button,
-prm-voice-search-toast md-toast .md-toast-content .md-button {
-  color: #5F5F5F;
-}
+@import "styles-imports/discovery_collection";
 
 // primo Toasts should have a uq blue OK button and a not-so-harshly-black Dismiss button
 
 // the Dismiss button
-prm-add-alert-toast md-toast .md-toast-content .md-button, prm-mendeley-toast md-toast .md-toast-content .md-button, prm-silent-login-alert-toast md-toast .md-toast-content .md-button, prm-timeout-toast md-toast .md-toast-content .md-button, prm-voice-search-toast md-toast .md-toast-content .md-button {
+prm-add-alert-toast md-toast .md-toast-content .md-button,
+prm-mendeley-toast md-toast .md-toast-content .md-button,
+prm-silent-login-alert-toast md-toast .md-toast-content .md-button,
+prm-timeout-toast md-toast .md-toast-content .md-button,
+prm-voice-search-toast md-toast .md-toast-content .md-button {
   color: #5F5F5F;
-}
-prm-add-alert-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
+}prm-add-alert-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
 prm-add-alert-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
 prm-add-alert-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
 prm-add-alert-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
