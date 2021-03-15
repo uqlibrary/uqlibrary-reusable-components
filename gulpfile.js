@@ -51,19 +51,19 @@ var styleTask = function (srcs) {
 };
 
 // Lint JavaScript
-gulp.task('jshint', function () {
-  return gulp.src([
-      config.applications + '/**/*.js',
-      config.elements + '/**/*.js',
-      '!' + config.elements + '/elements.vulcanized.js'
-    ])
-    //.pipe(reload({stream: true, once: true}))
-    .pipe($.jshint.extract()) // Extract JS from .html files
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.jshint.reporter('fail'));
-    //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
-});
+// gulp.task('jshint', function () {
+//   return gulp.src([
+//       config.applications + '/**/*.js',
+//       config.elements + '/**/*.js',
+//       '!' + config.elements + '/elements.vulcanized.js'
+//     ])
+//     //.pipe(reload({stream: true, once: true}))
+//     .pipe($.jshint.extract()) // Extract JS from .html files
+//     .pipe($.jshint())
+//     .pipe($.jshint.reporter('jshint-stylish'))
+//     .pipe($.jshint.reporter('fail'));
+//     //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+// });
 
 // Compile and automatically prefix stylesheets
 gulp.task('styles', function () {
