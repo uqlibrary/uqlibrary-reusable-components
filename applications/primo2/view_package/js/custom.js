@@ -168,6 +168,7 @@
   // this script should only be called on views that have UQ header showing
   if (branchName === '/primo-prod-dev/') {
     insertScript('https://homepage-development.library.uq.edu.au/feature-leadegroot-1/test-web-components/uq-lib-resusable.min.js');
+    insertScript('https://assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/load.js');
     insertLink({
       rel: 'stylesheet',
       href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css'
