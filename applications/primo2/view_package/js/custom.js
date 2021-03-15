@@ -17,9 +17,29 @@
 
   }]);
 
+  var branchName = '/'; // default. Use for prod
+  if (window.location.hostname === 'search.library.uq.edu.au') {
+    if (/vid=61UQ_DEV/.test(window.location.href)) {
+      branchName = '/primo-prod-dev/';
+    }
+  } else {
+    if (/vid=61UQ_DEV/.test(window.location.href)) {
+      branchName = '/primo-sand-box-dev/';
+    } else if (/vid=61UQ/.test(window.location.href)) {
+      branchName = '/primo-sand-box/';
+    }
+  }
+
+  var newTemplate = '<uq-header hideLibraryMenuItem="true" searchLabel="library.uq.edu.au" searchURL="http://library.uq.edu.au"></uq-header>' +
+      '<uq-site-header siteTitle="Library" siteURL="http://www.library.uq.edu.au" hideMyLibrary>' +
+      '<span name="site-utilities"></span>' +
+      '</uq-site-header>';
+  var oldTemplate = '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
+      '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>';
+
+  var libraryTemplate = (branchName === '/primo-prod-dev/') ? newTemplate : oldTemplate;
   app.component('prmTopBarBefore', {
-    template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
-      '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
+    template: libraryTemplate
   });
 
   // based on https://knowledge.exlibrisgroup.com/Primo/Community_Knowledge/How_to_create_a_%E2%80%98Report_a_Problem%E2%80%99_button_below_the_ViewIt_iframe
@@ -146,32 +166,30 @@
   }
 
   // this script should only be called on views that have UQ header showing
-  var branchName = '/'; // default. Use for prod
-  if (window.location.hostname === 'search.library.uq.edu.au') {
-    if (/vid=61UQ_DEV/.test(window.location.href)) {
-      branchName = '/primo-prod-dev/';
-    }
+  if (branchName === '/primo-prod-dev/') {
+    insertScript('https://homepage-development.library.uq.edu.au/feature-leadegroot-1/test-web-components/uq-lib-resusable.min.js');
+    insertLink({
+      rel: 'stylesheet',
+      href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css'
+    });
   } else {
-    if (/vid=61UQ_DEV/.test(window.location.href)) {
-      branchName = '/primo-sand-box-dev/';
-    } else if (/vid=61UQ/.test(window.location.href)) {
-      branchName = '/primo-sand-box/';
-    }
+    var links = [
+      {rel: 'import', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/elements.vulcanized.html'},
+      {
+        rel: 'stylesheet',
+        href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css'
+      }
+    ];
+    insertLink(links[0]);
+    insertLink(links[1]);
+
+    var scripts = [
+      '//assets.library.uq.edu.au' + branchName + 'reusable-components/webcomponentsjs/webcomponents-lite.min.js',
+      '//assets.library.uq.edu.au' + branchName + 'reusable-components/resources/preloader.js',
+      '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/load.js',
+    ];
+    insertScript(scripts[0]);
+    insertScript(scripts[1]);
+    insertScript(scripts[2]);
   }
-
-  var links = [
-    { rel: 'import', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/elements.vulcanized.html' },
-    { rel: 'stylesheet', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css' }
-  ];
-  insertLink(links[0]);
-  insertLink(links[1]);
-
-  var scripts = [
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/webcomponentsjs/webcomponents-lite.min.js',
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/resources/preloader.js',
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/load.js',
-  ];
-  insertScript(scripts[0]);
-  insertScript(scripts[1]);
-  insertScript(scripts[2]);
 })();
