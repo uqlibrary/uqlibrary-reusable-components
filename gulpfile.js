@@ -188,7 +188,7 @@ gulp.task('vulcanize', gulp.series(
 }));
 
 gulp.task('syntax', gulp.series(
-  'jshint',
+  // 'jshint',
   'jsonlint'
 ));
 
