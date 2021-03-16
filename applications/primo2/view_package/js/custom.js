@@ -31,7 +31,7 @@
   }
 
   var newTemplate = '<uq-header hideLibraryMenuItem="true" searchLabel="library.uq.edu.au" searchURL="http://library.uq.edu.au"></uq-header>' +
-      '<uq-site-header siteTitle="Library" siteURL="http://www.library.uq.edu.au" hideMyLibrary>' +
+      '<uq-site-header hideMyLibrary>' +
       '<span name="site-utilities"></span>' +
       '</uq-site-header>';
   var oldTemplate = '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +

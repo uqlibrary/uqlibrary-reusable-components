@@ -1,28 +1,92 @@
-function mergeUtilityAreaAndPrimoLoginBar() {
-    console.log('mergeUtilityAreaAndPrimoLoginBar');
-    let askusComplete = false;
+function getBranchName() {
+    let branchName = '/'; // default. Use for prod
+    if (window.location.hostname === 'search.library.uq.edu.au') {
+        if (/vid=61UQ_DEV/.test(window.location.href)) {
+            branchName = '/primo-prod-dev/';
+        }
+    } else {
+        if (/vid=61UQ_DEV/.test(window.location.href)) {
+            branchName = '/primo-sand-box-dev/';
+        } else if (/vid=61UQ/.test(window.location.href)) {
+            branchName = '/primo-sand-box/';
+        }
+    }
+    return branchName;
+}
+
+function loadLibraryTitleStyleSheet(shadowDom) {
+    linkTag = document.createElement('link');
+    linkTag.setAttribute('href', '//assets.library.uq.edu.au' + getBranchName() + 'reusable-components/primo2/webcomponents/custom-styles.css');
+    linkTag.setAttribute('rel', 'stylesheet');
+    shadowDom.appendChild(linkTag);
+}
+
+function reAddSiteHeaderTitle(shadowDom) {
+    console.log('reAddSiteHeaderTitle');
+    const textOfLink = document.createTextNode('Library');
+
+    const siteTitleLinkShadow = document.createElement('a');
+    siteTitleLinkShadow.setAttribute('id', 'site-title');
+    siteTitleLinkShadow.setAttribute('href', 'http://www.library.uq.edu.au');
+    siteTitleLinkShadow.setAttribute('class', 'uq-site-header__title');
+    siteTitleLinkShadow.appendChild(textOfLink);
+
+    const uqSiteHeaderTitleContainerLeftShadow = document.createElement('div');
+    uqSiteHeaderTitleContainerLeftShadow.setAttribute('class', 'uq-site-header__title-container__left');
+    uqSiteHeaderTitleContainerLeftShadow.appendChild(siteTitleLinkShadow);
+
+    const uqSiteHeaderTitleContainerShadow = document.createElement('div');
+    uqSiteHeaderTitleContainerShadow.setAttribute('class', 'uq-site-header__title-container');
+    uqSiteHeaderTitleContainerShadow.appendChild(uqSiteHeaderTitleContainerLeftShadow);
+
+    const uqSiteHeaderShadow = document.createElement('div');
+    uqSiteHeaderShadow.setAttribute('class', 'uq-site-header');
+    uqSiteHeaderShadow.appendChild(uqSiteHeaderTitleContainerShadow);
+
+    shadowDom.appendChild(uqSiteHeaderShadow);
+}
+
+function isAskusButtonInPrimoLoginbar() {
+    // we dont want to insert the button more than once, as it listens for it disappearing
+    const parentDiv = document.getElementsByTagName('prm-search-bookmark-filter')[0] || false;
+    const askusButton = !!parentDiv && parentDiv.querySelectorAll('askus-button');
+    return !!askusButton && askusButton.length > 0;
+}
+
+function moveUQItemsOnPage() {
     const mergeAreas = setInterval(() => {
-        // move the askus button into primo login bar
-        const uqSiteHeader = document.querySelector('uq-site-header');
-        const askusButton = !!uqSiteHeader && uqSiteHeader.getElementsByTagName('askus-button')[0] || false;
-        console.log('mergeUtilityAreaAndPrimoLoginBar: askusButton = ', askusButton);
-        if (!!askusButton && !askusComplete) {
-            const parentDiv = document.getElementsByTagName('prm-search-bookmark-filter')[0] || false;
-            console.log('mergeUtilityAreaAndPrimoLoginBar: parentDiv = ', parentDiv);
+        // this method:
+        // initially moves the askus button into the primo login bar
+        // moves the primo login bar up a bit to shorten the header
+        // hwoever, certain page evens WIPE the uq-site-header shadowdom, so this listener will then:
+        // recreate the site title "Library" and move the askus button again
+        if (!isAskusButtonInPrimoLoginbar()) {
+            console.log('move askus button');
+            const primoLoginBarUtilityArea = document.getElementsByTagName('prm-search-bookmark-filter')[0] || false;
+            const uqSiteHeader = document.querySelector('uq-site-header') || false;
+            // const askusButton = !!uqSiteHeader && uqSiteHeader.getElementsByTagName('askus-button')[0] || document.createElement('askus-button');
+            let askusButton = !!uqSiteHeader && uqSiteHeader.getElementsByTagName('askus-button')[0] || false;
+            if (!askusButton) {
+                askusButton = document.createElement('askus-button');
+            }
 
-            !!parentDiv && parentDiv.prepend(askusButton) || console.log('could not find prm-search-bookmark-filter');
-
-            askusComplete = true;
+            !!askusButton && !!primoLoginBarUtilityArea && primoLoginBarUtilityArea.prepend(askusButton);
 
             // then shift the primo login bar up a bit, to visually merge the 2 lines
             const primoLoginBar = document.getElementsByClassName('top-nav-bar layout-row ')[0] || false;
-            console.log('mergeUtilityAreaAndPrimoLoginBar: primoLoginBar = ', primoLoginBar);
             !!primoLoginBar && (primoLoginBar.style.marginTop = '-55px');
             !!primoLoginBar && (primoLoginBar.style.marginRight = '10px'); // menu dots need a little more space
-
-            clearInterval(mergeAreas);
         }
-    }, 300); // check for div periodically
+
+        // if the library site label "Library" isnt present, reinsert it
+        const uqSiteHeader = document.querySelector('uq-site-header') || false;
+        const shadowDom = !!uqSiteHeader && uqSiteHeader.shadowRoot || false;
+        const libraryTitle = !!shadowDom && shadowDom.getElementById('site-title');
+        if (!libraryTitle && !!shadowDom) {
+            loadLibraryTitleStyleSheet(shadowDom);
+            reAddSiteHeaderTitle(shadowDom);
+        }
+    }, 300); // check for div periodically as when they click the eg personalise checkbox, we have to reinsert the elements
 }
 
-mergeUtilityAreaAndPrimoLoginBar();
+moveUQItemsOnPage();
