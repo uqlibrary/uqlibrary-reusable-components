@@ -83,6 +83,11 @@ function moveUQItemsOnPage() {
 
             !!askusButton && !!primoLoginBarUtilityArea && primoLoginBarUtilityArea.prepend(askusButton);
 
+            // the pane background-color muting is overriden by certain primo styling, so dont do it on primo
+            const askusShadow = !!askusButton && askusButton.shadowRoot || false;
+            const askusPane = !!askusShadow && askusShadow.getElementById("askus-pane") || false;
+            !!askusPane && (askusPane.style.backgroundColor = 'initial');
+
             // then shift the primo login bar up a bit, to visually merge the 2 rows
             const primoLoginBar = document.getElementsByClassName('top-nav-bar layout-row ')[0] || false;
             !!primoLoginBar && (primoLoginBar.style.marginTop = '-61px');
