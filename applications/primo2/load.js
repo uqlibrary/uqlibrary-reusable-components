@@ -83,10 +83,10 @@ function moveUQItemsOnPage() {
 
             !!askusButton && !!primoLoginBarUtilityArea && primoLoginBarUtilityArea.prepend(askusButton);
 
-            // then shift the primo login bar up a bit, to visually merge the 2 lines
+            // then shift the primo login bar up a bit, to visually merge the 2 rows
             const primoLoginBar = document.getElementsByClassName('top-nav-bar layout-row ')[0] || false;
-            !!primoLoginBar && (primoLoginBar.style.marginTop = '-55px');
-            !!primoLoginBar && (primoLoginBar.style.marginRight = '10px'); // menu dots need a little more space
+            !!primoLoginBar && (primoLoginBar.style.marginTop = '-61px');
+            !!primoLoginBar && primoLoginBar.style.setProperty("background-color", "#fff", "important");
         }
 
         // if the library site label "Library" isnt present, reinsert it

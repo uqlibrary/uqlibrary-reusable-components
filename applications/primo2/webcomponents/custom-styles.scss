@@ -395,3 +395,9 @@
     margin: 0 calc(1rem - 1.5rem)
   }
 }
+
+/* primo sets some crazy stuff! lets get that proper bolding back on our homepage link! */
+.uq-site-header__title-container__left a {
+  -webkit-font-smoothing: initial;
+  -webkit-tap-highlight-color: initial;
+}
