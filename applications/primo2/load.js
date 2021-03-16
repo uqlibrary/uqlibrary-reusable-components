@@ -48,8 +48,7 @@ function reAddSiteHeaderTitle(shadowDom) {
 
 function isAskusButtonInPrimoLoginbar() {
     // we dont want to insert the button more than once, as it listens for it disappearing
-    const parentDiv = document.getElementsByTagName('prm-search-bookmark-filter')[0] || false;
-    const askusButton = !!parentDiv && parentDiv.querySelectorAll('askus-button');
+    const askusButton = document.querySelectorAll('askus-button');
     return !!askusButton && askusButton.length > 0;
 }
 
@@ -58,14 +57,12 @@ function moveUQItemsOnPage() {
         // this method:
         // initially moves the askus button into the primo login bar
         // moves the primo login bar up a bit to shorten the header
-        // hwoever, certain page evens WIPE the uq-site-header shadowdom, so this listener will then:
-        // recreate the site title "Library" and move the askus button again
+        // hwoever, certain page events WIPE the uq-site-header shadowdom, so this listener will then:
+        // recreate the site title "Library" and recreate and move the askus button again
         if (!isAskusButtonInPrimoLoginbar()) {
             console.log('move askus button');
             const primoLoginBarUtilityArea = document.getElementsByTagName('prm-search-bookmark-filter')[0] || false;
-            const uqSiteHeader = document.querySelector('uq-site-header') || false;
-            // const askusButton = !!uqSiteHeader && uqSiteHeader.getElementsByTagName('askus-button')[0] || document.createElement('askus-button');
-            let askusButton = !!uqSiteHeader && uqSiteHeader.getElementsByTagName('askus-button')[0] || false;
+            let askusButton = document.getElementsByTagName('askus-button')[0] || false;
             if (!askusButton) {
                 askusButton = document.createElement('askus-button');
             }
