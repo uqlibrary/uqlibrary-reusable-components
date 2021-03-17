@@ -91,7 +91,6 @@ function moveUQItemsOnPage() {
             // then shift the primo login bar up a bit, to visually merge the 2 rows
             const primoLoginBar = document.getElementsByClassName('top-nav-bar layout-row ')[0] || false;
             !!primoLoginBar && (primoLoginBar.style.marginTop = '-61px');
-            !!primoLoginBar && primoLoginBar.style.setProperty("background-color", "#fff", "important");
         }
 
         // if the library site label "Library" isnt present, reinsert it
