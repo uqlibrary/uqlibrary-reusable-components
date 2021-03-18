@@ -53,13 +53,13 @@ function isAskusButtonPresent() {
 }
 
 function isAskusButtonInPrimoLoginbar() {
-    // we dont want to insert the button more than once, as it listens for it disappearing
+    // does the button already exist, or did we just create it and it needs moving?
     const parentDiv = document.getElementsByTagName('prm-search-bookmark-filter')[0] || false;
     const askusButton = !!parentDiv && parentDiv.querySelectorAll('askus-button');
     return !!askusButton && askusButton.length > 0;
 }
 
-// we only want to create the askus button once, as it makes api calls, so dont crreate it until we can use it
+// we only want to create the askus button once, as it makes api calls, so dont create it until we can use it
 function uqheaderPresent() {
     const uqheader = document.querySelectorAll('uq-header');
     return !!uqheader && uqheader.length > 0;
@@ -72,14 +72,17 @@ function moveUQItemsOnPage() {
         // moves the primo login bar up a bit to shorten the header
         // however, certain page events WIPE the uq-site-header shadowdom, so this listener will then:
         // recreate the site title "Library" and recreate and move the askus button again
+        let askusButton;
         if (uqheaderPresent() && !isAskusButtonPresent()) {
-            console.log('create ask us button');
             askusButton = document.createElement('askus-button');
         }
         if (uqheaderPresent() && !isAskusButtonInPrimoLoginbar()) {
             console.log('move askus button');
             const primoLoginBarUtilityArea = document.getElementsByTagName('prm-search-bookmark-filter')[0] || false;
-            let askusButton = document.getElementsByTagName('askus-button')[0] || false;
+            // we re-use the created askus if we can, because when its created we cant querySelect it for some unknown reason
+            if (!askusButton) {
+                askusButton = document.querySelector('askus-button') || false;
+            }
 
             !!askusButton && !!primoLoginBarUtilityArea && primoLoginBarUtilityArea.prepend(askusButton);
 
