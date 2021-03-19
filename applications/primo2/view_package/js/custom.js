@@ -41,6 +41,15 @@
     template: libraryTemplate
   });
 
+  app.component('prmSearchBookmarkFilterAfter', {
+    controller: function($scope){
+      // move the primo-login-bar up so it overlaps uq-site-header and is visually one bar
+      const primoLoginBar = document.querySelector('prm-topbar>div.top-nav-bar.layout-row') || false;
+      !!primoLoginBar && (primoLoginBar.style.marginTop = '-61px');
+    },
+    template: '<askus-button nopaneopacity></askus-button>'
+  });
+
   // based on https://knowledge.exlibrisgroup.com/Primo/Community_Knowledge/How_to_create_a_%E2%80%98Report_a_Problem%E2%80%99_button_below_the_ViewIt_iframe
   app.component('prmFullViewServiceContainerAfter', {
     bindings: {parentCtrl: '<'},
@@ -167,7 +176,6 @@
   // this script should only be called on views that have UQ header showing
   if (branchName === '/primo-prod-dev/') {
     insertScript('https://homepage-development.library.uq.edu.au/feature-leadegroot-1/test-web-components/uq-lib-resusable.min.js');
-    insertScript('https://assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/load.js');
     insertLink({
       rel: 'stylesheet',
       href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css'
