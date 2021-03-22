@@ -311,15 +311,15 @@ strong.facet-title.layout-align-end-stretch.layout-row {
     // Facet checkbox
     md-checkbox {
       &:hover, &:focus {
-        ._md_icon,
-        .md_icon {
+        ._md-icon,
+        .md-icon {
           box-shadow: inset 0px 0px 0 1px #000;
         }
       }
       &:checked {
         &:hover, &:focus {
-          ._md_icon,
-          .md_icon {
+          ._md-icon,
+          .md-icon {
             box-shadow: none;
           }
         }
