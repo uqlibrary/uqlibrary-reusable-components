@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "postinstall": "bower update",
-    "cleandeps": "THISDIR=${PWD##*/}; BOWERDEPS=$(ls ../ --hide=$THISDIR); cd ..; rm -rf $BOWERDEPS $THISDIR/node_modules",
+    "clean": "rm -rf $(find . -name custom-styles.css) node_modules .tmp reports; THISDIR=${PWD##*/}; BOWERDEPS=$(ls ../ --hide=$THISDIR); cd ..; rm -rf $BOWERDEPS",
     "selenium": "curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/selenium_server.sh | bash -s",
     "test": "gulp test",
     "test:remote": "gulp test:remote",

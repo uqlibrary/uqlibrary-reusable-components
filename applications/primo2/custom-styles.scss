@@ -297,7 +297,36 @@ div#services-index button.zero-margin.button-right-align.button-link.md-button.m
 }
 strong.facet-title.layout-align-end-stretch.layout-row {
   margin-left: 10px;
-  .section-content .md-chips .md-chip & {
+}
+
+.section-content .md-chips .md-chip.wrapping-chip {
+  .md-chip-content {
+    padding-right: 40px;
+    max-width: 100%;
+    &:active, &:focus, &:hover {
+      &:not([disabled]) {
+        background-color: transparent;
+      }
+    }
+    // Facet checkbox
+    md-checkbox {
+      &:hover, &:focus {
+        ._md_icon,
+        .md_icon {
+          box-shadow: inset 0px 0px 0 1px #000;
+        }
+      }
+      &:checked {
+        &:hover, &:focus {
+          ._md_icon,
+          .md_icon {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+  strong.facet-title.layout-align-end-stretch.layout-row {
     &:active, &:focus, &:hover {
       &:not([disabled]) {
         background-color: #5F5F5F;
