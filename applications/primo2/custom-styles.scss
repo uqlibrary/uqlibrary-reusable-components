@@ -633,3 +633,18 @@ uq-site-header::part(title) {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
+askus-button::part(labelless) {
+  #askus-label {
+    display: none;
+  }
+  button#askus-button {
+    height: 42px;
+    width: 42px;
+    background-color: rgba(51,51,51,.12);
+    margin-left: 4px;
+  }
+  button#askus-button:hover, button#askus-button:active, button#askus-button:focus {
+    background-color: #fff!important;
+  }
+}
