@@ -628,23 +628,24 @@ prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder
   margin-bottom: -3px;
 }
 
-// shift the uq site title up a little
+// shift the uq site title in the web component up a little
 uq-site-header::part(title) {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-askus-button::part(labelless) {
-  #askus-label {
-    display: none;
-  }
-  button#askus-button {
-    height: 42px;
-    width: 42px;
-    background-color: rgba(51,51,51,.12);
-    margin-left: 4px;
-  }
-  button#askus-button:hover, button#askus-button:active, button#askus-button:focus {
-    background-color: #fff!important;
-  }
+// make the askus button look more like the native primo buttons
+askus-button::part(label) {
+  display: none;
+}
+
+askus-button::part(button) {
+  height: 42px;
+  width: 42px;
+  background-color: rgba(51,51,51,.12);
+  margin-left: 4px;
+}
+askus-button::part(button):hover, askus-button::part(button):active, askus-button::part(button):focus {
+  background-color: #fff;
+  opacity: initial;
 }
