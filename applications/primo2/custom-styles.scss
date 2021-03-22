@@ -627,3 +627,9 @@ prm-citation-linker .md-button.button-large.button-with-icon md-icon {
 prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder span:first-child {
   margin-bottom: -3px;
 }
+
+// shift the uq site title up a little
+uq-site-header::part(title) {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
