@@ -308,6 +308,23 @@ strong.facet-title.layout-align-end-stretch.layout-row {
         background-color: transparent;
       }
     }
+    // Facet checkbox
+    md-checkbox {
+      &:hover, &:focus {
+        ._md_icon,
+        .md_icon {
+          box-shadow: inset 0px 0px 0 1px #000;
+        }
+      }
+      &:checked {
+        &:hover, &:focus {
+          ._md_icon,
+          .md_icon {
+            box-shadow: none;
+          }
+        }
+      }
+    }
   }
   strong.facet-title.layout-align-end-stretch.layout-row {
     &:active, &:focus, &:hover {
