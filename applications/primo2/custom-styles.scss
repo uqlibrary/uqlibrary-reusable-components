@@ -650,7 +650,8 @@ askus-button::part(button):hover, askus-button::part(button):active, askus-butto
   opacity: initial;
 }
 
-// after we turned off the grey in the background in _custome-themes, there was one taht needed the grey put back, 'back to results list'
+// after we turned off the grey in the background in _custom-themes, there were a couple that needed the grey put back
+prm-favorites-tool-bar,
 prm-back-to-search-results-button {
   md-toolbar.default-toolbar,
   md-toolbar.default-toolbar:not(.md-menu-toolbar),
