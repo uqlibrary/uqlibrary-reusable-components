@@ -649,3 +649,12 @@ askus-button::part(button):hover, askus-button::part(button):active, askus-butto
   background-color: #fff;
   opacity: initial;
 }
+
+// after we turned off the grey in the background in _custome-themes, there was one taht needed the grey put back, 'back to results list'
+prm-back-to-search-results-button {
+  md-toolbar.default-toolbar,
+  md-toolbar.default-toolbar:not(.md-menu-toolbar),
+  md-toolbar.md-primoExplore-theme.default-toolbar {
+    background-color: #dcdcdc;
+  }
+}
