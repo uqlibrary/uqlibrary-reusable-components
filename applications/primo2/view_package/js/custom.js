@@ -17,26 +17,28 @@
 
   }]);
 
-  var branchName = '/'; // default. Use for prod
-  if (window.location.hostname === 'search.library.uq.edu.au') {
-    if (/vid=61UQ_DEV/.test(window.location.href)) {
-      branchName = '/primo-prod-dev/';
-    }
-  } else {
-    if (/vid=61UQ_DEV/.test(window.location.href)) {
-      branchName = '/primo-sand-box-dev/';
-    } else if (/vid=61UQ/.test(window.location.href)) {
-      branchName = '/primo-sand-box/';
-    }
-  }
-
   // we found it was more robust to always insert the askus button with javascript, so completely skip "by attribute"
   var newTemplate = '<uq-header hideLibraryMenuItem="true" searchLabel="library.uq.edu.au" searchURL="http://library.uq.edu.au"></uq-header>' +
       '<uq-site-header hideMyLibrary hideAskUs></uq-site-header>';
   var oldTemplate = '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
       '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>';
 
-  var libraryTemplate = (branchName === '/primo-prod-dev/') ? newTemplate : oldTemplate;
+  var branchName = '/'; // default. Use for prod
+  var libraryTemplate = oldTemplate;
+  if (window.location.hostname === 'search.library.uq.edu.au') {
+    if (/vid=61UQ_DEV/.test(window.location.href)) {
+      branchName = '/primo-prod-dev/';
+      libraryTemplate = newTemplate;
+    }
+  } else {
+    if (/vid=61UQ_DEV/.test(window.location.href)) {
+      branchName = '/primo-sand-box-dev/';
+    } else if (/vid=61UQ/.test(window.location.href)) {
+      branchName = '/primo-sand-box/';
+      libraryTemplate = newTemplate;
+    }
+  }
+
   app.component('prmTopBarBefore', {
     template: libraryTemplate
   });
@@ -174,7 +176,7 @@
   }
 
   // this script should only be called on views that have UQ header showing
-  if (branchName === '/primo-prod-dev/') {
+  if (libraryTemplate === newTemplate) {
     insertScript('https://homepage-development.library.uq.edu.au/feature-leadegroot-1/test-web-components/uq-lib-reusable.min.js');
     insertLink({
       rel: 'stylesheet',
