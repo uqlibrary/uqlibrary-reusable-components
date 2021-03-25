@@ -652,6 +652,7 @@ prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder
 }
 
 // improve the colour contrast on some obscure text, by request
+span.availability-status.no_fulltext,
 span.availability-status.unavailable_in_institution,
 span.availability-status.restricted {
   color: #555555;
