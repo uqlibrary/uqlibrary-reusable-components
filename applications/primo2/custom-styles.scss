@@ -659,3 +659,9 @@ prm-back-to-search-results-button {
     background-color: #dcdcdc;
   }
 }
+
+// improve the colour contrast on some obscure text, by request
+span.availability-status.unavailable_in_institution,
+span.availability-status.restricted {
+  color: #555555;
+}
