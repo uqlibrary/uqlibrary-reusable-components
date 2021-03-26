@@ -4,6 +4,7 @@ $font: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $nav-border: 4px solid #51247A;
 $page-background-color: #FAFAFA;
 $button-color: #0E62EB;
+$black-button-color: #595959;
 
 %navlinks {
   border-radius: 0 2px 2px 0 !important;
@@ -58,7 +59,7 @@ body {
 /* 'body' to overwrite inbuilt springshare styles... */
 body h1 ,
 body #s-lc-guide-header-info h1,
-body .s-lib-header h1 {
+body .s-lc-header h1 {
 	color: #49075E;
     font-size: 22px;
     font-weight: 400;
@@ -74,15 +75,14 @@ h4 {
 }
 
 body h3,
-body .s-lib-box-container .s-lib-box-content h3 {
+body .s-lc-box-container .s-lc-box-content h3 {
   font-size: 18px;
 }
 
 body h4,
-body .s-lib-box-container .s-lib-box-content h4 {
+body .s-lc-box-container .s-lc-box-content h4 {
 	font-size: 16px;
 }
-
 
 a {
   color: #2377CB;
@@ -93,6 +93,29 @@ a {
   &:focus {
     color: #005EA5;
     text-decoration: underline;
+  }
+}
+
+.dropdown-toggle {
+  &.btn-info {
+    background-color: $button-color;
+    border-color: darken($button-color, 17%);
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $button-color;
+      border-color: darken($button-color, 25%);
+      outline: darken($button-color, 25%);
+    }
+    .open > & {
+      &,
+      &:hover,
+      &:focus,
+      &.focus {
+        background-color: darken($button-color, 17%);
+        border-color: darken($button-color, 25%);
+      }
+    }
   }
 }
 
@@ -108,12 +131,19 @@ ul, ol {
   }
 }
 
+table,
 .table {
   & > thead {
     & > tr {
       & > th {
         vertical-align: top;
       }
+    }
+  }
+  tr {
+    & > th,
+    & > td {
+      padding: 10px;
     }
   }
 }
@@ -165,7 +195,6 @@ ul, ol {
   z-index: 1000;
   display: none;
   float: left;
-  padding: 0 12px;
   min-width: 10px;
   font-size: 14px;
   text-align: left;
@@ -178,12 +207,6 @@ ul, ol {
     &:hover {
       border-bottom: none;
     }
-    & > a {
-      padding: 6px 0;
-    }
-  }
-  #s-lc-guide-tabs & {
-    padding-bottom: 1px;
   }
 }
 
@@ -241,202 +264,39 @@ ul, ol {
   }
 }
 
-#s-lib-bc .breadcrumb,
-#s-lib-admin-bc .breadcrumb {
+// Dropdowns at reserve/spaces/reading-room
+#s-lc-eq-navform {
+  label {
+    font-weight: normal;
+  }
+}
+
+// Table at reserve/spaces/reading-room
+#time_grid_cont {
+  .s-lc-info-label {
+    background-color: $black-button-color;
+    border-color: darken($black-button-color, 17%);
+    transition: background-color 250ms;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($black-button-color, 17%);
+      border-color: darken($black-button-color, 25%);
+      outline: darken($black-button-color, 25%);
+    }
+  }
+}
+
+// Form help message at reservation confirmation screen on reserve/spaces/reading-room
+.s-lc-booking-form-help {
+  padding: 0 10px;
+}
+
+#s-lc-public-bc .breadcrumb,
+#s-lc-admin-bc .breadcrumb {
   font-weight: normal;
   font-size: 12px;
   padding-bottom: 6px;
-}
-
-.s-lib-footer {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-top: none;
-  background-color: transparent;
-}
-
-#s-lc-tabs-container {
-  padding-bottom: 1px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #DDD;
-  .nav-tabs,
-  .nav-pills {
-    & > li {
-      &.active {
-        & > a {
-          border-left: $nav-border;
-        }
-      }
-      & > a {
-        @extend %navlinks;
-        &:hover {
-          @extend %navlinks-hover;
-        }
-      }
-    }
-    & > .active {
-      & > a {
-        color: #333;
-        background-color: transparent;
-        background: url("https://assets.library.uq.edu.au/reusable-components/resources/images/arrow-down.png") no-repeat scroll right 12px transparent;
-        font-weight: normal;
-        padding: 0.6em 0;
-        border-bottom: 1px solid #EEE;
-        &:hover {
-          color: #333;
-          background-color: transparent;
-          border-bottom: 1px solid #EEE;
-          font-weight: normal;
-        }
-      }
-    }
-  }
-  .nav-tabs {
-    & > li {
-      & > a.s-lc-tab-top-link,
-      & > button.s-lc-tab-top-link {
-        &,
-        &:hover {
-          margin-bottom: -1px;
-          margin-top: 2px;
-          background-color: #ddd;
-          border-radius: 5px 5px 0 0;
-          font-weight: normal;
-        }
-      }
-    }
-  }
-  .nav-pills {
-    & > .active {
-      & > a {
-        &,
-        &:hover {
-          border-left: $nav-border;
-        }
-      }
-      & > li {
-        & > a {
-          &,
-          &:hover {
-            border-left: $nav-border;
-          }
-        }
-      }
-    }
-    & > li {
-      &:not(.dropdown-menu) {
-        & > ul {
-          & > li {
-            a {
-              border-bottom: 0 solid #EEE;
-            }
-          }
-        }
-        & > a {
-          &:hover {
-            border-left: $nav-border;
-          }
-        }
-      }
-      & > #s-lc-admin-tab-anchor {
-        background: none !important;
-      }
-      & > ul {
-        & > li {
-          & > a {
-            background: none !important;
-          }
-        }
-      }
-    }
-  }
-  .dropdown {
-    & > .dropdown-toggle {
-      color: #333 !important;
-      font-weight: normal !important;
-      .caret {
-        display: inline-block;
-        border-top-color: black;
-      }
-      &:hover {
-        color: #333 !important;
-        font-weight: normal !important;
-      }
-    }
-  }
-  ul {
-    & > .active {
-      & > .active {
-        /* always bold the top-level selected menu item */
-        font-weight: bold !important;
-      }
-    }
-  }
-  .caret {
-    display: none;
-  }
-}
-
-/* styles for enclosing side nav */
-.s-lc-tabs-side {
-  & > .nav {
-    background: #FFF;
-    border: none;
-    padding: 0 0 0 16px;
-    margin: 1.5em 0;
-    box-shadow:
-      0 2px 2px 0 rgba(0, 0, 0, 0.14),
-      0 1px 5px 0 rgba(0, 0, 0, 0.12),
-      0 3px 1px -2px rgba(0, 0, 0, 0.2)
-    ;
-  }
-  #s-lc-guide-tabs & {
-    .nav {
-      .dropdown {
-        a {
-          @extend %navlinks;
-          &:hover {
-            @extend %navlinks-hover;
-          }
-        }
-      }
-    }
-  }
-  .s-lc-boxnav {
-    .list-group-item {
-      background-color: #EEE;
-    }
-  }
-}
-
-.s-lib-box {
-  border-radius: 2px;
-  border: none;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  background-color: #FEFEFE;
-  .s-lib-box-title {
-    font-size: 1.623rem;
-    margin-bottom: 0;
-    padding: 12px 9px;
-    color: #212121;
-    font-weight: 600;
-    background: #EEE;
-    border-bottom: 1px solid #CCC;
-  }
-}
-
-#s-lc-guide-main {
-  padding: 0;
-}
-
-#s-lib-scroll-top {
-  display: none !important;
-}
-
-#s-lc-guide-tabs-title-bar {
-  border: none !important;
 }
 
 .input-group-sm {
@@ -451,121 +311,26 @@ ul, ol {
   }
 }
 
-#s-lc-guide-name {
-  font-size: 32px;
-}
-
-.s-lc-srch-listing-meta,
-.s-lib-box-content {
-  li {
-    margin-left: 15px;
-  }
-}
-
-.s-lib-box-content {
-  padding: 20px;
-}
-
 .ui-widget-content {
   a {
     color: #007E9E !important;
   }
 }
 
-#s-lc-srch-results {
+#s-lc-search-results {
   background-color: #FFF;
   border: 1px solid #CCC;
   padding: 16px;
   box-shadow: 0 2px 8px #CCC;
 }
 
-#s-lc-srch-nav {
+#s-lc-search-nav {
   display: none;
 }
 
 .s-lc-link-list {
   padding-left: 0;
 }
-
-.s-lib-profile-email {
-  .label.label-info {
-    color: #FFF;
-    background-color: $button-color;
-    border: 1px solid $button-color;
-    font-weight: 400;
-    font-size: 1em !important;
-  }
-}
-
-/* Front page: Hide info boxes with subject guide URL from subject list */
-#s-lib-public-main #s-lc-index-list #s-lc-general-accordion .alert-info {
-  display: none;
-}
-
-/* Multi-level menu - display arrow-down to indicate a dropdown */
-#s-lc-guide-tabs {
-  .nav-tabs {
-    & > li {
-      margin-bottom: -1px;
-      margin-top: 2px;
-      background-color: #DDD;
-      border-radius: 5px 5px 0 0;
-    }
-  }
-  li {
-    &.dropdown {
-      padding-top: 5px;
-      padding-bottom: 6px;
-    }
-  }
-}
-
-#s-lc-hp-nav-bottom {
-  border: 1px solid #CCC;
-  border-radius: 2px;
-  background-color: #FEFEFE;
-  box-shadow: 0 2px 8px #CCC;
-}
-
-#s-lc-hp-nav {
-  & > ul {
-    & > li {
-      @extend %shadow;
-    }
-  }
-  #s-lc-hp-nav-bottom {
-    form {
-      &[role=search] {
-        &.pull-right {
-          clear: both;
-          float: none !important;
-        }
-        span {
-          padding-right: 10px
-        }
-        .form-group {
-          width: 70%;
-          @media (max-width:768px) {
-            width: 100%;
-          }
-          .input-group {
-            width: 100%;
-          }
-        }
-        .form-control,
-        .s-lc-public-search-field {
-          width: 100%;
-        }
-        .btn-default {
-          color: #FFF;
-          background-color: $button-color;
-          border: 1px solid $button-color;
-        }
-      }
-    }
-  }
-}
-
 
 .uq-minimal-header {
   .uq-title-text.uq-minimal-header,
