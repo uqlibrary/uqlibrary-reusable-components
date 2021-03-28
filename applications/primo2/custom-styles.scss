@@ -316,7 +316,7 @@ md-checkbox {
       &:not([disabled]) {
         background-color: transparent;
       }
-    }    
+    }
   }
   strong.facet-title.layout-align-end-stretch.layout-row {
     &:active, &:focus, &:hover {
@@ -568,6 +568,8 @@ prm-voice-search-toast md-toast .md-button.settings-button,
 prm-voice-search-toast md-toast .md-button.settings-button md-icon {
   color: $accent-color;
 }
+
+// then reverse the colours on hover
 prm-add-alert-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
 prm-add-alert-toast md-toast .md-button.settings-button.hovered:not([disabled]),
 prm-add-alert-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
@@ -647,4 +649,11 @@ prm-citation-linker .md-button.button-large.button-with-icon md-icon {
 
 prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder span:first-child {
   margin-bottom: -3px;
+}
+
+// improve the colour contrast on some obscure text, by request
+span.availability-status.no_fulltext,
+span.availability-status.unavailable_in_institution,
+span.availability-status.restricted {
+  color: #555555;
 }
