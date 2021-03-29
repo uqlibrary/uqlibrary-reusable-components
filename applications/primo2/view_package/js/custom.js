@@ -19,7 +19,8 @@
 
   // we found it was more robust to always insert the askus button with javascript, so completely skip "by attribute"
   var newTemplate = '<uq-header hideLibraryMenuItem="true" searchLabel="library.uq.edu.au" searchURL="http://library.uq.edu.au"></uq-header>' +
-      '<uq-site-header hideMyLibrary hideAskUs></uq-site-header>';
+      '<uq-site-header hideMyLibrary hideAskUs></uq-site-header>' +
+      '<alert-list></alert-list>';
   var oldTemplate = '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
       '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>';
 
