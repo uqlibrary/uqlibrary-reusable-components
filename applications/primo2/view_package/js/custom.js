@@ -21,8 +21,11 @@
     // we found it was more robust to insert the askus button in the different page location via primo angular, see below,
     // so completely skip inserting elements "by attribute"
     template: '<uq-header hideLibraryMenuItem="true" searchLabel="library.uq.edu.au" searchURL="http://library.uq.edu.au"></uq-header>' +
-        '<uq-site-header hideMyLibrary hideAskUs></uq-site-header>' +
-        '<alert-list></alert-list>'
+        '<uq-site-header hideMyLibrary hideAskUs></uq-site-header>'
+  });
+
+  app.component('prmTopbarAfter', {
+    template: '<alert-list></alert-list>'
   });
 
   app.component('prmSearchBookmarkFilterAfter', {
