@@ -3,24 +3,11 @@
 
   var app = angular.module('viewCustom', ['angularLoad']);
 
-  app.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
-    //record GA page view event to new primo tracker GA ID
-    $rootScope.$on('$locationChangeSuccess', function (event) {
-      //temporarily create a tracker specifically to new Primo
-      if ($window.ga) {
-        $window.ga(function () {
-          $window.ga('create', 'UA-4365437-14', 'search.library.uq.edu.au', 'NewPrimoTracker');
-        });
-        $window.ga('NewPrimoTracker.send', 'pageview', { location: $location.url() });
-      }
-    });
-
-  }]);
-
   app.component('prmTopBarBefore', {
     // we found it was more robust to insert the askus button in the different page location via primo angular, see below,
     // so completely skip inserting elements "by attribute"
-    template: '<uq-header hideLibraryMenuItem="true" searchLabel="library.uq.edu.au" searchURL="http://library.uq.edu.au" skipnavid="searchBar"></uq-header>' +
+    template: '<uq-gtm gtm="GTM-W4KK37"></uq-gtm>' +
+        '<uq-header hideLibraryMenuItem="true" searchLabel="library.uq.edu.au" searchURL="http://library.uq.edu.au" skipnavid="searchBar"></uq-header>' +
         '<uq-site-header hideMyLibrary hideAskUs></uq-site-header>'
   });
 
