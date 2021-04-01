@@ -42,6 +42,21 @@ li#formActionsContainer input[type="submit"]#exlidRequestTabFormSubmit, // Get i
 div.serialSelection * {
   color: #333;
 }
-.itemsList table tbody tr td:first-child {
-  color: $primary;
+
+table {
+  tbody {
+    tr {
+      td {
+        &:first-child {
+          .itemsList & {
+            color: $primary;
+            // Set colour of unlinked barcodes
+            span.itemBarcode {
+              color: $dark;
+            }
+          }
+        }
+      }
+    }
+  }
 }
