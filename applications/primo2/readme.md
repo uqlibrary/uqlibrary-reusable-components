@@ -86,31 +86,35 @@ Parts of the Primo pages are inside iframes, eg the 'Get It' block on the full d
 
 Ex libris provides a _second_ css upload that can be used to control the styling inside the iframes.
 
-Workflow:
+### Workflow
 
 1. Make your changes
-- Choose your workarea (eg [primo sandbox dev](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) )
-- In the inspect panel, edit the css source file at AlmagetitMashupiframe > uq-psb.alma.exlibrisgroup.com > view > branding_skin > css > mashup_new.css until you are happy with the result
-2. Create the zip for upload
-- Checkout the appropriate branch
-- Copy your changes to mashup_new.scss at applications/primao2/alma/branding_skin/css/
-- Run  `gulp almastyles` to create the .css files from the .scss files (probably worth checking the genrated css works by pasting it back into the inspect window in the browser)
-- Run `gulp almazip` to create branding_skin.zip, containing the updates files
-3. Upload the zip to alma
-- Login to the Alma back office (links below), then visit the configuration page (click on the Cog) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins'. Check with DAC which skin to update if it is unclear.
-- Upload the .zip file (there is no rebuild process here)
-- Reload the primo sandbox page and confirm your changes worked
-- commit your changes
+    1. Choose your workarea (eg [primo sandbox dev](https://uq-edu-primo-sb.hosted.exlibrisgroup.com/primo-explore/search?vid=61UQ_DEV&sortby=rank) )
+    1. In the inspect panel, edit the css source file at AlmagetitMashupiframe > uq-psb.alma.exlibrisgroup.com > view > branding_skin > css > mashup_new.css until you are happy with the result
+
+1. Create the zip for upload
+
+    1. Checkout the appropriate branch
+    1. Copy your changes to mashup_new.scss at applications/primao2/alma/branding_skin/css/
+    1. Run  `gulp almastyles` to create the .css files from the .scss files (probably worth checking the genrated css works by pasting it back into the inspect window in the browser)
+    1. Run `gulp almazip` to create branding_skin.zip, containing the updates files
+
+1. Upload the zip to alma
+
+    1. Login to the Alma back office (links below), then visit the configuration page (click on the Cog) and choose 'General' in the sidebar, look for 'User Interface Settings' heading and then click 'Delivery System Skins'. Check with DAC which skin to update if it is unclear.
+    1. Upload the .zip file (there is no rebuild process here)
+    1. Reload the primo sandbox page and confirm your changes worked
+    1. commit your changes
 
 There are 2 gulp tasks for this process:
 
-- `gulp almastyles`, will build the .scss files at applications/primo2/alma/branding_skin/css into .css files
--  `gulp almazip`, will build a zip file ready to be uploaded to alma
+* `gulp almastyles`, will build the .scss files at applications/primo2/alma/branding_skin/css into .css files
+* `gulp almazip`, will build a zip file ready to be uploaded to alma
 
 The upload is done in Alma back office. Paths are:
 
-- [Sandbox Alma Back Office](https://uq-psb.alma.exlibrisgroup.com/mng/action/home.do) or (direct link to config)[https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit)
-- [Prod Alma Back Office](https://uq.alma.exlibrisgroup.com/SAML)
+* [Sandbox Alma Back Office](https://uq-psb.alma.exlibrisgroup.com/mng/action/home.do) or [direct link to config](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit)
+* [Prod Alma Back Office](https://uq.alma.exlibrisgroup.com/SAML)
 
 (if you cant access Alma Back Office Config, ask DAC for access, or she may want to do the upload herself)
 
@@ -118,8 +122,8 @@ The upload is done in Alma back office. Paths are:
 
 1. To make a link that forces login, prepend the link with:
 
-<https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=...>
+    <https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=...>
 
-eg [Link to Saved Items](https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=https%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo-explore%2Ffavorites%3Fvid%3D61UQ%26lang%3Den_US%C2%A7ion%3Ditems)
+    e.g.: [Link to Saved Items](https://search.library.uq.edu.au/primo-explore/login?vid=61UQ&targetURL=https%3A%2F%2Fsearch.library.uq.edu.au%2Fprimo-explore%2Ffavorites%3Fvid%3D61UQ%26lang%3Den_US%C2%A7ion%3Ditems)
 
 2. [This repo](https://github.com/mehmetc/primo-extract) may be useful if we ever have to get into the depths of Primo Angular - it gives access to the sourcemaps of Primo Angular code.

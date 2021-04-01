@@ -1,20 +1,19 @@
-$uqblue-half-opacity: rgba(35, 119, 203, .5);
-$uqblue: #2377CB;
+@import "../../../styles-imports/www/variables";
 
 a#displayHolding,
 ul#PAGING input // warehouse pagination buttons
 {
-  color: $uqblue;
+  color: $primary;
 }
 
 // stackmap button styling
 .holdingsList a.locate,
 .holdingInfo a.locate {
-  background-color: $uqblue;
-  color: #fff;
+  background-color: $primary;
+  color: $white;
   font-size: 14px!important;
-  font-weight: 300;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: $light;
+  font-family: $serif;
   letter-spacing: 1px;
   text-transform: initial;
   padding: 4px 3.75px;
@@ -30,13 +29,13 @@ ul#PAGING input // warehouse pagination buttons
 li#formActionsContainer input[type="submit"]#exlidRequestTabFormSubmit, // Get it -> place a request -> Place a Request button
 #formActionsContainer input[type="submit"]#submitPurchaseRequest // Get it -> request a purchase -> Place a Request button
 {
-  color: white;
-  background-color: $uqblue;
-  border: 1px solid #ffffff;
+  color: $white;
+  background-color: $primary;
+  border: 1px solid $white;
   &:hover {
-    color:  $uqblue !important;
-    background-color: #ffffff !important;
-    border-color: $uqblue;
+    color:  $primary !important;
+    background-color: $white !important;
+    border-color: $primary;
   }
 }
 
@@ -44,5 +43,5 @@ div.serialSelection * {
   color: #333;
 }
 .itemsList table tbody tr td:first-child {
-  color: $uqblue;
+  color: $primary;
 }
