@@ -83,9 +83,8 @@
 	background-color: $background;
 	border-color: darken($background, 3%);
 	&.prm-hue1 {
-		background-color: $background-hue1;
 		border-color: darken($background, 8%);
-		background-color: darken($background, 5%);
+		background-color: transparent;
 	}
 	&.prm-hue2 {
 		// background-color: lighten($background, 4%);
