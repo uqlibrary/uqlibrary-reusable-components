@@ -1,0 +1,41 @@
+prm-organization-or-facet-toggle {
+    prm-facet & {
+        height: 19px;
+        margin-left: 1em;
+        .__sm &,
+        .__xs & {
+            margin-left: 0;
+        }
+
+        .md-button {
+            top: -5px;
+            font-style: normal;
+
+            &.toggled {
+                &.button-as-link {
+                    &:hover:not([disabled]) {
+                        @include bgColor($primary)
+                    }
+                    &:focus:not([disabled]) {
+                        @include bgColor($primary)
+                    }
+                }
+            }
+
+
+            md-switch {
+                height: 23px;
+                .md-label, ._md-label {
+                    @extend .prm-organization;
+                }
+                .md-bar,._md-bar {
+                    @extend .prm-organization-bg;
+                    opacity: .4;
+                }
+                .md-thumb, ._md-thumb {
+                    @extend .prm-organization-bg;
+                }       
+            }
+        }
+    }
+}

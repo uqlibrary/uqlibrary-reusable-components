@@ -217,7 +217,10 @@ md-toolbar:not(.md-menu-toolbar) {
 		opacity: .8;
 		&:hover {
 			opacity: 1;
+			color: $white;
+			@extend .prm-background.prm-hue15;
 		}
+
 		.__xs & {
 			width: 56px;
 			min-width: 56px;

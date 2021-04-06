@@ -1,7 +1,7 @@
 // MIXINS
-
 // Import hand-picked angular material mixins
 @import 'mixins/material-mixins';
+//@import "_variables";
 
 // mixin to enable using mixin at root or nested
 @mixin optional-at-root($sel) {
@@ -12,72 +12,213 @@
 
 // input placeholder styling
 @mixin placeholder {
-  &::-webkit-input-placeholder {@content};
-  &:-moz-placeholder           {@content};
-  &::-moz-placeholder          {@content};
-  &:-ms-input-placeholder      {@content};
+  &::-webkit-input-placeholder {
+    @content
+  }
+;
+  &:-moz-placeholder {
+    @content
+  }
+;
+  &::-moz-placeholder {
+    @content
+  }
+;
+  &:-ms-input-placeholder {
+    @content
+  }
+;
 }
 
 // set element size
 // pass a value to set it's size
 @mixin setSize($iconSize) {
-	height: $iconSize;
-	width: $iconSize;
-	min-height: $iconSize;
-	min-width: $iconSize;
+  height: $iconSize;
+  width: $iconSize;
+  min-height: $iconSize;
+  min-width: $iconSize;
 }
 
-// set color, and hover color by passing a color or variable
-// usage: @include buttonBgColor($colorName);
+@mixin bgColor($baseColor) {
+  color: $baseColor;
+  &:hover,
+  &:focus,
+  &.hovered,
+  &.md-focused,
+  &._md-focused {
+    &:not([disabled]) {
+      @include text-contrast($baseColor);
+    }
+  }
+}
+
+/*------------------------
+mixin that calculates if text needs to be light or dark
+depending on the background color passed.
+From this W3C document: http://www.webmasterworld.com/r.cgi?f=88&d=9769&url=http://www.w3.org/TR/AERT#color-contrast
+Color brightness is determined by the following formula:
+((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
+------------------------*/
+
+@function set-button-font-color($fontColor) {
+  @if($fontColor == $positive or
+  $fontColor == $links or
+  $fontColor == $text or
+  $fontColor == $dark or
+  $fontColor == $secondary-hue3 or
+  $fontColor == $notice or
+  $fontColor == $warn-hue1 or
+  $fontColor == $personalization) {
+    @return white;
+  }
+
+  @if (lightness( $fontColor ) > 40) {
+    @return $primary;
+  }
+
+  @else {
+    @return white;
+  }
+}
+
+@function set-button-bg-color($fontColor) {
+  @if($fontColor == $positive or
+  $fontColor == $links or
+  $fontColor == $text or
+  $fontColor == $dark or
+  $fontColor == $secondary-hue3 or
+  $fontColor == $notice or
+  $fontColor == $warn-hue1 or
+  $fontColor == $personalization) {
+    @return $fontColor;
+  }
+
+  @if (lightness( $fontColor ) > 40) {
+    @return white;
+  }
+
+  @else {
+    @return $primary;
+  }
+}
+
+@mixin text-contrast($fontColor) {
+  color: set-button-font-color($fontColor);
+  background-color: set-button-bg-color($fontColor);
+}
+
+/*OLD VERSION - ASAF*/
+/* set color, and hover color by passing a color or variable
+ usage: @include buttonBgColor($colorName);
 @mixin bgColor($baseColor) {
 
-    color: $baseColor;
+  color: $baseColor;
 
-    &:hover,
-    &:focus,
-    &.hovered,
-    &.md-focused,
-    &._md-focused {
-        &:not([disabled]) {
-            @if $baseColor == white or $baseColor == #fff or $baseColor == $white {
-                color: $baseColor;
-                background-color: transparentize($baseColor, .92);
-             } @else {
-                color: darken(saturate($baseColor, 15%), 20%);
-                background-color: transparentize($baseColor, .9);
-             }
-        }
+  &:hover,
+  &:focus,
+  &.hovered,
+  &.md-focused,
+  &._md-focused {
+    &:not([disabled]) {
+      @include text-contrast-bg($baseColor);
+
+      @if $baseColor == white or $baseColor == #fff or $baseColor == $white {
+        //color: $baseColor;
+        @include text-contrast-bg($baseColor);
+      }
+
+      //(for id 225141)
+      !*@if $baseColor == $links {
+        color: $white;
+        background-color: transparentize($baseColor, .2);
+      }*!
+        //If I adding this code, the links inside each results (actions links) also effected. (for id 225141)
+    !*  @if $baseColor == $baseColor {
+        color: $white;
+        background-color: transparentize($baseColor, .2);
+      }*!
+
+      @else {
+       !* &.button-over-light-contrast {
+          color: white;
+          background-color: red;
+        }*!
+        //color: darken(saturate($baseColor, 15%), 40%);
+        @include text-contrast-bg($baseColor);
+      }
     }
-}
+  }
+}*/
+
+/*------------------------
+mixin that calculates if text needs to be light or dark
+depending on the background color passed.
+
+From this W3C document: http://www.webmasterworld.com/r.cgi?f=88&d=9769&url=http://www.w3.org/TR/AERT#color-contrast
+
+Color brightness is determined by the following formula:
+((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
+------------------------*/
+
+/*@mixin text-ontrast-color($n) {
+  $color-brightness: round((red($n) * 299) + (green($n) * 587) + (blue($n) * 114) / 1000);
+  $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
+//Text should be dark becouse background is light
+  @if abs($color-brightness) < ($light-color/2){
+    color: red!important;
+  }
+
+  @else {
+    color: cornflowerblue!important;
+  }
+}*/
+
+/*@mixin text-contrast-bg($n) {
+  $color-brightness: round((red($n) * 299) + (green($n) * 587) + (blue($n) * 114) / 1000);
+  $light-color: round((red($white) * 299) + (green($white) * 587) + (blue($white) * 114) / 1000);
+
+  @if abs($color-brightness) < ($light-color/2){
+    background-color: $secondary!important;
+    @include text-contrast-color($secondary);
+  }
+
+  @else {
+    background-color: $white!important;
+    @include text-contrast-color($white);
+  }
+}*/
+
+/*OLD VERSION - ASAF - END*/
 
 // remove transitions for IE
 // usage: @include ie-exceptions { ...css rules... }
 @mixin ie-exceptions {
-    /* IE exceptions (remove transitions and animation) */
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      animation: none !important;
-      transition: none !important;
-      transition-duration: 0ms !important;
-      transition-delay: 0ms !important;
-      box-shadow: none !important;
-      @content;
-    }
+  /* IE exceptions (remove transitions and animation) */
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    animation: none !important;
+    transition: none !important;
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
+    box-shadow: none !important;
+    @content;
+  }
 }
+
 // usage: @include ie-only {...css rules...}
 @mixin ie-only {
-    /* IE exceptions (remove transitions and animation) */
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      @content;
-    }
+  /* IE exceptions (remove transitions and animation) */
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
 }
 
 // multi line elipsis
 // usage eg.: @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);  
-@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
   overflow: hidden;
   position: relative;
   line-height: $lineHeight;
-  max-height: $lineHeight * $lineCount; 
+  max-height: $lineHeight * $lineCount;
   text-align: justify;
   margin-right: -1em;
   padding-right: 1em;
@@ -106,21 +247,23 @@
 
 // breakpoints mixins
 // use ONLY whn the MediaQueries service from Angular MAterial is not sufficient (i.e, when it's not refreshing soon enough)
-$__xs:  599px;
+$__xs: 599px;
 $__xs-portrait: 479px;
 
-@mixin __xs{
+@mixin __xs {
   /* literal update of the css on viewport change */
   @media screen and (max-width: $__xs) {
     @content;
   }
 }
+
 @mixin __xs-portrait {
   /* literal update of the css on viewport change */
   @media screen and (max-width: $__xs-portrait) {
     @content;
   }
 }
+
 @mixin __gt-xs {
   /* literal update of the css on viewport change */
   @media screen and (min-width: ($__xs + 1)) {

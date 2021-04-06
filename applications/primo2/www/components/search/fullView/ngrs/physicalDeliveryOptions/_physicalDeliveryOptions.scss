@@ -1,0 +1,78 @@
+
+prm-physical-delivery-options{
+		.main_tile{
+			width: 100%;
+			margin-top: 1%;
+			z-index: 1000;
+			color: #3d6e94;
+		}
+	
+		.tile{
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+		}
+	
+		.text{
+			display: flex;
+			flex-direction: column;
+		}
+
+		@media only screen and (max-width: 740px){
+			#text_line{
+				flex-direction: column!important;
+			}
+
+			.icon{
+				padding: 0.5em!important;
+			}
+		}
+	
+		#text_line{
+			font-family: Source Sans Pro;
+			font-size: 16px;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			color: #3d6e94;
+			font-weight: normal;
+			font-style:normal;
+			span{
+				margin-right: 0!important;
+			}
+	
+			md-icon{
+				height: 18px;
+				width: 18px;
+				min-width: 18px;
+				min-height: 18px;
+				margin: 0;
+			}
+
+			span{
+				margin-right: 0.5em;
+			}
+
+			
+		}
+	
+		.my_icon{	
+			border-radius: 50%;
+			opacity: 1;
+			background-color: white;
+			box-shadow: 3px 3px 5px #c1bebe;
+			border: 8px solid white;
+			color: #6a9bc2!important;
+			height: auto;
+			width: auto;
+			position: relative;
+			align-items: center;		
+		}
+	
+		.icon{
+			padding: 0.5em;
+			padding-left: 1em;
+			padding-right: 1em;
+		}
+}

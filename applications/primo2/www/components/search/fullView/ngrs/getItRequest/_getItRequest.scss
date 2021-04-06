@@ -1,0 +1,407 @@
+
+prm-get-it-request{
+    .main_tile_request_form {
+        opacity: 1;
+        position: relative;
+        width: 100%;
+        overflow: visible;
+        margin-top: 1%;
+        flex-direction: row;
+        display: inline-flex;
+        border: 1px solid rgba(58,58,58,.3);
+    }
+
+    .getItNgrs{
+        flex-direction: column;
+        display: flex;
+        width: 75%;
+    }
+
+    .fill_details{
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+        width: 75%;
+    }
+
+    .text_wrapper{
+		width: 75%;
+    }
+
+    .form_title{
+        white-space: nowrap;
+		text-align: left;
+		font-family: Source Sans Pro;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+        color: rgba(102,102,102,1);
+        padding-top: 2em;
+        padding-left: 12%;
+    }
+
+    .form_item{
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 15px;
+    }
+
+    .form_field_parent{
+        flex-direction: row;
+        display: flex;
+        width: 85%;
+    }
+
+    .form_field{
+        width: 85%;
+    }
+
+    .form_field_2{
+        width: 50%;
+    }
+
+    .first{
+        padding-right: 1em;
+    }
+
+    .margin-buttons{
+        flex-direction: row;
+        display: flex!important;
+        justify-content: flex-end;
+        margin-right: 0%;
+        float: right;
+    }
+
+    .submit_btn{
+        margin-right: 0;
+    }
+    
+    .cancel_btn{
+        color: #3d6e94;
+        border-style: solid;
+        border-color: #3d6e94;
+        border-width: 1px;    
+        }
+   
+    .icon_border md-icon {
+        color: #666666;
+        opacity: 1;
+        height: 24px;
+        width: 24px;
+        min-height: 24px;
+        min-width: 24px;
+    }
+
+    .icon_border prm-icon{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .icon_border{
+        position: relative;
+        color: #666666;
+        border-radius: 50%;
+        border: 2px solid #666666;
+        opacity: 1;
+        height: 40px;
+        width: 40px;
+        min-height: 40px;
+        min-width: 40px;
+        margin-right: 1em;
+    }
+
+    md-input-container {
+        width: 100%;
+        padding: 0;
+        .md-input{
+            padding: 0;
+        }
+        ._md-select-value{
+            padding: 0;
+        }
+    }
+
+    .md-datepicker-input-container{
+        border-bottom-color: rgba(0,0,0,.14);
+        width: 100%;
+        padding-right: 0; 
+        margin-right: 0;
+        margin-left: 0;
+
+        .md-button{
+            background-color: transparent;
+        }
+
+        .md-button:hover{
+            background-color: transparent;
+        }
+
+        .md-button:focus{
+            background-color: transparent;
+        }
+    }
+
+    md-datepicker{
+        padding-right: 0%; 
+        margin-right: 0%;
+    }
+
+    .width-note{
+        width:80%;
+    }    
+
+    .md-datepicker-button {
+        display: inline-block;
+        box-sizing: border-box;
+        background: none;
+        display: none;
+    }
+
+    .md-button.button-with-icon prm-icon md-icon{
+        border: none;
+        transform: none;
+        left: 0%;
+    }
+
+    md-datepicker{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 100%;
+    }
+
+    .service-form-item{
+        margin: 18px 0;
+    }
+
+    .alert-bar{
+        position: sticky;
+    }
+
+    md-input-container label{
+        opacity: 0.8;
+    }
+
+    .offer_details_main_tail{
+        border-left: 1px solid #f1f1f1;
+        background: #f8f8f8;
+        width: 25%;
+    }
+
+    .no_offer{
+        border-left: none;
+        background: none;
+    }
+
+    .validation_msg{
+        padding-left: 12%;
+        padding-bottom: 1em;
+        color: tomato;
+    }
+
+    .material_type_msg{
+        padding-left: 12%;
+        padding-bottom: 1em;
+        color: $text-hue1;
+    }
+
+    .alternativeEmail{
+        border: none;
+    }
+
+    .form_material_type_item{
+        display: flex;
+        flex-direction: column;
+        padding-left: 7em;
+        font-family: Source Sans Pro;
+		font-style: normal;
+		font-size: initial;
+        color: rgba(102,102,102,1);
+        padding-top: 1em;
+        padding-bottom: 1em;
+
+        .material_type_title{
+            padding-bottom: 0.5em;
+        }
+
+        .material_type_container{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .material_type{
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    .checkbox_label{
+        padding-left: 0.5em;
+        padding-right: 1.5em;
+        
+    }
+
+    .allow_other_formats{
+        padding-left: 7em;
+        font-family: Source Sans Pro;
+		font-style: initial;
+		font-size: 16px;
+        color: rgba(102,102,102,1);
+        padding-top: 1em;
+        padding-bottom: 1em;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 1.5em;
+        cursor: pointer;
+        font-size: initial;
+        font-family: Source Sans Pro;
+        color: rgba(102,102,102,1);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+  
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    
+    .container  .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border: 1px solid rgba(102,102,102,1);
+    }
+
+    .container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    .container input:checked ~ .checkmark {
+        background-color: #64a5b5;
+        border: none;
+    }
+
+    .material_type_container .checkmark{
+        border-radius: 50%;
+    }
+
+    .allow_other_formats .checkmark{
+        border-radius: 3px;
+    }
+
+    .allow_other_formats .container input:checked ~ .checkmark:after{
+        display: block;
+    }
+
+    .allow_other_formats .container .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .allow_other_formats .container .checkmark:after {
+        left: 30%;
+        top: 8%;
+        width: 45%;
+        height: 70%;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    .close{
+		float: right;
+		color: rgba(102,102,102,1);
+		min-width: auto;
+		font-size: 130%;
+		font-family: cursive;		
+	}
+
+    @media only screen and (max-width: 767px){
+        .offer_details_main_tail{
+            display: none !important;
+        }
+
+        .form_item{
+            display: flex!important;
+            padding-left: 12%;
+        }
+
+        .form_field{
+            width: 90%;
+        }
+
+        .getItNgrs{
+            width: 100%;
+        }
+
+        .margin-buttons{
+            right: -20%;
+            position: relative;
+        }
+
+        .allow_other_formats{
+            padding-left: 12%;
+        }
+
+        .form_material_type_item{
+            padding-left: 12%;
+        }
+
+        .fill_details{
+            width: 75%;
+        }
+
+        .close_s{
+            position: absolute;
+            right: 0;
+            color: #666;
+            min-width: auto;
+            font-size: 130%;
+            font-family: cursive;
+        }
+    }
+
+    @media only screen and (min-width: 768px){
+        .offer_details_main_tail_s{
+            display: none !important;
+        }
+        
+        .close_s{
+            display: none !important;
+        }
+    }  
+	.spinner-container{
+		display: flex;
+        justify-content: center;
+        position: relative;
+        top: 0.6em;
+    }
+
+    md-datepicker ~ md-input-container {
+        position: absolute;
+    }
+}

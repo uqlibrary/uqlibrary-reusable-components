@@ -19,11 +19,21 @@ md-select:not([disabled]) {
 				}
 			}
 		}
-	}	
+	}
 }
 
-.md-select-value {
-	border-color:transparent	
+._md-select-value,
+.md-select-value{
+	border-color:transparent;
+	._md-select-icon,
+	.md-select-icon{
+		//text-align: right;
+		@include rtl(text-align, right, left);
+		&:after {
+			font-size: 12px;
+			top: 0px;
+		}
+	}
 }	
 
 
@@ -35,10 +45,18 @@ md-select-menu.md-default-theme {
 
 		md-option {
 			&:not([disabled]) {
+				&:hover,
 				&:focus{
-					background: darken($white, 5%)
+					background: darken($white, 10%)
 				}
 			}
 		}
+	}
+}
+
+body.leganto-getit{
+	overflow-y: scroll;
+	._md-select-menu-container{
+		position: absolute;
 	}
 }

@@ -1,0 +1,235 @@
+prm-collection-search {
+
+  .sortWithSearch {
+    .__xs & {
+      margin: 5px 0 5px 0;
+    }
+  }
+
+  .md-button[disabled="disabled"] {
+    color: inherit !important;
+    cursor: pointer !important;
+  }
+
+  md-toolbar.default-toolbar {
+    .md-toolbar-tools {
+      font-size: 1rem;
+
+      .__xs & {
+        height: 130px;
+        max-height: 100%;
+      }
+    }
+
+    .toolbar-select-input {
+      .md-select-value {
+
+        .md-select-icon {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    }
+
+    .toolbar-divider {
+      height: 30px;
+    }
+  }
+
+  .search-margin-medium {
+    @extend .margin-left-medium;
+
+    [dir="rtl"] & {
+      margin-left: initial;
+      @extend .margin-right-medium;
+    }
+  }
+
+  .search-margin-small {
+
+    @extend .margin-right-small;
+
+    [dir="rtl"] & {
+      margin-right: initial;
+      @extend .margin-left-small;
+    }
+  }
+
+  .search-within {
+    .__xs & {
+      margin-left: 2em;
+      [dir="rtl"] & {
+        margin-left: auto;
+        margin-right: 2em;
+      }
+    }
+    span {
+      [dir="rtl"] & {
+        padding-left: .5em;
+      }
+    }
+
+    .clear-button {
+      position: absolute;
+      right: -10px;
+      top: -2px;
+      margin: 0;
+      opacity: 0 !important;
+      transition: opacity .15s ease;
+
+      [dir="rtl"] & {
+        left: -10px;
+        right: auto;
+      }
+
+      &.is-visible {
+        opacity: 1 !important;
+        transition: opacity .3s ease;
+        z-index: 2;
+      }
+    }
+
+    .search-button {
+      transform: translateX(-40px);
+
+      [dir="rtl"] & {
+        transform: translateX(40px);
+      }
+
+      opacity: 1;
+      transition: transform .5s $easeOutQuint, min-width .5s $easeOutQuint, max-width .5s $easeOutQuint;
+      min-width: 40px;
+      max-width: 40px;
+      margin: 0;
+      height: 40px;
+      overflow: hidden;
+      margin-left: .5em;
+
+      [dir="rtl"] & {
+        margin-right: .5em;
+        margin-left: auto;
+      }
+
+      z-index: -1;
+
+      .search-button-text {
+        opacity: 0;
+        transition: opacity .2s ease
+      }
+
+      &.is-shifted {
+        transform: translateX(0);
+        opacity: 1;
+        min-width: 88px;
+        max-width: 140px;
+
+        .__xs & {
+          min-width: 40px;
+          max-width: 40px;
+        }
+
+        z-index: 1;
+        transition: transform .7s $easeOutQuint, min-width .5s $easeOutQuint, max-width .5s $easeOutQuint;
+
+        .search-button-text {
+          opacity: 1;
+          transition: opacity .3s ease
+
+        }
+      }
+    }
+
+    .search-within-input {
+      margin-right: 40px;
+      padding-right: 20px;
+
+      [dir="rtl"] & {
+        margin-left: 40px;
+        margin-right: initial;
+        padding-left: 20px;
+        padding-right: initial;
+      }
+
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    md-input-container {
+      input::placeholder {
+        transition: transform .5s $easeOutQuint;
+        transform-origin: 0 50%
+      }
+
+      input {
+        min-width: 120px;
+        transition: min-width .3s $easeOutQuint;
+        z-index: 1;
+        position: relative;
+      }
+
+      &:after {
+        z-index: 1;
+      }
+
+      &:not(.md-input-focused) {
+        input::placeholder {
+          color: black;
+        }
+      }
+
+      &.md-input-focused, &.md-input-has-value {
+        input {
+
+          font-size: 1.2rem;
+          min-width: 280px;
+          .__xs & {
+            font-size: 1rem;
+            min-width: 120px;
+          }
+        }
+
+        input::placeholder {
+
+          transform: scale(1.2);
+
+          [dir="rtl"] & {
+            transform-origin: 100% 50%;
+          }
+        }
+      }
+    }
+
+    .filter-chip {
+      display: flex;
+      align-items: center;
+      padding-left: .75em;
+
+      [dir="rtl"] & {
+        padding-right: .75em;
+        padding-left: 0px;
+      }
+
+      border-radius: 20px;
+      height: 32px;
+      background: white;
+      @extend .default-shadow;
+
+      .md-button {
+        margin: 0;
+        padding: 0;
+        height: 38px;
+        width: 38px;
+
+        md-icon {
+          transform: scale(.85);
+          transform: translateX(50deg);
+        }
+      }
+
+      & span {
+        text-overflow: ellipsis;
+        max-width: 210px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+}

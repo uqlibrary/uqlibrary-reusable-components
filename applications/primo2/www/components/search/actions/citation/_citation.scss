@@ -12,4 +12,21 @@ prm-citation {
 	.md-tab {
 		min-height:30px;
 	}
+	
+	md-nav-bar {
+		overflow: auto;
+   		overflow-x: hidden;
+   		max-height:200px;
+   		max-width: 200px;
+   		@include rtl-prop(padding-right, padding-right, .5rem, 0);
+		.md-nav-item {
+			.md-button, ._md-button {
+				white-space: normal;
+				line-height: 1.4;
+				word-break: break-word;
+				@include rtl(text-align, left, right)
+			}
+		}
+	}
+
 }

@@ -7,16 +7,16 @@ prm-brief-result {
         // font-size: 1.18em;
         // line-height: 1.2em;
         color: $titles;
-        max-width: 75%;
+        max-width: 85%;
         margin: 7px 0 7px 0;
         margin: 0;
         font-weight: $bold;
         cursor: pointer;   
         align-self: flex-start;
 
-        [dir="rtl"] & {
-            @extend .text-rtl;
-        }
+        //[dir="rtl"] & {
+        //    @extend .text-rtl;
+        //}
         
         .full-view-mouse-pointer  {
         	cursor: text;
@@ -38,7 +38,7 @@ prm-brief-result {
         font-weight: $normal;
         line-height: 1.4em;
         @extend .word-break;
-        
+
         [dir="rtl"] & {
             @extend .text-rtl;
         }
@@ -82,6 +82,15 @@ prm-brief-result {
             color: $dark;
             font-size: 1.1em;
             font-weight: $bold;
+        }
+    }
+
+    .is-chapter-state {
+        &.item-title:before {
+            display: none;
+        }
+        &.item-title:after {
+            display: none;
         }
     }
     

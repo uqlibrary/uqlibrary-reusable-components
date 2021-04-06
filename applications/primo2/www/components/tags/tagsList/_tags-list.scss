@@ -7,7 +7,7 @@ prm-tags-list {
 	    left: 50%;
 	    -webkit-transform: translate3d(-50%,-50%,0);
 	    transform: translate3d(-50%,-50%,0);
-	    color: tomato;
+		@extend .prm-warning-color.prm-hue2;
 	    min-height: 18px;
     	min-width: 18px;
 	}
@@ -61,20 +61,6 @@ prm-tags-list {
 
 		}
 
-		.md-chip-input-container, ._md-chip-input-container {
-			position: relative;
-			&:after {
-				@extend md-input-container:after;
-			}
-		}
-		&.md-focused {
-			box-shadow: none;
-			.md-chip-input-container, ._md-chip-input-container  {
-				&:after {
-					@extend md-input-container.md-input-focused:after;
-				}
-			}
-		}
 		&.md-removable {
 			.md-chip, md-chip {
 				.md-chip-content {
@@ -88,5 +74,8 @@ prm-tags-list {
 				}
 			}
 		}
+	}
+	md-input-container{
+		margin: 0;
 	}
 }

@@ -9,7 +9,7 @@ prm-topbar {
 	height: $defaultBarHeight;
 	position: relative;
     .top-nav-bar {
-        @extend .prm-primary-bg.prm-hue1;
+        @extend .prm-primary-bg.prm-hue3;
         @extend .prm-secondary-color;
         @extend .layout-full-height;
     }
@@ -25,7 +25,7 @@ prm-topbar {
 
     prm-logo {
         z-index: 10;
-        height: 100%;
+        height: 100%;        
         max-width: 180px;
         .__xs & {
             width: 100%;
@@ -40,15 +40,29 @@ prm-topbar {
         }
     }
 
-    // make the icon colors in the login bar black
-    prm-icon {
-        md-icon,
-        md-icon.md-primoExplore-theme {
-            color: $textColor !important;
-        }
+    .isServicePage {
+        display: none;
     }
-}
 
-prm-topbar > div {
-    background-color: $backgroundActual !important;
+    .isSummonOverAlma {
+        display: none;
+    }
+
+    .isDeposit {
+        display: none;
+    }
+    .institution-name{
+     height: 100%; 
+     width: max-content; 
+     padding-left: 0.75em;
+    }
+    .institution-style{
+    font-weight: 400;
+  .__xs &{
+  overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display:block;
+  }
+    }
 }

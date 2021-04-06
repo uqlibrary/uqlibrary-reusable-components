@@ -1,0 +1,26 @@
+prm-newspapers-home {
+  div.newspapers-card-container{
+    display: block;
+  }
+  md-card {
+    max-width: calc(100% - 1em);
+    md-button, .md-button {
+      margin: 0;
+      height: 100%;
+      padding: 1em 1.5em;
+      text-transform: none;
+      line-height: 1.5;
+      text-align: left;
+      h3 {
+        @extend .bold-text;
+        margin: 0;
+      }
+      p {
+        margin: 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis
+      }
+    }
+  }
+}

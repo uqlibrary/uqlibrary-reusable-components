@@ -13,12 +13,11 @@ prm-user-area {
     .user-name {
       text-transform: none;
       font-weight: $bold;
-      color: $linkTitle;
+      @extend .prm-links.prm-hue-2;
       text-align: left;
       @extend %text-trim-ellipsis;
 
-      // Stacey wanted a little more text before the ellipsis
-      max-width: 200px;
+      max-width: 150px;
 
       .__sm & {
         max-width: 120px;
@@ -89,7 +88,6 @@ prm-user-area {
         float: left;
       }
 
-
       &:after {
         content: '';
         position: absolute;
@@ -114,8 +112,7 @@ prm-user-area {
 
   md-fab-toolbar {
     position: absolute;
-    bottom: 0 !important; // move the primo second-click login button below the minimal header so it isnt hidden
-    top: auto !important;
+    top: 0;
     right: 0;
     z-index: -1;
     width: auto;
@@ -134,9 +131,6 @@ prm-user-area {
         padding: 0;
         margin: 0;
       }
-
-        // the whole bar (its blue without this styling)
-        background-color: $backgroundActual;
     }
     &.md-left, &.md-right {
       .md-toolbar-tools {
@@ -213,4 +207,11 @@ prm-user-area {
     }
   }
 
+  .hidden {
+    display: none;
+  }
+
+  .block {
+    display: block;
+  }
 }

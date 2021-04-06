@@ -1,18 +1,39 @@
 prm-saved-queries-list {
      .md-subheader {
-         ._md-subheader-inner{
+         .__xs & {
+             position: inherit!important;
+         }
+         ._md-subheader-inner, .md-subheader-inner{
              padding: .5em .85em;
          }
      }
 
      .has-checkbox {
          md-checkbox {
+             z-index: 10;
              position: absolute;
              top: .95em;
              left: .8em;
+             [dir=rtl] & {
+                right: .8em;
+             }
          }
      }
 
+	 .result-item-actions {
+         position: inherit;
+     }
+    
+     md-checkbox {
+        ._md-label[ng-transclude], .md-label[ng-transclude] {
+            margin-left: 30px;
+            [dir=rtl] & {
+                margin-left: auto;
+                margin-right: 30px;
+            }
+        }
+     }
+    
      .inline-div {
          display: inline;
      }
@@ -98,9 +119,19 @@ prm-saved-queries-list {
          overflow: hidden;
      	text-overflow: ellipsis;
      }
+    .saved-query-actions {
+        .__xs &,
+        .__sm & {
+            position: static;
+        }
+
+    }
 }
 
 .saved-query-list-2-line {
+    .__xs & {
+        justify-content: inherit;
+    }
         &:hover,
         &:focus {
             &:before {
@@ -124,26 +155,35 @@ prm-saved-queries-list {
             }
         }
         .md-list-item-text {
+            display: inline-block;
+            a {
+                max-width: 100%;
+                @extend .prm-links.prm-hue1;
+            }
             h3 {
+                white-space: inherit!important;
+
                 &.item-title {
                     font-weight: $bold;
                 }
             }
-            h4 {
-                strong {
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    font-size: .85em;
-                    opacity: .75;
-                }
-                i {
-                    opacity: .5;
-                    margin: 0 .25em;
-                }
-            }
             p {
-                span.text-bold {
-                    font-weight: $bold;
+                &.text-headings{
+                    strong {
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        font-size: .85em;
+                        opacity: .75;
+                    }
+                    i {
+                        opacity: .5;
+                        margin: 0 .25em;
+                    }
+                }
+                &.saved-query-filters{
+                    span.text-bold {
+                        font-weight: $bold;
+                    }
                 }
             }
         }

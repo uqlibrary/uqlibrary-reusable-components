@@ -1,0 +1,17 @@
+prm-back-to-library-search-button {
+
+    .md-button.back-button  {
+        @extend .padding-left-medium;
+         [dir="rtl"] & {
+            margin-right: 20px;
+         }
+        md-icon {
+            [dir="rtl"] & {
+                transform: scale(-1, 1)
+            }
+        }
+    }
+    md-toolbar &{
+        height: 100%;
+    }
+}

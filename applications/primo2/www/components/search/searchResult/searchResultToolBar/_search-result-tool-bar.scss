@@ -1,0 +1,232 @@
+/* starting searchResultToolBar */
+
+prm-search-result-tool-bar {
+  position: absolute;
+  z-index: 11;
+
+  .search-action-list {
+    z-index: 11;
+    position: absolute;
+    top: 64px;
+
+    .__xs & {
+      top: 0;
+    }
+
+    left: 0;
+    width: 100%;
+
+    //&.is-stuck {
+    //  z-index: 11 !important;
+    //}
+
+    transform-origin: 50% 50%;
+
+    &.ng-enter {
+      transition: $swift-ease-out;
+      transform: scale3d(.8, .8, 1) translateX(-30px);
+      opacity: 0;
+
+      &.ng-enter-active {
+        transform: scale3d(1, 1, 1) translateX(0);
+        opacity: 1;
+      }
+    }
+
+    &.ng-leave {
+      transition: $swift-ease-out;
+      transition-duration: .2s;
+      transform: scale3d(1, 1, 1) translateX(0);
+      opacity: 1;
+
+      &.ng-leave-active {
+        opacity: 0;
+        transform: scale3d(.8, .8, 1) translateX(-30px);
+      }
+    }
+  }
+
+  .is-stuck {
+    .search-action-list {
+      position: relative;
+      top: 0;
+    }
+  }
+
+
+  md-toolbar {
+    .__xs & {
+      transform: translateY(0);
+      transition: $swift-ease-out;
+      transition-duration: .3s;
+      padding-top: 15px !important;
+
+      &.is-stuck {
+        transform: translateY(-60px);
+        transition: $swift-ease-in-out;
+        opacity: 0;
+
+        &.is-visible {
+          transform: translateY(0);
+          opacity: 1;
+          transition: $swift-ease-out;
+          transition-duration: .3s;
+        }
+      }
+    }
+
+    .tiny-uppercase-text {
+      position: relative;
+      font-size: 0.90em;
+      font-weight: 600;
+      letter-spacing: .07em;
+      word-wrap: normal;
+      margin-right: 1em;
+      top: 1px;
+      @include rtl-prop(margin-right, margin-left, 1em, 1em);
+    }
+
+    .main-checkbox {
+      margin-right: 1em;
+      line-height: 20px;
+
+      [dir="rtl"] & {
+        margin-right: 0;
+        margin-left: 1em;
+      }
+    }
+
+    .toolbar-actions {
+      z-index: 1;
+    }
+  }
+
+  .results-title {
+    position: relative;
+    top: -7px;
+    @extend .italic-text;
+    @include rtl-prop(padding-left, padding-right, 5px, auto);
+    font-size: 15px;
+    line-height: 15px;
+
+    .__sm & {
+      top: -3px;
+    }
+
+    .__xs & {
+      top: 0;
+      margin-top: 7px;
+    }
+  }
+
+
+  .search-toolbar-title {
+    transition: all .4s 0s ease;
+    opacity: 1;
+    font-size: 14px;
+    line-height: 20px;
+
+    .__xs & {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    &.ng-hide {
+      opacity: 0;
+      transition: all 0s 0s;
+    }
+
+    .results-count prm-brief-result-container {
+      @extend .margin-right-medium;
+
+      [dir="rtl"] & {
+        margin-right: 0;
+        @extend .margin-left-medium;
+      }
+    }
+  }
+
+  .action-list-content {
+    position: absolute;
+    padding: 0;
+    z-index: 100;
+
+    > md-content {
+      overflow: visible;
+
+      .__xs & {
+        position: fixed;
+        height: 100vh;
+        top: -1px;
+      }
+    }
+
+    prm-action-list {
+      background: white;
+      //border-radius: $radius;
+      @extend %focused-item-shadow.without-halo;
+
+      md-tabs {
+        margin: 0px;
+      }
+    }
+  }
+
+  .disabledFavTool, .disableActionTool, .disabledSlideButtonTool {
+    color: $disabled;
+  }
+
+  .md-toolbar-tools {
+    padding: 0 5px !important;
+    background-color: #e9e9e9;
+    @extend .prm-text;
+    overflow: hidden;
+
+    .md-button {
+      opacity: .8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  md-checkbox {
+    z-index: 2;
+  }
+
+
+  .floated-max-results-message {
+    position: absolute;
+    @extend .prm-background.prm-hue2;
+    width: 100%;
+    height: 100%;
+    left: -100%;
+    @include rtl-prop(left, right, -100%, -100%);
+    transition: 1s;
+    text-transform: none;
+    line-height: 64px;
+
+    .button-link, .dismiss-link {
+      z-index: 1;
+    }
+  }
+
+  .ngrs-btn {
+    float: left;
+    text-transform: none;
+    border-radius: 4px;
+    color: #3d6e94;
+  }
+
+  .is-stuck {
+    & md-toolbar {
+      @extend .toolbar-shadow;
+      .__xs & {
+        margin-top: 0!important;
+        padding-top: 0!important;
+      }
+    }
+  }
+}

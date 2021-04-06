@@ -1,1 +1,45 @@
 /* starting facetExact */
+
+prm-facet-exact {
+  .text-number-space {
+    margin-right: 5px;
+
+    [dir=rtl] & {
+      margin-left: 5px;
+      margin-right: auto;
+    }
+  }
+
+  .facet-counter {
+    white-space: normal;
+    font-weight: 400;
+  }
+
+  .md-chip-remove-container {
+    visibility: visible !important;
+  }
+
+  .link-as-facet {
+    margin-left: 0.8em;
+
+    [dir=rtl] & {
+      margin-left: auto;
+      margin-right: 0.8em;
+    }
+  }
+
+  .section-title {
+    prm-icon {
+      color: $secondary-hue3;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: transparent !important;
+
+      span {
+        color: $secondary-hue3;
+      }
+    }
+  }
+}

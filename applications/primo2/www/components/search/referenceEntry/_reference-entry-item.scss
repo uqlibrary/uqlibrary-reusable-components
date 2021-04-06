@@ -1,0 +1,94 @@
+prm-reference-entry-item {
+	.reference-entry-item-inner {
+		position: relative;
+	}
+	.reference-entry-content {
+		padding: 1em 1.5em 0 1.5em;
+		max-height: none;
+		position: relative;
+
+		&.is-cropped {
+			height: 8.5em;
+			overflow: hidden;
+			&:before {
+				content: '';
+				position: absolute;
+				bottom:0;
+				left: 0;
+				width:100%;
+				height: 2em;
+				 z-index: 1;
+				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3f3f3+0,f3f3f3+100&0+0,1+100 */
+				background: -moz-linear-gradient(top,  rgba(243,243,243,0) 0%, rgba(243,243,243,1) 100%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top,  rgba(243,243,243,0) 0%,rgba(243,243,243,1) 100%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom,  rgba(243,243,243,0) 0%,rgba(243,243,243,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f3f3f3', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
+			}
+		}
+		.ref-entry-info-row {
+			height: 67%;
+		}
+		.md-button {
+			// margin: 0;
+			// margin-bottom: .5em;
+			position: absolute;
+		    right: 0;
+		    z-index: 1;
+		    background: #f3f3f3;
+		    box-shadow: -10px 0 40px 10px #f3f3f3;
+		    max-height: 15px;
+		    min-height: 24px;
+		    line-height: 5px;
+		    bottom: -5px;
+		    [dir=rtl] & {
+    			right: auto;
+    			left: 0;
+ 		 	}
+		}
+		.text-rtl {
+		    direction: ltr;
+		    text-align: right;
+		}
+		/*.md-button:hover:not([disabled]){
+			background: rgba(243,243,243,.4);
+		}*/
+		.thumbnail {
+    		@media screen and (max-width: 600px) {
+      			display: none;
+    		}
+		}
+	}
+	.reference-entry-type {
+		@extend .tiny-uppercase-text;
+		@extend .weak-text
+	}
+	.item-title {
+		color: $titles;
+		margin-bottom: .1em;
+		@extend .bold-text;
+	}
+	.reference-entry-footer {
+		width: 100%;
+		position: relative;
+		padding: 0 1.5em .5em 1.5em;
+
+		&.is-cropping {
+
+		}
+	}
+	figure {
+		margin: 0;
+		img {
+			box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 2px 1px 0 white, -3px 3px 10px -3px rgba(0, 0, 0, 0.3);
+			max-width: 80px;
+		}
+	}
+	[availability-type] {
+		color: rgba(58,58,58,.4);
+		flex-shrink: 0;
+		margin-right: .35em;
+		md-icon {
+			@include setSize(15px)
+		}
+	}
+}

@@ -1,0 +1,22 @@
+prm-service-details {
+  .chain-display {
+    margin-right: 20px;
+
+    [dir="rtl"] & {
+      margin-right: auto;
+      margin-left: 20px;
+    }
+  }
+
+  .chain-display-space {
+    margin-bottom: 7px;
+  }
+
+  .rtl-text-on-rtl-view{
+    text-align: left;
+    [dir="rtl"] & {
+      text-align: right;
+    }
+  }
+
+}

@@ -1,3 +1,30 @@
 /* starting formField */
 
+prm-form-field {
+  //This class is for voice recognition for "form field" with none default value using "Dragon"
+  .dummy-dragon-button {
+    min-height: 1px;
+    min-width: 2px;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    &:hover,
+    &:focus,
+    &:active,
+    &:visited{
+      background-color: transparent;
+    }
+  }
+  div {
+    button.left-field-button {
+      margin-left: 0px;
+    }
+  }
+
+}
+
+.dropdown-filter-search-box{
+  width: 100%;
+}
+
 

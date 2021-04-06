@@ -1,0 +1,35 @@
+/* starting quickAccess */
+prm-quick-access {
+  position: relative;
+  width: 100%;
+  display: block;
+ 
+ md-content{
+     width: 100%;
+    height: stretch;
+    
+    img{
+    object-fit: contain;
+    }
+ }
+pre{
+height:85%
+}
+
+h3{
+font-size:16px !important;
+}
+
+md-card.default-card md-card-title:not(#featuredResultTitle), prm-featured-result-item 
+{  padding: initial;  
+}
+.main-file-container{
+
+}
+.pdf-container{
+height:600px;
+}
+.head-row{
+padding: 0px;
+}
+}

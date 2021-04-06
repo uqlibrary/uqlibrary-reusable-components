@@ -1,162 +1,199 @@
 @import "citation/citation";
 @import "sendEmailAction/send-email";
+@import "legantoAction/leganto";
 
 /* starting actionList */
-.favorites-action-list{
-    prm-action-list, .saved-query-list {
-        position: relative;
-        .md-nav-item {
-            opacity: 1;
-            transform: scale3d(1, 1, 1);
-            color:red;
+.favorites-action-list, .search-action-list {
+  prm-action-list, .saved-query-list {
+    position: relative;
+
+    .md-nav-item {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
+      color: red;
 
 
-        }
     }
-    .close-action-menu{
-        position: absolute;
-        right:0px;
-        top: 0px;
-        padding: 1px 1px 1px 1px;
-    }
+  }
+
+  .close-action-menu {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 1px 1px 1px 1px;
+  }
 
 }
+
 prm-action-list, .saved-query-list {
 
 
-    > md-nav-bar {
-        height: auto;
-        .md-nav-bar {
-            height: auto;
-            border-width: 0px;
+  > md-nav-bar {
+    height: auto;
+
+    .md-nav-bar {
+      height: auto;
+      border-width: 0px;
 
 
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-        }
-        ul {
-            width: auto;
-            display: inline-flex;            
-        }
-
-        .md-nav-item {
-            max-width: 90px;
-            opacity: 0;
-            transform: translate3d(0,20px,0) scale3d(.5,.5,1);
-
-            &:last-of-type {
-                margin-right: 8px;
-            }
-            .md-button {
-                color: transparentize($dark, .2);
-                border-radius: 0;
-                // padding: .5em 1em;
-                padding-bottom: .75em;
-                padding-top: .75em;
-                margin: 0;
-                @extend .md-button.icon-button-with-text;
-            }
-        }
-        &.wrapped-items {
-            .__sm &, .__xs & {
-                .md-nav-item {
-                    min-width: 78px;
-                }
-            }
-        }
     }
 
-    &.visible {
-        .md-nav-item {
-            opacity: 1;
-            transition: $swift-ease-out;
-            transition-duration: .25s;
-            transform: translate3d(0,0,0) scale3d(1,1,1);
-            $max: 12;
-              @for $i from 1 through $max {     
-                 $value: $max - $i;
-                 &:nth-child(#{abs($i)}) {
-                   transition-delay: ($value * .02)#{s};
-                 }
-              }
-        }
+    nav {
+      display: flex;
+      justify-content: center;
     }
+
+    ul {
+      width: auto;
+      display: inline-flex;
+    }
+
+    .md-nav-item {
+      width: 105px;
+      opacity: 0;
+      transform: translate3d(0, 20px, 0) scale3d(.5, .5, 1);
+
+      &:last-of-type {
+        margin-right: 0px;
+      }
+
+      .md-button {
+        color: transparentize($dark, .2);
+        border-radius: 0;
+        // padding: .5em 1em;
+        padding-bottom: .75em;
+        padding-top: .75em;
+        margin: 0;
+        @extend .md-button.icon-button-with-text;
+        white-space: normal;
+      }
+    }
+
+    &.wrapped-items {
+      .__sm &, .__xs & {
+        .md-nav-item {
+          min-width: 78px;
+        }
+      }
+    }
+  }
+
+  &.visible {
+    .md-nav-item {
+      opacity: 1;
+      transition: $swift-ease-out;
+      transition-duration: .25s;
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+      $max: 12;
+      @for $i from 1 through $max {
+        $value: $max - $i;
+        &:nth-child(#{abs($i)}) {
+          transition-delay: ($value * .02)#{s};
+        }
+      }
+    }
+  }
 }
 
 .send-actions-content {
-    max-height: 0;
+  max-height: 0;
 
-    opacity: 0;
-    transition: opacity 0s ease, max-height 0s $easeOutQuint;
-    .send-content-visible & {
-        max-height: 100em;
-        opacity: 1;
-        transition: opacity .2s ease, max-height .3s $easeOutQuint;
-    }
+  opacity: 0;
+  transition: opacity 0s ease, max-height 0s $easeOutQuint;
+
+  .send-content-visible & {
+    max-height: 100em;
+    opacity: 1;
+    transition: opacity .2s ease, max-height .3s $easeOutQuint;
+  }
 }
 
 
-.send-actions-content-item {   
-    transform-origin: 50% 0;
-    transition: transform .4s $easeOutQuint;
+.send-actions-content-item {
+  transform-origin: 50% 0;
+  transition: transform .4s $easeOutQuint;
+
+  .__xs & {
+    margin: 0;
+  }
+
+  prm-brief-result-container & {
+    // margin: 1em 1em 1.5em 1em;
+    margin: 1em 1.5em 1.5em 1.5em;
+  }
+
+  prm-full-view & {
+    padding: 1em 0 0 0;
+    margin: 0;
+  }
+
+  > md-content,
+  > md-content.md-primoExplore-theme {
+    padding: 1em;
+    border: 1px solid darken($actionsBackground, 4%);
+    background-color: $actionsBackground;
 
     .__xs & {
-        margin: 0;
+      padding: 0;
+      border: none;
+      background-color: transparent;
     }
 
-    prm-brief-result-container & {        
-        // margin: 1em 1em 1.5em 1em;
-        margin: 1em 1.5em 1.5em 1.5em;
+    > form {
+      .__xs & {
+        padding: 0;
+      }
     }
 
     prm-full-view & {
-        padding: 1em 0 0 0;
-        margin: 0;
+      padding: 1.5em;
+
+      .__sm & {
+        padding: .5em;
+      }
     }
-
-    > md-content,
-    > md-content.md-primoExplore-theme {
-        padding: 1em;
-        border: 1px solid darken($actionsBackground, 4%);
-        background-color: $actionsBackground;
-
-        .__xs & {
-            padding: 0;
-            border: none;
-            background-color: transparent;  
-        }
-
-        > form {
-            .__xs & {
-                padding: 0;
-            }
-        }
-
-        prm-full-view & {
-            padding: 1.5em;
-
-            .__sm & {
-                padding: .5em;
-            }
-        }
-    }
+  }
 }
 
 .send-action-buttons {
-    .button-confirm {
-        margin: 0;
-    }
-}
-.marg-nav-item{
-    margin-left: 5px;
-}
-.safari-wrapper{
-    display: inline-block;
+  .button-confirm {
+    margin: 0;
+  }
 }
 
-.non-safari{
-    overflow: hidden;
+.marg-nav-item {
+  margin-left: 5px;
+}
+
+.safari-wrapper {
+  display: inline-block;
+}
+
+.scroll-hidden {
+  overflow: hidden;
+}
+
+.actions-layout {
+  flex-flow: row wrap;
+}
+
+prm-account {
+  .action-list-content {
+    z-index: 1;
+    background: white;
+    @extend .focused-item-shadow.without-halo;
+
+    md-nav-bar {
+      .md-nav-item {
+        transform: none;
+        opacity: 1;
+      }
+
+    }
+  }
+
+  ._md-nav-bar-list,
+  .md-nav-bar-list {
+    justify-content: center
+  }
 }

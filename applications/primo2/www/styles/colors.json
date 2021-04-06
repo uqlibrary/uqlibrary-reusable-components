@@ -2,12 +2,14 @@
   "primary": "#53738C",
   "secondary" : "#A9CDD6",
   "backgroundColor" : "white",
-  "links": "#5C92BD",
+  "links": "#3D6E94",
   "warning": "tomato",
   "positive": "#0f7d00",
   "negative": "gray",
-  "notice": "#e08303",
+  "notice": "#B84D00",
+  "linkTitle": "#33FFFF",
   "citation": "tomato",
-  "citationTitles": "rgb(68, 112, 123)"
+  "citationTitles": "rgb(68, 112, 123)",
+  "personalization": "#7d1538" 
 }
 

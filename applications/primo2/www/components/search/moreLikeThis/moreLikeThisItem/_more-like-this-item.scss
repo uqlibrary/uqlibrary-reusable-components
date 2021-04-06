@@ -1,0 +1,83 @@
+/* starting virtualBrowseItem */
+
+prm-more-like-this-item {
+
+  cursor: pointer;
+
+  [md-virtual-repeat].current-item & {
+    cursor: default;
+  }
+
+  md-card {
+    background-color: $white;
+    max-height: 100%;
+    font-size: .9em;
+    margin: 0;
+    @extend .default-shadow;
+
+    > .md-button {
+      text-transform: none;
+      text-align: left;
+      line-height: inherit;
+      @extend .zero-margin;
+      @extend .zero-padding;
+    }
+
+    .card-image {
+      max-height: 100px;
+      min-height: 100px;
+      overflow: hidden;
+      position: relative;
+      background-color: currentColor;
+
+      img {
+        height: auto !important;
+      }
+    }
+
+    md-card-title, md-card-content {
+      padding: .5em;
+      @extend .prm-text;
+    }
+
+    md-card-title {
+
+    }
+
+    md-card-title-text {
+      max-width: 100%;
+      white-space: normal;
+      word-break: break-word;
+      overflow: hidden;
+
+      &:before {
+        [dir="rtl"] & {
+          left: auto!important;
+          right: 0!important;
+
+        }
+      }
+
+      &:after {
+        background: transparent!important;
+      }
+
+      @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 5, $bgColor: white);
+
+      text-align: left;
+
+      [dir="rtl"] & {
+        margin-right: 0;
+        // text-align: left;
+      }
+    }
+
+    md-card-content {
+      padding-top: 0;
+
+      [dir="rtl"] & {
+        text-align: left;
+      }
+    }
+  }
+}

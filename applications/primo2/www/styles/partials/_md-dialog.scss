@@ -1,320 +1,432 @@
+body {
+  &.md-dialog-is-showing {
+    overflow-x: visible !important;
+  }
+}
 
-body{
-	&.md-dialog-is-showing{
-		overflow-x: visible!important;
-	}
+.md-dialog-container.fixed-container {
+  height: 100% !important;
+  position: fixed !important;
+  top: 0px !important;
+  background-color: $primary-hue6;
 }
 
 .md-dialog-container {
-	// z-index: 101;
+  // z-index: 101;
 }
+
 md-dialog {
-	// box-shadow: 0 5px 20px -5px rgba(0,0,0,.1);
-	@extend .dialog-shadow;
-	background-color: $white;
+  // box-shadow: 0 5px 20px -5px rgba(0,0,0,.1);
+  @extend .dialog-shadow;
+  background-color: $white;
 
-	.loader-wrapper {
-		position: absolute;
-	    top: 0;
-	    left: 0;
-	    height: 100%;
-	    width: 100%;
-	    .loader{
-	    	height: 10%;
-	    }
-	}
+  prm-alma-viewit-items {
+    md-list md-list-item:focus:not([disabled]) {
+      background-color: transparent!important;
+      color: inherit!important;
+    }
+  }
 
-	.error-warning-message {
-		padding: .5em;
-		margin-bottom: 1em;
-	}
-	
-	// i.e password change dialog
-	&.small-dialog {
-		min-width: 320px;
-	}
+  .loader-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 
-	// dialog inside list elements
-	&.in-element-dialog {
-		width: 100%;
-		height: 100%;
-		max-height: none;
-		max-width: none;
-		background-color: transparentize($white, .2);
-		padding-right: 1em;
+    .loader {
+      height: 10%;
+    }
+  }
 
-		&.md-transition-in,
-		&._md-transition-in {
-			transition-duration: .3s;	
+  .error-warning-message {
+    padding: .5em;
+    margin-bottom: 1em;
+  }
 
-			@include ie-exceptions;
+  // i.e password change dialog
+  &.small-dialog {
+    min-width: 320px;
+  }
 
-			&.md-transition-in-add {
-				&.md-transition-in-add-active {
-				}
-			}			
-		}
-		
-		&.md-transition-out,
-		&._md-transition-out {
-			transition-duration: .2s;
+  // dialog inside list elements
+  &.in-element-dialog {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    max-width: none;
+    background-color: transparentize($white, .2);
+    padding-right: 1em;
 
-			@include ie-exceptions;
+    &.md-transition-in,
+    &._md-transition-in {
+      transition-duration: .3s;
 
-			&.md-transition-out-add {
-				&.md-transition-out-add-active {
-				}
-			}
-		}
-		
-		.has-expand & {
-			padding-right: 5.5em;
-		}
-		.md-dialog-content {
-			padding: 0;
-		}	
-		md-dialog-actions,
-		.md-actions {
-			margin-top: 0;
-		}	
-	}
-	
-	// transparent dialog with white text on darker background
-	&.light-on-dark-dialog {
-		// background-color: transparent;
-		// background-color: transparentize(desaturate(darken($midGrey, 12%), 5%),.7);
-		background-color: transparentize(black, .8);
-		border: 1px solid white;
-		border-radius: $radius;
-		color: $white;
+      @include ie-exceptions;
 
-		::selection {
-			background: transparentize($dark, .5);
-		}
+      &.md-transition-in-add {
+        &.md-transition-in-add-active {
+        }
+      }
+    }
 
-		&.full-cover-dialog {
-			border: none;
-		}
+    &.md-transition-out,
+    &._md-transition-out {
+      transition-duration: .2s;
 
-		a {
-			color:  $linkTitle;
-		}
+      @include ie-exceptions;
 
-		// button,
-		// .md-button {
-		// 	// color: $white;
+      &.md-transition-out-add {
+        &.md-transition-out-add-active {
+        }
+      }
+    }
 
-		// 	&.back-button {
-		// 		&:hover {
-		// 			// background-color: transparentize(white,.9);
-		// 			// background-color: transparentize(desaturate(darken($midGrey, 12%), 5%), .15);
-		// 		}
-		// 	}
-		// }
+    .has-expand & {
+      padding-right: 5.5em;
+    }
+
+    .md-dialog-content {
+      padding: 0;
+    }
+
+    md-dialog-actions,
+    .md-actions {
+      margin-top: 0;
+    }
+  }
+
+  // transparent dialog with white text on darker background
+  &.light-on-dark-dialog {
+    // background-color: transparent;
+    // background-color: transparentize(desaturate(darken($midGrey, 12%), 5%),.7);
+    background-color: transparentize(black, .2);
+    border: 1px solid white;
+    border-radius: $radius;
+    color: $white;
+
+    ::selection {
+      background: transparentize($dark, .5);
+    }
+
+    &.full-cover-dialog {
+      border: none;
+    }
+
+    a {
+      color: $linkTitle;
+    }
+
+    // button,
+    // .md-button {
+    // 	// color: $white;
+
+    // 	&.back-button {
+    // 		&:hover {
+    // 			// background-color: transparentize(white,.9);
+    // 			// background-color: transparentize(desaturate(darken($midGrey, 12%), 5%), .15);
+    // 		}
+    // 	}
+    // }
 
 
+    .loader-wrapper {
+      // background-color: transparentize(desaturate(darken($midGrey, 10%), 15%),.5);
+      background-color: transparentize(desaturate(darken($midGrey, 12%), 5%), .5);
+      z-index: 100;
 
-		.loader-wrapper {
-			// background-color: transparentize(desaturate(darken($midGrey, 10%), 15%),.5);
-			background-color: transparentize(desaturate(darken($midGrey, 12%), 5%),.5);
-			z-index: 100;
-			.loader {
-				.diamond {
-					background: $white;
-				}
-			}
-		}
+      .loader {
+        .diamond {
+          background: $white;
+        }
+      }
+    }
 
-		md-toolbar,
-		md-toolbar:not(.md-menu-toolbar) {
-			background-color: transparent;
-			color: $white;
+    md-toolbar,
+    md-toolbar:not(.md-menu-toolbar) {
+      background-color: transparent;
+      color: $white;
 
-			.md-button {
-				width: 64px;
-				md-icon {
-					color: $white;
-				}
-			}
-		}
+      .md-button {
+        width: 64px;
 
-		.dialog-actions {
-			button,
-			button.md-button {
-				color: $white;
-			}
-		}
+        md-icon {
+          color: $white;
+        }
+      }
+    }
 
-		.collapsable-container {
-			md-list {
-				md-list-item {
-					.md-list-item-inner {
-						color: $linkTitle;
-					}
-				}
-			}
-			p {
-				color: $white;
-			}
-		}
+    .dialog-actions {
+      button,
+      button.md-button {
+        color: $white;
+      }
+    }
 
-		.error-color {
-			color: lighten(saturate($red, 20%), 10%);
-		}
-		
-		md-input-container,
-		md-input-container.md-input-has-value,
-		md-input-container.md-input-focused,
-		md-input-container.md-input-focused:not(.md-input-invalid) {
-			input,
-			.md-input,
-			label {
-				border-color: transparentize($white, .5);
-				color: $white
-			}
-		}
-		
-		.dialog-title {
-			color: $white;
-		}
+    .collapsable-container {
+      md-list {
+        md-list-item {
+          .md-list-item-inner {
+            color: $linkTitle;
+          }
+        }
+      }
 
-		md-list,
-		.md-list,
-		.md-list[class$="-line"] {
-			md-list-item,
-			md-list-item > .md-no-style {
-				margin: 0;
-				button,
-				.md-button {
-					padding: 1em;
-				}
-				.md-list-item-text {				
-					h3,
-					.list-item-title {
-						color:$linkTitle;						
-					}
-					p, ul {
-						color: $white;
-					}
-				}
-			}			
-			// button.md-button {
-			// 	&:not([disabled]) {
-			// 		&:hover {
-			// 			// background-color: desaturate(darken($midGrey, 15%), 10%);
-			// 			// background-color: transparentize(desaturate(darken($midGrey, 12%), 5%), .15);
-			// 		}
-			// 	}
-				
-			// }
-		}
+      p {
+        color: $white;
+      }
+    }
 
-	}
+    .error-color {
+      color: lighten(saturate($red, 20%), 10%);
+    }
 
-	&.full-cover-dialog {
-		max-width: none;
-		max-height: none;
-		width: 100%;
-		height: 100%;
-		transform: scale(1) translateY(0) !important;
+    md-input-container,
+    md-input-container.md-input-has-value,
+    md-input-container.md-input-focused,
+    md-input-container.md-input-focused:not(.md-input-invalid) {
+      input,
+      .md-input,
+      label {
+        border-color: transparentize($white, .5);
+        color: $white
+      }
+    }
 
-		@include ie-exceptions;
+    .dialog-title {
+      color: $white;
+    }
 
-		&.md-transition-in,
-		&._md-transition-in {
-			transition-duration: .5s;
+    md-list,
+    .md-list,
+    .md-list[class$="-line"] {
+      md-list-item,
+      md-list-item.md-no-style {
+        margin: 0;
 
-			@include ie-exceptions;
-		}
-		
-		&.md-transition-out,
-		&._md-transition-out {
-			transition: $swift-ease-in;
-			transition-duration: .2s;
+        button,
+        .md-button {
+          /*padding: 1em;
+          @include bgColor($white);*/
+        }
+      }
 
-			@include ie-exceptions;
-		}
+      md-list-item {
+        &.list-login {
+          .md-button {
+            color: $linkTitle;
 
-	}
-	
+            h3, h3:hover {
+              color: inherit !important;
+            }
 
-	// login dialog
-	&.login-dialog {
-		// min-width: 360px;
-		// max-width: 580px;
+            &:hover:not([disabled]) {
+              background-color: transparent;
+              color: $linkTitle;
+            }
+          }
 
-	}
+          &:hover:not([disabled]) {
+            background-color: transparent;
+          }
+        }
+      }
 
-	md-toolbar {
-		padding: 0 16px;
+      // button.md-button {
+      // 	&:not([disabled]) {
+      // 		&:hover {
+      // 			// background-color: desaturate(darken($midGrey, 15%), 10%);
+      // 			// background-color: transparentize(desaturate(darken($midGrey, 12%), 5%), .15);
+      // 		}
+      // 	}
 
-		&:not(.md-menu-toolbar) {
-			@extend .prm-background;
-			color: $dark;
-		}
+      // }
+    }
+  }
 
-		// + md-dialog-content {
-		// 	padding: 0 26px;
-			
-		// 	md-input-container {
-		// 		padding-bottom: 14px;
-		// 	}
-		// }
-		
-	}
+  &.full-cover-dialog {
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: 100%;
+    transform: scale(1) translateY(0) !important;
+    overflow-x: hidden;
 
-	&.tabbed-dialog {
-		padding: 0;
-		.md-dialog-content {
-			// padding-bottom: 0;
-		}
-		.tabbed-dialog-actions {
-			// margin-top: 24px;
-		}
-		md-tabs{
-			// width: 100%;
-		}
-	}
+
+    @include ie-exceptions;
+
+    &.md-transition-in,
+    &._md-transition-in {
+      transition-duration: .5s;
+
+      @include ie-exceptions;
+    }
+
+    &.md-transition-out,
+    &._md-transition-out {
+      transition: $swift-ease-in;
+      transition-duration: .2s;
+
+      @include ie-exceptions;
+    }
+
+  }
+
+
+  // login dialog
+  &.login-dialog {
+    // min-width: 360px;
+    // max-width: 580px;
+
+  }
+
+  md-toolbar {
+    padding: 0 16px;
+
+    &:not(.md-menu-toolbar) {
+      @extend .prm-background;
+      color: $dark;
+    }
+
+    // + md-dialog-content {
+    // 	padding: 0 26px;
+
+    // 	md-input-container {
+    // 		padding-bottom: 14px;
+    // 	}
+    // }
+
+  }
+
+  &.tabbed-dialog {
+    padding: 0;
+
+    .md-dialog-content {
+      // padding-bottom: 0;
+    }
+
+    .tabbed-dialog-actions {
+      // margin-top: 24px;
+    }
+
+    md-tabs {
+      // width: 100%;
+    }
+  }
+
+  md-list,
+  .md-list,
+  .md-list[class$="-line"] {
+    md-list-item,
+    md-list-item.md-no-style {
+      margin: 0;
+      @include bgColor($dark);
+
+      button,
+      .md-button {
+        padding: 1em;
+        @include bgColor($dark);
+
+        .md-button:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    md-list-item {
+      &:hover:not([disabled]) {
+        background-color: transparent;
+      }
+    }
+  }
+
+  //For md-list-item button wrapped by dialog
+  md-list {
+    md-list-item {
+      &:hover:not([disabled]) {
+        color: inherit;
+      }
+      button:hover:not([disabled]), button:focus:not([disabled]) {
+        &.neutralized-button {
+          background-color: $background-hue6;
+          color: inherit;
+        }
+      }
+
+      .md-button:hover:not([disabled]), .md-button:focus:not([disabled]) {
+        &.neutralized-button {
+          background-color: $background-hue6;
+          color: inherit;
+        }
+      }
+    }
+  }
 }
 
 md-dialog-content {
-	@extend .primo-scrollbar;
+  @extend .primo-scrollbar;
+
+  .disable-hover {
+    .md-button, button {
+      &:hover,
+      &:focus {
+        background-color: transparent !important;
+        box-shadow: inset 0 0 1px 1px $white;
+      }
+    }
+  }
+
+  md-input-container {
+    // underline animated highlight for darker dialog
+    &:after {
+      @extend .prm-secondary-bg.prm-hue4;
+    }
+
+    // underline animated highlight for lighter dialog
+    &.dark-on-light {
+      &:after {
+        @extend .prm-primary-bg.prm-hue1;
+      }
+    }
+  }
 }
 
-.in-element-dialog-parent {}
+.in-element-dialog-parent {
+}
+
 .in-element-dialog-context {
-	transform: scale(1);
-	transition: $swift-ease-out;
-	transform-origin: 100% 50%;
-	transition-duration: .2s;
-	max-width: 100%;
+  transform: scale(1);
+  transition: $swift-ease-out;
+  transform-origin: 100% 50%;
+  transition-duration: .2s;
+  max-width: 100%;
 
-	@include ie-exceptions;
+  @include ie-exceptions;
 
-	&.dialog-context-active {
-		transform: scale(.93);
-		transition-duration: .4s;
+  &.dialog-context-active {
+    transform: scale(.93);
+    transition-duration: .4s;
 
-		@include ie-exceptions;
-	}
+    @include ie-exceptions;
+  }
 }
 
 .dialog-divider {
-	position: block;
-	width: 100%;
-	height: 1px;
-	margin-top: .5em;
-	margin-bottom: .5em;
-	background-color: transparentize($dark, .5);
+  position: block;
+  width: 100%;
+  height: 1px;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  background-color: transparentize($dark, .5);
 
-	&.transparent-divider {
-		background-color: transparent;
-	}
+  &.transparent-divider {
+    background-color: transparent;
+  }
 }
 
 //  FF fix for bad ANgular material container calculation
 //  fixes a 15px gap in .md-dialog-container
 body:not(:-moz-handler-blocked) .md-dialog-container {
 
-	margin-top: -15px;
+  margin-top: -15px;
 }

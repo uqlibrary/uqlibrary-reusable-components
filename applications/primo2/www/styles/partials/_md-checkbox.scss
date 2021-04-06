@@ -1,48 +1,80 @@
+/*
+ * When updating this file, make sure to update
+ * _md-option.scss accordingly 
+*/
 md-checkbox {
-	margin-bottom: 0;
-	.md-icon,
-	._md-icon{
-		opacity: .3;
-		border-color: $dark;
-		border-width: 1px;
-	}
-	&:hover {
-	// &.md-checked:hover {
-		.md-icon,
-		._md-icon {
-			opacity: .7;
-		}
-	}
-	&.md-checked {
-		.md-icon, 
-		._md-icon {
-			opacity: 1;
-			@extend .prm-secondary-bg.prm-hue2;
-		}
-		&:hover {
-			.md-icon, 
-			._md-icon {
-				opacity: 1;
-			}
-		}
-		.md-container,
-		._md-container {
-			color: $white;
-		}
-	}	
-	&.has-small-text {
-		.md-container,
-		._md-container {
-			top: 4px;
-			transform: none;
-		}
-	}
-	.presentable-disabled-inputs & {
-		&[disabled] {
-			.md-label,
-			._md-label {
-				color: $dark;
-			}
-		}
-	}
+  &.md-checked {
+    &.md-focused ._md-container:before {
+      @extend .prm-secondary-bg.prm-hue3;
+      opacity: 0.3;
+    }
+  }
+
+  margin-bottom: 0;
+
+  .md-icon,
+  ._md-icon {
+    opacity: .7;
+    border-color: $dark;
+    border-width: 1px;
+  }
+
+  &:hover, &:focus {
+    // &.md-checked:hover {
+    .md-icon,
+    ._md-icon {
+      box-shadow: 0 0 0 2px $dark-hue1;
+      opacity: .7;
+    }
+  }
+
+  &.md-checked {
+    .md-icon,
+    ._md-icon {
+      opacity: 1;
+      @extend .prm-secondary-bg.prm-hue3;
+
+      &:after {
+        left: 6px;
+        top: 1px;
+        color: $white;
+      }
+
+    }
+
+    &:hover {
+      .md-icon,
+      ._md-icon {
+        opacity: .8;
+      }
+    }
+
+    .md-container,
+    ._md-container {
+      color: $secondary-hue3;
+    }
+  }
+
+  &.has-small-text {
+    .md-container,
+    ._md-container {
+      top: 4px;
+      transform: none;
+    }
+  }
+
+  .presentable-disabled-inputs & {
+    &[disabled] {
+      .md-label,
+      ._md-label {
+        color: $dark;
+      }
+    }
+  }
+
+  .md-container {
+    &:before {
+      content: none;
+    }
+  }
 }

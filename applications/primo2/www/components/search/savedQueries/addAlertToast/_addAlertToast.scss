@@ -1,4 +1,22 @@
-prm-add-alert-toast{
+prm-add-alert-toast, prm-silent-login-alert-toast, prm-timeout-toast, prm-mendeley-toast, prm-voice-search-toast{
+
+  .mobile-define{
+    height: auto;
+    width: 100%;
+    min-height: 0;
+  }
+  .mobile-size{
+    flex:80
+  }
+  .start-content{
+
+    justify-content: flex-start!important;
+  }
+
+  .end-content{
+    justify-content: flex-end!important;
+  }
+
   display:flex;
   md-toast {
     padding: 0;
@@ -24,19 +42,45 @@ prm-add-alert-toast{
     max-height: 100%;
     max-width: 100%
   }
+
+  md-toast .md-toast-content span {
+    flex: inherit;
+  }
+
+  md-toast .md-toast-icon {
+    & md-icon{
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      min-height: 18px;
+    }
+  }
+
+  md-toast .md-toast-text-block{
+    display: inline-block;
+      .md-toast-text-ellipsis{
+        max-width: 240px;
+        display: inline-block;
+        vertical-align: bottom;
+        @extend %text-trim-ellipsis;
+      }
+  }
+
   md-toast .md-toast-content .md-button {
     font-weight: 600;
-    color: #000;
+    @include bgColor($dark);
     &:hover:not([disabled]),&:focus:not([disabled]),&:active:not([disabled]){
-      background-color: transparent;
+      //background-color: transparent;
     }
 
   }
   md-toast .md-button.settings-button,
   md-toast .md-button.settings-button md-icon {
-    color: #5c92bd
+    @include bgColor($links-hue-1);
   }
+  
 }
+
 
 
 

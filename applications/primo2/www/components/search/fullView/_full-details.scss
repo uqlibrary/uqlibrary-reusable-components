@@ -3,320 +3,383 @@ $sideSpacingLg: 9em;
 
 
 prm-full-view {
-    padding: 0;
-    position: relative;   
-    .services-index-under {
-        position: absolute;
-        left: 2em;
-        z-index: 1;
-        @include rtl-prop(left, right, 2em, auto);
+  padding: 0;
+  position: relative;
 
-        prm-full-view-cont & {
-            top: 150px;
-        }
-        .prm-full-view-dialog & {
-            top: 180px;
-            .__sm &,
-            .__xs & {
-                top: 250px;
-            }
-            
-        }
-        #services-index {
-            max-width: 120px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .md-button {
-            max-width: 100%;
-            @include rtl(text-align, left, right);
-        }
+  .services-index-under {
+    position: absolute;
+    left: 2em;
+    z-index: 15;
+    @include rtl-prop(left, right, 2em, auto);
+
+    prm-full-view-cont & {
+      top: 150px;
     }
+
+    .prm-full-view-dialog & {
+      top: 180px;
+
+      .__sm &,
+      .__xs & {
+        top: 250px;
+      }
+
+    }
+
+    #services-index {
+      max-width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .md-button {
+      //max-width: 100%;
+      max-width: 125px;
+      text-overflow: ellipsis;
+      @include rtl(text-align, left, right);
+    }
+  }
+
+  prm-brief-result-container {
+    .result-item-primary-content {
+      padding-left: 1.5em!important;
+      [dir="rtl"] & {
+        padding-left: auto!important;
+        padding-right: 1.5em!important;
+      }
+    }
+  }
 }
 
 .full-view-container {
-    .__xs &,
-    .__sm & {
-        z-index: 1;
-    }
+  overflow-x: hidden;
+
+  .__xs &,
+  .__sm & {
+    z-index: 1;
+    display: block;
+  }
 }
 
 prm-full-view-cont {
-    > md-content,
-    > md-content.padded-container {
-        .__xs &,
-        .__sm & {
-            padding: 0
-        }
+  > md-content,
+  > md-content.padded-container {
+    .__xs &,
+    .__sm & {
+      padding: 0
     }
+  }
 }
 
 .prm-full-view-dialog {
-    border-radius: 0;
-    max-width: none;
-    max-height: none;   
-    top: 0;
-    position: absolute;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
+  border-radius: 0;
+  max-width: none;
+  max-height: none;
+  top: 0;
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  border-radius: 0 !important;
+  transform: translate3d(20vw, 0, 0) scale(1.0) !important;
+
+  @include rtl(transform, translate3d(20vw, 0, 0) scale(1.0) !important, translate3d(-20vw, 0, 0) scale(1.0) !important);
+  @include rtl-prop(right, left, 0, auto);
+
+  // padding-top: 48px;
+  @extend .prm-background.prm-hue2;
+
+  // @include ie-exceptions;
+
+  // breakpoints
+  .__gt-sm & {
+    padding-top: 0;
+  }
+
+  .__md & {
+    width: 90%
+  }
+
+  .__lg & {
+    width: 90%
+  }
+
+  .__lgPlus & {
+    width: 85%
+  }
+
+  .__xl & {
+    width: 80%
+  }
+
+  ~ .close-button {
+    @extend .fixed-position.fixed-center;
+    right: auto;
+    bottom: auto;
     opacity: 0;
-    border-radius: 0 !important;
-    transform: translate3d(20vw, 0, 0) scale(1.0) !important;
-    
-    @include rtl(transform, translate3d(20vw, 0, 0) scale(1.0) !important,  translate3d(-20vw, 0, 0) scale(1.0) !important);
-    @include rtl-prop(right, left, 0, auto);
-
-    // padding-top: 48px;
-    @extend .prm-background.prm-hue2;
-
+    transition: $swift-ease-in;
+    transform: translate3d(5vw, 0, 0) rotateZ(90deg);
     // @include ie-exceptions;
+
+    &.md-icon-button {
+      @include setSize(96px);
+
+      md-icon {
+        @include setSize(76px);
+      }
+
+      prm-icon {
+        color: $backgroundColor;
+      }
+    }
 
     // breakpoints
     .__gt-sm & {
-        padding-top: 0;
-    }
-    .__md & {width: 90%}
-    .__lg & {width: 90%}
-    .__lgPlus & {width: 85%}
-    .__xl & {width: 80%}
-
-    ~ .close-button {
-        @extend .fixed-position.fixed-center;
-        right: auto;
-        bottom: auto;
-        opacity: 0;
-        transition: $swift-ease-in;
-        transform: translate3d(5vw, 0, 0) rotateZ(90deg);
-
-        // @include ie-exceptions;
-
-        &.md-icon-button {
-            @include setSize(96px);
-            md-icon {
-                @include setSize(76px);
-            }
-            prm-icon {
-                color: $backgroundColor;
-            }
-        }       
-
-        // breakpoints
-        .__gt-sm & {bottom: 0}
-        .__md & {
-            @include rtl-prop(left, right, .5%, auto)
-        }
-        .__lg & {
-            @include rtl-prop(left, right, 1.5%, auto)
-        }
-        .__lgPlus & {
-            @include rtl-prop(left, right, 4.5%, auto)
-        }
-        .__xl & {
-            @include rtl-prop(left, right, 7vw, auto)
-        }
-
-    }
-    
-    &.md-transition-in,
-    &._md-transition-in {
-        transition: $swift-ease-out;
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1.0) !important;
-
-        // @include ie-exceptions;
-
-        ~ .close-button {
-            transition: $swift-ease-out;
-            // transition-duration: .45s;
-            transition-delay: .15s;
-            opacity: 1;
-            transform: translate3d(0, 0, 0) rotateZ(0deg);
-
-            // @include ie-exceptions;
-        }
-    }
-    &.md-transition-out,
-    &._md-transition-out {
-        transition: $swift-ease-in;
-        opacity: 0;
-        transform: translate3d(20vw, 0, 0) scale(1.0) !important;
-
-        @include rtl(transform, translate3d(20vw, 0, 0) scale(1.0) !important,  translate3d(-20vw, 0, 0) scale(1.0) !important);
-
-        // @include ie-exceptions;
-
-        ~ .close-button {
-            transition: $swift-ease-in;
-            transition-delay: .05s;
-            transition-duration: .4s;
-            opacity: 0;
-            transform: translate3d(20vw, 0, 0) rotateZ(180deg);
-
-            // @include ie-exceptions;
-        }
-    }
-    md-dialog-content {
-        > md-toolbar {
-            position: fixed;
-            top: 0;
-        }
+      bottom: 0
     }
 
-    .full-view-inner-container {
-        position: relative;
-        .__xs &, .__sm & {
-            padding-top: 5em;
-        }
-        
+    .__md & {
+      @include rtl-prop(left, right, .5%, auto)
     }
-}
 
-.full-view-section {
-    padding-left: 2em;
-    padding-right: 2em;
-    transition: opacity .3s ease;
-    margin-top: 2.5em;    
-
-    .__xs & {
-        padding: 0;
+    .__lg & {
+      @include rtl-prop(left, right, 1.5%, auto)
     }
+
+    .__lgPlus & {
+      @include rtl-prop(left, right, 4.5%, auto)
+    }
+
+    .__xl & {
+      @include rtl-prop(left, right, 7vw, auto)
+    }
+
+  }
+
+  prm-location-items {
+    md-list md-list-item:hover:not([disabled]) {
+      background-color: $white;
+    }
+  }
+
+  &.md-transition-in,
+  &._md-transition-in {
+    transition: $swift-ease-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1.0) !important;
 
     // @include ie-exceptions;
 
-    &:last-of-type {
-        // margin-bottom: 10em;
+    ~ .close-button {
+      transition: $swift-ease-out;
+      // transition-duration: .45s;
+      transition-delay: .15s;
+      opacity: 1;
+      transform: translate3d(0, 0, 0) rotateZ(0deg);
 
-        prm-full-view-cont & {
-            margin-bottom: 0;
-        }
+      // @include ie-exceptions;
+    }
+  }
+
+  &.md-transition-out,
+  &._md-transition-out {
+    transition: $swift-ease-in;
+    opacity: 0;
+    transform: translate3d(20vw, 0, 0) scale(1.0) !important;
+
+    @include rtl(transform, translate3d(20vw, 0, 0) scale(1.0) !important, translate3d(-20vw, 0, 0) scale(1.0) !important);
+
+    // @include ie-exceptions;
+
+    ~ .close-button {
+      transition: $swift-ease-in;
+      transition-delay: .05s;
+      transition-duration: .4s;
+      opacity: 0;
+      transform: translate3d(20vw, 0, 0) rotateZ(180deg);
+
+      // @include ie-exceptions;
+    }
+  }
+
+  md-dialog-content {
+    > md-toolbar {
+      position: fixed;
+      top: 0;
+    }
+  }
+
+  .full-view-inner-container {
+    position: relative;
+
+    .__xs &, .__sm & {
+      padding-top: 5em;
     }
 
-    .section-head {
-        margin-bottom: 1em;
-    }
-    
-    .section-title {
-        margin: 0;
-        line-height: 1.2em;
-        position: relative;
+  }
+}
 
-        @include rtl-prop(padding-right, padding-left, 1em, 0);
+.full-view-section {
+  padding-left: 2em;
+  padding-right: 2em;
+  transition: opacity .3s ease;
+  margin-top: 2.5em;
 
-        .iframe-type {
-            position: absolute;
-            top: 1em;
-            left: 0;
-        }
+  .__xs & {
+    padding: 0;
+  }
+
+  // @include ie-exceptions;
+
+  &:last-of-type {
+    // margin-bottom: 10em;
+
+    prm-full-view-cont & {
+      margin-bottom: 0;
     }
-    .section-subtitle {
-        font-size: .95em;
-        font-weight: 600;
-        text-transform: uppercase;
+  }
+
+  .section-head {
+    margin-bottom: 1em;
+  }
+
+  .section-title {
+    margin: 0;
+    line-height: 1.2em;
+    position: relative;
+
+    @include rtl-prop(padding-right, padding-left, 1em, 0);
+
+    .iframe-type {
+      position: absolute;
+      top: 1em;
+      left: 0;
     }
-    .section-body {
-        padding-bottom: .5em;
-        // padding-left: 1.5em;
+  }
+
+  .section-subtitle {
+    font-size: .95em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .section-body {
+    padding-bottom: .5em;
+    // padding-left: 1.5em;
+  }
+
+  md-divider {
+    border: none;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    opacity: .5;
+    border-bottom: 1px solid darken($bg, 15%);
+
+    &.inner-divider {
+      opacity: .3;
     }
-    md-divider {
-        border: none;
-        margin-top: .5em;
-        margin-bottom: .5em;
-        opacity: .5;
-        border-bottom: 1px solid darken($bg, 15%);
-        &.inner-divider {
-            opacity: .3;
-        }
-    }
+  }
 }
 
 .full-view-section-content {
-    position: relative;
-    .__gt-xs & {
-        padding-left: $sideSpacing + .5em;
+  position: relative;
 
-        @include rtl-prop(padding-left, padding-right, $sideSpacing + .5em, 0);
+  .__gt-xs & {
+    padding-left: $sideSpacing + .5em;
+
+    @include rtl-prop(padding-left, padding-right, $sideSpacing + .5em, 0);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: $sideSpacing - 1.5em;
+    height: 100%;
+    width: 10px;
+    background: transparent;
+    box-shadow: inset 4px 0 0 0 $sectionHighlight, inset 0 4px 0 0 $sectionHighlight, inset 0 -4px 0 0 $sectionHighlight;
+    opacity: 0;
+    transition: opacity 4s ease;
+
+    [dir="rtl"] & {
+      left: auto;
+      right: $sideSpacing - 1.5em;
+      transform: scale(-1, 1);
     }
-    &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: $sideSpacing - 1.5em;
-        height: 100%;
-        width: 10px;
-        background: transparent;
-        box-shadow: inset 4px 0 0 0 $sectionHighlight, inset 0 4px 0 0 $sectionHighlight, inset 0 -4px 0 0 $sectionHighlight;
-        opacity: 0;
-        transition: opacity 4s ease;
 
-        [dir="rtl"] & {
-            left: auto;
-            right: $sideSpacing - 1.5em;
-            transform: scale(-1,1);
-        }
-        @include ie-exceptions;
+    @include ie-exceptions;
 
-        .section-focused & {
-            opacity: 1;
-            transition: opacity .2s ease;
+    .section-focused & {
+      opacity: 1;
+      transition: opacity .2s ease;
 
-            // @include ie-exceptions;
-        }
-        .standalone-mode & {
-            left: $sideSpacing;
-        }
+      // @include ie-exceptions;
     }
+
     .standalone-mode & {
-        padding-left: $sideSpacingLg;
+      left: $sideSpacing;
     }
+  }
+
+  .standalone-mode & {
+    padding-left: $sideSpacingLg;
+  }
 }
 
 
 .full-view-inner-container {
-    &.flex-basis-auto-ie11{
-      flex-basis: auto;
-    }
-    padding: 1em;
-    z-index: 0;
-     @extend .prm-background.prm-hue2;
+  &.flex-basis-auto-ie11 {
+    flex-basis: auto;
+  }
 
-    .__xs & {
-        padding: 1em 1.5em;
-    }
-    .__gt-sm & {
-        padding-bottom: 10em;
-        width: 100%;
-    }
+  padding: 1em;
+  z-index: 0;
+  @extend .prm-background.prm-hue2;
 
-    + .full-view-aside {
-        position: relative;
-        &:before {
-            content: "";
-            position: absolute;
-            height: 100%;
-            top: 0;
-            width: 1px;            
-            @extend .prm-background.prm-hue1;
-            @include rtl-prop(left, right, 0, auto);
-        }
+  .__xs & {
+    padding: 1em 1.5em;
+  }
+
+  .__gt-sm & {
+    padding-bottom: 10em;
+    width: 100%;
+  }
+
+  + .full-view-aside {
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      top: 0;
+      width: 1px;
+      @extend .prm-background.prm-hue1;
+      @include rtl-prop(left, right, 0, auto);
     }
+  }
 }
 
 .full-view-aside {
-    padding-left: 8.5em;
-    margin-top: 2.5em;
-    .__gt-sm &{
-        padding-left: 0;
-        padding-top: 1.5em;
-        margin-top: 0;
-    }
-    .__lgPlus & {
-        @extend .flex-lgPlus-25;
-    }
-    @include __xs {
-        padding-left: 0;
-    }
+  padding-left: 8.5em;
+  margin-top: 2.5em;
+
+  .__gt-sm & {
+    padding-left: 0;
+    padding-top: 1.5em;
+    margin-top: 0;
+  }
+
+  .__lgPlus & {
+    @extend .flex-lgPlus-25;
+  }
+
+  @include __xs {
+    padding-left: 0;
+  }
 }

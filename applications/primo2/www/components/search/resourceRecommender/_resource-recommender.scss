@@ -1,0 +1,89 @@
+prm-resource-recommender {
+  display: block;
+  margin-bottom: 2.0em;
+  md-card {
+    @extend %default-shadow;
+    @extend .prm-background.prm-hue2;
+    margin: 0;
+    margin-right: 1em;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    .md-card-image {
+      max-width: 90px;
+      height: auto;
+    }
+    md-card-content {
+      padding: 0 .75em .75em .75em;
+      display: block!important;
+    }
+  }
+  .resource-header {
+    padding: .75em 1em;
+    @extend .tiny-uppercase-text
+  }
+  .resource-image {
+
+    .resource-image-inner {
+      overflow: hidden;
+      width: 70px;
+      height: 70px;
+      &.person-image {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+      }
+      img {
+        width: 100%;
+      }
+
+    }
+    + .resource-content {
+      padding-left: .75em;
+    }
+  }
+  .resource-status {
+    margin-top: -.5em;
+  }
+  .resource-content {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .one-slot {
+    .__xs & {
+     max-width: 100%;
+    }
+  }
+
+}
+
+// extending the fullview dialog
+.prm-full-view-dialog.prm-resource-recommendations-fullview {
+  &.md-transition-in {
+    transition-duration: 0s;
+  }
+  .__md & {width: 60%}
+  .__lg & {width: 60%}
+  .__lgPlus & {width: 60%}
+  .__xl & {width: 50%}
+
+  ~ .close-button {
+    .__gt-sm & {bottom: 0}
+    .__md & {
+      @include rtl-prop(left, right, 15%, auto)
+    }
+    .__lg & {
+      @include rtl-prop(left, right, 16.5%, auto)
+    }
+    .__lgPlus & {
+      @include rtl-prop(left, right, 17.5%, auto)
+    }
+    .__xl & {
+      @include rtl-prop(left, right, 22vw, auto)
+    }
+  }
+}

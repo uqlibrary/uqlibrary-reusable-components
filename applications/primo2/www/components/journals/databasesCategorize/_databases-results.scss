@@ -1,0 +1,19 @@
+/* starting databasesResults */
+prm-databases-results {
+  md-list-item {
+    .item-actions {
+      position: absolute;
+      right: 0;
+      top: 0;
+      .md-button {
+        margin: 0;
+      }
+      .add-to-favorites {
+        @extend .prm-links.prm-alt-link;
+        md-icon {
+          transform: rotate(25deg);
+        }
+      }
+    }
+  }
+}

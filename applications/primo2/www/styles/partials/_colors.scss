@@ -6,5 +6,5 @@
     @extend .prm-positive !optional;
 }
 .status-unavailable {
-    @extend .prm-negative !optional;
+    @extend .prm-negative.prm-hue1 !optional;
 }

@@ -7,11 +7,251 @@
 /* starting account */
 
 prm-account-overview {
-    .tiles-grid {
-          .__xs & {
-              padding: .5em;
-              padding-top: 1em;
+  .tiles-grid {
+    .__xs & {
+      padding: .5em;
+      padding-top: 1em;
+    }
+
+  }
+
+
+  .institutions-list {
+    position: relative;
+    padding-right: 1rem;
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+    // @extend .prm-background-color;
+    // border-right: 1px solid currentColor;
+    &:after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      right: 0;
+      top: 0;
+      @extend .prm-background.prm-hue7;
+    }
+
+    & prm-icon {
+      color: $primary;
+    }
+
+    md-list-item {
+      max-width: 306px;
+
+      .institution-name {
+        text-transform: none;
+        font-size: 16px;
+      }
+
+      &.is-selected {
+        .institution-name, prm-icon {
+          font-weight: 600;
+          @extend .prm-secondary-color.prm-hue3;
+        }
+
+        .md-button:hover h3, .md-button:hover prm-icon {
+          @extend .prm-secondary-color.prm-hue6;
+        }
+
+        h3:focus, h3:hover {
+          &.institution-name {
+            @extend .prm-secondary-color.prm-hue6;
+            //color: red!important;
+          }
+        }
+      }
+
+      h3 {
+        white-space: normal !important;
+        text-align: left;
+        [dir="rtl"] & {
+          text-align: right;
+        }
+        &.md-button {
+          border-radius: 0;
+        }
+      }
+    }
+
+    /*#instBtn {
+      button {
+        &:focus {
+          + .md-list-item-inner {
+            color: $white;
+          }
+        }
+      }
+    }*/
+  }
+
+  .actions-list-spacer {
+    display: block;
+    min-height: 650px;
+  }
+
+  .main-institution-list,
+  .md-list,
+  .md-list[class$="-line"] {
+    md-list-item,
+    md-list-item.md-no-style {
+      margin: 0;
+      @include bgColor($dark);
+
+      button,
+      .md-button {
+        padding: 1em;
+        @include bgColor($dark);
+
+        prm-icon {
+          color: $dark;
+        }
+
+        .md-button:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    .md-button {
+      &:hover, &:focus {
+        prm-icon {
+          color: $white;
+        }
+      }
+    }
+
+    .md-button {
+      + &:hover, &:focus {
+        ._md-list-item-inner, .md-list-item-inner {
+          &.is-selected {
+            .institution-name {
+              @extend .prm-secondary-color.prm-hue4;
+            }
+          }
+        }
+      }
+    }
+
+    md-list-item {
+      &:hover:not([disabled]), &:focus:not([disabled]) {
+        background-color: transparent;
+      }
+    }
+  }
+
+
+  .main-institution-list {
+    button {
+      z-index: 1;
+    }
+    ._md-list-item-inner, .md-list-item-inner {
+      z-index: 2;
+    }
+
+    .md-button {
+      &:focus {
+        + ._md-list-item-inner, .md-list-item-inner {
+          .tile-item-arrow {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    md-list {
+      .md-button {
+        ._md-list-item-inner, .md-list-item-inner {
+
+        }
+      }
+    }
+  }
+
+  prm-loans-overview,
+  prm-requests-overview,
+  prm-fines-overview,
+  prm-messages-and-blocks-overview {
+    md-list {
+      md-list-item {
+        &:hover {
+          .md-list-item-inner, ._md-list-item-inner {
+            z-index: 1;
+          }
+        }
+        button {
+          z-index: 2;
+          &.md-focused:not([disabled]), &:focus:not([disabled]) {
+            &:focus {
+              background-color: $white;
+            }
+          }
+        }
+      }
+
+      .md-button {
+        &:focus {
+          + ._md-list-item-inner, .md-list-item-inner {
+            .tile-item-arrow {
+              transform: translate3d(0, 0, 0);
+              opacity: 1;
+            }
+          }
+        }
+      }
+      //This is a patch to solve the URM-140074 issue in Safari.
+      md-list-item {
+        &.hover-focus-on-safari {
+          .md-button {
+            &:before {
+              display: inline;
+            }
           }
 
+          .md-button {
+            &:hover:not([disabled]), &:focus:not([disabled]) {
+              display: inline-block;
+            }
+            &:focus {
+              display: inline-block;
+            }
+          }
+
+          button {
+            &.md-focused {
+              display: inline-block!important;
+            }
+          }
+          .md-list-item-inner {
+            -webkit-transform: translate3d(0,0,0)!important;
+          }
+        }
+      }
     }
+
+    button {
+      &:focus {
+        + .md-list-item-inner, ._md-list-item-inner {
+          z-index: 2;
+        }
+      }
+    }
+
+
+    /* .md-list-item-text {
+       position: relative;
+     }*/
+
+  }
+
+  .empty-select-on-init {
+    md-select-value .md-text {
+      span {
+        color: $dark;
+      }
+    }
+  }
+
 }

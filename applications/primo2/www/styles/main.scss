@@ -1,7 +1,6 @@
 // Variables and themes
 // ====================
-//@import "partials/variables";
-@import "../../styles-imports/www/variables";
+@import "partials/variables";
 @import "partials/easing";
 @import "partials/media-queries";
 @import "partials/mixins";
@@ -34,6 +33,8 @@
 @import "partials/statuses";
 @import "partials/hacks";
 @import "partials/horizontal-content";
+@import "partials/badges";
+@import "partials/spotlight";
 
 // Primo accessibiliy
 // ==================
@@ -62,6 +63,15 @@
 @import "../components/search/searchResult/searchResult";
 @import "../components/search/searchResult/searchResultAvailability/searchResultAvailabilityLine";
 @import "../components/search/searchResult/searchResultFrbr/search-results-frbr-line";
+@import "../components/search/searchResult/searchResultsChaptersAndReviews/chapters-results-line";
+
+//featured result
+@import "../components/search/searchResult/featuredResults/featured-result-item";
+@import "../components/search/searchResult/featuredResults/featured-results";
+
+// results toolbar
+@import "../components/search/searchResult/searchResultToolBar/search-result-tool-bar";
+@import "../components/search/searchResult/searchResultAddToFavoritesMenu/search-result-add-to-favorites-menu";
 
 // results thumbnails
 @import "../components/search/searchResult/searchResultThumbnail/search-result-thumbnail-container";
@@ -69,6 +79,9 @@
 // brief results container
 @import "../components/search/briefResult/briefResult";
 @import "../components/search/briefResult/briefResultContainer";
+
+// reference entry 
+@import "../components/search/referenceEntry/_reference-entry-item"; 
 
 // snippets
 @import "../components/search/snippet/snippet";
@@ -85,6 +98,13 @@
 @import "../components/search/citationTrails/citation-trails-breadcrumbs";
 @import "../components/search/citationTrails/citation-trails-fullview-link.scss";
 
+//chapters and reviews
+@import "../components/search/chaptersAndReviews/chapters-and-reviews";
+@import "../components/search/chaptersAndReviews/chapters-and-reviews-item";
+
+//times-cites 
+@import "../components/search/timesCited/times-cited";
+
 //Pagination
 // @import "../components/infra/resultsNavigator/pagination-controls.scss";
 
@@ -98,6 +118,14 @@
 @import "../components/infra/deposit/deposit-form";
 @import "../components/infra/deposit/uploadFile/upload-file";
 @import "../components/account/deposits/deposits";
+
+//Delivery
+@import "../components/delivery/almaViewer/_almaViewer";
+@import "../components/delivery/deniedAccess/_deniedAccess";
+@import "../components/delivery/representationViewer/_representationViewer";
+@import "../components/delivery/copyrights/_copyrights";
+@import "../components/delivery/thumbnailList/_thumbnailList";
+@import "../components/delivery/socialMenu/_socialMenu";
 
 //savedQueries
 @import "../components/search/searchResult/savedQueriesList/saved-queries-list";
@@ -114,11 +142,18 @@
 
 // User
 @import "../components/search/topbar/userArea/authentication";
+@import "../components/search/topbar/userArea/user-area-expandable";
+@import "../components/search/topbar/userArea/languageSelection/language-selection";
 
 // header
 @import "../components/search/searchBar/search-bar";
+@import "../components/search/preFilters/pre-filters";
+
+// voice search toast
+@import "../components/search/searchBar/voice-search-toast";
+
 // journals
-@import "../components/journals/journals-search-bar";
+@import "../components/journals/atoz-search-bar";
 @import "../components/journals/search-within-journal";
 @import "../components/journals/alphabetToolbar/alphabet-toolbar";
 
@@ -126,8 +161,41 @@
 @import "../components/search/fullView/view-overlay";
 @import "../components/search/fullView/full-details";
 @import "../components/search/fullView/details/serviceDetails";
+@import "../components/search/fullView/fullViewServiceContainer/full-view-service-container";
+@import "../components/search/fullView/usageMetrics/usage-metrics";
+
+//ngrs
+@import "../components/search/fullView/ngrs/ngrs";
+@import "../components/search/fullView/ngrs/physicalBestOffer/physicalBestOffer";
+@import "../components/search/fullView/ngrs/noOfferFound/noOfferFound";
+@import "../components/search/fullView/ngrs/rapidoNoOfferMessage/rapidoNoOfferMessage";
+@import "../components/search/fullView/ngrs/getItRequest/getItRequest";
+@import "../components/search/fullView/ngrs/resultsButton/ngrs-results-button";
+@import "../components/search/fullView/ngrs/ngrsBriefResultLine/ngrsBriefResultLine";
+@import "../components/search/fullView/ngrs/ngrsBriefResultLine/briefResultDeliveryOptionLink/briefResultDeliveryOptionLink";
+@import "../components/search/fullView/ngrs/ngrsBriefResultLine/briefResultPhysicalBestOffer/briefResultPhysicalBestOffer";
+@import "../components/search/fullView/ngrs/physicalDeliveryOptions/physicalDeliveryOptions";
+@import "../components/search/fullView/ngrs/physicalDeliveryOptionsTable/physicalDeliveryOptionsTable";
+@import "../components/search/fullView/ngrs/ngrsBriefResultLine/briefResultDigitalBestOffer/briefResultDigitalBestOffer";
+@import "../components/search/fullView/ngrs/sliderField/slider-field";
+@import "../components/search/fullView/ngrs/librariesAroundBar/librariesAroundBar";
+@import "../components/search/fullView/ngrs/progressBar/progress-bar";
+@import "../components/search/fullView/ngrs/progressBar/progressCheckBox/progress-check-box";
+@import "../components/search/fullView/ngrs/physicalDeliveryMoreOptionRow/physicalDeliveryMoreOptionRow";
+@import "../components/search/fullView/ngrs/multiSelectFilter/multi-select-filter";
+@import "../components/search/fullView/ngrs/getItRequest/offerDetailsTile/offerDetailsTile";
+@import "../components/search/fullView/ngrs/rapidoMessageBar/rapido-message-bar";
+  
+// opac (get it)
+@import "../components/search/fullView/getit/opac/opac";
+@import "../components/search/fullView/getit/opac/request/request";
+@import "../components/search/fullView/getit/opac/request/request-services";
+@import "../components/search/fullView/getit/opac/locations/locations";
+@import "../components/search/fullView/getit/opac/locations/location/location";
 @import "../components/search/fullView/getit/opac/locations/location-items";
 @import "../components/search/fullView/getit/opac/locationsFilter/locations-filter";
+@import "../components/search/fullView/getit/opac/copyright/copyright";
+@import "../components/search/fullView/getit/opac/requestApproval/request-approval";
 @import "../components/search/fullView/fullViewServiceContainer/full-view-service-container";
 
 // homepage
@@ -136,6 +204,7 @@
 // facets
 @import "../components/search/searchResult/searchResultSortBy/searchResultSortBy";
 @import "../components/search/facet/facet";
+@import "../components/search/facet/facetExact/facet-exact";
 @import "../components/search/breadcrumbs/breadcrumbs";
 
 // Overlay menu
@@ -152,10 +221,12 @@
 @import "../components/account/account";
 @import "../components/account/overview/account-overview";
 @import "../components/account/personalInfo/personal-info";
+@import "../components/account/loans/loans-list";
+@import "../components/account/requests/requests";
+@import "../components/account/loans/loan";
 
 // Recommendations
-//@import "../components/search/fullView/recomendation/recommendations";
-@import "../../styles-imports/www/recommendations";
+@import "../components/search/fullView/recomendation/recommendations";
 
 //virtual browse
 @import "../components/search/virtualBrowse/virtual-browse.scss";
@@ -165,6 +236,16 @@
 // Digital collection
 @import "../components/collection/collection-discovery";
 @import "../components/collection/collectionBreadcrumbs/collection-breadcrumbs";
+
+//Collection discovery
+@import "../components/collectionDiscovery/collectionNavigationBreadcrumbs/collectionNavigationBreadcrumbsItem/collection-navigation-breadcrumbs-item";
+@import "../components/collectionDiscovery/collectionGalleryHeader/collection-gallery-header";
+@import "../components/collectionDiscovery/collectionGallery/galleryCollectionsList/gallery-collections-list";
+@import "../components/collectionDiscovery/collectionGallery/galleryItemsList/galleryItem/gallery-item";
+@import "../components/collectionDiscovery/collectionGallery/collection-gallery";
+@import "../components/collectionDiscovery/collectionGallery/collectionDiscoveryViewSwitcher/collection-discovery-view-switcher";
+@import "../components/collectionDiscovery/collectionGallery/galleryItemsList/gallery-items-list";
+@import "../components/collectionDiscovery/collectionSearch/collection-search";
 
 //Browse search
 @import "../components/search/browse/browseSearchBar/browse-search-bar";;
@@ -177,15 +258,58 @@
 //Citation linker
 @import "../components/citationLinker/_citation-linker";
 
+//Databases categorize
+@import "../components/journals/databasesCategorize/databases-categorize";
+@import "../components/journals/databasesCategorize/tree-nav";
+
+//Organization categorize
+@import '../components/journals/orgListCategorize/orgList-categorize';
+
+//More like this
+@import "../components/search/moreLikeThis/more-like-this";
+@import "../components/search/moreLikeThis/moreLikeThisItem/more-like-this-item";
+@import "../components/search/moreLikeThis/moreLikeThisItemInfo/more-like-this-item-info";
+
+//quickAccess
+@import "../components/search/fullView/quickAccess/_quickAccess";
+
+//save to favorites button
+@import "../components/favorites/saveToFavoritesButton/save-to-favorites-button";
+
+//Personalization
+@import "../components/search/personalization/personalizationButton/_personalize-results-button";
+@import "../components/search/personalization/personalizationDialog/_personalization-dialog";
+@import "../components/search/facet/_personalization-sidebar";
+
+//Esploro organization list
+@import "../components/journals/organizationOrFacetToggle/_organization-or-facet-toggle";
+
 //Tags
 @import "../components/tags/tagsList/_tags-list";
 @import "../components/tags/tagsResults/_tags-results";
-@import "../components/tags/tagsResults/toggle-button";
 @import "../components/tags/tagsSearchBar/_tags-search-bar";
 @import "../components/tags/_tags";
 
+//Error Messages
+@import "../components/search/fullView/_sign-in-to-view";
+@import "../components/search/searchResult/errorMessage/_search-error-message";
+
 //alma view it
 @import  "../components/search/fullView/getit/almaViewit/_alma-viewit-items";
+
+// email template
+@import "../components/emailTemplate/emailTemplate.directive";
+
+// resource recommender
+@import "../components/search/resourceRecommender/resource-recommender";
+@import "../components/search/resourceRecommender/resource-recommender-full-view";
+
+//Newspapers
+@import "../components/newspapers/newspapersSearchBar/_newspapers-search-bar";
+@import "../components/newspapers/newspapersSpotlight/_newspapers-spotlight";
+@import "../components/newspapers/_newspapers-home";
+@import "../components/newspapers/searchResultTitle/_search-result-title";
+
 
 // Angular material (md) directives styles
 // =======================================
@@ -210,10 +334,51 @@
 @import "partials/md-menu";
 @import "partials/md-chips";
 @import "partials/md-checkbox";
+@import "partials/md-option";
 @import "partials/md-radio-button";
 @import "partials/md-divider";
 @import "partials/md-virtual-repeat-container";
 @import "partials/md-nav-bar";
+@import "partials/md-switch";
 
 // The following scss is imported via custom-theme.scss instead (keep it commented-out)
-//@import "partials/md-button"; 
+//@import "partials/md-button";
+
+// Fullview permalink
+@import "../components/search/actions/permalinkAction/permalink";
+
+// Export Excel
+@import "../components/search/actions/exportExcelAction/export-excel";
+
+// Tabs and scopes
+@import "../components/search/searchBar/tabsAndScopesSelector/_tabs-and-scopes-selector.scss";
+
+// Requests overview
+@import "../components/account/overview/requestsOverview/_requests-overview";
+
+// Loans overview
+@import "../components/account/overview/loansOverview/_loans-overview.scss";
+
+// Fines overview
+@import "../components/account/overview/finesOverview/_fines-overview.scss";
+
+// Messages and blocks overview
+@import "../components/account/overview/messagesAndBlocksOverview/_messages-and-blocks-overview.scss";
+
+// Facet range
+@import "../components/search/facet/facetRange/_facet-range.scss";
+
+// Location
+@import "../components/search/fullView/getit/opac/locations/location/_location.scss";
+
+// Personal info
+@import "../components/account/personalInfo/_personal-info.scss";
+
+// Alma other members
+@import "../components/search/fullView/getit/almaOtherMembers/_alma-other-members.scss";
+
+// change lang
+@import "../components/infra/lang/change-lang";
+
+// Alma mashup
+@import "../components/search/fullView/getit/almaMashup/almaMashup.scss";

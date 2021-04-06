@@ -179,7 +179,7 @@ md-grid-tile,
 			}
 
 			&:hover, &:focus {
-				@extend .prm-links;
+				@extend .prm-links.prm-hue1;
 				.arrow-icon {
 					opacity: 1;
 					transform: translate3d(10px, 0, 0);

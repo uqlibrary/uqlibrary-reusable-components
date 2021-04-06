@@ -1,4 +1,22 @@
 /* starting loansList */
-prm-loans-list{
+prm-loans {
+  .disabledFavTool {
+    color: $disabled;
+  }
 
+  .action-list-content {
+    top: 3em;
+    height: auto;
+  }
+
+  md-list-item {
+    position: relative;
+    &.md-3-line:before {
+		display: none;
+	}
+  }
+
+  .loans-type {
+    color: $primary-hue1;
+  }
 }

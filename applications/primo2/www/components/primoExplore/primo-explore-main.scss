@@ -3,6 +3,35 @@ prm-explore-main {
     outline: none !important; //remove default focus border
   }
   .header {
+    z-index: 1;
+
+    .transparent-top-bar {
+      &:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #222;
+        opacity: .3;
+      }
+      div{
+        background-color: transparent;
+      }
+      md-fab-toolbar {
+        &.md-is-open {
+          md-fab-trigger {
+            .md-fab-toolbar-background, ._md-fab-toolbar-background {
+              background-color: #222!important;
+
+
+            }
+          }
+
+        }
+      }
+    }
     > prm-spinner {
 
       position: absolute;
@@ -52,3 +81,4 @@ prm-explore-main {
     }
   }
 }
+//

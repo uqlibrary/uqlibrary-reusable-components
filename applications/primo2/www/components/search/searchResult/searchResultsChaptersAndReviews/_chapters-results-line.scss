@@ -1,0 +1,22 @@
+/* starting chaptersResultsLine */
+
+prm-chapters-results-line {
+  [chapters-type] {
+    color: transparentize($dark, .6);
+    flex-shrink: 0;
+    // margin-right: .35em;
+
+    //@include rtl-prop(margin-right, margin-left,.35em, 0);
+
+    md-icon {
+      @include setSize(18px);
+      position: relative;
+    }
+  }
+
+  .neutralized-button {
+    &:hover, &:focus{
+      box-shadow: none;
+    }
+  }
+}

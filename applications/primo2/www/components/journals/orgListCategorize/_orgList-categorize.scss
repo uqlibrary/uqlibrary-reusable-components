@@ -1,0 +1,59 @@
+/* starting databasesCategorize */
+prm-orgList-categorize {
+  prm-tree-nav {
+    display: flex;
+    width: 280px;
+    max-width: 280px;
+  }
+  .sticking-wrapper {
+    width: 100%;
+    padding-left: .4em;
+    .__xs &, .__sm &{
+      padding: 1em;
+    }
+    @extend .prm-background;
+    &.is-sticky {
+      max-height: 100vh;
+      overflow: hidden;
+      overflow-y: auto;
+    }
+  }
+  .orgList-categories.as-a-drawer {
+    position: fixed;
+    top: 0;
+    /*transition: transform .4s ease-in, opacity .3s .3s linear;*/
+    transform: translate3d(-100%, 0, 0);
+    z-index: 11;
+    height: 100vh;
+    opacity: 0;
+    [dir="rtl"] & {
+      transform: translate3d(100%, 0, 0);
+    }
+    &.is-visible {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+      transition: transform .4s ease, opacity .3s ease;
+    }
+    .sticking-wrapper {
+      height: 100vh;
+      overflow-y: auto;
+      position: relative;
+      width: 340px;
+    }
+  }
+  .close-categories-button {
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    [dir="rtl"] & {
+      right: auto;
+      left: 8px;
+    }
+
+  }
+  md-toolbar {
+    z-index: 0;
+  }
+}

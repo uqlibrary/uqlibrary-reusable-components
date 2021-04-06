@@ -1,0 +1,77 @@
+prm-newspapers-search-bar {
+  @extend prm-atoz-search-bar;
+
+  .search-scope {
+      div.center-drop-down{
+      line-height: 3em;
+    }
+    
+    .__xs & {
+      width: 110px;
+    }
+    
+    md-select-value {
+      min-width: 0;
+      > span:first-child {
+        top: -2px;
+        position: relative;
+        min-width: 0;
+      }
+    }
+  }
+  .search-options {
+    font-size: 1rem;
+    md-divider {
+      margin-right: 1em;
+      height: 30px;
+      @extend .prm-background-border;
+      &.ng-enter {
+        opacity: 0;
+        transition: opacity .2s ease;
+        &.ng-enter-active {
+          opacity: 1;
+        }
+      }
+    }
+    md-input-container {
+      &.ng-enter {
+        opacity: 0;
+        transform: scale(.2);
+        transform-origin: -10% 50% ;
+        transition: transform .5s $easeOutExpo, opacity .3s ease;
+        &.ng-enter-active {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+
+    .__xs & {
+      width: 70px;
+    }
+  }
+
+  md-input-container {
+    padding: 0;
+
+    input {
+      .__xs &,
+      .__sm &,
+      .__md & {
+        text-overflow: ellipsis;
+      }
+    }
+
+  }
+
+  //For drop down underline when focus with keyboard
+  .classic-input {
+	  .search-scope, .search-options {
+	    md-input-container{
+	      &:after {
+	        display: block;
+	      }
+	    }
+	  }
+  }
+}

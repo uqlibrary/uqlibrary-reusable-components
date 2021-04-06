@@ -1,0 +1,46 @@
+/* starting featuredResults */
+
+
+
+
+prm-featured-results {
+  z-index: 0;
+
+  /* starting featuredResultItem */
+
+
+
+  .featured-results-link {
+    text-align: left;
+    white-space: normal;
+    left: -.25em;
+    position: relative;
+    box-shadow: none !important;
+    padding-bottom: 18px!important;
+  }
+  .horizontal-content-container {
+    .horizontal-content-control {
+      &.ng-enter {
+        transition: $swift-ease-out;
+        transform: scaleX(0);
+        &.ng-enter-active {
+          transform: scaleX(1)
+        }
+      }
+      &.ng-leave {
+        transition: $swift-ease-in;
+        transform: scaleX(1);
+        &.ng-leave-active {
+          transform: scaleX(0)
+        }
+      }
+      &.left-button {
+        transform-origin: 0 50%
+      }
+      &.right-button {
+        transform-origin: 100% 50%
+      }
+      @extend .prm-background;
+    }
+  }
+}

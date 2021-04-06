@@ -3,20 +3,20 @@
 // variables
 $directions: top right bottom left;
 $sizes: (
-	zero: 0,
-	tiny: .25em,
-  small: .5em,
-  medium: 1em,
-  large: 1.5em
+        zero: 0,
+        tiny: .25em,
+        small: .5em,
+        medium: 1em,
+        large: 1.5em
 );
 
 // mixin (nested @each) - create classes for each size within each direction 
 @mixin helpers-sizes($property) {
-	@each $name, $value in $sizes {
-		&-#{$name} {
-			#{$property}: #{$value};
-		}
-	}
+  @each $name, $value in $sizes {
+    &-#{$name} {
+      #{$property}: #{$value};
+    }
+  }
   @each $direction in $directions { // get each declared direction variable and create a class
     &-#{$direction} {
       @each $name, $value in $sizes { // get each declared size variable and create a class
@@ -30,119 +30,139 @@ $sizes: (
 
 // mixin - create classes for each direction with chosen property
 @mixin helpers-directions($property) { // pass 'margin' or 'padding' to $property
-	@each $direction in $directions {
-		&-#{$property}-#{$direction} {
-			#{$property}-#{$direction}: 0 !important
-		}
-	}
+  @each $direction in $directions {
+    &-#{$property}-#{$direction} {
+      #{$property}-#{$direction}: 0 !important
+    }
+  }
 }
 
 // display
 .display {
-	&-block {
-		display: block;
-		&-xs {
-			.__xs & {
-				display: block;
-			}
-		}
-		&-sm {
-			.__sm & {
-				display: block;
-			}
-		}
-	}
-	&-inline {
-		display: inline;
-	}
+  &-block {
+    display: block;
+
+    &-xs {
+      .__xs & {
+        display: block;
+      }
+    }
+
+    &-sm {
+      .__sm & {
+        display: block;
+      }
+    }
+  }
+
+  &-inline {
+    display: inline;
+  }
 }
+
 .blockify-spans {
-	span {
-		display: inline-block
-	}
+  span {
+    display: inline-block
+  }
 }
 
 // Overflow
 .overflow {
-	&-hidden {
-		overflow: hidden;
-	}
-	&-visible {
-		overflow: visible;
-	}
+  &-hidden {
+    overflow: hidden;
+  }
+
+  &-visible {
+    overflow: visible;
+  }
+
+  &-x-hidden {
+    overflow-x: hidden;
+  }
 }
 
 // Visibility
 .zero-opacity {
-	opacity: 0 !important;
+  opacity: 0 !important;
 }
 
 // Shape
 .zero-radius {
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 //  Position
 .relative-position {
-	position: relative;
+  position: relative;
 }
-.fixed-position {		
 
-	&.fixed-center {
-		position: fixed;
-		top: 0;
-	    bottom: 0;
-	    left: 0;
-	    right: 0;
-	    margin: auto;
-	}
-	&.fixed-bottom {
-		position: fixed;
-		bottom: 0;
-	    left: 0;
-	    right: 0;
-	    margin: auto;
-	}
-	&.fixed-top {
-		position: fixed;
-		top: 0;
-		left: 0;
-	    right: 0;
-	    margin: auto;
-	}
-	&.fixed-left {
-		position: fixed;
-		top: 0;
-	    bottom: 0;
-	    left: 0;
-	    margin: auto;
-	}
-	&.fixed-right {
-		position: fixed;
-		top: 0;
-	    bottom: 0;
-	    right: 0;
-	    margin: auto;
-	}	
+.absolute-position {
+  position: absolute;
+}
+
+.fixed-position {
+
+  &.fixed-center {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  &.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  &.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  &.fixed-left {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+
+  &.fixed-right {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 
 // z-index
 .topmost-index {
-	z-index: 1000;
+  z-index: 1000;
 }
 
 /* remove element margins & paddings */
-.zero {	
-	&-padding { // no padding
-		padding: 0 !important
-		
-	}
-	@include helpers-directions(padding);
+.zero {
+  &-padding { // no padding
+    padding: 0 !important
 
-	&-margin { // no margins
-		margin: 0 !important
-	}
-	@include helpers-directions(margin);
+  }
+
+  @include helpers-directions(padding);
+
+  &-margin { // no margins
+    margin: 0 !important
+  }
+
+  @include helpers-directions(margin);
 }
 
 /* // margins // */
@@ -153,28 +173,191 @@ $sizes: (
 /* // paddings // */
 /* uniform padding */
 .padded-container {
-	padding: 1.5em;
-	/* responsive */
-	.__xs &,
-	.__sm & {
-		padding: 1em;
-	}
+  padding: 1.5em;
+  /* responsive */
+  .__xs &,
+  .__sm & {
+    padding: 1em;
+  }
 
-	&-large {
-		padding: 1.5em;
-	}
-	&-medium {
-		padding: 1em;
-	}
-	&-small {
-		padding: .5em;
-	}
+  &-large {
+    padding: 1.5em;
+  }
+
+  &-medium {
+    padding: 1em;
+  }
+
+  &-small {
+    padding: .5em;
+  }
 }
+
 .padding {
   @include helpers-sizes(padding)
 }
 
 /* // width-auto // */
 .width-auto {
-	width: auto!important;
+  width: auto !important;
 }
+
+/* // max-width // */
+.max-width-100 {
+  max-width: 100% !important;
+}
+
+/* // max-width // */
+.default-form {
+  max-width: 550px;
+}
+
+/* // display-none // */
+.display-none {
+  display: none;
+}
+
+/* // larg-icon // */
+.large-icon {
+  md-icon {
+    height: 34px;
+    width: 34px;
+  }
+}
+
+/* // margin-left-small // */
+.margin-left-small {
+  margin-left: 10px;
+}
+
+/* // width-100% // */
+.width-100 {
+  width: 100%;
+}
+
+/* // display-none-print // */
+.display-none-print {
+  @media print {
+    display: none;
+  }
+}
+
+/* // layout-column-print // */
+.layout-column-print {
+  @media print {
+    flex-direction: column;
+  }
+}
+
+/* // margin-right-left-medium // */
+.margin-left-right-medium {
+  margin-right: 1.5em;
+
+  [dir="rtl"] & {
+    margin-right: auto;
+    margin-left: 1.5em;
+  }
+}
+
+/* // padding-left-right-small // */
+.padding-left-right-small {
+  padding-left: 1em;
+
+  [dir="rtl"] & {
+    padding-left: auto;
+    padding-right: 1em;
+  }
+}
+
+/* // padding-left-medium-multi-language // */
+.padding-left-medium-multi-language {
+  padding-left: 1em;
+
+  [dir="rtl"] & {
+    padding-left: auto;
+    padding-right: 1em;
+  }
+}
+
+/* // margin-right-small-multi-language // */
+.margin-right-small-multi-language {
+  @extend .margin-right-small;
+
+  [dir="rtl"] & {
+    margin-right: 0;
+    margin-left: .5em;
+  }
+}
+
+/* // align-center-row // */
+.align-center-row {
+  padding: 1em 0;
+}
+
+/* // To fix UI issues cross browsing (Unnecessary scrolling, text cut off with icon, etc) // */
+._md-active, .md-active {
+  md-select-menu {
+    md-option {
+      span {
+        min-width: 155px;
+      }
+
+      .md-text,
+      ._md-text {
+        padding-right: 1em;
+
+        [dir="rtl"] & {
+          padding-right: auto;
+          padding-left: 1em;
+        }
+      }
+
+    }
+    .md-option-with-icon {
+      prm-icon {
+        margin-left: 1em;
+
+        [dir="rtl"] & {
+          margin-left: auto;
+          margin-right: 1em;
+        }
+      }
+    }
+  }
+}
+
+// Duplicate underlines on dropdown ellements
+md-select:focus .md-select-value, md-select:not([disabled]):focus .md-select-value {
+  border-color: transparent!important;
+}
+
+/* // Set max button width to 144px on mobile// */
+.mobile-button-with-text-fixed-width {
+  max-width: 144px;
+  text-overflow: ellipsis;
+}
+
+/* // Set max button width to 144px on iPad// */
+.iPad-button-with-text-fixed-width {
+  max-width: 350px;
+  text-overflow: ellipsis;
+}
+
+/* // flex-basis // */
+.flex-basis-auto {
+  flex-basis: auto;
+}
+
+/* // Set dialog content to be centered or to be at the end // */
+.centerize-content {
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}
+	
+.end-content {
+	align-items: center;
+	align-content: center;
+	justify-content: flex-end;
+}
+

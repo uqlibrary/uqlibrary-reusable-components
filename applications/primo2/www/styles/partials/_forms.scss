@@ -1,6 +1,6 @@
 .service-form {
 	position: relative;
-	
+
 	md-input-container,
 	.md-input-container-dummy {
 		md-select:not([disabled]) md-select-value,
@@ -51,13 +51,13 @@
 	@extend .prm-background-color.prm-hue4; //splitted the color to support from box-shadow to allow color customization
 	flex-grow: 1;
 	*{//splitted the color to support from box-shadow to allow color customization
-		color: initial;
+		color: $dark;
 	}
-	
+
 	button.button-confirm prm-icon {
 		+ span, & svg path{
 			@extend .md-button.button-confirm;
-        
+
 		}
 	}
 }
@@ -99,12 +99,27 @@
 		visibility: hidden;
 	}
 
-}	
+}
 
 .form-shaded-content {
 	background-color: #f8f8f8;
     border-color: #eee;
 }
+
+.checkboxes-tree {
+	padding-left: 1em;
+	.checkbox-tree-branch {
+		padding-left: 2em;
+	}
+	> .checkbox-tree-branch,
+	> * > .checkbox-tree-branch {
+		padding-left: 0;
+	}
+	md-checkbox {
+		margin-bottom: .25em;
+	}
+}
+
 
 .request-form {
 	md-input-container {
@@ -114,11 +129,11 @@
 		label:not(.md-no-float):not(._md-container-ignore),
 		md-select .md-select-value.md-select-placeholder,
 		md-select ._md-select-value._md-select-placeholder {
-			opacity: .7;
+			//opacity: .7;
 			@extend .prm-primary-color;
 		}
 
-		&.md-input-focused, 
+		&.md-input-focused,
 		&.md-input-has-placeholder,
 		&.md-input-has-value {
 			label:not(.md-no-float) {
