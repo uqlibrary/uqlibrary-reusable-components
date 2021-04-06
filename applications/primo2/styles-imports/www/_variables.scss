@@ -39,6 +39,7 @@ $frbr: #ed9100;
 $pink: rgb(255, 171, 200);
 
 $dark: #333;
+$dark-hue1: darken($dark, 30%);
 $darker: darken(saturate(adjust-hue($dark, 0.0000), 0.0000), 6.6667);
 
 // lighter background color
@@ -70,25 +71,32 @@ $primary-hue1: darken($primary, 3%);
 $primary-hue2: darken($primary, 5%);
 $primary-hue3: darken($primary-hue2, 2%);
 $primary-hue4: darken($primary, 10%);
+$primary-hue5: darker($primary, -5%);
+$primary-hue6: transparentize($primary, .1);
 
 $secondary: $primary;
 $secondary-hue1: $primary;
 $secondary-hue2: $primary;
-
+$secondary-hue3:darken(saturate(adjust-hue($secondary, -12), 30.28), 47.65); // "show more" buttons in facets
+$secondary-hue4: darken(saturate(adjust-hue($secondary, -7), 64.57), 13.92);
+$secondary-hue5: darken($secondary, 37%);
+$secondary-hue6: darken(saturate(adjust-hue($secondary, -7), 64.57), 2);
 
 $backgroundColor: white;
 $backgroundActual: #E9E9E9;
-
 $textColor: #000;
 
 $positive: #2377CB;
+$positive-hue1: darken($positive, 2%);
 
 $negative: gray;
+$negative-hue1: darken(saturate($negative, 5%), 10%);
 
 $background: darken(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 8.6275); //redundancy of almostwhite
 
 $background-hue1: darken($backgroundColor, 3%); // darker 1 (i.e: background for locations filter bar)
-$background-hue2: lighten(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 3.9216); // lighter 1 (i.e: background for full view dialog)
+// $background-hue2: lighten(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 3.9216); // lighter 1 (i.e: background for full view dialog)
+$background-hue2: lighten($background, 4%);
 $background-hue3: lighten(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 5.8824); // lighter 2 (i.e: background for actions forms)
 
 $background-hue4: lighten($background, 3%);
@@ -101,19 +109,10 @@ $background-hue10: darken($background, 12%);
 $background-hue11: darken($background, 2%);
 $background-hue12: darken($background, 7%);
 $background-hue13: lighten($background, 2%);
-
-
-
-
-
-
-
-
-
+$background-hue14: darken($background, 40%);
+$background-hue15: darken($background, 54%);
 
 $white: $backgroundColor;
-
-
 $almostWhite: lighten(saturate(adjust-hue($background, 60.0000), 20.0000), 0.7843);
 $bg: $background;
 $nearlyWhite: darken(saturate(adjust-hue($backgroundColor, 0.0000), 0.0000), 5.4902); // stronger
@@ -123,45 +122,45 @@ $actionsBackground: lighten($background, 6%);
 $autoCompleteBg: $backgroundColor;
 $sectionHighlight: darken(desaturate($background, 0), 5%);
 $snippets:#999;
+$lightenGrey: #6d6d6d;
 
-
-
-$links: #2377CB;
+$links: $primary;
 $links-background-hue1: transparent;
-
-
-
 $links-hue-1: darken(saturate($links, 5%), 5%);
+$links-hue-3: darken($links, 10%);
+$links-hue-4: darken(saturate($links, 5%), 2%);
 $links-hue-5: darken(saturate($links, 20%), 20%);
 $linksHover: darken(saturate($links, 20%), 20%);
 $linksHover-hue-2: transparentize($linksHover, .5);
-$linkAlt: $links;
+$linkAlt: $secondary-hue1;
 $md-primary: $links;
 
+$linkTitle: $links;
 
 $collectionDisLinks: #0075b0;
 
 $red: tomato;
+$red-hue1: darken($red, 20%);
 // warning
 $warning: $red;
 $warn: $red;
+$warn-hue1: darken($warn, 22%);
 $warningBorder: inset 0 0 0 3px $warning;
 
 
 $text: $dark;
-$text-hue1: lighten($text, 20%);
+$text-hue1: lighten($text, 30%);
+$text-hue2: $text;
+$text-hue3: darken($text, 10%);
+$text-hue4: lighten($text, 10%);
 
 $notice: #e08303;
 
 $highlight: $highlightYellow;
 $highlight-hue1: #FFFCC4;
 
-
-
 $modalBackdrop: rgb(68,68,68);
-$linkTitle: $links;
 $moreLink: $links;
-
 
 $selectedItem: saturate(lighten($midGrey, 53%), 40%);
 
@@ -185,6 +184,22 @@ $briefButtonHeight: 38px;
 $citation: tomato;
 $citationColor: $citation;
 $citation-hue1: darken($citation, 40%);
+$citation-hue2: darken($citation, 20%);
+$citation-hue3: darken($citation, 22%);
+
+// warning
+$warning: tomato;
+$warning-hue1: darken($warning, 20%);
+$warning-hue2: darken($warning, 22%);
+
+// personalization
+$personalization: #7d1538;
+
+// Peer Reviewed
+$peer-reviewed-color :#8359d4;
+
+// Open Access
+$open-access-color: #f68212;
 
 // Angular Material
 //-----------------
