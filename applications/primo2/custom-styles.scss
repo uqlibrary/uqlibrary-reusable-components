@@ -504,6 +504,10 @@ prm-tags-list md-chips md-chip .md-chip-content:hover strong {
   background-color: transparent;
 }
 
+.recommendations-title {
+  color: $links;
+}
+
 prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:not([disabled]) {
   &._md-focused,
   &.hovered,
