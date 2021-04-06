@@ -651,6 +651,38 @@ prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder
   margin-bottom: -3px;
 }
 
+// shift the uq site title in the web component up a little
+uq-site-header::part(title) {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+// make the askus button look more like the native primo buttons
+askus-button::part(label) {
+  display: none;
+}
+
+askus-button::part(button) {
+  height: 42px;
+  width: 42px;
+  background-color: rgba(51,51,51,.12);
+  margin-left: 4px;
+}
+askus-button::part(button):hover, askus-button::part(button):active, askus-button::part(button):focus {
+  background-color: #fff;
+  opacity: initial;
+}
+
+// after we turned off the grey in the background in _custom-themes, there were a couple that needed the grey put back
+prm-favorites-tool-bar,
+prm-back-to-search-results-button {
+  md-toolbar.default-toolbar,
+  md-toolbar.default-toolbar:not(.md-menu-toolbar),
+  md-toolbar.md-primoExplore-theme.default-toolbar {
+    background-color: #dcdcdc;
+  }
+}
+
 // improve the colour contrast on some obscure text, by request
 span.availability-status.no_fulltext,
 span.availability-status.unavailable_in_institution,
