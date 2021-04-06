@@ -3,23 +3,25 @@
 
   var app = angular.module('viewCustom', ['angularLoad']);
 
-  app.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
-    //record GA page view event to new primo tracker GA ID
-    $rootScope.$on('$locationChangeSuccess', function (event) {
-      //temporarily create a tracker specifically to new Primo
-      if ($window.ga) {
-        $window.ga(function () {
-          $window.ga('create', 'UA-4365437-14', 'search.library.uq.edu.au', 'NewPrimoTracker');
-        });
-        $window.ga('NewPrimoTracker.send', 'pageview', { location: $location.url() });
-      }
-    });
-
-  }]);
-
   app.component('prmTopBarBefore', {
-    template: '<div layout="row"><uqlibrary-alerts></uqlibrary-alerts></div>' +
-      '<div layout="row"><uq-minimal-header show-login-button="false"></uq-minimal-header></div>'
+    // we found it was more robust to insert the askus button in the different page location via primo angular, see below,
+    // so completely skip inserting elements "by attribute"
+    template: '<uq-gtm gtm="GTM-W4KK37"></uq-gtm>' +
+        '<uq-header hideLibraryMenuItem="true" searchLabel="library.uq.edu.au" searchURL="http://library.uq.edu.au" skipnavid="searchBar"></uq-header>' +
+        '<uq-site-header hideMyLibrary hideAskUs></uq-site-header>'
+  });
+
+  app.component('prmTopbarAfter', {
+    template: '<alert-list></alert-list>'
+  });
+
+  app.component('prmSearchBookmarkFilterAfter', {
+    controller: function($scope){
+      // move the primo-login-bar up so it overlaps uq-site-header and is visually one bar
+      const primoLoginBar = document.querySelector('prm-topbar>div.top-nav-bar.layout-row') || false;
+      !!primoLoginBar && (primoLoginBar.style.marginTop = '-61px');
+    },
+    template: '<askus-button nopaneopacity></askus-button>'
   });
 
   // based on https://knowledge.exlibrisgroup.com/Primo/Community_Knowledge/How_to_create_a_%E2%80%98Report_a_Problem%E2%80%99_button_below_the_ViewIt_iframe
@@ -123,22 +125,23 @@
           script = document.createElement('script');
           script.setAttribute('src', url);
           script.setAttribute('type', 'text/javascript');
+          script.setAttribute('defer', '');
           head.appendChild(script);
         }
       }
     }
   }
 
-  function insertLink(link) {
-    var linkTag = document.querySelector("link[href*='" + link.href + "']");
+  function insertStylesheet(href) {
+    var linkTag = document.querySelector("link[href*='" + href + "']");
     if (!linkTag) {
       var heads = document.getElementsByTagName("head");
       if (heads && heads.length) {
         var head = heads[0];
         if (head) {
           linkTag = document.createElement('link');
-          linkTag.setAttribute('href', link.href);
-          linkTag.setAttribute('rel', link.rel);
+          linkTag.setAttribute('href', href);
+          linkTag.setAttribute('rel', 'stylesheet');
           head.appendChild(linkTag);
         }
       }
@@ -146,32 +149,22 @@
   }
 
   // this script should only be called on views that have UQ header showing
-  var branchName = '/'; // default. Use for prod
+  var folder = '/'; // default. Use for prod.
   if (window.location.hostname === 'search.library.uq.edu.au') {
     if (/vid=61UQ_DEV/.test(window.location.href)) {
-      branchName = '/primo-prod-dev/';
+      folder = '-development/primo-prod-dev/';
     }
   } else {
     if (/vid=61UQ_DEV/.test(window.location.href)) {
-      branchName = '/primo-sand-box-dev/';
+      folder = '-development/primo-sandbox-dev/';
     } else if (/vid=61UQ/.test(window.location.href)) {
-      branchName = '/primo-sand-box/';
+      folder = '-development/primo-sandbox/';
     }
   }
 
-  var links = [
-    { rel: 'import', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/elements.vulcanized.html' },
-    { rel: 'stylesheet', href: '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/custom-styles.css' }
-  ];
-  insertLink(links[0]);
-  insertLink(links[1]);
-
-  var scripts = [
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/webcomponentsjs/webcomponents-lite.min.js',
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/resources/preloader.js',
-    '//assets.library.uq.edu.au' + branchName + 'reusable-components/primo2/load.js',
-  ];
-  insertScript(scripts[0]);
-  insertScript(scripts[1]);
-  insertScript(scripts[2]);
+  // this script should only be called on views that have UQ header showing
+  insertScript('https://assets.library.uq.edu.au/reusable-webcomponents' + folder + 'uq-lib-reusable.min.js');
+  // we dont yet need this script, but if we do it should be in this location
+  // insertScript('https://assets.library.uq.edu.au/reusable-webcomponents' + folder + 'applications/primo/load.js');
+  insertStylesheet('https://assets.library.uq.edu.au/reusable-webcomponents' + folder + 'applications/primo/custom-styles.css');
 })();
