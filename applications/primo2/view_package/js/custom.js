@@ -167,4 +167,7 @@
   // we dont yet need this script, but if we do it should be in this location
   // insertScript('https://assets.library.uq.edu.au/reusable-webcomponents' + folder + 'applications/primo/load.js');
   insertStylesheet('https://assets.library.uq.edu.au/reusable-webcomponents' + folder + 'applications/primo/custom-styles.css');
+  insertStylesheet('https://static.uq.net.au/v6/fonts/Roboto/roboto.css');
+  insertStylesheet('https://static.uq.net.au/v9/fonts/Merriweather/merriweather.css');
+  insertStylesheet('https://static.uq.net.au/v13/fonts/Montserrat/montserrat.css');
 })();
