@@ -139,6 +139,22 @@ prm-search-bar {
   .advanced-search-tabs {
     background: $white;
   }
+  .simple-search-wrapper {
+    .search-actions {
+      .md-button {
+        &:last-child {
+          padding: 0 1em;
+        }
+        &.button-link:not([disabled]) {
+          &:hover,
+          &:focus {
+            color: #0a447e;
+            background-color: $highlightBlue;
+          }
+        }
+      }
+    }
+  }
 }
 
 // Arrows shown in each row of advanced search query under form
@@ -452,7 +468,7 @@ button.md-button.link-alt-color {
     &:hover,
     &:focus {
       color: #0a447e;
-      background-color: rgba(35,119,203,.1);
+      background-color: $highlightBlue;
     }
   }
 }

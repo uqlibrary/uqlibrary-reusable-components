@@ -44,7 +44,7 @@ $darker: darken(saturate(adjust-hue($dark, 0.0000), 0.0000), 6.6667);
 
 // lighter background color
 
-
+$highlightBlue: rgba(35,119,203,.1);
 $highlightYellow: #FFFCC4; //stronger
 $highlight: darken(desaturate(adjust-hue($highlightYellow, -4.0920), 16.0000), 8.0392);
 $highlightText: #FFE564;
