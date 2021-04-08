@@ -156,8 +156,8 @@ $text-hue4: lighten($text, 10%);
 
 $notice: #e08303;
 
-$highlight: $highlightYellow;
-$highlight-hue1: #FFFCC4;
+$highlight: $background-hue7;
+$highlight-hue1: $background-hue7;
 
 $modalBackdrop: rgb(68,68,68);
 $moreLink: $links;
