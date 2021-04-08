@@ -135,6 +135,12 @@ div.full-view-section#tags {
   display: none;
 }
 
+prm-search-bar {
+  .advanced-search-tabs {
+    background: $white;
+  }
+}
+
 //Browse interface - made dropdown list grey BG instead of yellow
 prm-browse-search-bar .search-scope {
   background-color: #F2F2F2 !important;
@@ -410,10 +416,20 @@ div > getit-link-service {
     margin-top: -9px;
   }
 }
-button.md-button.button-as-link-mobile.link-alt-color {
-  // filter button doesnt have the same classes applied?!?
-  color: $accent-color;
+
+button.md-button.link-alt-color {
+  &.button-as-link-mobile {
+    color: $accent-color;
+  }
+  &.button-as-link:not([disabled]) {
+    &:hover,
+    &:focus {
+      color: #0a447e;
+      background-color: rgba(35,119,203,.1);
+    }
+  }
 }
+
 @media (max-width: 600px) {
   // align the pin button
   .md-button.button-as-link {

@@ -25,7 +25,7 @@ $paddingSmall: .5em;
 $paddingTiny: .25em;
 
 // colors
-
+$uqBlue: #2377CB;
 $muteOrange: red;
 
 
@@ -34,7 +34,7 @@ $almostBlack: #777;
 
 
 
-$titles: #2377CB;
+$titles: $uqBlue;
 $frbr: #ed9100;
 $pink: rgb(255, 171, 200);
 
@@ -47,7 +47,7 @@ $darker: darken(saturate(adjust-hue($dark, 0.0000), 0.0000), 6.6667);
 
 $highlightYellow: #FFFCC4; //stronger
 $highlight: darken(desaturate(adjust-hue($highlightYellow, -4.0920), 16.0000), 8.0392);
-$highlightText: #ffe564;
+$highlightText: #FFE564;
 $success: #3EA03E;
 //$green: #3EA03E; // redundancy of 'success'
 $green: #198A19;
@@ -66,7 +66,7 @@ $alert-hue1: darken(desaturate(adjust-hue($alert, 0.3074), 15.3043), 2.9412);
 $disabled: #aaa;
 $courseColor: #55909B;
 
-$primary: #2377CB;
+$primary: $uqBlue;
 $primary-hue1: darken($primary, 3%);
 $primary-hue2: darken($primary, 5%);
 $primary-hue3: darken($primary-hue2, 2%);
@@ -74,10 +74,10 @@ $primary-hue4: darken($primary, 10%);
 $primary-hue5: darker($primary, -5%);
 $primary-hue6: transparentize($primary, .1);
 
-$secondary: $primary;
-$secondary-hue1: $primary;
-$secondary-hue2: $primary;
-$secondary-hue3:darken(saturate(adjust-hue($secondary, -12), 30.28), 47.65); // "show more" buttons in facets
+$secondary: $uqBlue;
+$secondary-hue1: $uqBlue;
+$secondary-hue2: $uqBlue;
+$secondary-hue3: darken(saturate(adjust-hue($secondary, -12), 30.28), 47.65); // "show more" buttons in facets
 $secondary-hue4: darken(saturate(adjust-hue($secondary, -7), 64.57), 13.92);
 $secondary-hue5: darken($secondary, 37%);
 $secondary-hue6: darken(saturate(adjust-hue($secondary, -7), 64.57), 2);
@@ -86,7 +86,7 @@ $backgroundColor: white;
 $backgroundActual: #E9E9E9;
 $textColor: #000;
 
-$positive: #2377CB;
+$positive: $uqBlue;
 $positive-hue1: darken($positive, 2%);
 
 $negative: gray;
@@ -124,7 +124,7 @@ $sectionHighlight: darken(desaturate($background, 0), 5%);
 $snippets:#999;
 $lightenGrey: #6d6d6d;
 
-$links: $primary;
+$links: $uqBlue;
 $links-background-hue1: transparent;
 $links-hue-1: darken(saturate($links, 5%), 5%);
 $links-hue-3: darken($links, 10%);
