@@ -1,15 +1,23 @@
 @import "../../../styles-imports/www/variables";
 
+a,
 a#displayHolding,
-ul#PAGING input // warehouse pagination buttons
+.serialSelection ul.holdingInfo,
+.serialSelection ul.holdingInfo li,
+ul#PAGING input, // warehouse pagination buttons
+.iframeHeader input[type="submit"]
 {
-  color: $primary;
+  color: $uqBlue;
+}
+
+.serialSelection ul.holdingInfo li span {
+  color: $dark;
 }
 
 // stackmap button styling
 .holdingsList a.locate,
 .holdingInfo a.locate {
-  background-color: $primary;
+  background-color: $uqBlue;
   color: $white;
   font-size: 14px!important;
   font-weight: $light;
@@ -30,17 +38,13 @@ li#formActionsContainer input[type="submit"]#exlidRequestTabFormSubmit, // Get i
 #formActionsContainer input[type="submit"]#submitPurchaseRequest // Get it -> request a purchase -> Place a Request button
 {
   color: $white;
-  background-color: $primary;
+  background-color: $uqBlue;
   border: 1px solid $white;
   &:hover {
-    color:  $primary !important;
+    color:  $uqBlue !important;
     background-color: $white !important;
-    border-color: $primary;
+    border-color: $uqBlue;
   }
-}
-
-div.serialSelection * {
-  color: #333;
 }
 
 table {
@@ -49,7 +53,7 @@ table {
       td {
         &:first-child {
           .itemsList & {
-            color: $primary;
+            color: $uqBlue;
             // Set colour of unlinked barcodes
             span.itemBarcode {
               color: $dark;

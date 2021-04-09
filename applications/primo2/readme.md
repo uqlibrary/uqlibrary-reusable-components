@@ -113,7 +113,7 @@ There are 2 gulp tasks for this process:
 
 The upload is done in Alma back office. Paths are:
 
-* [Sandbox Alma Back Office](https://uq-psb.alma.exlibrisgroup.com/mng/action/home.do) or [direct link to config](https://uq-psb.alma.exlibrisgroup.com/infra/action/pageAction.do?xmlFileName=configuration_setup.configuration_mngUXP.xml&almaConfiguration=true&pageViewMode=Edit)
+* [Sandbox Alma Back Office](https://uq-psb.alma.exlibrisgroup.com/mng/action/home.do)
 * [Prod Alma Back Office](https://uq.alma.exlibrisgroup.com/SAML)
 
 (if you cant access Alma Back Office Config, ask DAC for access, or she may want to do the upload herself)
