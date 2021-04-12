@@ -167,6 +167,13 @@ prm-search-bar {
   }
 }
 
+prm-search-bookmark-filter {
+  // QR Code and Favourites button in top nav
+  .md-icon-button.button-over-dark {
+    color: $textColor !important;
+  }
+}
+
 // Arrows shown next to headings in favourites
 prm-saved-queries-list .string-block prm-icon {
   color: $uqBlue;
@@ -263,16 +270,30 @@ div.md-dialog-container .custom-links-container.layout-wrap.layout-align-sm-star
 prm-facet prm-breadcrumbs div.md-chip-content strong {
   padding-left: 22px;
 }
-prm-breadcrumbs .md-chips .md-chip-content .persistence-button {
-  opacity: 1;
-  transform: none;
-  padding-left: -2px;
+prm-facet {
+  .personalization-section {
+    button.md-button.button-as-link.link-alt-color {
+      color: $uqBlue;
+    }
+  }
 }
-prm-breadcrumbs .md-chip.persistent-facet strong {
-  padding-left: 0;
-}
-prm-breadcrumbs .md-chip.persistent-facet .md-chip-content .persistence-button {
-  left: -1px;
+prm-breadcrumbs {
+  .md-chips .md-chip-content .persistence-button {
+    opacity: 1;
+    transform: none;
+    padding-left: -2px;
+  }
+  .md-chip.persistent-facet {
+    strong {
+      padding-left: 0;
+    }
+    .md-chip-content .persistence-button {
+      left: -1px;
+    }
+  }
+  .md-button.link-alt-color.button-as-link {
+    color: $uqBlue;
+  }
 }
 
 // make the username and menu buttons (top right) black text
@@ -349,10 +370,17 @@ strong.facet-title.layout-align-end-stretch.layout-row {
 }
 
 md-checkbox {
-  &:hover, &:focus {
+  &:hover, 
+  &:focus {
     ._md-icon,
     .md-icon {
       box-shadow: 0px 0px 0 0.6px #000;
+    }
+  }
+  &.md-checked {
+    .md-icon,
+    ._md-icon {
+      background-color: $uqBlue;
     }
   }
 }
@@ -543,6 +571,25 @@ prm-search-result-list .pages-separated-with-gaps .results-title:not(.results-ti
   top: -7px !important;
 }
 
+prm-search-result-tool-bar {
+  .md-toolbar-tools {
+    prm-add-query-to-saved-searches,
+    prm-personalize-results-button {
+      .md-button.link-alt-color.button-as-link {
+        color: $uqBlue;
+      }
+    }
+  }
+}
+
+.result-item-actions {
+  prm-save-to-favorites-button {
+    .pin-button {
+      color: $primary-hue2;
+    }
+  }
+}
+
 .md-button.arrow-link-button .button-content:focus,
 .md-button.arrow-link-button .button-content:hover,
 .md-button.arrow-link-button .hover.button-content,
@@ -575,6 +622,15 @@ prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:no
   &:hover {
     color: #000;
     background-color: rgba(51,51,51,.1);
+  }
+}
+
+prm-action-list, 
+.saved-query-list {
+  & > md-nav-bar {
+    .md-nav-item {
+      width: 85px;
+    }
   }
 }
 
@@ -709,4 +765,13 @@ span.availability-status.no_fulltext,
 span.availability-status.unavailable_in_institution,
 span.availability-status.restricted {
   color: #555555;
+}
+
+prm-full-view {
+  #full-view-container {
+    &,
+    & > .full-view-inner-container {
+      background: $backgroundColor;
+    }
+  }
 }
