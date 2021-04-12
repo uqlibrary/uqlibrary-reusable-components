@@ -664,10 +664,15 @@ prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder
   margin-bottom: -3px;
 }
 
-// shift the uq site title in the web component up a little
-uq-site-header::part(title) {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+uq-site-header {
+  &::part(root) {
+    background-color: $backgroundActual;
+  }
+  &::part(title) {
+    // shift the uq site title in the web component up a little
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 }
 
 // make the askus button look more like the native primo buttons
