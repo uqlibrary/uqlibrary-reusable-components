@@ -379,7 +379,7 @@ md-checkbox {
 // tweak the styling of the primo database search
 .search-scope.journal-search-tile.layout-align-center-start.layout-column {
   background-color: $theme-color;
-  color: white;
+  color: $white;
   line-height: 1.3;
   padding-left: 8px;
   padding-right: 0;
@@ -425,13 +425,13 @@ div > getit-link-service {
 }
 .help-button:not([style-scope]) {
   background-color: $theme-color;
-  color: #FFF;
+  color: $white;
   transition: none;
 }
 .help-button:not([style-scope]):hover,
 .help-button:not([style-scope]):hover a,
 .help-button:not([style-scope]):hover a:hover {
-  background-color: #FFF;
+  background-color: $white;
   color: $theme-color !important;
   font-weight: bold;
   box-shadow: none; // removes underline on the link
@@ -443,7 +443,7 @@ div > getit-link-service {
 }
 .help-button:not([style-scope]) a {
   background-color: inherit;
-  color: #fff !important;
+  color: $white !important;
   text-decoration: none;
 }
 .help-button:not([style-scope]) a:hover {
@@ -487,7 +487,7 @@ prm-breadcrumbs .md-chip.persistent-facet .md-chip-content strong {
 
 // uqblue (#2377CB) isn't accessible on the primo grey background, so slightly different colour is needed
 .language-characters a { // dbsearch alpha-nav
-  color: #1E66AE!important;
+  color: #1E66AE !important;
 }
 
 // dbsearch sidebar
@@ -495,7 +495,7 @@ prm-tree-nav md-list md-list-item .md-button.branch-name {
   color: #1E66AE;
 }
 prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected {
-  color: #333!important;
+  color: #333 !important;
   &:hover {
     background-color: rgba(51,51,51,.1) !important;
   }
@@ -508,7 +508,7 @@ prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected:hover {
 prm-facet-range prm-icon md-icon.md-primoExplore-theme,
 prm-facet-exact button:not(.button-exclude) prm-icon md-icon.md-primoExplore-theme {
   // little arrow in facet area but NOT the 'exclude filter' checked box (appears on mouseover)
-  color: #1E66AE!important;
+  color: #1E66AE !important;
 }
 
 .multiselect-facet-group .md-chip .md-chip-content md-checkbox {
@@ -595,7 +595,7 @@ md-toast .md-toast-content .md-button {
       &.md-focused,
       &:focus,
       &:hover {
-        color: #fff;
+        color: $white;
         background-color: #5F5F5F;
       }
     }
@@ -630,7 +630,7 @@ md-toast .md-button.settings-button:not([disabled]) {
       &.md-focused,
       &:focus,
       &:hover {
-        color: #fff;
+        color: $white;
         background-color: $accent-color
       }
     }
@@ -648,10 +648,10 @@ prm-citation-linker .request-form md-input-container label:not(.md-no-float):not
 
 // fix submit button on purchase request form
 prm-citation-linker .md-button.button-large.button-with-icon {
-  border: 1px solid #ffffff;
+  border: 1px solid $white;
   &:hover {
     color: $accent-color !important;
-    background-color: white !important;
+    background-color: $white !important;
     border-color: $accent-color;
   }
 }
@@ -675,20 +675,23 @@ uq-site-header {
   }
 }
 
-// make the askus button look more like the native primo buttons
-askus-button::part(label) {
-  display: none;
-}
-
-askus-button::part(button) {
-  height: 42px;
-  width: 42px;
-  background-color: rgba(51,51,51,.12);
-  margin-left: 4px;
-}
-askus-button::part(button):hover, askus-button::part(button):active, askus-button::part(button):focus {
-  background-color: #fff;
-  opacity: initial;
+askus-button {
+  &::part(button) {
+    height: 42px;
+    width: 42px;
+    background-color: rgba(51,51,51,.12);
+    margin-left: 4px;
+    &:hover,
+    &:active
+    &:focus {
+      background-color: $white;
+      opacity: initial;
+    }
+  }
+  // make the askus button look more like the native primo buttons
+  &::part(label) {
+    display: none;
+  }
 }
 
 // after we turned off the grey in the background in _custom-themes, there were a couple that needed the grey put back

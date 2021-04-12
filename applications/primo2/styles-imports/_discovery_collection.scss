@@ -3,7 +3,7 @@
 prm-collection-navigation-breadcrumbs-item a.md-primoExplore-theme {
   &:focus,
   &:hover {
-    color:  rgba(255, 255, 255, 100)!important;
+    color: rgba(255, 255, 255, 100) !important;
     background-color: $accent-color;
   }
 }
@@ -13,21 +13,21 @@ prm-collection-gallery-header {
     color: $accent-color !important;
     background-color: rgba(255, 255, 255, 100);
     opacity: 0.8;
-    margin-left: 10px!important;
-    margin-right: 10px!important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
   }
 
   // the pin button should be noticeable
   prm-save-to-favorites-button button.md-icon-button {
-    background-color: white!important;
+    background-color: $white !important;
   }
   .result-item-actions prm-save-to-favorites-button:not([disabled]) {
     &.pin-button.pinned,
     &.unpin-button.unpinned {
       &:focus,
       &:hover {
-        color: white!important;
-        background-color: $accent-color!important;
+        color: $white !important;
+        background-color: $accent-color !important;
       }
     }
   }
@@ -36,7 +36,7 @@ prm-collection-gallery-header {
   // Issue: Ex Libris OTB teal in full page vertical panel - replace with UQ colour. Text should remain white
   .collection-header-inner {
     background-color: $theme-color;
-    color: #fff;
+    color: $white;
   }
 
   // Colour contrast is poor when highlighting text
@@ -68,8 +68,8 @@ prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-co
   prm-record-collection-paths & {
     &:focus,
     &:hover {
-      color: $accent-color!important;
-      background-color: #fff!important;
+      color: $accent-color !important;
+      background-color: #fff !important;
       box-shadow: inset 0 -1px 0 0 $accent-color-half-opacity;
     }
   }
@@ -96,8 +96,8 @@ prm-collection-discovery-view-switcher .md-button {
 }
 
 prm-collection-search .search-within .search-button {
-  color: white!important;
-  background-color: $accent-color!important;
+  color: $white !important;
+  background-color: $accent-color !important;
 }
 
 // Collection display grid
@@ -105,7 +105,7 @@ prm-collection-search .search-within .search-button {
 //prm-gallery-items-list .is-grid-view prm-gallery-item prm-save-to-favorites-button button md-icon,
 prm-gallery-items-list .result-item-actions .pin-button md-icon,
 prm-collection-gallery prm-gallery-item .collection-element .item-title {
-  color: $accent-color!important;
+  color: $accent-color !important;
 }
 
 // Collection display - Search options
