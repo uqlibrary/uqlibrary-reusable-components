@@ -581,41 +581,25 @@ prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:no
 @import "styles-imports/discovery_collection";
 
 // primo Toasts should have a uq blue OK button and a not-so-harshly-black Dismiss button
-
 // the Dismiss button
-prm-add-alert-toast md-toast .md-toast-content .md-button,
-prm-mendeley-toast md-toast .md-toast-content .md-button,
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button,
-prm-timeout-toast md-toast .md-toast-content .md-button,
-prm-voice-search-toast md-toast .md-toast-content .md-button {
-  color: #5F5F5F;
-}prm-add-alert-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-add-alert-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-add-alert-toast md-toast .md-toast-content .md-button:hover:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button:hover:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button:hover:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button:hover:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button:hover:not([disabled]) {
-  color: #fff;
-  background-color: #5F5F5F;
+md-toast .md-toast-content .md-button {
+  prm-add-alert-toast &,
+  prm-mendeley-toast &,
+  prm-silent-login-alert-toast &,
+  prm-timeout-toast &,
+  prm-voice-search-toast & {
+    color: #5F5F5F;
+    &:not([disabled]) {
+      &._md-focused,
+      &.hovered,
+      &.md-focused,
+      &:focus,
+      &:hover {
+        color: #fff;
+        background-color: #5F5F5F;
+      }
+    }
+  }
 }
 
 // the OK button on the eg "Your session has been inactive for an extended period and has been reset." alert
@@ -633,58 +617,24 @@ prm-voice-search-toast md-toast .md-button.settings-button md-icon {
 }
 
 // then reverse the colours on hover
-prm-add-alert-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]) {
-  color: #fff;
-  background-color: $accent-color
+md-toast .md-button.settings-button:not([disabled]) {
+  prm-add-alert-toast &,
+  prm-mendeley-toast &,
+  prm-silent-login-alert-toast &,
+  prm-timeout-toast &,
+  prm-voice-search-toast & {
+    &,
+    md-icon {
+      &._md-focused,
+      &.hovered,
+      &.md-focused,
+      &:focus,
+      &:hover {
+        color: #fff;
+        background-color: $accent-color
+      }
+    }
+  }
 }
 
 // Citation Search (Citation Linker) The field labels are quite a pale blue in contrast
