@@ -107,6 +107,9 @@ prm-gallery-items-list .result-item-actions .pin-button md-icon,
 prm-collection-gallery prm-gallery-item .collection-element .item-title {
   color: $accent-color !important;
 }
+prm-gallery-items-list .result-item-actions .pin-button:hover md-icon {  
+  color: $white !important;
+}
 
 // Collection display - Search options
 // Issue: Search options text and button colour are Ex Libris OTB and low contrast - Change to UQ text and button colour
