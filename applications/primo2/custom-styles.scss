@@ -245,6 +245,10 @@ prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .ite
   color: $links !important;
 }
 
+.tiles-grid-tile {
+  background: $white;
+}
+
 // Change the color of 'See:' in the browse listings
 span[translate="nui.browse.crossref.see"] {
   color: #000000;
@@ -271,10 +275,8 @@ prm-facet prm-breadcrumbs div.md-chip-content strong {
   padding-left: 22px;
 }
 prm-facet {
-  .personalization-section {
-    button.md-button.button-as-link.link-alt-color {
-      color: $uqBlue;
-    }
+  button.md-button.button-as-link.link-alt-color {
+    color: $uqBlue;
   }
 }
 prm-breadcrumbs {
@@ -616,6 +618,12 @@ prm-tags-list .md-chips md-chip .md-chip-content:hover strong,
 prm-tags-list md-chips .md-chip .md-chip-content:hover strong,
 prm-tags-list md-chips md-chip .md-chip-content:hover strong {
   background-color: transparent;
+}
+
+md-card {
+  &.default-card {
+    background: $white;
+  }
 }
 
 .recommendations-title {
