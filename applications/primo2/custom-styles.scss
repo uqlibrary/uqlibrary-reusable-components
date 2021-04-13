@@ -613,6 +613,13 @@ prm-search-result-tool-bar {
   prm-save-to-favorites-button {
     .pin-button {
       color: $primary-hue2;
+      &.pinned {
+        &:focus,
+        &:hover {
+          color: $white;
+          background-color: $primary-hue2;
+        }
+      }
     }
   }
 }
