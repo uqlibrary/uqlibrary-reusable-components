@@ -566,9 +566,17 @@ primo-explore .md-dialog-container.fixed-container {
   background-color: rgba(83,115,140,0.5);
 }
 
-prm-search-result-list .pages-separated-with-gaps .results-title:not(.results-title-favorites) {
-  padding-left: 70px;
-  top: -7px !important;
+prm-search-result-list .pages-separated-with-gaps {
+  .list-item-wrapper {
+    background-color: $white;
+    .item-bookmarked {
+      background: $highlightYellow;
+    }
+  }  
+  .results-title:not(.results-title-favorites) {
+    padding-left: 70px;
+    top: -7px !important;
+  }
 }
 
 prm-search-result-tool-bar {
