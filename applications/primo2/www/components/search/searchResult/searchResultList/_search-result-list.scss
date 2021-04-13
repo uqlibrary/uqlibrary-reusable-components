@@ -1,155 +1,258 @@
 $bottomSpace: 450px;
+$bottomSpace_small: 80px;
 
 prm-search-result-list {
-    min-height: 600px;
+  min-height: 600px;
 
-    // results list header + footer
-    .results-header,
-    .results-footer {
-        @extend .light-text;
-        @extend .prm-background.prm-hue2;
-    }
-    // results list header (results count)
-    .results-header {
-        padding: .5em .75em;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        border-color: inherit;
+  // results list header + footer
+  .results-header,
+  .results-footer {
+    @extend .light-text;
+    @extend .prm-background.prm-hue2;
+  }
 
-        @extend .prm-background-border; 
-        
-        &.is-stuck {
-            @extend %default-shadow;
-        }
-        .md-button {
-            md-icon {
-                @include setSize(20px);
-            }
-        }
-        .__xs & {
-            padding-left: 1em;
-        }
-        prm-favorites & {
-            .__xs & {
-                padding-left: .75em;
-            }
-        }
-        .results-count {
-            @extend .margin-right-medium;
+  // results list header (results count)
+  .results-header {
+    padding: .5em .75em;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: inherit;
 
-            [dir="rtl"] & {
-                margin-right: 0;
-                @extend .margin-left-medium;
-            }
-        }
+    @extend .prm-background-border;
 
-    }
-    // results list footer
-    .results-footer {
-        padding: 0;
-        border-top: 1px solid $almostWhite;
-        width: 100%;
-        .results-count {
-            padding: .5em;
-            line-height: 1.5em;
-        }
+    &.is-stuck {
+      @extend %default-shadow;
     }
 
-    // results list spinner/loader container
-    .results-loader {
-        position: relative;
-        height: 10em;
+    .md-button {
+      md-icon {
+        @include setSize(20px);
+      }
     }
-    
-    .list-spacer {
-        min-height: $bottomSpace;
+
+    .__xs & {
+      padding-left: 1em;
+    }
+
+    prm-favorites & {
+      .__xs & {
+        padding-left: .75em;
+      }
+    }
+
+    .results-count {
+      @extend .margin-right-medium;
+
+      [dir="rtl"] & {
+        margin-right: 0;
+        @extend .margin-left-medium;
+      }
+    }
+
+  }
+
+  .search-results-container {
+    margin-top: 2.7em;
+  }
+
+  // results list footer
+  .results-footer {
+    padding: 0;
+    border-top: 1px solid $almostWhite;
+    width: 100%;
+
+    .results-count {
+      padding: .5em;
+      line-height: 1.5em;
+    }
+  }
+
+  // results list spinner/loader container
+  .results-loader {
+    position: relative;
+    height: 10em;
+  }
+
+  .list-spacer {
+    min-height: $bottomSpace;
+  }
+
+  .list-spacer-small {
+    .__xs &,
+    .__sm & {
+      min-height: $bottomSpace_small;
+    }
+  }
+
+
+  .results-title {
+    position: relative;
+    top: -7px;
+    @extend .italic-text;
+    @include rtl-prop(padding-left, padding-right, 5px, auto);
+    padding-right: 10px;
+
+    .__sm & {
+      top: -3px;
+      [dir="rtl"] & {
+        padding-left: 0!important;
+      }
+    }
+
+    .__xs & {
+      top: 0;
+      margin-top: 10px;
+      margin-bottom: 4px;
+      line-height: 24px;
+      [dir="rtl"] & {
+        padding-left: 10px!important;
+      }
+    }
+  }
+
+  // this is to complement the tweak above, to make the first "page #" appear in the same line as the results count
+  .pages-separated-with-gaps {
+    .results-title:not(.results-title-favorites) {
+      @include rtl-prop(padding-left, padding-right, 60px, auto);
     }
 
 
-    .results-title {
-        position: relative;
-        top: -7px;
-        @extend .italic-text;
+    &.single-page {
+      .results-title:not(.results-title-favorites) {
+        padding-left: 5px;
         @include rtl-prop(padding-left, padding-right, 5px, auto);
 
-        .__sm & {
-            top: -3px;
+        &:before {
+          display: none;
         }
-        .__xs & {
-            top: 0;
-            margin-top: 7px;
-        }
+      }
     }
-    // this is to complement the tweak above, to make the first "page #" appear in the same line as the results count
-    .pages-separated-with-gaps {
-        .results-title:not(.results-title-favorites) {
-            @include rtl-prop(padding-left, padding-right, 60px, auto);
 
-        }
-        &.single-page {
-            .results-title:not(.results-title-favorites) {
-                padding-left: 5px;
-                @include rtl-prop(padding-left, padding-right, 5px, auto);
-                &:before {
-                    display: none;
-                }
-            }
-        }
-        .list-item-wrapper {
-            // first item of every page
-            &.first-in-page {
-                position: relative;
-                .md-subheader {
-                    height: 0;
-                    position: relative;
-                    z-index: 0;
-                    ._md-subheader-inner {
-                        position: absolute;
-                        top: -25px;                        
-                        padding: 0;
+    .list-item-wrapper {
+      // first item of every page
+      &.first-in-page {
+        position: relative;
 
-                        @include rtl-prop(left, right, 7px, auto);
-                    }
-                    .tiny-uppercase-text {
-                        font-size: 0.85em;
-                    }
-                }
-                &:first-of-type {
-                    margin-top: 10px;
-                    .md-subheader {
-                        height: 0;
-                        position: relative;
-                        font-size: 15px;
-                        ._md-subheader-inner {
-                            top: -34px;
-                            .__sm & {
-                                top: -30px;
-                            }
-                            .__xs & {
-                                top: -27px;
-                            }
-                        }
-                    }
-                }            
-                &:not(:first-of-type) {
-                    margin-top: 34px;
-                    &:before {
-                        content: "";
-                        width: 100%;
-                        height: 2em;
-                        background: transparent;
-                        display: block;
-                        position: absolute;
-                        left: 0;
-                        top: calc(-34px - 2em);
-                        @extend .default-shadow;
-                    }                
-                }            
-            }
-            &:nth-last-child(2) {
-                @extend .default-shadow;
-            }
-        
+        .md-subheader {
+          height: 0;
+          position: relative;
+          z-index: 0;
+
+          ._md-subheader-inner, .md-subheader-inner {
+            position: absolute;
+            top: -25px;
+            padding: 0;
+
+            @include rtl-prop(left, right, 7px, auto);
+          }
+
+          .tiny-uppercase-text {
+            font-size: 0.85em;
+          }
         }
+
+        &:first-of-type {
+          margin-top: 0;
+
+          .__xs &,
+          .__sm & {
+            margin-top: 10px;
+          }
+
+          .md-subheader {
+            height: 0;
+            position: relative;
+            font-size: 15px;
+
+            ._md-subheader-inner, .md-subheader-inner {
+              top: -34px;
+
+              .__sm & {
+                top: -30px;
+              }
+
+              .__xs & {
+                top: -34x;
+              }
+            }
+          }
+        }
+
+        &:not(:first-of-type) {
+          margin-top: 34px;
+
+          &:before {
+            content: "";
+            width: 100%;
+            height: 2em;
+            background: transparent;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: calc(-34px - 2em);
+            @extend .default-shadow;
+          }
+        }
+      }
+
+      &:nth-last-child(2) {
+        @extend .default-shadow;
+      }
+
     }
+
+    .ngrs-btn {
+      text-transform: none;
+      border-radius: 4px;
+      color: #3d6e94;
+    }
+  }
+
+  prm-search-result-tool-bar {
+    top: -22px;
+    width: 100%;
+  }
+
+  .search-result-tool-bar-mobile {
+    top: -11px;
+  }
+
+  .facet-filter {
+    min-height: 0;
+    min-width: 0;
+    line-height: 0;
+  }
+
+  .mobile-actions > * {
+    line-height: 25px;
+    margin: 0 0 0 1em;
+    .__xs &,
+    .__sm &{
+      [dir="rtl"] & {
+        margin: 0 1em 0 0;
+      }
+    }
+  }
+  /* // reduce numbers of lines into 4 lines. (can change '-webkit-line-clamp' to some other value on specific directive) // */
+  prm-brief-result .reduce-lines-display {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box!important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+  }
+  /* // reduce numbers of lines into 1 line for IE only // */
+  prm-brief-result .reduce-line-display-ie {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+	
+	
+    .md-dialog-container{
+    	top: 0 !important;
+    }
+
 }

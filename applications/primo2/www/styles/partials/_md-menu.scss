@@ -1,75 +1,129 @@
 $footerHeight: 70px;
 
-md-menu {
-
-}
 md-menu-item {
-	prm-icon {
-		opacity: .5;
-	}
-	&:hover {
-		prm-icon {
-			opacity: 1;
-		}
-	}
-	&.icon-on-right {
-		md-icon {
-			margin: 0;
-		}
-	}
-	&.category-first-item {
-		margin-top: 1.8em;
-		position: relative;
-	}
-	> .md-button {
-		display: inline-flex;
-	}
+  prm-icon {
+    opacity: .5;
+  }
+
+  &:hover {
+    prm-icon {
+      opacity: 1;
+    }
+  }
+
+  &.icon-on-right {
+    md-icon {
+      margin: 0;
+    }
+  }
+
+  &.category-first-item {
+    margin-top: 1.8em;
+    position: relative;
+  }
+
+  > .md-button {
+    display: inline-flex;
+  }
+
+  .md-button {
+    md-icon {
+      margin-right: 4px
+    }
+  }
+
+  &.menu-item-indented {
+    .md-button {
+      padding-left: 47px;
+    }
+  }
+
+  > md-menu {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    text-transform: none;
+
+    > .md-button {
+      border-radius: 0;
+      margin: auto 0;
+      font-size: 15px;
+      text-transform: none;
+      font-weight: 400;
+      height: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+      width: 100%;
+      display: inline-flex;
+
+      &:after {
+        content: "\25BC";
+        transform: rotate(270deg) scaleY(.55) scaleX(1);
+        display: block;
+      }
+
+      > span {
+        flex: 1;
+        text-align: left;
+      }
+    }
+  }
 }
+
 md-menu-content {
-	background-color: $white;
+  background-color: $white;
 
-	.menu-title {
-		padding: .5em 1em;
-		position: absolute;
-		top: -2.3em;
-		@extend .tiny-uppercase-text;
+  .menu-title {
+    padding: .5em 1em;
+    position: absolute;
+    top: -2.3em;
+    @extend .tiny-uppercase-text;
 
-	}
+  }
 
 
+  &.menu-with-footer {
+    // overflow: hidden;
+    padding-top: 0;
+    margin-bottom: $footerHeight;
 
-	&.menu-with-footer {
-		// overflow: hidden;
-		padding-top: 0;
-		margin-bottom: $footerHeight;
+    // .scrollable-content {
+    // 	overflow: auto;
+    // 	padding-top: .5em;
+    // }
+    .menu-footer {
+      background-color: $white;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      height: $footerHeight;
 
-		// .scrollable-content {
-		// 	overflow: auto;
-		// 	padding-top: .5em;
-		// }
-		.menu-footer {
-			background-color: $white;
-			position: absolute;
-			width: 100%;
-			bottom: 0;
-			height: $footerHeight;
-			md-input-container {
-				margin: 1em 0;
-			}
-		}
-	}
+      md-input-container {
+        margin: 1em 0;
+      }
+    }
+  }
 
-	[data-label-type="assigned-label"],
-	[data-label-type="available-label"] {
-		&:first-child {
-			&:before {
-				content: attr(translate);
-			}
-		}
-	}
+  [data-label-type="assigned-label"],
+  [data-label-type="available-label"] {
+    &:first-child {
+      &:before {
+        content: attr(translate);
+      }
+    }
+  }
+
+  &.menu-no-max-height {
+    max-height: none;
+  }
 }
+
 md-menu-divider {
-	display: block;
-	background-color: transparentize($dark, .8)
+  display: block;
+  background-color: transparentize($dark, .8)
+}
+
+.md-open-menu-container {
+  overflow-x: hidden;
 }
 

@@ -1,0 +1,75 @@
+.prm-recommendations-fullview {
+   .resource-type {
+      @extend .tiny-uppercase-text;
+      // padding: .75em 1em .75em 0;
+      padding: 0;
+   }
+   .resource-title  {
+      margin-bottom: 0;
+   }
+   .resource-item {
+      margin-bottom: .5em;
+      position: relative;
+   }
+   .resource-image {
+      margin-top: .25em;
+      margin-right: .5em;
+      margin-bottom: .5em;
+      .resource-image-inner {
+         overflow: hidden;
+
+         &.person-image {
+			width: 90px;
+			height: 90px;
+			border-radius: 50%;
+         }
+         img {
+            width: 100%;
+         }
+
+      }
+      + .resource-content {
+         // padding-left: .75em;
+      }
+   }
+
+   .normlized-resource-image {
+      max-width: 70px;
+      max-height: 70px;
+   }
+
+   .resource-count {
+      position: absolute;
+      left: -1.3em;
+      top: -1px;
+      font-size: .85em;
+      @extend .weak-text;
+   }
+   md-card {
+      // padding: .5em 1em ;
+      @extend .default-shadow;
+      md-card-content {
+         padding: .5em 1em 1em 1em;
+         display: block;
+      }
+      .resource-type {
+         margin-bottom: .75em;
+         margin-top: .5em; 
+            
+      }
+      .resource-title {
+         margin-bottom: .5em;
+      }
+   }
+
+}
+
+
+prm-resource-recommender-card-content {
+   a {
+      .__xs & {
+         //width: 70px;
+         display: block;
+      }
+   }
+}

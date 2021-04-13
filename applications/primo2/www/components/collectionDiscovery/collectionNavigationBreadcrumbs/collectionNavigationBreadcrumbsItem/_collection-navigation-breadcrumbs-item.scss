@@ -1,0 +1,35 @@
+/* starting collectionNavigationBreadcrumbsItem */
+prm-collection-navigation-breadcrumbs-item{
+  .md-button.button-as-link.link-alt-color {
+    box-shadow: none;
+    color: #73e9ff;
+  }
+  &.root-item {
+    .md-button {
+      max-height: 24px;
+      span {
+        @extend .uppercase-bold;
+        font-size: .9em;
+        padding-right: 0;
+      }
+      md-icon {
+        @include setSize(18px);
+      }
+    }
+  }
+}
+
+prm-service-details{
+  prm-collection-navigation-breadcrumbs-item{
+    .md-button.button-as-link.link-alt-color{
+      @include bgColor($links-hue-4);
+      &.button-with-icon{
+        margin-left: 0;
+        padding-left: 0;
+      }
+    }
+    .skewed-divider{
+      background-color: #3a3a3a;
+    }
+  }
+}

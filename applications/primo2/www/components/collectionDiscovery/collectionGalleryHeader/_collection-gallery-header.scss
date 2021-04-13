@@ -1,0 +1,52 @@
+/* starting collectionGalleryHeader */
+prm-collection-gallery-header {
+  .collection-header-inner {
+    padding: 1.5em;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    @extend .prm-primary-bg;
+
+    &.has-transparent-topbar {
+      margin-top: -60px;
+      padding-top: 60px;
+      .collection-info {
+        // padding-top: 1.5em;
+      }
+    }
+    &.has-backdrop-image {
+      &:before {
+        content: '';
+        position: absolute;
+        top:0;
+        left: 0;
+        background-color: #333;
+        opacity: .55;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+    }
+  }
+  .collection-info {
+    padding-left: .5em;
+    position: relative;
+    z-index: 1;
+    font-size: 1.2rem;
+    max-width: 700px;
+  }
+  .collection-title {
+
+  }
+  .collection-type {
+    @extend .uppercase-bold
+  }
+
+  .accessible-only {
+    [dir="rtl"] & {
+      left: auto;
+      right: -1000em;
+    }
+  }
+}

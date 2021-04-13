@@ -44,7 +44,8 @@ prm-browse-search {
               }
             }
           }
-          ._md-list-item-inner {
+          ._md-list-item-inner,
+          .md-list-item-inner {
             padding: .75em 1em;
             @extend .prm-background.prm-hue2;
           }
@@ -83,6 +84,10 @@ prm-browse-search {
               &:before {
                 min-height: 0;
               }
+            }
+            
+            & .md-list-item-inner {
+              padding: .75em 1em;
             }
           }
         }

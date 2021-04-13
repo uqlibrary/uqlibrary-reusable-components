@@ -1,0 +1,151 @@
+prm-service-ngrs{
+
+	.section-body{
+		display: flex;
+		flex-direction: column;
+	}
+
+	.best-offer-tile-for-two-offers {
+		flex-basis: 50%;
+	}
+	
+	.best-offer-tile-for-one-offer {
+		flex-basis: 100%;
+	}
+	
+	.grid-for-two-offers {
+		display: flex;
+    	box-shadow: 3px 3px 4px #00000029;
+		width: 100%;
+		z-index: 100;
+
+	}
+	
+	.grid-for-one-offer {
+		display: flex;
+    	box-shadow: 3px 3px 4px #00000029;
+    	width: 50%
+	}
+
+	.main_tile_request_form{
+		background-color: #ffffff;
+		box-shadow: 3px 3px 5px #c1bebe;
+	}
+
+	.form_item{
+		padding-left: 12%;
+	}
+	
+	.rapido-content {
+    	margin-right: 8px;
+    	margin-left: 8px;
+	}
+	
+	.or-sep {
+		position: relative;
+	}
+
+	.msg-bar{
+		margin-right: 8px;
+    	margin-left: 8px;
+	}
+
+	.get-it-request{
+		margin-right: 8px;
+    	margin-left: 8px;
+	}
+
+	.main-tile{
+		margin-right: 8px;
+    	margin-left: 8px;
+		position: relative;
+		margin-top: 1%;
+	}
+
+	.or-separator{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+
+		.or{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			margin: auto;
+			
+			.word {
+				color: #ccc;
+				text-transform: uppercase;
+				font: bold 12px arial,sans-serif;
+				background: #e5eaef;
+				font-family: Source Sans Pro;
+				font-weight: bold;
+				font-size: 120%;
+				color: rgba(102,102,102,1);
+				z-index: 2;
+				padding: 0.5em;
+			}
+		}
+		
+
+		.line{
+			content:"";
+			position: absolute;
+			top: 20%;
+    		bottom: 20%;
+			left: 50%;
+			border-left: 2px solid rgba(102,102,102,1);
+			transform: translate(-50%);
+			opacity: 0.3;
+			z-index: 1;
+
+		}
+		
+	}
+
+	@media only screen and (max-width: 740px){
+		.or-separator{
+			.line{
+				content: "";
+				width: 100%;
+				height: 2.5px;
+				border-top: 2px solid #666;
+				opacity: .3;
+				z-index: 1;
+				top: auto;
+				bottom: auto;
+				left: auto;
+				border-left: none;
+				transform: none;
+				width: 80%;
+			}
+
+			.wrapper{
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				position: absolute;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+
+		.grid-for-two-offers {
+				flex-direction: column;
+		}
+		.spinner-container{
+			display: flex;
+			justify-content: center;
+		}
+			
+		
+	}
+
+}

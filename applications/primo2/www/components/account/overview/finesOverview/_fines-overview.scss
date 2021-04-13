@@ -1,1 +1,15 @@
 /* starting finesOverview */
+prm-fines-overview {
+  md-list-item {
+    .md-button {
+      &:hover:not([disabled]) {
+        background-color: transparent;
+        color: $dark-hue1;
+      }
+    }
+  }
+
+  .overdue-line-overview {
+    color: $warn-hue1;
+  }
+}

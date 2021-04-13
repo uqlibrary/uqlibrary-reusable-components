@@ -1,0 +1,126 @@
+prm-voice-search-toast {
+
+  md-toast {
+    z-index: 90;
+    height: 200px;
+    box-shadow: 0 2px 7px 0 transparentize($dark, .88);
+    top: 0 !important;
+    background-color: $white;;
+
+    .voice-mobile-view {
+      .__xs & {
+        flex-direction: column;
+        justify-content: start !important;
+        padding-top: 7em;
+      }
+    }
+
+    .md-toast-content {
+      justify-content: center !important;
+      background-color: white;
+      height: auto;
+      flex-direction: column;
+
+      &:before {
+        display: none;
+      }
+
+      .md-toast-text {
+        font-size: 45px;
+        font-weight: 400;
+
+        .__xs & {
+          font-size: 25px;
+          min-height: 185px;
+          max-height: 185px;
+          //white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+    }
+
+    .change-lang-content {
+      flex-direction: row;
+      .__xs & {
+        margin-top: 3em;
+      }
+    }
+  }
+
+  //Blinked icon
+  .blink-icon {
+    animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+  }
+
+  @keyframes blinker {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  //Blinked icon - End
+
+  .mobile-define {
+    .__md &,
+    .__sm & {
+      height: 200px;
+    }
+
+    .__xs & {
+      height: 100%;
+    }
+  }
+
+  .absolute-position {
+    top: 0;
+    right: 0;
+  }
+
+  .voice-search-mobile-layout {
+    .__xs & {
+      flex-direction: column;
+    }
+  }
+
+  .voice-search-button-big {
+    display: inline-block;
+    margin-left: 25px;
+    pointer-events: none;
+    @include bgColor($links);
+    //@include setSize(96px);
+    md-icon {
+      @include setSize(66px);
+    }
+
+    /*prm-icon {
+      color: $backgroundColor;
+    }*/
+
+    .__xs & {
+      margin: 2em 0 0 0;
+    }
+  }
+
+  md-input-container {
+    padding: 0 0 0 5px;
+    md-select {
+      ._md-select-value {
+        ._md-select-icon {
+          .__xs &, .__sm & {
+            width: 10px;
+          }
+        }
+      }
+
+    }
+  }
+
+}
+
+
+
+

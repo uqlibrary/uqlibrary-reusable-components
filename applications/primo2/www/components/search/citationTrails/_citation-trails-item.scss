@@ -48,12 +48,12 @@ prm-citation-trails-item {
          // @include rtl-prop(padding-right, padding-left, 1em, auto);
     }
     .item-type {
-        @extend .prm-citation-color;
+        @extend .prm-citation-color.prm-hue2;
         position: absolute;
         top: 0;
         left: .1em;
         @include rtl-prop(left, right, .1em, auto);
-        opacity: .5;
+        //opacity: .5;
         transition-duration: 0s;
         md-icon {
           @include setSize(18px);          
@@ -107,6 +107,7 @@ prm-citation-trails-item {
             top: auto;
             left: auto;
             opacity: 1;
+            font-size: 1em;
             &.ng-hide-remove {
                 opacity: 0;
                 transform: translate(0, -15px);

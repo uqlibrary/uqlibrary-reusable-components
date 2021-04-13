@@ -2,15 +2,21 @@
 	display: none;
 }
 
+.md-autocomplete-suggestions {
+	li:not(.md-not-found-wrapper) {
+    	cursor: pointer;
+    }
+}
+
 md-autocomplete {
 	button {
 		&:after {
 			background-color: transparentize($dark, .7)
 		}
-		&:focus {
+		&:focus, &:hover {
 			&:after {
 				transform: scale(1);
-    			opacity: 1;
+				opacity: 1;
 			}
 		}
 	}
@@ -18,7 +24,26 @@ md-autocomplete {
 md-autocomplete-wrap {
 	input {
 		border-top-left-radius: $radius;
-    	border-bottom-left-radius: $radius;
+		border-bottom-left-radius: $radius;
+	}
+
+	.clear-with-voice-search {
+		.__xs & {
+			margin: auto 115px auto 0!important;
+			[dir="rtl"] & {
+				margin: auto 0 auto 115px!important;
+			}
+		}
+	}
+
+	.md-button.md-icon-button {
+		margin: auto;
+		.__xs & {
+			margin: auto 50px auto 0;
+			[dir="rtl"] & {
+				margin: auto 0 auto 50px;
+			}
+		}
 	}
 }
 .md-autocomplete-suggestions {
@@ -28,9 +53,10 @@ md-autocomplete-wrap {
 		line-height: 2.2em;
 		color: darken($text, 10%);
 		@extend .bold-text;
+		padding: 0 15px;
 	}
 	.highlight {
-		font-weight: $normal;
+		font-weight: $normal!important;
 		color: lighten($text, 10%);
 	}
 
@@ -42,7 +68,7 @@ md-autocomplete-wrap {
 	}
 	md-icon {
 		@include setSize(16px);
-		opacity: .4;
+		//opacity: .4;
 		margin-right: .2em;
 	}
 }
@@ -56,7 +82,7 @@ prm-autocomplete {
 
 // simple search autocomplete results container (virtual repeat container)
 md-virtual-repeat-container#prm-simple-search {
-	max-height: 320px !important;
+	max-height: 350px !important;
 	height: auto !important;
 
 	.md-virtual-repeat-scroller {
@@ -77,11 +103,11 @@ md-virtual-repeat-container#prm-simple-search {
 
 	.md-autocomplete-suggestions {
 		md-divider {
-		border-top-width: 0;
-		height: 1px;
-		opacity: .75;
+			border-top-width: 0;
+			height: 1px;
+			opacity: .75;
 
-		@extend .prm-background;
+			@extend .prm-background;
 		}
 	}
 }

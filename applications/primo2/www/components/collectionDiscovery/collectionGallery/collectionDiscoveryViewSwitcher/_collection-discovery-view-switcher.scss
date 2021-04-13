@@ -1,0 +1,9 @@
+/* starting collectionDiscoveryViewSwitcher */
+prm-collection-discovery-view-switcher {
+  .md-button {
+    color: #888;
+    &.is-active, &.is-active:hover, &.is-active:focus {
+      cursor: default;
+      @include bgColor($secondary-hue3);    }
+  }
+}

@@ -1,7 +1,82 @@
 /* starting loan */
+prm-loan {
 
-.loans-brief-display{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  .md-list-item-text {
+    .__xs & {
+      padding: 0.75em 2em 0 2em !important;
+    }
+  }
+
+  .loans-brief-display {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .list-item-actions {
+    .__xs & {
+      position: inherit !important;
+      display: block;
+      margin-top: 5px;
+    }
+
+    .renewable {
+      margin: 0 0.8em;
+    }
+  }
+
+  .item-expand-button {
+    .__xs & {
+      height: 100%!important;
+    }
+  }
+
+  .not-renewable {
+    $right-left-padding: 1.35em;
+
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: default;
+    padding: 0 $right-left-padding;
+    display: inherit;
+    max-width: 8em;
+    position: relative;
+
+    [dir=rtl] & {
+      padding: 0 1.35em;
+    }
+
+    .__xs & {
+      max-width: 100%;
+      position: inherit !important;
+      display: block;
+      margin-top: 5px;
+    }
+
+    span {
+      margin-left: 0.35em;
+      padding-right: 1em;
+
+      [dir=rtl] & {
+        padding-left: 1em;
+        margin-right: 0.35em;
+        padding-right: initial;
+        margin-left: initial;
+      }
+    }
+
+    .md-tooltip-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: $right-left-padding;
+    }
+  }
+
+  .overdue-line {
+    color: $warn-hue1;
+  }
+
 }
+

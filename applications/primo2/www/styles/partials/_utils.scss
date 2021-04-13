@@ -24,6 +24,20 @@
 	left: -1000em;
 	overflow: hidden;
     @include rtl(position, absolute, fixed);
+	&-important{
+		position: absolute!important;
+		width: 1px!important;
+		height: 1px!important;
+		left: -1000em!important;
+		overflow: hidden!important;
+		@include rtl(position, absolute, fixed);
+	}
+}
+
+
+%accessible-only-text-hidden, .accessible-only-text-hidden {
+	color: transparent;
+	height: 0px;
 }
 
 // accessibilty element visible only on focus
@@ -33,6 +47,15 @@
 	height: auto;
 	left: inherit;
 	overflow: auto;
+}
+
+// For explore button placeholder
+%accessible-explore, .accessible-explore{
+	display:none!important;
+}
+
+%accessible-hide, .accessible-hide{
+	display:none;
 }
 
 // text
@@ -158,18 +181,18 @@
 
 // buttons
 // for hover effect over darker backgrounds 
-%hoverable-over-dark, .hoverable-over-dark {
-    @include bgColor(black);
-    color: transparentize($white, .35);
+%hoverable-over-dark, .hoverable-over-dark:not(.disable-hover){
+	@include bgColor(black);
+    color: transparentize($white, .15);
     &:hover, &:focus {
         &:not([disabled]) {
-            color: $white;
+			@include bgColor($white);
         }
     }
 }
 
 %hoverable-over-light, .hoverable-over-light {
-    @include bgColor(white);
+	@include bgColor(white);
     color: transparentize(black, .35);
     &:hover, &:focus {
         &:not([disabled]) {
@@ -179,7 +202,7 @@
 }
 
 %hoverable-over-dark-mixed, .hoverable-over-dark-mixed {
-    @include bgColor(white);
+	@include bgColor(white);
     color: transparentize($white, .35);
     &:hover, &:focus {
         &:not([disabled]) {
@@ -200,6 +223,19 @@
 // remove box- shadows
 %remove-box-shadow, .remove-box-shadow {
     box-shadow: none !important;
+}
+
+%drop-down-arrow-icon {
+	&:after {
+		display: block;
+		content: '\25BC';
+		position: relative;
+		top: 2px;
+		speak: none;
+		font-size: 13px;
+		-webkit-transform: scaleY(.5) scaleX(1);
+		transform: scaleY(.5) scaleX(1);
+	}
 }
 
 

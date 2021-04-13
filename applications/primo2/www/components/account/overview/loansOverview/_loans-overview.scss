@@ -1,6 +1,20 @@
 /* starting loansOverview */
-prm-loans-overview{
-  .loans-brief-display{
+prm-loans-overview {
+  .loans-brief-display {
     white-space: normal !important;
   }
+
+  md-list-item {
+    .md-button {
+      &:hover:not([disabled]), &:focus {
+        background-color: transparent;
+        color: $dark-hue1;
+      }
+    }
+  }
+
+  .overdue-line-overview {
+    color: $warn-hue1;
+  }
+
 }

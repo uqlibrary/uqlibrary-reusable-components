@@ -2,9 +2,19 @@ prm-add-query-to-saved-searches {
   // temp hack for aligning saved queries button in results title
   prm-search-result-list & {
     height: 19px;
+    .__xs & {
+      height: 24px;
+    }
     margin-left: 1em;
+    .__sm &,
+    .__xs & {
+      margin-left: 0;
+    }
     .md-button {
       top: -5px;
+      .__xs & {
+        top: 0;
+      }
       font-style: initial;
     }
   }
@@ -16,131 +26,139 @@ $actionButtonMargin: 4px;
 
 
 prm-add-query-to-saved-searches {
-md-toast {
-  padding: 0;
-  width: 100%;
-  height: 64px;
-  position: fixed!important
-}
-md-toast.ng-enter {
-  -webkit-transform: translate3d(0, -100%, 0)!important;
-  transform: translate3d(0, -100%, 0)!important
-}
-md-toast.ng-enter.ng-enter-active {
-  -webkit-transform: translateZ(0)!important;
-  transform: translateZ(0)!important
-}
-md-toast .md-toast-content {
-  box-shadow: none;
-  color: #444;
-  background-color: #fffcc4;
-  height: 100%;
-  width: 100%;
-  max-height: 100%;
-  max-width: 100%
-}
-md-toast .md-toast-content .md-button {
-  font-weight: 600;
-  color: #000;
-  &:hover:not([disabled]),&:focus:not([disabled]),&:active:not([disabled]){
-    background-color: transparent;
+  md-toast {
+    padding: 0;
+    width: 100%;
+    height: 64px;
+    position: fixed!important
+  }
+  md-toast.ng-enter {
+    -webkit-transform: translate3d(0, -100%, 0)!important;
+    transform: translate3d(0, -100%, 0)!important
+  }
+  md-toast.ng-enter.ng-enter-active {
+    -webkit-transform: translateZ(0)!important;
+    transform: translateZ(0)!important
+  }
+  md-toast .md-toast-content {
+    box-shadow: none;
+    color: #444;
+    background-color: #fffcc4;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%
+  }
+  md-toast .md-toast-content .md-button {
+    font-weight: 600;
+    color: #000;
+    &:hover:not([disabled]),&:focus:not([disabled]),&:active:not([disabled]){
+      background-color: transparent;
+    }
+
+  }
+  md-toast .md-button.settings-button,
+  md-toast .md-button.settings-button md-icon {
+    color: #5c92bd
   }
 
-}
-md-toast .md-button.settings-button,
-md-toast .md-button.settings-button md-icon {
-  color: #5c92bd
-}
 
 
 
 
 
-
-    // action buttons
-    .md-icon-button {
-        margin: 0;
+  // action buttons
+  .md-icon-button {
+    margin: 0;
+    background-color: transparent;
+    height: $actionButtonSize;
+    // line-height: $actionButtonSize;
+    max-height: $actionButtonSize;
+    min-height: $actionButtonSize;
+    width: 200px!important;
+    min-width: 200px;
+    max-width: 200px;
+  }
+  .custom-button,
+  .more-options-button {
+    &:hover,
+    &:focus {
+      &:not([disabled]) {
         background-color: transparent;
-        height: $actionButtonSize;
-        // line-height: $actionButtonSize;
-        max-height: $actionButtonSize;
-        min-height: $actionButtonSize;
-        width: 200px!important;
-        min-width: 200px;
-        max-width: 200px;
+      }
     }
-    .custom-button,
-    .more-options-button {
+  }
+  .custom-button {
+    margin: 0;
+    padding: 0;
+    @extend .prm-primary-color;
+    md-icon {
+      @include setSize(20px);
+    }
+    &.pin-button {
+      md-icon {
+        -webkit-transition: $swift-ease-out;
+        -moz-transition: $swift-ease-out;
+        -ms-transition: $swift-ease-out;
+        -o-transition: $swift-ease-out;
+        transition: $swift-ease-out;
+
+        -webkit-transform: rotate3d(0, 0, 1, -25deg);
+        -moz-transform: rotate3d(0, 0, 1, -25deg);
+        -ms-transform: rotate3d(0, 0, 1, -25deg);
+        -o-transform: rotate3d(0, 0, 1, -25deg);
+        transform: rotate3d(0, 0, 1, -25deg);
+        opacity: 0;
+        @include ie-exceptions;
+      }
+      @extend .prm-secondary-color.prm-hue1;
+      &.pinned {
+
         &:hover,
         &:focus {
-            &:not([disabled]) {
-                background-color: transparent;
-            }
+          color: $dark;
         }
-    }
-    .custom-button {
-        margin: 0;
-        padding: 0;
-        @extend .prm-primary-color;
+
         md-icon {
-            @include setSize(20px);
+          transform: rotate3d(0, 0, 1, 25deg);
+          opacity: 1;
         }
-        &.pin-button {
-            md-icon {
-                -webkit-transition: $swift-ease-out;
-                -moz-transition: $swift-ease-out;
-                -ms-transition: $swift-ease-out;
-                -o-transition: $swift-ease-out;
-                transition: $swift-ease-out;
-
-                -webkit-transform: rotate3d(0, 0, 1, -25deg);
-                -moz-transform: rotate3d(0, 0, 1, -25deg);
-                -ms-transform: rotate3d(0, 0, 1, -25deg);
-                -o-transform: rotate3d(0, 0, 1, -25deg);
-                transform: rotate3d(0, 0, 1, -25deg);
-                opacity: 0;
-                @include ie-exceptions;
-            }
-            @extend .prm-secondary-color.prm-hue1;
-            &.pinned {
-
-                &:hover,
-                &:focus {
-                    color: $dark;
-                }
-
-                md-icon {
-                    transform: rotate3d(0, 0, 1, 25deg);
-                    opacity: 1;
-                }
-            }
-        }
-        &.unpin-button {
-            md-icon {
-                -webkit-transition: $swift-ease-out;
-                -moz-transition: $swift-ease-out;
-                -ms-transition: $swift-ease-out;
-                -o-transition: $swift-ease-out;
-                transition: $swift-ease-out;
-                transform: rotate3d(0, 0, 1, 25deg);
-                opacity: 0;
-                @include ie-exceptions;
-            }
-            &.unpinned {
-                md-icon {
-                    transform: rotate3d(0, 0, 1, 0deg);
-                    opacity: 1;
-                }
-            }
-        }
+      }
     }
-    
-    
-    
-    
+    &.unpin-button {
+      md-icon {
+        -webkit-transition: $swift-ease-out;
+        -moz-transition: $swift-ease-out;
+        -ms-transition: $swift-ease-out;
+        -o-transition: $swift-ease-out;
+        transition: $swift-ease-out;
+        transform: rotate3d(0, 0, 1, 25deg);
+        opacity: 0;
+        @include ie-exceptions;
+      }
+      &.unpinned {
+        md-icon {
+          transform: rotate3d(0, 0, 1, 0deg);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .button-as-link-mobile {
+    .__sm &,
+    .__xs & {
+      margin: 0 0 0 1em;
+      [dir="rtl"] & {
+        margin: 0;
+      }
+    }
+  }
 
 
 
-    
-    
+
+
+
+
 }

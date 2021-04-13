@@ -2,18 +2,19 @@
   // .check_holdings,
   // .check_holdings_in_library,
   // .does_not_exist_in_my_institution_check_holdings,
-  // .may_be_restricted, 
+  // .may_be_restricted,
   // .fulltext_unknown,
   // .viewit_getit_NFT,
-  // .viewit_NFT,  
+  // .viewit_NFT,
   // .unavailable_in_maininstitution_more,
   // .check_holdings_in_maininstitution
   [class*="NFT"],
   [class*="check_"],
   [class*="_more"],
-  [class*="_unknown"],  
+  [class*="_unknown"],
   [class*="may_"],
   [class*="does_not_exist"],
+  .worldcat,
   .getit
   {
     @extend .status-maybe !optional;
@@ -28,14 +29,20 @@
   // .available_in_my_institution,
   // .available_in_other_institution,
   // .available_in_maininstitution
-  // .does_not_exist_in_my_institution_available,  
+  // .does_not_exist_in_my_institution_available,
   // .viewit_getit_FT,
   // .viewit_FT,
   [class*="available"],
   [class*="FT"],
   .not_restricted,
-  .fulltext, 
-  .fulltext_linktorsrc
+  .ext_not_restricted,
+  .fulltext,
+  .fulltext_linktorsrc,
+  .fulltext_newspaper,
+  .fulltext_linktorsrc_newspaper,
+  .fulltext_linktorsrc_topic,
+  .fulltext_topic,
+  
   {
     @extend .status-available !optional;
     > span {
@@ -54,7 +61,7 @@
   [class*="unavailable"],
   [class*="no_"],
   .restricted,
-  .duedate 
+  .duedate
   {
     @extend .status-unavailable !optional;
     > span {

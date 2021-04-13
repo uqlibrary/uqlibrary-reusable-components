@@ -1,0 +1,173 @@
+prm-alma-viewer{
+.thumbnail-list{
+     height: calc(100vh - 140px);
+     max-height:auto;
+      background-color:#f3f3f3;
+     box-shadow: 0 1px 0 0 rgba(0,0,0,.03), 0 5px 5px -3px rgba(0,0,0,.07);
+     margin-top:8px;  
+      .__xs & {
+  	  background-color:inherit;
+  }
+    
+}
+.thumbnail-list-ltr{
+     margin-left:8px;  
+}
+.thumbnail-list-rtl{
+     margin-right:8px;  
+}
+.showIfNotXs{
+display:block;
+.__xs & {
+ display:none;
+}
+}
+
+.showIfXs{
+display:none;
+.__xs & {
+ display:block;
+}
+}
+
+.hide{
+ display:none;
+}
+.thumbnail-list md-list{
+ overflow-y: auto;
+}
+.main-file{
+    width: 100%;
+     height: calc(100vh - 140px);
+    flex-basis: 90%;
+     max-height:auto;    
+     margin-top:8px;    
+     .__xs & {
+      height: calc(100vh - 180px);
+     }
+    
+}
+.main-file md-card{
+margin-top: 0;
+    margin-bottom: 0;
+}
+md-card{
+.__xs & {
+background-color:inherit;
+}
+}
+
+.main-file div object{
+height: calc(100vh - 240px);
+}
+.metadata-list{
+  height: calc(100vh - 140px);
+     overflow-y: auto;
+     max-height:auto;
+     background-color:#f3f3f3;
+     box-shadow: 0 1px 0 0 rgba(0,0,0,.03), 0 5px 5px -3px rgba(0,0,0,.07);
+     margin-top:8px; 
+      .__xs & {
+  	  background-color:inherit;
+  } 
+}
+.metadata-list-ltr{
+     margin-right:8px;  
+}
+.metadata-list-rtl{
+     margin-left:8px;  
+}
+
+.metadata-list .default-card{
+	box-shadow: none; 
+}
+.thumbnail-list .default-card{
+	box-shadow: none; 
+}
+
+.main-file .default-card{
+	box-shadow: 0 1px 0 0 rgba(0,0,0,.03), 0 5px 5px -3px rgba(0,0,0,.07);
+}
+.main-content{
+width:100%;
+}
+
+.share-viewer{
+    margin-right: 8px  !important;
+    margin-bottom: 0.5em  !important;
+}
+.footer{
+
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+
+}
+.animate-out-left{
+ animation-name: slideout;
+  animation-duration: 0.5s;
+  transform:scale(1, 1);
+}
+.animate-out-right{
+ animation-name: slideoutright;
+  animation-duration: 0.5s;
+   transform:scale(1, 1);
+}
+.animate-left{
+ animation-name: slidein;
+  animation-duration: 0.5s;
+}
+.animate-right{
+ animation-name: slideinright;
+  animation-duration: 0.5s;
+}
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 100%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@keyframes slideout {
+  from {
+  margin-left: 0%;
+    width: 100%;
+  }
+
+  to {
+       margin-left: 100%;
+    width: 100%; 
+        display:none;
+    
+  }
+}
+
+@keyframes slideinright {
+  from {
+    margin-left: -100%;
+    width: 100%; 
+  }
+
+  to {
+    margin-right: 0%;
+    width: 100%;
+  }
+}
+@keyframes slideoutright {
+  from {
+    margin-right: 0%;
+    width: 100%; 
+  }
+
+  to {
+   margin-left: -100%;
+    width: 100%;
+        display:none;
+    
+  }
+}
+}

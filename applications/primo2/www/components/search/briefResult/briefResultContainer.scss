@@ -8,8 +8,11 @@ prm-brief-result-container {
 
     .md-button[disabled="disabled"]{
         z-index: -1;
-    }
-
+	}
+	
+	.hide-thumbnail{
+		z-index: 10;
+	}
 
     .list-item-primary-content {
         padding: $paddingLarge $paddingExtra;
@@ -117,7 +120,7 @@ prm-brief-result-container {
         margin-top: -2px;
         word-break: break-all;
         @extend .tiny-uppercase-text;
-        @extend .weak-text;
+        color: $lightenGrey;
         prm-search-result-frbr-line {
             > span {
                 text-transform: lowercase;
@@ -151,7 +154,8 @@ prm-brief-result-container {
     }    
    
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus-within {
         .list-item-primary-content {
             &:before {
                 opacity: 1;
@@ -177,7 +181,57 @@ prm-brief-result-container {
 ///// this tweak is now in _search-result-list.scss
 
 
+
+.peer-reviewed-mark-icon, .course-info-mark-icon{
+	color: #8359d4 !important;
+	& md-icon {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            min-height: 18px;
+        }
+ }
+.peer-reviewed-mark, .course-info-mark{
+
+	padding: .25em 0;
+    position: relative;
+    left: -2px;
+     & span {
+    	font-weight: 600;
+    	font-size: 12px;
+
+    }
+}
+
+.open-access-mark-icon {
+	color: #f68212 !important;
+	& md-icon {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            min-height: 18px;
+        }
+ }
+
+.open-access-mark {
+
+	padding: .25em 0;
+    position: relative;
+    left: -2px;
+     & span {
+    	font-weight: 600;
+    	font-size: 12px;
+
+    }
+}
+
+.icon-after-icon {
+	margin-left: 10px;
+}
+
+
 .list-item-count {
+	z-index: 10;
     position: absolute;
     opacity: .5;
     font-size: .8em;
@@ -223,7 +277,7 @@ prm-brief-result-container {
 //// End tweak
 
 .result-item-actions {
-    min-width: 0;
+    min-width: 0px;
     z-index: 10;
     position: absolute;
     top: 0;
@@ -243,7 +297,7 @@ prm-brief-result-container {
         left: 0;
     }
     > .md-button {
-        opacity: .6;
+        //opacity: .8;
         &:hover,
         &:focus {
             opacity: 1;
@@ -255,7 +309,7 @@ prm-brief-result-container {
         margin: 0;
         display: inline-flex;
         justify-content: center;
-        @extend .prm-primary-color;
+        @extend .prm-primary-color.prm-hue2;
         md-icon {
             @include setSize(20px);
         }
@@ -264,6 +318,7 @@ prm-brief-result-container {
             &:not([disabled]) {
                 box-shadow: none;
                 background-color: transparent !important;
+                color: $dark!important;
             }
         }
     }
@@ -274,7 +329,7 @@ prm-brief-result-container {
             transform: rotate3d(0, 0, 1, -25deg);
             opacity: 0;
         }
-        @extend .prm-secondary-color.prm-hue1;
+        @extend .prm-secondary-color.prm-hue3;
         &.pinned {
 
             &:hover,

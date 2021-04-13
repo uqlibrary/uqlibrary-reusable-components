@@ -13,22 +13,4 @@ prm-full-view {
       color: $dark !important;
     }
   }
-
-  // .available_in_institution,
-  // .available_in_library,
-  // .available_in_my_institution,
-  // .available_in_other_institution,
-  // .available_in_maininstitution
-  // .does_not_exist_in_my_institution_available,  
-  // .viewit_getit_FT,
-  // .viewit_FT,
-  [class*="available"],
-  [class*="FT"],
-  .not_restricted,
-  .fulltext,
-  .fulltext_linktorsrc {
-    > span:first-of-type {
-      color: $dark !important;
-    }
-  }
 }

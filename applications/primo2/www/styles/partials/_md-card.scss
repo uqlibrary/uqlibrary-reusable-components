@@ -3,13 +3,14 @@ md-card {
 	background-color: white;
 
 	&.default-card {
-		font-size: 1rem;
+		font-size: 1.1em;
 		line-height: 1.5rem;
+		font-weight: 500;
 		
 		@extend %default-shadow;
 		@extend .prm-background.prm-hue2;
 
-		md-card-title {
+		md-card-title:not(#featuredResultTitle) {
 			padding: 24px 16px 16px 16px;
 			+ md-card-content {
 				padding-top: 0;

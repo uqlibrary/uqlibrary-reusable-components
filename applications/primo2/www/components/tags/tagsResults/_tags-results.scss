@@ -6,8 +6,14 @@ prm-tags-results-list {
 
 		.results-count {
 			padding-left: .5em;
-		}
-	}
+    }
+    button, .md-button {
+      min-width: 0.5em;
+    }
+    .prm-selected-view {
+      opacity: .5;
+    }
+  }
 	md-list {
 	+ .expand-link {
 		//color: darken(saturate($positive, 10%), 10%);
@@ -72,7 +78,8 @@ prm-tags-results-list {
               }
             }
           }
-          ._md-list-item-inner {
+          ._md-list-item-inner,
+          .md-list-item-inner {
             padding: .75em 1em;
             @extend .prm-background.prm-hue2;
           }

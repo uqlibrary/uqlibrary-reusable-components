@@ -1,0 +1,10 @@
+prm-save-to-favorites-button {
+    .pin-icon-on-mobile {
+      position: absolute;
+      top: -12px;
+      right: -30px;
+      [dir="rtl"] & {
+        right: -15px;
+      }
+    }
+}

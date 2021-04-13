@@ -1,0 +1,76 @@
+prm-rapido-no-offer-message{
+	.main_tile{
+		width: 100%;
+		background-color: #e5eaef;
+		-moz-box-shadow: 3px 3px 5px #c1bebe;
+		-webkit-box-shadow: 3px 3px 5px #c1bebe;
+		box-shadow: 3px 3px 5px #c1bebe;
+        margin-top: 1%;
+        min-height: 50px;
+
+        padding: 0.9em;
+		padding-left: 1em;
+    	padding-right: 1em;
+	}
+
+	.tile{
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.text{
+		display: flex!important;
+		flex-direction: row;
+	}
+
+	#no_offer_message_out_text_part1, #no_offer_message_out_text_notClickable{
+		font-family: Source Sans Pro;
+		font-size: 16px;
+		color: rgba(102,102,102,1);
+	}
+
+	#no_offer_message_text_part2{
+		font-family: Source Sans Pro;
+		font-size: 16px;
+        color: $primary;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+    }
+
+	.second_line{
+		margin-left: 0.3em;
+    }
+
+	@media only screen and (max-width: 740px){
+		.icon{
+			padding: 0.5em!important;
+		}
+    }
+    
+    .form-wrapper{
+        background-color: #ffffff;
+        box-shadow: 3px 3px 5px #c1bebe;
+        display: inline-block;
+        padding: 2em 2em 1.5em 3em;
+
+        .form-title{
+            margin-bottom: 1em;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .button-wrapper{
+            display: inline-block;
+            margin-top: 1em;
+            text-align-last: start;
+
+            .button-label{
+                display:inline-block;
+            }
+        }
+    }
+}

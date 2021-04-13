@@ -1,29 +1,60 @@
 md-tooltip {
-	font-size: .8em;
-	color: $white;	
-	letter-spacing: 0.03em;
+  &.md-tooltip {
+    font-size: .8em;
+    padding: 0 6px;
+  }
 
-	.md-content,
-	._md-content{
-		background-color: transparentize($dark, .25);
-	}
+  color: $white;
+  letter-spacing: 0.03em;
+  padding: .5em;
+  background-color: transparentize($dark, .25);
+  opacity: 1 !important;
 
-	&.multi-row-tooltip {
-		height: auto ;
-		max-width: 30em;
-		line-height: 1em;
-		font-size: 1em;
-		letter-spacing: 0;
-		._md-content{
-			padding: .5em 1em;
-			height: auto !important;
-			white-space: normal;
-		}
-		h1,h2,h3,h4,h5 {
-			margin:0;
-		}
-		p {
-			margin: 0;
-		}
-	}
+  &.multi-row-tooltip {
+    height: auto;
+    max-width: 20em;
+    //line-height: 1em;
+    font-size: 1em;
+    letter-spacing: 0;
+    white-space: normal;
+    padding: .5em 1em;
+    height: auto !important;
+
+    h1, h2, h3, h4, h5 {
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .tooltip-content {
+      font-size: .8em;
+      line-height: .8em;
+    }
+  }
+
+  &.content-tooltip {
+    overflow: visible;
+    @extend md-tooltip.multi-row-tooltip;
+
+    margin: 0;
+    opacity: 1;
+    line-height: 1.1em;
+    @extend .default-shadow;
+
+    h1, h2, h3, h4, h5 {
+      line-height: 1.1em;
+      margin-bottom: .5em;
+    }
+
+    p {
+      margin-bottom: .5em;
+    }
+  }
+
+  &.bright-tooltip {
+    background-color: white;
+    @extend .prm-text;
+  }
 }

@@ -1,1 +1,10 @@
 /* starting permalink */
+
+prm-permalink {
+    .layout-column > .long-permalink {
+      display: none;
+      .__xs &{
+        display: none;
+      }
+    }
+}

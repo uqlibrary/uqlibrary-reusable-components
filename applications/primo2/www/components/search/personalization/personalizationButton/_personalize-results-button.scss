@@ -1,0 +1,83 @@
+/* starting personalizeResultsButton */
+
+prm-personalize-results-button {
+	prm-search-result-list & {
+		height: 19px;
+		margin-left: 1em;
+		.__sm &,
+		.__xs & {
+			margin-left: 0;
+		}
+
+		.md-button {
+			top: -5px;
+			font-style: normal;
+
+			&:hover, &:focus {
+				md-switch {
+					.md-thumb, ._md-thumb, .md-bar,._md-bar {
+						background-color: $white!important;
+					}
+					.md-bar, ._md-bar {
+						opacity: .4;
+					}
+					&.md-checked, &._md-checked {
+						.md-label, ._md-label, .md-bar,._md-bar, .md-thumb, ._md-thumb {
+							color: $white!important;
+						}
+					}
+				}
+			}
+
+			&.toggled {
+				&.button-as-link {
+					&:hover:not([disabled]) {
+						@include bgColor($personalization)
+					}
+					&:focus:not([disabled]) {
+						@include bgColor($personalization)
+					}
+				}
+			}
+
+
+			md-switch {
+				height: 23px;
+				.md-bar,._md-bar {
+					@extend .prm-background.prm-hue7
+				}
+				.md-thumb, ._md-thumb {
+					background-color: white;
+				}
+				&.md-checked, &._md-checked {
+					.md-label, ._md-label {
+						@extend .prm-personalization;
+					}
+					.md-bar,._md-bar {
+						@extend .prm-personalization-bg;
+						opacity: .4;
+					}
+					.md-thumb, ._md-thumb {
+						@extend .prm-personalization-bg;
+					}
+				}
+			}
+		}
+	}
+
+	.personalization-mobile-btn {
+		color: $personalization!important;
+		opacity: .8;
+	}
+
+	.button-as-link-mobile {
+		.__sm &,
+		.__xs & {
+			margin: 0 0 0 1em;
+			[dir="rtl"] & {
+				margin: 0;
+			}
+		}
+	}
+
+}

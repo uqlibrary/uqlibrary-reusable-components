@@ -1,15 +1,33 @@
-prm-browse-result{
-  .cross-ref-icon{
-    >md-icon{
+prm-browse-result {
+  .cross-ref-icon {
+    > md-icon {
       transform: rotate(-180deg);
-      top: -1px;position: relative;
+      top: -1px;
+      position: relative;
     }
   }
-  .call-number-description{
+
+  .call-number-description {
     white-space: normal !important;
   }
-  .not-link{
+
+  .not-link {
     cursor: pointer !important;
+  }
+
+  .md-list-item-text {
+    div {
+      display: inline-block;
+    }
+  }
+
+  md-list-item {
+    .md-button {
+      &:hover:not([disabled]) {
+        background-color: transparent;
+        color: $dark;
+      }
+    }
   }
 
 }

@@ -1,0 +1,73 @@
+/* starting collectionGallery */
+prm-collection-gallery {
+  .padded-container{
+    overflow: visible;
+  }
+  [deckgrid] {
+    width: 100%;
+    .column {
+      float: left;
+      &-1 {
+        &-1 {
+          width:100%;
+        }
+        &-2 {
+          width:50%;
+        }
+        &-3 {
+          width:33%;
+        }
+        &-4 {
+          width:25%;
+        }
+        &-5 {
+          width:20%;
+        }
+        &-6 {
+          width:16.666%;
+        }
+      }
+    }
+    &.is-gallery-view {
+      &:before {
+
+        /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
+        content: '1 .column.column-1-1';
+        font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+        visibility: hidden;
+
+        @media screen and (min-width: 320px) and (max-width: 479px){
+          content: '2 .column.column-1-2';
+        }
+
+        @media screen and (min-width: 480px) and (max-width: 599px){
+          content: '3 .column.column-1-3';
+        }
+
+        @media screen and (min-width: 600px) and (max-width: 699px){
+          content: '4 .column.column-1-4';
+        }
+
+        @media screen and (min-width: 700px) and (max-width: 959px){
+          content: '5 .column.column-1-5';
+        }
+
+        @media screen and (min-width: 960px) and (max-width: 1019px){
+          content: '4 .column.column-1-4';
+        }
+
+        @media screen and (min-width: 1020px) and (max-width: 1399px){
+          content: '5 .column.column-1-5';
+        }
+
+        @media screen and (min-width: 1400px){
+          content: '5 .column.column-1-5';
+        }
+      }
+    }
+  }
+  .is-grid-view {
+    width: 100%;
+  }
+}
+
