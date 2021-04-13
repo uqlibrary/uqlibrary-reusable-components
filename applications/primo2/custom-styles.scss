@@ -616,8 +616,8 @@ prm-search-result-tool-bar {
       &.pinned {
         &:focus,
         &:hover {
-          color: $white;
-          background-color: $primary-hue2;
+          color: $white !important;
+          background-color: $primary-hue2 !important;
         }
       }
     }
