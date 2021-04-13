@@ -1,5 +1,17 @@
 $thumbnailWidth: 60px;
 
+
+    prm-search-result-thumbnail-container{
+        img{
+            max-height: 91px;
+        }
+        prm-full-view &{
+            img {
+                max-height: 132px;
+            }
+        }
+    }
+
 prm-search-result-thumbnail-container {
     position: relative;
     display: block;
@@ -9,11 +21,12 @@ prm-search-result-thumbnail-container {
     //     display: inline-block;
     // }
 
+
     img {
         box-shadow: none;
         width: 100%;
         display: block;
-        
+        position: relative;
         // only images with an actual image (not placeholder or fallback image) get shadow
         &[src*="http"] {
             box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 2px 1px 0 white, -3px 3px 10px -3px rgba(0, 0, 0, 0.3);
@@ -21,6 +34,11 @@ prm-search-result-thumbnail-container {
                 box-shadow: 0 1px 1px rgba(0, 0, 0, .3), -2px 1px 0 white, 3px 3px 10px -3px rgba(0, 0, 0, 0.3);
             }
         }
+
+        &.fallback-img.fallback-static{
+            position: absolute;
+        }
+
     }
     
     // fan effect for dedup/frbr
@@ -33,6 +51,7 @@ prm-search-result-thumbnail-container {
         transform-origin: 50% 0;
         transition: transform .4s $swift-ease-out-timing-function;
         &:nth-of-type(1) {
+        	position:relative;
             transform: rotate3d(0, 0, 1, -6deg) translate3d(-12px, 0, 0) scale3d(0.8, 0.8, 1);
             prm-brief-result-container:hover & {
                 transform: rotate3d(0, 0, 1, -12deg) translate3d(-25px, -3px, 0) scale3d(0.8, 0.8, 1);

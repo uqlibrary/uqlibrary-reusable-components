@@ -1,0 +1,49 @@
+
+.badges {
+    padding: .25em 0;
+    position: relative;
+    left: -2px;
+
+    .list-display {
+	    position: absolute;
+	    padding: 0;
+	    top: 0;
+	    right: 5.5em;
+	    left: auto;
+	    bottom: 0
+	}
+
+	.badge-item {
+	    display: -ms-flexbox;
+	    display: flex;
+	    -ms-flex-align: center;
+	    align-items: center;
+
+	     .badge-icon {
+		    display: -ms-flexbox;
+		    display: flex;
+		    color: currentColor;
+		    margin-right: .2em;
+
+		     md-icon {
+			    min-width: 18px;
+			    width: 18px;
+			    height: 18px;
+			    min-height: 18px;
+			    color: currentColor
+			}
+		}
+		.badge-label {
+		    text-transform: uppercase;
+		    font-weight: 600;
+		    font-size: 12px;
+		    line-height: 18px;
+		    color: #333;
+		    letter-spacing: .03em
+		}
+
+		+.badge-item {
+		    margin-left: .75em
+		}
+	}
+}

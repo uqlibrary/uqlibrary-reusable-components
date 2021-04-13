@@ -1,0 +1,64 @@
+prm-slider-field{
+
+
+  md-slider ._md-track-fill {
+    transition: all .4s cubic-bezier(.25,.8,.25,1);
+    transition-property: width,height;
+    color: black;
+    background-color: #3d6e94;
+}  
+
+md-slider-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+md-slider ._md-thumb:after {
+  content: "";
+  border-style: solid;
+  border-color: white;
+  background-color: #3d6e94 !important;
+}
+
+
+
+md-slider ._md-track-fill {
+  transition: all .4s cubic-bezier(.25,.8,.25,1);
+  transition-property: width,height;
+  background-color: #3d6e94 !important;
+}
+
+md-slider-container md-input-container input[type=number]  {
+  padding-left: 15px;
+  height: 50px;
+  margin-top: 0px; 
+  color: #c1bebe;
+
+}
+
+md-slider-container md-input-container .input[type=number] {
+  padding-left: 15px;
+  height: 50px;
+  margin-top: 0px;
+  color: rgba(102,102,102,1);
+}
+
+.md-input-color-underline, .new-result-item .list-item-count, .prm-secondary-bg.prm-hue1, md-input-container.empty-select-on-init:not(.md-input-focused) .md-input-container-dummy>.md-select-dummy md-select-value:after, md-input-container.empty-select-on-init:not(.md-input-focused) md-select md-select-value:after, md-input-container:after, md-progress-linear[md-mode=indeterminate].header-progress-bar .prm-hue1.md-bar, md-radio-button.md-checked ._md-on, md-radio-button.md-checked .md-on, md-tabs md-ink-bar, prm-tags-list .md-chips ._md-chip-input-container:after, prm-tags-list .md-chips .md-chip-input-container:after, prm-tags-list md-chips ._md-chip-input-container:after, prm-tags-list md-chips .md-chip-input-container:after {
+   background-color: unset;
+}
+
+md-input-container{
+  margin: unset;
+  padding: unset;
+}
+
+prm-slider-field md-slider-container .slider_cantainer {
+  margin: -0.5em;
+}
+
+md-slider ._md-track{
+  background-color: #c1bebe ;
+}
+
+}

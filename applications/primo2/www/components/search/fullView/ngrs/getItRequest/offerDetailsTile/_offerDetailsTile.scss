@@ -1,0 +1,90 @@
+
+prm-offer-details-tile{
+
+    .offer_detail{
+        width: 70%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        color: rgba(102,102,102,1);
+        margin-top: 3em;
+    }
+
+    @media only screen and (max-width: 767px){
+        .offer_detail{
+            margin-left: 12%;
+            margin-right: 12%;
+            width: auto;
+            margin-top: 0%;
+            border: 1px solid #f1f1f1;
+            background: #f8f8f8;
+        }
+
+        .details_text{
+            padding-top: 0.5em!important;
+        }
+
+        .first_line{
+            display: none !important;
+        }
+
+        .second_line{
+            display: none !important;
+        }
+
+    }
+
+    @media only screen and (min-width: 768px){
+        .first_line_s{
+            display: none !important;
+        }
+    }
+
+    .first_line_s{
+        font-size: medium;
+    }
+
+    .details_text{
+        padding-top: 1em;
+        padding-bottom: 1em;
+
+        .second_line{
+            flex-direction: row;
+            display: inline-flex;
+            align-items: center;
+
+            span{
+                padding-left: 0.1em;
+                padding-right: 0.1em;
+            }
+        }
+
+        .first_line, .third_line{
+            font-size: initial;
+        }
+    }
+
+    .supply_time_s{
+        font-weight: 700;
+        font-size: 200%;
+    }
+
+    .days_s{
+        font-size: large;
+        font-weight: 700;
+    }
+
+    .supply_time {
+		font-weight: bold;
+		font-size: 200%;
+		display: inline-block;
+    	 
+    }
+    
+    .days{
+		font-weight: bold;
+		font-size: 125%;
+		display: inline-block;
+    }
+}

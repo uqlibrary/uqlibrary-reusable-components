@@ -1,5 +1,111 @@
 /* starting favorites */
 
+prm-favorites {
+  @media print {
+    /* hide the sidebar/facets */
+    .sidebar {
+      display: none;
+    }
+  }
 
-  
+  .bottom-fixed-toolbar > * {
+    transform: translateZ(0);
+  }
 
+  .mobile-toolbar-text {
+    color: $links;
+    font-weight: 500;
+    @extend .prm-background;
+  }
+
+  .mobile-action-button {
+    background-color: darken(saturate($white, 15%), 20%);
+    color: $dark;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    border-radius: 0;
+    opacity: 1 !important;
+  }
+
+  .sidebar {
+    padding-left: 0;
+
+    //.__gt-sm & {
+
+    //}
+    .__sm &,
+    .__xs & {
+      @extend .padded-container;
+      @extend .prm-background;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 12;
+      opacity: 1;
+      transform: translateY(0);
+      transition: $swift-ease-out;
+
+      &.ng-hide {
+        opacity: 0;
+        transform: translateY(20%);
+
+        &.ng-hide-add {
+          transition: $swift-ease-in;
+          //&.ng-hide-add-active {
+          //}
+        }
+
+        //&.ng-hide-remove {
+        //    &.ng-hide-remove-active {
+        //    }
+        //}
+      }
+    }
+
+    .md-button {
+      transform-origin: 50% 0;
+    }
+
+    .compensate-padding-left {
+      padding-left: .4em;
+
+      [dir=rtl] & {
+        padding-right: .4em;
+      }
+    }
+  }
+
+  .mobile-layout {
+    padding-top: 15px;
+  }
+
+  .section-title {
+    & md-input-container {
+      margin: 0;
+    }
+  }
+
+  .sidebar-inner-wrapper {
+    .__sm &,
+    .__xs & {
+      padding-top: 1em;
+      padding-left: .5em;
+    }
+  }
+
+  .labels-toolbar {
+    background-color: darken(saturate($white, 15%), 20%);
+    color: $dark;
+  }
+
+  /*
+      .sidebar-section {
+          .__sm &,
+          .__xs & {
+              margin-left: 0;
+          }
+      }*/
+}

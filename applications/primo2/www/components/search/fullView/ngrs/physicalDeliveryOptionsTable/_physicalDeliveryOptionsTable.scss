@@ -1,0 +1,166 @@
+
+prm-physical-delivery-options-table{
+	#main_tiles { 
+		margin-right: 8px;
+    	margin-left: 8px;
+		box-shadow: 3px 3px 5px #c1bebe;
+		margin-top: 1%;
+
+	}
+
+	.inner_div { 
+		width: 100%;
+		background-color: #f3f3f3;
+		display: flex;	
+	}	
+
+	.text_line_1{
+		color: rgba(102,102,102,1);
+		font-family: Source Sans Pro;
+		font-weight: 700;
+		font-size: 135%;
+		display: flex;
+		align-items: center;
+		padding-bottom: 2%;
+	}
+
+	.filters {
+		display:none;
+		padding-left: 2em;
+		padding-top: 1em;
+	}	
+
+	.title-item {
+		padding-left: 1em;
+		padding-top: 1em;
+	}
+
+	.options_table{
+		padding-left: 3em;
+		padding-bottom: 2em;
+		display: flex;
+		flex-direction: column;
+	}
+
+	th{
+		color: rgba(102,102,102,1);
+		font-family: Source Sans Pro;
+		font-weight: 700;
+		font-size: 110%;
+		//padding: 1em;
+		text-align: center;
+		border-bottom-style: solid;
+		border-bottom-color: rgba(193, 190, 190, .5);
+		border-bottom-width: 2px;			
+
+	}
+	.filter_results{
+		font-family: Source Sans Pro;
+		font-size: 16px;
+		color: rgba(102,102,102,1);
+	}	
+
+	.delivered_in{
+		color: rgba(102,102,102,1);
+		font-family: Source Sans Pro;
+		font-weight: 700;
+		font-size: 110%;		
+	}
+
+	td{
+		color: rgba(102,102,102,1);
+		font-family: Source Sans Pro;
+		font-size: 16px;
+		padding: 1em;
+		text-align: center;
+		border-bottom-style: solid;
+		border-bottom-color: rgba(193, 190, 190, .5);
+		border-bottom-width: 2px;		
+	}	
+	
+
+
+	.get_it_btn{
+		top: 75%;
+		background-color: #3d6e94;
+		width: 35%;	
+		margin: auto;
+		color: white;
+	}
+	
+	table {
+		border-collapse: collapse;
+	}
+
+	.my_icon{	
+		border-radius: 50%;
+		opacity: 1;
+		background-color: white;
+		box-shadow: 3px 3px 5px #c1bebe;
+		border: 2px solid white;
+		color: #6a9bc2!important;
+		width: 40px;
+		height: 40px;	
+		height: 100%;
+    	width: auto;			
+	}	
+
+	.table_frame{
+		padding: 0em 3em 3em;
+		background-color: #fff;
+	}
+
+	.close{
+		float: right;
+		color: rgba(102,102,102,1);
+		min-width: auto;
+		margin-right:unset;
+		font-size: 130%;
+		font-family: cursive;		
+	}
+
+	.my_icon prm-icon md-icon{
+		width: 40px;
+		height: 40px;
+		min-width: 40px;		
+		min-height: 40px;
+	}
+
+	.tr_icon prm-icon md-icon{
+		width: 40px;
+		height: 40px;
+		min-width: 40px;		
+		min-height: 40px;
+		box-shadow: unset;
+		color: #6a9bc2;
+	}	
+
+	.tr_icon{
+
+		width: 60px;
+		height: 60px;
+		padding: 10%;
+		margin: 10px;
+		box-shadow: unset;
+		background: #fff;
+		border: 30px;
+		border-radius: 50%;
+		color: #44707b !important;
+	}
+
+	.arrow_filter .md-button {
+		color: #6a9bc2;
+		min-width: fit-content;
+	}
+
+	.empty_th{
+		width: 144px;
+	}
+
+
+
+
+	
+
+
+}

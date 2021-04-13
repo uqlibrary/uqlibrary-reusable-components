@@ -18,7 +18,7 @@ prm-favorites-labels{
                 padding-right: .35em;
                 border-radius: $radius;
 
-                @include bgColor(lighten($dark, 20%));
+                @include bgColor(lighten($dark, 10%));
 
             }
         }

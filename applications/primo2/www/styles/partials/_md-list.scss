@@ -18,7 +18,7 @@ md-list {
 		flex-flow: row wrap;
 		justify-content: center;
 	}
-	
+
 	&.has-list-nav {
       position: relative;
     }
@@ -62,7 +62,8 @@ md-list {
               }
             }
           }
-          ._md-list-item-inner {
+          ._md-list-item-inner,
+		  .md-list-item-inner {
             padding: .75em 1em;
             @extend .prm-background.prm-hue2;
           }
@@ -105,9 +106,15 @@ md-list {
           }
         }
       }
-    }
+	}
+	md-list-item.md-3-line,
+	md-list-item.md-2-line {
+		&:before {
+			min-height: 0;
+		}
+	}
 }
-md-list-item {	
+md-list-item {
 	&._md-button-wrap {
 		> div.md-button {
 			&:first-child {
@@ -136,12 +143,12 @@ md-list-item {
 		position: relative;
 		min-height: 0;
 		padding: 0;
-		position: relative;		
+		position: relative;
 		background-color: $white;
 
-		
 
-		._md-secondary-container {
+
+		._md-secondary-container, .md-secondary-container {
 			margin: 0;
 			align-self: stretch;
 		}
@@ -153,7 +160,7 @@ md-list-item {
 		}
 
 		&.md-3-line {
-			> .md-button {				
+			> .md-button {
 				min-height: 0;
 			}
 		}
@@ -169,12 +176,12 @@ md-list-item {
 			> .md-button {
 				padding: .5em 1em;
 				// &:not([disabled]):hover {
-				// 	background-color: transparentize($links, .9)				
+				// 	background-color: transparentize($links, .9)
 				// }
 			}
-			
+
 		}
-		
+
 
 		&.focus-highlight {
 			background-color: $highlight;
@@ -196,6 +203,10 @@ md-list-item {
 		    height: 100%;
 		    min-width: 65px;
 		    border-radius: 0;
+			[dir="rtl"] & {
+				right: auto;
+				left: 0;
+			}
 
 		    .__xs & {
 		    	position: absolute;
@@ -217,7 +228,7 @@ md-list-item {
 			margin-right: 1em;
 			prm-spinner {
 				height: 30px;
-			}		
+			}
 
 		}
 		.item-loader-with-text {
@@ -247,16 +258,15 @@ md-list-item {
 		}
 
 		&.has-expand {
-			@extend .hoverable-over-light;
 			.md-list-item-text {
 				// padding-right: 0;
 
 			}
-			.item-action {				
-				
+			.item-action {
+
 				position: relative;
 				transform: none;
-				top: auto;						
+				top: auto;
 
 			}
 		}
@@ -270,7 +280,7 @@ md-list-item {
 
 		.md-list-item-text {
 			max-width: 100%;
-			padding: .75em 1em;
+			padding: .75em 2em;
 			.unmuted-text {
 				color: $dark;
 			}
@@ -278,13 +288,17 @@ md-list-item {
 				padding-right: 1em;
 			}
 			> div:last-child{
-				padding: 0;				
+				padding: 0;
 			}
 			> div.list-item-actions {
 				.__xs & {
 					position: absolute;
 					bottom: .5em;
 					right: .5em;
+					[dir="rtl"] & {
+						right: auto;
+						left: .5em;
+					}
 				}
 			}
 			p {
@@ -307,11 +321,58 @@ md-list-item {
 				}
 			}
 		}
-	
+
 		.md-dialog-container {
 			top: 0 !important;
 		}
 	}
+
+	& .md-list-item-with-checkbox {
+			position: relative;
+
+			md-checkbox {
+				position: absolute;
+				top:0.5em;
+				left: 0.4em;
+				[dir=rtl] & {
+					right: 0.4em;
+					left: 0;
+				}
+				z-index: 1;
+			}
+
+		.item-index {
+			position: absolute;
+			font-size: .8em;
+			opacity: .4;
+			top: .6em;
+			left: .5em;
+			[dir=rtl] & {
+				right: .5em;
+				left: 0;
+			}
+			height: 20px;
+			width: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+      .title-row {
+        h3 {
+          max-width: 100%
+        }
+        prm-icon {
+          opacity: 0;
+        }
+        &.is-hovered {
+          prm-icon {
+            opacity: 1
+          }
+        }
+      }
+	}
+
 	.default-list & {
 		p {
 			line-height: 1.2em;
@@ -320,16 +381,20 @@ md-list-item {
 	&.list-item-as-link {
 		@extend .prm-links;
 	}
-	
+
 	.prm-bricks-list & {
 		display: inline-flex;
 		margin-bottom: .5em !important;
 		margin-right: .5em;
-		border-radius: $radius;		
+		border-radius: $radius;
 		@extend .default-shadow;
 		> .md-button {
 			border-radius: $radius;
 			min-width: 58px;
 		}
+	}
+
+	&.zero-padding {
+		padding: 0;
 	}
 }

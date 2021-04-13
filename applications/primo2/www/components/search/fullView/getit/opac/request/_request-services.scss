@@ -1,1 +1,11 @@
 /* starting requestServices */
+
+prm-request-services {
+	.section-title {
+		@extend .normal-text;
+		font-size: 1em;
+		text-transform: uppercase;
+		top: .25em;
+		padding-right: .5em !important;
+	}
+}

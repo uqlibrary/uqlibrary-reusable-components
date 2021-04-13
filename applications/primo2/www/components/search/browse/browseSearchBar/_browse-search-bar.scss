@@ -1,16 +1,16 @@
 /* starting browseSearchBar */
 prm-browse-search-bar {
-  @extend prm-journals-search-bar;
+  @extend prm-atoz-search-bar;
   label{
     transform: none!important;
     position: relative;
-    top: 2px;
     opacity: 1!important;
     color: inherit!important;
     padding-right: 0.2em!important;
   }
   md-input-container{
     display: flex;
+
     input{
       flex: 1 1;
       width: 100%;
@@ -19,4 +19,31 @@ prm-browse-search-bar {
     }
   }
 
+  //For drop down underline when focus with keyboard
+  .search-scope {
+    md-input-container{
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+    .clear-button {
+    position: absolute;
+    right: 50px;
+    top: -2px;
+    margin: 0;
+    opacity: 0 !important;
+    transition: opacity .15s ease;
+    [dir="rtl"] & {
+      left: 50px;
+      right: auto;
+    }
+
+    &.is-visible {
+      opacity: 1 !important;
+      transition: opacity .3s ease;
+      z-index: 2;
+    }
+  }
 }

@@ -279,15 +279,13 @@
     transform-origin: 25% 0%;
     opacity: 1;
     transform: scale3d(1,1,1);
-    clip-path: circle(80% at 50% 50%);
     &.ng-hide-add {
-      transition: transform .4s $swift-ease-out-timing-function, opacity .2s ease, clip-path .6s $swift-ease-out-timing-function, -webkit-clip-path .6s $swift-ease-out-timing-function;
+      transition: transform .4s $swift-ease-out-timing-function, opacity .2s ease
     }
     &.ng-hide-remove {
-      transition: transform .4s .5s  $swift-ease-out-timing-function, opacity .3s .5s ease, clip-path .4s .5s $swift-ease-out-timing-function, -webkit-clip-path .4s .5s $swift-ease-out-timing-function;
+      transition: transform .4s .5s  $swift-ease-out-timing-function, opacity .3s .5s ease
     }
     &.ng-hide {
-      clip-path: circle(10% at 50% 0%);
       opacity: 0;
       transition-delay: 0s;
       transform: scale3d(.9,.9,1) translateX(-30%);

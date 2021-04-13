@@ -1,4 +1,4 @@
-prm-journals-search-bar {
+prm-atoz-search-bar {
 
   @extend prm-search-bar;
 
@@ -25,9 +25,12 @@ prm-journals-search-bar {
 		}
 	}
 	.journal-search-tile{
-		width: 90px;
+		width: 145px;
 		span{
 			max-width: 100%;
+			[dir="rtl"] & {
+				text-align: right;
+			}
 		}
 	}
 }

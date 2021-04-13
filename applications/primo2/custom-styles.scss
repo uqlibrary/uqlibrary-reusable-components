@@ -135,6 +135,50 @@ div.full-view-section#tags {
   display: none;
 }
 
+prm-search-bar {
+  .advanced-search-tabs {
+    background: $white;
+  }
+  .simple-search-wrapper {
+    .search-actions {
+      .md-button {
+        &:last-child {
+          padding: 0 1em;
+        }
+        &.button-link:not([disabled]) {
+          &:hover,
+          &:focus {
+            color: #0a447e;
+            background-color: $highlightBlue;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Arrows shown in each row of advanced search query under form
+.advanced-search-wrapper .search-string .string-block prm-icon {
+  prm-browse-search-bar &, 
+  prm-journals-search-bar &,
+  prm-search-bar &,
+  prm-tags-search-bar & {
+    color: $uqBlue;
+  }
+}
+
+prm-search-bookmark-filter {
+  // QR Code and Favourites button in top nav
+  .md-icon-button.button-over-dark {
+    color: $textColor !important;
+  }
+}
+
+// Arrows shown next to headings in favourites
+prm-saved-queries-list .string-block prm-icon {
+  color: $uqBlue;
+}
+
 //Browse interface - made dropdown list grey BG instead of yellow
 prm-browse-search-bar .search-scope {
   background-color: #F2F2F2 !important;
@@ -201,6 +245,10 @@ prm-tags-results-list md-list.prm-list.prm-linkable-list-items md-list-item .ite
   color: $links !important;
 }
 
+.tiles-grid-tile {
+  background: $white;
+}
+
 // Change the color of 'See:' in the browse listings
 span[translate="nui.browse.crossref.see"] {
   color: #000000;
@@ -226,16 +274,28 @@ div.md-dialog-container .custom-links-container.layout-wrap.layout-align-sm-star
 prm-facet prm-breadcrumbs div.md-chip-content strong {
   padding-left: 22px;
 }
-prm-breadcrumbs .md-chips .md-chip-content .persistence-button {
-  opacity: 1;
-  transform: none;
-  padding-left: -2px;
+prm-facet {
+  button.md-button.button-as-link.link-alt-color {
+    color: $uqBlue;
+  }
 }
-prm-breadcrumbs .md-chip.persistent-facet strong {
-  padding-left: 0;
-}
-prm-breadcrumbs .md-chip.persistent-facet .md-chip-content .persistence-button {
-  left: -1px;
+prm-breadcrumbs {
+  .md-chips .md-chip-content .persistence-button {
+    opacity: 1;
+    transform: none;
+    padding-left: -2px;
+  }
+  .md-chip.persistent-facet {
+    strong {
+      padding-left: 0;
+    }
+    .md-chip-content .persistence-button {
+      left: -1px;
+    }
+  }
+  .md-button.link-alt-color.button-as-link {
+    color: $uqBlue;
+  }
 }
 
 // make the username and menu buttons (top right) black text
@@ -243,6 +303,18 @@ button.button-with-menu-arrow.md-button.md-primoExplore-theme.md-ink-ripple,
 button.user-button.md-button.md-primoExplore-theme.md-ink-ripple ,
 prm-user-area-expandable .md-button.user-button .menu-arrow {
   color: $dark;
+}
+
+// Button hover styling
+.md-button:not([disabled]) {
+  &._md-focused, 
+  &.hovered, 
+  &.md-focused, 
+  &:focus, 
+  &:hover {
+    color: #000;
+    background-color: rgba(51, 51, 51, 0.1);
+  }
 }
 
 // make the dropdowns under the search bar readable
@@ -287,6 +359,23 @@ div#services-index button.zero-margin.button-right-align.button-link.md-button.m
   padding: 0;
 }
 
+// Widen the full display view's sidebar, add padding to buttons
+prm-full-view .services-index-under {
+  #services-index,
+  .md-button {
+    max-width: 10rem;
+  }
+}
+.__gt-xs .full-view-section-content {
+  padding-left: 8.5rem;
+}
+prm-full-view prm-brief-result-container .result-item-text {
+  padding-left: 3.5em;
+}
+div#services-index button.zero-margin.button-right-align.button-link.md-button.md-primoExplore-theme.md-ink-ripple {
+  padding: 0 6px;
+}
+
 // add space for the lock icon to show on the facets
 .md-chip-content {
   padding-left: 15px;
@@ -300,10 +389,17 @@ strong.facet-title.layout-align-end-stretch.layout-row {
 }
 
 md-checkbox {
-  &:hover, &:focus {
+  &:hover, 
+  &:focus {
     ._md-icon,
     .md-icon {
       box-shadow: 0px 0px 0 0.6px #000;
+    }
+  }
+  &.md-checked {
+    .md-icon,
+    ._md-icon {
+      background-color: $uqBlue;
     }
   }
 }
@@ -330,7 +426,7 @@ md-checkbox {
 // tweak the styling of the primo database search
 .search-scope.journal-search-tile.layout-align-center-start.layout-column {
   background-color: $theme-color;
-  color: white;
+  color: $white;
   line-height: 1.3;
   padding-left: 8px;
   padding-right: 0;
@@ -376,13 +472,13 @@ div > getit-link-service {
 }
 .help-button:not([style-scope]) {
   background-color: $theme-color;
-  color: #FFF;
+  color: $white;
   transition: none;
 }
 .help-button:not([style-scope]):hover,
 .help-button:not([style-scope]):hover a,
 .help-button:not([style-scope]):hover a:hover {
-  background-color: #FFF;
+  background-color: $white;
   color: $theme-color !important;
   font-weight: bold;
   box-shadow: none; // removes underline on the link
@@ -394,7 +490,7 @@ div > getit-link-service {
 }
 .help-button:not([style-scope]) a {
   background-color: inherit;
-  color: #fff !important;
+  color: $white !important;
   text-decoration: none;
 }
 .help-button:not([style-scope]) a:hover {
@@ -410,10 +506,20 @@ div > getit-link-service {
     margin-top: -9px;
   }
 }
-button.md-button.button-as-link-mobile.link-alt-color {
-  // filter button doesnt have the same classes applied?!?
-  color: $accent-color;
+
+button.md-button.link-alt-color {
+  &.button-as-link-mobile {
+    color: $accent-color;
+  }
+  &.button-as-link:not([disabled]) {
+    &:hover,
+    &:focus {
+      color: #0a447e;
+      background-color: $highlightBlue;
+    }
+  }
 }
+
 @media (max-width: 600px) {
   // align the pin button
   .md-button.button-as-link {
@@ -428,7 +534,7 @@ prm-breadcrumbs .md-chip.persistent-facet .md-chip-content strong {
 
 // uqblue (#2377CB) isn't accessible on the primo grey background, so slightly different colour is needed
 .language-characters a { // dbsearch alpha-nav
-  color: #1E66AE!important;
+  color: #1E66AE !important;
 }
 
 // dbsearch sidebar
@@ -436,7 +542,7 @@ prm-tree-nav md-list md-list-item .md-button.branch-name {
   color: #1E66AE;
 }
 prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected {
-  color: #333!important;
+  color: #333 !important;
   &:hover {
     background-color: rgba(51,51,51,.1) !important;
   }
@@ -449,7 +555,7 @@ prm-tree-nav md-list md-list-item .md-button.branch-name.is-selected:hover {
 prm-facet-range prm-icon md-icon.md-primoExplore-theme,
 prm-facet-exact button:not(.button-exclude) prm-icon md-icon.md-primoExplore-theme {
   // little arrow in facet area but NOT the 'exclude filter' checked box (appears on mouseover)
-  color: #1E66AE!important;
+  color: #1E66AE !important;
 }
 
 .multiselect-facet-group .md-chip .md-chip-content md-checkbox {
@@ -479,9 +585,43 @@ primo-explore .md-dialog-container.fixed-container {
   background-color: rgba(83,115,140,0.5);
 }
 
-prm-search-result-list .pages-separated-with-gaps .results-title:not(.results-title-favorites) {
-  padding-left: 70px;
-  top: -7px !important;
+prm-search-result-list .pages-separated-with-gaps {
+  .list-item-wrapper {
+    background-color: $white;
+    .item-bookmarked {
+      background: $highlightYellow;
+    }
+  }  
+  .results-title:not(.results-title-favorites) {
+    padding-left: 70px;
+    top: -7px !important;
+  }
+}
+
+prm-search-result-tool-bar {
+  .md-toolbar-tools {
+    prm-add-query-to-saved-searches,
+    prm-personalize-results-button {
+      .md-button.link-alt-color.button-as-link {
+        color: $uqBlue;
+      }
+    }
+  }
+}
+
+.result-item-actions {
+  prm-save-to-favorites-button {
+    .pin-button {
+      color: $primary-hue2;
+      &.pinned {
+        &:focus,
+        &:hover {
+          color: $white !important;
+          background-color: $primary-hue2 !important;
+        }
+      }
+    }
+  }
 }
 
 .md-button.arrow-link-button .button-content:focus,
@@ -504,6 +644,27 @@ prm-tags-list md-chips md-chip .md-chip-content:hover strong {
   background-color: transparent;
 }
 
+prm-citation-trails-indication {
+  .md-button:not([disabled]) {
+    &.md-icon-button, 
+    &.button-with-icon {
+      &:hover {
+        background-color: rgba(255,99,71,.1);
+      }
+    }
+  }
+}
+
+md-card {
+  &.default-card {
+    background: $white;
+  }
+}
+
+.recommendations-title {
+  color: $links;
+}
+
 prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:not([disabled]) {
   &._md-focused,
   &.hovered,
@@ -518,41 +679,25 @@ prm-action-list md-nav-bar.vertical-nav-bar .md-nav-item .md-button.md-active:no
 @import "styles-imports/discovery_collection";
 
 // primo Toasts should have a uq blue OK button and a not-so-harshly-black Dismiss button
-
 // the Dismiss button
-prm-add-alert-toast md-toast .md-toast-content .md-button,
-prm-mendeley-toast md-toast .md-toast-content .md-button,
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button,
-prm-timeout-toast md-toast .md-toast-content .md-button,
-prm-voice-search-toast md-toast .md-toast-content .md-button {
-  color: #5F5F5F;
-}prm-add-alert-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-add-alert-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-add-alert-toast md-toast .md-toast-content .md-button:hover:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-mendeley-toast md-toast .md-toast-content .md-button:hover:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-toast-content .md-button:hover:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-timeout-toast md-toast .md-toast-content .md-button:hover:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button._md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button.hovered:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button.md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button:focus:not([disabled]),
-prm-voice-search-toast md-toast .md-toast-content .md-button:hover:not([disabled]) {
-  color: #fff;
-  background-color: #5F5F5F;
+md-toast .md-toast-content .md-button {
+  prm-add-alert-toast &,
+  prm-mendeley-toast &,
+  prm-silent-login-alert-toast &,
+  prm-timeout-toast &,
+  prm-voice-search-toast & {
+    color: #5F5F5F;
+    &:not([disabled]) {
+      &._md-focused,
+      &.hovered,
+      &.md-focused,
+      &:focus,
+      &:hover {
+        color: $white;
+        background-color: #5F5F5F;
+      }
+    }
+  }
 }
 
 // the OK button on the eg "Your session has been inactive for an extended period and has been reset." alert
@@ -570,58 +715,24 @@ prm-voice-search-toast md-toast .md-button.settings-button md-icon {
 }
 
 // then reverse the colours on hover
-prm-add-alert-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-add-alert-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-mendeley-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-silent-login-alert-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-timeout-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button._md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button.hovered:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button.md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button:focus:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button:hover:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon._md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon.hovered:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon.md-focused:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon:focus:not([disabled]),
-prm-voice-search-toast md-toast .md-button.settings-button md-icon:hover:not([disabled]) {
-  color: #fff;
-  background-color: $accent-color
+md-toast .md-button.settings-button:not([disabled]) {
+  prm-add-alert-toast &,
+  prm-mendeley-toast &,
+  prm-silent-login-alert-toast &,
+  prm-timeout-toast &,
+  prm-voice-search-toast & {
+    &,
+    md-icon {
+      &._md-focused,
+      &.hovered,
+      &.md-focused,
+      &:focus,
+      &:hover {
+        color: $white;
+        background-color: $accent-color
+      }
+    }
+  }
 }
 
 // Citation Search (Citation Linker) The field labels are quite a pale blue in contrast
@@ -635,10 +746,10 @@ prm-citation-linker .request-form md-input-container label:not(.md-no-float):not
 
 // fix submit button on purchase request form
 prm-citation-linker .md-button.button-large.button-with-icon {
-  border: 1px solid #ffffff;
+  border: 1px solid $white;
   &:hover {
     color: $accent-color !important;
-    background-color: white !important;
+    background-color: $white !important;
     border-color: $accent-color;
   }
 }
@@ -651,26 +762,34 @@ prm-citation-linker md-input-container:not([md-no-float]) .md-select-placeholder
   margin-bottom: -3px;
 }
 
-// shift the uq site title in the web component up a little
-uq-site-header::part(title) {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+uq-site-header {
+  &::part(root) {
+    background-color: $backgroundActual;
+  }
+  &::part(title) {
+    // shift the uq site title in the web component up a little
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 }
 
-// make the askus button look more like the native primo buttons
-askus-button::part(label) {
-  display: none;
-}
-
-askus-button::part(button) {
-  height: 42px;
-  width: 42px;
-  background-color: rgba(51,51,51,.12);
-  margin-left: 4px;
-}
-askus-button::part(button):hover, askus-button::part(button):active, askus-button::part(button):focus {
-  background-color: #fff;
-  opacity: initial;
+askus-button {
+  &::part(button) {
+    height: 42px;
+    width: 42px;
+    background-color: rgba(51,51,51,.12);
+    margin-left: 4px;
+    &:hover,
+    &:active
+    &:focus {
+      background-color: $white;
+      opacity: initial;
+    }
+  }
+  // make the askus button look more like the native primo buttons
+  &::part(label) {
+    display: none;
+  }
 }
 
 // after we turned off the grey in the background in _custom-themes, there were a couple that needed the grey put back
@@ -688,4 +807,13 @@ span.availability-status.no_fulltext,
 span.availability-status.unavailable_in_institution,
 span.availability-status.restricted {
   color: #555555;
+}
+
+prm-full-view {
+  #full-view-container {
+    &,
+    & > .full-view-inner-container {
+      background: $backgroundColor;
+    }
+  }
 }

@@ -1,0 +1,30 @@
+/* starting languageSelection */
+prm-language-selection {
+  md-list-item {
+    padding: 0 !important;
+    width: 100% !important;
+    display: block !important;
+    &:before {
+      display: none;
+    }
+
+    &.md-clickable div.md-button:first-child {
+      min-height: inherit;
+    }
+  }
+
+  .md-list-item-inner {
+    margin: 0 auto;
+    text-transform: none;
+  }
+
+  md-list-item._md-button-wrap {
+    > div.md-button {
+      &:first-child {
+        .md-list-item-inner {
+          width: auto;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+/* starting newspapersSpotlight */
+
+.spotlight-element .spotlight-image {
+  margin-right: 18px; 
+ }
+
+prm-newspapers-spotlight {
+  h3 {
+    a {
+      @extend .prm-links.prm-hue1;
+    }
+  }
+}

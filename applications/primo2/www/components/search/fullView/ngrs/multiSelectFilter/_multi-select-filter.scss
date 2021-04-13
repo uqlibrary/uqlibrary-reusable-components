@@ -1,0 +1,28 @@
+prm-multi-select-filter {
+  .__xs & {
+    flex: 1 100%;
+  }
+  md-input-container {
+    > label:not(.md-no-float):not(._md-container-ignore, .md-container-ignore) {
+      @supports (not (-ms-high-contrast: none)) and (not (-ms-ime-align:none)){
+        flex: 0 2;
+        min-width: fit-content;
+      }
+      @supports (-ms-ime-align:auto) {
+        min-width: 120px;
+      }
+    }
+
+    > md-select[multiple] {
+      flex-shrink: 0;
+      > md-select-value > span {
+        > ._md-container {
+          display: inline-block;
+        }
+        > ._md-text {
+          display: inline;
+        }
+      }
+    }
+  }
+}

@@ -1,1 +1,63 @@
 /* starting opac */
+
+prm-opac {
+	md-list {
+		md-list-item {
+			&:last-of-type {
+				@extend .default-shadow;
+			}
+		}
+	}
+	.section-title, .subsection-title  {
+		text-transform: uppercase
+	}
+	.section-title {
+		@extend .normal-text;
+		font-size: 1em;
+	}
+	.subsection-title  {
+		@extend .bold-text;
+		font-size: .8em;
+		letter-spacing: 0.02em;
+		padding-left: .5em;
+	}
+	prm-stack-map {
+		@extend %layout-row;
+		.md-button.button-with-icon {
+			> prm-icon {
+				md-icon	{
+					@include setSize(20px)
+				}
+			}
+		}
+	}
+	.related-title {
+		margin: 0;
+		font-size: 1em;
+		.related-title-label {
+			@extend .bold-text;
+			font-size: .8em;
+			text-transform: uppercase;
+			&:after {
+				content: ":"
+			}
+		}
+		.related-title-name {
+			@extend .italic-text;
+			@extend .bold-text;
+			@extend .prm-citation-title;
+		}
+		.related-title-icon {
+			md-icon {
+				@include setSize(18px);
+			}
+		}
+	}
+	.filter-bar {
+		md-input-container {
+			margin-top: .5em;
+			margin-bottom: .5em;
+		}
+	}
+
+}

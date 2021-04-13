@@ -8,7 +8,7 @@ The development package allows you to configure :
   - no customisation to be done in custom.css
   
 - images includes
-  - favicon.ico 
+  - favicon.ico
   - library-logo.png (used in email templates)
   
 - html
@@ -21,6 +21,7 @@ The development package allows you to configure :
 Modifications should always be done in reusable-components/applications/primo2/*.(scss|js) in preference to modifying the package. (Not always possible)
 
 Exceptions:
+
 - initial reusable injection
 - email template customisation
 
@@ -52,18 +53,4 @@ Note: Customisation Manager allows the upload of _just_ the logo or _just_ the e
 
 ## Primo dev environment
 
-Try setting up local environment following this: https://github.com/ExLibrisGroup/primo-explore-devenv
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Try setting up local environment following this: <https://github.com/ExLibrisGroup/primo-explore-devenv>

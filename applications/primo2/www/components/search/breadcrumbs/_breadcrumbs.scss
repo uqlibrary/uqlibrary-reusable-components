@@ -1,61 +1,255 @@
 prm-breadcrumbs {
-    .md-chip {
-        border-radius: 1.2em;        
-        margin-bottom: .5em;
-        @extend .default-shadow;
-        @include rtl-prop(margin-right, margin-left, .5em, 0);
+  .md-chip {
+    border-radius: 1.2em;
+    margin-bottom: .5em;
+    @extend .default-shadow;
+    @include rtl-prop(margin-right, margin-left, .5em, 0);
+    overflow: hidden;
 
-        &.facet-excluded {
-            color: $red;
+    &.wrapping-chip {
+      height: auto;
 
-            .md-chip-content {
-                position: relative;
+      .md-chip-content {
+        line-height: 1.2em;
 
-                &:after {
-                    content: "";
-                    width: 100%;
-                    height: 1px;
-                    position: absolute;
-                    top: .2em;
-                    bottom: 0;
-                    margin: auto;
-                    background-color: $dark;
-                    left: 0;
-                }
-            }
+        strong {
+          overflow: hidden;
+          white-space: nowrap;
+          //text-overflow: unset;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          padding: 5px 0;
         }
+      }
+
     }
-    .md-chips {
+
+    &.facet-excluded {
+      color: $red-hue1;
+
+      .md-chip-content {
+        position: relative;
+
+        &:after {
+          content: "";
+          width: 100%;
+          height: 1px;
+          position: absolute;
+          top: .2em;
+          bottom: 0;
+          margin: auto;
+          background-color: $dark;
+          //left: 0;
+          @include rtl-prop(left, right, 0, auto);
+        }
+      }
+    }
+
+    &.persistent-facet {
+      background-color: #fffcc4;
+      @extend .prm-highlight;
+
+      .md-chip-content {
+        // margin-left: 0;
+        @include rtl-prop(margin-left, margin-right, 0, auto);
+
+        &:before {
+          display: none;
+        }
+
+        .persistence-button {
+          // left: 0;
+          @include rtl-prop(left, right, 0, auto);
+          transform: none !important;
+          opacity: 1;
+          //position: relative;
+          //z-index: 1;
+          //height: 2em;
+          //left: -3px;
+          //transform: none;
+          //min-width: 30px;
+          //prm-icon {
+          //  md-icon {
+          //    &.show-on-hover {
+          //      left: 5px
+          //    }
+          //  }
+          //}
+        }
+
+        strong {
+          // padding-left: 34px;
+          @include rtl-prop(padding-left, padding-right, 34px, 0);
+        }
+      }
+
+      &.facet-excluded {
         .md-chip-content {
-            cursor: default;
-            flex: 1;
-            min-width: 0;
-            @include ie-only {
-                flex: auto;
-                min-width: auto;
-                max-width: calc(100% - 42px);
+          &:after {
+            width: calc(100% - 2em);
+            left: auto;
+            right: 0;
+            @include rtl-prop(left, right, auto, 0);
+          }
+        }
+      }
+    }
+  }
+
+  .md-chips {
+    // + .md-chips {
+    //   margin-bottom: 0;
+    // }
+    // padding: 0;
+    @include rtl(padding, 0, 0);
+
+    .md-chip-content {
+      position: relative;
+      cursor: default;
+      flex: 1;
+      min-width: 0;
+      @include rtl-prop(margin-left, margin-right, .75em, 0);
+      @include ie-only {
+        flex: auto;
+        min-width: auto;
+        max-width: calc(100% - 42px);
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        //left: -15px;
+        @include rtl-prop(left, right, -15px, auto);
+        top: 0;
+        height: 100%;
+        width: 2.5em;
+        background-color: white;
+        //box-shadow: 15px 0 15px -3px white;
+        @include rtl(box-shadow, 15px 0 15px -3px white, -15px 0 15px -3px white);
+        opacity: 0;
+        //transform: translateX(-10px);
+        @include rtl(transform, translateX(-10px), translateX(10px));
+        transition: opacity .3s ease, transform .3s $swift-ease-in-timing-function;
+
+        //[dir=rtl] & {
+        //  left: 0;
+        //  right: -15px;
+        //  box-shadow: 15px 0 15px 20px white;
+        //  transform: translateX(10px);
+        //}
+      }
+
+      .persistence-button {
+        position: absolute;
+        //left: -9px;
+        @include rtl-prop(left, right, -11px, auto);
+        top: 0;
+        height: 100%;
+        padding: 0;
+        min-height: 100%;
+        width: 2.2em;
+        margin: 0;
+        opacity: 0;
+        //transform: translateX(-10px);
+        @include rtl(transform, translateX(-10px), translateX(10px));
+        //border-radius: 12px;
+        border-radius: 0;
+        transition: opacity .2s ease, transform .2s $swift-ease-in-timing-function;
+
+        //[dir=rtl] & {
+        //  left: 0;
+        //  right: -9px;
+        //}
+        prm-icon {
+          md-icon {
+            opacity: 1;
+            transition: none !important;
+            @include setSize(18px);
+          }
+
+          &.show-on-hover {
+            position: absolute;
+            top: 5px;
+            left: 6px;
+
+            md-icon {
+              opacity: 0;
             }
-            @include rtl-prop(margin-left, margin-right, .75em, 0)
+          }
         }
-    }
-    .md-chip-remove-container {
-        border-radius: 50%;
-        button{
-            &:hover,
-            &:focus {
-                md-icon {
-                    @extend .prm-warn;
-                }
+
+        &:hover, &:focus {
+          /*display: table-row;
+          min-width: 30px;*/
+          prm-icon {
+            md-icon {
+              opacity: 0;
             }
+
+            &.show-on-hover {
+              md-icon {
+                opacity: 1;
+              }
+            }
+          }
         }
-    }
-    .md-chip-remove {
-        appearance: none;
-        background: transparent;
-        border: none;
-        
-        md-icon {
-            @include setSize(18px)
+
+      }
+
+      &:hover, &:focus {
+        &:before {
+          opacity: 1;
+          transform: translateX(0);
+          transition: opacity .2s ease, transform .25s $swift-ease-out-timing-function;
         }
+      }
+
+      &:hover .persistence-button,
+      &:focus .persistence-button,
+      .persistence-button:hover,
+      .persistence-button:focus {
+        transform: translateX(0);
+        opacity: 1;
+        transition: opacity .2s ease, transform .2s $swift-ease-out-timing-function;
+      }
     }
+  }
+  .disabledLockButton {
+    color:$disabled!important;
+ 	  &:hover,
+      &:focus {
+      	box-shadow: none!important;
+        background-color: transparent!important;
+      }
+  }
+  & .sticky-facet-actions {
+    white-space: pre-line;
+    text-align: left;
+    display: inline-flex;
+  }
+
 }
+
+.md-chip-remove-container {
+  border-radius: 50%;
+
+  button {
+    &:hover,
+    &:focus {
+      md-icon {
+        @extend .prm-warn;
+      }
+    }
+  }
+}
+
+.md-chip-remove {
+  appearance: none;
+  background: transparent;
+  border: none;
+
+  md-icon {
+    @include setSize(18px)
+  }
+}
+

@@ -28,7 +28,8 @@ md-nav-bar {
 				padding: .5em 1em;
 				&.md-active {
 					@extend .bold-text;
-					color: black;
+					//color: black;
+					@include bgColor($dark);
 				}
 			}
 		}

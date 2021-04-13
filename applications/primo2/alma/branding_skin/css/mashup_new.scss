@@ -1,20 +1,34 @@
-$uqblue-half-opacity: rgba(35, 119, 203, .5);
-$uqblue: #2377CB;
+@import "../../../styles-imports/www/variables";
 
+a,
 a#displayHolding,
-ul#PAGING input // warehouse pagination buttons
+.serialSelection ul.holdingInfo,
+.serialSelection ul.holdingInfo li,
+ul#PAGING input, // warehouse pagination buttons
+.iframeHeader input[type="submit"]
 {
-  color: $uqblue;
+  color: $uqBlue;
+}
+
+.serialSelection ul.holdingInfo li span {
+  color: $dark;
+}
+
+// Icon for external links should be $uqBlue
+.external-link, 
+.submitAsLink.popout+span:before, 
+.viewIt>ul>li a[target="_blank"]:after {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiMyMzc3Q0IiIGQ9Ik0xNCwzVjVIMTcuNTlMNy43NiwxNC44M0w5LjE3LDE2LjI0TDE5LDYuNDFWMTBIMjFWM00xOSwxOUg1VjVIMTJWM0g1QzMuODksMyAzLDMuOSAzLDVWMTlBMiwyIDAgMCwwIDUsMjFIMTlBMiwyIDAgMCwwIDIxLDE5VjEySDE5VjE5WiIgLz4KPC9zdmc+);
 }
 
 // stackmap button styling
 .holdingsList a.locate,
 .holdingInfo a.locate {
-  background-color: $uqblue;
-  color: #fff;
-  font-size: 14px!important;
-  font-weight: 300;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $uqBlue;
+  color: $white;
+  font-size: 14px !important;
+  font-weight: $light;
+  font-family: $serif;
   letter-spacing: 1px;
   text-transform: initial;
   padding: 4px 3.75px;
@@ -30,19 +44,30 @@ ul#PAGING input // warehouse pagination buttons
 li#formActionsContainer input[type="submit"]#exlidRequestTabFormSubmit, // Get it -> place a request -> Place a Request button
 #formActionsContainer input[type="submit"]#submitPurchaseRequest // Get it -> request a purchase -> Place a Request button
 {
-  color: white;
-  background-color: $uqblue;
-  border: 1px solid #ffffff;
+  color: $white;
+  background-color: $uqBlue;
+  border: 1px solid $white;
   &:hover {
-    color:  $uqblue !important;
-    background-color: #ffffff !important;
-    border-color: $uqblue;
+    color:  $uqBlue !important;
+    background-color: $white !important;
+    border-color: $uqBlue;
   }
 }
 
-div.serialSelection * {
-  color: #333;
-}
-.itemsList table tbody tr td:first-child {
-  color: $uqblue;
+table {
+  tbody {
+    tr {
+      td {
+        &:first-child {
+          .itemsList & {
+            color: $uqBlue;
+            // Set colour of unlinked barcodes
+            span.itemBarcode {
+              color: $dark;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -19,11 +19,11 @@ md-tabs  {
                     min-width: 4em;
 					&.md-active,
 					&.md-focused {
-						@extend .prm-primary-color;
-
+						@extend .prm-primary-color.prm-hue1;
 					}
 					&.md-focused {
-						@extend .prm-background.prm-hue9;
+						//@extend .prm-background.prm-hue9;
+						border: 2px solid $links-hue-3;
 					}
 					prm-icon {
 						// margin-left: .35em;
@@ -53,8 +53,9 @@ md-tabs  {
 	}
 
 	md-ink-bar {
-		@extend .prm-secondary-bg.prm-hue1;
+		@extend .prm-links-background.prm-hue-3;
 	}
+
 }
 > md-tabs-wrapper{
 	.hidden-tabs & {
@@ -322,7 +323,8 @@ md-tabs {
 md-tabs {
 	&.tabs-as-app {
 		.back-button {
-			@extend .prm-links;
+			//@extend .prm-links;
+			@include bgColor($links);
 			margin-bottom: .5em;
 
 			&.ng-hide-add {

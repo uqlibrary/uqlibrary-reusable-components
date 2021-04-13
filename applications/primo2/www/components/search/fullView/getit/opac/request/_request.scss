@@ -1,1 +1,23 @@
 /* starting request */
+prm-request{
+  .item-available {
+    color: $success;
+  }
+
+  .item-not-available{
+    color: $disabled;
+  }
+
+  prm-form-field {
+    md-input-container {
+      label {
+        &:not(.md-no-float) {
+          &:not(._md-container-ignore) {
+            width: auto;
+            max-width: 315px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,21 @@
 prm-search {
+
+  .ui-blocker {
+    position: absolute;
+    top: -22px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    opacity: .7;
+    @extend .prm-background;
+  }
+
+  .facet-to-left-spacer {
+    margin-right: 5.5em;
+  }
+
+
   /*.facet-to-left {
     flex-direction: row-reverse;
 
@@ -13,4 +30,10 @@ prm-search {
   .facet-to-left-rightSpacer {
     order: 4;
   }*/
+	/*Printing Configurations*/
+
+	@media print {
+	/* hide the sidebar/facets */
+		.sidebar {display:none;}
+	}
 }

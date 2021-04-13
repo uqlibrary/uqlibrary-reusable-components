@@ -1,1 +1,12 @@
 /* starting requestsOverview */
+
+prm-requests-overview {
+  md-list-item {
+    .md-button {
+      &:hover:not([disabled]) {
+        background-color: transparent;
+        color: $dark-hue1;
+      }
+    }
+  }
+}

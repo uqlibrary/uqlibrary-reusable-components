@@ -9,12 +9,20 @@ prm-location-items {
 			margin-bottom: .35em;
 		}
 	}
+	.summary-brief-header {
+		display: inline-block;
+		min-width: 10em;
+	}
 	.summary-brief {
 		max-width:50em;
 	    @extend %text-trim-ellipsis;
+		white-space: normal;
 	} 
 
 	md-list {
+		@extend .default-shadow;
+		margin-bottom: 1em;
+		padding: 0;
 		prm-service-button {
 			.md-button,
 			.md-button.button-as-link {
@@ -48,5 +56,9 @@ prm-location-items {
 				}
 			}
 		}
+	}
+
+	.location-item {
+		//white-space: normal!important;
 	}
 }

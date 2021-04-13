@@ -1,5 +1,19 @@
 /* starting personalInfo */
 
+prm-personal-info {
+  .bar {
+    &.error-bar {
+      background-color: transparent;
+      color: $warn-hue1;
+      border: 2px solid $warn-hue1;
+      //border-color: $warn-hue1;
+      //color: darken($red, 10%);
+      //@extend .prm-warning-color.prm-hue1;
+      /*border-width: 2px;*/
+    }
+  }
+}
+
 
 // md-toolbar.transparent-toolbar,
 // md-toolbar:not(.md-menu-toolbar).transparent-toolbar,

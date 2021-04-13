@@ -2,7 +2,7 @@ prm-icon {
 	md-icon,
 	md-icon.md-primoExplore-theme {
 		color: inherit !important;
-		transition: $swift-ease-out;
+		//transition: $swift-ease-out;
 		svg {
 			color: inherit;
 			path {
@@ -23,6 +23,11 @@ prm-icon {
 	&.rotate-180 {
 		md-icon {
 	    	transform: rotate(180deg);
+		}
+	}
+	&.rotate-90 {
+		md-icon {
+	    	transform: rotate(90deg);
 		}
 	}
 	&.large-icon {

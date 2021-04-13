@@ -1,0 +1,129 @@
+/* starting treeNav */
+prm-tree-nav {
+  position: relative;
+  prm-tree-nav {
+    display: flex;
+    flex-direction: column
+    // margin-top: 8px
+  }
+
+  md-list{
+    padding: 0;
+    md-list {
+      &:before {
+        content: '';
+        height: calc(100% - 16px);
+        width: 1px;
+        position: absolute;
+        left: 15px;
+        [dir=rtl] & {
+          right: 15px;
+        }
+        background: currentColor;
+        opacity: .1;
+      }
+
+    }
+    md-list-item {
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 0;
+      &:before {
+        min-height: 0;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        [dir=rtl] & {
+          right: 14px;
+        }
+        background: currentColor;
+        opacity: .1;
+        height: 4px;
+        width: 4px;
+        top: 16px;
+        border-radius: 50%;
+      }
+      &:hover, &.md-clickable, &.md-clickable:hover {
+        cursor: default;
+      }
+
+      .inner {
+        display: flex;
+
+      }
+      .md-button, md-button {
+        margin: 0;
+        min-width: 0;
+        text-transform: none;
+        font-weight: 600;
+        &.branch-name {
+          white-space: normal;
+          text-align: left;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          &.is-selected {
+            @include bgColor($secondary-hue3);
+          }
+        }
+        &.branch-arrow {
+          height: 32px;
+          width: 32px;
+          min-width: 32px;
+          min-height: 32px;
+          display: flex;
+          justify-content: center;
+          md-icon {
+            transform: scale(.7)
+          }
+        }
+        p  {
+          margin: 0;
+          line-height: 1.2rem;
+        }
+      }
+      prm-icon.arrow {
+        transform: rotate(-90deg);
+
+        [dir=rtl] & {
+          transform: rotate(90deg);
+        }
+
+        transition: transform .3s ease;
+        &.toggled {
+          transform: rotate(0)
+        }
+      }
+      md-list-item {
+        padding-left: 1rem;
+
+        [dir=rtl] & {
+          padding-right: 1rem;
+        }
+      }
+      &:not(.has-branches) {
+        .md-button, md-button {
+          &.branch-name {
+            margin-left: 32px;
+
+            [dir=rtl] & {
+              margin-right: 32px;
+            }
+          }
+        }
+      }
+    }
+
+  }
+  prm-spinner {
+    display: inline;
+    // .spinner-wrapper {
+    //     height: 80px;
+    //     width: 35px;
+    // }
+    .diamond {
+      @extend .prm-primary-bg
+    }
+  }
+}

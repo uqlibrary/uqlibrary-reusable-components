@@ -7,7 +7,7 @@ prm-citation-trails-indication {
       box-shadow: none;
       margin: 0;
       // @extend .prm-citation-color;
-      @include bgColor($citationColor);
+      @include bgColor($citation-hue3);
       &:hover {
         @extend .prm-citation-color.citation-hover;
       }

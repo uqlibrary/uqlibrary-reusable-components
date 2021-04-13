@@ -1,0 +1,32 @@
+prm-progress-bar{
+
+    .ProgressBar {
+        margin: 0 auto;
+        list-style: none;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .ProgressBar-step {
+        text-align: center;
+        position: relative;
+        width: 100%;
+    }
+
+    .ProgressBar-step:first-child{
+        hr{
+            width: 50%;
+            left: 25%;
+            position: inherit;
+        }  
+    }
+
+    .ProgressBar-step:last-child{
+        hr{
+            width: 50%;
+            left: -25%;
+            position: inherit;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.search-result-ngrs-line-wrapper{
+    min-height:2.4em;
+  }
+
+prm-ngrs-brief-result-Line{
+    #ngrs_line{
+        width: 110%;
+        float: left;
+        display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+    }
+
+    #physical_offer{
+       float: left;
+        width: 41%;
+    }
+    
+    #digital_offer{
+       width: 36%;
+    }
+
+    #delivery_options{
+       width: 33%;
+    }
+}

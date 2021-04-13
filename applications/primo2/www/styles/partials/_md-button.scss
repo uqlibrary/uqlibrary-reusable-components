@@ -2,294 +2,362 @@
 
 .md-button {
 
-    // default 
-    @include bgColor($text);
+  // default
+  @include bgColor($text);
+
+  .light-on-dark-dialog & {
+    @include bgColor($white);
+  }
+
+  .light-on-dark-dialog .hoverable-over-dark:not(.disable-hover) & {
+    @include bgColor($white);
+  }
+
+  // primary (override Angular material)
+  &.md-primary {
+    @include bgColor($md-primary);
+  }
+
+  // secondary (override Angular material)
+  &.md-secondary {
+    @include bgColor($secondary);
+  }
+
+  // confirm (positive / green)
+  &.button-confirm {
+    @include bgColor($positive);
+    @extend .prm-positive.prm-hue1;
 
     .light-on-dark-dialog & {
-        @include bgColor($white);
+      @include bgColor($linkTitle);
     }
-    
-    // primary (override Angular material)
-    &.md-primary {
-        @include bgColor($md-primary);
-    }
+  }
 
-    // secondary (override Angular material)
-    &.md-secondary {
-        @include bgColor($secondary);
-    }
+  // notice (notification / orange)
+  &.button-notice {
+    @include bgColor($notice);
+  }
 
-    // confirm (positive / green)
-    &.button-confirm {
-        @include bgColor($positive);
+  // prompt / alert (yellow)
+  &.button-prompt {
+    @include bgColor($highlight);
+  }
 
-        .light-on-dark-dialog & {
-            @include bgColor($linkTitle);
-        }
-    }
-    
-    // notice (notification / orange)
-    &.button-notice {
-         @include bgColor($notice);
-    }
+  &.button-warn {
+    @include bgColor($warn-hue1);
+  }
 
-    // prompt / alert (yellow)
-    &.button-prompt {
-        @include bgColor($highlight);
-    }
+  // use to inherit background color of dark color parent
+  &.button-over-dark {
+    @extend .hoverable-over-dark;
+  }
 
-    &.button-warn {
-        @include bgColor($warn);
-    }
-    
-    // use to inherit background color of dark color parent
-    &.button-over-dark {
-        @extend .hoverable-over-dark;
-    }
+  // use to inherit background color of light color parent
+  &.button-over-light {
+    @extend .hoverable-over-light;
+  }
 
-    // use to inherit background color of light color parent
-    &.button-over-light {
-        @extend .hoverable-over-light;
+  // use to make buttons seem like links
+  &.button-link {
+    @include bgColor($links);
+    box-shadow: none;
+    &.link-alt-color {
+      @include bgColor($linkAlt);
     }
-        
-    // use to make buttons seem like links
-    &.button-link {
-        @include bgColor($links);
-        box-shadow: none;
-        &.link-alt-color {
-            @include bgColor($linkAlt);
-        }
-    }
+  }
 
-    // large button
-    &.button-large {
-        font-size: 1.2em;
-        padding: .25em .75em;
+  // large button
+  &.button-large {
+    font-size: 1.2em;
+    padding: .25em .75em;
 
-        &.button-with-icon {
-            padding-left: .5em;
-
-            > prm-icon {
-                +span {
-                    padding-right: 0;
-                }
-            }
-        }
-    }    
-    
-    // button without rounded corners
-    &.button-zero-radius {
-        border-radius: 0;
-    }
-    
-    // button with hover effect disabled
-    &.button-no-hover {
-        &:hover {
-            background-color: transparent;
-        }
-    }
-    
-    // icon button (override Angular material)
-    &.md-icon-button {
-        &.square-button {
-            border-radius: 0;
-        }
-        &.icon-button-large {
-            @include setSize(50px);
-            md-icon { 
-                @include setSize(40px);
-            }
-            prm-icon {
-                position: relative;
-                left: -4px;
-                top: -3px;
-            }
-        }
-    }
-
-    // regular button with an icon
     &.button-with-icon {
+      padding-left: .5em;
 
-        // When icon is before button text
-        > prm-icon {
-            display: inline-block;
-            md-icon {
-                position: relative;
-                top: -2px;
-            }
-            + span {
-                display: inline-block;
-                margin-left: 3px;
-                @include rtl-prop(padding-right, padding-left, .5em, 0);
-
-                .md-button.button-large & {
-                    padding-right: 0;
-                }
-            }
+      > prm-icon {
+        + span {
+          padding-right: 0;
         }
+      }
+    }
+  }
 
-        // when icon is on the after the button text
-        > span {
+  // large button XL (good for a single button that appears in a single line with one word inside it)
+  &.button-large-xl {
+    font-size: 1.2em;
+    padding: .25em 2.75em;
 
-            + prm-icon {
-                margin-right: 0;
+    &.button-with-icon {
+      padding-left: .5em;
 
-                md-icon {
-                    margin-left: 5px;
-                    margin-right: 0;
-                }
-            }
+      > prm-icon {
+        + span {
+          padding-right: 0;
         }
+      }
     }
+  }
 
-    &.icon-button-with-text {
-        font-size: 10px;
-        line-height: 14px;
-        font-weight: 600;
-        letter-spacing: 0.03em;
+  // button without rounded corners
+  &.button-zero-radius {
+    border-radius: 0;
+  }
+
+  // button with hover effect disabled
+  &.button-no-hover {
+    &:hover {
+      background-color: transparent;
     }
+  }
 
-    // Button with border
-    &.outline-button {
-        border: 1px solid;
+  // icon button (override Angular material)
+  &.md-icon-button {
+    &.square-button {
+      border-radius: 0;
     }
-
-    // raised button (override Angular material)
-    &.md-raised:not([disabled]) {
-        box-shadow: 0 2px 8px -4px rgba(0, 0, 0, 0.26);    
+    &.icon-button-large {
+      @include setSize(50px);
+      md-icon {
+        @include setSize(40px);
+      }
+      prm-icon {
+        position: relative;
+        left: -4px;
+        top: -3px;
+      }
     }
+  }
 
-    // disabled button
-    &[disabled="disabled"] {
-        color: #ccc !important;
-        cursor: not-allowed;
-    }
-    
-    // show button as link
-    &.button-as-link {        
-        text-transform: none;
-        font-size: 1em;
-        min-width: 0;
-        padding: .3em .35em;
-        line-height: 1em;
-        min-height: 0;
-        margin: 0 .25em;
-        overflow: visible;
-        flex: 0 0 auto;
-        letter-spacing: 0;
+  // regular button with an icon
+  &.button-with-icon {
 
-        @include bgColor($links);
+    // When icon is before button text
+    > prm-icon {
+      display: inline-block;
+      md-icon {
+        position: relative;
+        top: -2px;
+      }
+      + span {
+        display: inline-block;
+        margin-left: 3px;
+        @include rtl-prop(padding-right, padding-left, .5em, 0);
 
-        &.link-alt-color {
-             @include bgColor($secondary-hue1);
+        .md-button.button-large & {
+          padding-right: 0;
         }
-
-        &.button-external-link {           
-            span {
-                position: relative;
-                top: 1px;
-            }
-        }
-
-        .light-on-dark-dialog & {
-            @include bgColor($linkTitle);
-        }
+      }
     }
-    
-    // button as flex element (default is inline-block)
+
+    // when icon is on the after the button text
+    > span {
+
+      + prm-icon {
+        margin-right: 0;
+
+        md-icon {
+          margin-left: 5px;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  &.icon-button-with-text {
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  // Button with border
+  &.outline-button {
+    border: 1px solid;
+  }
+
+  // raised button (override Angular material)
+  &.md-raised:not([disabled]) {
+    box-shadow: 0 2px 8px -4px rgba(0, 0, 0, 0.26);
+  }
+
+  // disabled button
+  &[disabled="disabled"] {
+    color: #ccc !important;
+    cursor: not-allowed;
+  }
+
+  // show button as link
+  &.button-as-link {
+    text-transform: none;
+    font-size: 1em;
+    min-width: 0;
+    padding: .3em .35em;
+    line-height: 1em;
+    min-height: 0;
+    margin: 0 .25em;
+    overflow: visible;
+    flex: 0 0 auto;
+    letter-spacing: 0;
+
+    @include bgColor($links-hue-1);
+
+    &.link-alt-color {
+      @include bgColor($secondary-hue3);
+    }
+
+    &.button-external-link {
+      span {
+        position: relative;
+        top: 1px;
+      }
+    }
+
+    .light-on-dark-dialog & {
+      @include bgColor($linkTitle);
+    }
+  }
+
+  // show button as link on mobile
+  &.button-as-link-mobile {
+    text-transform: none;
+    font-size: 1em;
+    min-width: 0;
+    padding: 0;
+    line-height: 1em;
+    min-height: 0;
+    //margin: 0 .25em;
+    overflow: visible;
+    flex: 0 0 auto;
+    letter-spacing: 0;
+
+    @include bgColor($links);
+
+    &.link-alt-color {
+      @include bgColor($secondary-hue3);
+    }
+
+    &.button-external-link {
+      span {
+        position: relative;
+        top: 1px;
+      }
+    }
+
+    .light-on-dark-dialog & {
+      @include bgColor($linkTitle);
+    }
+  }
+
+  // button as flex element (default is inline-block)
+  &.flex-button {
+    display: flex;
+  }
+
+  // display a button as inline element (inline with text, similar to <span>)
+  &.inline-button {
+    display: inline;
     &.flex-button {
-        display: flex;
+      display: inline-flex;
     }
+  }
 
-    // display a button as inline element (inline with text, similar to <span>)
-    &.inline-button {
-        display: inline;
-        &.flex-button {
-            display: inline-flex;
-        }
+  // small md-icon-button (override Angular material)
+  &.md-mini {
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  // multi-lines button
+  &.multi-line-button {
+    white-space: normal;
+    line-height: 1.2em;
+    padding: .5em;
+  }
+
+  // occupy the available vertical space in parent container
+  &.button-full-height {
+    height: 100%;
+  }
+
+  // Buttons that replace clickable elements, but that DON'T inherit md-button styling
+  // This is to enable clickable HTML elements like <div>, <p> etc.
+  &.neutralized-button {
+    max-width: none;
+    max-height: none;
+    text-transform: none;
+    padding: 0;
+    margin: 0;
+    line-height: inherit;
+    min-height: 0;
+    min-width: 0;
+    white-space: normal;
+    text-align: inherit;
+    overflow: visible;
+    font-size: 1em;
+    border-radius: 0;
+    &:hover, &:focus {
+      background-color: $background-hue6;
+      color: inherit;
     }
+  }
 
-    // small md-icon-button (override Angular material)
-    &.md-mini {
-        line-height: 40px;
-        width: 40px;
-        height: 40px;
-        min-width:40px;
+  // This is to style md-buttons to appear like <a> links
+  // this class hould be use in tandem with the ".neutral-button" class, to neutralize inheritance of button styling from Anguylar Material
+  &.arrow-link-button {
+    @extend .arrow-link;
+    .button-content {
+      @extend a;
+      line-height: 1.4em;
     }
-    
-    // multi-lines button
-    &.multi-line-button {
-        white-space: normal;
-        line-height: 1.2em;
-        padding: .5em;
+    &:hover, &:focus {
+      background: transparent;
+      .button-content {
+        @extend a.hover
+      }
     }
-
-    // occupy the available vertical space in parent container
-    &.button-full-height {
-        height: 100%;
+    [link-arrow] {
+      position: static;
+      @extend .prm-links;
     }
+  }
 
-    // Buttons that replace clickable elements, but that DON'T inherit md-button styling
-    // This is to enable clickable HTML elements like <div>, <p> etc.
-    &.neutralized-button {
-        max-width: none;
-        max-height: none;
-        text-transform: none;
-        padding: 0;
-        margin: 0;
-        line-height: inherit;
-        min-height: 0;
-        min-width: 0;
-        white-space: normal;
-        text-align: inherit;
-        overflow: visible;
-        font-size: 1em;
-        border-radius: 0;
-        &:hover {
-            background-color: transparent;
-        }
-
+  // patch to override material bug of adding 2 ripple container
+  .md-ripple-container {
+    + .md-ripple-container {
+      display: none;
     }
+  }
 
-    // This is to style md-buttons to appear like <a> links
-    // this class hould be use in tandem with the ".neutral-button" class, to neutralize inheritance of button styling from Anguylar Material
-    &.arrow-link-button {
-        @extend .arrow-link;
-        .button-content {
-            @extend a;
-            line-height: 1.4em;
-        }
-        &:hover, &:focus{
-            background: transparent;
-            .button-content {
-                @extend a.hover
-            }
-        }
-        [link-arrow] {            
-            position: static;
-            @extend .prm-links;
-        }
+  &.button-with-menu-arrow {
+    display: flex;
+    .menu-arrow {
+      @extend %drop-down-arrow-icon;
+      margin-left: 8px;
+      [dir="rtl"] & {
+        margin-right: 8px;
+      }
     }
+  }
+}
 
-    .buttons-group & {       
+.buttons-group {
+  .md-button {
+    box-shadow: 1px 0 0 0 transparentize(black, .9);
+  }
+
+  div {
+    &:first-child .md-button {
+      box-shadow: 1px 0 0 0 transparentize(black, .9), -1px 0 0 0 transparentize(black, .9);
+      [dir="rtl"] & {
         box-shadow: 1px 0 0 0 transparentize(black, .9);
-        &:first-child {
-            box-shadow: 1px 0 0 0 transparentize(black, .9), -1px 0 0 0 transparentize(black, .9);
-            [dir="rtl"] & {
-                box-shadow: 1px 0 0 0 transparentize(black, .9);            }
-        }
-        &:last-child {
-            [dir="rtl"] & {
-                box-shadow: 1px 0 0 0 transparentize(black, .9), -1px 0 0 0 transparentize(black, .9);
-            }            
-        }
+      }
     }
-
-    // patch to override material bug of adding 2 ripple container
-    .md-ripple-container {
-        + .md-ripple-container {
-            display: none;
-        }
+    &:last-child .md-button {
+      [dir="rtl"] & {
+        box-shadow: 1px 0 0 0 transparentize(black, .9), -1px 0 0 0 transparentize(black, .9);
+      }
     }
-    
+  }
 }

@@ -1,1 +1,63 @@
 /* starting requests */
+prm-requests {
+	.disabledFavTool {
+    	color: $disabled;
+  	}
+
+	.action-list-content {
+		top: 3em;
+		height: auto;
+	}
+
+	md-list-item {
+		position: relative;
+		display: block;
+
+		._md-no-style,
+		.md-no-style {
+			min-height: 0!important;
+			padding: 0px!important;
+		}
+		
+		&.md-3-line:before {
+			display: none;
+		}
+
+		&.md-3-line {
+			>.md-no-style {
+				&:before {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.request-location {
+		max-width: 80%;
+	}
+
+	.ngrs-progress-bar{
+		width: 90%;
+		padding-top: 2em;
+	}
+
+	.requests-header-actions-layout{
+		.__xs & {
+			flex-wrap: wrap;
+		}
+	}
+
+	.hide-on-extra-small{
+		.__xs & {
+			display: none;
+		}
+	}
+ 
+	.pickup-until{
+		color: #5cb85c;
+	}
+
+	.rapido-material-type{
+		padding-top: 5px;
+	}
+}

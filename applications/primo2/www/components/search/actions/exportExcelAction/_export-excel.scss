@@ -1,0 +1,14 @@
+/* starting exportExcel */
+prm-export-excel {
+  md-select{
+    md-select-value{
+      ._md-text {
+        margin-right: 2em;
+        [dir="rtl"] & {
+          margin-right: auto;
+          margin-left: 2em;
+        }
+      }
+    }
+  }
+}

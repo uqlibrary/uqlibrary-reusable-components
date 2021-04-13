@@ -11,6 +11,12 @@
 .prm-primary {
 	&-color {
 		color: $primary;
+      &.prm-hue1 {
+        color: $primary-hue1;
+      }
+	  &.prm-hue2 {
+	  	color: $primary-hue2;
+	  }
 	}
 	&-bg {
 		color: $white;
@@ -56,6 +62,15 @@
 		&.prm-hue2 {
 			color: $secondary-hue2;
 		}
+		&.prm-hue3 {
+			color: $secondary-hue3;
+		}
+		&.prm-hue4 {
+			color: $secondary-hue4;
+		}
+		&.prm-hue6 {
+			color: $secondary-hue6;
+		}
 	}
 	&-bg {
 		background-color: $secondary;
@@ -65,11 +80,23 @@
 		&.prm-hue2 {
 			background-color: $secondary-hue2;
 		}
+		&.prm-hue3 {
+			background-color: $secondary-hue3;
+		}
+		&.prm-hue4 {
+			background-color: $secondary-hue4;
+		}
+		&.prm-hue5 {
+			background-color: $secondary-hue5;
+		}
 	}
 	&-border {
 		border-color: $secondary;
 		&.prm-hue1 {
 			border-color: $secondary-hue1;
+		}
+		&.prm-hue5 {
+			border-color: $secondary-hue5;
 		}
 	}
 
@@ -120,6 +147,13 @@
 	&.prm-hue13{
 		background-color: $background-hue13;
 	}
+	&.prm-hue14{
+		background-color: $background-hue14;
+	}
+	&.prm-hue15{
+		background-color: $background-hue15;
+	}
+
 	&-color{
 		color:$background;
 		&.prm-hue4 {
@@ -164,6 +198,12 @@
 // 		  			@extend .prm-links.prm-alt-link
 .prm-links {
 	color: $links;
+	&.prm-hue1{
+		color: $links-hue-1;
+	}
+	&.prm-hue4{
+		color: $links-hue-4;
+	}
 	&-important{
 		color: $links !important;
 	}
@@ -176,6 +216,10 @@
 			color: $linkTitle;
 		}
 	}
+    &.prm-hue-2 {
+      color: $linkTitle;
+    }
+
 	&-bg{
 		@include bgColor($links);
 		&.prm-hue-1{
@@ -189,6 +233,9 @@
 		}
 		&.prm-hue-2{
 			background-color: $links-background-hue1;
+		}
+		&.prm-hue-3{
+			background-color: $links-hue-3;
 		}
 	}
 	&-hover{
@@ -213,6 +260,16 @@
 	&.prm-hue1 { // lighter text
 		color: $text-hue1
 	}
+	&.prm-hue2 {// semi-lighter text
+		color: $text-hue2
+	}
+    &.prm-hue3 {// darken text
+      color: $text-hue3
+    }
+	&.prm-hue4 {// semi-darken text
+		color: $text-hue4
+	}
+
 }
 
 
@@ -224,6 +281,9 @@
 	color: $red;
 	&-bg {
 		background-color: $red;
+		&.prm-hue1{
+			background-color: $red-hue1;
+		}
 	}
 }
 
@@ -269,20 +329,44 @@
 // Usage examples:  @extend .prm-positive
 .prm-positive {
 	color: $positive;
+	&.prm-hue1 {
+		color: $positive-hue1;
+	}
+	&-bg {
+		background-color: $positive
+	}
 }
-
-
 
 .prm-negative {
 	color: $negative;
+	&.prm-hue1 {
+		color: $negative-hue1;
+	}
 }
 
 
 .prm-citation-color {
 	color: $citation;
-	
+
+	&.prm-hue2 {
+		color: $citation-hue2;
+	}
+	&.prm-hue3 {
+		color: $citation-hue3;
+	}
+
 	&.citation-hover {
 		color: $citation-hue1
+	}
+}
+
+.prm-warning-color {
+	color: $warning;
+	&.prm-hue1 {
+		color: $warning-hue1;
+	}
+	&.prm-hue2 {
+		color: $warning-hue2;
 	}
 }
 
@@ -301,6 +385,35 @@
 	&-bg{
 		background-color: $white;
 
+	}
+}
+
+.prm-peer-reviewed, .prm-course {
+      color: $peer-reviewed-color;
+}
+
+.prm-open-access {
+      color: $open-access-color;
+}
+
+.prm-personalization {
+	color: $personalization;
+	&-bg {
+		background-color: $personalization;
+	}
+}
+
+.prm-organization {
+	color: $primary;
+	&-bg {
+		background-color: $primary;
+	}
+}
+
+.prm-dark {
+	color: $dark;
+	&.prm-hue1 { // darker text
+		color: $dark-hue1
 	}
 }
 
