@@ -18,7 +18,7 @@
   app.component('prmSearchBookmarkFilterAfter', {
     controller: function($scope){
       // move the primo-login-bar up so it overlaps uq-site-header and is visually one bar
-      const primoLoginBar = document.querySelector('prm-topbar>div.top-nav-bar.layout-row') || false;
+      var primoLoginBar = document.querySelector('prm-topbar>div.top-nav-bar.layout-row') || false;
       !!primoLoginBar && (primoLoginBar.style.marginTop = '-61px');
     },
     template: '<askus-button nopaneopacity></askus-button>'
