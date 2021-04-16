@@ -1,71 +1,53 @@
-//reload page when browser updates cached files
-if (window.applicationCache) {
-  applicationCache.addEventListener('updateready', function () {
-    window.applicationCache.swapCache();
-    window.location.reload();
-  });
-}
-
 function ready(fn) {
-  if (document.readyState != 'loading'){
+  if (document.readyState !== 'loading'){
     fn();
   } else {
     document.addEventListener('DOMContentLoaded', fn);
   }
 }
 
-function loadReusableComponents() {
-  window.addEventListener('WebComponentsReady', function() {
-    //first element of the original document
-    var firstElement = document.body.children[0];
-
+function removePolymerElements() {
     var alerts = document.querySelector('uqlibrary-alerts');
-    if (!alerts) {
-      //as a back up insert header if it's not defined already
-      alerts = document.createElement('uqlibrary-alerts');
-      document.body.insertBefore(alerts, firstElement);
-    }
+    !!alerts && alerts.remove();
 
     var header = document.querySelector('uq-minimal-header');
-    if (!header) {
-      //as a back up insert header if it's not defined already
-      header = document.createElement('uq-minimal-header');
-      document.body.insertBefore(header, firstElement);
-    }
-
-    //configure elements
-    header.showIAButton = false; 
-    header.showMenuButton = true;
-    header.showSearchButton = true;
+    !!header && header.remove();
 
     var menu = document.querySelector('uql-menu');
-    if (!menu) {
-      menu = document.createElement('uql-menu');
-      header.appendChild(menu);
-      document.body.insertBefore(menu, firstElement);
-    }
-
-    header.addEventListener("menu-clicked", function(event) {
-      menu.toggleMenu();
-    });
+    !!menu && menu.remove();
 
     var subFooter = document.querySelector('uql-connect-footer');
-    if (!subFooter) {
-      subFooter = document.createElement('uql-connect-footer');
-      document.body.appendChild(subFooter);
-    }
+    !!subFooter && subFooter.remove();
 
     var footer = document.querySelector("uq-minimal-footer");
-    if (!footer) {
-      footer = document.createElement('uq-minimal-footer');
-      document.body.appendChild(footer);
+    !!footer && footer.remove();
+}
+
+removePolymerElements()
+
+function insertScript(url, defer = false) {
+  var script = document.querySelector("script[src*='" + url + "']");
+  if (!script) {
+    var heads = document.getElementsByTagName("head");
+    if (heads && heads.length) {
+      var head = heads[0];
+      if (head) {
+        script = document.createElement('script');
+        script.setAttribute('src', url);
+        script.setAttribute('type', 'text/javascript');
+        !!defer && script.setAttribute('defer', '');
+        head.appendChild(script);
+      }
     }
-  });
+  }
+}
+
+insertScript('https://assets.library.uq.edu.au/reusable-webcomponents/uq-lib-reusable.min.js', true);
+insertScript('https://assets.library.uq.edu.au/reusable-webcomponents/applications/drupal/load.js');
+
+function loadReusableComponents() {
+    // run it a second time once the page is fully loaded, in case one wasnt available the first time. Probably overkill
+    removePolymerElements();
 }
 
 ready(loadReusableComponents);
-
-
-
-
-
