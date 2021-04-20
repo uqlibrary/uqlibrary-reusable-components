@@ -25,7 +25,7 @@ function removePolymerElements() {
 
 removePolymerElements()
 
-function insertScript(url, defer = false) {
+function insertScript(url, defer) {
   var script = document.querySelector("script[src*='" + url + "']");
   if (!script) {
     var heads = document.getElementsByTagName("head");
@@ -43,7 +43,7 @@ function insertScript(url, defer = false) {
 }
 
 insertScript('https://assets.library.uq.edu.au/reusable-webcomponents/uq-lib-reusable.min.js', true);
-insertScript('https://assets.library.uq.edu.au/reusable-webcomponents/applications/drupal/load.js');
+insertScript('https://assets.library.uq.edu.au/reusable-webcomponents/applications/drupal/load.js', false);
 
 function loadReusableComponents() {
     // run it a second time once the page is fully loaded, in case one wasnt available the first time. Probably overkill
