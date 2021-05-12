@@ -1,5 +1,16 @@
 # PRIMO2 Customisations
 
+## REPOSITORY RELOCATED
+
+Future work on the contents of this directory is being done elsewhere. Please do not make any more modifications here.
+
+* The custom styles for Primo views (`custom-styles.scss` and everything that is imported by it) has moved to <https://github.com/uqlibrary/reusable-webcomponents/tree/master/src/applications/primo>
+* The view package and alma styles have moved to <https://github.com/uqlibrary/exlibris-primo/>.
+
+---
+
+## Overview
+
 UQ Library is a Hosted Multi-Tenant Customer of Ex Libris (the alternative is to be an On-Premises Customer).
 
 Primo is managed by the Library's "Discovery and Access Coordinator", referred to below as DAC. This is currently Stacey van Groll.
